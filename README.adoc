@@ -15,26 +15,59 @@ ifndef::env-github[]
 image::images/Ui.png[width="600"]
 endif::[]
 
-* This is a desktop Address Book application. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
-* It is a Java sample application intended for students learning Software Engineering while using Java as the main programming language.
-* It is *written in OOP fashion*. It provides a *reasonably well-written* code example that is *significantly bigger* (around 6 KLoC)than what students usually write in beginner-level SE modules.
-* What's different from https://github.com/se-edu/addressbook-level3[level 3]:
-** A more sophisticated GUI that includes a list  panel and an in-built Browser.
-** More test cases, including automated GUI testing.
-** Support for _Build Automation_ using Gradle and for _Continuous Integration_ using Travis CI.
+== About
+
+This is a module planner application.
+It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
+It allows a user to keep track of past modules, and list possible future modules based
+on the user’s academic requirements (for graduation, a minor etc).
+
+The target users for this product are Computer Science undergraduate students
+in the National University of Singapore (NUS).
+
+What this product does is to simplify the module planning process that every NUS student has to go through.
+
+.Current way of planning modules
+----
+1. Go to an external site to check what modules one has to take.
+2. See which modules' pre-requisites have been fulfilled and are open for one to take.
+3. Choose some of those modules.
+4. Start planning for the next semester.
+5. Repeat (1) - (4) for any number of semesters.
+6. Wishes to delete some modules
+7. Some modules planned now have their pre-requisites unfulfilled.
+8. Signs in frustration
+9. Repeat (8)
+----
+
+As one can see, the problem with the current way of planning modules is the *sheer* tediousness.
+
+.New way of planning modules
+----
+1. Input academic requirements.
+2. Application lists possible modules to take based on academic comitments and module pre-requisites.
+3. Choose some of those modules.
+4. Repeat (1) - (3) for any number of semesters.
+5. Wishes to remove some modules
+6. Application removes modules which pre-requisites are not fulfilled and suggests new modules to take.
+----
+
+Much better!
+
+What this product does is to simplify that process and make it easier for NUS students to plan their modules.
+
 
 == Site Map
 
 * <<UserGuide#, User Guide>>
 * <<DeveloperGuide#, Developer Guide>>
-* <<LearningOutcomes#, Learning Outcomes>>
 * <<AboutUs#, About Us>>
 * <<ContactUs#, Contact Us>>
 
 == Acknowledgements
 
-* Some parts of this sample application were inspired by the excellent http://code.makery.ch/library/javafx-8-tutorial/[Java FX tutorial] by
-_Marco Jakob_.
-* Libraries used: https://github.com/TestFX/TestFX[TextFX], https://bitbucket.org/controlsfx/controlsfx/[ControlsFX], https://github.com/FasterXML/jackson[Jackson], https://github.com/google/guava[Guava], https://github.com/junit-team/junit5[JUnit5]
+* The source code that the module planner is built on is from the
+  https://github.com/se-edu/addressbook-level4.git[AddressBook-Level4] project
+  created by the SE-EDU initiative.
 
 == Licence : link:LICENSE[MIT]
