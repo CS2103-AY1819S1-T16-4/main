@@ -815,11 +815,13 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing over mouse input
-* is reasonably comfortable using CLI apps
+* NUS Computer Science and Computer Engineering students who :
++
+[none]
+** need to manage their modules
+** is familiar with CLI apps
+** prefer typing over using mouse
+** prefer desktop apps over other types
 
 *Value proposition*: manage contacts faster than a typical mouse/GUI driven app
 
@@ -831,71 +833,138 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
+|`* * *` |CS student |specify my major, focus area and current semester |Get a list of modules I need to take to fulfill requirements
 
-|`* * *` |user |add a new person |
+|`* * *` |student |add modules that I have taken |know what other modules I can take next based on the module prerequisites
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |student |add modules that I want to take for future semesters |plan my modules for the future semesters
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |student |delete modules from plan |remove modules that I choose not to take
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+|`* * *` |student |see the list of modules |choose what modules I want to take for the next semester
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* * *` |student |get a summary of my current progress |get a better sense of what I need to do next
+
+|`* *` |student |look up a module |know which semester it is available in
+
+|`* *` |student |look up a module I want to take |get the list of prerequisites for it
 |=======================================================================
-
-_{More to be added}_
 
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `ModulePlanner`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+=== Use case: Specify major/focus area
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to specify a major/focus area
+2.  System displays a list of modules related to the major/ focus area
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The list is empty.
+* 2a. The given input is invalid.
++
+[none]
+** 2a1. System shows an error message.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
+[discrete]
+=== Use case: Add modules that have been taken
+
+*MSS*
+
+1.  User requests to add any number of module codes to the list of modules taken
+2.  System shows success message
+3.  User requests to see the list of available modules
+4.  System shows the list of modules that user can take based on the list of modules taken
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. User inputs no module code
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 2a1. System shows error message
 +
-Use case resumes at step 2.
+Use case ends.
 
-_{More to be added}_
+* 2b. User inputs invalid module code(s)
++
+[none]
+** 2b1. System shows error message
++
+Use case ends.
+
+* 4a. The list is empty
++
+Use case ends.
+
+[discrete]
+=== Use case: Delete modules
+
+*MSS*
+
+1.  User requests to see the module plan he/she has made for a specific semester
+2.  System shows module plan for the specified semester
+3.  User requests to delete any number of module codes from the plan
+4.  System shows success message
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The plan is empty
++
+Use case ends.
+
+* 2b. The semester is a past semester
++
+[none]
+** 2b1. User is told that old modules cannot be changed
++
+Use case ends.
+
+* 3a. User inputs no module code
++
+[none]
+** 3a1. System shows error message
+** 3a2. System prompts for module code(s)
++
+Use case ends.
+
+* 3b. User inputs invalid module code(s)
++
+[none]
+** 3b1. System shows error message
+** 3b2. System prompts for valid module code(s)
++
+Use case ends.
 
 [appendix]
 == Non Functional Requirements
 
-.  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` or higher installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-_{More to be added}_
+.  Should work on any mainstream OS as long as it has Java 9 or higher installed
+.  Should be able to handle at least 80 modules
+.  Should have good documentation
+.  Should be designed to allow for future extensibility
+.  Should be designed well to ease maintainability and be easily tested
+.  Should be scalable to cater to more modules if a second major, degree or the like is taken
 
 [appendix]
 == Glossary
 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
-
-[[private-contact-detail]] Private contact detail::
-A contact detail that is not meant to be shared with others
 
 [appendix]
 == Product Survey
