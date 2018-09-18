@@ -17,15 +17,19 @@ endif::[]
 
 == About
 
-This is a module planner application.
-It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
-It allows a user to keep track of past modules, and list possible future modules based
-on the user’s academic requirements (for graduation, a minor etc).
+* This is a module planner application.
 
-The target users for this product are Computer Science undergraduate students
-in the National University of Singapore (NUS).
+* It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
 
-What this product does is to simplify the module planning process that every NUS student has to go through.
+* It allows a user to keep track of past modules, and list possible future modules based
+  on the user’s academic requirements (for graduation, a minor etc).
+
+* The target users for this product are Computer Science undergraduate students
+  in the National University of Singapore (NUS).
+
+* What this product does is to simplify the module planning process that every NUS student has to go through.
+
+'''
 
 .Current way of planning modules
 ----
@@ -40,7 +44,7 @@ What this product does is to simplify the module planning process that every NUS
 9. Repeat (8)
 ----
 
-As one can see, the problem with the current way of planning modules is the *sheer* tediousness.
+So *tedious*.
 
 .New way of planning modules
 ----
@@ -53,9 +57,6 @@ As one can see, the problem with the current way of planning modules is the *she
 ----
 
 Much better!
-
-What this product does is to simplify that process and make it easier for NUS students to plan their modules.
-
 
 == Site Map
 
