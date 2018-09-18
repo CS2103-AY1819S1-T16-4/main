@@ -36,7 +36,7 @@ What this product does is to simplify the module planning process that every NUS
 5. Repeat (1) - (4) for any number of semesters.
 6. Wishes to delete some modules
 7. Some modules planned now have their pre-requisites unfulfilled.
-8. Signs in frustration
+8. Sighs in frustration
 9. Repeat (8)
 ----
 
@@ -66,7 +66,7 @@ What this product does is to simplify that process and make it easier for NUS st
 
 == Acknowledgements
 
-* The source code that the module planner is built on is from the
+* The module planner is built on top of the
   https://github.com/se-edu/addressbook-level4.git[AddressBook-Level4] project
   created by the SE-EDU initiative.
 
