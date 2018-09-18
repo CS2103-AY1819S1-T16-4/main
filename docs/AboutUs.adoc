@@ -19,12 +19,11 @@ Role: Developer
 
 '''
 
-=== John Roe
-image::lejolly.jpg[width="150", align="left"]
-{empty}[http://github.com/lejolly[github]] [<<johndoe#, portfolio>>]
+=== Hilda Anggraeni
+image::hilda-ang.jpg[width="150", align="left"]
+{empty}[http://github.com/Hilda-Ang[github]]
 
-Role: Team Lead +
-Responsibilities: UI
+Role: Developer
 
 '''
 
