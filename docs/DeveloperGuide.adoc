@@ -823,7 +823,7 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 ** prefer typing over using mouse
 ** prefer desktop apps over other types
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+*Value proposition*: easily plan modules based on graduation requirements
 
 [appendix]
 == User Stories
