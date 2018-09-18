@@ -815,11 +815,13 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 
 *Target user profile*:
 
-NUS Computer Science and Computer Engineering students who :
-* need to manage their modules
-* is familiar with CLI apps
-* prefer typing over using mouse
-* refer desktop apps over other types
+* NUS Computer Science and Computer Engineering students who :
++
+[none]
+** need to manage their modules
+** is familiar with CLI apps
+** prefer typing over using mouse
+** prefer desktop apps over other types
 
 *Value proposition*: manage contacts faster than a typical mouse/GUI driven app
 
@@ -916,7 +918,7 @@ Use case ends.
 3.  User requests to delete any number of module codes from the plan
 4.  System shows success message
 +
-Use case ends
+Use case ends.
 
 *Extensions*
 
