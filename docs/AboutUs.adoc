@@ -39,9 +39,9 @@ Responsibilities: Data
 
 === Rezky Arizaputra
 image::romaromama.jpg[width="150", align="left"]
-{empty}[http://github.com/RomaRomama[github]] 
+{empty}[http://github.com/RomaRomama[github]]
 
-Role: Developer 
+Role: Developer
 
 '''
 

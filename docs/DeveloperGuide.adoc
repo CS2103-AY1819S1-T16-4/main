@@ -926,7 +926,7 @@ Use case ends
 Use case ends.
 
 * 2b. The semester is a past semester
-+ 
++
 [none]
 ** 2b1. User is told that old modules cannot be changed
 +
@@ -937,7 +937,7 @@ Use case ends.
 [none]
 ** 3a1. System shows error message
 ** 3a2. System prompts for module code(s)
-+ 
++
 Use case ends.
 
 * 3b. User inputs invalid module code(s)
@@ -947,7 +947,7 @@ Use case ends.
 ** 3b2. System prompts for valid module code(s)
 +
 Use case ends.
- 
+
 [appendix]
 == Non Functional Requirements
 
