@@ -38,7 +38,7 @@ endif::[]
 3. Choose some of those modules.
 4. Start planning for the next semester.
 5. Repeat (1) - (4) for any number of semesters.
-6. Wishes to delete some modules
+6. Wishes to remove some modules
 7. Some modules planned now have their pre-requisites unfulfilled.
 8. Sighs in frustration
 9. Repeat (8)
