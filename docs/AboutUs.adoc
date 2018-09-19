@@ -27,12 +27,11 @@ Role: Developer
 
 '''
 
-=== Johnny Doe
-image::yijinl.jpg[width="150", align="left"]
-{empty}[http://github.com/yijinl[github]] [<<johndoe#, portfolio>>]
+=== Loo Rong Jie
+image::rongjie.jpg[width="150", align="left"]
+{empty}[http://github.com/rongjiecomputer[github]]
 
-Role: Developer +
-Responsibilities: Data
+Role: Developer
 
 '''
 
