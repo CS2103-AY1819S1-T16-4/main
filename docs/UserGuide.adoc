@@ -18,7 +18,7 @@ By: `Team T16-4`      Since: `Sept 2018`      Licence: `MIT`
 
 == Introduction
 
-Module Planner is for NUS Computer Science undergraduate students who *prefer to use a desktop app to keep track of past modules and list possible future modules based on the academic requirements*. More importantly, Module Planner is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Module Planner can get your module planning tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Module Planner is for NUS Computer Science undergraduate students who *prefer to use a desktop app* to keep track of past modules and list possible future modules based on the academic requirements. More importantly, Module Planner is optimized for those who prefer to work with a *Command Line Interface (CLI)* while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Module Planner can get your module planning tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == Quick Start
 
