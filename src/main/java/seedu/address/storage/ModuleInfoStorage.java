@@ -24,7 +24,6 @@ public class ModuleInfoStorage {
     }
 
     //TODO
-
     /**
      * Returns module information of a certain type that {@code ModuleInfoStorage} stores.
      *
