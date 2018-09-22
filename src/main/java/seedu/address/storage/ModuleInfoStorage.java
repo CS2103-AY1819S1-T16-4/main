@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.util.List;
+import java.util.Map;
 
 import seedu.address.model.ModuleInfo;
 import seedu.address.model.enumeration.ModuleType;
@@ -11,17 +12,9 @@ import seedu.address.model.enumeration.ModuleType;
  * Represents a storage of {@code ModuleInfo} objects.
  */
 public class ModuleInfoStorage {
-    private List<ModuleInfo> moduleInfos;
-
     //TODO
-    /**
-     * Returns all the module information that {@code ModuleInfoStorage} stores.
-     *
-     * @return All module information.
-     */
-    public List<ModuleInfo> getModuleInfos() {
-        return moduleInfos;
-    }
+    // Underlying structure could be a LinkedHashMap
+    private Map<ModuleType, List<ModuleInfo>> moduleInfos;
 
     //TODO
     /**
@@ -31,6 +24,6 @@ public class ModuleInfoStorage {
      * @return Specified type of module information.
      */
     public List<ModuleInfo> getModuleInfos(ModuleType moduleType) {
-        return moduleInfos;
+        return moduleInfos.get(moduleType);
     }
 }
