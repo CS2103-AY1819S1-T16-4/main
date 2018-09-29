@@ -7,8 +7,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ModuleUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ModuleInfo;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -25,6 +27,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -34,6 +37,24 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
+    //@@author GabrielYik
+
+    //TODO
+    /**
+     * Parses the unverified {@code code} into a valid {@code code}. Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code code} is invalid.
+     */
+    public static String parseCode(String code) throws ParseException {
+        if (!ModuleUtil.hasValidCode(code)) {
+            throw new ParseException(ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS);
+        }
+
+        return code;
+    }
+
+    //@@author
 
     /**
      * Parses a {@code String name} into a {@code Name}.
