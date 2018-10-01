@@ -46,7 +46,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code code} is invalid.
      */
-    public static String parseCode(String code) throws ParseException {
+    public static String parseModuleCode(String code) throws ParseException {
         if (!ModuleUtil.hasValidCode(code)) {
             throw new ParseException(ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS);
         }

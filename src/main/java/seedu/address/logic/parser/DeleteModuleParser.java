@@ -21,7 +21,7 @@ public class DeleteModuleParser implements Parser<DeleteModuleCommand> {
     @Override
     public DeleteModuleCommand parse(String args) throws ParseException {
         try {
-            String code = ParserUtil.parseCode(args);
+            String code = ParserUtil.parseModuleCode(args);
             return new DeleteModuleCommand(code);
         } catch (ParseException pe) {
             throw new ParseException(
