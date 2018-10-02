@@ -17,7 +17,7 @@ public class ModuleManager {
      * @param module module to be changed.
      * @param newModuleType the new type that the {@code module} should be.
      */
-    public void updateModuleType(Module module, ModuleType newModuleType ) {
+    public void updateModuleType(Module module, ModuleType newModuleType) {
 
     }
 
