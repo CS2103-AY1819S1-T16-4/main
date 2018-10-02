@@ -7,7 +7,7 @@ package seedu.address.commons.util;
  */
 public class ModuleUtil {
 
-    //@@author Gabriel
+    //@@author GabrielYik
 
     //TODO
     /**
