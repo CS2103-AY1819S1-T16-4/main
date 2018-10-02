@@ -1,8 +1,6 @@
-package seedu.address.commons.util;
+package seedu.address.model.util;
 
 import org.junit.Test;
-
-import seedu.address.model.util.ModuleUtil;
 
 public class ModuleUtilTest {
 
@@ -10,7 +8,7 @@ public class ModuleUtilTest {
 
     //TODO
     @Test
-    public void hasValidCode_x_x() {
+    public void hasValidCode() {
 
     }
 
