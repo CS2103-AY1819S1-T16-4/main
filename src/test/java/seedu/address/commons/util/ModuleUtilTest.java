@@ -2,7 +2,7 @@ package seedu.address.commons.util;
 
 import org.junit.Test;
 
-import seedu.address.commons.util.ModuleUtil;
+import seedu.address.model.util.ModuleUtil;
 
 public class ModuleUtilTest {
 
