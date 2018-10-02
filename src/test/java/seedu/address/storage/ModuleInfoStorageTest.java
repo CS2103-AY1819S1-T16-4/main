@@ -1,9 +1,18 @@
 package seedu.address.storage;
 
-//@@author GabrielYik
+import org.junit.Test;
 
-//TODO
+import seedu.address.storage.ModuleInfoStorage;
 
 public class ModuleInfoStorageTest {
+
+    //@@author GabrielYik
+
+    //TODO
+    @Test
+    public void getModuleInfos_x_x() {
+
+    }
+    //@@author
 
 }
