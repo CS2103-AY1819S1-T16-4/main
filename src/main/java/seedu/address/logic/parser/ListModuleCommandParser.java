@@ -30,8 +30,8 @@ public class ListModuleCommandParser implements Parser<ListModuleCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListModuleCommand.MESSAGE_USAGE));
         }
 
-        int year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
-        int semester = ParserUtil.parseSemester(argMultimap.getValue(PREFIX_SEMESTER).get());
+        String year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
+        String semester = ParserUtil.parseSemester(argMultimap.getValue(PREFIX_SEMESTER).get());
 
         return new ListModuleCommand(year, semester);
     }
