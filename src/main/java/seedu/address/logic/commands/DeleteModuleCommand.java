@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 
 import seedu.address.logic.CommandHistory;
@@ -27,7 +26,6 @@ public class DeleteModuleCommand extends Command {
     private final String moduleCode;
 
     public DeleteModuleCommand(String moduleCode) {
-        requireNonNull(moduleCode);
         this.moduleCode = moduleCode;
     }
 
