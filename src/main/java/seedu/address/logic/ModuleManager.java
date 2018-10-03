@@ -1,6 +1,6 @@
 package seedu.address.logic;
 
-import seedu.address.model.Module;
+import seedu.address.model.module.Module;
 import seedu.address.model.enumeration.ModuleType;
 
 /**
