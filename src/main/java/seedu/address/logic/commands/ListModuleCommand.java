@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.CommandHistory;
-import seedu.address.model.Model;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
+
+import seedu.address.logic.CommandHistory;
+import seedu.address.model.Model;
 
 /**
  * Placeholder for ListModuleCommand.
