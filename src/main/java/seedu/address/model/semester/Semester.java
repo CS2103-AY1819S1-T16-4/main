@@ -36,7 +36,7 @@ public class Semester {
 
     /**
      * Adds modules to list of modules taken.
-     * 
+     *
      * @param modules A non-empty list of modules to be added.
      */
     public void addModules(List<Module> modules) {
@@ -45,7 +45,7 @@ public class Semester {
 
     /**
      * Deletes modules from list of modules taken if present.
-     * 
+     *
      * @param modules A non-empty list of modules to be deleted.
      */
     public void deleteModules(List<Module> modules) {
@@ -54,7 +54,7 @@ public class Semester {
 
     /**
      * Returns list of modules taken.
-     * 
+     *
      * @return A list of modules taken.
      */
     public List<Module> listModulesTaken() {
@@ -63,7 +63,7 @@ public class Semester {
 
     /**
      * Returns list of suggested modules.
-     * 
+     *
      * @return A list of suggested modules.
      */
     public List<Module> listModulesSuggested() {

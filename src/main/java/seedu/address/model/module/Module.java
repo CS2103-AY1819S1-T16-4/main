@@ -1,5 +1,6 @@
 package seedu.address.model.module;
 
-public class Module {
-	
-}
+/**
+ * Temporary {@code Module} class placeholder.
+ */
+public class Module {}
