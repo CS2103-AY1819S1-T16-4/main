@@ -10,18 +10,18 @@ import seedu.address.model.module.Module;
  */
 public class Semester {
 
-	// Basic information
-	private final int semester;
-	private final int year;
+    // Basic information
+    private final int semester;
+    private final int year;
 
-	// Indicator of whether user has passed the semester
-	private boolean past;
+    // Indicator of whether user has passed the semester
+    private boolean past;
 
-	// Modules lists
-	private List<Module> modulesTaken = new ArrayList<Module>();
-	private List<Module> modulesSuggested = new ArrayList<Module>();
+    // Modules lists
+    private List<Module> modulesTaken = new ArrayList<Module>();
+    private List<Module> modulesSuggested = new ArrayList<Module>();
 
-	/**
+    /**
      * Constructs a {@code Semester}.
      *
      * @param semester A valid semester.
@@ -49,8 +49,8 @@ public class Semester {
      * @param modules A non-empty list of modules to be deleted.
      */
     public void deleteModules(List<Module> modules) {
-    	
-    } 
+
+    }
 
     /**
      * Returns list of modules taken.
@@ -58,7 +58,7 @@ public class Semester {
      * @return A list of modules taken.
      */
     public List<Module> listModulesTaken() {
-    	return modulesTaken;
+        return modulesTaken;
     }
 
     /**
@@ -67,6 +67,6 @@ public class Semester {
      * @return A list of suggested modules.
      */
     public List<Module> listModulesSuggested() {
-    	return modulesSuggested;
+        return modulesSuggested;
     }
 }
