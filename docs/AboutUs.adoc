@@ -28,7 +28,7 @@ Role: Developer
 '''
 
 === Loo Rong Jie
-image::rongjie.png[width="150", align="left"]
+image::rongjiecomputer.png[width="150", align="left"]
 {empty}[http://github.com/rongjiecomputer[github]]
 
 Role: Developer
