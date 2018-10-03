@@ -55,7 +55,7 @@ public class ParserUtil {
     }
 
     //@@author Hilda-Ang
-    
+
     /**
      * Parses the unverified {@code year} into a valid {@code year}. Leading and trailing whitespaces will be trimmed.
      */
