@@ -8,7 +8,7 @@ import seedu.address.model.semester.Semester;
 
 /**
  * Wraps all data at the module planner level, holds 8 semesters.
- * 
+ *
  * @author Hilda-Ang
  */
 public class ModulePlanner {
