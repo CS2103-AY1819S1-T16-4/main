@@ -14,7 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
  */
 public class ListModuleCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "listModule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken or suggested for a semester. "
             + "Parameters: "
