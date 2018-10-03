@@ -1,8 +1,8 @@
 package seedu.address.model.module;
 
+//@@author Hilda-Ang
+
 /**
  * Temporary {@code Module} class placeholder.
- *
- * @author Hilda-Ang
  */
 public class Module {}

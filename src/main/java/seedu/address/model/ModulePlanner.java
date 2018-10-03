@@ -6,13 +6,16 @@ import java.util.List;
 import seedu.address.model.module.Module;
 import seedu.address.model.semester.Semester;
 
+/@@author Hilda-Ang
+
 /**
  * Wraps all data at the module planner level, holds 8 semesters.
- *
- * @author Hilda-Ang
  */
 public class ModulePlanner {
-    private final List<Semester> semesters = new ArrayList<Semester>(8);
+
+    private final int MAX_NUM_SEMESTERS = 8;
+
+    private final List<Semester> semesters = new ArrayList<Semester>(MAX_NUM_SEMESTERS);
 
     public ModulePlanner() {}
 

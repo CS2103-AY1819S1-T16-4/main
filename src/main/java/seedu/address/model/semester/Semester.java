@@ -5,11 +5,11 @@ import java.util.List;
 
 import seedu.address.model.module.Module;
 
+//@@author Hilda-Ang
+
 /**
  * Represents a Semester in the module planner.
  * Holds list of modules taken and list of modules suggested for a particular semester.
- *
- * @author Hilda-Ang
  */
 public class Semester {
 
