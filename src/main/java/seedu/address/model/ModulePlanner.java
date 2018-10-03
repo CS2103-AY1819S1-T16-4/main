@@ -6,7 +6,7 @@ import java.util.List;
 import seedu.address.model.module.Module;
 import seedu.address.model.semester.Semester;
 
-/@@author Hilda-Ang
+//@@author Hilda-Ang
 
 /**
  * Wraps all data at the module planner level, holds 8 semesters.
