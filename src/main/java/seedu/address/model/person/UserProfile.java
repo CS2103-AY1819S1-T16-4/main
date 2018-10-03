@@ -2,9 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.model.enumeration.*;
-import java.util.Collections;
-import java.util.Objects;
+import seedu.address.model.enumeration.FocusArea;
+import seedu.address.model.enumeration.Major;
 
 
 //@@author RomaRomama
@@ -44,7 +43,7 @@ public class UserProfile {
 
     public FocusArea getFocusArea() { return focusArea; }
 
-    public int SemsToGrad() { return 8 - 2 * year - sem; }
+    public int semsToGrad() { return 8 - 2 * year - sem; }
 
     /**
      * update infos
