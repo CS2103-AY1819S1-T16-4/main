@@ -7,6 +7,9 @@ import seedu.address.model.module.Module;
 
 /**
  * Represents a Semester in the module planner.
+ * Holds list of modules taken and list of modules suggested for a particular semester.
+ *
+ * @author Hilda-Ang
  */
 public class Semester {
 
@@ -35,7 +38,7 @@ public class Semester {
     }
 
     /**
-     * Adds modules to list of modules taken.
+     * Adds one or more module(s) to list of modules taken.
      *
      * @param modules A non-empty list of modules to be added.
      */
@@ -44,7 +47,7 @@ public class Semester {
     }
 
     /**
-     * Deletes modules from list of modules taken if present.
+     * Deletes one or more module(s) from list of modules taken if present.
      *
      * @param modules A non-empty list of modules to be deleted.
      */
@@ -53,7 +56,7 @@ public class Semester {
     }
 
     /**
-     * Returns list of modules taken.
+     * Returns list of modules taken in a particular semester.
      *
      * @return A list of modules taken.
      */
@@ -62,7 +65,7 @@ public class Semester {
     }
 
     /**
-     * Returns list of suggested modules.
+     * Returns list of modules that the user is available to take in a particular semester.
      *
      * @return A list of suggested modules.
      */

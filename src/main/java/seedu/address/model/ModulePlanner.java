@@ -8,6 +8,8 @@ import seedu.address.model.semester.Semester;
 
 /**
  * Wraps all data at the module planner level, holds 8 semesters.
+ * 
+ * @author Hilda-Ang
  */
 public class ModulePlanner {
     private final List<Semester> semesters = new ArrayList<Semester>(8);
@@ -15,7 +17,7 @@ public class ModulePlanner {
     public ModulePlanner() {}
 
     /**
-     * Add modules to specified semester.
+     * Add one or more module(s) to list of modules taken for the specified semester.
      *
      * @param modules A list of valid modules to be added.
      * @param semester A valid semester.
@@ -25,7 +27,7 @@ public class ModulePlanner {
     }
 
     /**
-     * Delete modules from specified semester.
+     * Delete one or more module(s) from list of modules taken for the specified semester.
      *
      * @param modules A list of valid modules to be deleted.
      * @param semester A valid semester.
@@ -35,7 +37,7 @@ public class ModulePlanner {
     }
 
     /**
-     * Returns list of modules taken in specified semester.
+     * Returns list of modules the user has taken or is planning to take in the specified semester.
      *
      * @param semester A valid semester.
      * @return A list of modules taken in the semester.
@@ -45,7 +47,7 @@ public class ModulePlanner {
     }
 
     /**
-     * Returns list of modules suggested for specified semester.
+     * Returns list of modules that the user is available to take for the specified semester.
      *
      * @param semester A valid semester.
      * @return A list of modules suggested for the semester.
