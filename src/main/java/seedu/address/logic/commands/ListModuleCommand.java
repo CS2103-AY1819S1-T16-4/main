@@ -6,11 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 
+//@@author Hilda-Ang
+
 /**
  * Placeholder for ListModuleCommand.
  * Lists all modules the user has taken or is available to take.
- *
- * @author Hilda-Ang
  */
 public class ListModuleCommand extends Command {
 

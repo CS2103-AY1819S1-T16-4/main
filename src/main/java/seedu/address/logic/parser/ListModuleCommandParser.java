@@ -9,10 +9,10 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.ListModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+//@@author Hilda-Ang
+
 /**
  * Parses input arguments and creates a new ListModuleCommand object.
- *
- * @author Hilda-Ang
  */
 public class ListModuleCommandParser implements Parser<ListModuleCommand> {
 

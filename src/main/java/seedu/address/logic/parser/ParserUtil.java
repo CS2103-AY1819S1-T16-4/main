@@ -54,10 +54,10 @@ public class ParserUtil {
         return code;
     }
 
+    //@@author Hilda-Ang
+    
     /**
      * Parses the unverified {@code year} into a valid {@code year}. Leading and trailing whitespaces will be trimmed.
-     *
-     * @author Hilda-Ang
      */
     public static String parseYear(String year) {
         requireNonNull(year);
