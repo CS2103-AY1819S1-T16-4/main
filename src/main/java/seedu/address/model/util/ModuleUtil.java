@@ -7,7 +7,7 @@ package seedu.address.model.util;
  */
 public class ModuleUtil {
 
-    //@@author Gabriel
+    //@@author GabrielYik
 
     //TODO
     /**
