@@ -54,7 +54,34 @@ public class ParserUtil {
         return code;
     }
 
-    //@@author
+    /**
+     * Parses the unverified {@code year} into a valid {@code year}. Leading and trailing whitespaces will be trimmed.
+     *
+     * @author Hilda-Ang
+     */
+    public static String parseYear(String year) {
+        requireNonNull(year);
+        String trimmedYear = year.trim();
+
+        // TODO: check whether the given year is valid, otherwise throw a ParseException
+
+        return trimmedYear;
+    }
+
+    /**
+     * Parses the unverified {@code semester} into a valid {@code semester}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @author Hilda-Ang
+     */
+    public static String parseSemester(String semester) {
+        requireNonNull(semester);
+        String trimmedSemester = semester.trim();
+
+        // TODO: check whether the given semester is valid, otherwise throw a ParseException
+
+        return trimmedSemester;
+    }
 
     /**
      * Parses a {@code String name} into a {@code Name}.
