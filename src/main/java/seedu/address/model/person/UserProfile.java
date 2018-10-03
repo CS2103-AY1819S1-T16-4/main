@@ -11,8 +11,10 @@ import seedu.address.model.enumeration.Major;
 /**
  * Presents profile of User
  */
-
 public class UserProfile {
+
+    //Relevant constants
+    private static final int MAX_NUM_SEMESTERS = 8;
 
     //Identity fields
     private int year;
@@ -32,9 +34,9 @@ public class UserProfile {
     }
 
     /**
-     *
-     * @return related infos
+     * Methods returning related information
      */
+
     public int getYear() { return year; }
 
     public int getSem() { return sem; }
@@ -43,17 +45,18 @@ public class UserProfile {
 
     public FocusArea getFocusArea() { return focusArea; }
 
-    public int semsToGrad() { return 8 - 2 * year - sem; }
+    public int semsToGrad() { return MAX_NUM_SEMESTERS - 2 * year - sem; }
 
     /**
-     * update infos
+     * Methods updating related information
      */
-    public void setYear(int new_year) { year = new_year; }
 
-    public void setSem(int new_sem) { sem = new_sem; }
+    public void setYear(int newYear) { year = newYear; }
 
-    public void setMajor(Major new_major) { major = new_major; }
+    public void setSem(int newSem) { sem = newSem; }
 
-    public void setFocusArea(FocusArea new_focusArea) { focusArea = new_focusArea; }
+    public void setMajor(Major newMajor) { major = newMajor; }
+
+    public void setFocusArea(FocusArea newFocusArea) { focusArea = newFocusArea; }
 
 }

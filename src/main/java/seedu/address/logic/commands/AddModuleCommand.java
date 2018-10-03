@@ -36,7 +36,6 @@ public class AddModuleCommand extends Command {
     /**
      * Add module method
      */
-
     public AddModuleCommand(String moduleCode) {
         requireNonNull(moduleCode);
         toAdd = moduleCode;
