@@ -20,7 +20,7 @@ Role: Developer
 '''
 
 === Hilda Anggraeni
-image::hilda-ang.jpg[width="150", align="left"]
+image::hilda-ang.png[width="150", align="left"]
 {empty}[http://github.com/Hilda-Ang[github]]
 
 Role: Developer
@@ -28,7 +28,7 @@ Role: Developer
 '''
 
 === Loo Rong Jie
-image::rongjie.jpg[width="150", align="left"]
+image::rongjie.png[width="150", align="left"]
 {empty}[http://github.com/rongjiecomputer[github]]
 
 Role: Developer
@@ -36,7 +36,7 @@ Role: Developer
 '''
 
 === Rezky Arizaputra
-image::romaromama.jpg[width="150", align="left"]
+image::romaromama.png[width="150", align="left"]
 {empty}[http://github.com/RomaRomama[github]]
 
 Role: Developer
