@@ -32,5 +32,41 @@ public class Semester {
         this.semester = semester;
         this.year = year;
         this.past = past;
+    }
+
+    /**
+     * Adds modules to list of modules taken.
+     * 
+     * @param modules A non-empty list of modules to be added.
+     */
+    public void addModules(List<Module> modules) {
+
+    }
+
+    /**
+     * Deletes modules from list of modules taken if present.
+     * 
+     * @param modules A non-empty list of modules to be deleted.
+     */
+    public void deleteModules(List<Module> modules) {
+    	
     } 
+
+    /**
+     * Returns list of modules taken.
+     * 
+     * @return A list of modules taken.
+     */
+    public List<Module> listModulesTaken() {
+    	return modulesTaken;
+    }
+
+    /**
+     * Returns list of suggested modules.
+     * 
+     * @return A list of suggested modules.
+     */
+    public List<Module> listModulesSuggested() {
+    	return modulesSuggested;
+    }
 }
