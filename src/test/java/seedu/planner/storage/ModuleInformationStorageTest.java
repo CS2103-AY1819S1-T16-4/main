@@ -4,6 +4,6 @@ package seedu.planner.storage;
 
 //TODO
 
-public class ModuleInfoStorageTest {
+public class ModuleInformationStorageTest {
 
 }
