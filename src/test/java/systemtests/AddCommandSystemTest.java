@@ -1,50 +1,50 @@
 package systemtests;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.KEYWORD_MATCHING_MEIER;
+import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.planner.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.planner.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.planner.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.planner.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.planner.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.planner.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.planner.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.planner.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.planner.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.planner.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.planner.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.planner.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.planner.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.planner.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.planner.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.planner.testutil.TypicalPersons.ALICE;
+import static seedu.planner.testutil.TypicalPersons.AMY;
+import static seedu.planner.testutil.TypicalPersons.BOB;
+import static seedu.planner.testutil.TypicalPersons.CARL;
+import static seedu.planner.testutil.TypicalPersons.HOON;
+import static seedu.planner.testutil.TypicalPersons.IDA;
+import static seedu.planner.testutil.TypicalPersons.KEYWORD_MATCHING_MEIER;
 
 import org.junit.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.UndoCommand;
-import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.planner.commons.core.Messages;
+import seedu.planner.commons.core.index.Index;
+import seedu.planner.logic.commands.AddCommand;
+import seedu.planner.logic.commands.RedoCommand;
+import seedu.planner.logic.commands.UndoCommand;
+import seedu.planner.model.Model;
+import seedu.planner.model.person.Address;
+import seedu.planner.model.person.Email;
+import seedu.planner.model.person.Name;
+import seedu.planner.model.person.Person;
+import seedu.planner.model.person.Phone;
+import seedu.planner.model.tag.Tag;
+import seedu.planner.testutil.PersonBuilder;
+import seedu.planner.testutil.PersonUtil;
 
 public class AddCommandSystemTest extends AddressBookSystemTest {
 
@@ -54,7 +54,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
 
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
 
-        /* Case: add a person without tags to a non-empty address book, command with leading spaces and trailing spaces
+        /* Case: add a person without tags to a non-empty planner book, command with leading spaces and trailing spaces
          * -> added
          */
         Person toAdd = AMY;
@@ -73,20 +73,20 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
 
-        /* Case: add a person with all fields same as another person in the address book except name -> added */
+        /* Case: add a person with all fields same as another person in the planner book except name -> added */
         toAdd = new PersonBuilder(AMY).withName(VALID_NAME_BOB).build();
         command = AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + TAG_DESC_FRIEND;
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add a person with all fields same as another person in the address book except phone and email
+        /* Case: add a person with all fields same as another person in the planner book except phone and email
          * -> added
          */
         toAdd = new PersonBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
         command = PersonUtil.getAddCommand(toAdd);
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add to empty address book -> added */
+        /* Case: add to empty planner book -> added */
         deleteAllPersons();
         assertCommandSuccess(ALICE);
 
@@ -127,7 +127,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         command = PersonUtil.getAddCommand(toAdd);
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
 
-        /* Case: add a duplicate person except with different address -> rejected */
+        /* Case: add a duplicate person except with different planner -> rejected */
         toAdd = new PersonBuilder(HOON).withAddress(VALID_ADDRESS_BOB).build();
         command = PersonUtil.getAddCommand(toAdd);
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
@@ -148,7 +148,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
-        /* Case: missing address -> rejected */
+        /* Case: missing planner -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
@@ -168,7 +168,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_EMAIL_DESC + ADDRESS_DESC_AMY;
         assertCommandFailure(command, Email.MESSAGE_EMAIL_CONSTRAINTS);
 
-        /* Case: invalid address -> rejected */
+        /* Case: invalid planner -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + INVALID_ADDRESS_DESC;
         assertCommandFailure(command, Address.MESSAGE_ADDRESS_CONSTRAINTS);
 
