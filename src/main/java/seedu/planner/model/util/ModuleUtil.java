@@ -13,7 +13,7 @@ public class ModuleUtil {
     /**
      * Checks if the module code is valid.
      *
-     * @return true if the module code valid.
+     * @return True if the module code valid
      */
     public static boolean hasValidCode(String code) {
         // This function should look through all available modules

@@ -12,10 +12,10 @@ public class ModuleManager {
 
     //TODO
     /**
-     * Changes the module type of the module
+     * Changes the module type of the module.
      *
-     * @param module module to be changed.
-     * @param newModuleType the new type that the {@code module} should be.
+     * @param module The module to be changed
+     * @param newModuleType The new {@code ModuleType} that the {@code module} should be
      */
     public void updateModuleType(Module module, ModuleType newModuleType) {
 

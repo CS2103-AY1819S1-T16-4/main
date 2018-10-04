@@ -94,7 +94,7 @@ public class AddressBookParser {
             return new AddModuleCommandParser().parse(arguments);
 
         case DeleteModuleCommand.COMMAND_WORD:
-            return new DeleteModuleParser().parse(arguments);
+            return new DeleteModuleCommandParser().parse(arguments);
 
         case ListModuleCommand.COMMAND_WORD:
             return new ListModuleCommandParser().parse(arguments);
