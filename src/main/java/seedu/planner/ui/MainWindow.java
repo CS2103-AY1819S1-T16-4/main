@@ -50,7 +50,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane availableModuleListPanelPlaceholder;
-    
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
