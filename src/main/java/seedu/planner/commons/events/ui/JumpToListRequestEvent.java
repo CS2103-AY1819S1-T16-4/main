@@ -4,7 +4,7 @@ import seedu.planner.commons.core.index.Index;
 import seedu.planner.commons.events.BaseEvent;
 
 /**
- * Indicates a request to jump to the list of persons
+ * Indicates a request to jump to the list of persons.
  */
 public class JumpToListRequestEvent extends BaseEvent {
 

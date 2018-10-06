@@ -17,6 +17,9 @@ import seedu.planner.model.module.Module;
 
 //@@author GabrielYik
 
+/**
+ * Panel containing a list of modules.
+ */
 public class ModuleListPanel extends UiPart<Region> {
     private static final String FXML = "ModuleListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);

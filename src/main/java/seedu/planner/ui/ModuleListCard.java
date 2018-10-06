@@ -9,6 +9,9 @@ import seedu.planner.model.module.Module;
 
 //@@author GabrielYik
 
+/**
+ * A UI component that displays information of a {@code Module}.
+ */
 public class ModuleListCard extends UiPart<Region> {
     private static final String FXML = "ModuleListCard.fxml";
 

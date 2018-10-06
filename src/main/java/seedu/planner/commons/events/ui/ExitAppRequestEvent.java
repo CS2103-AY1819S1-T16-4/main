@@ -3,7 +3,7 @@ package seedu.planner.commons.events.ui;
 import seedu.planner.commons.events.BaseEvent;
 
 /**
- * Indicates a request for App termination
+ * Indicates a request for App termination.
  */
 public class ExitAppRequestEvent extends BaseEvent {
 

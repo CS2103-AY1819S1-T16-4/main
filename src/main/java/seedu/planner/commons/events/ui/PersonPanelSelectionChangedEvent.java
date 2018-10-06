@@ -4,7 +4,7 @@ import seedu.planner.commons.events.BaseEvent;
 import seedu.planner.model.person.Person;
 
 /**
- * Represents a selection change in the Person List Panel
+ * Represents a selection change in the Person List Panel.
  */
 public class PersonPanelSelectionChangedEvent extends BaseEvent {
 

@@ -5,6 +5,9 @@ import seedu.planner.model.module.Module;
 
 //@@author GabrielYik
 
+/**
+ * Represents a selection change in the Module List Panel.
+ */
 public class ModulePanelSelectionChangedEvent extends BaseEvent {
     private final Module newSelection;
 
