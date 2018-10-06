@@ -35,6 +35,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
+    private ModuleListPanel takenModuleListPanel;
+    private ModuleListPanel availableModuleListPanel;
     private PersonListPanel personListPanel;
     private Config config;
     private UserPrefs prefs;
@@ -44,8 +46,11 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane browserPlaceholder;
 
     @FXML
-    private StackPane availableModulesPlaceholder;
+    private StackPane takenModuleListPanelPlaceholder;
 
+    @FXML
+    private StackPane availableModuleListPanelPlaceholder;
+    
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -124,6 +129,12 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         browserPanel = new BrowserPanel();
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
+
+        takenModuleListPanel = new ModuleListPanel(logic.getFilteredTakenModuleList());
+        availableModuleListPanelPlaceholder.getChildren().add(takenModuleListPanel.getRoot());
+
+        availableModuleListPanel = new ModuleListPanel(logic.getFilteredAvailableModuleList());
+        availableModuleListPanelPlaceholder.getChildren().add(availableModuleListPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
