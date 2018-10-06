@@ -144,13 +144,11 @@ public class AddCommandTest {
         //TODO: implement
         @Override
         public void updateFilteredTakenModuleList(Predicate<Module> predicate) {
-            
         }
 
         //TODO: implement
         @Override
         public void updateFilteredAvailableModuleList(Predicate<Module> predicate) {
-
         }
 
         @Override
