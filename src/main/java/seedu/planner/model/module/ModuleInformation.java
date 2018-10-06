@@ -1,6 +1,6 @@
 package seedu.planner.model.module;
 
-//TODO
+//@@author GabrielYik
 
 /**
  * Represents a temporary {@code ModuleInformation} class.
