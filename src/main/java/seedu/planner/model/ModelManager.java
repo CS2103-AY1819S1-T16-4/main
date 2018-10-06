@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.AddressBookChangedEvent;
+import seedu.planner.model.module.Module;
 import seedu.planner.model.person.Person;
 
 /**
@@ -22,6 +23,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final VersionedAddressBook versionedAddressBook;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Module> filteredTakenModules;
+    private final FilteredList<Module> filteredAvailableModules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +37,9 @@ public class ModelManager extends ComponentManager implements Model {
 
         versionedAddressBook = new VersionedAddressBook(addressBook);
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
+        //TODO: initialise filteredModules properly
+        filteredTakenModules = null;
+        filteredAvailableModules = null;
     }
 
     public ModelManager() {
@@ -98,6 +104,29 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Module List Accessors =============================================================
+    @Override
+    public ObservableList<Module> getFilteredTakenModuleList() {
+        return FXCollections.unmodifiableObservableList(filteredTakenModules);
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredAvailableModuleList() {
+        return FXCollections.unmodifiableObservableList(filteredAvailableModules);
+    }
+
+    @Override
+    public void updateFilteredTakenModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        filteredTakenModules.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredAvailableModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        filteredAvailableModules.setPredicate(predicate);
     }
 
     //=========== Undo/Redo =================================================================================

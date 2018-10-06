@@ -3,6 +3,7 @@ package seedu.planner.model;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.planner.model.module.Module;
 import seedu.planner.model.person.Person;
 
 /**
@@ -50,6 +51,28 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    //TODO: confirm filtered or sorted or both
+    /** Returns an unmodifiable view of the filtered module list */
+    ObservableList<Module> getFilteredTakenModuleList();
+
+    //TODO: confirm filtered or sorted or both
+    /** Returns an unmodifiable view of the filtered module list */
+    ObservableList<Module> getFilteredAvailableModuleList();
+
+    //TODO: confirm if method is necessary
+    /**
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTakenModuleList(Predicate<Module> predicate);
+
+    //TODO: confirm if method is necessary
+    /**
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAvailableModuleList(Predicate<Module> predicate);
 
     /**
      * Returns true if the model has previous planner book states to restore.
