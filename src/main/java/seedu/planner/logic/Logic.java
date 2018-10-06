@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.logic.parser.exceptions.ParseException;
+import seedu.planner.model.module.Module;
 import seedu.planner.model.person.Person;
 
 /**
@@ -21,6 +22,14 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    //TODO: confirm if the list is filtered or sorted or both
+    /** Returns an unmodifiable view of the filtered list of taken modules */
+    ObservableList<Module> getFilteredTakenModuleList();
+
+    //TODO: confirm if the list is filtered or sorted or both
+    /** Returns an unmodifiable view of the filtered list of available modules */
+    ObservableList<Module> getFilteredAvailableModuleList();
 
     /** Returns the list of input entered by the user, encapsulated in a {@code ListElementPointer} object */
     ListElementPointer getHistorySnapshot();

@@ -11,6 +11,7 @@ import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.logic.parser.AddressBookParser;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.Model;
+import seedu.planner.model.module.Module;
 import seedu.planner.model.person.Person;
 
 /**
@@ -43,6 +44,16 @@ public class LogicManager extends ComponentManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredTakenModuleList() {
+        return model.getFilteredModuleList();
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredAvailableModuleList() {
+        return model.getFilteredModuleList();
     }
 
     @Override
