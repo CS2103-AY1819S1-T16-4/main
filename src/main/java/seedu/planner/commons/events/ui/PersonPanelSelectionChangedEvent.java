@@ -8,7 +8,6 @@ import seedu.planner.model.person.Person;
  */
 public class PersonPanelSelectionChangedEvent extends BaseEvent {
 
-
     private final Person newSelection;
 
     public PersonPanelSelectionChangedEvent(Person newSelection) {
