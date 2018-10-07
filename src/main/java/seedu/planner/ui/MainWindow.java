@@ -130,11 +130,13 @@ public class MainWindow extends UiPart<Stage> {
         browserPanel = new BrowserPanel();
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
-        takenModuleListPanel = new ModuleListPanel(logic.getFilteredTakenModuleList());
-        availableModuleListPanelPlaceholder.getChildren().add(takenModuleListPanel.getRoot());
+        //TODO: uncomment when ready
+        //takenModuleListPanel = new ModuleListPanel(logic.getFilteredTakenModuleList());
+        //availableModuleListPanelPlaceholder.getChildren().add(takenModuleListPanel.getRoot());
 
-        availableModuleListPanel = new ModuleListPanel(logic.getFilteredAvailableModuleList());
-        availableModuleListPanelPlaceholder.getChildren().add(availableModuleListPanel.getRoot());
+        //TODO: uncomment when ready
+        //availableModuleListPanel = new ModuleListPanel(logic.getFilteredAvailableModuleList());
+        //availableModuleListPanelPlaceholder.getChildren().add(availableModuleListPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
