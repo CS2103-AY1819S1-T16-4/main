@@ -5,6 +5,9 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Represents a temporary class to generator sample {@code Module}s.
+ */
 public class ModuleGenerator {
 
     /**

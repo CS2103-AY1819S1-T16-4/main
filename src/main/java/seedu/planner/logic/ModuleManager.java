@@ -1,7 +1,7 @@
 package seedu.planner.logic;
 
-import seedu.planner.model.module.ModuleType;
 import seedu.planner.model.module.Module;
+import seedu.planner.model.module.ModuleType;
 
 /**
  * The manager of modules.
