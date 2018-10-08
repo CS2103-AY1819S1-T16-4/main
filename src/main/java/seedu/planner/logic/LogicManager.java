@@ -46,6 +46,8 @@ public class LogicManager extends ComponentManager implements Logic {
         return model.getFilteredPersonList();
     }
 
+    //@@author GabrielYik
+
     @Override
     public ObservableList<Module> getFilteredTakenModuleList() {
         return model.getFilteredTakenModuleList();
@@ -55,6 +57,8 @@ public class LogicManager extends ComponentManager implements Logic {
     public ObservableList<Module> getFilteredAvailableModuleList() {
         return model.getFilteredAvailableModuleList();
     }
+
+    //@@author
 
     @Override
     public ListElementPointer getHistorySnapshot() {

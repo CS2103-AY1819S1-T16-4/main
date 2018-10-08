@@ -52,6 +52,8 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    //@@author GabrielYik
+
     //TODO: confirm filtered or sorted or both
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredTakenModuleList();
@@ -73,6 +75,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAvailableModuleList(Predicate<Module> predicate);
+
+    //@@author
 
     /**
      * Returns true if the model has previous planner book states to restore.

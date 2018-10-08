@@ -23,6 +23,16 @@ public class ModuleInformation {
 
     private Module[] prerequisites;
 
+    /**
+     * Creates a new {@code ModuleInformation}.
+     *
+     * @param code The {@code Module} code
+     * @param name The {@code Module} name
+     * @param possibleTypes The possible {@code ModuleType}s
+     * @param creditCount The credit count
+     * @param preclusions The preclusions
+     * @param prerequisites The prerequisites
+     */
     private ModuleInformation(String code, String name, ModuleType[] possibleTypes,
                               int creditCount, Module[] preclusions, Module[] prerequisites) {
         this.code = code;

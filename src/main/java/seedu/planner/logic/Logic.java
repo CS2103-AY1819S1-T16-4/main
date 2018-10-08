@@ -23,6 +23,8 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
+    //@@author GabrielYik
+
     //TODO: confirm if the list is filtered or sorted or both
     /** Returns an unmodifiable view of the filtered list of taken modules */
     ObservableList<Module> getFilteredTakenModuleList();
@@ -30,6 +32,8 @@ public interface Logic {
     //TODO: confirm if the list is filtered or sorted or both
     /** Returns an unmodifiable view of the filtered list of available modules */
     ObservableList<Module> getFilteredAvailableModuleList();
+
+    //@@author
 
     /** Returns the list of input entered by the user, encapsulated in a {@code ListElementPointer} object */
     ListElementPointer getHistorySnapshot();

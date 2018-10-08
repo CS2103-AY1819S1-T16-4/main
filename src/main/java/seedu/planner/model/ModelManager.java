@@ -107,6 +107,8 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //=========== Filtered Module List Accessors =============================================================
+    //@@author GabrielYik
+
     @Override
     public ObservableList<Module> getFilteredTakenModuleList() {
         return FXCollections.unmodifiableObservableList(filteredTakenModules);
@@ -128,6 +130,8 @@ public class ModelManager extends ComponentManager implements Model {
         requireNonNull(predicate);
         filteredAvailableModules.setPredicate(predicate);
     }
+
+    //@@author
 
     //=========== Undo/Redo =================================================================================
 
