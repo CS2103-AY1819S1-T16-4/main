@@ -22,7 +22,7 @@ import seedu.planner.model.module.Module;
  */
 public class ModuleListPanel extends UiPart<Region> {
     private static final String FXML = "ModuleListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(ModuleListPanel.class);
 
     @FXML
     private ListView<Module> moduleListView;

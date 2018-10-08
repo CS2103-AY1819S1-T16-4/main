@@ -20,16 +20,16 @@
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="code" styleClass="cell_big_label" text="code">
+        <Label fx:id="moduleCode" styleClass="cell_big_label" text="moduleCode">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="name" />
+        <Label fx:id="moduleName" styleClass="cell_big_label" text="moduleName" />
       </HBox>
-      <Label fx:id="phone" styleClass="cell_small_label" text="credit count" />
-      <FlowPane fx:id="possibleTypes" />
+         <Label fx:id="moduleType" styleClass="cell_small_label" text="moduleType" />
+      <Label fx:id="creditCount" styleClass="cell_small_label" text="creditCount" />
          <FlowPane fx:id="preclusions" />
          <FlowPane fx:id="prerequisites" />
     </VBox>
