@@ -30,8 +30,18 @@
       </HBox>
          <Label fx:id="moduleType" styleClass="cell_small_label" text="moduleType" />
       <Label fx:id="creditCount" styleClass="cell_small_label" text="creditCount" />
-         <FlowPane fx:id="preclusions" />
-         <FlowPane fx:id="prerequisites" />
+         <HBox prefHeight="17.0" prefWidth="200.0">
+            <children>
+               <Label fx:id="preclusion" styleClass="cell_small_label" text="preclusion" />
+               <FlowPane fx:id="preclusions" />
+            </children>
+         </HBox>
+         <HBox prefHeight="17.0" prefWidth="200.0">
+            <children>
+               <Label fx:id="prerequisite" styleClass="cell_small_label" text="prerequisite" />
+               <FlowPane fx:id="prerequisites" />
+            </children>
+         </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />

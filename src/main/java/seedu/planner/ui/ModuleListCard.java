@@ -13,6 +13,7 @@ import seedu.planner.model.module.Module;
  * A UI component that displays information of a {@code Module}.
  */
 public class ModuleListCard extends UiPart<Region> {
+
     private static final String FXML = "ModuleListCard.fxml";
 
     public final Module module;
@@ -33,7 +34,13 @@ public class ModuleListCard extends UiPart<Region> {
     private Label creditCount;
 
     @FXML
+    private Label preclusion;
+
+    @FXML
     private FlowPane preclusions;
+
+    @FXML
+    private Label prerequisite;
 
     @FXML
     private FlowPane prerequisites;
@@ -43,13 +50,41 @@ public class ModuleListCard extends UiPart<Region> {
         this.module = module;
         moduleCode.setText(module.getCode());
         moduleName.setText(module.getName());
-        moduleType.setText(module.getType().toString());
-        creditCount.setText(Integer.toString(module.getCreditCount()));
+        moduleType.setText("Fulfils: " + module.getType().toString());
+        creditCount.setText("Modular Credits: " + Integer.toString(module.getCreditCount()));
+
         for (Module m : module.getPreclusions()) {
             preclusions.getChildren().add(new Label(m.getCode()));
         }
+
+        switch(module.getPreclusions().length) {
+        case 0:
+            preclusion.setText("Preclusion: none");
+            break;
+
+        case 1:
+            preclusion.setText("Preclusion: ");
+            break;
+
+        default:
+            preclusion.setText("Preclusions: ");
+        }
+
         for (Module m : module.getPrerequisites()) {
             prerequisites.getChildren().add(new Label(m.getCode()));
+        }
+
+        switch(module.getPrerequisites().length) {
+        case 0:
+            prerequisite.setText("Prerequisite: none");
+            break;
+
+        case 1:
+            prerequisite.setText("Prerequisite: ");
+            break;
+
+        default:
+            prerequisite.setText("Prerequisites: ");
         }
     }
 
