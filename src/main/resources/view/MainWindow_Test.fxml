@@ -50,14 +50,14 @@
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
-            <StackPane fx:id="takenModulesListPanelPlaceholder" prefHeight="180.0" prefWidth="123.0" VBox.vgrow="ALWAYS" />
+            <StackPane fx:id="takenModulesListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
                <VBox fx:id="availableModulesList" minWidth="340" prefWidth="340">
                   <padding>
                      <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
                   <children>
-                     <StackPane fx:id="availableModulesListPanelPlaceholder" prefHeight="180.0" prefWidth="123.0" VBox.vgrow="ALWAYS" />
+                     <StackPane fx:id="availableModulesListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                   </children>
                </VBox>
 

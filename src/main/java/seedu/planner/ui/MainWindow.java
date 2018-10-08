@@ -26,7 +26,7 @@ import seedu.planner.model.UserPrefs;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow.fxml";
+    private static final String FXML = "MainWindow_Test.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -35,8 +35,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
-    private ModuleListPanel takenModuleListPanel;
-    private ModuleListPanel availableModuleListPanel;
+    private ModuleListPanel takenModulesListPanel;
+    private ModuleListPanel availableModulesListPanel;
     private PersonListPanel personListPanel;
     private Config config;
     private UserPrefs prefs;
@@ -46,10 +46,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane browserPlaceholder;
 
     @FXML
-    private StackPane takenModuleListPanelPlaceholder;
+    private StackPane takenModulesListPanelPlaceholder;
 
     @FXML
-    private StackPane availableModuleListPanelPlaceholder;
+    private StackPane availableModulesListPanelPlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -132,18 +132,16 @@ public class MainWindow extends UiPart<Stage> {
 
         //@@author GabrielYik
 
-        //TODO: uncomment when ready
-        //takenModuleListPanel = new ModuleListPanel(logic.getFilteredTakenModuleList());
-        //availableModuleListPanelPlaceholder.getChildren().add(takenModuleListPanel.getRoot());
+        takenModulesListPanel = new ModuleListPanel(logic.getFilteredTakenModuleList());
+        takenModulesListPanelPlaceholder.getChildren().add(takenModulesListPanel.getRoot());
 
-        //TODO: uncomment when ready
-        //availableModuleListPanel = new ModuleListPanel(logic.getFilteredAvailableModuleList());
-        //availableModuleListPanelPlaceholder.getChildren().add(availableModuleListPanel.getRoot());
+        availableModulesListPanel = new ModuleListPanel(logic.getFilteredAvailableModuleList());
+        availableModulesListPanelPlaceholder.getChildren().add(availableModulesListPanel.getRoot());
 
         //@@author
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        //personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
