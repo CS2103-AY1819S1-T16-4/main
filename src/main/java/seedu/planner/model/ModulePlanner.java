@@ -13,9 +13,10 @@ import seedu.planner.model.semester.Semester;
  */
 public class ModulePlanner {
 
-    private final int maxSemesters = 8;
+    public static final int MAX_NUMBER_SEMESTERS = 8;
+    public static final int NUMBER_TYPES_USER_MODULES = 2;
 
-    private final List<Semester> semesters = new ArrayList<Semester>(maxSemesters);
+    private final List<Semester> semesters = new ArrayList<>(MAX_NUMBER_SEMESTERS);
 
     public ModulePlanner() {}
 
