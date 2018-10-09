@@ -1,14 +1,17 @@
-package seedu.planner.model.module;
+package seedu.planner.model.util;
 
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.planner.model.module.Module;
+import seedu.planner.model.module.ModuleInformation;
+import seedu.planner.model.module.ModuleType;
 
 /**
  * Represents a temporary class to generator sample {@code Module}s.
  */
-public class ModuleGenerator {
+public class SampleModulesUtil {
 
     /**
      * Returns a specified number of {@code ObservableList}s.
