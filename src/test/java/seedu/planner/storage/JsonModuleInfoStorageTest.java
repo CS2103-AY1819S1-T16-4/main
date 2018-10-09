@@ -1,0 +1,58 @@
+package seedu.planner.storage;
+
+import static org.junit.Assert.assertFalse;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.rules.TemporaryFolder;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Optional;
+
+import seedu.planner.commons.exceptions.DataConversionException;
+import seedu.planner.model.module.ModuleInfo;
+import seedu.planner.storage.JsonModuleInfoStorage;
+
+public class JsonModuleInfoStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonModuleInfoStorageTest");
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Rule
+    public TemporaryFolder testFolder = new TemporaryFolder();
+
+    @Test
+    public void readUserPrefs_nullFilePath_throwsNullPointerException() throws DataConversionException {
+        thrown.expect(NullPointerException.class);
+        readModuleInfo(null);
+    }
+
+    private Optional<ModuleInfo[]> readModuleInfo(String moduleInfoFileInTestDataFolder) throws DataConversionException {
+        Path moduleInfoFilePath = addToTestDataPathIfNotNull(moduleInfoFileInTestDataFolder);
+        return new JsonModuleInfoStorage(moduleInfoFilePath).readModuleInfo();
+    }
+
+    @Test
+    public void readModuleInfo_missingFile_emptyResult() throws DataConversionException {
+        assertFalse(readModuleInfo("NonExistentFile.json").isPresent());
+    }
+
+    @Test
+    public void readModuleInfo_notJsonFormat_exceptionThrown() throws DataConversionException {
+        thrown.expect(DataConversionException.class);
+        readModuleInfo("NotJsonFormatModuleInfo.json");
+
+        /* IMPORTANT: Any code below an exception-throwing line (like the one above) will be ignored.
+         * That means you should not have more than one exception test in one method
+         */
+    }
+
+    private Path addToTestDataPathIfNotNull(String moduleInfoFileInTestDataFolder) {
+        return moduleInfoFileInTestDataFolder != null
+                ? TEST_DATA_FOLDER.resolve(moduleInfoFileInTestDataFolder)
+                : null;
+    }
+}
