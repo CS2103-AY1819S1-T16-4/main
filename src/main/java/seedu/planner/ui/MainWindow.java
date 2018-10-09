@@ -1,7 +1,7 @@
 package seedu.planner.ui;
 
 import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
-import static seedu.planner.model.ModulePlanner.NUMBER_TYPES_USER_MODULES;
+import static seedu.planner.model.ModulePlanner.NUMBER_MODULE_GROUPS;
 
 import java.util.logging.Logger;
 
@@ -152,7 +152,7 @@ public class MainWindow extends UiPart<Stage> {
                 SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
                 ObservableList<Node> nodes = splitPane.getItems();
 
-                for (int i = 0; i < NUMBER_TYPES_USER_MODULES; i++) {
+                for (int i = 0; i < NUMBER_MODULE_GROUPS; i++) {
                     VBox vBox = (VBox) nodes.get(i);
                     StackPane stackPane = (StackPane) vBox.getChildren().get(0);
                     Node n = (i == 0)
