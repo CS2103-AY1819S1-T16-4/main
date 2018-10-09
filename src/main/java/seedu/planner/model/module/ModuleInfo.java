@@ -71,11 +71,11 @@ public class ModuleInfo {
         return creditCount;
     }
 
-    public Module[] getPreclusions() {
+    public ModuleInfo[] getPreclusions() {
         return preclusions;
     }
 
-    public Module[] getPrerequisites() {
+    public ModuleInfo[] getPrerequisites() {
         return prerequisites;
     }
 }

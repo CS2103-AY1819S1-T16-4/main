@@ -13,7 +13,7 @@ import seedu.planner.model.module.ModuleInfo;
 public interface ModuleInfoStorage {
 
     /**
-     * Returns the file path of the UserPrefs data file.
+     * Returns the file path of the ModuleInfo data file.
      */
     Path getModuleInfoFilePath();
 
