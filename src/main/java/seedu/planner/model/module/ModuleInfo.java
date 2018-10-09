@@ -11,7 +11,7 @@ public class ModuleInfo {
             + "1234 refers to a sequence of positive numbers, "
             + "and (Z) refers to an optional postfix.";
 
-    private String code;
+    public final String code;
 
     private String name;
 
