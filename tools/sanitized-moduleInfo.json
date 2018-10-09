@@ -1,0 +1,3518 @@
+[
+  {
+    "code": "CS1010",
+    "name": "Programming Methodology",
+    "creditCount": 4,
+    "Preclusion": "CG1101, CS1010E, CS1010FC, CS1010S, CS1101, CS1101C, CS1101S. Engineering and Science students who require this module for their majors/minors are not allowed to read it as ULR-Breadth."
+  },
+  {
+    "code": "CS1010E",
+    "name": "Programming Methodology",
+    "creditCount": 4,
+    "Preclusion": "CG1101, CS1010, CS1010FC, CS1010S, CS1101, CS1101C, CS1101S"
+  },
+  {
+    "code": "CS1010J",
+    "name": "Programming Methodology",
+    "creditCount": 4,
+    "Preclusion": "CS1010 and its equivalents"
+  },
+  {
+    "code": "CS1010S",
+    "name": "Programming Methodology",
+    "creditCount": 4,
+    "Preclusion": "CG1101, CS1010, CS1010E, CS1010FC, CS1101, CS1101C, CS1101S"
+  },
+  {
+    "code": "CS1010X",
+    "name": "Programming Methodology",
+    "creditCount": 4,
+    "Preclusion": "CS1010 or its equivalent, CS1010FC"
+  },
+  {
+    "code": "CS1020",
+    "name": "Data Structures and Algorithms I",
+    "creditCount": 4,
+    "Preclusion": "CS1020E, CS2020, CS2030, CS2040, CS2040C",
+    "Prerequisite": "CS1010 Programming Methodology"
+  },
+  {
+    "code": "CS1020E",
+    "name": "Data Structures and Algorithms I",
+    "creditCount": 4,
+    "Preclusion": "CS1020, CS2020, CS2030, CS2040, CS2040C",
+    "Prerequisite": "CS1010E or its equivalent"
+  },
+  {
+    "code": "CS1101S",
+    "name": "Programming Methodology",
+    "creditCount": 4,
+    "Preclusion": "CS1010 or its equivalents"
+  },
+  {
+    "code": "CS1231",
+    "name": "Discrete Structures",
+    "creditCount": 4,
+    "Preclusion": "MA1100",
+    "Prerequisite": "A-level Mathematics or H2 Mathematics or MA1301 or MA1301FC or MA1301X"
+  },
+  {
+    "code": "CS2010",
+    "name": "Data Structures and Algorithms II",
+    "creditCount": 4,
+    "Preclusion": "CS2020, CS2030, CS2040, CS2040C",
+    "Prerequisite": "CS1020 or CS1020E or CG1103 Data Structures and Algorithms I"
+  },
+  {
+    "code": "CS2030",
+    "name": "Programming Methodology II",
+    "creditCount": 4,
+    "Preclusion": "CS1020 or its equivalent",
+    "Prerequisite": "CS1010 or its equivalent"
+  },
+  {
+    "code": "CS2040",
+    "name": "Data Structures and Algorithms",
+    "creditCount": 4,
+    "Preclusion": "CS1020, CS1020E, CS2020, CS2010",
+    "Prerequisite": "CS1010 or its equivalent"
+  },
+  {
+    "code": "CS2040C",
+    "name": "Data Structures and Algorithms",
+    "creditCount": 4,
+    "Preclusion": "CS1020, CS1020E, CS2020, CS2010, CS2040",
+    "Prerequisite": "CS1010 or its equivalent"
+  },
+  {
+    "code": "CS2100",
+    "name": "Computer Organisation",
+    "creditCount": 4,
+    "Preclusion": "CS1104 or Students from Department of ECE",
+    "Prerequisite": "CS1010 or its equivalent"
+  },
+  {
+    "code": "CS2101",
+    "name": "Effective Communication for Computing Professionals",
+    "creditCount": 4,
+    "Preclusion": "CS2103 Software Engineering, IS2101 Business Technical Communication or its equivalent, ES2002, ES2007D, and ES1601.",
+    "Prerequisite": "Students have to complete ES1000 and/or ES1103 (if required to take the module/s) before reading this module."
+  },
+  {
+    "code": "CS2102",
+    "name": "Database Systems",
+    "creditCount": 4,
+    "Preclusion": "CS2102S, IT2002",
+    "Prerequisite": "(CS1020 or CS1020E or CS2020 or CS2030 or CS2040 or CS2040C) and (CS1231 or MA1100)"
+  },
+  {
+    "code": "CS2102R",
+    "name": "Database Systems",
+    "creditCount": 1,
+    "Preclusion": "CS2102S, IT2002",
+    "Prerequisite": "(CS1020 or its equivalent) and (CS1231 or MA1100)"
+  },
+  {
+    "code": "CS2103",
+    "name": "Software Engineering",
+    "creditCount": 4,
+    "Preclusion": "CS2103T, CS2113, CS2113T",
+    "Prerequisite": "(CS1020 or CS1020E or CS2020) or ((CS2030 and (CS2040 or CS2040C))"
+  },
+  {
+    "code": "CS2103R",
+    "name": "Software Engineering",
+    "creditCount": 1,
+    "Prerequisite": "Co-read with host module in current semester or pass host module in previous semester. Student selection process is enforced."
+  },
+  {
+    "code": "CS2103T",
+    "name": "Software Engineering",
+    "creditCount": 4,
+    "Preclusion": "CS2103, CS2113, CS2113T, IS2101 or its equivalent.",
+    "Prerequisite": "For SoC students only. (CS1020 or CS1020E or CS2020) or (CS2030 and (CS2040 or CS2040C))"
+  },
+  {
+    "code": "CS2104",
+    "name": "Programming Language Concepts",
+    "creditCount": 4,
+    "Prerequisite": "CS1020 or CS1020E or CS2020 or CS2030 or CS2113/T"
+  },
+  {
+    "code": "CS2104R",
+    "name": "Programming Language Concepts",
+    "creditCount": 1,
+    "Prerequisite": "Co-read with host module in current semester or pass host module in previous semester. Student selection process is enforced."
+  },
+  {
+    "code": "CS2105",
+    "name": "Introduction to Computer Networks",
+    "creditCount": 4,
+    "Preclusion": "IT2001, EE3204/E, EE4210. CEG, CPE and EEE students are not allowed to take this module.",
+    "Prerequisite": "CS1020 or CS1020E or CS2020 or CS2030 or CS2040 or CS2040C"
+  },
+  {
+    "code": "CS2105R",
+    "name": "Introduction to Computer Networks",
+    "creditCount": 1,
+    "Prerequisite": "Co-read with host module in current semester or pass host module in previous semester. Student selection process is enforced."
+  },
+  {
+    "code": "CS2106",
+    "name": "Introduction to Operating Systems",
+    "creditCount": 4,
+    "Preclusion": "CG2271 or EE4214. CEG students are not allowed to take this module.",
+    "Prerequisite": "CS2100 or EE2007 or EE2024"
+  },
+  {
+    "code": "CS2106R",
+    "name": "Introduction to Operating Systems",
+    "creditCount": 1,
+    "Preclusion": "CG2271 or EE4214. CEG students are not allowed to take this module.",
+    "Prerequisite": "Co-read with host module in current semester or pass host module in previous semester. Student selection process is enforced."
+  },
+  {
+    "code": "CS2107",
+    "name": "Introduction to Information Security",
+    "creditCount": 4,
+    "Prerequisite": "CS1010 or its equivalence"
+  },
+  {
+    "code": "CS2108",
+    "name": "Introduction to Media Computing",
+    "creditCount": 4,
+    "Preclusion": "CS3246",
+    "Prerequisite": "CS1020 or CS1020E or CS2020 or ((CS2030 or CS2113/T) and (CS2040 or CS2040C))"
+  },
+  {
+    "code": "CS2113",
+    "name": "Software Engineering & Object-Oriented Programming",
+    "creditCount": 4,
+    "Preclusion": "CS2103, CS2103T, (CS2113T for CS2113), (CS2113 for CS2113T)",
+    "Prerequisite": "CS2040C or (CS2030 and CS2040)"
+  },
+  {
+    "code": "CS2113T",
+    "name": "Software Engineering & Object-Oriented Programming",
+    "creditCount": 4,
+    "Preclusion": "CS2103, CS2103T, (CS2113T for CS2113), (CS2113 for CS2113T)",
+    "Prerequisite": "CS2040C or (CS2030 and CS2040)"
+  },
+  {
+    "code": "CS2220",
+    "name": "Introduction to Computational Biology",
+    "creditCount": 4,
+    "Prerequisite": "CS1020 or CS1020E or CS2020 or CS2040 or CS2040C"
+  },
+  {
+    "code": "CS2309",
+    "name": "CS Research Methodology",
+    "creditCount": 4,
+    "Preclusion": "CS2305S",
+    "Prerequisite": "CS2010 or CS2020 or ((CS2030 or CS2113/T) and (CS2040C or CS2040)) and (CS1231 or MA1100)"
+  },
+  {
+    "code": "CS3103",
+    "name": "Computer Networks Practice",
+    "creditCount": 4,
+    "Prerequisite": "CS2105 or EE3204/E or EE4204"
+  },
+  {
+    "code": "CS3203",
+    "name": "Software Engineering Project",
+    "creditCount": 8,
+    "Preclusion": "CS3201, CS3202",
+    "Prerequisite": "(CS2103/T or CS2113/T) and (CS2101 or IS2101)"
+  },
+  {
+    "code": "CS3210",
+    "name": "Parallel Computing",
+    "creditCount": 4,
+    "Prerequisite": "CS2100 Computer Organisation or CG2007 Microprocessor Systems or EE2024 Programming for Computer Interfaces"
+  },
+  {
+    "code": "CS3211",
+    "name": "Parallel and Concurrent Programming",
+    "creditCount": 4,
+    "Prerequisite": "CS2106 or CG2271"
+  },
+  {
+    "code": "CS3216",
+    "name": "Software Product Engineering for Digital Markets",
+    "creditCount": 5,
+    "Prerequisite": "CS2103 or its equivalent or with special approval from instructor. Students will submit personal statements to apply for a place in the course instead of bidding through the CORS system."
+  },
+  {
+    "code": "CS3217",
+    "name": "Software Engineering on Modern Application Platforms",
+    "creditCount": 5,
+    "Prerequisite": "CS2103 or its equivalent or with special approval from instructor. Students will submit personal statements to apply for a place in the course instead of bidding through the CORS system."
+  },
+  {
+    "code": "CS3219",
+    "name": "Software Engineering Principles and Patterns",
+    "creditCount": 4,
+    "Preclusion": "CS3213 Software Systems Design",
+    "Prerequisite": "CS2103 or its equivalent"
+  },
+  {
+    "code": "CS3223",
+    "name": "Database Systems Implementation",
+    "creditCount": 4,
+    "Prerequisite": "(CS2010 or CS2020 or CS2040 or CS2040C) and CS2102"
+  },
+  {
+    "code": "CS3230",
+    "name": "Design and Analysis of Algorithms",
+    "creditCount": 4,
+    "Preclusion": "EEE and CPE students can only take this module as a technical elective to satisfy the program requirements or UEM but not CFM/ULR-Breadth.",
+    "Prerequisite": "(CS2010 or CS2020 or CS2040 or CS2040C) and (CS1231 or MA1100)"
+  },
+  {
+    "code": "CS3230R",
+    "name": "Design and Analysis of Algorithms",
+    "creditCount": 1,
+    "Prerequisite": "Co-read host module. Student selection process is enforced."
+  },
+  {
+    "code": "CS3233",
+    "name": "Competitive Programming",
+    "creditCount": 4,
+    "Prerequisite": "At least grade A- in (CS2010 or CS2020 or (both CS2030 and CS2040)) or special permission"
+  },
+  {
+    "code": "CS3234",
+    "name": "Logic and Formal Systems",
+    "creditCount": 4,
+    "Prerequisite": "CS1231 or MA1100; Programming experience is preferred."
+  },
+  {
+    "code": "CS3235",
+    "name": "Computer Security",
+    "creditCount": 4,
+    "Prerequisite": "(CS2105 or EE3204 or EE4204) and (CS2106 or CG2271) and CS2107"
+  },
+  {
+    "code": "CS3236",
+    "name": "Introduction to Information Theory",
+    "creditCount": 4,
+    "Prerequisite": "(CS1231 or MA1100) and (ST2334 or ST2131)"
+  },
+  {
+    "code": "CS3236R",
+    "name": "Introduction to Information Theory",
+    "creditCount": 1,
+    "Preclusion": "same as CS3236",
+    "Prerequisite": "Co-read with host module in current semester or pass host module in previous semester. Student selection process is enforced."
+  },
+  {
+    "code": "CS3240",
+    "name": "Interaction Design",
+    "creditCount": 4,
+    "Prerequisite": "CS1020/E or CS2020 or CS2030 or CS2113/T or NM3209 or NM2207/Y"
+  },
+  {
+    "code": "CS3241",
+    "name": "Computer Graphics",
+    "creditCount": 4,
+    "Preclusion": "EEE and CPE students can only take this module as a technical elective to satisfy the program requirements or UEM but not CFM/ULR-Breadth.",
+    "Prerequisite": "CS2010 or CS2020 or ((CS2030 or CS2113/T) and (CS2040 or CS2040C))"
+  },
+  {
+    "code": "CS3241R",
+    "name": "Computer Graphics",
+    "creditCount": 1,
+    "Prerequisite": "Co-read with host module in current semester or pass host module in previous semester. Student selection process is enforced."
+  },
+  {
+    "code": "CS3242",
+    "name": "3D Modeling and Animation",
+    "creditCount": 4,
+    "Preclusion": "CS4342",
+    "Prerequisite": "CS3241 and (PC1221 or PC1221X) and\n(MA1102R or MA1505 or (MA1511 and MA1512) or MA1521) and (MA1101R or MA1311 or MA1506 or MA1508E)"
+  },
+  {
+    "code": "CS3243",
+    "name": "Introduction to Artificial Intelligence",
+    "creditCount": 4,
+    "Preclusion": "EEE and CPE students can only take this module as a technical elective to satisfy the program requirements or UEM but not CFM/ULR-Breadth.",
+    "Prerequisite": "(CS2010 or CS2020 or CS2040 or CS2040C) and (CS1231 or MA1100)."
+  },
+  {
+    "code": "CS3244",
+    "name": "Machine Learning",
+    "creditCount": 4,
+    "Prerequisite": "(CS2010 or CS2020 or CS2040 or CS2040C) and\n(ESP1107 or ESP2107 ST1232 or ST2131 or ST2132 or ST2334) and\n(MA1102R or MA1505 or (MA1511 and MA1512) or MA1521) and (MA1101R or MA1311 or MA1506 or MA1508E)"
+  },
+  {
+    "code": "CS3245",
+    "name": "Information Retrieval",
+    "creditCount": 4,
+    "Prerequisite": "CS2010 or CS2020 or ((CS2030 or CS2113/T) and (CS2040 or CS2040C))"
+  },
+  {
+    "code": "CS3245R",
+    "name": "Information Retrieval",
+    "creditCount": 1,
+    "Prerequisite": "Co-read with host module in current semester or pass host module in previous semester. Student selection process is enforced."
+  },
+  {
+    "code": "CS3247",
+    "name": "Game Development",
+    "creditCount": 4,
+    "Preclusion": "CS4213",
+    "Prerequisite": "CS3241 and PC1221"
+  },
+  {
+    "code": "CS3281",
+    "name": "Thematic Systems Project I",
+    "creditCount": 4,
+    "Prerequisite": "(CS2103 or its equivalent) and have passed at least one primary module in a CS focus area. Student selection process will be enforced."
+  },
+  {
+    "code": "CS3282",
+    "name": "Thematic Systems Project II",
+    "creditCount": 4,
+    "Prerequisite": "CS3281 and have passed at least two primary modules in a CS focus area. Student selection process will be enforced."
+  },
+  {
+    "code": "CS4211",
+    "name": "Formal Methods for Software Engineering",
+    "creditCount": 4,
+    "Prerequisite": "CS2103 or its equivalent"
+  },
+  {
+    "code": "CS4212",
+    "name": "Compiler Design",
+    "creditCount": 4,
+    "Prerequisite": "CS2104 Programming Language"
+  },
+  {
+    "code": "CS4215",
+    "name": "Programming Language Implementation",
+    "creditCount": 4,
+    "Prerequisite": "CS2010 or CS2020 or ((CS2040 or CS2040C) and (CS2030 or CS2113/T))"
+  },
+  {
+    "code": "CS4218",
+    "name": "Software Testing",
+    "creditCount": 4,
+    "Prerequisite": "CS3219 Software Engineering Principles and Patterns."
+  },
+  {
+    "code": "CS4220",
+    "name": "Knowledge Discovery Methods in Bioinformatics",
+    "creditCount": 4,
+    "Prerequisite": "CS2220 or LSM2104"
+  },
+  {
+    "code": "CS4221",
+    "name": "Database Applications Design and Tuning",
+    "creditCount": 4,
+    "Preclusion": "CS5421",
+    "Prerequisite": "CS3223"
+  },
+  {
+    "code": "CS4222",
+    "name": "Wireless Networking",
+    "creditCount": 4,
+    "Preclusion": "CS5422",
+    "Prerequisite": "(CS2105 or EE3204/E or EE4204) and (ST2334 or ST2131)"
+  },
+  {
+    "code": "CS4223",
+    "name": "Multi-core Architectures",
+    "creditCount": 4,
+    "Prerequisite": "(CS2106 Operating Systems or CG2271 Realtime Operating Systems) and (CS3210 Parallel Computing or CS3220 Computer Architecture or CG3207 Computer Architecture)."
+  },
+  {
+    "code": "CS4224",
+    "name": "Distributed Databases",
+    "creditCount": 4,
+    "Prerequisite": "CS3223"
+  },
+  {
+    "code": "CS4225",
+    "name": "Big Data Systems for Data Science",
+    "creditCount": 4,
+    "Preclusion": "CS5425",
+    "Prerequisite": "CS2102"
+  },
+  {
+    "code": "CS4226",
+    "name": "Internet Architecture",
+    "creditCount": 4,
+    "Prerequisite": "(CS2105 or EE3204 or EE4204) and (ST2334 or ST2131)"
+  },
+  {
+    "code": "CS4231",
+    "name": "Parallel and Distributed Algorithms",
+    "creditCount": 4,
+    "Prerequisite": "CS3230 Design and Analysis of Algorithms or CS3210 Parallel Computing"
+  },
+  {
+    "code": "CS4232",
+    "name": "Theory of Computation",
+    "creditCount": 4,
+    "Prerequisite": "CS1231 or CS1231S or any level-2 MA module"
+  },
+  {
+    "code": "CS4234",
+    "name": "Optimisation Algorithms",
+    "creditCount": 4,
+    "Prerequisite": "(MA1101R or MA1311 or MA1506 or MA1508E) and CS3230"
+  },
+  {
+    "code": "CS4236",
+    "name": "Cryptography Theory and Practice",
+    "creditCount": 4,
+    "Prerequisite": "CS1231 and CS2107 and (CS2010 or CS2020 or CS2040 or CS2040C)"
+  },
+  {
+    "code": "CS4238",
+    "name": "Computer Security Practice",
+    "creditCount": 4,
+    "Prerequisite": "CS3235 Computer Security"
+  },
+  {
+    "code": "CS4239",
+    "name": "Software Security",
+    "creditCount": 4,
+    "Prerequisite": "CS3235 Computer Security and (CS2103 or its equivalent)"
+  },
+  {
+    "code": "CS4240",
+    "name": "Interaction Design for Virtual and Augmented Reality",
+    "creditCount": 4,
+    "Prerequisite": "CS3240 and (MA1301 or A-level / H2 Mathematics)"
+  },
+  {
+    "code": "CS4242",
+    "name": "Social Media Computing",
+    "creditCount": 4,
+    "Prerequisite": "CS2108 Introduction to Media Computing and CS3245 Information Retrieval."
+  },
+  {
+    "code": "CS4243",
+    "name": "Computer Vision and Pattern Recognition",
+    "creditCount": 4,
+    "Preclusion": "EE4212 Computer Vision",
+    "Prerequisite": "(CS1020 or CS1020E or CS2020 or (CS2030 or CS2113/T) and (CS2040 or CS2040C)) and\n(MA1101R or MA1311 or MA1506 or MA1508E) and\n(MA1102R or MA1505 or (MA1511 and MA1512) or MA1521) and\n(ST1232 or ST2131 or ST2334)"
+  },
+  {
+    "code": "CS4244",
+    "name": "Knowledge-Based Systems",
+    "creditCount": 4,
+    "Prerequisite": "CS3243"
+  },
+  {
+    "code": "CS4246",
+    "name": "AI Planning and Decision Making",
+    "creditCount": 4,
+    "Prerequisite": "(MA2216 Probability or ST2131 Probability or ST2334 Probability and Statistics) and CS3243 Foundations of Artificial Intelligence"
+  },
+  {
+    "code": "CS4247",
+    "name": "Graphics Rendering Techniques",
+    "creditCount": 4,
+    "Prerequisite": "CS3241"
+  },
+  {
+    "code": "CS4248",
+    "name": "Natural Language Processing",
+    "creditCount": 4,
+    "Prerequisite": "(CS3243 Introduction to Artificial Intelligence or CS3245 Information Retrieval) and (ST1232 Statistics for Life Sciences, or ST2131 Probability, or ST2334 Probability and Statistics)"
+  },
+  {
+    "code": "CS4249",
+    "name": "Phenomena and Theories of Human-Computer Interaction",
+    "creditCount": 4,
+    "Prerequisite": "CS3240 or NM2213 or NM2216"
+  },
+  {
+    "code": "CS4257",
+    "name": "Algorithmic Foundations of Privacy",
+    "creditCount": 4,
+    "Prerequisite": "(ST1232 or ST2131 or ST2334) and CS3230 and CS2107"
+  },
+  {
+    "code": "CS4261",
+    "name": "Algorithmic Mechanism Design",
+    "creditCount": 4,
+    "Prerequisite": "(ESP1107 or ESP2107 or ST1232 or ST2132 or ST2334) and (CS2010 or CS2020 or CS2040/C) and (BT2101 or CS1231) and (MA1101R or MA1311 or MA1506 or MA1508E)"
+  },
+  {
+    "code": "CS4347",
+    "name": "Sound and Music Computing",
+    "creditCount": 4,
+    "Prerequisite": "(MA1102R or MA1505 or (MA1511 and MA1512) or MA1521) and (MA1101R or MA1311 or MA1506 or MA1508E) and CS2108"
+  },
+  {
+    "code": "CS4350",
+    "name": "Game Development Project",
+    "creditCount": 4,
+    "Prerequisite": "CS3247 or NM3216"
+  },
+  {
+    "code": "CS4351",
+    "name": "Real-Time Graphics",
+    "creditCount": 4,
+    "Prerequisite": "CS3241 Computer Graphics"
+  },
+  {
+    "code": "CS5218",
+    "name": "Principles of Program Analysis",
+    "creditCount": 4,
+    "Prerequisite": "CS4212 Compiler Design or CS4215 Programming Language Implementation"
+  },
+  {
+    "code": "CS5219",
+    "name": "Automated Software Validation",
+    "creditCount": 4,
+    "Prerequisite": "CS2104 Programming Language Concepts"
+  },
+  {
+    "code": "CS5222",
+    "name": "Advanced Computer Architecture",
+    "creditCount": 4,
+    "Prerequisite": "CS3220 Computer Architecture or CS4223 Multi-core Architecture"
+  },
+  {
+    "code": "CS5223",
+    "name": "Distributed Systems",
+    "creditCount": 4,
+    "Prerequisite": "CS3211 Parallel and Concurrent Programming"
+  },
+  {
+    "code": "CS5224",
+    "name": "Cloud Computing",
+    "creditCount": 4
+  },
+  {
+    "code": "CS5228",
+    "name": "Knowledge Discovery and Data Mining",
+    "creditCount": 4,
+    "Prerequisite": "CS2102 Database Systems and (ST1232 Statistics for Life Sciences or ST2131 Probability or ST2334 Probability and Statistics) and CS3243 Introduction to Artificial Intelligence"
+  },
+  {
+    "code": "CS5229",
+    "name": "Advanced Computer Networks",
+    "creditCount": 4,
+    "Prerequisite": "CS4226 Internet Architecture or EE4210 Computer Communications Networks II"
+  },
+  {
+    "code": "CS5230",
+    "name": "Computational Complexity",
+    "creditCount": 4,
+    "Preclusion": "CS4230",
+    "Prerequisite": "CS4232 Theory of Computation"
+  },
+  {
+    "code": "CS5231",
+    "name": "Systems Security",
+    "creditCount": 4,
+    "Prerequisite": "CS3235 Computer Security"
+  },
+  {
+    "code": "CS5232",
+    "name": "Formal Specification and Design Techniques",
+    "creditCount": 4,
+    "Prerequisite": "(CS1231 Discrete Structures or MA1100 Fundamental Concepts of Mathematics) and CS2103 Software Engineering"
+  },
+  {
+    "code": "CS5233",
+    "name": "Simulation and Modelling Techniques",
+    "creditCount": 4,
+    "Prerequisite": "(ST1232 Statistics for Life Sciences or ST2131 Probability or ST2334 Probability and Statistics) and CS4231 Parallel and Distributed Algorithms."
+  },
+  {
+    "code": "CS5234",
+    "name": "Combinatorial and Graph Algorithms",
+    "creditCount": 4,
+    "Preclusion": "CS4234",
+    "Prerequisite": "CS3230"
+  },
+  {
+    "code": "CS5236",
+    "name": "Advanced Automata Theory",
+    "creditCount": 4,
+    "Prerequisite": "CS4232 Theory of Computation"
+  },
+  {
+    "code": "CS5238",
+    "name": "Advanced Combinatorial Methods in Bioinformatics",
+    "creditCount": 4,
+    "Prerequisite": "CS3230"
+  },
+  {
+    "code": "CS5239",
+    "name": "Computer System Performance Analysis",
+    "creditCount": 4,
+    "Prerequisite": "(CS1020 or CS1020E or CS2020 or CS2030 or CS2113/T) and (ST1232 or ST2131 or ST2334)"
+  },
+  {
+    "code": "CS5240",
+    "name": "Theoretical Foundations in MultiMedia",
+    "creditCount": 4,
+    "Prerequisite": "(CS1020 or CS1020E or CS2020 or CS2040 or CS2040C) and (MA1102R or MA1505 or (MA1511 and MA1512) or MA1521) and MA1101R or MA1311 or MA1506 or MA1508E) and (ST1232 or ST2131 or ST2334)"
+  },
+  {
+    "code": "CS5242",
+    "name": "Neural Networks and Deep Learning",
+    "creditCount": 4,
+    "Prerequisite": "CS3244 Machine Learning"
+  },
+  {
+    "code": "CS5246",
+    "name": "Text Mining",
+    "creditCount": 4,
+    "Prerequisite": "CS2103 and (MA1101R or MA1311 or MA1506 or MA1508E) and\n(ST1232 or ST2131 or ST2334)"
+  },
+  {
+    "code": "CS5250",
+    "name": "Advanced Operating Systems",
+    "creditCount": 4,
+    "Prerequisite": "CS2106 Introduction to Operating Systems or CG2271 Real-Time Operating Systems"
+  },
+  {
+    "code": "CS5272",
+    "name": "Embedded Software Design",
+    "creditCount": 4,
+    "Prerequisite": "(CG2271 or CS2106) and (CS2103 or its equivalent)"
+  },
+  {
+    "code": "CS5321",
+    "name": "Network Security",
+    "creditCount": 4,
+    "Prerequisite": "CS3235 Computer Security"
+  },
+  {
+    "code": "CS5322",
+    "name": "Database Security",
+    "creditCount": 4,
+    "Prerequisite": "CS3223 Database Systems Implementation"
+  },
+  {
+    "code": "CS5330",
+    "name": "Randomized Algorithms",
+    "creditCount": 4,
+    "Prerequisite": "CS3230"
+  },
+  {
+    "code": "CS5331",
+    "name": "Web Security",
+    "creditCount": 4,
+    "Prerequisite": "CS3235 Computer Security"
+  },
+  {
+    "code": "CS5332",
+    "name": "Biometric Authentication",
+    "creditCount": 4,
+    "Prerequisite": "(CS2040 or its equivalent) and (MA1102R or MA1505 or MA1505C or MA1521) and (MA1101R or MA1506) and (ST1232 or ST2131 or ST2334)"
+  },
+  {
+    "code": "CS5339",
+    "name": "Theory and Algorithms for Machine Learning",
+    "creditCount": 4,
+    "Prerequisite": "CS3244"
+  },
+  {
+    "code": "CS5340",
+    "name": "Uncertainty Modelling in AI",
+    "creditCount": 4,
+    "Prerequisite": "(ST1232 Statistics for Life Sciences or ST2131 Probability or ST2334 Probability and Statistics) and CS3243 Introduction to Artificial Intelligence"
+  },
+  {
+    "code": "CS5344",
+    "name": "Big-Data Analytics Technology",
+    "creditCount": 4,
+    "Preclusion": "",
+    "Prerequisite": "BT5110 (Data Management and Warehousing) or database related modules; programming experience (with data structures and algorithms) is required"
+  },
+  {
+    "code": "CS5346",
+    "name": "Information Visualisation",
+    "creditCount": 4,
+    "Prerequisite": "(CS2040 or its equivalent) and CS2102 and CS3240 and\n(ST1232 or ST2132 or ST2334)"
+  },
+  {
+    "code": "CS5421",
+    "name": "Database Applications Design and Tuning",
+    "creditCount": 4,
+    "Preclusion": "CS4221",
+    "Prerequisite": "CS3223"
+  },
+  {
+    "code": "CS5422",
+    "name": "Wireless Networking",
+    "creditCount": 4,
+    "Preclusion": "CS4222",
+    "Prerequisite": "(CS2105 or EE3204/E or EE4204) and (ST2334 or ST2131)"
+  },
+  {
+    "code": "CS5424",
+    "name": "Distributed Databases",
+    "creditCount": 4,
+    "Preclusion": "CS4224",
+    "Prerequisite": "CS3223"
+  },
+  {
+    "code": "CS5425",
+    "name": "Big Data Systems for Data Science",
+    "creditCount": 4,
+    "Preclusion": "CS4225",
+    "Prerequisite": "CS2102"
+  },
+  {
+    "code": "CS5439",
+    "name": "Software Security",
+    "creditCount": 4,
+    "Preclusion": "CS4239",
+    "Prerequisite": "CS3235 and (CS2103 or its equivalent)"
+  },
+  {
+    "code": "CS6101",
+    "name": "Exploration of Computer Science Research",
+    "creditCount": 4
+  },
+  {
+    "code": "CS6202",
+    "name": "Advanced Topics in Programming Languages",
+    "creditCount": 4,
+    "Prerequisite": "3211 or CS3212 or CS4212"
+  },
+  {
+    "code": "CS6203",
+    "name": "Advanced Topics in Database Systems",
+    "creditCount": 4,
+    "Prerequisite": "CS3223"
+  },
+  {
+    "code": "CS6208",
+    "name": "Advanced Topics in Artificial Intelligence",
+    "creditCount": 4,
+    "Prerequisite": "CS3243"
+  },
+  {
+    "code": "CS6210",
+    "name": "The Art of Computer Science Research",
+    "creditCount": 4,
+    "Prerequisite": "CS3230 Design and Analysis of Algorithms"
+  },
+  {
+    "code": "CS6211",
+    "name": "Analytical Performance Modelling for Computer Systems",
+    "creditCount": 4,
+    "Preclusion": "none",
+    "Prerequisite": "(ST2334 or ST2131) and CS2105 and CS2106."
+  },
+  {
+    "code": "CS6215",
+    "name": "Advanced Topics in Program Analysis",
+    "creditCount": 4,
+    "Prerequisite": "CS3230 and CS4212"
+  },
+  {
+    "code": "CS6216",
+    "name": "Advanced Topics in Machine Learning",
+    "creditCount": 4,
+    "Prerequisite": "CS3244"
+  },
+  {
+    "code": "CS6220",
+    "name": "Advanced Topics in Data Mining",
+    "creditCount": 4,
+    "Prerequisite": "CS5228"
+  },
+  {
+    "code": "CS6231",
+    "name": "Topics in System Security",
+    "creditCount": 4,
+    "Prerequisite": "CS4236 Cryptography Theory and Practice or CS3235 Computer Security or CS5231 System Security."
+  },
+  {
+    "code": "CS6234",
+    "name": "Advanced Algorithms",
+    "creditCount": 4,
+    "Prerequisite": "CS5234"
+  },
+  {
+    "code": "CS6240",
+    "name": "Multimedia Analysis",
+    "creditCount": 4,
+    "Prerequisite": "CS4243 or CS5240"
+  },
+  {
+    "code": "CS6244",
+    "name": "Robot Motion Planning & Control",
+    "creditCount": 4,
+    "Prerequisite": "CS3230 and (MA1101R or MA1311 or MA1506 or MA1508E) and\n(ST2131 or ST2334)"
+  },
+  {
+    "code": "CS6283",
+    "name": "Advanced Topics in Computer Science: Logic in AI",
+    "creditCount": 4,
+    "Preclusion": "Variable, depend on the choice of topics or departmental approval.",
+    "Prerequisite": "CS3230 Design and Analysis of Algorithms and (ST2334 Probability and Statistics or ST2131 Probability)"
+  },
+  {
+    "code": "CS6285",
+    "name": "Topics in Computer Science VI: Pseudorandomness",
+    "creditCount": 4,
+    "Preclusion": "Variable, depend on the choice of topics or departmental approval.",
+    "Prerequisite": "CS3230 Design and Analysis of Algorithms and (ST2334 Probability and Statistics or ST2131 Probability)"
+  },
+  {
+    "code": "CS6880",
+    "name": "Advanced Topics in Software Engineering",
+    "creditCount": 4,
+    "Prerequisite": "CS2103 or its equivalent"
+  },
+  {
+    "code": "CSA6770",
+    "name": "Graduate Research Seminar",
+    "creditCount": 4
+  },
+  {
+    "code": "CSA6880",
+    "name": "Topics in Cultural Studies in Asia",
+    "creditCount": 4
+  },
+  {
+    "code": "GE1101E",
+    "name": "Geographical Journeys: Exploring World Environments",
+    "creditCount": 4,
+    "Preclusion": "GEK1001"
+  },
+  {
+    "code": "GE2101",
+    "name": "Methods and Practices in Geography",
+    "creditCount": 4,
+    "Preclusion": "GE2225"
+  },
+  {
+    "code": "GE2202",
+    "name": "Economy & Space",
+    "creditCount": 4
+  },
+  {
+    "code": "GE2204",
+    "name": "Cities in Transition",
+    "creditCount": 4
+  },
+  {
+    "code": "GE2206",
+    "name": "Geographies of Life and Death",
+    "creditCount": 4
+  },
+  {
+    "code": "GE2215",
+    "name": "Introduction to GIS & Remote Sensing",
+    "creditCount": 4,
+    "Preclusion": "IF2203"
+  },
+  {
+    "code": "GE2218",
+    "name": "Leisure, Recreation and Tourism",
+    "creditCount": 4
+  },
+  {
+    "code": "GE2220",
+    "name": "Terrestrial and Coastal Environments",
+    "creditCount": 4
+  },
+  {
+    "code": "GE2221",
+    "name": "Nature and Society",
+    "creditCount": 4
+  },
+  {
+    "code": "GE2222",
+    "name": "Politics and Space",
+    "creditCount": 4
+  },
+  {
+    "code": "GE2226",
+    "name": "Southeast Asia",
+    "creditCount": 4
+  },
+  {
+    "code": "GE2227",
+    "name": "Cartography and Visualisation",
+    "creditCount": 4
+  },
+  {
+    "code": "GE2228",
+    "name": "Weather and Climate",
+    "creditCount": 4,
+    "Preclusion": "GE2219"
+  },
+  {
+    "code": "GE2229",
+    "name": "Water and the Environment",
+    "creditCount": 4,
+    "Preclusion": "GE2219"
+  },
+  {
+    "code": "GE2230",
+    "name": "Energy Futures: Environment and Sustainability",
+    "creditCount": 4
+  },
+  {
+    "code": "GE2231",
+    "name": "Introduction to Social and Cultural Geographies",
+    "creditCount": 4
+  },
+  {
+    "code": "GE3201",
+    "name": "The Service Economy",
+    "creditCount": 4
+  },
+  {
+    "code": "GE3204",
+    "name": "Cities and Regions: Planning for Change",
+    "creditCount": 4
+  },
+  {
+    "code": "GE3206",
+    "name": "Gender, Space & Place",
+    "creditCount": 4
+  },
+  {
+    "code": "GE3219",
+    "name": "Globalisation and the Asian Cities",
+    "creditCount": 4
+  },
+  {
+    "code": "GE3226",
+    "name": "Tourism Development",
+    "creditCount": 4
+  },
+  {
+    "code": "GE3227",
+    "name": "Urban Climates",
+    "creditCount": 4,
+    "Prerequisite": "GE2228 or permission from lecturer"
+  },
+  {
+    "code": "GE3230A",
+    "name": "Field Studies in Geography: SE Asia",
+    "creditCount": 8,
+    "Preclusion": "GE3230"
+  },
+  {
+    "code": "GE3231",
+    "name": "Natural Hazards",
+    "creditCount": 4
+  },
+  {
+    "code": "GE3236",
+    "name": "Transport and Communications",
+    "creditCount": 4
+  },
+  {
+    "code": "GE3237",
+    "name": "Geographies of Migration",
+    "creditCount": 4
+  },
+  {
+    "code": "GE3238",
+    "name": "GIS Design and Practices",
+    "creditCount": 4,
+    "Prerequisite": "GE2215"
+  },
+  {
+    "code": "GE3240",
+    "name": "Geographical Research: Developing Ideas",
+    "creditCount": 4
+  },
+  {
+    "code": "GE3241",
+    "name": "Geographies of Social Life",
+    "creditCount": 4,
+    "Preclusion": "GE2224"
+  },
+  {
+    "code": "GE3246",
+    "name": "Environmental Pollution",
+    "creditCount": 4
+  },
+  {
+    "code": "GE3550A",
+    "name": "GIS Internship Module",
+    "creditCount": 4,
+    "Preclusion": "GE3550B and any other XX3550 module",
+    "Prerequisite": "The GISIM is for Geography majors who are taking/ intend to declare GIS minor, subject to the specific requirements of the hiring company or government agency. Students must have completed GE2215 Introduction to Geographic Information Systems, before taking this module. Some companies may also require students to pass GE2227 and/ or GE3238."
+  },
+  {
+    "code": "GE3550B",
+    "name": "Geography Internship",
+    "creditCount": 4,
+    "Preclusion": "GE3550A and any other XX3550 module",
+    "Prerequisite": "Students should: 1) have completed a minimum of 24 MCs in Geography; and 2) have declared Geography as their major"
+  },
+  {
+    "code": "GE3551",
+    "name": "FASS Undergraduate Research Opportunity (UROP)",
+    "creditCount": 4,
+    "Prerequisite": "Students must:\nhave declared a Major, completed a minimum of 24 MCs in that Major, and have a CAP of at least 3.20."
+  },
+  {
+    "code": "GE4204",
+    "name": "Urban Space:Critical Perspectives",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80 MCs, including 28 MCs in GE or 28 MCs in SN, with a minimum CAP of 3.50 or be on the Honours track. Cohort 2012 onwards: Completed 80 MCs, including 28 MCs in GE or 28 MCs in SN, with a minimum CAP of 3.20 or be on the Honours track. Cohort 2012 onwards: (Global Studies) Must have read and passed GE1101E and at least one of the following modules: GE2204, GE3204 and GE3219. Completed at least 80MCs, including 28 MCs in GL/GL recognised non-language modules, with a minimum CAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4207",
+    "name": "Coastal Management",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.50 or be on the Honours track. Must have read and passed GE1101E or at least one of the following modules: GE2219, GE2220, GE2228, GE2229, GE3221 and GE3227. Cohort 2012 onwards: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.20 or be on the Honours track. Must have read and passed GE1101E or at least one of the following modules: GE2219, GE2220, GE2228, GE2229, GE3221 and GE3227. Cohort 2012 onwards: (BES students from both specialisations). Completed 80 MCs of NUS modules before they can read any level-4000 GE modules. Do not need to complete 28 MCs of GE modules before they can read any level-4000 GE modules. Do not need a minimum CAP of 3.20 before they can read any level-4000 GE modules. Cohort 2012 onwards: (Global Studies) Must have read and passed GE1101E and at least one of the following modules: GE2220, GE2228, GE2229, GE3221, GE3223 and GE3231 and completed at least 80MCs, including 28 MCs in GL/GL recognised non-language modules with a minimum CAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4211",
+    "name": "Advanced Hydrology and Water Resources Management",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.50 or be on the Honours track. Must have read and passed GE1101E or at least one of the following modules: GE2219, GE2220, GE2228, GE2229, GE3221 and GE3227. Cohort 2012 onwards: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.20 or be on the Honours track. Must have read and passed GE1101E or at least one of the following modules: GE2219, GE2220, GE2228, GE2229, GE3221 and GE3227. Cohort 2012 onwards: (Global Studies). Must have read and passed GE1101E and at least one of the following modules: GE2220, GE2228, GE2229, and GE3221 and completed at least 80MCs, including 28 MCs in GL/GL recognised non-language modules with a minimum CAP of 3.20 or be on the Honours Track. Cohort 2012 onwards: (BES students from both specialisations). Must have read and passed GE1101E or at least one of the following modules: GE2219, GE2220, GE2228, GE2229, GE3221 and GE3227. Completed 80 MCs of NUS modules before they can read any level-4000 GE modules. Do not need to complete 28 MCs of GE modules before they can read any level-4000 GE modules. Do not need a minimum CAP of 3.20 before they can read any level-4000 GE modules."
+  },
+  {
+    "code": "GE4212",
+    "name": "Environmental Modelling",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.50 or be on the Honours track. Must have read and passed GE1101E or at least one of the following modules: GE2219, GE2220, GE2228, GE2229, GE3221 and GE3227. Cohort 2012 onwards: Completed 80 MCs, including 28 MCs in GE with a minimum CAP of 3.20 or be on the Honours track. Must have read and passed GE1101E or at least one of the following modules: GE2219, GE2220, GE2228, GE2229, GE3221 and GE3227. Cohort 2012 onwards: (BES students from both specialisations) Must have read and passed GE1101E or at least one of the following modules: GE2219, GE2220, GE2228, GE2229, GE3221 and GE3227. Completed 80 MCs of NUS modules before they can read any level-4000 GE modules. Do not need to complete 28 MCs of GE modules before they can read any level-4000 GE modules. Do not need a minimum CAP of 3.20 before they can read any level-4000 GE modules. Cohort 2012 onwards: (Global Studies) Must have read and passed GE1101E and at least one of the following modules: GE2220, GE2228, GE2229, GE3221, GE3223 and GE3227. Completed at least 80MCs, including 28 MCs in GL/GL recognised non-language modules, with a minimum CAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4213",
+    "name": "Cultural Geographies",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80 MCs, including 28 MCs in GE, or 28 MCs in SN with a minimum CAP of 3.50 or be on the Honours track. Cohort 2012 onwards: Completed 80 MCs, including 28 MCs in GE, or 28 MCs in SN with a minimum CAP of 3.20 or be on the Honours track. Cohort 2012 onwards: (Global Studies) Must have read and passed GE1101E and at least one of the following modules: GE2206, GE3206 and GE3237. Completed at least 80MCs, including 28 MCs in GL/GL recognised non-language modules, with a minimum CAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4214",
+    "name": "Remote Sensing of Environment",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Read and passed GE2215. Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.50 or be on the Honours track. Cohort 2012 onwards: To read and pass GE2215. Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.20 or be on the Honours track. Cohort 2012 onwards: (BES students from both specialisations) To read and pass GE2215. Completed 80 MCs of NUS modules before they can read any level-4000 GE modules. Do not need to complete 28 MCs of GE modules before they can read any level-4000 GE modules. Do not need a minimum CAP of 3.20 before they can read any level-4000 GE modules."
+  },
+  {
+    "code": "GE4217",
+    "name": "Political Geographies: Space and Power",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.50 or be on the Honours track. Cohort 2012 onwards: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.20 or be on the Honours track. Cohort 2012 onwards: (Global Studies) Must have read and passed GE1101E and GE2222. Completed at least 80MCs, including 28 MCs in GL/GL recognised non-language modules, with a minimum CAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4218",
+    "name": "Interpreting Tourism Spaces and Cultures",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80MCs, including 28MCs in GE,\nwith a minimum CAP of 3.50 or be on the Honours track. Cohort 2012 onwards: Completed 80MCs, including 28MCs in GE or\n28MCs in GL/GL recognised non-language modules, with a minimum\nCAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4219",
+    "name": "Development and Environment in Southeast Asia",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2012 onwards: Completed 80 MCs, including 28 MCs in GE, or 28 MCs in MS, or 28 MCs in SE with a minimum CAP of 3.20 or be on the Honours track. Cohort 2012 onwards: (BES students from both specialisations). Completed 80 MCs of NUS modules before they can read any level-4000 GE modules. Do not need to complete 28 MCs of GE modules before they can read any level-4000 GE modules. Do not need a minimum CAP of 3.20 before they can read any level-4000 GE modules. Cohort 2012 onwards: (Global Studies). Must have read and passed GE1101E and at least one of the following modules: GE2221 and GE3210. Completed at least 80MCs, including 28 MCs in GL/GL recognised non-language modules with a minimum CAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4221",
+    "name": "Field Investigation in Human Geography",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.50 or be on the Honours track. Cohort 2012 onwards: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4223",
+    "name": "Development of Geographic Thought",
+    "creditCount": 5,
+    "Preclusion": "GE4101A",
+    "Prerequisite": "Cohort 2011 and before: Completed at least 80MCs, including 28MCs in GE, with a minimum CAP of 3.5 or be on the Honours track. Cohort 2012 onwards: Completed at least 80MCs, including 28MCs in GE, with a minimum CAP of 3.20 or be on the Honours track. Cohort 2012 onwards: (BES students from both specialisations). Completed 80 MCs of NUS modules before they can read any level-4000 GE modules. Do not need to complete 28 MCs of GE modules before they can read any level-4000 GE modules. Do not need a minimum CAP of 3.20 before they can read any level-4000 GE modules."
+  },
+  {
+    "code": "GE4225",
+    "name": "Young People and Children: Global Perspectives",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80MCs, including 28MCs in GE,\nwith a minimum CAP of 3.50 or be on the Honours track. Cohort 2012 onwards: Completed 80MCs, including 28MCs in GE or\n28MCs in GL/GL recognised non-language modules, with a minimum\nCAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4226",
+    "name": "Mobile Spaces: Making Social Worlds",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80MCs, including 28MCs in GE,\nwith a minimum CAP of 3.50 or be on the Honours track. Cohort 2012 onwards: Completed 80MCs, including 28MCs in GE or\n28MCs in GL/GL recognised non-language modules, with a minimum\nCAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4227",
+    "name": "Climate Change: Processes, Impact and Responses",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed at least 80MCs, including 28MCs in GE, with a minimum CAP of 3.5 or be on the Honours track. Cohort 2012 onwards: Completed at least 80MCs, including 28MCs in GE, with a minimum CAP of 3.20 or be on the Honours track. Cohort 2012 onwards: (BES students from both specialisations). Completed 80 MCs of NUS modules before they can read any level-4000 GE modules. Do not need to complete 28 MCs of GE modules before they can read any level-4000 GE modules. Do not need a minimum CAP of 3.20 before they can read any level-4000 GE modules."
+  },
+  {
+    "code": "GE4228",
+    "name": "Gender and the City",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.50 or be on the Honours track. GE3206. Cohort 2012 onwards: Completed 80 MCs, including 28 MCs in GE with a minimum CAP of 3.20 or be on the Honours track. GE3206."
+  },
+  {
+    "code": "GE4229",
+    "name": "Earth Systems Science",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed at least 80MCs, including 28MCs in GE, Cohort 2012 onwards: Completed at least 80MCs, including 28MCs in GE, with a minimum CAP of 3.20 or be on the Honours track. Cohort 2012 onwards: (BES students from both specialisations). Completed 80 MCs of NUS modules before they can read any level-4000 GE modules. Do not need to complete 28 MCs of GE modules before they can read any level-4000 GE modules. Do not need a minimum CAP of 3.20 before they can read any level-4000 GE modules."
+  },
+  {
+    "code": "GE4230",
+    "name": "Greater China",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.50 or be on the Honours track. Cohort 2012 onwards: Completed 80 MCs, including 28 MCs in GE with a minimum CAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4231",
+    "name": "Urban and Regional Economies",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.50 or be on the Honours track. Cohort 2012 onwards: Completed 80 MCs, including 28 MCs in GE with a minimum CAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4232",
+    "name": "Global Political Ecologies",
+    "creditCount": 5,
+    "Prerequisite": "Cohort 2011 and before: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.50 or be on the Honours track. Cohort 2012 onwards: Completed 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4233",
+    "name": "Geography in the Contemporary World",
+    "creditCount": 5,
+    "Preclusion": "GE4102",
+    "Prerequisite": "Cohort 2011 and before:\nCompleted 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.50 or be on the Honours track. Cohort 2012 onwards:\nCompleted 80 MCs, including 28 MCs in GE, with a minimum CAP of 3.20 or be on the Honours track. Cohort 2012 onwards: (Global Studies).\nMust have read and passed GE1101E and at least one of the following modules: GE2202, GE2206, GE2220, GE2228, GE2229, GE3201, GE3206, GE3221, GE3223, GE3227, GE3231 and GE3237, Completed at least 80MCs, including 28 MCs in GL/GL recognised non-language modules with a minimum CAP of 3.20 or be on the Honours track."
+  },
+  {
+    "code": "GE4401",
+    "name": "Honours Thesis",
+    "creditCount": 15,
+    "Preclusion": "GE4660",
+    "Prerequisite": "Cohort 2012 and before\nTo read and pass GE3240. Completed 110 MCs including 60 MCs of GE requirements with a minimum CAP of 3.50. Cohort 2013-2015\nTo read and pass GE3240. Completed 110 MCs including 60 MCs of GE requirements with a minimum SJAP of 4.00 and CAP of 3.50. Students may seek a waiver of the SJAP pre-requisite from the department if they have a minimum CAP of 4.25 after completing 110 MCs. Cohort 2016 onwards\nTo read and pass GE3240. Completed 110 MCs including 44 MCs of GE requirements with a minimum SJAP of 4.00 and CAP of 3.50. Students may seek a waiver of the SJAP pre-requisite from the department if they have a minimum CAP of 4.25 after completing 110 MCs. Cohort 2012 onwards: (BES NVG students)\nTo read and pass GE3240. Completed 80 MCs of NUS modules before they can read any level-4000 GE modules. Do not need to complete 28 MCs of GE modules before they can read any level-4000 GE modules. Do not need a minimum CAP of 3.20 before they can read any level-4000 GE modules."
+  },
+  {
+    "code": "GE4660",
+    "name": "Independent Study",
+    "creditCount": 5,
+    "Preclusion": "GE4401",
+    "Prerequisite": "Cohort 2011 and before:\nCompleted at least 100 MCs, including 60 MCs in GE with a minimum CAP of 3.5 or be on the Honours track. Cohort 2012-2015:\nCompleted 100 MCs, including 60 MCs in GE, with a minimum CAP of 3.20. Cohort 2016 onwards:\nCompleted 100 MCs, including 44 MCs in GE, with a minimum CAP of 3.20."
+  },
+  {
+    "code": "GE5211",
+    "name": "Dynamic Environments",
+    "creditCount": 4
+  },
+  {
+    "code": "GE5214",
+    "name": "Landscapes of Southeast Asia",
+    "creditCount": 4,
+    "Preclusion": "SE5221"
+  },
+  {
+    "code": "GE5216",
+    "name": "Geography And Social Theory",
+    "creditCount": 4
+  },
+  {
+    "code": "GE5219",
+    "name": "Spatial Programming",
+    "creditCount": 4,
+    "Prerequisite": "GE5223 Introduction to Applied GIS or with Lecturer\u2019s consent"
+  },
+  {
+    "code": "GE5223",
+    "name": "Introduction to Applied GIS",
+    "creditCount": 4,
+    "Preclusion": "Students with prior GIS training should consult with the lecturer in charge to decide if the module is suitable."
+  },
+  {
+    "code": "GE5225",
+    "name": "Thesis Planning and Implementation",
+    "creditCount": 4
+  },
+  {
+    "code": "GE5226",
+    "name": "GIS Applications",
+    "creditCount": 4
+  },
+  {
+    "code": "GE5227",
+    "name": "Internet GIS",
+    "creditCount": 4
+  },
+  {
+    "code": "GE5228",
+    "name": "Spatial Big Data and Analytics",
+    "creditCount": 4
+  },
+  {
+    "code": "GE5660",
+    "name": "Independent Study",
+    "creditCount": 4
+  },
+  {
+    "code": "GE6211",
+    "name": "Spatial Data Handling",
+    "creditCount": 4
+  },
+  {
+    "code": "GE6212",
+    "name": "Mapping Global Economic Change",
+    "creditCount": 4
+  },
+  {
+    "code": "GE6222",
+    "name": "Transnationalism and Society: Comparative Spaces",
+    "creditCount": 4
+  },
+  {
+    "code": "GE6223",
+    "name": "Navigating the Boundaries Between Science and Policy",
+    "creditCount": 4
+  },
+  {
+    "code": "GE6225",
+    "name": "GIS Research Thesis",
+    "creditCount": 12,
+    "Prerequisite": "GE5223, GE5219, GE6211, GE5225"
+  },
+  {
+    "code": "GE6226",
+    "name": "GIS Research Project",
+    "creditCount": 8,
+    "Prerequisite": "GE5223, GE5219, GE6211, GE5226"
+  },
+  {
+    "code": "GE6660",
+    "name": "Independent Study",
+    "creditCount": 4
+  },
+  {
+    "code": "GE6770",
+    "name": "Graduate Research Seminar",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1001",
+    "name": "Globalisation and New Media",
+    "creditCount": 4,
+    "Preclusion": "GEM1036"
+  },
+  {
+    "code": "GEH1002",
+    "name": "Economic Issues in Dev World",
+    "creditCount": 4,
+    "Preclusion": "GEM1018K, GEK1018"
+  },
+  {
+    "code": "GEH1004",
+    "name": "Chinese Heritage: Hist & Lit",
+    "creditCount": 4,
+    "Preclusion": "GEK1007"
+  },
+  {
+    "code": "GEH1005",
+    "name": "Crime Fiction in Eng & Chinese",
+    "creditCount": 4,
+    "Preclusion": "GEK1021"
+  },
+  {
+    "code": "GEH1006",
+    "name": "Chinese Music, Language and Literature (in English)",
+    "creditCount": 4,
+    "Preclusion": "GEK1053"
+  },
+  {
+    "code": "GEH1008",
+    "name": "Nations & Nat'lisms in S Asia",
+    "creditCount": 4,
+    "Preclusion": "GEK1035"
+  },
+  {
+    "code": "GEH1009",
+    "name": "Framing Bollywood: Unpacking The Magic",
+    "creditCount": 4,
+    "Preclusion": "GEM1050"
+  },
+  {
+    "code": "GEH1010",
+    "name": "Beasts, People and Wild Environments in South Asia",
+    "creditCount": 4,
+    "Preclusion": "GEM1913"
+  },
+  {
+    "code": "GEH1013",
+    "name": "Pirates, Oceans and the Maritime World",
+    "creditCount": 4,
+    "Preclusion": "GEK2049"
+  },
+  {
+    "code": "GEH1014",
+    "name": "Samurai, Geisha, Yakuza as Self or Other",
+    "creditCount": 4,
+    "Preclusion": "GEK2022"
+  },
+  {
+    "code": "GEH1015",
+    "name": "Cultural Borrowing: Japan and China",
+    "creditCount": 4,
+    "Preclusion": "GEK2042"
+  },
+  {
+    "code": "GEH1018",
+    "name": "A Brief History of Science",
+    "creditCount": 4,
+    "Preclusion": "GEK1539"
+  },
+  {
+    "code": "GEH1019",
+    "name": "Food & Health",
+    "creditCount": 4,
+    "Preclusion": "GEK1529 and GEM1908"
+  },
+  {
+    "code": "GEH1022",
+    "name": "Geopolitics:Geographies of War & Peace",
+    "creditCount": 4,
+    "Preclusion": "GEK1022"
+  },
+  {
+    "code": "GEH1023",
+    "name": "Exploring Chinese Cinema: Shanghai-Hong Kong-Singapore",
+    "creditCount": 4,
+    "Preclusion": "GEK2047, CH2297"
+  },
+  {
+    "code": "GEH1025",
+    "name": "Global Environmental Issues",
+    "creditCount": 4,
+    "Preclusion": "GEK1522"
+  },
+  {
+    "code": "GEH1025T",
+    "name": "Global Environmental Issues",
+    "creditCount": 4,
+    "Preclusion": "GEK1522, GEK1522T, GEH1025"
+  },
+  {
+    "code": "GEH1026",
+    "name": "Drugs and Society",
+    "creditCount": 4,
+    "Preclusion": "GEK2506"
+  },
+  {
+    "code": "GEH1027",
+    "name": "Einstein's Universe & Quantum Weirdness",
+    "creditCount": 4,
+    "Preclusion": "GEK1508"
+  },
+  {
+    "code": "GEH1028",
+    "name": "The Emerging Nanoworld",
+    "creditCount": 4,
+    "Preclusion": "GEK1509"
+  },
+  {
+    "code": "GEH1030",
+    "name": "Science of Music",
+    "creditCount": 4,
+    "Preclusion": "GEK1519"
+  },
+  {
+    "code": "GEH1032",
+    "name": "Modern Technology in Medicine and Health",
+    "creditCount": 4,
+    "Preclusion": "GEK1540",
+    "Prerequisite": "None"
+  },
+  {
+    "code": "GEH1033",
+    "name": "How the Ocean Works",
+    "creditCount": 4,
+    "Preclusion": "GEK1548,GEK1548FC"
+  },
+  {
+    "code": "GEH1034",
+    "name": "Clean Energy and Storage",
+    "creditCount": 4,
+    "Preclusion": "GEM1535"
+  },
+  {
+    "code": "GEH1035",
+    "name": "Phy'cal Qns from Everyday Life",
+    "creditCount": 4,
+    "Preclusion": "GEM2507"
+  },
+  {
+    "code": "GEH1036",
+    "name": "Living with Mathematics",
+    "creditCount": 4,
+    "Preclusion": "GEK1505"
+  },
+  {
+    "code": "GEH1040",
+    "name": "Exploration in Musical Production",
+    "creditCount": 4,
+    "Preclusion": "GEK1065"
+  },
+  {
+    "code": "GEH1041",
+    "name": "Engaging the natural environment in ASEAN",
+    "creditCount": 4,
+    "Preclusion": "GEK1066"
+  },
+  {
+    "code": "GEH1043",
+    "name": "Microbes which Changed Human History",
+    "creditCount": 4,
+    "Preclusion": "GEK1534"
+  },
+  {
+    "code": "GEH1044",
+    "name": "Understanding Globalisation",
+    "creditCount": 4,
+    "Preclusion": "GEK1041"
+  },
+  {
+    "code": "GEH1047",
+    "name": "Social and Cultural Studies through Music",
+    "creditCount": 4,
+    "Preclusion": "GEK1054"
+  },
+  {
+    "code": "GEH1049",
+    "name": "Public Health in Action",
+    "creditCount": 4,
+    "Preclusion": "GEK1900"
+  },
+  {
+    "code": "GEH1050",
+    "name": "Plants and Society",
+    "creditCount": 4,
+    "Preclusion": "GEK1538"
+  },
+  {
+    "code": "GEH1051",
+    "name": "Narrative",
+    "creditCount": 4,
+    "Preclusion": "GEK1049"
+  },
+  {
+    "code": "GEH1053",
+    "name": "Film Art and Human Concerns",
+    "creditCount": 4,
+    "Preclusion": "GEK2020"
+  },
+  {
+    "code": "GEH1054",
+    "name": "Names as Markers of Socio-cultural Identity",
+    "creditCount": 4,
+    "Preclusion": "GEM1031"
+  },
+  {
+    "code": "GEH1055",
+    "name": "Religion and Film",
+    "creditCount": 4,
+    "Preclusion": "GEM1033"
+  },
+  {
+    "code": "GEH1056",
+    "name": "Understanding Contemporary Cultures",
+    "creditCount": 4,
+    "Preclusion": "GEK1005"
+  },
+  {
+    "code": "GEH1057",
+    "name": "Materials: The Enabling Substance of Civilization",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1058",
+    "name": "The Theatre Experience",
+    "creditCount": 4,
+    "Preclusion": "GEK1055"
+  },
+  {
+    "code": "GEH1060",
+    "name": "Social History of the Piano",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1061",
+    "name": "Representation and Media",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1062",
+    "name": "Ghosts and Spirits in Society and Culture",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1063",
+    "name": "Understanding Body, Mind and Culture through Sport",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1065",
+    "name": "Art in Society",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1067",
+    "name": "Superhero Entertainments",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1068",
+    "name": "The Life Aquatic: Machines and the Making of the Ocean",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1069",
+    "name": "Art in Asia: Through Media, Style, Space and Time",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1070",
+    "name": "Traditional Chinese Knowledge of Health and Well-being",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1071",
+    "name": "Religion in Malay-Indonesian Literary Worlds",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1072",
+    "name": "Culture in Action",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1073",
+    "name": "The Art of Chinese Poetry: Past and Present",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1074",
+    "name": "Luck",
+    "creditCount": 4
+  },
+  {
+    "code": "GEH1075",
+    "name": "Life, Disrupted: The Sharing Revolution",
+    "creditCount": 4
+  },
+  {
+    "code": "GEK1000",
+    "name": "An Introduction to Literary Studies",
+    "creditCount": 4,
+    "Preclusion": "EN1101E. Students who are majoring in EN, or intend to major in EN should not take GEK1000.",
+    "Prerequisite": "Exempted from NUS Qualifying English Test, or passed NUS Qualifying English Test, or exempted from further CELC Remedial English modules."
+  },
+  {
+    "code": "GEK1002",
+    "name": "Introduction to Japanese Studies",
+    "creditCount": 4,
+    "Preclusion": "JS1101E. Students majoring in JS are precluded from taking this module."
+  },
+  {
+    "code": "GEK1003",
+    "name": "Introduction to Politics",
+    "creditCount": 4,
+    "Preclusion": "PS1101, GEM1003K, PS1101E. Not for students majoring in PS"
+  },
+  {
+    "code": "GEK1005",
+    "name": "Understanding Contemporary Cultures",
+    "creditCount": 4,
+    "Preclusion": "GEH1056"
+  },
+  {
+    "code": "GEK1007",
+    "name": "Chinese Heritage: History and Literature",
+    "creditCount": 4,
+    "Preclusion": "GEH1004"
+  },
+  {
+    "code": "GEK1008",
+    "name": "Southeast Asia: A Changing Region",
+    "creditCount": 4,
+    "Preclusion": "SE1101E, SSA1202, SS1203SE and GEM1008K. Not for students majoring, or intend to major in SE."
+  },
+  {
+    "code": "GEK1010",
+    "name": "Property Management",
+    "creditCount": 4,
+    "Preclusion": "Not for Real Estate Students"
+  },
+  {
+    "code": "GEK1011",
+    "name": "The Nature of Language",
+    "creditCount": 4,
+    "Preclusion": "EL1101E",
+    "Prerequisite": "Exempted from NUS Qualifying English Test, or passed NUS Qualifying English Test, or exempted from further CELC Remedial English modules."
+  },
+  {
+    "code": "GEK1012",
+    "name": "Contemporary Social Issues in Singapore",
+    "creditCount": 4,
+    "Preclusion": "GES1016"
+  },
+  {
+    "code": "GEK1018",
+    "name": "Economic Issues in the Developing World",
+    "creditCount": 4,
+    "Preclusion": "GEH1002"
+  },
+  {
+    "code": "GEK1021",
+    "name": "Crime Fiction in English & Chinese",
+    "creditCount": 4,
+    "Preclusion": "GEH1005"
+  },
+  {
+    "code": "GEK1022",
+    "name": "Geopolitics:Geographies of War & Peace",
+    "creditCount": 4,
+    "Preclusion": "GEH1022"
+  },
+  {
+    "code": "GEK1035",
+    "name": "Nations & Nationalisms in South Asia",
+    "creditCount": 4,
+    "Preclusion": "GEH1008"
+  },
+  {
+    "code": "GEK1041",
+    "name": "Understanding Globalisation",
+    "creditCount": 4,
+    "Preclusion": "GEH1044"
+  },
+  {
+    "code": "GEK1048",
+    "name": "Gandhi's Life, Thought And Legacy",
+    "creditCount": 4,
+    "Preclusion": "GET1009"
+  },
+  {
+    "code": "GEK1049",
+    "name": "Narrative",
+    "creditCount": 4,
+    "Preclusion": "GEH1051"
+  },
+  {
+    "code": "GEK1053",
+    "name": "Chinese Music, Language and Literature (in English)",
+    "creditCount": 4,
+    "Preclusion": "GEH1006"
+  },
+  {
+    "code": "GEK1054",
+    "name": "Social and Cultural Studies through Music",
+    "creditCount": 4,
+    "Preclusion": "GEH1047"
+  },
+  {
+    "code": "GEK1055",
+    "name": "The Theatre Experience",
+    "creditCount": 4,
+    "Preclusion": "GEH1058"
+  },
+  {
+    "code": "GEK1062",
+    "name": "Bridging East and West: Exploring Chinese Communication",
+    "creditCount": 4,
+    "Preclusion": "GET1002"
+  },
+  {
+    "code": "GEK1064",
+    "name": "Psychology in Everyday Life",
+    "creditCount": 4,
+    "Preclusion": "PLB1201 and PL1101E."
+  },
+  {
+    "code": "GEK1067",
+    "name": "Life, the Universe, and Everything",
+    "creditCount": 4,
+    "Preclusion": "PH1102E, GET1029"
+  },
+  {
+    "code": "GEK1505",
+    "name": "Living with Mathematics",
+    "creditCount": 4,
+    "Preclusion": "GEH1036."
+  },
+  {
+    "code": "GEK1508",
+    "name": "Einstein's Universe & Quantum Weirdness",
+    "creditCount": 4,
+    "Preclusion": "PC1325, GEH1027"
+  },
+  {
+    "code": "GEK1509",
+    "name": "The Emerging Nanoworld",
+    "creditCount": 4,
+    "Preclusion": "GEH1028"
+  },
+  {
+    "code": "GEK1520",
+    "name": "Understanding the Universe",
+    "creditCount": 4,
+    "Preclusion": "GEH1031. Students majoring in Physics are not allowed to take this module."
+  },
+  {
+    "code": "GEK1522",
+    "name": "Global Environmental Issues",
+    "creditCount": 4,
+    "Preclusion": "GEH1025"
+  },
+  {
+    "code": "GEK1522T",
+    "name": "Global Environmental Issues",
+    "creditCount": 4,
+    "Preclusion": "GEK1522, GEH1025, GEH1025T",
+    "Prerequisite": ""
+  },
+  {
+    "code": "GEK1529",
+    "name": "Food & Health",
+    "creditCount": 4,
+    "Preclusion": "GEH1019 and GEM1908"
+  },
+  {
+    "code": "GEK1531",
+    "name": "Cyber Security",
+    "creditCount": 4,
+    "Preclusion": "GET1004"
+  },
+  {
+    "code": "GEK1534",
+    "name": "Microbes which Changed Human History",
+    "creditCount": 4,
+    "Preclusion": "GEH1043"
+  },
+  {
+    "code": "GEK1539",
+    "name": "A Brief History of Science",
+    "creditCount": 4,
+    "Preclusion": "GEH1018",
+    "Prerequisite": "None"
+  },
+  {
+    "code": "GEK1540",
+    "name": "Modern Technology in Medicine and Health",
+    "creditCount": 4,
+    "Preclusion": "GEH1032",
+    "Prerequisite": "None"
+  },
+  {
+    "code": "GEK1544",
+    "name": "The Mathematics of Games",
+    "creditCount": 4,
+    "Preclusion": "GET1018."
+  },
+  {
+    "code": "GEK1547",
+    "name": "The Art of Science, the Science of Art",
+    "creditCount": 4,
+    "Preclusion": "GET1014"
+  },
+  {
+    "code": "GEK1548",
+    "name": "How the Ocean Works",
+    "creditCount": 4,
+    "Preclusion": "GEH1033"
+  },
+  {
+    "code": "GEK1549",
+    "name": "Critical Thinking And Writing",
+    "creditCount": 4,
+    "Preclusion": "IEM1201%, UTW1001%, GEK1901, GET1021. U-town students cannot bid for ES1531/GEK1549.",
+    "Prerequisite": "1. Students who are required to read ES1000 and/or EAP modules ES1102/ES1103 must pass it/them before taking ES1531/GEK1549.\n2. Only students matriculated in AY2014/15 are allowed to take GEK1549."
+  },
+  {
+    "code": "GEK1900",
+    "name": "Public Health in Action",
+    "creditCount": 4,
+    "Preclusion": "GEH1049"
+  },
+  {
+    "code": "GEK2001",
+    "name": "Changing Landscapes of Singapore",
+    "creditCount": 4,
+    "Preclusion": "SSA2202, GES1003"
+  },
+  {
+    "code": "GEK2002",
+    "name": "Philosophy of Art",
+    "creditCount": 4
+  },
+  {
+    "code": "GEK2003",
+    "name": "Government and Politics of Singapore",
+    "creditCount": 4,
+    "Preclusion": "PS1102, GEM2003K, SS2209PS, PS2101B, SSA2209, PS2101, PS2249. Not for students majoring in PS."
+  },
+  {
+    "code": "GEK2005",
+    "name": "Urban Planning in Singapore",
+    "creditCount": 4,
+    "Preclusion": "Not for Real Estate students and first year students and GES1026"
+  },
+  {
+    "code": "GEK2013",
+    "name": "Real Estate Finance",
+    "creditCount": 4,
+    "Preclusion": "Not for Real Estate students"
+  },
+  {
+    "code": "GEK2020",
+    "name": "Film Art and Human Concerns",
+    "creditCount": 4,
+    "Preclusion": "GEH1053"
+  },
+  {
+    "code": "GEK2022",
+    "name": "Samurai, Geisha, Yakuza as Self or Other",
+    "creditCount": 4,
+    "Preclusion": "GEH1014"
+  },
+  {
+    "code": "GEK2025",
+    "name": "Politics of the Middle East",
+    "creditCount": 4,
+    "Preclusion": "PS2255"
+  },
+  {
+    "code": "GEK2028",
+    "name": "Founders of Modern Philosophy",
+    "creditCount": 4,
+    "Preclusion": "PH2206"
+  },
+  {
+    "code": "GEK2029",
+    "name": "Applied Ethics",
+    "creditCount": 4,
+    "Preclusion": "PH2208"
+  },
+  {
+    "code": "GEK2036",
+    "name": "Greek Philosophy (Socrates and Plato)",
+    "creditCount": 4,
+    "Preclusion": "PH2222, PH3209"
+  },
+  {
+    "code": "GEK2041",
+    "name": "Science Fiction and Philosophy",
+    "creditCount": 4,
+    "Preclusion": "PH2225, GET1025"
+  },
+  {
+    "code": "GEK2042",
+    "name": "Cultural Borrowing: Japan and China",
+    "creditCount": 4,
+    "Preclusion": "GEH1015"
+  },
+  {
+    "code": "GEK2044",
+    "name": "Reading Visual Images",
+    "creditCount": 4,
+    "Preclusion": "AR2225"
+  },
+  {
+    "code": "GEK2047",
+    "name": "Exploring Chinese Cinema: Shanghai-Hong Kong-Singapore",
+    "creditCount": 4,
+    "Preclusion": "CH2297, GEH1023"
+  },
+  {
+    "code": "GEK2048",
+    "name": "Effective Reasoning",
+    "creditCount": 4,
+    "Preclusion": "PH2111, GET1026"
+  },
+  {
+    "code": "GEK2049",
+    "name": "Pirates, Oceans and the Maritime World",
+    "creditCount": 4,
+    "Preclusion": "GEH1013"
+  },
+  {
+    "code": "GEK2050",
+    "name": "Digital Humanities in Arts Research",
+    "creditCount": 4,
+    "Preclusion": "GET1030"
+  },
+  {
+    "code": "GEK3005",
+    "name": "Politics and the Visual",
+    "creditCount": 4,
+    "Preclusion": "PS3260"
+  },
+  {
+    "code": "GEM1003",
+    "name": "Introduction to Theatre and Performance",
+    "creditCount": 4,
+    "Preclusion": "TS1101E",
+    "Prerequisite": "Exempted from NUS Qualifying English Test, or passed NUS Qualifying English Test, or exempted from further CELC Remedial English modules."
+  },
+  {
+    "code": "GEM1004",
+    "name": "Reason and Persuasion",
+    "creditCount": 4,
+    "Preclusion": "GET1027"
+  },
+  {
+    "code": "GEM1029",
+    "name": "Patrons of the Arts",
+    "creditCount": 4,
+    "Preclusion": "MUL2102, GET1019"
+  },
+  {
+    "code": "GEM1031",
+    "name": "Names as Markers of Socio-cultural Identity",
+    "creditCount": 4,
+    "Preclusion": "GEH1054"
+  },
+  {
+    "code": "GEM1033",
+    "name": "Religion and Film",
+    "creditCount": 4,
+    "Preclusion": "GEH1055"
+  },
+  {
+    "code": "GEM1036",
+    "name": "Globalisation and New Media",
+    "creditCount": 4,
+    "Preclusion": "GEH1001"
+  },
+  {
+    "code": "GEM1046",
+    "name": "Home",
+    "creditCount": 4,
+    "Preclusion": "GET1003"
+  },
+  {
+    "code": "GEM1050",
+    "name": "Framing Bollywood: Unpacking The Magic",
+    "creditCount": 4,
+    "Preclusion": "GEH1009"
+  },
+  {
+    "code": "GEM1051",
+    "name": "Ethnicity and Nation-Building: Singapore and Malaysia",
+    "creditCount": 4,
+    "Preclusion": "GES1008"
+  },
+  {
+    "code": "GEM1052",
+    "name": "Understanding the Changing Global Economic Landscape",
+    "creditCount": 4,
+    "Preclusion": "GET1016"
+  },
+  {
+    "code": "GEM1052T",
+    "name": "Understanding The Changing Global Economic Landscape",
+    "creditCount": 4,
+    "Preclusion": "GEM1052, GET1016, GET1016T"
+  },
+  {
+    "code": "GEM1535",
+    "name": "Clean Energy and Storage",
+    "creditCount": 4,
+    "Preclusion": "GEH1034"
+  },
+  {
+    "code": "GEM1536",
+    "name": "Darwin and Evolution",
+    "creditCount": 4,
+    "Preclusion": "GEM1902B Junior Seminar: The Darwinian Revolution\nGET1020"
+  },
+  {
+    "code": "GEM1913",
+    "name": "Beasts, People and Wild Environments in South Asia",
+    "creditCount": 4,
+    "Preclusion": "GEH1010"
+  },
+  {
+    "code": "GEM2001",
+    "name": "Introduction to Asian Theatre",
+    "creditCount": 4,
+    "Preclusion": "TS2232"
+  },
+  {
+    "code": "GEM2006",
+    "name": "Logic",
+    "creditCount": 4,
+    "Preclusion": "PH2110, CS3234, MA4207, GET1028"
+  },
+  {
+    "code": "GEM2025",
+    "name": "Introduction to Philosophy Of Science",
+    "creditCount": 4,
+    "Preclusion": "PH2201"
+  },
+  {
+    "code": "GEM2027",
+    "name": "Public Speaking and Critical Reasoning",
+    "creditCount": 4,
+    "Preclusion": "GET1008"
+  },
+  {
+    "code": "GEQ1000",
+    "name": "Asking Questions",
+    "creditCount": 4
+  },
+  {
+    "code": "GEQ1917",
+    "name": "Understanding and Critiquing Sustainability",
+    "creditCount": 4,
+    "Preclusion": "GEM1917 (twin-code)"
+  },
+  {
+    "code": "GER1000",
+    "name": "Quantitative Reasoning",
+    "creditCount": 4,
+    "Preclusion": "GER1000E, GER1000K, GER1000W, GER1000R, GER1000S, GER1000T, GER1000P, GER1000B"
+  },
+  {
+    "code": "GER1000E",
+    "name": "Quantitative Reasoning",
+    "creditCount": 4,
+    "Preclusion": "GER1000, GER1000K, GER1000W, GER1000R, GER1000S, GER1000T, GER1000P, GER1000B",
+    "Prerequisite": "To be read by students from Eusoff Hall in Semester 1."
+  },
+  {
+    "code": "GER1000K",
+    "name": "Quantitative Reasoning",
+    "creditCount": 4,
+    "Preclusion": "GER1000, GER1000E, GER1000W, GER1000R, GER1000S, GER1000T, GER1000P, GER1000B",
+    "Prerequisite": "To be read by students from Kent Ridge Hall in Semester 1."
+  },
+  {
+    "code": "GER1000P",
+    "name": "Quantitative Reasoning",
+    "creditCount": 4,
+    "Preclusion": "GER1000, GER1000E, GER1000K, GER1000W, GER1000R, GER1000S, GER1000T, GER1000B",
+    "Prerequisite": "To be read by students from Prince George Park House in Semester 1."
+  },
+  {
+    "code": "GER1000R",
+    "name": "Quantitative Reasoning",
+    "creditCount": 4,
+    "Preclusion": "GER1000, GER1000E, GER1000K, GER1000W, GER1000S, GER1000T, GER1000P, GER1000B",
+    "Prerequisite": "To be read by students from Raffles Hall in Semester 1."
+  },
+  {
+    "code": "GER1000S",
+    "name": "Quantitative Reasoning",
+    "creditCount": 4,
+    "Preclusion": "GER1000, GER1000E, GER1000K, GER1000W, GER1000R, GER1000T, GER1000P, GER1000B",
+    "Prerequisite": "To be read by students from Sheares Hall in Semester 1."
+  },
+  {
+    "code": "GER1000T",
+    "name": "Quantitative Reasoning",
+    "creditCount": 4,
+    "Preclusion": "GER1000, GER1000E, GER1000K, GER1000W, GER1000R, GER1000S, GER1000P, GER1000B",
+    "Prerequisite": "To be read by students from Temasek Hall in Semester 1."
+  },
+  {
+    "code": "GER1000W",
+    "name": "Quantitative Reasoning",
+    "creditCount": 4,
+    "Preclusion": "GER1000, GER1000E, GER1000K, GER1000R, GER1000S, GER1000T, GER1000P, GER1000B",
+    "Prerequisite": "To be read by students from King Edward VII Hall in Semester 1."
+  },
+  {
+    "code": "GES1000T",
+    "name": "Labour Law In Singapore",
+    "creditCount": 4,
+    "Preclusion": "SSB1204, SSB1204T, GES1000"
+  },
+  {
+    "code": "GES1002",
+    "name": "Global EC Dimensions of S'pore",
+    "creditCount": 4,
+    "Preclusion": "SSA2220, SSA2220T, GES1002T"
+  },
+  {
+    "code": "GES1002T",
+    "name": "Global Economic Dimensions Of Singapore",
+    "creditCount": 4,
+    "Preclusion": "EC2202, EC2373, GES1002, SSA2220, SSA2220T"
+  },
+  {
+    "code": "GES1003",
+    "name": "Changing Landscapes of Singapore",
+    "creditCount": 4,
+    "Preclusion": "GEK2001, SSA2202"
+  },
+  {
+    "code": "GES1004",
+    "name": "The Biophysical Env of S'pore",
+    "creditCount": 4,
+    "Preclusion": "SSA2215"
+  },
+  {
+    "code": "GES1005",
+    "name": "Everyday Life of Chinese Singaporeans: Past & Present (taught in English)",
+    "creditCount": 4,
+    "Preclusion": "SSA1208"
+  },
+  {
+    "code": "GES1006",
+    "name": "Singapore and India: Emerging Relations",
+    "creditCount": 4,
+    "Preclusion": "SSA2214"
+  },
+  {
+    "code": "GES1007",
+    "name": "South Asia in Singapore",
+    "creditCount": 4,
+    "Preclusion": "SSA2219"
+  },
+  {
+    "code": "GES1008",
+    "name": "Ethnicity and Nation-Building: Singapore and Malaysia",
+    "creditCount": 4,
+    "Preclusion": "GEM1051"
+  },
+  {
+    "code": "GES1009",
+    "name": "Singapore\u2019s Business History",
+    "creditCount": 4,
+    "Preclusion": "HY2239 and SSA2203"
+  },
+  {
+    "code": "GES1010",
+    "name": "Nation-Building in Singapore",
+    "creditCount": 4,
+    "Preclusion": "HY2229, USE2304 and SSA2204"
+  },
+  {
+    "code": "GES1011",
+    "name": "The Evolution of a Global City-State",
+    "creditCount": 4,
+    "Preclusion": "SSA2211"
+  },
+  {
+    "code": "GES1012",
+    "name": "Popular Culture in Singapore",
+    "creditCount": 4,
+    "Preclusion": "HY2254 and SSA2221"
+  },
+  {
+    "code": "GES1014",
+    "name": "Islam and Contemporary Malay Society",
+    "creditCount": 4,
+    "Preclusion": "SSA2206, MS2205."
+  },
+  {
+    "code": "GES1015",
+    "name": "Singapore and Japan: Historical and Contemporary Relationships",
+    "creditCount": 4,
+    "Preclusion": "SSA2205, JS2224"
+  },
+  {
+    "code": "GES1016",
+    "name": "Contemporary Social Issues in Singapore",
+    "creditCount": 4,
+    "Preclusion": "GEK1012"
+  },
+  {
+    "code": "GES1017",
+    "name": "Building a Dynamic Singapore - Role of Engineers",
+    "creditCount": 4,
+    "Preclusion": "SSE1201"
+  },
+  {
+    "code": "GES1019",
+    "name": "Managing Singapore's Built Environment",
+    "creditCount": 4,
+    "Preclusion": "SSD2210"
+  },
+  {
+    "code": "GES1020",
+    "name": "Western Music within a Singaporean Context",
+    "creditCount": 4,
+    "Preclusion": "SSY2223"
+  },
+  {
+    "code": "GES1021",
+    "name": "Natural Heritage of Singapore",
+    "creditCount": 4,
+    "Preclusion": "SSS1207"
+  },
+  {
+    "code": "GES1023",
+    "name": "Representing Singapore",
+    "creditCount": 4,
+    "Preclusion": "SSA1206"
+  },
+  {
+    "code": "GES1024",
+    "name": "Real Estate Development & Investment Law",
+    "creditCount": 4,
+    "Preclusion": "SSD1203"
+  },
+  {
+    "code": "GES1025",
+    "name": "Singapore Literature in English: Selected Texts",
+    "creditCount": 4,
+    "Preclusion": "SSA1207, SSA1207FC"
+  },
+  {
+    "code": "GES1026",
+    "name": "Urban Planning in Singapore",
+    "creditCount": 4,
+    "Preclusion": "GEK2005"
+  },
+  {
+    "code": "GES1028",
+    "name": "Singapore Society",
+    "creditCount": 4,
+    "Preclusion": "SSA1201"
+  },
+  {
+    "code": "GES1029",
+    "name": "Singapore Film: Performance of Identity",
+    "creditCount": 4,
+    "Preclusion": "SSA2218, TS2238"
+  },
+  {
+    "code": "GES1031",
+    "name": "Culture and Communication in Singapore",
+    "creditCount": 4
+  },
+  {
+    "code": "GES1033",
+    "name": "Who moved my OB markers?",
+    "creditCount": 4
+  },
+  {
+    "code": "GES1034",
+    "name": "We the Citizens - Understanding Singapore\u2019s Politics",
+    "creditCount": 4
+  },
+  {
+    "code": "GES1035",
+    "name": "Singapore: Imagining the Next 50 Years",
+    "creditCount": 4
+  },
+  {
+    "code": "GES1039",
+    "name": "Cultural Performances and Practices in Singapore",
+    "creditCount": 4
+  },
+  {
+    "code": "GES1041",
+    "name": "Everyday Ethics in Singapore",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1001",
+    "name": "Seeing the World Through Maps",
+    "creditCount": 4,
+    "Preclusion": "GEK1037"
+  },
+  {
+    "code": "GET1002",
+    "name": "Bridging East and West: Exploring Chinese Communication",
+    "creditCount": 4,
+    "Preclusion": "GEK1062"
+  },
+  {
+    "code": "GET1003",
+    "name": "Home",
+    "creditCount": 4,
+    "Preclusion": "GEM1046"
+  },
+  {
+    "code": "GET1004",
+    "name": "Cyber Security",
+    "creditCount": 4,
+    "Preclusion": "GEK1531"
+  },
+  {
+    "code": "GET1008",
+    "name": "Public Speaking and Critical Reasoning",
+    "creditCount": 4,
+    "Preclusion": "GEM2027"
+  },
+  {
+    "code": "GET1009",
+    "name": "Gandhi's Life, Thought And Legacy",
+    "creditCount": 4,
+    "Preclusion": "GEK1048"
+  },
+  {
+    "code": "GET1011",
+    "name": "Towards an Understanding of the Complex World",
+    "creditCount": 4,
+    "Preclusion": "GEM1912 Jnr Sem: Systems Systems Everywhere (offered at CAPT, UTown) Despite the minimal overlap, the preclusion may be needed to ensure that students who have completed GEM1912 do not have an unfair starting advantage over others who take this module. GEM1915"
+  },
+  {
+    "code": "GET1013",
+    "name": "Physics in the Life Sciences",
+    "creditCount": 4,
+    "Preclusion": "GEK1521"
+  },
+  {
+    "code": "GET1014",
+    "name": "The Art of Science, the Science of Art",
+    "creditCount": 4,
+    "Preclusion": "GEK1547"
+  },
+  {
+    "code": "GET1016",
+    "name": "Understanding the Changing Global Economic Landscape",
+    "creditCount": 4,
+    "Preclusion": "GEM1052"
+  },
+  {
+    "code": "GET1016T",
+    "name": "Understanding The Changing Global Economic Landscape",
+    "creditCount": 4,
+    "Preclusion": "GEM1052, GET1016"
+  },
+  {
+    "code": "GET1018",
+    "name": "The Mathematics of Games",
+    "creditCount": 4,
+    "Preclusion": "GEK1544"
+  },
+  {
+    "code": "GET1019",
+    "name": "Patrons of the Arts",
+    "creditCount": 4,
+    "Preclusion": "GEM1029, MUL2102"
+  },
+  {
+    "code": "GET1020",
+    "name": "Darwin and Evolution",
+    "creditCount": 4,
+    "Preclusion": "GEM1902B Junior Seminar: The Darwinian Revolution. GEM1536"
+  },
+  {
+    "code": "GET1021",
+    "name": "Critical Thinking And Writing",
+    "creditCount": 4,
+    "Preclusion": "IEM1201%, UTW1001%, GET1006, ES1531/GEK1549. U-town students cannot bid for GET1021.",
+    "Prerequisite": "- Students who are required to read ES1000 and/or EAP modules ES1102 must pass it/them before taking GET1021. -Only students matriculated in AY2015/2016, are allowed to take GET1021."
+  },
+  {
+    "code": "GET1022",
+    "name": "Understanding Your Brain",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1023",
+    "name": "Thinking Like An Economist",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1024",
+    "name": "Radiation-Scientific Understanding and Public Perception",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1025",
+    "name": "Science Fiction and Philosophy",
+    "creditCount": 4,
+    "Preclusion": "GEK2041"
+  },
+  {
+    "code": "GET1026",
+    "name": "Effective Reasoning",
+    "creditCount": 4,
+    "Preclusion": "GEK2048"
+  },
+  {
+    "code": "GET1027",
+    "name": "Reason and Persuasion",
+    "creditCount": 4,
+    "Preclusion": "GEM1004"
+  },
+  {
+    "code": "GET1028",
+    "name": "Logic",
+    "creditCount": 4,
+    "Preclusion": "PH2110, CS3234, MA4207, GEM2006"
+  },
+  {
+    "code": "GET1029",
+    "name": "Life, the Universe, and Everything",
+    "creditCount": 4,
+    "Preclusion": "PH1102E, GEK1067"
+  },
+  {
+    "code": "GET1030",
+    "name": "Digital Humanities in Arts Research",
+    "creditCount": 4,
+    "Preclusion": "GEK2050"
+  },
+  {
+    "code": "GET1031A",
+    "name": "Computational Thinking",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1032",
+    "name": "Building Relationship : Theories and Practice",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1033",
+    "name": "Exploring Computational Media Literacy",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1034",
+    "name": "Communication and Critical Thinking for Community Leadership",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1035",
+    "name": "Critical Perspectives in Advertising",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1036",
+    "name": "The Logic of Language",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1037",
+    "name": "Big Picture History",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1038",
+    "name": "Communication in Small Groups",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1042",
+    "name": "Sky and Telescopes",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1043",
+    "name": "Universe, Big Bang, and Unsolved Mysteries",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1046",
+    "name": "I Do Not Think Therefore I Am",
+    "creditCount": 4
+  },
+  {
+    "code": "GET1048",
+    "name": "Science: From Thinking to Narratives",
+    "creditCount": 4
+  },
+  {
+    "code": "IS1103",
+    "name": "IS Innovations in Organisations and Society",
+    "creditCount": 4
+  },
+  {
+    "code": "IS2101",
+    "name": "Business and Technical Communication",
+    "creditCount": 4,
+    "Preclusion": "ES2002, ES2007D, CS2101, CS2103T and ES1601.",
+    "Prerequisite": "Students who are required to read ES1000 and/or ES1102/ES1103 must pass it/them before taking IS2101."
+  },
+  {
+    "code": "IS2102",
+    "name": "Enterprise Systems Architecture and Design",
+    "creditCount": 4,
+    "Prerequisite": "CS1020 or CS2030"
+  },
+  {
+    "code": "IS2103",
+    "name": "Enterprise Systems Server-side Design and Development",
+    "creditCount": 4,
+    "Prerequisite": "CS1020 or CS2030"
+  },
+  {
+    "code": "IS3103",
+    "name": "Information Systems Leadership and Communication",
+    "creditCount": 4,
+    "Preclusion": "IS3101",
+    "Prerequisite": "(IS1103 or equivalent) and (CS2101 or IS2101)"
+  },
+  {
+    "code": "IS3106",
+    "name": "Enterprise Systems Interface Design and Development",
+    "creditCount": 4,
+    "Preclusion": "CS3226",
+    "Prerequisite": "IS2103"
+  },
+  {
+    "code": "IS3150",
+    "name": "Digital Media Marketing",
+    "creditCount": 4,
+    "Prerequisite": "IS2101"
+  },
+  {
+    "code": "IS3221",
+    "name": "Enterprise Resource Planning Systems",
+    "creditCount": 4,
+    "Prerequisite": "IS1103 or IS1103FC or IS1103X"
+  },
+  {
+    "code": "IS3240",
+    "name": "Digital Platform Strategy and Architecture",
+    "creditCount": 4,
+    "Prerequisite": "IS1103/X and (IS2102 or BT2102)"
+  },
+  {
+    "code": "IS3251",
+    "name": "Principles of Technology Entrepreneurship",
+    "creditCount": 4,
+    "Prerequisite": "IS1103 or equivalent"
+  },
+  {
+    "code": "IS3261",
+    "name": "Mobile Apps Development for Enterprise",
+    "creditCount": 4,
+    "Prerequisite": "(CS1020 or equivalent) or CS2020 or CS2030 or CS2040/C"
+  },
+  {
+    "code": "IS4010",
+    "name": "Industry Internship Programme",
+    "creditCount": 12,
+    "Prerequisite": "[IS2101 or CS2101] and [IS1105 or IS3101 or IS3103] and [IS2103 or CS2107 or (BT2101 and BT2102)]"
+  },
+  {
+    "code": "IS4100",
+    "name": "IT Project Management",
+    "creditCount": 4,
+    "Preclusion": "IS5110 and CS5212(old code for IS5110)",
+    "Prerequisite": "IS2102 and IS2103 and [(IS1103 or equivalent) or EG2401]"
+  },
+  {
+    "code": "IS4103",
+    "name": "Information Systems Capstone Project",
+    "creditCount": 8,
+    "Preclusion": "IS3102",
+    "Prerequisite": "IS2101, IS2102, IS2103 and IS3106"
+  },
+  {
+    "code": "IS4151",
+    "name": "Pervasive Technology Solutions and Development",
+    "creditCount": 4,
+    "Preclusion": "IS4150, IS5451, SMA5508, and SG5233",
+    "Prerequisite": "IS2103 and IS3106"
+  },
+  {
+    "code": "IS4204",
+    "name": "IT Governance",
+    "creditCount": 4,
+    "Prerequisite": "IS3101 or IS3103"
+  },
+  {
+    "code": "IS4228",
+    "name": "Information Technologies in Financial Services",
+    "creditCount": 4,
+    "Prerequisite": "IS3101 or IS3103"
+  },
+  {
+    "code": "IS4231",
+    "name": "Information Security Management",
+    "creditCount": 4,
+    "Preclusion": "CS3254",
+    "Prerequisite": "CS2107"
+  },
+  {
+    "code": "IS4233",
+    "name": "Legal Aspects of Information Technology",
+    "creditCount": 4,
+    "Preclusion": "CS4259",
+    "Prerequisite": "IS3101 or IS3103"
+  },
+  {
+    "code": "IS4234",
+    "name": "Quality Control and Audit of IS",
+    "creditCount": 4,
+    "Preclusion": "CS4252",
+    "Prerequisite": "(IS2102 and IS2103) or CS2103/T or CS2113/T"
+  },
+  {
+    "code": "IS4241",
+    "name": "Social Media Network Analysis",
+    "creditCount": 4,
+    "Prerequisite": "(CS1020 or its equivalent) or CS2030 or CS2103/T or CS2113/T"
+  },
+  {
+    "code": "IS4242",
+    "name": "Intelligent Systems and Techniques",
+    "creditCount": 4,
+    "Prerequisite": "[MA1312 or MA1521 or MA1505 or (MA1511 and MA1512)] and [ST2334 or ST2131 or ST2132] and [IS3106 or BT3103]"
+  },
+  {
+    "code": "IS4243",
+    "name": "Information Systems Consulting",
+    "creditCount": 4,
+    "Prerequisite": "IS3101 or IS3103"
+  },
+  {
+    "code": "IS4250",
+    "name": "Healthcare IT and Analytics",
+    "creditCount": 4,
+    "Prerequisite": "(IS1103 or equivalent) and (ST2131 or ST2334)"
+  },
+  {
+    "code": "IS4261",
+    "name": "Designing IT-enabled Business Innovations",
+    "creditCount": 4,
+    "Prerequisite": "IS3103 or IS3101"
+  },
+  {
+    "code": "IS4301",
+    "name": "Agile IT with DevOps",
+    "creditCount": 4,
+    "Prerequisite": "IS4100"
+  },
+  {
+    "code": "IS4302",
+    "name": "Blockchain and Distributed Ledger Technologies",
+    "creditCount": 4,
+    "Prerequisite": "(CS2102 or BT2102) and (CS1020 or its equivalent or CS2030 or CS2103/T or CS2113/T)"
+  },
+  {
+    "code": "IS4303",
+    "name": "IT-mediated financial solutions and platforms",
+    "creditCount": 4,
+    "Prerequisite": "IS2102"
+  },
+  {
+    "code": "IS5002",
+    "name": "Digital Transformation",
+    "creditCount": 4,
+    "Prerequisite": "IS2102"
+  },
+  {
+    "code": "IS5003",
+    "name": "Platform Design and Economy",
+    "creditCount": 4,
+    "Preclusion": "IS3240",
+    "Prerequisite": "IS2102"
+  },
+  {
+    "code": "IS5004",
+    "name": "Enterprise Architecture",
+    "creditCount": 4,
+    "Prerequisite": "IS2102"
+  },
+  {
+    "code": "IS5005",
+    "name": "Digital Engagement",
+    "creditCount": 4,
+    "Prerequisite": "IS3150"
+  },
+  {
+    "code": "IS5006",
+    "name": "Intelligent System Deployment",
+    "creditCount": 4,
+    "Prerequisite": "IS4242 or BT4014"
+  },
+  {
+    "code": "IS5007",
+    "name": "Strategising for Global IT-enabled Business Success",
+    "creditCount": 4,
+    "Prerequisite": "IS4204"
+  },
+  {
+    "code": "IS5110",
+    "name": "Software Project Management",
+    "creditCount": 4,
+    "Preclusion": "IS4100",
+    "Prerequisite": "IS3103"
+  },
+  {
+    "code": "IS5111",
+    "name": "IT Strategy and Governance",
+    "creditCount": 4,
+    "Preclusion": "IS4204",
+    "Prerequisite": "IS3103"
+  },
+  {
+    "code": "IS5114",
+    "name": "Global IT Project and Vendor Management",
+    "creditCount": 4,
+    "Prerequisite": "IS3103"
+  },
+  {
+    "code": "IS5116",
+    "name": "Digital Entrepreneurship",
+    "creditCount": 4,
+    "Preclusion": "IS3251",
+    "Prerequisite": "IS3103"
+  },
+  {
+    "code": "IS5117",
+    "name": "Digital Government",
+    "creditCount": 4,
+    "Prerequisite": "IS3103"
+  },
+  {
+    "code": "IS5126",
+    "name": "Hands-on with Applied Analytics",
+    "creditCount": 4,
+    "Preclusion": "BT5126 Hands-on with Business Analytics"
+  },
+  {
+    "code": "IS5128",
+    "name": "Digital Innovation",
+    "creditCount": 4,
+    "Prerequisite": "IS2102 and IS3103"
+  },
+  {
+    "code": "IS5151",
+    "name": "Information Security Policy and Management",
+    "creditCount": 4,
+    "Preclusion": "IS4231",
+    "Prerequisite": "CS2107"
+  },
+  {
+    "code": "IS5152",
+    "name": "Data-Driven Decision Making",
+    "creditCount": 4,
+    "Prerequisite": "ST2334 or ST1131"
+  },
+  {
+    "code": "IS5451",
+    "name": "Pervasive Technology Solutions and Development",
+    "creditCount": 4,
+    "Preclusion": "IS4151, IS4150, SMA5508, and SG5233"
+  },
+  {
+    "code": "IS6000",
+    "name": "Qualifying Examination in IS",
+    "creditCount": 6,
+    "Preclusion": "",
+    "Prerequisite": ""
+  },
+  {
+    "code": "IS6001",
+    "name": "Qualitative Methods for IS Research",
+    "creditCount": 4
+  },
+  {
+    "code": "IS6002",
+    "name": "Quantitative Methods for IS Research",
+    "creditCount": 4
+  },
+  {
+    "code": "IS6003",
+    "name": "Contemporary Theories for IS Research",
+    "creditCount": 4
+  },
+  {
+    "code": "IS6004",
+    "name": "Econometrics for IS Research",
+    "creditCount": 4
+  },
+  {
+    "code": "IS6005",
+    "name": "Seminars in Information Systems I",
+    "creditCount": 2
+  },
+  {
+    "code": "IS6103",
+    "name": "Design Science Research in Information Systems",
+    "creditCount": 4
+  },
+  {
+    "code": "ISD5101",
+    "name": "Integrated Studio Project 1",
+    "creditCount": 8
+  },
+  {
+    "code": "ISD5102",
+    "name": "Integrated Studio Project 2",
+    "creditCount": 8
+  },
+  {
+    "code": "ISD5103",
+    "name": "Green Buildings in the Tropics",
+    "creditCount": 4
+  },
+  {
+    "code": "ISD5104",
+    "name": "Energy and Ecology",
+    "creditCount": 4
+  },
+  {
+    "code": "ISD5105",
+    "name": "Principles of Sustainable Urbanism",
+    "creditCount": 4
+  },
+  {
+    "code": "ISD5106",
+    "name": "Sustainability Models and Blueprints",
+    "creditCount": 4
+  },
+  {
+    "code": "ISE3550",
+    "name": "Extended Internship",
+    "creditCount": 4,
+    "Preclusion": "Any other XX3550 module. [Note: Students who change major may not do a second internship in their new major)",
+    "Prerequisite": "Students should: have completed a minimum of 24 MC in Southeast Asian Studies; and have declared Southeast Asian Studies as their Major."
+  },
+  {
+    "code": "MA1100",
+    "name": "Fundamental Concepts of Mathematics",
+    "creditCount": 4,
+    "Preclusion": "MA1100S, GM1308, CS1231, CS1231S, CS1301, EEE students, CEG students, CPE students, MPE students, COM students, CEC students",
+    "Prerequisite": "GCE \u2018A\u2019 Level or H2 Mathematics or equivalent or H2 Further Mathematics or [GM1101 and GM1102] or MA1301 or MA1301FC or MA1301X"
+  },
+  {
+    "code": "MA1101R",
+    "name": "Linear Algebra I",
+    "creditCount": 4,
+    "Preclusion": "EG1401, EG1402, MA1101, MA1311, MA1506, MA1508, FOE students",
+    "Prerequisite": "GCE \u2018A\u2019 Level or H2 Mathematics or H2 Further Mathematics or MA1301 or MA1301FC or MA1301X"
+  },
+  {
+    "code": "MA1102R",
+    "name": "Calculus",
+    "creditCount": 4,
+    "Preclusion": "EE1401, EE1461, EG1401, EG1402, CE1402, MA1102, MA1312, MA1505, MA1505C, MA1507, MA1521, CEC students, COM students who matriculated on and after 2002 (including poly 2002 intake), FOE students",
+    "Prerequisite": "GCE \u2018A\u2019 Level or H2 Mathematics or H2 Further Mathematics or MA1301 or MA1301FC or MA1301X"
+  },
+  {
+    "code": "MA1301",
+    "name": "Introductory Mathematics",
+    "creditCount": 4,
+    "Preclusion": "Those with A-level or H2 passes in Mathematics or H2 Further Mathematics or who have passed any of the modules MA1101R, MA1102R, MA1301FC, MA1301X, MA1505, MA1506, MA1507, MA1508, MA1521, MA1311, MA1312, MA1421, MPE students",
+    "Prerequisite": "Pass in GCE \u2018O\u2019 Level Additional Mathematics or GCE \u2018AO\u2019 Levels or H1 Mathematics"
+  },
+  {
+    "code": "MA1301X",
+    "name": "Introductory Mathematics",
+    "creditCount": 4,
+    "Preclusion": "Those with A-level or H2 passes in Mathematics or H2 Further Mathematics",
+    "Prerequisite": "Pass in GCE \u2018O\u2019 Level Additional Mathematics or GCE \u2018AO\u2019 Level or H1 Mathematics"
+  },
+  {
+    "code": "MA1312",
+    "name": "Calculus with Applications",
+    "creditCount": 4,
+    "Preclusion": "MA1102R, MA1505, MA1505C, MA1521, MA1511, FoE students,",
+    "Prerequisite": "AO-Level Mathematics or H1 Mathematics or MA1301 or MA1301FC or MA1301X"
+  },
+  {
+    "code": "MA1421",
+    "name": "Basic Applied Mathematics for Sciences",
+    "creditCount": 4,
+    "Preclusion": "Majors in Mathematics, Applied Mathematics, Quantitative Finance or Statistics, second major in Mathematics, Financial Mathematics or Statistics, students who have passed any of the modules MA1102R, MA1312, MA1505, MA1506, MA1507, MA1521.",
+    "Prerequisite": "AO-Level Mathematics or H1 Mathematics"
+  },
+  {
+    "code": "MA1505",
+    "name": "Mathematics I",
+    "creditCount": 4,
+    "Preclusion": "MA1102R, MA1312, MA1507, MA1511, MA1521, MA2311, MA2501, EE1461, PC2174",
+    "Prerequisite": "GCE \u2018A\u2019 Level Mathematics or H2 Mathematics or H2 Further Mathematics or MA1301 or MA1301FC or MA1301X"
+  },
+  {
+    "code": "MA1507",
+    "name": "Advanced Calculus",
+    "creditCount": 4,
+    "Preclusion": "MA1102R, MA1104, MA1505, MA1511, MA1512, MA1521, MA2104, MA2311",
+    "Prerequisite": "GCE \u2018A\u2019 Level or H2 Mathematics or H2 Further Mathematics or equivalent"
+  },
+  {
+    "code": "MA1508E",
+    "name": "Linear Algebra for Engineering",
+    "creditCount": 4,
+    "Preclusion": "MA1101R, MA1311, MA1506, MA1508, MA1513 (2 way preclusion)",
+    "Prerequisite": "GCE \u2018A\u2019 level or H2 Mathematics or H2 Further Mathematics or equivalent"
+  },
+  {
+    "code": "MA1511",
+    "name": "Engineering Calculus",
+    "creditCount": 2,
+    "Preclusion": "MA1102R, MA1312, MA1505, MA1506, MA1507, MA1521, MA2311, MA2501, EE1461, PC2174 (2 way preclusion)",
+    "Prerequisite": "GCE \u2018A\u2019 level or H2 Mathematics or H2 Further Mathematics or equivalent"
+  },
+  {
+    "code": "MA1512",
+    "name": "Differential Equations for Engineering",
+    "creditCount": 2,
+    "Preclusion": "MA1506, MA1507, EE1461, PC2174 (2 way preclusion)",
+    "Prerequisite": "GCE \u2018A\u2019 level or H2 Mathematics or H2 Further Mathematics or equivalent"
+  },
+  {
+    "code": "MA1513",
+    "name": "Linear Algebra with Differential Equations",
+    "creditCount": 2,
+    "Preclusion": "MA1101R, MA1311, MA1506, MA1508, MA1508E (2 way preclusion)",
+    "Prerequisite": "GCE \u2018A\u2019 level or H2 Mathematics or H2 Further Mathematics or equivalent"
+  },
+  {
+    "code": "MA1521",
+    "name": "Calculus for Computing",
+    "creditCount": 4,
+    "Preclusion": "MA1102R, MA1312, MA1505, MA1507, MA2501, MA1511, FoE students",
+    "Prerequisite": "GCE \u2018A\u2019 level Mathematics or H2 Mathematics or H2 Further Mathematics or MA1301 or MA1301FC or MA1301X"
+  },
+  {
+    "code": "MA2101",
+    "name": "Linear Algebra II",
+    "creditCount": 4,
+    "Preclusion": "MA2101S, MA2101H, MA2201, MA2203, MQ2201, MQ2101, MQ2203",
+    "Prerequisite": "MA1101R or MA1506 or MA1508 or MA1508E or MA1513"
+  },
+  {
+    "code": "MA2101S",
+    "name": "Linear Algebra II (S)",
+    "creditCount": 5,
+    "Preclusion": "MA2101, MA2101H, MA2201, MA2203, MQ2201, MQ2101, MQ2203",
+    "Prerequisite": "(MA1101R or MA1506 or MA1508 or MA1508E or MA1513) and departmental approval"
+  },
+  {
+    "code": "MA2104",
+    "name": "Multivariable Calculus",
+    "creditCount": 4,
+    "Preclusion": "MA1104, MA2311, MA1507, MPE students",
+    "Prerequisite": "MA1102R or MA1505 or MA1511 or MA1521"
+  },
+  {
+    "code": "MA2108",
+    "name": "Mathematical Analysis I",
+    "creditCount": 4,
+    "Preclusion": "MA2108S, MA2206, MA2208, MA2221, MA2311, MQ2202, MQ2102, MQ2203, CN2401, EE2401, ME2492",
+    "Prerequisite": "MA1102R or MA1505 or MA1511 or MA1505C or MA1507 or MA1521"
+  },
+  {
+    "code": "MA2108S",
+    "name": "Mathematical Analysis I (S)",
+    "creditCount": 5,
+    "Preclusion": "MA2108, MA2206, MA2208, MA2221, MA2311, MQ2202, MQ2102, MQ2203, CN2401, EE2401, ME2492",
+    "Prerequisite": "(MA1102R or MA1505 or MA1511 or MA1505C or MA1507 or MA1521) and departmental approval"
+  },
+  {
+    "code": "MA2202",
+    "name": "Algebra I",
+    "creditCount": 4,
+    "Preclusion": "MA2202S, MA3250, MQ3201,CVE students.",
+    "Prerequisite": "MA1100 or MA1100S or CS1231 or CS1231S"
+  },
+  {
+    "code": "MA2202S",
+    "name": "Algebra I (S)",
+    "creditCount": 5,
+    "Preclusion": "MA2202, MA3250, MQ3201, CVE students.",
+    "Prerequisite": "(MA1100 or MA1100S or CS1231 or CS1231S) and departmental approval"
+  },
+  {
+    "code": "MA2213",
+    "name": "Numerical Analysis I",
+    "creditCount": 4,
+    "Preclusion": "CE2407, ME3291, CN3421, CN3411, CHE students (for breadth requirements), EVE students (for breadth requirements), DSA2102",
+    "Prerequisite": "(MA1102R or MA1312 or MA1507 or MA1505 or MA1521 or MA1511 or EG1402 or EE1401 or EE1461) and (MA1101R or MA1311 or MA1508 or MA1506 or MA1508E or MA1513)"
+  },
+  {
+    "code": "MA2214",
+    "name": "Combinatorics and Graphs I",
+    "creditCount": 4,
+    "Prerequisite": "MA1100 or MA1101R or MA1311 or MA1506 or MA1508 or MA1508E or MA1513 or CS1231 or CS1231S"
+  },
+  {
+    "code": "MA2216",
+    "name": "Probability",
+    "creditCount": 4,
+    "Preclusion": "ST2131 (Cross-listing), ST2334, CE2407",
+    "Prerequisite": "MA1102R or MA1312 or MA1507 or MA1505 or MA1505C or MA1511 or MA1521"
+  },
+  {
+    "code": "MA2219",
+    "name": "Introduction to Geometry",
+    "creditCount": 4,
+    "Prerequisite": "MA1100 or MA1101R or MA1506 or MA1508 or MA1508E or MA1513 or MA1102R or MA1505 or MA1507 or MA1511 or CS1231"
+  },
+  {
+    "code": "MA2288",
+    "name": "Basic UROPS in Mathematics I",
+    "creditCount": 4,
+    "Prerequisite": "MA1101R and departmental approval"
+  },
+  {
+    "code": "MA2289",
+    "name": "Basic UROPS in Mathematics II",
+    "creditCount": 4,
+    "Prerequisite": "MA1101R and departmental approval"
+  },
+  {
+    "code": "MA2311",
+    "name": "Techniques in Advanced Calculus",
+    "creditCount": 4,
+    "Preclusion": "MA1104, MA2104, MA1505, MA1507, MA1511, MA2108, MA2108S, MPE students, Mathematics majors, Applied Mathematics majors, Quantitative Finance majors, second major in Mathematics, second major in Financial Mathematics",
+    "Prerequisite": "MA1102R or MA1312 or MA1421 or MA1521"
+  },
+  {
+    "code": "MA2501",
+    "name": "Differential Equations and Systems",
+    "creditCount": 4,
+    "Preclusion": "MA1505, MA1505C, MA1506, MA1512, MA1521, MA2210, MA2312, MA1511",
+    "Prerequisite": "MA1507 and (MA1508 or MA1508E)"
+  },
+  {
+    "code": "MA3110",
+    "name": "Mathematical Analysis II",
+    "creditCount": 4,
+    "Preclusion": "MA2118, MA2118H, MA2205, MQ3202, MA3110S, ST2236.",
+    "Prerequisite": "MA2108 or MA2108S"
+  },
+  {
+    "code": "MA3110S",
+    "name": "Mathematical Analysis II (S)",
+    "creditCount": 5,
+    "Preclusion": "MA2118, MA2118H, MA2205, MQ3202, MA3110",
+    "Prerequisite": "(MA2108 or MA2108S) and departmental approval"
+  },
+  {
+    "code": "MA3111",
+    "name": "Complex Analysis I",
+    "creditCount": 4,
+    "Preclusion": "MA3111S, EE3002, MPE students",
+    "Prerequisite": "(MA1104 or MA2104 or MA1507) and (MA3110 or MA3110S)"
+  },
+  {
+    "code": "MA3111S",
+    "name": "Complex Analysis I (S)",
+    "creditCount": 5,
+    "Preclusion": "MA3111, EE3002, MPE students",
+    "Prerequisite": "(MA1104 or MA2104 or MA1507) and (MA3110 or MA3110S) and departmental approval"
+  },
+  {
+    "code": "MA3201",
+    "name": "Algebra II",
+    "creditCount": 4,
+    "Prerequisite": "(MA2202 or MA2202S) and (MA2101 or MA2101S)"
+  },
+  {
+    "code": "MA3205",
+    "name": "Set Theory",
+    "creditCount": 4,
+    "Prerequisite": "MA1100 or MA1100S or CS1231 or CS1231S"
+  },
+  {
+    "code": "MA3209",
+    "name": "Mathematical Analysis III",
+    "creditCount": 4,
+    "Preclusion": "MA3213, MA3251",
+    "Prerequisite": "(MA3110 or MA3110S) and (MA1104 or MA2104 or MA1507)"
+  },
+  {
+    "code": "MA3218",
+    "name": "Applied Algebra",
+    "creditCount": 4,
+    "Preclusion": "MA2202, MA2202S, EE4103",
+    "Prerequisite": "MA2101 or MA2101S"
+  },
+  {
+    "code": "MA3220",
+    "name": "Ordinary Differential Equations",
+    "creditCount": 4,
+    "Preclusion": "MA2312, PC2174",
+    "Prerequisite": "(MA1104 or MA2104 or MA1505 or MA1507 or MA1511 or MA1521) and (MA1101R or MA1311 or MA1506 or MA1508 or MA1508E or MA1513) and (MA2108 or MA2108S)"
+  },
+  {
+    "code": "MA3227",
+    "name": "Numerical Analysis II",
+    "creditCount": 4,
+    "Preclusion": "ME3291",
+    "Prerequisite": "MA2213 and (MA1104 or MA2104 or MA1506 or MA1507 or MA1505 or MA1511 or MA2311) and (MA2101 or MA2101S) and (MA2216 or ST2131 or ST2334)"
+  },
+  {
+    "code": "MA3233",
+    "name": "Combinatorics and Graphs II",
+    "creditCount": 4,
+    "Prerequisite": "MA2214"
+  },
+  {
+    "code": "MA3236",
+    "name": "Non-Linear Programming",
+    "creditCount": 4,
+    "Preclusion": "DSC3214 or DSN3701",
+    "Prerequisite": "MA1104 or MA2104 or MA1506 or MA1507 or MA1505 or MA1511 or MA2311"
+  },
+  {
+    "code": "MA3238",
+    "name": "Stochastic Processes I",
+    "creditCount": 4,
+    "Preclusion": "ST3236.",
+    "Prerequisite": "{MA1101 or MA1101R or MA1311 or MA1508 or GM1302} and {MA2216 or ST2131}"
+  },
+  {
+    "code": "MA3252",
+    "name": "Linear and Network Optimisation",
+    "creditCount": 4,
+    "Preclusion": "MQ2204, CS3252, IC2231, DSC3214, DSN3701, MA3235, BH3214, ISE students",
+    "Prerequisite": "MA1101R or MA1306 or MA1311 or MA1508 or MA1506 or MA1508E or MA1513"
+  },
+  {
+    "code": "MA3259",
+    "name": "Mathematical Methods in Genomics",
+    "creditCount": 4,
+    "Prerequisite": "MA2216 or MA3233 or MA3501 or ST2131 or ST2334 or LSM2241"
+  },
+  {
+    "code": "MA3264",
+    "name": "Mathematical Modelling",
+    "creditCount": 4,
+    "Preclusion": "MPE students",
+    "Prerequisite": "MA1104 or MA2104 or MA1104S or MA1506 or MA2108 or MA2108S or MA2221 or MA1505 or MA1511 or MA2311"
+  },
+  {
+    "code": "MA3265",
+    "name": "Introduction to Number Theory",
+    "creditCount": 4,
+    "Prerequisite": "{MA2108 or MA2108S} and {MA2202 or MA2202S}"
+  },
+  {
+    "code": "MA3269",
+    "name": "Mathematical Finance I",
+    "creditCount": 4,
+    "Preclusion": "QF2101 Basic Financial Mathematics",
+    "Prerequisite": "(CS1010 or CS1010E or CS1010S or CS1010FC or IT1006 or CS1101 or CS1101C or CS1101S or IT1002) and (ST2131 or ST2334 or MA2216)"
+  },
+  {
+    "code": "MA3288",
+    "name": "Advanced UROPS in Mathematics I",
+    "creditCount": 4,
+    "Prerequisite": "Departmental approval"
+  },
+  {
+    "code": "MA3289",
+    "name": "Advanced UROPS in Mathematics II",
+    "creditCount": 4,
+    "Prerequisite": "Departmental approval"
+  },
+  {
+    "code": "MA3310",
+    "name": "Undergraduate Professional Internship Programme",
+    "creditCount": 4,
+    "Preclusion": "XX3310 modules offered in Science, where XX stands for the subject prefix of the respective major",
+    "Prerequisite": "Students must have completed 3 regular semesters of study, having declared Mathematics or Applied Mathematics as first major and have completed a minimum of 32 MCs in Mathematics or Applied Mathematics major at the time of application."
+  },
+  {
+    "code": "MA3311",
+    "name": "Undergraduate Professional Internship Programme",
+    "creditCount": 4,
+    "Preclusion": "XX3311 modules offered in Science, where XX stands for the subject prefix for the respective major.",
+    "Prerequisite": "Students must have completed 3 regular semesters of study, have declared Mathematics or Applied Mathematics as first major and have completed a minimum of 32 MCs in Mathematics or Applied Mathematics major at time of application."
+  },
+  {
+    "code": "MA3312",
+    "name": "Enhanced Undergraduate Professional Internship Programme",
+    "creditCount": 12,
+    "Preclusion": "XX3312 modules offered in Science, where XX stands for the subject prefix for the respective major.",
+    "Prerequisite": "Students must have completed 3 regular semesters of study, have declared Mathematics or Applied Mathematics as first major and have completed a minimum of 32 MCs in Mathematics or Applied Mathematics major at time of application."
+  },
+  {
+    "code": "MA4199",
+    "name": "Honours Project in Mathematics",
+    "creditCount": 12,
+    "Preclusion": "XFS4199M",
+    "Prerequisite": "Only for students matriculated from 2002/2003, subject to faculty and departmental requirements"
+  },
+  {
+    "code": "MA4203",
+    "name": "Galois Theory",
+    "creditCount": 4,
+    "Prerequisite": "MA3201"
+  },
+  {
+    "code": "MA4207",
+    "name": "Mathematical Logic",
+    "creditCount": 4,
+    "Prerequisite": "MA3110 or MA3110S or MA3205 or MA3219"
+  },
+  {
+    "code": "MA4211",
+    "name": "Functional Analysis",
+    "creditCount": 4,
+    "Prerequisite": "MA3207H or MA3209"
+  },
+  {
+    "code": "MA4221",
+    "name": "Partial Differential Equations",
+    "creditCount": 4,
+    "Prerequisite": "MA3220"
+  },
+  {
+    "code": "MA4229",
+    "name": "Approximation Theory",
+    "creditCount": 4,
+    "Prerequisite": "(MA2101 or MA2101S) and (MA3110 or MA3110S)"
+  },
+  {
+    "code": "MA4230",
+    "name": "Matrix Computation",
+    "creditCount": 4,
+    "Prerequisite": "{MA2101 or MA2101S} and {MA2213 or DSA2102}"
+  },
+  {
+    "code": "MA4235",
+    "name": "Topics in Graph Theory",
+    "creditCount": 4,
+    "Prerequisite": "MA3233"
+  },
+  {
+    "code": "MA4247",
+    "name": "Complex Analysis II",
+    "creditCount": 4,
+    "Prerequisite": "MA3111 or MA3111S"
+  },
+  {
+    "code": "MA4251",
+    "name": "Stochastic Processes II",
+    "creditCount": 4,
+    "Preclusion": "MA3237, MA3239, GM3310, ST4238, ISE students.",
+    "Prerequisite": "MA3238 or ST3236"
+  },
+  {
+    "code": "MA4254",
+    "name": "Discrete Optimization",
+    "creditCount": 4,
+    "Preclusion": "MA3235, ISE students.",
+    "Prerequisite": "MA2215 or MA3252 or DSC3214 or DSN3701"
+  },
+  {
+    "code": "MA4255",
+    "name": "Numerical Methods in Differential Equations",
+    "creditCount": 4,
+    "Preclusion": "ME4233",
+    "Prerequisite": "{MA2213 or DSA2102} and MA3220"
+  },
+  {
+    "code": "MA4260",
+    "name": "Stochastic Operations Research",
+    "creditCount": 4,
+    "Preclusion": "ISE students.",
+    "Prerequisite": "{MA2216 or ST2131 or ST2334} and {MA3236 or MA3252 or DSC3214 or DSN3701}"
+  },
+  {
+    "code": "MA4261",
+    "name": "Coding and Cryptography",
+    "creditCount": 4,
+    "Preclusion": "EEE students, CEG students, CPE students.",
+    "Prerequisite": "MA3201 or MA3218 or MA3265"
+  },
+  {
+    "code": "MA4262",
+    "name": "Measure and Integration",
+    "creditCount": 4,
+    "Prerequisite": "MA3209"
+  },
+  {
+    "code": "MA4263",
+    "name": "Introduction to Analytic Number Theory",
+    "creditCount": 4,
+    "Prerequisite": "(MA2202 or MA2202S) and (MA3111 or MA3111S)"
+  },
+  {
+    "code": "MA4264",
+    "name": "Game Theory",
+    "creditCount": 4,
+    "Preclusion": "EC3312.",
+    "Prerequisite": "(MA3236 or MA3252 or DSC3214 or DSN3701) and (MA2216 or ST2131 or ST2334)"
+  },
+  {
+    "code": "MA4266",
+    "name": "Topology",
+    "creditCount": 4,
+    "Prerequisite": "MA3209"
+  },
+  {
+    "code": "MA4268",
+    "name": "Mathematics for Visual Data Processing",
+    "creditCount": 4,
+    "Prerequisite": "MA2213"
+  },
+  {
+    "code": "MA4269",
+    "name": "Mathematical Finance II",
+    "creditCount": 4,
+    "Preclusion": "MA3245 Financial Mathematics I MA4257 Financial Mathematics II",
+    "Prerequisite": "(MA1104 or MA1506 or MA1507 or MA1511 or MA2104 or MA2311) and MA3269"
+  },
+  {
+    "code": "MA4270",
+    "name": "Data Modelling and Computation",
+    "creditCount": 4,
+    "Prerequisite": "{MA2213 or DSA2102} and {MA2216 or ST2131 or ST2334}"
+  },
+  {
+    "code": "MA4271",
+    "name": "Differential Geometry of Curves and Surfaces",
+    "creditCount": 4,
+    "Preclusion": "MA3215",
+    "Prerequisite": "(MA1104 or MA2104 or MA1507 or MA1505 or MA2311) and (MA2101 or MA2101S)"
+  },
+  {
+    "code": "MA4291",
+    "name": "Undergraduate Topics in Mathematics I",
+    "creditCount": 4,
+    "Prerequisite": "Departmental approval"
+  },
+  {
+    "code": "MA4292",
+    "name": "Undergraduate Topics in Mathematics II",
+    "creditCount": 4,
+    "Prerequisite": "Departmental approval"
+  },
+  {
+    "code": "MA5198",
+    "name": "Graduate Seminar Module In Mathematics",
+    "creditCount": 4,
+    "Prerequisite": "Only for graduate research students in the Department of Mathematics who matriculated in 2004 or later."
+  },
+  {
+    "code": "MA5202",
+    "name": "Number Theory",
+    "creditCount": 4,
+    "Prerequisite": "MA4203 or MA5203 or departmental approval"
+  },
+  {
+    "code": "MA5203",
+    "name": "Graduate Algebra I",
+    "creditCount": 5,
+    "Prerequisite": "MA3201 and departmental approval"
+  },
+  {
+    "code": "MA5204",
+    "name": "Graduate Algebra IIA",
+    "creditCount": 4,
+    "Prerequisite": "MA5203 or departmental approval"
+  },
+  {
+    "code": "MA5205",
+    "name": "Graduate Analysis I",
+    "creditCount": 5,
+    "Preclusion": "MA5215",
+    "Prerequisite": "MA4262 or departmental approval"
+  },
+  {
+    "code": "MA5206",
+    "name": "Graduate Analysis II",
+    "creditCount": 4,
+    "Prerequisite": "MA4211 and {MA4262 or MA5205}, or departmental approval"
+  },
+  {
+    "code": "MA5209",
+    "name": "Algebraic Topology",
+    "creditCount": 4,
+    "Prerequisite": "MA3251 or MA4215 or MA4266"
+  },
+  {
+    "code": "MA5210",
+    "name": "Differentiable Manifolds",
+    "creditCount": 4,
+    "Prerequisite": "MA3209 or MA3215 or MA3251 or MA4266 or departmental approval"
+  },
+  {
+    "code": "MA5211",
+    "name": "Lie Theory",
+    "creditCount": 4,
+    "Prerequisite": "MA3201 or MA5203 or MA5218 or departmental approval"
+  },
+  {
+    "code": "MA5213",
+    "name": "Advanced Partial Differential Equations",
+    "creditCount": 4,
+    "Prerequisite": "MA4221 or departmental approval"
+  },
+  {
+    "code": "MA5217",
+    "name": "Graduate Complex Analysis",
+    "creditCount": 4,
+    "Preclusion": "MA4247 Complex Analysis II",
+    "Prerequisite": "Departmental approval"
+  },
+  {
+    "code": "MA5219",
+    "name": "Logic and Foundation of Mathematics I",
+    "creditCount": 4,
+    "Prerequisite": "MA4207 or departmental approval"
+  },
+  {
+    "code": "MA5232",
+    "name": "Modeling and Numerical Simulations",
+    "creditCount": 4
+  },
+  {
+    "code": "MA5233",
+    "name": "Computational Mathematics",
+    "creditCount": 4,
+    "Prerequisite": "MA3228 or MA4255 or MA4230 or departmental approval"
+  },
+  {
+    "code": "MA5236",
+    "name": "Homology Theory",
+    "creditCount": 4,
+    "Prerequisite": "MA5209 or MA5210 or departmental approval"
+  },
+  {
+    "code": "MA5241",
+    "name": "Computational Harmonic Analysis",
+    "creditCount": 4,
+    "Prerequisite": "MA4229 or departmental approval"
+  },
+  {
+    "code": "MA5243",
+    "name": "Advanced Mathematical Programming",
+    "creditCount": 4,
+    "Prerequisite": "MA3236 or departmental approval"
+  },
+  {
+    "code": "MA5248",
+    "name": "Stochastic Analysis in Mathematical Finance",
+    "creditCount": 4,
+    "Prerequisite": "MA4262 or MA3245 or MA4269 or departmental approval"
+  },
+  {
+    "code": "MA5251",
+    "name": "Spectral Methods And Applications",
+    "creditCount": 4,
+    "Prerequisite": "Department approval"
+  },
+  {
+    "code": "MA5295",
+    "name": "Dissertation For Msc By Coursework",
+    "creditCount": 8,
+    "Prerequisite": "Departmental approval (for students in 2006/07 and later cohorts who are enrolled in M.Sc. in Mathematics by course work)"
+  },
+  {
+    "code": "MA6202",
+    "name": "Topics In Algebra And Number Theory Ii",
+    "creditCount": 4,
+    "Prerequisite": "Departmental approval"
+  },
+  {
+    "code": "MA6211",
+    "name": "Topics In Geometry And Topology I",
+    "creditCount": 4,
+    "Prerequisite": "Departmental approval"
+  },
+  {
+    "code": "MA6235",
+    "name": "Topics In Financial Mathematics",
+    "creditCount": 4,
+    "Prerequisite": "Departmental approval"
+  },
+  {
+    "code": "MA6252",
+    "name": "Topics In Applied Mathematics Ii",
+    "creditCount": 4
+  },
+  {
+    "code": "MA6291",
+    "name": "Topics in Mathematics I",
+    "creditCount": 4,
+    "Prerequisite": "Departmental approval"
+  }
+]
