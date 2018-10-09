@@ -22,11 +22,14 @@ public class ModuleGenerator {
         ModuleType[] pt3 = new ModuleType[] { ModuleType.PR_IT_PROFESSIONALISM, ModuleType.UNRESTRICTED_ELECTIVES };
 
         ModuleInformation mi1 = new ModuleInformation("CS1234", "m1", pt1,
-                4, new Module[] { }, new Module[] { });
+                4, new Module[] { new Module("CS1111") },
+                new Module[] { new Module("MA2222"), new Module("BC1342")});
         ModuleInformation mi2 = new ModuleInformation("CS5678", "m2", pt2,
-                4, new Module[] { }, new Module[] { });
+                4, new Module[] { new Module("PC5555") },
+                new Module[] { new Module("IS0909")});
         ModuleInformation mi3 = new ModuleInformation("CS9101", "m3", pt3,
-                4, new Module[] { }, new Module[] { });
+                4, new Module[] { new Module("ES2356")},
+                new Module[] { new Module("CE1649")});
 
         Module m1 = new Module(ModuleType.PR_FOUNDATION, mi1);
         Module m2 = new Module(ModuleType.PR_BREADTH_AND_DEPTH, mi2);

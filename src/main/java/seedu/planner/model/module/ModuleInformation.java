@@ -25,6 +25,18 @@ public class ModuleInformation {
 
     /**
      * Creates a new {@code ModuleInformation}.
+     * This {@code ModuleInformation} does not have all its
+     * attributes initialised and is meant to be used
+     * as a lightweight and convenient object.
+     *
+     * @param code The {@code Module} code
+     */
+    public ModuleInformation(String code) {
+        this.code = code;
+    }
+
+    /**
+     * Creates a new {@code ModuleInformation}.
      *
      * @param code The {@code Module} code
      * @param name The {@code Module} name
