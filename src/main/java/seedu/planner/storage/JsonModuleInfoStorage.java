@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
 
 /**
- * A class to access ModuleInfo stored in the hard disk as a json file
+ * A class to access {@link seedu.planner.model.module.ModuleInfo} stored in the hard disk as a json file.
  */
 public class JsonModuleInfoStorage implements ModuleInfoStorage {
 
@@ -34,11 +34,11 @@ public class JsonModuleInfoStorage implements ModuleInfoStorage {
     /**
      * Returns {@code ModuleInfo} of a certain {@code ModuleType} that {@code ModuleInfoStorage} stores.
      *
-     * @param moduleType Type of module
+     * @param moduleType Type of {@code module}
      * @return A list of {@code ModuleInfo} of {@code moduleType}
      */
     @Override
-    public List<ModuleInfo> getModuleInformation(ModuleType moduleType) {
+    public List<ModuleInfo> getModuleInfo(ModuleType moduleType) {
         // TODO(rongjiecomputer) Implement filter
         return new ArrayList<>();
     }

@@ -33,5 +33,5 @@ public interface ModuleInfoStorage {
      * @param moduleType Type of module
      * @return A list of {@code ModuleInfo} of {@code moduleType}
      */
-    public List<ModuleInfo> getModuleInformation(ModuleType moduleType);
+    public List<ModuleInfo> getModuleInfo(ModuleType moduleType);
 }
