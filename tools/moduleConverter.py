@@ -27,7 +27,7 @@ if not os.path.exists(NUSMODS_JSON):
   res = urllib.request.urlopen(req)
   data = res.read()
   with open(NUSMODS_JSON, "w", encoding="utf8") as f:
-    f.write(data.decode("utf8"))  
+    f.write(data.decode("utf8"))
 
 with open(NUSMODS_JSON, "r", encoding="utf8") as f:
   obj = json.load(f)
