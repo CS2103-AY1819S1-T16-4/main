@@ -1,24 +1,45 @@
 package seedu.planner.storage;
 
-import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.commons.util.JsonUtil;
 import seedu.planner.model.module.ModuleInfo;
+import seedu.planner.model.module.ModuleType;
 
 /**
  * A class to access ModuleInfo stored in the hard disk as a json file
  */
 public class JsonModuleInfoStorage implements ModuleInfoStorage {
+
+    private Path filePath;
+
+    public JsonModuleInfoStorage(Path filePath) {
+        this.filePath = filePath;
+    }
+
+
     public Path getModuleInfoFilePath() {
-        return Paths.get("data", "moduleInfo.json");
+        return filePath;
     }
 
     @Override
-    public Optional<ModuleInfo> readModuleInfo() {
-        return Optional.empty();
+    public Optional<ModuleInfo[]> readModuleInfo() throws DataConversionException {
+        return JsonUtil.readJsonFile(filePath, ModuleInfo[].class);
+    }
+
+    /**
+     * Returns {@code ModuleInfo} of a certain {@code ModuleType} that {@code ModuleInfoStorage} stores.
+     *
+     * @param moduleType Type of module
+     * @return A list of {@code ModuleInfo} of {@code moduleType}
+     */
+    @Override
+    public List<ModuleInfo> getModuleInformation(ModuleType moduleType) {
+        // TODO(rongjiecomputer) Implement filter
+        return new ArrayList<>();
     }
 }

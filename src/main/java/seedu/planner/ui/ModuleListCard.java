@@ -6,6 +6,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.planner.model.module.Module;
+import seedu.planner.model.module.ModuleInfo;
 
 //@@author GabrielYik
 
@@ -53,7 +54,7 @@ public class ModuleListCard extends UiPart<Region> {
         moduleType.setText("Fulfils: " + module.getType().toString());
         creditCount.setText("Modular Credits: " + Integer.toString(module.getCreditCount()));
 
-        for (Module m : module.getPreclusions()) {
+        for (ModuleInfo m : module.getPreclusions()) {
             preclusions.getChildren().add(new Label(m.getCode()));
         }
 
@@ -70,7 +71,7 @@ public class ModuleListCard extends UiPart<Region> {
             preclusion.setText("Preclusions: ");
         }
 
-        for (Module m : module.getPrerequisites()) {
+        for (ModuleInfo m : module.getPrerequisites()) {
             prerequisites.getChildren().add(new Label(m.getCode()));
         }
 

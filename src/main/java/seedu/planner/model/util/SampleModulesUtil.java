@@ -24,21 +24,24 @@ public class SampleModulesUtil {
         ModuleType[] pt2 = new ModuleType[] { ModuleType.PR_BREADTH_AND_DEPTH, ModuleType.UNRESTRICTED_ELECTIVES };
         ModuleType[] pt3 = new ModuleType[] { ModuleType.PR_IT_PROFESSIONALISM, ModuleType.UNRESTRICTED_ELECTIVES };
 
-        ModuleInfo mi1 = new ModuleInfo("CS1234", "m1", pt1,
-                4, new Module[] { new Module("CS1111") },
-                new Module[] { new Module("MA2222"), new Module("BC1342")});
-        ModuleInfo mi2 = new ModuleInfo("CS5678", "m2", pt2,
-                4, new Module[] { new Module("PC5555") },
-                new Module[] { new Module("IS0909")});
-        ModuleInfo mi3 = new ModuleInfo("CS9101", "m3", pt3,
-                4, new Module[] { new Module("ES2356")},
-                new Module[] { new Module("CE1649")});
+        ModuleInfo cs1010 = new ModuleInfo("CS1010", "Programming Methodology", pt1,
+                4, new ModuleInfo[] {}, new ModuleInfo[] {});
 
-        Module m1 = new Module(ModuleType.PR_FOUNDATION, mi1);
-        Module m2 = new Module(ModuleType.PR_BREADTH_AND_DEPTH, mi2);
-        Module m3 = new Module(ModuleType.PR_IT_PROFESSIONALISM, mi3);
+        ModuleInfo cs1231 = new ModuleInfo("CS1231", "Discrete structure", pt2,
+                4, new ModuleInfo[] {}, new ModuleInfo[] {});
 
-        List<Module> modules = List.of(m1, m2, m3);
+        ModuleInfo cs2030 = new ModuleInfo("CS2030", "Programming Methodology II", pt3,
+                4, new ModuleInfo[] {}, new ModuleInfo[] {cs1010});
+
+        ModuleInfo cs2040 = new ModuleInfo("CS2040", "Data Structure", pt1,
+                4, new ModuleInfo[] {}, new ModuleInfo[] {cs1010, cs1231});
+
+        Module m1 = new Module(ModuleType.PR_FOUNDATION, cs1010);
+        Module m2 = new Module(ModuleType.PR_BREADTH_AND_DEPTH, cs1231);
+        Module m3 = new Module(ModuleType.PR_IT_PROFESSIONALISM, cs2030);
+        Module m4 = new Module(ModuleType.PR_FOUNDATION, cs2040);
+
+        List<Module> modules = List.of(m1, m2, m3, m4);
 
         return FXCollections.observableList(modules.subList(0, count));
     }

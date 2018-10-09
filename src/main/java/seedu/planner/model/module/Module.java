@@ -84,7 +84,7 @@ public class Module {
      *
      * @return The {@code Module} preclusions
      */
-    public Module[] getPreclusions() {
+    public ModuleInfo[] getPreclusions() {
         return information.getPreclusions();
     }
 
@@ -93,7 +93,7 @@ public class Module {
      *
      * @return The {@code Module} prerequisites
      */
-    public Module[] getPrerequisites() {
+    public ModuleInfo[] getPrerequisites() {
         return information.getPrerequisites();
     }
 }

@@ -45,8 +45,8 @@ public class ModuleInfo {
      * @param preclusions The preclusions
      * @param prerequisites The prerequisites
      */
-    private ModuleInfo(String code, String name, ModuleType[] possibleTypes,
-                              int creditCount, ModuleInfo[] preclusions, ModuleInfo[] prerequisites) {
+    public ModuleInfo(String code, String name, ModuleType[] possibleTypes,
+                      int creditCount, ModuleInfo[] preclusions, ModuleInfo[] prerequisites) {
         this.code = code;
         this.name = name;
         this.possibleTypes = possibleTypes;
