@@ -9,7 +9,7 @@ public class Module {
 
     private ModuleType type;
 
-    private ModuleInformation information;
+    private ModuleInfo information;
 
     /**
      * Creates a new {@code Module}.
@@ -20,16 +20,16 @@ public class Module {
      * @param code The {@code Module} code
      */
     public Module(String code) {
-        information = new ModuleInformation(code);
+        information = new ModuleInfo(code);
     }
 
     /**
      * Creates a {@code Module}.
      *
      * @param type The {@code ModuleType}
-     * @param information The {@code ModuleInformation}
+     * @param information The {@code ModuleInfo}
      */
-    public Module(ModuleType type, ModuleInformation information) {
+    public Module(ModuleType type, ModuleInfo information) {
         this.type = type;
         this.information = information;
     }

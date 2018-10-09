@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.planner.commons.core.index.Index;
 import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
-import seedu.planner.model.module.ModuleInformation;
+import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.person.Address;
 import seedu.planner.model.person.Email;
 import seedu.planner.model.person.Name;
@@ -48,7 +48,7 @@ public class ParserUtil {
      */
     public static String parseModuleCode(String code) throws ParseException {
         if (!ModuleUtil.hasValidCode(code)) {
-            throw new ParseException(ModuleInformation.MESSAGE_MODULE_CODE_CONSTRAINTS);
+            throw new ParseException(ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS);
         }
 
         return code;

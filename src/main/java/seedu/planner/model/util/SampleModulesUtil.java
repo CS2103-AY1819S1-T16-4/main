@@ -5,7 +5,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
-import seedu.planner.model.module.ModuleInformation;
+import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
 
 /**
@@ -24,13 +24,13 @@ public class SampleModulesUtil {
         ModuleType[] pt2 = new ModuleType[] { ModuleType.PR_BREADTH_AND_DEPTH, ModuleType.UNRESTRICTED_ELECTIVES };
         ModuleType[] pt3 = new ModuleType[] { ModuleType.PR_IT_PROFESSIONALISM, ModuleType.UNRESTRICTED_ELECTIVES };
 
-        ModuleInformation mi1 = new ModuleInformation("CS1234", "m1", pt1,
+        ModuleInfo mi1 = new ModuleInfo("CS1234", "m1", pt1,
                 4, new Module[] { new Module("CS1111") },
                 new Module[] { new Module("MA2222"), new Module("BC1342")});
-        ModuleInformation mi2 = new ModuleInformation("CS5678", "m2", pt2,
+        ModuleInfo mi2 = new ModuleInfo("CS5678", "m2", pt2,
                 4, new Module[] { new Module("PC5555") },
                 new Module[] { new Module("IS0909")});
-        ModuleInformation mi3 = new ModuleInformation("CS9101", "m3", pt3,
+        ModuleInfo mi3 = new ModuleInfo("CS9101", "m3", pt3,
                 4, new Module[] { new Module("ES2356")},
                 new Module[] { new Module("CE1649")});
 
