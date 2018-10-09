@@ -1,16 +1,25 @@
 package seedu.planner.ui;
 
+import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
+import static seedu.planner.model.ModulePlanner.NUMBER_TYPES_USER_MODULES;
+
 import java.util.logging.Logger;
 
 import com.google.common.eventbus.Subscribe;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.planner.commons.core.Config;
 import seedu.planner.commons.core.GuiSettings;
@@ -26,7 +35,7 @@ import seedu.planner.model.UserPrefs;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow_Test.fxml";
+    private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -35,8 +44,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
-    private ModuleListPanel takenModulesListPanel;
-    private ModuleListPanel availableModulesListPanel;
+    private ModuleListPanel[] takenModulesListPanels;
+    private ModuleListPanel[] availableModulesListPanels;
     private PersonListPanel personListPanel;
     private Config config;
     private UserPrefs prefs;
@@ -46,10 +55,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane browserPlaceholder;
 
     @FXML
-    private StackPane takenModulesListPanelPlaceholder;
-
-    @FXML
-    private StackPane availableModulesListPanelPlaceholder;
+    private TabPane semestersTabPane;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -127,21 +133,45 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        browserPanel = new BrowserPanel();
-        browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
         //@@author GabrielYik
 
-        takenModulesListPanel = new ModuleListPanel(logic.getFilteredTakenModuleList());
-        takenModulesListPanelPlaceholder.getChildren().add(takenModulesListPanel.getRoot());
+        if (FXML.equals("MainWindow_Test.fxml")) {
+            takenModulesListPanels = new ModuleListPanel[8];
+            availableModulesListPanels = new ModuleListPanel[8];
 
-        availableModulesListPanel = new ModuleListPanel(logic.getFilteredAvailableModuleList());
-        availableModulesListPanelPlaceholder.getChildren().add(availableModulesListPanel.getRoot());
+            for (int semesterIndex = 0; semesterIndex < MAX_NUMBER_SEMESTERS; semesterIndex++) {
+                takenModulesListPanels[semesterIndex] = new ModuleListPanel(
+                        logic.getFilteredTakenModuleList());
+                availableModulesListPanels[semesterIndex] = new ModuleListPanel(
+                        logic.getFilteredAvailableModuleList());
+            }
 
-        //@@author
+            ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
+            for (int semesterIndex = 0; semesterIndex < semesterTabs.size(); semesterIndex++) {
+                SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
+                ObservableList<Node> nodes = splitPane.getItems();
 
-        //personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+                for (int i = 0; i < NUMBER_TYPES_USER_MODULES; i++) {
+                    VBox vBox = (VBox) nodes.get(i);
+                    StackPane stackPane = (StackPane) vBox.getChildren().get(0);
+                    Node n = (i == 0)
+                            ? takenModulesListPanels[semesterIndex].getRoot()
+                            : availableModulesListPanels[semesterIndex].getRoot();
+                    stackPane.getChildren().add(n);
+                }
+            }
+
+        } else {
+
+            //@@author
+
+            browserPanel = new BrowserPanel();
+            browserPlaceholder.getChildren().add(browserPanel.getRoot());
+
+            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        }
 
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
