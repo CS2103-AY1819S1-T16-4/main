@@ -2,14 +2,14 @@ package seedu.planner.storage;
 
 import static org.junit.Assert.assertFalse;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Optional;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Optional;
 
 import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.model.module.ModuleInfo;
@@ -30,7 +30,8 @@ public class JsonModuleInfoStorageTest {
         readModuleInfo(null);
     }
 
-    private Optional<ModuleInfo[]> readModuleInfo(String moduleInfoFileInTestDataFolder) throws DataConversionException {
+    private Optional<ModuleInfo[]> readModuleInfo(String moduleInfoFileInTestDataFolder)
+            throws DataConversionException {
         Path moduleInfoFilePath = addToTestDataPathIfNotNull(moduleInfoFileInTestDataFolder);
         return new JsonModuleInfoStorage(moduleInfoFilePath).readModuleInfo();
     }
