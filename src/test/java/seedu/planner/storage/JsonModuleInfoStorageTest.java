@@ -13,7 +13,6 @@ import org.junit.rules.TemporaryFolder;
 
 import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.model.module.ModuleInfo;
-import seedu.planner.storage.JsonModuleInfoStorage;
 
 public class JsonModuleInfoStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonModuleInfoStorageTest");
