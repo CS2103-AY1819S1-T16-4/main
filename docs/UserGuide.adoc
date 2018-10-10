@@ -69,8 +69,17 @@ Examples:
 
 === Listing modules : `list`
 
-Shows a list of modules taken by the user if the specified year and semester has passed, or shows list of modules the user plans to take or is available to take for the specified year and semester.+
+Shows a list of modules taken by the user if the specified year and semester has passed, or list of modules the user plans to take for the specified year and semester.+
 Format: `list y/YEAR s/SEMESTER`
+
+Examples:
+
+* `list y/1 s/1`
+
+=== Suggesting modules : `suggest`
+
+Shows a list of modules the user is available to take based on modules that the user has taken or plans to take.+
+Format: `suggest`
 
 Examples:
 
@@ -126,6 +135,7 @@ _{explain how the user can enable/disable data encryption}_
 e.g. `add y/1 s/1 CS1231 CS1101S MA1521`
 * *List* : `list y/YEAR s/SEMESTER` +
 e.g. `list y/1 s/1`
+* *Suggest* : `suggest`
 * *Delete* : `delete y/YEAR s/SEMESTER MODULE_CODE...` +
 e.g. `delete y/1 s/1 CS1231 MA1521`
 * *Setup* : `setup [m/MAJOR] [y/YEAR] [s/SEMESTER] [f/FOCUS_AREA]` +
