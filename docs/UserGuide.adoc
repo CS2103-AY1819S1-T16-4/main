@@ -83,7 +83,7 @@ Format: `suggest`
 
 Examples:
 
-* `list y/1 s/1`
+* `suggest`
 
 === Deleting modules : `delete`
 
