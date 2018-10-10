@@ -14,6 +14,7 @@ import org.junit.rules.TemporaryFolder;
 import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.model.module.ModuleInfo;
 
+//@@author rongjiecomputer
 public class JsonModuleInfoStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonModuleInfoStorageTest");
 

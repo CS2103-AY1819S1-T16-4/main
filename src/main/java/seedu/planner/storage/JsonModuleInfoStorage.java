@@ -10,6 +10,7 @@ import seedu.planner.commons.util.JsonUtil;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
 
+//@@author rongjiecomputer
 /**
  * A class to access {@link seedu.planner.model.module.ModuleInfo} stored in the hard disk as a json file.
  */

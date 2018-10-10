@@ -9,6 +9,7 @@ import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
 
+//@@author rongjiecomputer
 /**
  * Represents a storage for {@link seedu.planner.model.module.ModuleInfo}.
  */
@@ -33,5 +34,5 @@ public interface ModuleInfoStorage {
      * @param moduleType Type of module
      * @return A list of {@code ModuleInfo} of {@code moduleType}
      */
-    public List<ModuleInfo> getModuleInfo(ModuleType moduleType);
+    List<ModuleInfo> getModuleInfo(ModuleType moduleType);
 }
