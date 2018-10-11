@@ -17,6 +17,8 @@ image::gabrielyik.png[width="150", align="left"]
 
 Role: Developer
 
+Responsibilities: UI
+
 '''
 
 === Hilda Anggraeni
@@ -24,6 +26,8 @@ image::hilda-ang.png[width="150", align="left"]
 {empty}[http://github.com/Hilda-Ang[github]]
 
 Role: Developer
+
+Responsibilities: Code Quality
 
 '''
 
@@ -33,6 +37,8 @@ image::rongjiecomputer.png[width="150", align="left"]
 
 Role: Developer
 
+Responsibilities: Storage
+
 '''
 
 === Rezky Arizaputra
@@ -40,6 +46,8 @@ image::romaromama.png[width="150", align="left"]
 {empty}[http://github.com/RomaRomama[github]]
 
 Role: Developer
+
+Responsibilities: Documentation
 
 '''
 
