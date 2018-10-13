@@ -137,14 +137,14 @@ public class MainWindow extends UiPart<Stage> {
         //@@author GabrielYik
 
         if (FXML.equals("MainWindow_Test.fxml")) {
-            takenModulesListPanels = new ModuleListPanel[8];
-            availableModulesListPanels = new ModuleListPanel[8];
+            takenModulesListPanels = new ModuleListPanel[MAX_NUMBER_SEMESTERS];
+            availableModulesListPanels = new ModuleListPanel[MAX_NUMBER_SEMESTERS];
 
             for (int semesterIndex = 0; semesterIndex < MAX_NUMBER_SEMESTERS; semesterIndex++) {
                 takenModulesListPanels[semesterIndex] = new ModuleListPanel(
-                        logic.getFilteredTakenModuleList());
+                        logic.getFilteredTakenModuleList(semesterIndex));
                 availableModulesListPanels[semesterIndex] = new ModuleListPanel(
-                        logic.getFilteredAvailableModuleList());
+                        logic.getFilteredAvailableModuleList(semesterIndex));
             }
 
             ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
