@@ -133,24 +133,24 @@ public class AddCommandTest {
 
         //TODO: implement
         @Override
-        public ObservableList<Module> getFilteredTakenModuleList() {
+        public ObservableList<Module> getFilteredTakenModuleList(int semesterIndex) {
             return null;
         }
 
         //TODO: implement
         @Override
-        public ObservableList<Module> getFilteredAvailableModuleList() {
+        public ObservableList<Module> getFilteredAvailableModuleList(int semesterIndex) {
             return null;
         }
 
         //TODO: implement
         @Override
-        public void updateFilteredTakenModuleList(Predicate<Module> predicate) {
+        public void updateFilteredTakenModuleList(Predicate<Module> predicate, int semesterIndex) {
         }
 
         //TODO: implement
         @Override
-        public void updateFilteredAvailableModuleList(Predicate<Module> predicate) {
+        public void updateFilteredAvailableModuleList(Predicate<Module> predicate, int semesterIndex) {
         }
 
         //@@author

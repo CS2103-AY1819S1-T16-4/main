@@ -13,6 +13,10 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    //TODO: can have a predicate to filter taken and available modules
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyAddressBook newData);
 
@@ -56,25 +60,25 @@ public interface Model {
 
     //TODO: confirm filtered or sorted or both
     /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getFilteredTakenModuleList();
+    ObservableList<Module> getFilteredTakenModuleList(int semesterIndex);
 
     //TODO: confirm filtered or sorted or both
     /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getFilteredAvailableModuleList();
+    ObservableList<Module> getFilteredAvailableModuleList(int semesterIndex);
 
     //TODO: confirm if method is necessary
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredTakenModuleList(Predicate<Module> predicate);
+    void updateFilteredTakenModuleList(Predicate<Module> predicate, int semesterIndex);
 
     //TODO: confirm if method is necessary
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredAvailableModuleList(Predicate<Module> predicate);
+    void updateFilteredAvailableModuleList(Predicate<Module> predicate, int semesterIndex);
 
     //@@author
 

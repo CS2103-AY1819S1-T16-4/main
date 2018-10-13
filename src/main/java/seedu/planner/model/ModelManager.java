@@ -2,7 +2,10 @@ package seedu.planner.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -14,7 +17,7 @@ import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.AddressBookChangedEvent;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.person.Person;
-import seedu.planner.model.util.SampleModulesUtil;
+import seedu.planner.model.util.SampleModulePlannerUtil;
 
 /**
  * Represents the in-memory model of the planner book data.
@@ -24,8 +27,20 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final VersionedAddressBook versionedAddressBook;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Module> filteredTakenModules;
-    private final FilteredList<Module> filteredAvailableModules;
+
+    private final VersionedModulePlanner versionedModulePlanner;
+
+    /**
+     * Represents a {@code FilteredList<Module>} of taken {@code Module}s
+     * ordered in ascending order in terms of their respective {@code Semester}s.
+     */
+    private final List<FilteredList<Module>> filteredTakenModules;
+
+    /**
+     * Represents a {@code FilteredList<Module>} of available {@code Module}s
+     * ordered in ascending order in terms of their respective {@code Semester}s.
+     */
+    private final List<FilteredList<Module>> filteredAvailableModules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,14 +53,43 @@ public class ModelManager extends ComponentManager implements Model {
 
         versionedAddressBook = new VersionedAddressBook(addressBook);
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
-        //TODO: initialise filteredModules properly
-        filteredTakenModules = new FilteredList<>(SampleModulesUtil.genModules(3));
-        filteredAvailableModules = new FilteredList<>(SampleModulesUtil.genModules(2));
+
+        //@@author GabrielYik
+
+        //TODO: initialise ModulePlanner properly
+        ModulePlanner modulePlanner = SampleModulePlannerUtil.genModulePlanner();
+        versionedModulePlanner = new VersionedModulePlanner(modulePlanner);
+        filteredTakenModules = setUpFilteredTakenModules();
+        filteredAvailableModules = setUpFilteredAvailableModules();
+
+        //@@author
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
+
+    //@@author GabrielYik
+
+    private List<FilteredList<Module>> setUpFilteredTakenModules() {
+        List<FilteredList<Module>> filteredTakenModules = new ArrayList<>(MAX_NUMBER_SEMESTERS);
+        for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
+            filteredTakenModules.add(i, new FilteredList<>(
+                    versionedModulePlanner.getModulesTaken(i)));
+        }
+        return filteredTakenModules;
+    }
+
+    private List<FilteredList<Module>> setUpFilteredAvailableModules() {
+        List<FilteredList<Module>> filteredAvailableModules = new ArrayList<>(MAX_NUMBER_SEMESTERS);
+        for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
+            filteredAvailableModules.add(i, new FilteredList<>(
+                    versionedModulePlanner.getModulesAvailable(i)));
+        }
+        return filteredAvailableModules;
+    }
+
+    //@@author
 
     @Override
     public void resetData(ReadOnlyAddressBook newData) {
@@ -111,25 +155,27 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author GabrielYik
 
     @Override
-    public ObservableList<Module> getFilteredTakenModuleList() {
-        return FXCollections.unmodifiableObservableList(filteredTakenModules);
+    public ObservableList<Module> getFilteredTakenModuleList(int semesterIndex) {
+        return FXCollections.unmodifiableObservableList(
+                filteredTakenModules.get(semesterIndex));
     }
 
     @Override
-    public ObservableList<Module> getFilteredAvailableModuleList() {
-        return FXCollections.unmodifiableObservableList(filteredAvailableModules);
+    public ObservableList<Module> getFilteredAvailableModuleList(int semesterIndex) {
+        return FXCollections.unmodifiableObservableList(
+                filteredAvailableModules.get(semesterIndex));
     }
 
     @Override
-    public void updateFilteredTakenModuleList(Predicate<Module> predicate) {
+    public void updateFilteredTakenModuleList(Predicate<Module> predicate, int semesterIndex) {
         requireNonNull(predicate);
-        filteredTakenModules.setPredicate(predicate);
+        filteredTakenModules.get(semesterIndex).setPredicate(predicate);
     }
 
     @Override
-    public void updateFilteredAvailableModuleList(Predicate<Module> predicate) {
+    public void updateFilteredAvailableModuleList(Predicate<Module> predicate, int semesterIndex) {
         requireNonNull(predicate);
-        filteredAvailableModules.setPredicate(predicate);
+        filteredAvailableModules.get(semesterIndex).setPredicate(predicate);
     }
 
     //@@author
