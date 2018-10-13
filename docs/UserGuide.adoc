@@ -45,7 +45,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `list y/YEAR`, `YEAR` is a parameter which can be used as `add y/1`.
+* Words in `UPPER_CASE` are the parameters that you can supply, e.g. in `list y/YEAR`, `YEAR` is a parameter which can be used as `add y/1`.
 * Items in square brackets are optional e.g `setup [m/MAJOR]` can be used as `setup m/CS` or as `setup`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `MODULE_CODE...` can be used as `{nbsp}` (i.e. 0 times), `CS1231`, `CS1231 MA1521` etc.
 ====
@@ -56,11 +56,11 @@ Format: `help`
 
 === Adding modules: `add`
 
-Adds modules to the list of modules that the user has taken or wants to take for a specific year and semester. Specifying the year and semester will put the modules to the modules list for that year and semester. Not specifying it will add the modules to list of modules already taken. +
+Adds modules to the list of modules that you have taken or want to take for a specific year and semester. Specifying the year and semester will put the modules to the modules list for that year and semester. Not specifying it will add the modules to list of modules already taken. +
 Format: `add [y/YEAR s/SEMESTER] MODULE_CODE...`
 
 [TIP]
-User can add 1 or more modules.
+You can add 1 or more modules.
 
 Examples:
 
@@ -69,7 +69,7 @@ Examples:
 
 === Listing modules : `list`
 
-Shows a list of modules taken by the user if the specified year and semester has passed, or list of modules the user plans to take for the specified year and semester.+
+Shows a list of modules that you have taken if the specified year and semester has passed, or list of modules that you plan to take for the specified year and semester.+
 Format: `list y/YEAR s/SEMESTER`
 
 Examples:
@@ -78,7 +78,7 @@ Examples:
 
 === Suggesting modules : `suggest`
 
-Shows a list of modules the user is available to take based on modules that the user has taken or plans to take.+
+Shows a list of modules available for you to take based on modules that you have taken or are planning to take.+
 Format: `suggest`
 
 Examples:
@@ -96,7 +96,7 @@ Examples:
 
 === Setting user profile : `setup`
 
-Initialises the profile of the user to allow personalisation. Year and semester correspond to user's current year and semester of study. +
+Initialises your profile to allow personalisation. Year and semester correspond to your current year and semester of study. +
 Format: `setup [m/MAJOR] [y/YEAR] [s/SEMESTER] [f/FOCUS_AREA]`
 
 Examples:
@@ -105,7 +105,7 @@ Examples:
 
 === Getting status update : `status`
 
-Shows how many core, unrestricted electives, and general education modules that the user has taken and how many more the user needs to take. +
+Shows how many core, unrestricted electives, and general education modules that you have taken and how many more you need to take. +
 Format: `status`
 
 === Exiting the program : `exit`
