@@ -39,14 +39,13 @@
     -fx-max-height: 0;
 }
 
+.tab-header-background {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
 .tab-label {
      -fx-background-color: derive(#1d1d1d, 20%);
      -fx-text-fill: white;
-}
-
-.tab:selected .tab-label {
-     -fx-background-color: green;
-     -fx-border-color: green;
 }
 
 .tab {
@@ -60,8 +59,13 @@
      -fx-border-color: green;
 }
 
-.tab-header-background {
-    -fx-background-color: derive(#1d1d1d, 20%);
+.tab:selected .focus-indicator {
+    -fx-border-color: green
+}
+
+.tab:selected .tab-label {
+     -fx-background-color: green;
+     -fx-border-color: green;
 }
 
 .table-view {
