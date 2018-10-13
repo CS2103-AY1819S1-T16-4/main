@@ -46,9 +46,9 @@
                         <Insets bottom="5" left="10" right="10" top="5" />
                     </padding>
                 </StackPane>
-                <TabPane fx:id="semestersTabPane" side="BOTTOM" styleClass="tab-header-area" tabClosingPolicy="UNAVAILABLE" tabMinWidth="125.0">
+                <TabPane fx:id="semestersTabPane" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" tabMinWidth="140.0">
                     <tabs>
-                        <Tab styleClass="pane-with-border" text="Y1S1">
+                        <Tab text="Y1S1">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <VBox minWidth="340.0" prefWidth="340.0" SplitPane.resizableWithParent="false">
@@ -73,7 +73,7 @@
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y1S2">
+                        <Tab text="Y1S2">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
@@ -102,7 +102,7 @@
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y2S1">
+                        <Tab text="Y2S1">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
@@ -131,7 +131,7 @@
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y2S2">
+                        <Tab text="Y2S2">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
@@ -160,7 +160,7 @@
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y3S1">
+                        <Tab text="Y3S1">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
@@ -189,7 +189,7 @@
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y3S2">
+                        <Tab text="Y3S2">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
@@ -218,7 +218,7 @@
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y4S1">
+                        <Tab text="Y4S1">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
@@ -247,7 +247,7 @@
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y4S2">
+                        <Tab text="Y4S2">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
