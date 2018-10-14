@@ -1,5 +1,6 @@
 package seedu.planner.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
@@ -24,16 +25,24 @@ public class ListModuleCommand extends Command {
             + PREFIX_YEAR + "1 "
             + PREFIX_SEMESTER + "1 ";
 
+    public static final String MESSAGE_SUCCESS = "Listed all modules taken";
+
+    private final int year;
+    private final int semester;
+
     /**
      * Creates a ListModuleCommand to list modules for specified semester.
      */
     public ListModuleCommand(String year, String semester) {
-        //TODO
+        this.year = Integer.parseInt(year);
+        this.semester = Integer.parseInt(semester);
     }
 
     //TODO
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
-        return null;
+        requireNonNull(model);
+        model.getFilteredTakenModuleList(year, semester);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
