@@ -131,9 +131,9 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public ObservableList<Module> getFilteredTakenModuleList(int year, int semester) {
-        FilteredList<Module> filteredTakenModules = new FilteredList<Module>();
-        filteredTakenModules.setAll(modulePlanner.listModulesTakenForSemester(year, semester));
-        return FXCollections.unmodifiableObservableList(filteredTakenModules);
+        ObservableList<Module> takenModulesList = FXCollections.observableArrayList();
+        takenModulesList.setAll(modulePlanner.listModulesTakenForSemester(year, semester));
+        return FXCollections.unmodifiableObservableList(takenModulesList);
     }
 
     @Override
