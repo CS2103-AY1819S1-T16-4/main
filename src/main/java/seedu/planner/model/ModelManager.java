@@ -59,7 +59,12 @@ public class ModelManager extends ComponentManager implements Model {
 
         this.modulePlanner = modulePlanner;
 
+        //TODO: Refactor ModelManager and delete this part
         this.versionedAddressBook = new VersionedAddressBook(new AddressBook());
+        filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
+        //TODO: initialise filteredModules properly
+        filteredTakenModules = new FilteredList<>(SampleModulesUtil.genModules(3));
+        filteredAvailableModules = new FilteredList<>(SampleModulesUtil.genModules(2));
     }
 
     public ModelManager() { this(new ModulePlanner(), new UserPrefs()); }
