@@ -42,6 +42,8 @@ public class ModelManager extends ComponentManager implements Model {
         //TODO: initialise filteredModules properly
         filteredTakenModules = new FilteredList<>(SampleModulesUtil.genModules(3));
         filteredAvailableModules = new FilteredList<>(SampleModulesUtil.genModules(2));
+
+        modulePlanner = new ModulePlanner();
     }
 
     //@@author Hilda-Ang
@@ -56,6 +58,8 @@ public class ModelManager extends ComponentManager implements Model {
         logger.fine("Initializing with planner: " + modulePlanner + " and user prefs " + userPrefs);
 
         this.modulePlanner = modulePlanner;
+
+        this.versionedAddressBook = new VersionedAddressBook(new AddressBook());
     }
 
     public ModelManager() { this(new ModulePlanner(), new UserPrefs()); }
