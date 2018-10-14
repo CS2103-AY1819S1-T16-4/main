@@ -50,7 +50,7 @@ public class LogicManager extends ComponentManager implements Logic {
 
     @Override
     public ObservableList<Module> getFilteredTakenModuleList() {
-        return new FilteredList<Module>(); // model.getFilteredTakenModuleList();
+        return FXCollections.observableArrayList(); // model.getFilteredTakenModuleList();
     }
 
     @Override
