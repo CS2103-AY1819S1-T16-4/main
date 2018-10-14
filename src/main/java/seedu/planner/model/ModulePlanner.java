@@ -53,7 +53,7 @@ public class ModulePlanner {
      * @param semester A valid semester.
      * @return A list of modules taken in the semester.
      */
-    public List<Module> listModulesTakenForSemester(int semester) {
+    public List<Module> listModulesTakenForSemester(int year, int semester) {
         return new ArrayList<Module>();
     }
 

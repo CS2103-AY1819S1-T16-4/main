@@ -26,6 +26,7 @@ public class ModelManager extends ComponentManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Module> filteredTakenModules;
     private final FilteredList<Module> filteredAvailableModules;
+    private final ModulePlanner modulePlanner;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,9 +44,27 @@ public class ModelManager extends ComponentManager implements Model {
         filteredAvailableModules = new FilteredList<>(SampleModulesUtil.genModules(2));
     }
 
-    public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+    //@@author Hilda-Ang
+
+    /**
+     * Initializes a ModelManager with the given modulePlanner and userPrefs.
+     */
+    public ModelManager(ModulePlanner modulePlanner, UserPrefs userPrefs) {
+        super();
+        requireAllNonNull(modulePlanner, userPrefs);
+
+        logger.fine("Initializing with planner: " + modulePlanner + " and user prefs " + userPrefs);
+
+        this.modulePlanner = modulePlanner;
     }
+
+    public ModelManager() { this(new ModulePlanner(), new UserPrefs()); }
+
+    //@@author
+
+    /** public ModelManager() {
+        this(new AddressBook(), new UserPrefs());
+    } */
 
     @Override
     public void resetData(ReadOnlyAddressBook newData) {
@@ -111,7 +130,9 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author GabrielYik
 
     @Override
-    public ObservableList<Module> getFilteredTakenModuleList() {
+    public ObservableList<Module> getFilteredTakenModuleList(int year, int semester) {
+        FilteredList<Module> filteredTakenModules =
+            new FilteredList<>(modulePlanner.listModulesTakenForSemester(year, semester));
         return FXCollections.unmodifiableObservableList(filteredTakenModules);
     }
 
