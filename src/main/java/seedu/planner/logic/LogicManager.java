@@ -48,10 +48,12 @@ public class LogicManager extends ComponentManager implements Logic {
 
     //@@author GabrielYik
 
+    /*
     @Override
     public ObservableList<Module> getFilteredTakenModuleList() {
         return model.getFilteredTakenModuleList();
     }
+    */
 
     @Override
     public ObservableList<Module> getFilteredAvailableModuleList() {
