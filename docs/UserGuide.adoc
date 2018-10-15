@@ -23,7 +23,7 @@ Module Planner is for NUS Computer Science undergraduate students who *prefer to
 == Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
+.  Download the latest `moduleplanner.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Address Book.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
@@ -34,7 +34,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * **`add`**`y/1 s/1 CS1231 MA1521` : adds modules CS1231 and MA1521 to year 1 semester 1 modules list.
-* **`delete`**`y/1 s/1 CS1231` : deletes module CS1231 from year 1 semester 1 modules list.
+* **`delete`**`CS1231` : deletes module CS1231 from year 1 semester 1 modules list.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -88,11 +88,11 @@ Examples:
 === Deleting modules : `delete`
 
 Deletes the specified modules from list of current or future modules for a specific year and semester. +
-Format: `delete y/YEAR s/SEMESTER MODULE_CODE...`
+Format: `delete MODULE_CODE...`
 
 Examples:
 
-* `delete y/1 s/1 CS1231 MA1521`
+* `delete CS1231 MA1521`
 
 === Setting user profile : `setup`
 
@@ -130,7 +130,7 @@ e.g. `add y/1 s/1 CS1231 CS1101S MA1521`
 * *List* : `list y/YEAR s/SEMESTER` +
 e.g. `list y/1 s/1`
 * *Suggest* : `suggest`
-* *Delete* : `delete y/YEAR s/SEMESTER MODULE_CODE...` +
+* *Delete* : `delete MODULE_CODE...` +
 e.g. `delete y/1 s/1 CS1231 MA1521`
 * *Setup* : `setup [m/MAJOR] [y/YEAR] [s/SEMESTER] [f/FOCUS_AREA]` +
 e.g. `setup m/CS y/1 s/1 f/machine learning`
