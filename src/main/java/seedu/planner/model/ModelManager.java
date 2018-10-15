@@ -68,7 +68,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     public ModelManager() {
-        this(new ModulePlanner(), new UserPrefs()); 
+        this(new ModulePlanner(), new UserPrefs());
     }
 
     //@@author
