@@ -67,7 +67,9 @@ public class ModelManager extends ComponentManager implements Model {
         filteredAvailableModules = new FilteredList<>(SampleModulesUtil.genModules(2));
     }
 
-    public ModelManager() { this(new ModulePlanner(), new UserPrefs()); }
+    public ModelManager() {
+        this(new ModulePlanner(), new UserPrefs()); 
+    }
 
     //@@author
 
