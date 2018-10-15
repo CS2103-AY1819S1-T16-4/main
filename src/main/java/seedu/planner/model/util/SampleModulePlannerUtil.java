@@ -25,7 +25,9 @@ public class SampleModulePlannerUtil {
             if (i != 0 && i % 2 == 0) {
                 year++;
             }
-            Semester semester = new Semester(i, year, true);
+
+            //TODO: @Hilda use util method to convert from "nominal" index to "offset" index
+            Semester semester = new Semester(year, i, true);
             semester.addModules(SampleModulesUtil.genModules(0, 4));
             semester.addAvailableModules(SampleModulesUtil.genModules(2, 6));
             semesters.add(i, semester);

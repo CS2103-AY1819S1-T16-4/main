@@ -12,33 +12,15 @@ import seedu.planner.model.module.Module;
  * Holds the list of modules taken and the list of modules available for
  * that semester.
  *
- * <p> A semester can be characterised by the year it is in, and whether it is
- *  * the first or second semester in that year. The first or second label
- *  for the semester can be defined as its offset index. However, for convenience,
- *  semesters may be addressed by their nominal index. The range of the
- *  nominal index is from 0 to 8 exclusive.
- *
- * <h2>Example</h2>
- *
- * <ul>
- *
- *  <li> A semester in year 1 semester 1 would have a nominal index of 0
- *      and an offset index of 1
- *
- *  <li> A semester in year 1 semester 2 would have a nominal index of 1
- *       and an offset index of 2
- *
- *  <li> A semester in year 4 semester 2 would have a nominal index of 7
- *       and an offset index of 2
- *
- * </ul>
+ * A semester can be characterised by the year it is in, and whether it is
+ * the first or second semester in that year.
  */
 public class Semester {
 
-    /** Constant for offset index 1. */
+    /** Constant for the first index. */
     public static final int FIRST = 1;
 
-    /** Constant for offset index 2. */
+    /** Constant for the second index. */
     public static final int SECOND = 2;
 
     // Basic information
@@ -55,14 +37,13 @@ public class Semester {
     /**
      * Constructs a {@code Semester}.
      *
-     * @param index A valid offset index
      * @param year A valid year
-     * @param hasBeenTaken An indicator of whether the semester
-     *                  has been taken
+     * @param index A valid index
+     * @param hasBeenTaken Whether the semester has been taken
      */
-    public Semester(int index, int year, boolean hasBeenTaken) {
-        this.index = index;
+    public Semester(int year, int index, boolean hasBeenTaken) {
         this.year = year;
+        this.index = index;
         this.hasBeenTaken = hasBeenTaken;
     }
 
