@@ -26,7 +26,7 @@ public class SuggestModuleCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Showed all available modules.";
 
-    public static final int index;
+    private int index;
 
     public SuggestModuleCommand(int index) {
         this.index = index;
