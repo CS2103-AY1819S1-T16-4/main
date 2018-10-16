@@ -14,7 +14,7 @@ import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.AddressBookChangedEvent;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.person.Person;
-import seedu.planner.model.util.SampleModulesUtil;
+import seedu.planner.model.util.SampleModulePlannerUtil;
 
 /**
  * Represents the in-memory model of the planner book data.
@@ -22,49 +22,20 @@ import seedu.planner.model.util.SampleModulesUtil;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final VersionedAddressBook versionedAddressBook;
-    private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Module> filteredTakenModules;
-    private final FilteredList<Module> filteredAvailableModules;
-    private final ModulePlanner modulePlanner;
-
-    /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
-     */
-    public ModelManager(ReadOnlyAddressBook addressBook, UserPrefs userPrefs) {
-        super();
-        requireAllNonNull(addressBook, userPrefs);
-
-        logger.fine("Initializing with planner book: " + addressBook + " and user prefs " + userPrefs);
-
-        versionedAddressBook = new VersionedAddressBook(addressBook);
-        filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
-        //TODO: initialise filteredModules properly
-        filteredTakenModules = new FilteredList<>(SampleModulesUtil.genModules(3));
-        filteredAvailableModules = new FilteredList<>(SampleModulesUtil.genModules(2));
-
-        modulePlanner = new ModulePlanner();
-    }
+    private final VersionedModulePlanner versionedModulePlanner;
 
     //@@author Hilda-Ang
 
     /**
      * Initializes a ModelManager with the given modulePlanner and userPrefs.
      */
-    public ModelManager(ModulePlanner modulePlanner, UserPrefs userPrefs) {
+    public ModelManager(ReadOnlyModulePlanner modulePlanner, UserPrefs userPrefs) {
         super();
         requireAllNonNull(modulePlanner, userPrefs);
 
         logger.fine("Initializing with planner: " + modulePlanner + " and user prefs " + userPrefs);
 
-        this.modulePlanner = modulePlanner;
-
-        //TODO: Refactor ModelManager and delete this part
-        this.versionedAddressBook = new VersionedAddressBook(new AddressBook());
-        filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
-        //TODO: initialise filteredModules properly
-        filteredTakenModules = new FilteredList<>(SampleModulesUtil.genModules(3));
-        filteredAvailableModules = new FilteredList<>(SampleModulesUtil.genModules(2));
+        versionedModulePlanner = new VersionedModulePlanner(modulePlanner);
     }
 
     public ModelManager() {
@@ -72,11 +43,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //@@author
-
-    /** public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
-    } */
-
+    /*
     @Override
     public void resetData(ReadOnlyAddressBook newData) {
         versionedAddressBook.resetData(newData);
@@ -87,8 +54,10 @@ public class ModelManager extends ComponentManager implements Model {
     public ReadOnlyAddressBook getAddressBook() {
         return versionedAddressBook;
     }
+    */
 
     /** Raises an event to indicate the model has changed */
+    /*
     private void indicateAddressBookChanged() {
         raise(new AddressBookChangedEvent(versionedAddressBook));
     }
@@ -119,13 +88,14 @@ public class ModelManager extends ComponentManager implements Model {
         versionedAddressBook.updatePerson(target, editedPerson);
         indicateAddressBookChanged();
     }
-
+    */
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
+     /*
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return FXCollections.unmodifiableObservableList(filteredPersons);
@@ -136,38 +106,27 @@ public class ModelManager extends ComponentManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+    */
 
     //=========== Filtered Module List Accessors =============================================================
     //@@author GabrielYik
 
     @Override
     public ObservableList<Module> getFilteredTakenModuleList(int index) {
-        ObservableList<Module> takenModulesList = FXCollections.observableArrayList();
-        takenModulesList.setAll(modulePlanner.listModulesTakenForSemester(index));
-        return FXCollections.unmodifiableObservableList(takenModulesList);
+        return FXCollections.unmodifiableObservableList(
+                versionedModulePlanner.getModulesAvailableFromSemester(index));
     }
 
     @Override
-    public ObservableList<Module> getFilteredAvailableModuleList() {
-        return FXCollections.unmodifiableObservableList(filteredAvailableModules);
-    }
-
-    @Override
-    public void updateFilteredTakenModuleList(Predicate<Module> predicate) {
-        requireNonNull(predicate);
-        filteredTakenModules.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredAvailableModuleList(Predicate<Module> predicate) {
-        requireNonNull(predicate);
-        filteredAvailableModules.setPredicate(predicate);
+    public ObservableList<Module> getFilteredAvailableModuleList(int index) {
+        return FXCollections.unmodifiableObservableList(
+                versionedModulePlanner.getModulesAvailableFromSemester(index));
     }
 
     //@@author
 
     //=========== Undo/Redo =================================================================================
-
+    /*
     @Override
     public boolean canUndoAddressBook() {
         return versionedAddressBook.canUndo();
@@ -212,5 +171,5 @@ public class ModelManager extends ComponentManager implements Model {
         return versionedAddressBook.equals(other.versionedAddressBook)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
+    */
 }

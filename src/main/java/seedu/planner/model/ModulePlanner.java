@@ -1,17 +1,21 @@
 package seedu.planner.model;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.semester.Semester;
 
-//@@author Hilda-Ang
+//@@author Hilda-Ang //@@author GabrielYik
 
 /**
- * Wraps all data at the module planner level, holds 8 semesters.
+ * Wraps all data at the module planner level.
  */
-public class ModulePlanner {
+public class ModulePlanner implements ReadOnlyModulePlanner {
 
     public static final int MAX_NUMBER_SEMESTERS = 8;
     public static final int MAX_SEMESTERS_PER_YEAR = 2;
@@ -41,42 +45,94 @@ public class ModulePlanner {
     }
 
     /**
+     * Creates a {@code ModulePlanner} using the {@code Module}s in the {@code toBeCopied}
+     */
+    public ModulePlanner(ReadOnlyModulePlanner toBeCopied) {
+        this();
+        resetData(toBeCopied);
+    }
+
+    /**
      * Add one or more module(s) to list of modules taken for the specified semester.
      *
-     * @param modules A list of valid modules to be added.
-     * @param semester A valid semester.
+     * @param modules A list of valid modules to be added
+     * @param index A valid semester
      */
-    public void addModulesToSemester(List<Module> modules, int semester) {
-
+    public void addModulesToSemester(List<Module> modules, int index) {
+        semesters.get(index).addModules(modules);
     }
 
     /**
      * Delete one or more module(s) from list of modules taken for the specified semester.
      *
-     * @param modules A list of valid modules to be deleted.
-     * @param semester A valid semester.
+     * @param modules A list of valid modules to be deleted
+     * @param index A valid semester
      */
-    public void deleteModulesFromSemester(List<Module> modules, int semester) {
-
+    public void deleteModulesFromSemester(List<Module> modules, int index) {
+        semesters.get(index).deleteModules(modules);
     }
 
     /**
-     * Returns list of modules the user has taken or is planning to take in the specified semester.
+     * Returns all {@code Semester}s wrapped in an {@code ObservableList}.
+     *
+     * @return An {@code ObservableList} containing all the {@code Semester}s
+     */
+    @Override
+    public ObservableList<Semester> getSemesters() {
+        return FXCollections.unmodifiableObservableList(
+                FXCollections.observableList(semesters));
+    }
+
+    /**
+     * Returns all {@code Module}s taken in the {@code Semester} wrapped in an
+     * {@code ObservableList}.
      *
      * @param index A valid index.
      * @return A list of modules taken in the semester.
      */
-    public List<Module> listModulesTakenForSemester(int index) {
-        return new ArrayList<Module>(semesters.get(index - 1).listModulesTaken());
+    @Override
+    public ObservableList<Module> getModulesTakenFromSemester(int index) {
+        List<Module> modules = semesters.get(index - 1).getModulesTaken();
+        return FXCollections.unmodifiableObservableList(
+                FXCollections.observableList(modules));
+    }
+
+
+    //TODO: available modules might not be placed by year
+    /**
+     * Returns all {@code Module}s available in the {@code Semester} wrapped in an
+     * {@code ObservableList}.
+     *
+     * @param index The nominal {@code Semester} index the {@code Module}s
+     *                      are stored at
+     * @return An {@code ObservableList} containing all the {@code Module}s
+     */
+    @Override
+    public ObservableList<Module> getModulesAvailableFromSemester(int index) {
+        List<Module> modules = semesters.get(index).getModulesAvailable();
+        return FXCollections.unmodifiableObservableList(
+                FXCollections.observableList(modules));
     }
 
     /**
-     * Returns list of modules that the user is available to take for the specified semester.
-     *
-     * @param semester A valid semester.
-     * @return A list of modules suggested for the semester.
+     * Resets the existing data of this {@code ModulePlanner} with {@code newData}.
      */
-    public List<Module> listModulesSuggestedForSemester(int semester) {
-        return new ArrayList<Module>();
+    public void resetData(ReadOnlyModulePlanner newData) {
+        requireNonNull(newData);
+        setSemesters(newData.getSemesters());
+    }
+
+    //TODO: change to private once SampleModuleUtil is not needed, and remove the toRemove boolean
+    public void setSemesters(List<Semester> semesters) {
+        boolean toRemove = false;
+        if (this.semesters.size() != 0) {
+            toRemove = true;
+        }
+        for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
+            if (toRemove) {
+                this.semesters.remove(i);
+            }
+            this.semesters.add(semesters.get(i));
+        }
     }
 }

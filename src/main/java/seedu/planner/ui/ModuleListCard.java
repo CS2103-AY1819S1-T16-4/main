@@ -3,7 +3,6 @@ package seedu.planner.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
@@ -18,9 +17,6 @@ public class ModuleListCard extends UiPart<Region> {
     private static final String FXML = "ModuleListCard.fxml";
 
     public final Module module;
-
-    @FXML
-    private HBox cardPane;
 
     @FXML
     private Label moduleCode;

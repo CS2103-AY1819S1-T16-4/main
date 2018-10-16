@@ -23,6 +23,7 @@ public class Module {
         information = new ModuleInfo(code);
     }
 
+    //TODO: verify if ModuleInfo contains ModuleType
     /**
      * Creates a {@code Module}.
      *

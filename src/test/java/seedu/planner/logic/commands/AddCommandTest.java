@@ -139,18 +139,8 @@ public class AddCommandTest {
 
         //TODO: implement
         @Override
-        public ObservableList<Module> getFilteredAvailableModuleList() {
+        public ObservableList<Module> getFilteredAvailableModuleList(int index) {
             return null;
-        }
-
-        //TODO: implement
-        @Override
-        public void updateFilteredTakenModuleList(Predicate<Module> predicate) {
-        }
-
-        //TODO: implement
-        @Override
-        public void updateFilteredAvailableModuleList(Predicate<Module> predicate) {
         }
 
         //@@author
