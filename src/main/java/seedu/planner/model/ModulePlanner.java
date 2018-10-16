@@ -109,7 +109,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     @Override
     public ObservableList<Module> listModulesAvailable(int index) {
-        List<Module> modules = semesters.get(index).getModulesAvailable();
+        List<Module> modules = semesters.get(index - 1).getModulesAvailable();
         return FXCollections.unmodifiableObservableList(
                 FXCollections.observableList(modules));
     }
