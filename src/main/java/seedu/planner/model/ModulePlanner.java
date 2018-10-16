@@ -66,7 +66,7 @@ public class ModulePlanner {
      * @param semester A valid semester.
      * @return A list of modules taken in the semester.
      */
-    public List<Module> listModulesTakenForSemester(int year, int semester) {
+    public List<Module> listModulesTakenForSemester(int index) {
         int index = year * 2 - (2 - semester);
         return new ArrayList<Module>(semesters.get(index).listModulesTaken());
     }

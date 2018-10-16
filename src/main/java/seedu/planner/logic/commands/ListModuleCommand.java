@@ -27,21 +27,20 @@ public class ListModuleCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all modules taken";
 
-    private final int year;
-    private final int semester;
+    private final int index;
 
     /**
      * Creates a ListModuleCommand to list modules for specified semester.
      */
     public ListModuleCommand(int index) {
-        //TODO
+        this.index = index;
     }
 
     //TODO
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        model.getFilteredTakenModuleList(year, semester);
+        model.getFilteredTakenModuleList(index);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
