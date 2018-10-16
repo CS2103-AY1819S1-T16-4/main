@@ -2,10 +2,7 @@ package seedu.planner.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
