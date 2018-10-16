@@ -143,16 +143,6 @@ public class AddCommandTest {
             return null;
         }
 
-        //TODO: implement
-        @Override
-        public void updateFilteredTakenModuleList(Predicate<Module> predicate, int semesterIndex) {
-        }
-
-        //TODO: implement
-        @Override
-        public void updateFilteredAvailableModuleList(Predicate<Module> predicate, int semesterIndex) {
-        }
-
         //@@author
 
         @Override
