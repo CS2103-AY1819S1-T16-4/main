@@ -65,7 +65,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given year is invalid.
      */
-    public static String parseYear(String year) throws ParseException {
+    public static int parseYear(String year) throws ParseException {
         requireNonNull(year);
         int yearIndex = Integer.parseInt(year.trim());
         if (!IndexUtil.hasValidYear(yearIndex)) {
@@ -80,7 +80,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given semester is invalid.
      */
-    public static String parseSemester(String semester) throws ParseException {
+    public static int parseSemester(String semester) throws ParseException {
         requireNonNull(semester);
         int semesterIndex = Integer.parseInt(semester.trim());
         if (!IndexUtil.hasValidYear(semesterIndex)) {
