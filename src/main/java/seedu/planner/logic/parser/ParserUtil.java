@@ -61,11 +61,11 @@ public class ParserUtil {
      */
     public static String parseYear(String year) {
         requireNonNull(year);
-        String trimmedYear = year.trim();
+        int yearIndex = Integer.parseInt(year.trim());
 
         // TODO: check whether the given year is valid, otherwise throw a ParseException
 
-        return trimmedYear;
+        return yearIndex;
     }
 
     /**
@@ -76,11 +76,11 @@ public class ParserUtil {
      */
     public static String parseSemester(String semester) {
         requireNonNull(semester);
-        String trimmedSemester = semester.trim();
+        int semesterIndex = Integer.parseInt(semester.trim());
 
         // TODO: check whether the given semester is valid, otherwise throw a ParseException
 
-        return trimmedSemester;
+        return semesterIndex;
     }
 
     /**
