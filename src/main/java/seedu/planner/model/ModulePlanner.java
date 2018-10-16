@@ -45,20 +45,20 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Add one or more module(s) to list of modules taken for the specified semester.
      *
      * @param modules A list of valid modules to be added
-     * @param semesterIndex A valid semester
+     * @param index A valid semester
      */
-    public void addModules(List<Module> modules, int semesterIndex) {
-        semesters.get(semesterIndex).addModules(modules);
+    public void addModulesToSemester(List<Module> modules, int index) {
+        semesters.get(index).addModules(modules);
     }
 
     /**
      * Delete one or more module(s) from list of modules taken for the specified semester.
      *
      * @param modules A list of valid modules to be deleted
-     * @param semesterIndex A valid semester
+     * @param index A valid semester
      */
-    public void deleteModules(List<Module> modules, int semesterIndex) {
-        semesters.get(semesterIndex).deleteModules(modules);
+    public void deleteModulesFromSemester(List<Module> modules, int index) {
+        semesters.get(index).deleteModules(modules);
     }
 
     /**
@@ -76,13 +76,13 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Returns all {@code Module}s taken in the {@code Semester} wrapped in an
      * {@code ObservableList}.
      *
-     * @param semesterIndex The nominal {@code Semester} index the {@code Module}s
+     * @param index The nominal {@code Semester} index the {@code Module}s
      *                      are stored at
      * @return An {@code ObservableList} containing all the {@code Module}s
      */
     @Override
-    public ObservableList<Module> getModulesTaken(int semesterIndex) {
-        List<Module> modules = semesters.get(semesterIndex).getModulesTaken();
+    public ObservableList<Module> getModulesTakenFromSemester(int index) {
+        List<Module> modules = semesters.get(index).getModulesTaken();
         return FXCollections.unmodifiableObservableList(
                 FXCollections.observableList(modules));
     }
@@ -93,13 +93,13 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Returns all {@code Module}s available in the {@code Semester} wrapped in an
      * {@code ObservableList}.
      *
-     * @param semesterIndex The nominal {@code Semester} index the {@code Module}s
+     * @param index The nominal {@code Semester} index the {@code Module}s
      *                      are stored at
      * @return An {@code ObservableList} containing all the {@code Module}s
      */
     @Override
-    public ObservableList<Module> getModulesAvailable(int semesterIndex) {
-        List<Module> modules = semesters.get(semesterIndex).getModulesAvailable();
+    public ObservableList<Module> getModulesAvailableFromSemester(int index) {
+        List<Module> modules = semesters.get(index).getModulesAvailable();
         return FXCollections.unmodifiableObservableList(
                 FXCollections.observableList(modules));
     }

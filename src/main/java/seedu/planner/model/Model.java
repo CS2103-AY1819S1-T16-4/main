@@ -60,25 +60,11 @@ public interface Model {
 
     //TODO: confirm filtered or sorted or both
     /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getFilteredTakenModuleList(int semesterIndex);
+    ObservableList<Module> getFilteredTakenModuleListFromSemester(int semesterIndex);
 
     //TODO: confirm filtered or sorted or both
     /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getFilteredAvailableModuleList(int semesterIndex);
-
-    //TODO: confirm if method is necessary
-    /**
-     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredTakenModuleList(Predicate<Module> predicate, int semesterIndex);
-
-    //TODO: confirm if method is necessary
-    /**
-     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredAvailableModuleList(Predicate<Module> predicate, int semesterIndex);
+    ObservableList<Module> getFilteredAvailableModuleListFromSemester(int semesterIndex);
 
     //@@author
 
