@@ -319,6 +319,39 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
+=== List feature
+==== Current Implementation
+
+The list mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`-s and each `Semester` stores a list `modulesTaken` containing modules that the user has taken or is planning to take.
+It implements the following operation:
+
+* `ModulePlanner#listModulesTaken(int index)` -- Retrieves a list of modules from the `Semester` specified by `index`.
+
+The operation is exposed in `Model` interface as `Model#getFilteredTakenModuleList(int index)`.
+
+[NOTE]
+A valid index should be an integer between 1 to 8 inclusive, where index 1 represents year 1 semester 1, index 2 represents year 1 semester 2, and so on.
+
+Below is an example usage scenario and how the list mechanism works.
+
+Step 1. The user launches the application. `ModulePlanner` is initialised with 8 `Semester` objects in `List<Module> semesters`.
+
+Step 2. The user executes `add y/1 s/1 CS1231`. The `add` command inserts `Module` CS1231 to the list `modulesTaken` for `Semester` object with index 1 (stored in index 0 of `semesters`).
+
+Step 3. The user wants to see the list of modules for year 1 semester 1 by executing `list y/1 s/1`. The `list` command parses `y/1 s/1` to index 1 and calls `Model#getFilteredTakenModuleList(int index)`.
+It will execute `ModulePlanner#listModulesTaken(int index)` which will call `Semester#getModulesTaken()` in the relevant `Semester`. The returned result will be a list of modules and will be displayed to the user.
+
+==== Design Considerations
+
+===== Aspect: How list of modules is retrieved for list command
+* **Alternative 1 (current choice):** Updates list of modules whenever it is modified by a command (e.g. `add`) and immediately retrieves the list upon `list` command.
+** Pros: Easy to implement.
+** Cons: May have performance issue in terms of running time if commands that modify the list are called frequently.
+* **Alternative 2:** Saves all commands that modify list of modules without applying it and updates the list based on the commands only when it is retrieved upon `list` command.
+** Pros: May be more effective in terms of running time because it only modifies the list when needed.
+** Cons: Implementation will be more complicated as we have to store all commands that modify the list.
+
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
