@@ -25,7 +25,7 @@ public interface ReadOnlyModulePlanner {
      *                      are stored at
      * @return An {@code ObservableList} of the {@code Module}s
      */
-    ObservableList<Module> getModulesTakenFromSemester(int semesterIndex);
+    ObservableList<Module> listModulesTaken(int index);
 
     /**
      * Returns an unmodifiable view of the {@code Module}s available.
@@ -34,5 +34,5 @@ public interface ReadOnlyModulePlanner {
      *                      are stored at
      * @return An {@code ObservableList} of the {@code Module}s
      */
-    ObservableList<Module> getModulesAvailableFromSemester(int semesterIndex);
+    ObservableList<Module> listModulesAvailable(int index);
 }
