@@ -22,7 +22,27 @@ import seedu.planner.model.util.SampleModulePlannerUtil;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    // TODO: Delete this
+    private final VersionedAddressBook versionedAddressBook;
+    private final FilteredList<Person> filteredPersons;
+
     private final VersionedModulePlanner versionedModulePlanner;
+
+    // TODO: Delete this
+    /**
+     * Initializes a ModelManager with the given addressBook and userPrefs.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, UserPrefs userPrefs) {
+        super();
+        requireAllNonNull(addressBook, userPrefs);
+
+        logger.fine("Initializing with planner book: " + addressBook + " and user prefs " + userPrefs);
+
+        versionedAddressBook = new VersionedAddressBook(addressBook);
+        filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
+
+        versionedModulePlanner = new VersionedModulePlanner(new ModulePlanner());
+    }
 
     //@@author Hilda-Ang
 
