@@ -14,7 +14,6 @@ import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.AddressBookChangedEvent;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.person.Person;
-import seedu.planner.model.util.SampleModulePlannerUtil;
 
 /**
  * Represents the in-memory model of the planner book data.
@@ -63,7 +62,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //@@author
-    /*
+
     @Override
     public void resetData(ReadOnlyAddressBook newData) {
         versionedAddressBook.resetData(newData);
@@ -74,10 +73,8 @@ public class ModelManager extends ComponentManager implements Model {
     public ReadOnlyAddressBook getAddressBook() {
         return versionedAddressBook;
     }
-    */
 
     /** Raises an event to indicate the model has changed */
-    /*
     private void indicateAddressBookChanged() {
         raise(new AddressBookChangedEvent(versionedAddressBook));
     }
@@ -108,14 +105,13 @@ public class ModelManager extends ComponentManager implements Model {
         versionedAddressBook.updatePerson(target, editedPerson);
         indicateAddressBookChanged();
     }
-    */
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
-     /*
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return FXCollections.unmodifiableObservableList(filteredPersons);
@@ -126,7 +122,6 @@ public class ModelManager extends ComponentManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
-    */
 
     //=========== Filtered Module List Accessors =============================================================
     //@@author GabrielYik
@@ -146,7 +141,7 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author
 
     //=========== Undo/Redo =================================================================================
-    /*
+
     @Override
     public boolean canUndoAddressBook() {
         return versionedAddressBook.canUndo();
@@ -191,5 +186,4 @@ public class ModelManager extends ComponentManager implements Model {
         return versionedAddressBook.equals(other.versionedAddressBook)
                 && filteredPersons.equals(other.filteredPersons);
     }
-    */
 }
