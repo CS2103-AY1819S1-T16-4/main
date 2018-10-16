@@ -351,7 +351,6 @@ It will execute `ModulePlanner#listModulesTaken(int index)` which will call `Sem
 ** Pros: May be more effective in terms of running time because it only modifies the list when needed.
 ** Cons: Implementation will be more complicated as we have to store all commands that modify the list.
 
-
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
