@@ -13,12 +13,12 @@ import seedu.planner.model.util.IndexUtil;
 //@@author Hilda-Ang
 
 /**
- * Parses input arguments and creates a new ListModuleCommand object.
+ * Parses input arguments and creates a new SuggestModuleCommand object.
  */
 public class SuggestModuleCommandParser implements Parser<SuggestModuleCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ListModuleCommand
+     * Parses the given {@code String} of arguments in the context of the SuggestModuleCommand
      * and returns a ListModuleCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
