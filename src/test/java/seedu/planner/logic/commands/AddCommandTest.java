@@ -133,7 +133,7 @@ public class AddCommandTest {
 
         //TODO: implement
         @Override
-        public ObservableList<Module> getFilteredTakenModuleList(int year, int semester) {
+        public ObservableList<Module> getFilteredTakenModuleList(int index) {
             return null;
         }
 
