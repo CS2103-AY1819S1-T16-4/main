@@ -27,7 +27,7 @@ public class ListModuleCommand extends Command {
     /**
      * Creates a ListModuleCommand to list modules for specified semester.
      */
-    public ListModuleCommand(int year, int semester) {
+    public ListModuleCommand(int index) {
         //TODO
     }
 
