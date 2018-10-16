@@ -133,13 +133,13 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public ObservableList<Module> getFilteredTakenModuleList(int index) {
         return FXCollections.unmodifiableObservableList(
-                versionedModulePlanner.getModulesAvailableFromSemester(index));
+                versionedModulePlanner.listModulesTaken(index));
     }
 
     @Override
     public ObservableList<Module> getFilteredAvailableModuleList(int index) {
         return FXCollections.unmodifiableObservableList(
-                versionedModulePlanner.getModulesAvailableFromSemester(index));
+                versionedModulePlanner.listModulesAvailable(index));
     }
 
     //@@author
