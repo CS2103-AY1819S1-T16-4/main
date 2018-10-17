@@ -5,6 +5,8 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.util.List;
+
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 
@@ -31,14 +33,14 @@ public class AddModuleCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New Module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module planner";
 
-    private final String toAdd;
+    private final List<String> toAdd;
 
     /**
      * Add module method
      */
-    public AddModuleCommand(String moduleCode) {
-        requireNonNull(moduleCode);
-        toAdd = moduleCode;
+    public AddModuleCommand(List<String> moduleCodes) {
+        requireNonNull(moduleCodes);
+        toAdd = moduleCodes;
     }
 
     //TODO
