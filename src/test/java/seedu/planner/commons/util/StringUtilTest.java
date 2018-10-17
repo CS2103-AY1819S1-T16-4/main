@@ -155,5 +155,23 @@ public class StringUtilTest {
         StringUtil.getDetails(null);
     }
 
+    //---------------- Tests for isEmptyString --------------------------------------
 
+    //@@author GabrielYik
+
+    @Test
+    public void isEmptyString_emptyString_returnsTrue() {
+        assertTrue(StringUtil.isEmptyString(""));
+    }
+
+    @Test
+    public void isEmptyString_nonEmptyString_returnsFalse() {
+        assertFalse(StringUtil.isEmptyString("String"));
+    }
+
+    @Test
+    public void isEmptyString_nullString_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        StringUtil.isEmptyString(null);
+    }
 }
