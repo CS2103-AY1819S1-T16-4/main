@@ -2,8 +2,10 @@ package seedu.planner.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.planner.commons.core.index.Index;
@@ -28,8 +30,8 @@ public class ParserUtil {
     private static final String MESSAGE_INVALID_SEMESTER = "Semester is not between 1 to 2.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
@@ -43,18 +45,31 @@ public class ParserUtil {
 
     //@@author GabrielYik
 
-    //TODO
     /**
-     * Parses the unverified {@code code} into a valid {@code code}. Leading and trailing whitespaces will be trimmed.
+     * Parses the unverified {@code codes} into a valid List of {@code codes}.
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code code} is invalid.
+     * @throws ParseException if the given {@code codes} are invalid.
      */
-    public static String parseModuleCode(String code) throws ParseException {
-        if (!ModuleUtil.hasValidCode(code)) {
+    public static List<String> parseModuleCodes(String codes) throws ParseException {
+        codes = codes.trim();
+
+        if (StringUtil.isEmptyString(codes)) {
             throw new ParseException(ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS);
         }
 
-        return code;
+        String[] splitCodes = codes.split(" ");
+
+        List<String> validModuleCodes = new ArrayList<>();
+        for (String code : splitCodes) {
+            if (!ModuleUtil.hasValidCodeFormat(code)) {
+                throw new ParseException(ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS);
+            }
+
+            validModuleCodes.add(code);
+        }
+
+        return validModuleCodes;
     }
 
     //@@author Hilda-Ang
