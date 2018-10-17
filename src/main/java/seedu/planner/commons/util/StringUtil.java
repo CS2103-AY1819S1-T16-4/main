@@ -44,6 +44,7 @@ public class StringUtil {
      */
     public static String getDetails(Throwable t) {
         requireNonNull(t);
+
         StringWriter sw = new StringWriter();
         t.printStackTrace(new PrintWriter(sw));
         return t.getMessage() + "\n" + sw.toString();
@@ -66,5 +67,17 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Checks if the String is empty.
+     *
+     * @param s The String
+     * @return True if s is empty.
+     */
+    public static boolean isEmptyString(String s) {
+        requireNonNull(s);
+
+        return s.length() == 0;
     }
 }
