@@ -80,7 +80,7 @@ public interface Model {
      * Note: return type might change to ImmutableList<ModuleInfo> in the future.
      */
     ModuleInfo[] getModuleInfo();
-    
+
     // @@author
 
     //@@author GabrielYik
