@@ -1,6 +1,7 @@
 package seedu.planner.storage;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -55,5 +56,19 @@ public class JsonModuleInfoStorageTest {
         return moduleInfoFileInTestDataFolder != null
                 ? TEST_DATA_FOLDER.resolve(moduleInfoFileInTestDataFolder)
                 : null;
+    }
+
+    @Test
+    public void sanityCheck() throws DataConversionException {
+        JsonModuleInfoStorage storage = new JsonModuleInfoStorage(Paths.get("data", "moduleInfo.json"));
+        Optional<ModuleInfo[]> optionalModuleInfo = storage.readModuleInfo();
+
+        assertTrue(optionalModuleInfo.isPresent());
+        ModuleInfo[] moduleInfo = optionalModuleInfo.get();
+        System.out.println(moduleInfo.length);
+
+        for (int i = 0; i < Math.min(10, moduleInfo.length); i++) {
+            System.out.println(moduleInfo[i]);
+        }
     }
 }

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
+import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.person.Person;
 
 /**
@@ -72,6 +73,15 @@ public interface Model {
      */
     void deleteModules(List<Module> modules);
 
+    // @@author rongjiecomputer
+
+    /**
+     * Returns an immutable list of {@code ModuleInfo}s.
+     * Note: return type might change to ImmutableList<ModuleInfo> in the future.
+     */
+    ModuleInfo[] getModuleInfo();
+    
+    // @@author
 
     //@@author GabrielYik
 
