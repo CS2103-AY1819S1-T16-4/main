@@ -255,9 +255,9 @@ In turn, `Semester` stores a list of the modules the user has taken or will take
 
 `ModulePlanner` uses the following operation to implement the delete mechanism:
 
-* `ModulePlanner#deleteModulesFromSemester(List<Module> modules)` -- Deletes the modules from whatever semester it is in.
+* `ModulePlanner#deleteModules(List<Module> modules)` -- Deletes the modules from whatever semester it is in.
 
-The above operation is exposed in the `Model` interface as `Model#deleteModulesFromSemester(List<Module> modules)`
+The above operation is exposed in the `Model` interface as `Model#deleteModules(List<Module> modules)`
 
 [NOTE]
 A valid module is one that exists, has its module code specified correctly and must have not been taken by the user.
@@ -271,14 +271,14 @@ For convenience, let's define two modules: a valid module `MA1521` and an invali
 
 ===== All Valid Modules
 The user executes `delete MA1521` command to delete the `Module` with the module code `MA1521`.
-The `delete` command calls `Model#deleteModulesFromSemester(...)`, which removes the module from the semester where it is found.
+The `delete` command calls `Model#deleteModules(...)`, which removes the module from the semester where it is found.
 
 [NOTE]
 This applies to when more than one valid module is supplied.
 
 ===== All Invalid Modules
 The user executes `delete MA1234` command. However, since that module does not exist,
-the command fails and `Model#deleteModulesFromSemester(...)` will not be called.
+the command fails and `Model#deleteModules(...)` will not be called.
 The user will be informed of the invalid module.
 
 [NOTE]
