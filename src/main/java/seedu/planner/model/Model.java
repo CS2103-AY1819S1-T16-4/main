@@ -1,5 +1,6 @@
 package seedu.planner.model;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -55,6 +56,22 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Checks if the module exists.
+     *
+     * @param module The module
+     * @return True if the module with {@code moduleCode} exists, false if not
+     */
+    boolean hasModule(Module module);
+
+    /**
+     * Deletes the modules.
+     *
+     * @param modules The modules
+     */
+    void deleteModules(List<Module> modules);
+
 
     //@@author GabrielYik
 

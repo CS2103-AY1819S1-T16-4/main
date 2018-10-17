@@ -58,7 +58,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @param modules A list of valid modules to be added
      * @param index A valid semester
      */
-    public void addModulesToSemester(List<Module> modules, int index) {
+    public void addModules(List<Module> modules, int index) {
         semesters.get(index).addModules(modules);
     }
 
@@ -66,10 +66,20 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Delete one or more module(s) from list of modules taken for the specified semester.
      *
      * @param modules A list of valid modules to be deleted
-     * @param index A valid semester
      */
-    public void deleteModulesFromSemester(List<Module> modules, int index) {
-        semesters.get(index).deleteModules(modules);
+    public void deleteModules(List<Module> modules) {
+        for (Semester semester : semesters) {
+            semester.deleteModules(modules);
+        }
+    }
+
+    public boolean hasModule(Module module) {
+        for (Semester semester : semesters) {
+            if (semester.containsModule(module)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

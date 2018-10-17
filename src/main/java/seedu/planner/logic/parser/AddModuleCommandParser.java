@@ -5,6 +5,7 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.planner.logic.commands.AddModuleCommand;
@@ -31,9 +32,9 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
         }
 
-        String code = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_CODE).get());
+        List<String> codes = ParserUtil.parseModuleCodes(argMultimap.getValue(PREFIX_CODE).get());
 
-        return new AddModuleCommand(code);
+        return new AddModuleCommand(codes);
     }
 
     /**
