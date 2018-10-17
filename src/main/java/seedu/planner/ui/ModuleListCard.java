@@ -48,13 +48,13 @@ public class ModuleListCard extends UiPart<Region> {
         moduleCode.setText(module.getCode());
         moduleName.setText(module.getName());
         moduleType.setText("Fulfils: " + module.getType().toString());
-        creditCount.setText("Modular Credits: " + Integer.toString(module.getCreditCount()));
+        creditCount.setText("Modular Credits: " + Float.toString(module.getCreditCount()));
 
         for (ModuleInfo m : module.getPreclusions()) {
             preclusions.getChildren().add(new Label(m.getCode()));
         }
 
-        switch(module.getPreclusions().length) {
+        switch(module.getPreclusions().size()) {
         case 0:
             preclusion.setText("Preclusion: none");
             break;
@@ -71,7 +71,7 @@ public class ModuleListCard extends UiPart<Region> {
             prerequisites.getChildren().add(new Label(m.getCode()));
         }
 
-        switch(module.getPrerequisites().length) {
+        switch(module.getPrerequisites().size()) {
         case 0:
             prerequisite.setText("Prerequisite: none");
             break;

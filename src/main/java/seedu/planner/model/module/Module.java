@@ -2,6 +2,8 @@ package seedu.planner.model.module;
 
 //@@author Hilda-Ang //@@author GabrielYik
 
+import com.google.common.collect.ImmutableList;
+
 /**
  * Temporary {@code Module} class placeholder.
  */
@@ -76,7 +78,7 @@ public class Module {
      *
      * @return The {@code Module} credit count
      */
-    public int getCreditCount() {
+    public float getCreditCount() {
         return information.getCreditCount();
     }
 
@@ -85,7 +87,7 @@ public class Module {
      *
      * @return The {@code Module} preclusions
      */
-    public ModuleInfo[] getPreclusions() {
+    public ImmutableList<ModuleInfo> getPreclusions() {
         return information.getPreclusions();
     }
 
@@ -94,7 +96,7 @@ public class Module {
      *
      * @return The {@code Module} prerequisites
      */
-    public ModuleInfo[] getPrerequisites() {
+    public ImmutableList<ModuleInfo> getPrerequisites() {
         return information.getPrerequisites();
     }
 }

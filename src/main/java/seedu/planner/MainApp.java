@@ -25,9 +25,12 @@ import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
 import seedu.planner.model.ReadOnlyAddressBook;
 import seedu.planner.model.UserPrefs;
+import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.util.SampleDataUtil;
 import seedu.planner.storage.AddressBookStorage;
+import seedu.planner.storage.JsonModuleInfoStorage;
 import seedu.planner.storage.JsonUserPrefsStorage;
+import seedu.planner.storage.ModuleInfoStorage;
 import seedu.planner.storage.Storage;
 import seedu.planner.storage.StorageManager;
 import seedu.planner.storage.UserPrefsStorage;
@@ -64,7 +67,8 @@ public class MainApp extends Application {
         userPrefs = initPrefs(userPrefsStorage);
 
         AddressBookStorage addressBookStorage = new XmlAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ModuleInfoStorage moduleInfoStorage = new JsonModuleInfoStorage(userPrefs.getModuleInfoFilePath());
+        storage = new StorageManager(addressBookStorage, moduleInfoStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -85,6 +89,25 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
+        Optional<ModuleInfo[]> moduleInfoOptional;
+        ModuleInfo[] initialModuleInfo;
+
+        try {
+            moduleInfoOptional = storage.readModuleInfo();
+            if (!moduleInfoOptional.isPresent()) {
+                logger.info("Module info file not found. Will be starting with a sample module database");
+            }
+            // TODO(rongjiecomputer) Actually use sample data.
+            initialModuleInfo = new ModuleInfo[] {};
+        } catch (DataConversionException e) {
+            logger.warning("Module info file not in the correct format."
+                    + " Will be starting with an empty module database");
+            initialModuleInfo = new ModuleInfo[] {};
+        } catch (IOException e) {
+            logger.warning("Porblem while reading from the file. Will be starting with an empty module database");
+            initialModuleInfo = new ModuleInfo[] {};
+        }
+
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -99,7 +122,7 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, initialModuleInfo, userPrefs);
     }
 
     private void initLogging(Config config) {

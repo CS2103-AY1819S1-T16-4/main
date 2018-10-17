@@ -27,7 +27,7 @@ public class ListModuleCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all modules taken";
 
-    private final int index;
+    private int index;
 
     /**
      * Creates a ListModuleCommand to list modules for specified semester.

@@ -101,7 +101,7 @@ public class AddressBookParser {
             return new ListModuleCommandParser().parse(arguments);
 
         case SuggestModuleCommand.COMMAND_WORD:
-            return new SuggestModuleCommand();
+            return new SuggestModuleCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

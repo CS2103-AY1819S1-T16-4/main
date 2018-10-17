@@ -13,6 +13,7 @@ import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.AddressBookChangedEvent;
 import seedu.planner.model.module.Module;
+import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.person.Person;
 
 /**
@@ -25,6 +26,8 @@ public class ModelManager extends ComponentManager implements Model {
     private final VersionedAddressBook versionedAddressBook;
     private final FilteredList<Person> filteredPersons;
 
+    private final ModuleInfo[] moduleInfo;
+
     private final VersionedModulePlanner versionedModulePlanner;
 
     // TODO: Delete this
@@ -32,6 +35,10 @@ public class ModelManager extends ComponentManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, UserPrefs userPrefs) {
+        this(addressBook, new ModuleInfo[] {}, userPrefs);
+    }
+
+    public ModelManager(ReadOnlyAddressBook addressBook, ModuleInfo[] moduleInfo, UserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -40,21 +47,24 @@ public class ModelManager extends ComponentManager implements Model {
         versionedAddressBook = new VersionedAddressBook(addressBook);
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
 
+        this.moduleInfo = moduleInfo;
         versionedModulePlanner = new VersionedModulePlanner(new ModulePlanner());
     }
+
 
     //@@author Hilda-Ang
 
     /**
      * Initializes a ModelManager with the given modulePlanner and userPrefs.
      */
-    public ModelManager(ReadOnlyModulePlanner modulePlanner, UserPrefs userPrefs) {
+    public ModelManager(ReadOnlyModulePlanner modulePlanner, ModuleInfo[] moduleInfo, UserPrefs userPrefs) {
         super();
         requireAllNonNull(modulePlanner, userPrefs);
 
         logger.fine("Initializing with planner: " + modulePlanner + " and user prefs " + userPrefs);
 
         versionedModulePlanner = new VersionedModulePlanner(modulePlanner);
+        this.moduleInfo = moduleInfo;
 
         //TODO: Delete this
         this.versionedAddressBook = new VersionedAddressBook(new AddressBook());
@@ -62,7 +72,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     public ModelManager() {
-        this(new ModulePlanner(), new UserPrefs());
+        this(new ModulePlanner(), new ModuleInfo[]{}, new UserPrefs());
     }
 
     //@@author
@@ -126,6 +136,12 @@ public class ModelManager extends ComponentManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    // @@author rongjiecomputer
+    public ModuleInfo[] getModuleInfo() {
+        return moduleInfo;
+    }
+    // @@author
 
     //=========== Filtered Module List Accessors =============================================================
     //@@author GabrielYik
