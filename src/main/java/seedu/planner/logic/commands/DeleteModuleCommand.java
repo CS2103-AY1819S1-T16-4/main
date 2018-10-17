@@ -48,7 +48,7 @@ public class DeleteModuleCommand extends Command {
 
         if (!invalidModules.isEmpty()) {
             StringBuilder sb = new StringBuilder();
-            for(Module m : invalidModules) {
+            for (Module m : invalidModules) {
                 sb.append(m.toString() + " ");
             }
             throw new CommandException(String.format(

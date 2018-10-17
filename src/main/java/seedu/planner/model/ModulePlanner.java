@@ -73,6 +73,12 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         }
     }
 
+    /**
+     * Checks if the {@code Module} exists in the module planner.
+     *
+     * @param module The module to check
+     * @return True if the module exists, false if not
+     */
     public boolean hasModule(Module module) {
         for (Semester semester : semesters) {
             if (semester.containsModule(module)) {
