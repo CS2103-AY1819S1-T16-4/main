@@ -411,6 +411,56 @@ image::UndoRedoActivityDiagram.png[width="650"]
 Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
+=== Add feature
+==== Current Implementation
+
+The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester'-s. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
+The implementation is as follows:
+
+*'ModulePlanner#addModules(List<Module> modules, int index)' -- Add the list of modules 'modules' into the semester specified by 'index'.
+
+The operation above is exposed in the 'Model' interface as 'Model#addModules(List<Module> modules, int index)'
+
+[NOTE]
+A valid module is one that exists, has its module specified correctly and has not been taken or planned to take yet by the user.
+
+Below are the possible scenarios of how it works, given a valid module 'MA1521' and an invalid module 'MA1234'.
+
+===== All valid modules
+
+The user executes 'add y/1 s/1 MA1521' to add the 'Module' with module code 'MA1521' into year 1 semester 1 'Module' lists.
+The `add` command calls `Model#addModules(...)`, which adds the module into the 'Semester' with index 3.
+
+[NOTE]
+This applies to when more than one valid module is supplied.
+
+===== All Invalid Modules
+The user executes `add y/1 s/2 MA1234` command. However, since that module does not exist or is already stored in a 'Semester',
+the command fails and `Model#addModules(...)` will not be called.
+The user will be informed of the invalid module.
+
+[NOTE]
+This applies to where more than one invalid module is supplied.
+
+===== Some Invalid Modules
+The user executes `add y/2 s/1 MA1521 MA1234`. However, only the module `MA1521` is valid.
+In this case, the command will not fail entirely and only the valid module `MA1521` will be added.
+The user will be informed of the invalid module.
+
+===== No Modules
+The user executes `add`. As the command has no supplied arguments, the command will fail
+and the user will be informed to input arguments.
+
+==== Design Considerations
+
+===== Different semester start
+The current implementation only assumes the user is closing into their year 1 semester 1. Further enhancement could be made by having other starting semesters
+
+1. To mirror the real world - it is impossible for a student to void a module that has already been taken.
+
+2. To prevent undefined behaviour - deleting a module already taken might make all future modules not yet taken to be inaccurately planned.
+Also, all currently suggested modules to the user might too be inaccurate.
+
 === List feature
 ==== Current Implementation
 
