@@ -131,7 +131,7 @@ e.g. `add y/1 s/1 CS1231 CS1101S MA1521`
 e.g. `list y/1 s/1`
 * *Suggest* : `suggest`
 * *Delete* : `delete MODULE_CODE...` +
-e.g. `delete y/1 s/1 CS1231 MA1521`
+e.g. `delete CS1231 MA1521`
 * *Setup* : `setup [m/MAJOR] [y/YEAR] [s/SEMESTER] [f/FOCUS_AREA]` +
 e.g. `setup m/CS y/1 s/1 f/machine learning`
 * *Status* : `status`
