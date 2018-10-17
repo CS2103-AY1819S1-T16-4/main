@@ -11,6 +11,10 @@ ifndef::env-github[]
 image::docs/images/ui.png[width="600"]
 endif::[]
 
+ifndef::env-github[]
+image::images/ui.png[width="600"]
+endif::[]
+
 == About
 
 * This is a module planner application.
