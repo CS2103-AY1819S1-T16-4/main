@@ -1,9 +1,16 @@
 package seedu.planner.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.CommandHistory;
+import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
+import seedu.planner.model.module.Module;
 
 //@@author GabrielYik
 
@@ -21,17 +28,39 @@ public class DeleteModuleCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CODE + "CS2103T ";
 
-    public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
+    public static final String MESSAGE_DELETE_MODULES_SUCCESS = "Deleted Module(s): %1$s";
 
-    private final String moduleCode;
+    private final List<Module> modulesToDelete;
 
-    public DeleteModuleCommand(String moduleCode) {
-        this.moduleCode = moduleCode;
+    public DeleteModuleCommand(List<Module> modules) {
+        this.modulesToDelete = modules;
     }
 
-    //TODO
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
-        return null;
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+        requireNonNull(model);
+        List<Module> invalidModules = new ArrayList<>();
+        for (Module m : modulesToDelete) {
+            if (!model.hasModule(m)) {
+                invalidModules.add(m);
+            }
+        }
+
+        if (!invalidModules.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for(Module m : invalidModules) {
+                sb.append(m.toString() + " ");
+            }
+            throw new CommandException(String.format(
+                    Messages.MESSAGE_INVALID_MODULES, sb.toString().trim()));
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (Module m : modulesToDelete) {
+            sb.append(m.toString() + " ");
+        }
+
+        model.deleteModules(modulesToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_MODULES_SUCCESS, sb.toString().trim()));
     }
 }
