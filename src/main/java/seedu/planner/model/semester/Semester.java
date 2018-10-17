@@ -47,24 +47,22 @@ public class Semester {
         this.hasBeenTaken = hasBeenTaken;
     }
 
-    //TODO: change dummy implementation
     /**
      * Adds one or more module(s) to the list of modules taken.
      *
      * @param modules A non-empty list of modules to be added
      */
     public void addModules(List<Module> modules) {
-        this.modulesTaken = modules;
+        modulesTaken.addAll(modules);
     }
 
-    //TODO: change dummy implementation
     /**
      * Adds one or more modules(s) to the list of modules available.
      *
      * @param modules A non-empty list of modules to be added
      */
     public void addAvailableModules(List<Module> modules) {
-        this.modulesAvailable = modules;
+        modulesAvailable.addAll(modules);
     }
 
     /**
@@ -73,7 +71,24 @@ public class Semester {
      * @param modules A non-empty list of modules to be deleted
      */
     public void deleteModules(List<Module> modules) {
+        for (Module m : modules) {
+            modulesTaken.remove(m);
+        }
+    }
 
+    /**
+     * Checks if the semester contains a module with {@code moduleCode}.
+     *
+     * @param module The module
+     * @return True if the module exists, false if not
+     */
+    public boolean containsModule(Module module) {
+        for (Module m : modulesAvailable) {
+            if (m.getCode().equals(module.getCode())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
