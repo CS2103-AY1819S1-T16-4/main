@@ -4,7 +4,7 @@ package seedu.planner.model.util;
  * Helper functions for handling module.
  */
 public class ModuleUtil {
-    public static final String MODULE_CODE_REGEX = "^[A-Z]{2,3}[0-9]{4}[A-Z]{0,1}$";
+    public static final String MODULE_CODE_REGEX = "^[A-Z]{2,3}\\d{4}[A-Z]{0,2}$";
 
     //@@author GabrielYik
 
