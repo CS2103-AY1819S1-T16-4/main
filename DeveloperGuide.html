@@ -31,8 +31,9 @@
 <ul class="sectlevel2">
 <li><a href="#delete-feature">3.1. Delete feature</a></li>
 <li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
-<li><a href="#list-feature">3.3. List feature</a></li>
-<li><a href="#logging">3.4. Logging</a></li>
+<li><a href="#add-feature">3.3. Add feature</a></li>
+<li><a href="#list-feature">3.4. List feature</a></li>
+<li><a href="#logging">3.5. Logging</a></li>
 </ul>
 </li>
 <li><a href="#module-information">4. Module Information</a>
@@ -933,9 +934,114 @@ Violates Single Responsibility Principle and Separation of Concerns as <code>His
 </div>
 </div>
 <div class="sect2">
-<h3 id="list-feature"><a class="link" href="#list-feature">3.3. List feature</a></h3>
+<h3 id="add-feature"><a class="link" href="#add-feature">3.3. Add feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester'-s. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
+The implementation is as follows:</p>
+</div>
+<div class="paragraph">
+<p>*'ModulePlanner#addModules(List&lt;Module&gt; modules, int index)'&#8201;&#8212;&#8201;Add the list of modules 'modules' into the semester specified by 'index'.</p>
+</div>
+<div class="paragraph">
+<p>The operation above is exposed in the 'Model' interface as 'Model#addModules(List&lt;Module&gt; modules, int index)'</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A valid module is one that exists, has its module specified correctly and has not been taken or planned to take yet by the user.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Below are the possible scenarios of how it works, given a valid module 'MA1521' and an invalid module 'MA1234'.</p>
+</div>
+<div class="sect4">
+<h5 id="all-valid-modules-2"><a class="link" href="#all-valid-modules-2">All valid modules</a></h5>
+<div class="paragraph">
+<p>The user executes 'add y/1 s/1 MA1521' to add the 'Module' with module code 'MA1521' into year 1 semester 1 'Module' lists.
+The <code>add</code> command calls <code>Model#addModules(&#8230;&#8203;)</code>, which adds the module into the 'Semester' with index 3.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This applies to when more than one valid module is supplied.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="all-invalid-modules-2"><a class="link" href="#all-invalid-modules-2">All Invalid Modules</a></h5>
+<div class="paragraph">
+<p>The user executes <code>add y/1 s/2 MA1234</code> command. However, since that module does not exist or is already stored in a 'Semester',
+the command fails and <code>Model#addModules(&#8230;&#8203;)</code> will not be called.
+The user will be informed of the invalid module.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This applies to where more than one invalid module is supplied.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="some-invalid-modules-2"><a class="link" href="#some-invalid-modules-2">Some Invalid Modules</a></h5>
+<div class="paragraph">
+<p>The user executes <code>add y/2 s/1 MA1521 MA1234</code>. However, only the module <code>MA1521</code> is valid.
+In this case, the command will not fail entirely and only the valid module <code>MA1521</code> will be added.
+The user will be informed of the invalid module.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="no-modules-2"><a class="link" href="#no-modules-2">No Modules</a></h5>
+<div class="paragraph">
+<p>The user executes <code>add</code>. As the command has no supplied arguments, the command will fail
+and the user will be informed to input arguments.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="different-semester-start"><a class="link" href="#different-semester-start">Different semester start</a></h5>
+<div class="paragraph">
+<p>The current implementation only assumes the user is closing into their year 1 semester 1. Further enhancement could be made by having other starting semesters</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To mirror the real world - it is impossible for a student to void a module that has already been taken.</p>
+</li>
+<li>
+<p>To prevent undefined behaviour - deleting a module already taken might make all future modules not yet taken to be inaccurately planned.
+Also, all currently suggested modules to the user might too be inaccurate.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-feature"><a class="link" href="#list-feature">3.4. List feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The list mechanism is facilitated by <code>ModulePlanner</code>. <code>ModulePlanner</code> stores a list of all <code>Semester</code>-s and each <code>Semester</code> stores a list <code>modulesTaken</code> containing modules that the user has taken or is planning to take.
 It implements the following operation:</p>
@@ -977,7 +1083,7 @@ It will execute <code>ModulePlanner#listModulesTaken(int index)</code> which wil
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-list-of-modules-is-retrieved-for-list-command"><a class="link" href="#aspect-how-list-of-modules-is-retrieved-for-list-command">Aspect: How list of modules is retrieved for list command</a></h5>
 <div class="ulist">
@@ -1014,7 +1120,7 @@ It will execute <code>ModulePlanner#listModulesTaken(int index)</code> which wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -1926,4 +2032,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-17 14:31:09 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-17 15:41:17 UTC</div></div></div></body></html>
