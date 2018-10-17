@@ -148,7 +148,7 @@ public class AddCommandTest {
         public ObservableList<Module> getFilteredAvailableModuleList(int index) {
             throw new AssertionError("This method should not be called.");
         }
-      
+
         //TODO: implement
         @Override
         public boolean hasModule(Module module) {
