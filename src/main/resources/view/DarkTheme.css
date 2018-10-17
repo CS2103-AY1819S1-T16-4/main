@@ -33,15 +33,39 @@
     -fx-padding: 0 0 0 0;
 }
 
-.tab-pane .tab-header-area {
+.tab-header-area {
     -fx-padding: 0 0 0 0;
     -fx-min-height: 0;
     -fx-max-height: 0;
 }
 
-.tab-pane .tab-header-area .tab .tab-label {
+.tab-header-background {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.tab-label {
      -fx-background-color: derive(#1d1d1d, 20%);
      -fx-text-fill: white;
+}
+
+.tab {
+     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-border-top-width: 1px;
+}
+
+.tab:selected {
+     -fx-background-color: green;
+     -fx-border-color: green;
+}
+
+.tab:selected .focus-indicator {
+    -fx-border-color: green
+}
+
+.tab:selected .tab-label {
+     -fx-background-color: green;
+     -fx-border-color: green;
 }
 
 .table-view {

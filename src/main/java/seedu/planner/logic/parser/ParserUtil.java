@@ -15,6 +15,7 @@ import seedu.planner.model.person.Email;
 import seedu.planner.model.person.Name;
 import seedu.planner.model.person.Phone;
 import seedu.planner.model.tag.Tag;
+import seedu.planner.model.util.IndexUtil;
 import seedu.planner.model.util.ModuleUtil;
 
 /**
@@ -23,6 +24,8 @@ import seedu.planner.model.util.ModuleUtil;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final String MESSAGE_INVALID_YEAR = "Year is not between 1 to 4.";
+    private static final String MESSAGE_INVALID_SEMESTER = "Semester is not between 1 to 2.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -57,31 +60,36 @@ public class ParserUtil {
     //@@author Hilda-Ang
 
     /**
-     * Parses the unverified {@code year} into a valid {@code year}. Leading and trailing whitespaces will be trimmed.
+     * Parses the unverified year into a valid year index.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given year is invalid.
      */
-    public static String parseYear(String year) {
+    public static int parseYear(String year) throws ParseException {
         requireNonNull(year);
-        String trimmedYear = year.trim();
-
-        // TODO: check whether the given year is valid, otherwise throw a ParseException
-
-        return trimmedYear;
+        int yearIndex = Integer.parseInt(year.trim());
+        if (!IndexUtil.hasValidYear(yearIndex)) {
+            throw new ParseException(MESSAGE_INVALID_YEAR);
+        }
+        return yearIndex;
     }
 
     /**
-     * Parses the unverified {@code semester} into a valid {@code semester}.
+     * Parses the unverified semester into a valid semester index.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @author Hilda-Ang
+     * @throws ParseException if the given semester is invalid.
      */
-    public static String parseSemester(String semester) {
+    public static int parseSemester(String semester) throws ParseException {
         requireNonNull(semester);
-        String trimmedSemester = semester.trim();
-
-        // TODO: check whether the given semester is valid, otherwise throw a ParseException
-
-        return trimmedSemester;
+        int semesterIndex = Integer.parseInt(semester.trim());
+        if (!IndexUtil.hasValidYear(semesterIndex)) {
+            throw new ParseException(MESSAGE_INVALID_SEMESTER);
+        }
+        return semesterIndex;
     }
+
+    //@@author
 
     /**
      * Parses a {@code String name} into a {@code Name}.

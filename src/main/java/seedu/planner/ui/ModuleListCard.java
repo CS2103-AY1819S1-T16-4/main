@@ -3,7 +3,6 @@ package seedu.planner.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
@@ -18,9 +17,6 @@ public class ModuleListCard extends UiPart<Region> {
     private static final String FXML = "ModuleListCard.fxml";
 
     public final Module module;
-
-    @FXML
-    private HBox cardPane;
 
     @FXML
     private Label moduleCode;
@@ -52,13 +48,13 @@ public class ModuleListCard extends UiPart<Region> {
         moduleCode.setText(module.getCode());
         moduleName.setText(module.getName());
         moduleType.setText("Fulfils: " + module.getType().toString());
-        creditCount.setText("Modular Credits: " + Integer.toString(module.getCreditCount()));
+        creditCount.setText("Modular Credits: " + Float.toString(module.getCreditCount()));
 
         for (ModuleInfo m : module.getPreclusions()) {
             preclusions.getChildren().add(new Label(m.getCode()));
         }
 
-        switch(module.getPreclusions().length) {
+        switch(module.getPreclusions().size()) {
         case 0:
             preclusion.setText("Preclusion: none");
             break;
@@ -75,7 +71,7 @@ public class ModuleListCard extends UiPart<Region> {
             prerequisites.getChildren().add(new Label(m.getCode()));
         }
 
-        switch(module.getPrerequisites().length) {
+        switch(module.getPrerequisites().size()) {
         case 0:
             prerequisite.setText("Prerequisite: none");
             break;

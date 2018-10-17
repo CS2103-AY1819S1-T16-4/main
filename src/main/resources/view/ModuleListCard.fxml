@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -20,25 +20,25 @@
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="moduleCode" styleClass="cell_big_label" text="moduleCode">
+        <Label fx:id="moduleCode" styleClass="cell_big_label" text="module code">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="moduleName" styleClass="cell_big_label" text="moduleName" />
+        <Label fx:id="moduleName" styleClass="cell_big_label" text="module name" />
       </HBox>
-         <Label fx:id="moduleType" styleClass="cell_small_label" text="moduleType" />
-      <Label fx:id="creditCount" styleClass="cell_small_label" text="creditCount" />
+         <Label fx:id="moduleType" styleClass="cell_small_label" text="module type" />
+      <Label fx:id="creditCount" styleClass="cell_small_label" text="credit count" />
          <HBox prefHeight="17.0" prefWidth="200.0">
             <children>
-               <Label fx:id="preclusion" minWidth="-Infinity" styleClass="cell_small_label" text="preclusion" />
+               <Label fx:id="preclusion" minWidth="-Infinity" styleClass="cell_small_label" text="preclusions" />
                <FlowPane fx:id="preclusions" />
             </children>
          </HBox>
          <HBox prefHeight="17.0" prefWidth="200.0">
             <children>
-               <Label fx:id="prerequisite" minWidth="-Infinity" styleClass="cell_small_label" text="prerequisite" />
+               <Label fx:id="prerequisite" minWidth="-Infinity" styleClass="cell_small_label" text="prerequisites" />
                <FlowPane fx:id="prerequisites" />
             </children>
          </HBox>

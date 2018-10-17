@@ -14,264 +14,262 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/address_book_32.png"/>
+        <Image url="@/images/address_book_32.png" />
     </icons>
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@DarkTheme.css"/>
-                <URL value="@Extensions.css"/>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
             </stylesheets>
 
             <VBox scaleShape="false">
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="File">
-                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                     </Menu>
                     <Menu mnemonicParsing="false" text="Help">
-                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
+                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                     </Menu>
                 </MenuBar>
 
                 <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
                     <padding>
-                        <Insets bottom="5" left="10" right="10" top="5"/>
+                        <Insets bottom="5" left="10" right="10" top="5" />
                     </padding>
                 </StackPane>
 
-                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100"
-                           styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
                     <padding>
-                        <Insets bottom="5" left="10" right="10" top="5"/>
+                        <Insets bottom="5" left="10" right="10" top="5" />
                     </padding>
                 </StackPane>
-                <TabPane fx:id="semestersTabPane" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" tabMinWidth="125.0">
+                <TabPane fx:id="semestersTabPane" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" tabMinWidth="140.0">
                     <tabs>
-                        <Tab styleClass="pane-with-border" text="Y1S1">
+                        <Tab text="Y1S1">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
-                                    <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
+                                    <VBox minWidth="340.0" prefWidth="340.0" SplitPane.resizableWithParent="false">
                                         <padding>
-                                            <Insets bottom="10" left="10" right="10" top="10"/>
+                                            <Insets bottom="10" left="10" right="10" top="10" />
                                         </padding>
-                                        <StackPane VBox.vgrow="ALWAYS"/>
+                                        <StackPane VBox.vgrow="ALWAYS" />
                                     </VBox>
-                                    <VBox minWidth="340" prefWidth="340">
+                                    <VBox minWidth="340.0" prefWidth="340.0">
                                         <padding>
-                                            <Insets bottom="10" left="10" right="10" top="10"/>
+                                            <Insets bottom="10" left="10" right="10" top="10" />
                                         </padding>
                                         <children>
-                                            <StackPane VBox.vgrow="ALWAYS"/>
+                                            <StackPane VBox.vgrow="ALWAYS" />
                                         </children>
                                     </VBox>
-                                    <StackPane prefWidth="340">
+                                    <StackPane minWidth="340.0" prefWidth="340.0">
                                         <padding>
-                                            <Insets bottom="10" left="10" right="10" top="10"/>
+                                            <Insets bottom="10" left="10" right="10" top="10" />
                                         </padding>
                                     </StackPane>
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y1S2">
+                        <Tab text="Y1S2">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
                                         <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <VBox minWidth="340" prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <StackPane prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                         </StackPane>
                                     </items>
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y2S1">
+                        <Tab text="Y2S1">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
                                         <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <VBox minWidth="340" prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <StackPane prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                         </StackPane>
                                     </items>
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y2S2">
+                        <Tab text="Y2S2">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
                                         <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <VBox minWidth="340" prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <StackPane prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                         </StackPane>
                                     </items>
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y3S1">
+                        <Tab text="Y3S1">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
                                         <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <VBox minWidth="340" prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <StackPane prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                         </StackPane>
                                     </items>
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y3S2">
+                        <Tab text="Y3S2">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
                                         <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <VBox minWidth="340" prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <StackPane prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                         </StackPane>
                                     </items>
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y4S1">
+                        <Tab text="Y4S1">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
                                         <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <VBox minWidth="340" prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <StackPane prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                         </StackPane>
                                     </items>
                                 </SplitPane>
                             </content>
                         </Tab>
-                        <Tab styleClass="pane-with-border" text="Y4S2">
+                        <Tab text="Y4S2">
                             <content>
                                 <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
                                     <items>
                                         <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <VBox minWidth="340" prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                             <children>
-                                                <StackPane VBox.vgrow="ALWAYS"/>
+                                                <StackPane VBox.vgrow="ALWAYS" />
                                             </children>
                                         </VBox>
                                         <StackPane prefWidth="340">
                                             <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10"/>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
                                             </padding>
                                         </StackPane>
                                     </items>
@@ -281,7 +279,7 @@
                     </tabs>
                 </TabPane>
 
-                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
+                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
             </VBox>
         </Scene>
     </scene>

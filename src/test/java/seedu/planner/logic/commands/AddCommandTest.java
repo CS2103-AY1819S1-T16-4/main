@@ -20,6 +20,7 @@ import seedu.planner.model.AddressBook;
 import seedu.planner.model.Model;
 import seedu.planner.model.ReadOnlyAddressBook;
 import seedu.planner.model.module.Module;
+import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.person.Person;
 import seedu.planner.testutil.PersonBuilder;
 
@@ -119,6 +120,13 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        // @@author rongjiecomputer
+        @Override
+        public ModuleInfo[] getModuleInfo() {
+            throw new AssertionError("This method should not be called.");
+        }
+        // @@author
+
         @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
@@ -130,29 +138,15 @@ public class AddCommandTest {
         }
 
         //@@author GabrielYik
-
-        //TODO: implement
         @Override
-        public ObservableList<Module> getFilteredTakenModuleList() {
-            return null;
+        public ObservableList<Module> getFilteredTakenModuleList(int index) {
+            throw new AssertionError("This method should not be called.");
         }
 
-        //TODO: implement
         @Override
-        public ObservableList<Module> getFilteredAvailableModuleList() {
-            return null;
+        public ObservableList<Module> getFilteredAvailableModuleList(int index) {
+            throw new AssertionError("This method should not be called.");
         }
-
-        //TODO: implement
-        @Override
-        public void updateFilteredTakenModuleList(Predicate<Module> predicate) {
-        }
-
-        //TODO: implement
-        @Override
-        public void updateFilteredAvailableModuleList(Predicate<Module> predicate) {
-        }
-
         //@@author
 
         @Override

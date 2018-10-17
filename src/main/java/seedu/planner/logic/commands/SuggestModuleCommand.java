@@ -10,14 +10,13 @@ import seedu.planner.model.Model;
 //@@author Hilda-Ang
 
 /**
- * Placeholder for ListModuleCommand.
- * Lists all modules the user has taken or is available to take.
+ * Shows all modules that the user is available to take for a particular semester.
  */
-public class ListModuleCommand extends Command {
+public class SuggestModuleCommand extends Command {
 
-    public static final String COMMAND_WORD = "listModule";
+    public static final String COMMAND_WORD = "suggestCommand";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken or suggested for a semester. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Show modules the user is available to take. "
             + "Parameters: "
             + PREFIX_YEAR + "YEAR "
             + PREFIX_SEMESTER + "SEMESTER "
@@ -25,22 +24,18 @@ public class ListModuleCommand extends Command {
             + PREFIX_YEAR + "1 "
             + PREFIX_SEMESTER + "1 ";
 
-    public static final String MESSAGE_SUCCESS = "Listed all modules taken";
+    public static final String MESSAGE_SUCCESS = "Showed all available modules.";
 
     private int index;
 
-    /**
-     * Creates a ListModuleCommand to list modules for specified semester.
-     */
-    public ListModuleCommand(int index) {
+    public SuggestModuleCommand(int index) {
         this.index = index;
     }
 
-    //TODO
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        model.getFilteredTakenModuleList(index);
+        model.getFilteredAvailableModuleList(index);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

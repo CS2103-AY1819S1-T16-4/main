@@ -13,8 +13,8 @@ import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.AddressBookChangedEvent;
 import seedu.planner.model.module.Module;
+import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.person.Person;
-import seedu.planner.model.util.SampleModulesUtil;
 
 /**
  * Represents the in-memory model of the planner book data.
@@ -22,15 +22,23 @@ import seedu.planner.model.util.SampleModulesUtil;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    // TODO: Delete this
     private final VersionedAddressBook versionedAddressBook;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Module> filteredTakenModules;
-    private final FilteredList<Module> filteredAvailableModules;
 
+    private final ModuleInfo[] moduleInfo;
+
+    private final VersionedModulePlanner versionedModulePlanner;
+
+    // TODO: Delete this
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, UserPrefs userPrefs) {
+        this(addressBook, new ModuleInfo[] {}, userPrefs);
+    }
+
+    public ModelManager(ReadOnlyAddressBook addressBook, ModuleInfo[] moduleInfo, UserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -38,14 +46,36 @@ public class ModelManager extends ComponentManager implements Model {
 
         versionedAddressBook = new VersionedAddressBook(addressBook);
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
-        //TODO: initialise filteredModules properly
-        filteredTakenModules = new FilteredList<>(SampleModulesUtil.genModules(3));
-        filteredAvailableModules = new FilteredList<>(SampleModulesUtil.genModules(2));
+
+        this.moduleInfo = moduleInfo;
+        versionedModulePlanner = new VersionedModulePlanner(new ModulePlanner());
+    }
+
+
+    //@@author Hilda-Ang
+
+    /**
+     * Initializes a ModelManager with the given modulePlanner and userPrefs.
+     */
+    public ModelManager(ReadOnlyModulePlanner modulePlanner, ModuleInfo[] moduleInfo, UserPrefs userPrefs) {
+        super();
+        requireAllNonNull(modulePlanner, userPrefs);
+
+        logger.fine("Initializing with planner: " + modulePlanner + " and user prefs " + userPrefs);
+
+        versionedModulePlanner = new VersionedModulePlanner(modulePlanner);
+        this.moduleInfo = moduleInfo;
+
+        //TODO: Delete this
+        this.versionedAddressBook = new VersionedAddressBook(new AddressBook());
+        filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ModulePlanner(), new ModuleInfo[]{}, new UserPrefs());
     }
+
+    //@@author
 
     @Override
     public void resetData(ReadOnlyAddressBook newData) {
@@ -107,29 +137,25 @@ public class ModelManager extends ComponentManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    // @@author rongjiecomputer
+    public ModuleInfo[] getModuleInfo() {
+        return moduleInfo;
+    }
+    // @@author
+
     //=========== Filtered Module List Accessors =============================================================
     //@@author GabrielYik
 
     @Override
-    public ObservableList<Module> getFilteredTakenModuleList() {
-        return FXCollections.unmodifiableObservableList(filteredTakenModules);
+    public ObservableList<Module> getFilteredTakenModuleList(int index) {
+        return FXCollections.unmodifiableObservableList(
+                versionedModulePlanner.listModulesTaken(index));
     }
 
     @Override
-    public ObservableList<Module> getFilteredAvailableModuleList() {
-        return FXCollections.unmodifiableObservableList(filteredAvailableModules);
-    }
-
-    @Override
-    public void updateFilteredTakenModuleList(Predicate<Module> predicate) {
-        requireNonNull(predicate);
-        filteredTakenModules.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredAvailableModuleList(Predicate<Module> predicate) {
-        requireNonNull(predicate);
-        filteredAvailableModules.setPredicate(predicate);
+    public ObservableList<Module> getFilteredAvailableModuleList(int index) {
+        return FXCollections.unmodifiableObservableList(
+                versionedModulePlanner.listModulesAvailable(index));
     }
 
     //@@author
@@ -180,5 +206,4 @@ public class ModelManager extends ComponentManager implements Model {
         return versionedAddressBook.equals(other.versionedAddressBook)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

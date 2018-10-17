@@ -29,7 +29,8 @@ public class JsonModuleInfoStorage implements ModuleInfoStorage {
 
     @Override
     public Optional<ModuleInfo[]> readModuleInfo() throws DataConversionException {
-        return JsonUtil.readJsonFile(filePath, ModuleInfo[].class);
+        Optional<ModuleInfo[]> optionalModuleInfo = JsonUtil.readJsonFile(filePath, ModuleInfo[].class);
+        return optionalModuleInfo.map(ModuleInfo::finalizeModuleInfo);
     }
 
     /**
