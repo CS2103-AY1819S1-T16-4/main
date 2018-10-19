@@ -50,7 +50,8 @@ public class ModelManager extends ComponentManager implements Model {
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
 
         this.moduleInfo = moduleInfo;
-        versionedModulePlanner = new VersionedModulePlanner(SampleModulePlannerUtil.genModulePlanner(new ModulePlanner()));
+        versionedModulePlanner = new VersionedModulePlanner(
+                SampleModulePlannerUtil.genModulePlanner(new ModulePlanner()));
     }
 
 
