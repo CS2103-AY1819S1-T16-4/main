@@ -16,6 +16,7 @@ import seedu.planner.commons.events.model.AddressBookChangedEvent;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.person.Person;
+import seedu.planner.model.util.SampleModulePlannerUtil;
 
 /**
  * Represents the in-memory model of the planner book data.
@@ -49,7 +50,7 @@ public class ModelManager extends ComponentManager implements Model {
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
 
         this.moduleInfo = moduleInfo;
-        versionedModulePlanner = new VersionedModulePlanner(new ModulePlanner());
+        versionedModulePlanner = new VersionedModulePlanner(SampleModulePlannerUtil.genModulePlanner(new ModulePlanner()));
     }
 
 

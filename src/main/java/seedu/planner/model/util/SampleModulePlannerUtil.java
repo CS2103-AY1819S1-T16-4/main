@@ -19,20 +19,19 @@ public class SampleModulePlannerUtil {
      *
      * @return A sample {@code ModulePlanner}
      */
-    public static ModulePlanner genModulePlanner() {
+    public static ModulePlanner genModulePlanner(ModulePlanner modulePlanner) {
         int year = 1;
         for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
             if (i != 0 && i % 2 == 0) {
                 year++;
             }
 
-            //TODO: @Hilda use util method to convert from "nominal" index to "offset" index
             Semester semester = new Semester(year, i, true);
             semester.addModules(SampleModulesUtil.genModules(0, 4));
             semester.addAvailableModules(SampleModulesUtil.genModules(2, 6));
             semesters.add(i, semester);
         }
-        ModulePlanner modulePlanner = new ModulePlanner();
+
         modulePlanner.setSemesters(semesters);
         return modulePlanner;
     }
