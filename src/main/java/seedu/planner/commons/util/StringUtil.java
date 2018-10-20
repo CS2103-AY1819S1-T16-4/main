@@ -74,9 +74,10 @@ public class StringUtil {
     //@@author GabrielYik
 
     /**
+     * Checks if the String contains only alphabets.
      *
-     * @param s
-     * @return
+     * @param s The String
+     * @return True if the String contains only alphabets
      */
     public static boolean containsOnlyLetters(String s) {
         return s.matches(ALL_LETTERS_REGEX);

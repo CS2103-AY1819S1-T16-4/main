@@ -77,10 +77,11 @@ public class ParserUtil {
     }
 
     /**
-     * 
-     * @param tabName
-     * @return
-     * @throws ParseException
+     * Parses the tab name into its respective index.
+     *
+     * @param tabName The tab name
+     * @return The index if the tab name is valid
+     * @throws ParseException if the tab name is invalid
      */
     public static int parseTabName(String tabName) throws ParseException {
         tabName = tabName.trim();
