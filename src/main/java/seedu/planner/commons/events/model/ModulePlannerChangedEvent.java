@@ -1,7 +1,6 @@
 package seedu.planner.commons.events.model;
 
 import seedu.planner.commons.events.BaseEvent;
-import seedu.planner.model.ReadOnlyAddressBook;
 import seedu.planner.model.ReadOnlyModulePlanner;
 
 /**

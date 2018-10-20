@@ -2,10 +2,12 @@ package seedu.planner.logic.parser;
 
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.planner.logic.commands.DeleteModuleCommand;
 import seedu.planner.logic.commands.GoToCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
+/**
+ * A parser that parses an argument for the {@code GoToCommandParser}.
+ */
 public class GoToCommandParser implements Parser<GoToCommand> {
 
     @Override

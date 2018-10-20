@@ -16,7 +16,6 @@ import javafx.scene.layout.Region;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.AddressBookChangedEvent;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
-import seedu.planner.model.ModulePlanner;
 
 /**
  * A ui for the status bar that is displayed at the footer of the application.

@@ -1,5 +1,8 @@
 package seedu.planner.model.tab;
 
+/**
+ * A class to hold information about a ui tab.
+ */
 public class Tab {
 
     public static final String TAB_NAME_REGEX = "^[A-Z]\\d[A-Z]\\d$";
