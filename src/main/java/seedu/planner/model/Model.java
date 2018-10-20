@@ -42,18 +42,6 @@ public interface Model {
      */
     void addPerson(Person person);
 
-    //@@author RomaRomama
-
-    /**
-     *Add list of modules into the specified semester
-     *
-     * @param modules List of modules
-     * @param index Index of the semester
-     */
-    void addModules(List<Module> modules, int index);
-
-    //@@author
-
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the planner book.
@@ -84,6 +72,18 @@ public interface Model {
      * @param modules The modules
      */
     void deleteModules(List<Module> modules);
+
+    //@@author RomaRomama
+
+    /**
+     * Add list of modules into the specified semester
+     *
+     * @param modules List of modules
+     * @param index Index of the semester
+     */
+    void addModules(List<Module> modules, int index);
+
+    //@@author
 
     // @@author rongjiecomputer
 

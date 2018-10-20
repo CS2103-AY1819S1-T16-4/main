@@ -104,16 +104,6 @@ public class ModelManager extends ComponentManager implements Model {
         return versionedAddressBook.hasPerson(person);
     }
 
-    //@@author RomaRomama
-
-    @Override
-    public boolean hasModule(Module module) {
-        requireNonNull(module);
-        return versionedModulePlanner.hasModule(module);
-    }
-
-    //@@author
-
     @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
@@ -126,15 +116,6 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         indicateAddressBookChanged();
     }
-
-    //@@author RomaRomama
-
-    @Override
-    public void addModules(List<Module> modules, int index) {
-        versionedModulePlanner.addModulesToSemester(modules, index);
-    }
-
-    //@@author
 
     @Override
     public void updatePerson(Person target, Person editedPerson) {
@@ -157,6 +138,14 @@ public class ModelManager extends ComponentManager implements Model {
         versionedModulePlanner.deleteModules(moduleCodes);
     }
 
+    //@@author RomaRomama
+
+    @Override
+    public void addModules(List<Module> modules, int index) {
+        versionedModulePlanner.addModules(modules, index);
+    }
+
+    //@@author
 
     //=========== Filtered Person List Accessors =============================================================
 
