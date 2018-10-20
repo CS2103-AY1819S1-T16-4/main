@@ -12,6 +12,8 @@ import java.util.Arrays;
  */
 public class StringUtil {
 
+    private static final String ALL_LETTERS_REGEX = "[a-zA-Z]+";
+
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
      *   Ignores case, but a full word match is required.
@@ -71,8 +73,12 @@ public class StringUtil {
 
     //@@author GabrielYik
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     public static boolean containsOnlyLetters(String s) {
-        String ALL_LETTERS_REGEX = "[a-zA-Z]+";
         return s.matches(ALL_LETTERS_REGEX);
     }
 }

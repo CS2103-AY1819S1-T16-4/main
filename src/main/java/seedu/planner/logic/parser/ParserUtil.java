@@ -76,6 +76,12 @@ public class ParserUtil {
         return validModuleCodes;
     }
 
+    /**
+     * 
+     * @param tabName
+     * @return
+     * @throws ParseException
+     */
     public static int parseTabName(String tabName) throws ParseException {
         tabName = tabName.trim();
         if (!tabName.matches(TAB_NAME_REGEX)) {
