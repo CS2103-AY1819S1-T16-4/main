@@ -86,9 +86,7 @@ public class ParserUtil {
         int year = Integer.parseInt(characters[1]);
         int semester = Integer.parseInt(characters[3]);
 
-        int tabIndex = convertYearAndSemesterToIndex(year, semester) - 1;
-
-        return tabIndex;
+        return convertYearAndSemesterToIndex(year, semester);
     }
 
 
