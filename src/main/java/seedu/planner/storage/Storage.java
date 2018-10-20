@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.planner.commons.events.model.AddressBookChangedEvent;
+import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
 import seedu.planner.commons.events.storage.DataSavingExceptionEvent;
 import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.model.ReadOnlyAddressBook;
@@ -39,4 +40,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
      * Raises {@link DataSavingExceptionEvent} if there was an error during saving.
      */
     void handleAddressBookChangedEvent(AddressBookChangedEvent abce);
+
+    void handleModulePlannerChangedEvent(ModulePlannerChangedEvent mpce);
 }

@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.AddressBookChangedEvent;
+import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.person.Person;
@@ -96,6 +97,10 @@ public class ModelManager extends ComponentManager implements Model {
         raise(new AddressBookChangedEvent(versionedAddressBook));
     }
 
+    private void indicateModulePlannerChanged() {
+        raise(new ModulePlannerChangedEvent(versionedModulePlanner));
+    }
+
     //=========== Person methods =============================================================================
 
     @Override
@@ -136,6 +141,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void deleteModules(List<Module> moduleCodes) {
         versionedModulePlanner.deleteModules(moduleCodes);
+        indicateModulePlannerChanged();
     }
 
     //@@author RomaRomama
