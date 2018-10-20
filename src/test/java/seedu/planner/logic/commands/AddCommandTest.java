@@ -152,11 +152,15 @@ public class AddCommandTest {
         //TODO: implement
         @Override
         public boolean hasModule(Module module) {
-            return true;
+            throw new AssertionError("This method should not be called.");
         }
 
         public void deleteModules(List<Module> modules) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        public void addModules(List<Module> modules, int index) {
+            throw new AssertionError("This method should not be called.");
         }
 
         //@@author
