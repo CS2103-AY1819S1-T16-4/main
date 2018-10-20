@@ -1,5 +1,7 @@
 package seedu.planner.model.semester;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,18 +79,14 @@ public class Semester {
     }
 
     /**
-     * Checks if the semester contains a module with {@code moduleCode}.
+     * Checks if the module with is taken or planned to take in the semester.
      *
      * @param module The module
      * @return True if the module exists, false if not
      */
     public boolean containsModule(Module module) {
-        for (Module m : modulesAvailable) {
-            if (m.getCode().equals(module.getCode())) {
-                return false;
-            }
-        }
-        return true;
+        requireNonNull(module);
+        return modulesTaken.stream().anyMatch(module::equals);
     }
 
     /**

@@ -39,7 +39,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
         for (int i = 1; i <= MAX_NUMBER_SEMESTERS / MAX_SEMESTERS_PER_YEAR; i++) {
             for (int j = 1; j <= MAX_SEMESTERS_PER_YEAR; j++) {
-                semesters.add(new Semester(j, i, false));
+                semesters.add(new Semester(i, j, false));
             }
         }
     }
@@ -59,7 +59,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @param index A valid semester
      */
     public void addModules(List<Module> modules, int index) {
-        semesters.get(index).addModules(modules);
+        semesters.get(index - 1).addModules(modules);
     }
 
     /**
@@ -80,12 +80,12 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @return True if the module exists, false if not
      */
     public boolean hasModule(Module module) {
+        boolean result = true;
         for (Semester semester : semesters) {
-            if (semester.containsModule(module)) {
-                return true;
-            }
+            result = result && semester.containsModule(module);
         }
-        return false;
+
+        return result;
     }
 
     /**
@@ -108,7 +108,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     @Override
     public ObservableList<Module> listModulesTaken(int index) {
-        List<Module> modules = semesters.get(index).getModulesTaken();
+        List<Module> modules = semesters.get(index - 1).getModulesTaken();
         return FXCollections.unmodifiableObservableList(
                 FXCollections.observableList(modules));
     }
