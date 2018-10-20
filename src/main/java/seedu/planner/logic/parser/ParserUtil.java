@@ -1,6 +1,10 @@
 package seedu.planner.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.planner.model.module.ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS;
+import static seedu.planner.model.tab.Tab.MESSAGE_TAB_NAME_CONSTRAINTS;
+import static seedu.planner.model.tab.Tab.TAB_NAME_REGEX;
+import static seedu.planner.model.util.IndexUtil.convertYearAndSemesterToIndex;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,7 +16,6 @@ import seedu.planner.commons.core.index.Index;
 import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.Module;
-import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.person.Address;
 import seedu.planner.model.person.Email;
 import seedu.planner.model.person.Name;
@@ -56,7 +59,7 @@ public class ParserUtil {
         codes = codes.trim();
 
         if (StringUtil.isEmptyString(codes)) {
-            throw new ParseException(ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_MODULE_CODE_CONSTRAINTS);
         }
 
         String[] splitCodes = codes.split(" ");
@@ -64,7 +67,7 @@ public class ParserUtil {
         List<Module> validModuleCodes = new ArrayList<>();
         for (String code : splitCodes) {
             if (!ModuleUtil.hasValidCodeFormat(code)) {
-                throw new ParseException(ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS);
+                throw new ParseException(MESSAGE_MODULE_CODE_CONSTRAINTS);
             }
 
             validModuleCodes.add(new Module(code));
@@ -72,6 +75,22 @@ public class ParserUtil {
 
         return validModuleCodes;
     }
+
+    public static int parseTabName(String tabName) throws ParseException {
+        tabName = tabName.trim();
+        if (!tabName.matches(TAB_NAME_REGEX)) {
+            throw new ParseException(MESSAGE_TAB_NAME_CONSTRAINTS);
+        }
+
+        String[] characters = tabName.split("");
+        int year = Integer.parseInt(characters[1]);
+        int semester = Integer.parseInt(characters[3]);
+
+        int tabIndex = convertYearAndSemesterToIndex(year, semester) - 1;
+
+        return tabIndex;
+    }
+
 
     //@@author Hilda-Ang
 
