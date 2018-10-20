@@ -11,7 +11,7 @@ import seedu.planner.model.module.Module;
 //@@author GabrielYik
 
 /**
- *
+ * A parser that parse an input argument and creates a DeleteModuleCommand.
  */
 public class DeleteModuleCommandParser implements Parser<DeleteModuleCommand> {
 

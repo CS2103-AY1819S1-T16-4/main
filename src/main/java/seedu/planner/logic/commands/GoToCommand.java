@@ -5,6 +5,8 @@ import seedu.planner.commons.events.ui.TabSwitchEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 
+//@@author GabrielYik
+
 /**
  * A class representing the {@code goto} command.
  */
@@ -13,6 +15,7 @@ public class GoToCommand extends Command {
     public static final String COMMAND_WORD = "goto";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes from one tab to another.\n"
+            + "Parameters: TABNAME\n"
             + "Example: " + COMMAND_WORD + "y1s1";
 
     public static final String SHOWING_GOTO_MESSAGE = "Go to %1$s";
