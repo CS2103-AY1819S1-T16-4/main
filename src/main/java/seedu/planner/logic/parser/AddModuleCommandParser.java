@@ -10,6 +10,8 @@ import java.util.stream.Stream;
 
 import seedu.planner.logic.commands.AddModuleCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
+import seedu.planner.model.module.Module;
+import seedu.planner.model.util.IndexUtil;
 
 //@@author RomaRomama
 
@@ -32,9 +34,11 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
         }
 
-        List<String> codes = ParserUtil.parseModuleCodes(argMultimap.getValue(PREFIX_CODE).get());
+        int year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
+        int semester = ParserUtil.parseSemester(argMultimap.getValue(PREFIX_SEMESTER).get());
+        List<Module> codes = ParserUtil.parseModuleCodes(argMultimap.getValue(PREFIX_CODE).get());
 
-        return new AddModuleCommand(codes);
+        return new AddModuleCommand(codes, IndexUtil.convertYearAndSemesterToIndex(year, semester));
     }
 
     /**
