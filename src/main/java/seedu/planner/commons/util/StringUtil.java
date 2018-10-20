@@ -69,15 +69,10 @@ public class StringUtil {
         }
     }
 
-    /**
-     * Checks if the String is empty.
-     *
-     * @param s The String
-     * @return True if s is empty.
-     */
-    public static boolean isEmptyString(String s) {
-        requireNonNull(s);
+    //@@author GabrielYik
 
-        return s.length() == 0;
+    public static boolean containsOnlyLetters(String s) {
+        String ALL_LETTERS_REGEX = "[a-zA-Z]+";
+        return s.matches(ALL_LETTERS_REGEX);
     }
 }
