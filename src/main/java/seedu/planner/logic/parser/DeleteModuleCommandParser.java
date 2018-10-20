@@ -2,7 +2,6 @@ package seedu.planner.logic.parser;
 
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.planner.logic.commands.DeleteModuleCommand;
@@ -25,11 +24,7 @@ public class DeleteModuleCommandParser implements Parser<DeleteModuleCommand> {
     @Override
     public DeleteModuleCommand parse(String args) throws ParseException {
         try {
-            List<String> validModuleCodes = ParserUtil.parseModuleCodes(args);
-            List<Module> validModules = new ArrayList<>();
-            for (String m : validModuleCodes) {
-                validModules.add(new Module(m));
-            }
+            List<Module> validModules = ParserUtil.parseModuleCodes(args);
             return new DeleteModuleCommand(validModules);
         } catch (ParseException pe) {
             throw new ParseException(String.format(
