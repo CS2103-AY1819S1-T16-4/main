@@ -11,6 +11,7 @@ import java.util.Set;
 import seedu.planner.commons.core.index.Index;
 import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
+import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.person.Address;
 import seedu.planner.model.person.Email;
@@ -51,7 +52,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code codes} are invalid.
      */
-    public static List<String> parseModuleCodes(String codes) throws ParseException {
+    public static List<Module> parseModuleCodes(String codes) throws ParseException {
         codes = codes.trim();
 
         if (StringUtil.isEmptyString(codes)) {
@@ -60,13 +61,13 @@ public class ParserUtil {
 
         String[] splitCodes = codes.split(" ");
 
-        List<String> validModuleCodes = new ArrayList<>();
+        List<Module> validModuleCodes = new ArrayList<>();
         for (String code : splitCodes) {
             if (!ModuleUtil.hasValidCodeFormat(code)) {
                 throw new ParseException(ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS);
             }
 
-            validModuleCodes.add(code);
+            validModuleCodes.add(new Module(code));
         }
 
         return validModuleCodes;
