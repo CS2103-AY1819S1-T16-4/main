@@ -58,7 +58,7 @@ public class ParserUtil {
     public static List<Module> parseModuleCodes(String codes) throws ParseException {
         codes = codes.trim();
 
-        if (StringUtil.isEmptyString(codes)) {
+        if (codes.isEmpty()) {
             throw new ParseException(MESSAGE_MODULE_CODE_CONSTRAINTS);
         }
 
