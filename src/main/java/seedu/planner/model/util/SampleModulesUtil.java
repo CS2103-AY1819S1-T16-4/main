@@ -23,7 +23,7 @@ public class SampleModulesUtil {
      * @param end   The end index
      * @return An {@code ObservableList} with modules from {@code start} to {@code end}
      */
-    public static ObservableList<Module> genModules(int start, int end) {
+    public static List<Module> genModules(int start, int end) {
         ModuleType[] pt1 = new ModuleType[]{ModuleType.PR_FOUNDATION, ModuleType.UNRESTRICTED_ELECTIVES};
         ModuleType[] pt2 = new ModuleType[]{ModuleType.PR_BREADTH_AND_DEPTH, ModuleType.UNRESTRICTED_ELECTIVES};
         ModuleType[] pt3 = new ModuleType[]{ModuleType.PR_IT_PROFESSIONALISM, ModuleType.UNRESTRICTED_ELECTIVES};
@@ -68,6 +68,6 @@ public class SampleModulesUtil {
 
         List<Module> modules = List.of(m1, m2, m3, m4, m5, m6, m7);
 
-        return FXCollections.observableList(modules.subList(start, end));
+        return modules.subList(start, end);
     }
 }

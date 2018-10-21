@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
 
 //@@author Hilda-Ang
@@ -33,8 +35,8 @@ public class Semester {
     private boolean hasBeenTaken;
 
     // Modules lists
-    private List<Module> modulesTaken = new ArrayList<Module>();
-    private List<Module> modulesAvailable = new ArrayList<Module>();
+    private ObservableList<Module> modulesTaken = FXCollections.observableArrayList();
+    private ObservableList<Module> modulesAvailable = FXCollections.observableArrayList();
 
     /**
      * Constructs a {@code Semester}.
@@ -102,7 +104,7 @@ public class Semester {
      *
      * @return A list of modules taken
      */
-    public List<Module> getModulesTaken() {
+    public ObservableList<Module> getModulesTaken() {
         return modulesTaken;
     }
 
@@ -112,7 +114,7 @@ public class Semester {
      *
      * @return A list of available modules
      */
-    public List<Module> getModulesAvailable() {
+    public ObservableList<Module> getModulesAvailable() {
         return modulesAvailable;
     }
 }

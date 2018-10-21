@@ -59,7 +59,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @param index A valid semester
      */
     public void addModules(List<Module> modules, int index) {
-        semesters.get(index - 1).addModules(modules);
+        semesters.get(index).addModules(modules);
     }
 
     /**
@@ -108,9 +108,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     @Override
     public ObservableList<Module> listModulesTaken(int index) {
-        List<Module> modules = semesters.get(index).getModulesTaken();
         return FXCollections.unmodifiableObservableList(
-                FXCollections.observableList(modules));
+                semesters.get(index).getModulesTaken());
     }
 
 
@@ -125,9 +124,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     @Override
     public ObservableList<Module> listModulesAvailable(int index) {
-        List<Module> modules = semesters.get(index).getModulesAvailable();
         return FXCollections.unmodifiableObservableList(
-                FXCollections.observableList(modules));
+                semesters.get(index).getModulesAvailable());
     }
 
     /**
