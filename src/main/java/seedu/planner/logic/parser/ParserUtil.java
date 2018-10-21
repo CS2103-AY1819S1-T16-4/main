@@ -1,6 +1,8 @@
 package seedu.planner.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_FOCUS_AREA_CONSTRAINTS;
+import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_MAJOR_CONSTRAINTS;
 import static seedu.planner.model.module.ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS;
 import static seedu.planner.model.tab.Tab.MESSAGE_TAB_NAME_CONSTRAINTS;
 import static seedu.planner.model.tab.Tab.TAB_NAME_REGEX;
@@ -40,6 +42,7 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
+        requireNonNull(oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
@@ -56,6 +59,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code codes} are invalid.
      */
     public static List<Module> parseModuleCodes(String codes) throws ParseException {
+        requireNonNull(codes);
         codes = codes.trim();
 
         if (codes.isEmpty()) {
@@ -84,6 +88,7 @@ public class ParserUtil {
      * @throws ParseException if the tab name is invalid
      */
     public static int parseTabName(String tabName) throws ParseException {
+        requireNonNull(tabName);
         tabName = tabName.trim();
         if (!tabName.matches(TAB_NAME_REGEX)) {
             throw new ParseException(MESSAGE_TAB_NAME_CONSTRAINTS);
@@ -96,6 +101,29 @@ public class ParserUtil {
         return convertYearAndSemesterToIndex(year, semester);
     }
 
+    public static String parseMajor(String major) throws ParseException {
+        if (!StringUtil.containsOnlyLetters(major)) {
+            throw new ParseException(MESSAGE_MAJOR_CONSTRAINTS);
+        }
+        return major;
+    }
+
+    private static String parseFocusArea(String focusArea) throws ParseException {
+        requireNonNull(focusArea);
+        if (!StringUtil.containsOnlyLetters(focusArea)) {
+            throw new ParseException(MESSAGE_FOCUS_AREA_CONSTRAINTS);
+        }
+        return focusArea;
+    }
+
+    public static Set<String> parseFocusAreas(Collection<String> focusAreas) throws ParseException {
+        requireNonNull(focusAreas);
+        final Set<String> focusAreasSet = new HashSet<>();
+        for (String focusArea : focusAreas) {
+            focusAreasSet.add(parseFocusArea(focusArea));
+        }
+        return focusAreasSet;
+    }
 
     //@@author Hilda-Ang
 
@@ -108,7 +136,7 @@ public class ParserUtil {
     public static int parseYear(String year) throws ParseException {
         requireNonNull(year);
         int yearIndex = Integer.parseInt(year.trim());
-        if (!IndexUtil.hasValidYear(yearIndex)) {
+        if (!IndexUtil.isValidYear(yearIndex)) {
             throw new ParseException(MESSAGE_INVALID_YEAR);
         }
         return yearIndex;
@@ -123,7 +151,7 @@ public class ParserUtil {
     public static int parseSemester(String semester) throws ParseException {
         requireNonNull(semester);
         int semesterIndex = Integer.parseInt(semester.trim());
-        if (!IndexUtil.hasValidYear(semesterIndex)) {
+        if (!IndexUtil.isValidYear(semesterIndex)) {
             throw new ParseException(MESSAGE_INVALID_SEMESTER);
         }
         return semesterIndex;
