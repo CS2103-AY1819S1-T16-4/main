@@ -22,6 +22,7 @@ import seedu.planner.logic.commands.ListCommand;
 import seedu.planner.logic.commands.ListModuleCommand;
 import seedu.planner.logic.commands.RedoCommand;
 import seedu.planner.logic.commands.SelectCommand;
+import seedu.planner.logic.commands.SetUpCommand;
 import seedu.planner.logic.commands.SuggestModuleCommand;
 import seedu.planner.logic.commands.UndoCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
@@ -106,6 +107,9 @@ public class AddressBookParser {
 
         case GoToCommand.COMMAND_WORD:
             return new GoToCommandParser().parse(arguments);
+
+        case SetUpCommand.COMMAND_WORD:
+            return new SetUpCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
