@@ -14,7 +14,7 @@ public class IndexUtil {
      * @param year Year to be checked.
      * @return True if the given year is valid.
      */
-    public static boolean hasValidYear(int year) {
+    public static boolean isValidYear(int year) {
         return year > 0 && year < 5;
     }
 
@@ -24,7 +24,7 @@ public class IndexUtil {
      * @param semester Semester to be checked.
      * @return True if the given semester is valid.
      */
-    public static boolean hasValidSemester(int semester) {
+    public static boolean isValidSemester(int semester) {
         return semester == 1 || semester == 2;
     }
 
