@@ -102,7 +102,7 @@ public class ParserUtil {
     }
 
     public static String parseMajor(String major) throws ParseException {
-        if (!StringUtil.containsOnlyLetters(major)) {
+        if (!StringUtil.containsOnlyLettersAndWhiteSpace(major)) {
             throw new ParseException(MESSAGE_MAJOR_CONSTRAINTS);
         }
         return major;
@@ -110,7 +110,7 @@ public class ParserUtil {
 
     private static String parseFocusArea(String focusArea) throws ParseException {
         requireNonNull(focusArea);
-        if (!StringUtil.containsOnlyLetters(focusArea)) {
+        if (!StringUtil.containsOnlyLettersAndWhiteSpace(focusArea)) {
             throw new ParseException(MESSAGE_FOCUS_AREA_CONSTRAINTS);
         }
         return focusArea;
