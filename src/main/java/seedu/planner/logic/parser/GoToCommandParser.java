@@ -5,6 +5,8 @@ import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.planner.logic.commands.GoToCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
+//@@author GabrielYik
+
 /**
  * A parser that parses an argument for the {@code GoToCommandParser}.
  */
