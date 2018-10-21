@@ -26,6 +26,7 @@ import seedu.planner.commons.core.GuiSettings;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.ui.ExitAppRequestEvent;
 import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
+import seedu.planner.commons.events.ui.TabSwitchEvent;
 import seedu.planner.logic.Logic;
 import seedu.planner.model.UserPrefs;
 
@@ -247,5 +248,10 @@ public class MainWindow extends UiPart<Stage> {
     private void handleShowHelpEvent(ShowHelpRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         handleHelp();
+    }
+
+    @Subscribe
+    private void handleTabSwitch(TabSwitchEvent event) {
+        semestersTabPane.getSelectionModel().select(event.getIndex());
     }
 }
