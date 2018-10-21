@@ -5,10 +5,8 @@ import static seedu.planner.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Helper functions for handling strings.

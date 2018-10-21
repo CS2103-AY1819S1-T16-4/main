@@ -101,6 +101,14 @@ public class ParserUtil {
         return convertYearAndSemesterToIndex(year, semester);
     }
 
+    /**
+     * Parses a major.
+     * The major is checked if it's in the correct format.
+     *
+     * @param major The major
+     * @return The major
+     * @throws ParseException if the major's format is wrong
+     */
     public static String parseMajor(String major) throws ParseException {
         if (!StringUtil.containsOnlyLettersAndWhiteSpace(major)) {
             throw new ParseException(MESSAGE_MAJOR_CONSTRAINTS);
@@ -108,6 +116,14 @@ public class ParserUtil {
         return major;
     }
 
+    /**
+     * Parses a focus area.
+     * The major is checked if it's in the correct format.
+     *
+     * @param focusArea The focus area
+     * @return The focus rea
+     * @throws ParseException if the focus area's format is wrong
+     */
     private static String parseFocusArea(String focusArea) throws ParseException {
         requireNonNull(focusArea);
         if (!StringUtil.containsOnlyLettersAndWhiteSpace(focusArea)) {
@@ -116,6 +132,16 @@ public class ParserUtil {
         return focusArea;
     }
 
+    /**
+     * Parses the focus areas.
+     * The focus areas are checked if they're in the correct format.
+     * Individual focus areas are checked using the method
+     * {@link #parseFocusArea(String focusArea) parseFocusArea}.
+     *
+     * @param focusAreas The focus areas
+     * @return The {@code Set} of focus areas
+     * @throws ParseException if one of the focus areas' format is wrong
+     */
     public static Set<String> parseFocusAreas(Collection<String> focusAreas) throws ParseException {
         requireNonNull(focusAreas);
         final Set<String> focusAreasSet = new HashSet<>();

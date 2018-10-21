@@ -99,6 +99,14 @@ public class ModelManager extends ComponentManager implements Model {
         return false;
     }
 
+    /**
+     * Checks if the {@code focusArea} is valid.
+     * The focus area is checked against a list of available
+     * focus areas offered by the relevant educational institution.
+     *
+     * @param focusArea The focus area
+     * @return True if the focus area is offered, else false
+     */
     private boolean hasFocusArea(String focusArea) {
         for (FocusArea fa : FocusArea.values()) {
             if (fa.toString().equals(focusArea)) {

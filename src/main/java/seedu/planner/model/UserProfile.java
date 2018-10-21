@@ -1,11 +1,5 @@
 package seedu.planner.model;
 
-import static seedu.planner.model.enumeration.Major.COMPUTER_ENGINEERING;
-import static seedu.planner.model.enumeration.Major.COMPUTER_SCIENCE;
-import static seedu.planner.model.semester.Semester.FIRST;
-import static seedu.planner.model.semester.Semester.SECOND;
-
-import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -59,6 +53,12 @@ public class UserProfile {
         instance = new UserProfile(year, semester, mapMajor(major), mapFocusAreas(focusAreas));
     }
 
+    /**
+     * Converts the major from a {@code String} to a {@code Major}.
+     *
+     * @param major The major as a {@code String}
+     * @return The major as a {@code Major}
+     */
     public static Major mapMajor(String major) {
         for (Major m : Major.values()) {
             if (m.toString().equals(major)) {
@@ -68,6 +68,12 @@ public class UserProfile {
         return Major.UNKNOWN;
     }
 
+    /**
+     * Converts the focus area from a {@code String} to a {@code FocusArea}.
+     *
+     * @param focusArea The focus area as a {@code String}
+     * @return The focus area as a {@code FocusArea}
+     */
     private static FocusArea mapFocusArea(String focusArea) {
         for (FocusArea fa : FocusArea.values()) {
             if (fa.toString().equals(focusArea)) {
@@ -77,6 +83,14 @@ public class UserProfile {
         return FocusArea.UNKNOWN;
     }
 
+    /**
+     * Converts the focus areas from {@code String}s to {@code FocusArea}s.
+     * Each focus area is converted from a {@code String} to a {@code FocusArea}
+     * using the method {@link #mapFocusArea(String) mapFocusArea}
+     *
+     * @param focusAreas The focus areas as {@code String}s
+     * @return The focus areas as {@code FocusArea}s
+     */
     public static Set<FocusArea> mapFocusAreas(Set<String> focusAreas) {
         Set<FocusArea> focusAreasSet = new HashSet<>();
         for (String fa : focusAreas) {
@@ -85,19 +99,38 @@ public class UserProfile {
         return focusAreasSet;
     }
 
+    /**
+     * Returns the current year of study.
+     *
+     * @return The current year of study
+     */
     public int getYear() {
         return year;
     }
 
+    /**
+     * Returns the current semester in the year of study.
+     *
+     * @return The current semester in the year of study
+     */
     public int getSemester() {
         return semester;
     }
 
+    /**
+     * Returns the major.
+     *
+     * @return The major
+     */
     public Major getMajor() {
         return major;
     }
 
-
+    /**
+     * Returns the focus areas.
+     *
+     * @return The focus areas
+     */
     public Set<FocusArea> getFocusAreas() {
         return focusAreas;
     }

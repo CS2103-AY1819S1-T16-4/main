@@ -1,7 +1,10 @@
 package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.planner.logic.parser.CliSyntax.*;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_FOCUS_AREA;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Set;
 
@@ -23,10 +26,10 @@ public class SetUpCommand extends Command {
 
     public static final String MESSAGE_FOCUS_AREA_CONSTRAINTS = "The major should contain only alphabets";
 
-    public static final String MESSAGE_SET_UP_SUCCESS = "Set up complete.\n" +
-            "Your User Profile\n" +
-            "Year: %1$d | Semester: %2$d\n" +
-            "Major: %3$s | Focus Areas(s): %4$s";
+    public static final String MESSAGE_SET_UP_SUCCESS = "Set up complete.\n"
+            + "Your User Profile\n"
+            + "Year: %1$d | Semester: %2$d\n"
+            + "Major: %3$s | Focus Areas(s): %4$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets up your user profile.\n"

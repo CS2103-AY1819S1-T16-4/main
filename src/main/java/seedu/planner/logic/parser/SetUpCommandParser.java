@@ -1,7 +1,10 @@
 package seedu.planner.logic.parser;
 
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.planner.logic.parser.CliSyntax.*;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_FOCUS_AREA;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -19,7 +22,7 @@ public class SetUpCommandParser implements Parser<SetUpCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 args, PREFIX_YEAR, PREFIX_SEMESTER, PREFIX_MAJOR, PREFIX_FOCUS_AREA);
 
-        if(!arePrefixesPresent(argMultimap, PREFIX_YEAR, PREFIX_SEMESTER,
+        if (!arePrefixesPresent(argMultimap, PREFIX_YEAR, PREFIX_SEMESTER,
                 PREFIX_MAJOR, PREFIX_FOCUS_AREA) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetUpCommand.MESSAGE_USAGE));
         }
