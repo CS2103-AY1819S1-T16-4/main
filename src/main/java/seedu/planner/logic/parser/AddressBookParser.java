@@ -104,6 +104,12 @@ public class AddressBookParser {
 
         case SuggestModuleCommand.COMMAND_WORD:
             return new SuggestModuleCommandParser().parse(arguments);
+            
+        case GoToCommand.COMMAND_WORD:
+            return new GoToCommandParser().parse(arguments);
+
+        case SetUpCommand.COMMAND_WORD:
+            return new SetUpCommandParser().parse(arguments);
 
         case GoToCommand.COMMAND_WORD:
             return new GoToCommandParser().parse(arguments);

@@ -1,0 +1,65 @@
+package seedu.planner.logic.commands;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.planner.logic.parser.CliSyntax.*;
+
+import java.util.Set;
+
+import seedu.planner.commons.core.Messages;
+import seedu.planner.logic.CommandHistory;
+import seedu.planner.logic.commands.exceptions.CommandException;
+import seedu.planner.model.Model;
+import seedu.planner.model.util.IndexUtil;
+
+/**
+ * Sets up the user profile.
+ */
+public class SetUpCommand extends Command {
+
+    public static final String COMMAND_WORD = "setup";
+
+    public static final String MESSAGE_MAJOR_CONSTRAINTS = "The major should contain only alphabets.";
+
+    public static final String MESSAGE_FOCUS_AREA_CONSTRAINTS = "The major should contain only alphabets";
+
+    public static final String MESSAGE_SET_UP_SUCCESS = "Set up complete";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sets up your user profile.\n"
+            + "Parameters: "
+            + PREFIX_YEAR + "YEAR "
+            + PREFIX_SEMESTER + "SEMESTER "
+            + PREFIX_MAJOR + "MAJOR "
+            + "[" + PREFIX_FOCUS_AREA + "FOCUS AREA]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_YEAR + "1 "
+            + PREFIX_SEMESTER + "1 "
+            + PREFIX_MAJOR + "Computer Science "
+            + PREFIX_FOCUS_AREA + "Software Engineering "
+            + PREFIX_FOCUS_AREA + "Programming Languages";
+
+    private int year;
+    private int semester;
+    private String major;
+    private Set<String> focusAreas;
+
+    public SetUpCommand(int year, int semester, String major, Set<String> focusAreas) {
+        this.year = year;
+        this.semester = semester;
+        this.major = major;
+        this.focusAreas = focusAreas;
+    }
+
+    @Override
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
+        requireNonNull(model);
+
+        if (!IndexUtil.isValidYear(year) && !IndexUtil.isValidSemester(semester)
+                && !model.hasMajor(major) && !model.hasFocusAreas(focusAreas)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+
+        model.setUpUserProfile(year, semester, major, focusAreas);
+        return new CommandResult(MESSAGE_SET_UP_SUCCESS);
+    }
+}
