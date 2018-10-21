@@ -6,6 +6,7 @@ import static seedu.planner.logic.parser.CliSyntax.*;
 import java.util.Set;
 
 import seedu.planner.commons.core.Messages;
+import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -22,7 +23,10 @@ public class SetUpCommand extends Command {
 
     public static final String MESSAGE_FOCUS_AREA_CONSTRAINTS = "The major should contain only alphabets";
 
-    public static final String MESSAGE_SET_UP_SUCCESS = "Set up complete";
+    public static final String MESSAGE_SET_UP_SUCCESS = "Set up complete.\n" +
+            "Your User Profile\n" +
+            "Year: %1$d | Semester: %2$d\n" +
+            "Major: %3$s | Focus Areas(s): %4$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets up your user profile.\n"
@@ -60,6 +64,7 @@ public class SetUpCommand extends Command {
         }
 
         model.setUpUserProfile(year, semester, major, focusAreas);
-        return new CommandResult(MESSAGE_SET_UP_SUCCESS);
+        return new CommandResult(String.format(
+                MESSAGE_SET_UP_SUCCESS, year, semester, major, StringUtil.convertCollectionToString(focusAreas)));
     }
 }
