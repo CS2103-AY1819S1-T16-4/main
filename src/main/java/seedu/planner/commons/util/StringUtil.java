@@ -5,14 +5,17 @@ import static seedu.planner.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Helper functions for handling strings.
  */
 public class StringUtil {
 
-    private static final String ALL_LETTERS_REGEX = "[a-zA-Z]+";
+    private static final String ALL_LETTERS_REGEX = "[a-zA-Z ]+";
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
@@ -79,7 +82,23 @@ public class StringUtil {
      * @param s The String
      * @return True if the String contains only alphabets
      */
-    public static boolean containsOnlyLetters(String s) {
+    public static boolean containsOnlyLettersAndWhiteSpace(String s) {
         return s.matches(ALL_LETTERS_REGEX);
+    }
+
+    /**
+     * Takes the elements in a collection and combines them into a string
+     * with each element separated by a whitespace.
+     *
+     * @param collection The collection
+     * @param <E> The runtime type of the collection
+     * @return The string containing all the elements in the collection
+     */
+    public static <E> String convertCollectionToString(Collection<E> collection) {
+        StringBuilder sb = new StringBuilder();
+        for (E e : collection) {
+            sb.append(e + " ");
+        }
+        return sb.toString().trim();
     }
 }
