@@ -8,8 +8,9 @@ package seedu.planner.model.enumeration;
  * is Computer Science students.
  */
 public enum Major {
-    COMPUTER_SCIENCE("Computer Science"),
-    COMPUTER_ENGINEERING("Computer Engineering");
+    COMPUTER_SCIENCE("computer science"),
+    COMPUTER_ENGINEERING("computer engineering"),
+    UNKNOWN("unknown");
 
     private final String name;
 

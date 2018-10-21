@@ -16,7 +16,8 @@ public enum FocusArea {
     NETWORKING_AND_DISTRIBUTED_SYSTEMS("Networking and Distributed Systems"),
     PARALLEL_COMPUTING("Parallel Computing"),
     PROGRAMMING_LANGUAGES("Programming Languages"),
-    SOFTWARE_ENGINEERING("Software Engineering");
+    SOFTWARE_ENGINEERING("Software Engineering"),
+    UNKNOWN("Unknown");
 
     private final String name;
 
