@@ -1,6 +1,7 @@
 package seedu.planner.model;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -18,6 +19,32 @@ public interface Model {
     //TODO: can have a predicate to filter taken and available modules
     /** {@code Predicate} that always evaluate to true */
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+
+    /**
+     * Sets up the user profile.
+     *
+     * @param year The year of study
+     * @param semester The semester in the year of study
+     * @param major The major
+     * @param focusAreas The focus areas
+     */
+    void setUpUserProfile(int year, int semester, String major, Set<String> focusAreas);
+
+    /**
+     * Checks if the major exists.
+     *
+     * @param major The major
+     * @return True if the major exists
+     */
+    boolean hasMajor(String major);
+
+    /**
+     * Checks if the focus area exists.
+     *
+     * @param focusArea The focus area
+     * @return True if the focus area exists
+     */
+    boolean hasFocusAreas(Set<String> focusArea);
 
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyAddressBook newData);
