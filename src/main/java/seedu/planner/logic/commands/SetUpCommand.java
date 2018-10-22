@@ -70,4 +70,22 @@ public class SetUpCommand extends Command {
         return new CommandResult(String.format(
                 MESSAGE_SET_UP_SUCCESS, year, semester, major, StringUtil.convertCollectionToString(focusAreas)));
     }
+
+    @Override
+    public boolean equals(Object other) {
+
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof SetUpCommand)) {
+            return false;
+        }
+
+        SetUpCommand command = (SetUpCommand) other;
+        return this.year == command.year
+                && this.semester == command.semester
+                && this.major.equals(command.major)
+                && this.focusAreas.equals(command.focusAreas);
+    }
 }

@@ -42,4 +42,20 @@ public class GoToCommand extends Command {
         EventsCenter.getInstance().post(new TabSwitchEvent(tabIndex));
         return new CommandResult(String.format(SHOWING_GOTO_MESSAGE, tabName));
     }
+
+    @Override
+    public boolean equals(Object other) {
+
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof GoToCommand)) {
+            return false;
+        }
+
+        GoToCommand command = (GoToCommand) other;
+        return this.tabName.equals(command.tabName)
+                && this.tabIndex == command.tabIndex;
+    }
 }
