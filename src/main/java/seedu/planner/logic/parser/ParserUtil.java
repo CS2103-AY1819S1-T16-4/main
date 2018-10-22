@@ -53,31 +53,41 @@ public class ParserUtil {
     //@@author GabrielYik
 
     /**
-     * Parses the unverified {@code codes} into a valid List of {@code codes}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses the unverified {@code moduleCode} into a module.
      *
-     * @throws ParseException if the given {@code codes} are invalid.
+     * @param moduleCode The moduleCode
+     * @return The module
+     * @throws ParseException if the moduleCode does not meet the constraints
      */
-    public static List<Module> parseModuleCodes(String codes) throws ParseException {
-        requireNonNull(codes);
-        codes = codes.trim();
+    private static Module parseModuleCode(String moduleCode) throws ParseException {
+        moduleCode = moduleCode.trim();
 
-        if (codes.isEmpty()) {
+        if (moduleCode.isEmpty()) {
             throw new ParseException(MESSAGE_MODULE_CODE_CONSTRAINTS);
         }
 
-        String[] splitCodes = codes.split(" ");
-
-        List<Module> validModuleCodes = new ArrayList<>();
-        for (String code : splitCodes) {
-            if (!ModuleUtil.hasValidCodeFormat(code)) {
-                throw new ParseException(MESSAGE_MODULE_CODE_CONSTRAINTS);
-            }
-
-            validModuleCodes.add(new Module(code));
+        if (!ModuleUtil.hasValidCodeFormat(moduleCode)) {
+            throw new ParseException(MESSAGE_MODULE_CODE_CONSTRAINTS);
         }
 
-        return validModuleCodes;
+        return new Module(moduleCode);
+    }
+
+    /**
+     * Parses the unverified {@code moduleCodes} into a valid List of {@code modules}.
+     * Individual module codes are parsed using the method {@link #parseModuleCode(String) parseModuleCode}.
+     *
+     * @throws ParseException if the given {@code moduleCodes} do not meet the constraints.
+     */
+    public static List<Module> parseModuleCodes(Collection<String> moduleCodes) throws ParseException {
+        requireNonNull(moduleCodes);
+
+        List<Module> modules = new ArrayList<>();
+        for (String m : moduleCodes) {
+            modules.add(parseModuleCode(m));
+        }
+
+        return modules;
     }
 
     /**

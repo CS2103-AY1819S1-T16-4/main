@@ -36,7 +36,7 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
 
         int year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
         int semester = ParserUtil.parseSemester(argMultimap.getValue(PREFIX_SEMESTER).get());
-        List<Module> codes = ParserUtil.parseModuleCodes(argMultimap.getValue(PREFIX_CODE).get());
+        List<Module> codes = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_CODE));
 
         return new AddModuleCommand(codes, IndexUtil.convertYearAndSemesterToIndex(year, semester));
     }
