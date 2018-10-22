@@ -13,7 +13,7 @@ import java.util.Collection;
  */
 public class StringUtil {
 
-    private static final String ALL_LETTERS_REGEX = "[a-zA-Z ]+";
+    private static final String ALL_LETTERS_REGEX = "[a-zA-Z]+( +[a-zA-Z]+)*";
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
@@ -81,18 +81,23 @@ public class StringUtil {
      * @return True if the String contains only alphabets
      */
     public static boolean containsOnlyLettersAndWhiteSpace(String s) {
+        requireNonNull(s);
         return s.matches(ALL_LETTERS_REGEX);
     }
 
     /**
      * Takes the elements in a collection and combines them into a string
      * with each element separated by a whitespace.
+     * The class of the element has to override the {@code toString()} method
+     * for this method to work properly.
      *
      * @param collection The collection
      * @param <E> The runtime type of the collection
      * @return The string containing all the elements in the collection
      */
     public static <E> String convertCollectionToString(Collection<E> collection) {
+        requireNonNull(collection);
+
         StringBuilder sb = new StringBuilder();
         for (E e : collection) {
             sb.append(e + " ");
