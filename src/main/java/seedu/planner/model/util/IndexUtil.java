@@ -41,16 +41,4 @@ public class IndexUtil {
     public static int convertYearAndSemesterToIndex(int year, int semester) {
         return year * NUM_OF_SEMESTER_IN_YEAR - NUM_OF_SEMESTER_IN_YEAR + semester - 1;
     }
-
-    /**
-     * Converts a one-based number to zero-based.
-     * This method verify if the one-based number is indeed one based
-     * since that is impossible to do so.
-     *
-     * @param oneBased The one-based number
-     * @return The zero-based number; the one-based number decremented by one
-     */
-    public static int convertToZeroBased(int oneBased) {
-        return oneBased;
-    }
 }
