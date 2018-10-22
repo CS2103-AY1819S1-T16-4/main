@@ -2,6 +2,8 @@ package seedu.planner.model.module;
 
 //@@author GabrielYik @@author rongjiecomputer
 
+import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -76,6 +78,7 @@ public class ModuleInfo {
      */
     public ModuleInfo(String code, String name, ModuleType[] possibleTypes,
                       float creditCount, String[] preclusions, String[] prerequisites) {
+        requireAllNonNull(code, name, possibleTypes, creditCount, preclusions, prerequisites);
         this.code = code;
         this.name = name;
         this.possibleTypes = possibleTypes;
