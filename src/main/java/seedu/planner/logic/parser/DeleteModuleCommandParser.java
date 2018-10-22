@@ -1,8 +1,10 @@
 package seedu.planner.logic.parser;
 
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import seedu.planner.logic.commands.DeleteModuleCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
@@ -23,12 +25,23 @@ public class DeleteModuleCommandParser implements Parser<DeleteModuleCommand> {
      */
     @Override
     public DeleteModuleCommand parse(String args) throws ParseException {
-        try {
-            List<Module> validModules = ParserUtil.parseModuleCodes(args);
-            return new DeleteModuleCommand(validModules);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT, DeleteModuleCommand.MESSAGE_USAGE), pe);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
+                args, PREFIX_CODE);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_CODE) || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteModuleCommand.MESSAGE_USAGE));
         }
+
+        List<Module> modules = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_CODE));
+
+        return new DeleteModuleCommand(modules);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
