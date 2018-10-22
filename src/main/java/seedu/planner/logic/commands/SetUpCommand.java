@@ -24,7 +24,7 @@ public class SetUpCommand extends Command {
 
     public static final String MESSAGE_MAJOR_CONSTRAINTS = "The major should contain only alphabets.";
 
-    public static final String MESSAGE_FOCUS_AREA_CONSTRAINTS = "The major should contain only alphabets";
+    public static final String MESSAGE_FOCUS_AREA_CONSTRAINTS = "The focus area should contain only alphabets";
 
     public static final String MESSAGE_SET_UP_SUCCESS = "Set up complete.\n"
             + "Your User Profile\n"
