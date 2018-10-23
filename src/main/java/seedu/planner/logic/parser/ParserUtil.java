@@ -164,7 +164,7 @@ public class ParserUtil {
     public static int parseSemester(String semester) throws ParseException {
         requireNonNull(semester);
         int semesterIndex = Integer.parseInt(semester.trim());
-        if (!IndexUtil.isValidYear(semesterIndex)) {
+        if (!IndexUtil.isValidSemester(semesterIndex)) {
             throw new ParseException(MESSAGE_INVALID_SEMESTER);
         }
         return semesterIndex;
