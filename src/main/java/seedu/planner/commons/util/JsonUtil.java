@@ -96,7 +96,7 @@ public class JsonUtil {
      * @param <T> The generic type to create an instance of
      * @return The instance of T with the specified values in the JSON string
      */
-    public static <T> T fromJsonString(String json, Class<T> instanceClass) throws IOException {
+    public static <T> T fromJsonString(String json, Class<T> instanceClass) throws IOException{
         return objectMapper.readValue(json, instanceClass);
     }
 

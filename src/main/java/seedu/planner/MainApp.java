@@ -28,9 +28,7 @@ import seedu.planner.model.UserPrefs;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.util.SampleDataUtil;
 import seedu.planner.storage.AddressBookStorage;
-import seedu.planner.storage.JsonModuleInfoStorage;
 import seedu.planner.storage.JsonUserPrefsStorage;
-import seedu.planner.storage.ModuleInfoStorage;
 import seedu.planner.storage.Storage;
 import seedu.planner.storage.StorageManager;
 import seedu.planner.storage.UserPrefsStorage;
@@ -67,8 +65,7 @@ public class MainApp extends Application {
         userPrefs = initPrefs(userPrefsStorage);
 
         AddressBookStorage addressBookStorage = new XmlAddressBookStorage(userPrefs.getAddressBookFilePath());
-        ModuleInfoStorage moduleInfoStorage = new JsonModuleInfoStorage(userPrefs.getModuleInfoFilePath());
-        storage = new StorageManager(addressBookStorage, moduleInfoStorage, userPrefsStorage);
+        storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -89,24 +86,13 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
-        Optional<ModuleInfo[]> moduleInfoOptional;
         ModuleInfo[] initialModuleInfo;
 
         try {
-            moduleInfoOptional = storage.readModuleInfo();
-            if (!moduleInfoOptional.isPresent()) {
-                logger.info("Module info file not found. Will be starting with a sample module database");
-                // TODO(rongjiecomputer) Actually use sample data when #108 is merged.
-                initialModuleInfo = new ModuleInfo[] {};
-            } else {
-                initialModuleInfo = moduleInfoOptional.get();
-            }
+            ModuleInfo.ModuleInfoRetriever retriever = ModuleInfo.ModuleInfoRetriever.getInstance();
+            initialModuleInfo = retriever.getModuleInfoList();
         } catch (DataConversionException e) {
-            logger.warning("Module info file not in the correct format."
-                    + " Will be starting with an empty module database");
-            initialModuleInfo = new ModuleInfo[] {};
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty module database");
+            logger.warning("Problem while reading from resource file. Will be starting with an empty module database");
             initialModuleInfo = new ModuleInfo[] {};
         }
 

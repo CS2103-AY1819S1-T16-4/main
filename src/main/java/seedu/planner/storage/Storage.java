@@ -23,8 +23,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     @Override
     void saveUserPrefs(UserPrefs userPrefs) throws IOException;
 
-    Optional<ModuleInfo[]> readModuleInfo() throws DataConversionException, IOException;
-
     @Override
     Path getAddressBookFilePath();
 

@@ -4,13 +4,25 @@ package seedu.planner.model.module;
 
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+
+import seedu.planner.MainApp;
+import seedu.planner.commons.exceptions.DataConversionException;
+import seedu.planner.commons.util.JsonUtil;
+import seedu.planner.storage.JsonAdaptedModule;
 
 /**
  * Represents an immutable {@code ModuleInfo} class.
@@ -23,11 +35,73 @@ public class ModuleInfo {
             + "1234 refers to a sequence of positive numbers, "
             + "and (Z) refers to an optional postfix.";
 
+    public static class ModuleInfoRetriever {
+        public static final String MODULE_INFO_FILE_PATH = "/data/moduleInfo.json";
+
+        private static ModuleInfoRetriever instance = null;
+
+        private ModuleInfo[] moduleInfoList;
+
+        private ModuleInfoRetriever() throws DataConversionException {
+            try {
+                URI path = MainApp.class.getResource(MODULE_INFO_FILE_PATH).toURI();
+                moduleInfoList = JsonUtil.readJsonFile(Paths.get(path), ModuleInfo[].class).get();
+            } catch (URISyntaxException e) {
+                moduleInfoList = new ModuleInfo[] {};
+            }
+        }
+
+        public static ModuleInfoRetriever getInstance() throws DataConversionException {
+            if (instance == null) {
+                instance = new ModuleInfoRetriever();
+            }
+            return instance;
+        }
+
+        public ModuleInfo[] getModuleInfoList() {
+            return moduleInfoList;
+        }
+
+        /**
+         *  Map module code to {@code ModuleInfo}.
+         *
+         * @param moduleCode Module code
+         */
+        public Optional<ModuleInfo> getFromModuleCode(String moduleCode) {
+            if (codeToModuleInfoMap.containsKey(moduleCode)) {
+                return Optional.<ModuleInfo>of(codeToModuleInfoMap.get(moduleCode));
+            }
+            return Optional.empty();
+        }
+
+        /**
+         * Takes in a list of {@code ModuleInfo}s deserialzied by JSON parser and
+         * finalize {@code ModuleInfo}s' internal structure.
+         *
+         * @param moduleInfo List of {@code ModuleInfo}s deserialized by JSON parser.
+         */
+        public static ModuleInfo[] finalizeModuleInfo(ModuleInfo[] moduleInfo) {
+            ImmutableMap.Builder<String, ModuleInfo> builder = ImmutableMap.builder();
+            for (ModuleInfo mInfo : moduleInfo) {
+                builder.put(mInfo.getCode(), mInfo);
+            }
+
+            codeToModuleInfoMap = builder.build();
+
+            for (ModuleInfo mInfo : moduleInfo) {
+                mInfo.finalize(codeToModuleInfoMap);
+            }
+            return moduleInfo;
+        }
+    }
+
     private String code;
 
     private String name;
 
     private ModuleType[] possibleTypes;
+
+    private static ImmutableMap<String, ModuleInfo> codeToModuleInfoMap = null;
 
     /**
      * Module credit. We set the type to be float because some modules have 0.5 MC.
@@ -119,7 +193,7 @@ public class ModuleInfo {
      *
      * @param map An immutable map that maps module code to {@code ModuleInfo}.
      */
-    public void finalize(ImmutableMap<String, ModuleInfo> map) {
+    private void finalize(ImmutableMap<String, ModuleInfo> map) {
         Preconditions.checkState(!finalized);
 
         prereqModuleInfo = Arrays.stream(prerequisites)
@@ -146,14 +220,25 @@ public class ModuleInfo {
             builder.put(mInfo.getCode(), mInfo);
         }
 
-        // TODO(rongjiecomputer) This code->moduleInfo map is useful for other class too.
-        // Figure out a place to expose this to other classes.
-        ImmutableMap<String, ModuleInfo> map = builder.build();
+        codeToModuleInfoMap = builder.build();
 
         for (ModuleInfo mInfo : moduleInfo) {
-            mInfo.finalize(map);
+            mInfo.finalize(codeToModuleInfoMap);
         }
         return moduleInfo;
+    }
+
+    /**
+     *  Map module code to {@code ModuleInfo}.
+     *
+     * @param moduleCode Module code
+     */
+    public static Optional<ModuleInfo> getFromModuleCode(String moduleCode) {
+        try {
+            return ModuleInfoRetriever.getInstance().getFromModuleCode(moduleCode);
+        } catch (DataConversionException e) {
+            return Optional.empty();
+        }
     }
 
     @Override
