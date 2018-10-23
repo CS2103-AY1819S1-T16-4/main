@@ -42,6 +42,11 @@ public class JsonAdaptedSemester {
             m -> new JsonAdaptedModule(m)).collect(Collectors.toList());
     }
 
+    /**
+     * Convert to {@code Semester} object.
+     *
+     * @throws IllegalValueException
+     */
     public Semester toModelType() throws IllegalValueException {
         List<Module> modulesTaken = new ArrayList<>();
         for (JsonAdaptedModule jsonAdaptedModule : this.modulesTaken) {

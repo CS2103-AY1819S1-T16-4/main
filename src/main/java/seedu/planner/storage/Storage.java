@@ -10,7 +10,6 @@ import seedu.planner.commons.events.storage.DataSavingExceptionEvent;
 import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.model.ReadOnlyAddressBook;
 import seedu.planner.model.UserPrefs;
-import seedu.planner.model.module.ModuleInfo;
 
 /**
  * API of the Storage component
