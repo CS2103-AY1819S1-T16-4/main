@@ -56,7 +56,7 @@ public class AddModuleCommand extends Command {
         requireNonNull(model);
         List<Module> invalidModules = new ArrayList<>();
         for (Module m : modulesToAdd) {
-            if (model.hasModule(m)) {
+            if (!model.isModuleOffered(m)) {
                 invalidModules.add(m);
             }
         }
