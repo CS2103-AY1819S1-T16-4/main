@@ -15,12 +15,14 @@ import seedu.planner.logic.commands.DeleteModuleCommand;
 import seedu.planner.logic.commands.EditCommand;
 import seedu.planner.logic.commands.ExitCommand;
 import seedu.planner.logic.commands.FindCommand;
+import seedu.planner.logic.commands.GoToCommand;
 import seedu.planner.logic.commands.HelpCommand;
 import seedu.planner.logic.commands.HistoryCommand;
 import seedu.planner.logic.commands.ListCommand;
 import seedu.planner.logic.commands.ListModuleCommand;
 import seedu.planner.logic.commands.RedoCommand;
 import seedu.planner.logic.commands.SelectCommand;
+import seedu.planner.logic.commands.SetUpCommand;
 import seedu.planner.logic.commands.SuggestModuleCommand;
 import seedu.planner.logic.commands.UndoCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
@@ -102,6 +104,12 @@ public class AddressBookParser {
 
         case SuggestModuleCommand.COMMAND_WORD:
             return new SuggestModuleCommandParser().parse(arguments);
+
+        case GoToCommand.COMMAND_WORD:
+            return new GoToCommandParser().parse(arguments);
+
+        case SetUpCommand.COMMAND_WORD:
+            return new SetUpCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

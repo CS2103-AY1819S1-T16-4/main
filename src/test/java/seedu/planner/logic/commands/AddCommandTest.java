@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.Rule;
@@ -140,6 +141,21 @@ public class AddCommandTest {
 
         //@@author GabrielYik
         @Override
+        public void setUpUserProfile(int year, int semester, String major, Set<String> focusAreas) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMajor(String major) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasFocusAreas(Set<String> focusAreas) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Module> getFilteredTakenModuleList(int index) {
             throw new AssertionError("This method should not be called.");
         }
@@ -149,7 +165,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        //TODO: implement
         @Override
         public boolean hasModule(Module module) {
             throw new AssertionError("This method should not be called.");
@@ -160,6 +175,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author RomaRomama
         @Override
         public void addModules(List<Module> modules, int index) {
             throw new AssertionError("This method should not be called.");

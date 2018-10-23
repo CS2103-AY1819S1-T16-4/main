@@ -63,4 +63,20 @@ public class DeleteModuleCommand extends Command {
         model.deleteModules(modulesToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_MODULES_SUCCESS, sb.toString().trim()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DeleteModuleCommand)) {
+            return false;
+        }
+
+        DeleteModuleCommand command = (DeleteModuleCommand) other;
+        return modulesToDelete.stream().allMatch(x ->
+            command.modulesToDelete.stream().anyMatch(y -> y.equals(x)));
+    }
 }

@@ -96,15 +96,17 @@ public class MainApp extends Application {
             moduleInfoOptional = storage.readModuleInfo();
             if (!moduleInfoOptional.isPresent()) {
                 logger.info("Module info file not found. Will be starting with a sample module database");
+                // TODO(rongjiecomputer) Actually use sample data when #108 is merged.
+                initialModuleInfo = new ModuleInfo[] {};
+            } else {
+                initialModuleInfo = moduleInfoOptional.get();
             }
-            // TODO(rongjiecomputer) Actually use sample data.
-            initialModuleInfo = new ModuleInfo[] {};
         } catch (DataConversionException e) {
             logger.warning("Module info file not in the correct format."
                     + " Will be starting with an empty module database");
             initialModuleInfo = new ModuleInfo[] {};
         } catch (IOException e) {
-            logger.warning("Porblem while reading from the file. Will be starting with an empty module database");
+            logger.warning("Problem while reading from the file. Will be starting with an empty module database");
             initialModuleInfo = new ModuleInfo[] {};
         }
 

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +14,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.AddressBookChangedEvent;
+import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
+import seedu.planner.model.enumeration.FocusArea;
+import seedu.planner.model.enumeration.Major;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.person.Person;
@@ -29,6 +33,8 @@ public class ModelManager extends ComponentManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     private final ModuleInfo[] moduleInfo;
+
+    private UserProfile userProfile;
 
     private final VersionedModulePlanner versionedModulePlanner;
 
@@ -54,7 +60,6 @@ public class ModelManager extends ComponentManager implements Model {
                 SampleModulePlannerUtil.genModulePlanner(new ModulePlanner()));
     }
 
-
     //@@author Hilda-Ang
 
     /**
@@ -78,6 +83,49 @@ public class ModelManager extends ComponentManager implements Model {
         this(new ModulePlanner(), new ModuleInfo[]{}, new UserPrefs());
     }
 
+    @Override
+    public void setUpUserProfile(int year, int semester, String major, Set<String> focusAreas) {
+        UserProfile.setUp(year, semester, major, focusAreas);
+        userProfile = UserProfile.getInstance();
+    }
+
+    @Override
+    public boolean hasMajor(String major) {
+        for (Major m : Major.values()) {
+            if (m.toString().equals(major)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the {@code focusArea} is valid.
+     * The focus area is checked against a list of available
+     * focus areas offered by the relevant educational institution.
+     *
+     * @param focusArea The focus area
+     * @return True if the focus area is offered, else false
+     */
+    private boolean hasFocusArea(String focusArea) {
+        for (FocusArea fa : FocusArea.values()) {
+            if (fa.toString().equals(focusArea)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean hasFocusAreas(Set<String> focusArea) {
+        for (String fa : focusArea) {
+            if (!hasFocusArea(fa)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     //@@author
 
     @Override
@@ -94,6 +142,10 @@ public class ModelManager extends ComponentManager implements Model {
     /** Raises an event to indicate the model has changed */
     private void indicateAddressBookChanged() {
         raise(new AddressBookChangedEvent(versionedAddressBook));
+    }
+
+    private void indicateModulePlannerChanged() {
+        raise(new ModulePlannerChangedEvent(versionedModulePlanner));
     }
 
     //=========== Person methods =============================================================================
@@ -136,6 +188,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void deleteModules(List<Module> moduleCodes) {
         versionedModulePlanner.deleteModules(moduleCodes);
+        indicateModulePlannerChanged();
     }
 
     //@@author RomaRomama
