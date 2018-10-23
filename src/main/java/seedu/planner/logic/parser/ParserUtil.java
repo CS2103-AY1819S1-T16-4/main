@@ -56,7 +56,7 @@ public class ParserUtil {
      * @return The module
      * @throws ParseException if the moduleCode does not meet the constraints
      */
-    private static Module parseModuleCode(String moduleCode) throws ParseException {
+    public static Module parseModuleCode(String moduleCode) throws ParseException {
         requireNonNull(moduleCode);
         moduleCode = moduleCode.trim();
 
@@ -112,7 +112,7 @@ public class ParserUtil {
      * @return The focus rea
      * @throws ParseException if the focus area's format is wrong
      */
-    private static String parseFocusArea(String focusArea) throws ParseException {
+    public static String parseFocusArea(String focusArea) throws ParseException {
         requireNonNull(focusArea);
         if (!StringUtil.containsOnlyLettersAndWhiteSpace(focusArea)) {
             throw new ParseException(MESSAGE_FOCUS_AREA_CONSTRAINTS);

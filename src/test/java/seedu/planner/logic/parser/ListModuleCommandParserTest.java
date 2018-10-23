@@ -19,7 +19,6 @@ import seedu.planner.logic.commands.ListModuleCommand;
 //@@Hilda-Ang
 
 public class ListModuleCommandParserTest {
-    private static final String EXPECTED_YEAR_AND_SEMESTER = "y/1 s/1";
 
     private ListModuleCommandParser parser = new ListModuleCommandParser();
 
@@ -27,7 +26,7 @@ public class ListModuleCommandParserTest {
     public void parse_allFieldsPresent_success() {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE,
-            new ListModuleCommand(EXPECTED_YEAR_AND_SEMESTER));
+            new ListModuleCommand(0));
     }
 
     @Test
@@ -41,7 +40,7 @@ public class ListModuleCommandParserTest {
         assertParseFailure(parser, VALID_YEAR_DESC_ONE + VALID_SEMESTER_ONE, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_YEAR_ONE + VALID_SEMESTER_ONE, expectedMessage);
+        assertParseFailure(parser, VALID_YEAR_ONE + " " + VALID_SEMESTER_ONE, expectedMessage);
     }
 
     @Test
