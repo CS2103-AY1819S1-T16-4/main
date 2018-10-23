@@ -13,13 +13,12 @@ import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.commons.exceptions.IllegalValueException;
 import seedu.planner.commons.util.FileUtil;
 import seedu.planner.commons.util.JsonUtil;
-import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.ReadOnlyModulePlanner;
 
 // @@author rongjiecomputer
 
 /**
- * An Immutable ModulePlanner that is serializable to JSON format
+ * Represents a storage for {@link seedu.planner.model.ModulePlanner}.
  */
 public class JsonModulePlannerStorage implements ModulePlannerStorage {
     private static Logger logger = LogsCenter.getLogger(JsonModulePlannerStorage.class);
@@ -40,7 +39,7 @@ public class JsonModulePlannerStorage implements ModulePlannerStorage {
     }
 
     /**
-     * Similar to {@link #readModulePlanner}
+     * Similar to {@link #readModulePlanner()}
      * @param filePath location of the data. Cannot be null
      * @throws DataConversionException if the file is not in the correct format.
      */
