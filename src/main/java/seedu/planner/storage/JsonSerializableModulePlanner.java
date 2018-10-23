@@ -11,8 +11,8 @@ import seedu.planner.model.semester.Semester;
 
 // @@author rongjiecomputer
 
-/*
- * An Immutable {@code ModulePlanner} that is serializable to JSON format.
+/**
+ * An Immutable {@link ModulePlanner} that is serializable to JSON format.
  */
 public class JsonSerializableModulePlanner {
     private List<JsonAdaptedSemester> semesters;
@@ -32,8 +32,8 @@ public class JsonSerializableModulePlanner {
         semesters.addAll(src.getSemesters().stream().map(JsonAdaptedSemester::new).collect(Collectors.toList()));
     }
 
-    /*
-     * Converts this moduleplanner into the model's {@code ModulePlanner} object.
+    /**
+     * Converts this moduleplanner into the model's [@code ModulePlanner] object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
