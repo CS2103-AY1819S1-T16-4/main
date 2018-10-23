@@ -1063,7 +1063,7 @@ It implements the following operation:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-A valid index should be an integer between 1 to 8 inclusive, where index 1 represents year 1 semester 1, index 2 represents year 1 semester 2, and so on.
+A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
 </td>
 </tr>
 </table>
@@ -1075,11 +1075,19 @@ A valid index should be an integer between 1 to 8 inclusive, where index 1 repre
 <p>Step 1. The user launches the application. <code>ModulePlanner</code> is initialised with 8 <code>Semester</code> objects in <code>List&lt;Module&gt; semesters</code>.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>add y/1 s/1 CS1231</code>. The <code>add</code> command inserts <code>Module</code> CS1231 to the list <code>modulesTaken</code> for <code>Semester</code> object with index 1 (stored in index 0 of <code>semesters</code>).</p>
+<p>Step 2. The user executes <code>add y/1 s/1 CS1231</code>. The <code>add</code> command inserts <code>Module</code> CS1231 to the list <code>modulesTaken</code> for <code>Semester</code> object with index 0.</p>
 </div>
 <div class="paragraph">
-<p>Step 3. The user wants to see the list of modules for year 1 semester 1 by executing <code>list y/1 s/1</code>. The <code>list</code> command parses <code>y/1 s/1</code> to index 1 and calls <code>Model#getFilteredTakenModuleList(int index)</code>.
+<p>Step 3. The user wants to see the list of modules for year 1 semester 1 by executing <code>list y/1 s/1</code>. The <code>list</code> command parses <code>y/1 s/1</code> to index 0 and calls <code>Model#getFilteredTakenModuleList(int index)</code>.
 It will execute <code>ModulePlanner#listModulesTaken(int index)</code> which will call <code>Semester#getModulesTaken()</code> in the relevant <code>Semester</code>. The returned result will be a list of modules and will be displayed to the user.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the list operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ListSequenceDiagram.png" alt="ListSequenceDiagram" width="800">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -2032,4 +2040,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-23 01:47:31 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-23 04:26:35 UTC</div></div></div></body></html>
