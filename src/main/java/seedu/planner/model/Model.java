@@ -51,43 +51,10 @@ public interface Model {
     boolean hasFocusAreas(Set<String> focusArea);
 
     /** Clears existing backing model and replaces with the provided new data. */
-    void resetData(ReadOnlyAddressBook newData);
+    void resetData(ReadOnlyModulePlanner newData);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the planner book.
-     */
-    boolean hasPerson(Person person);
-
-    /**
-     * Deletes the given person.
-     * The person must exist in the planner book.
-     */
-    void deletePerson(Person target);
-
-    /**
-     * Adds the given person.
-     * {@code person} must not already exist in the planner book.
-     */
-    void addPerson(Person person);
-
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the planner book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the planner book.
-     */
-    void updatePerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    ReadOnlyModulePlanner getModulePlanner();
 
     /**
      * Checks if the module exists.
@@ -141,25 +108,25 @@ public interface Model {
     /**
      * Returns true if the model has previous planner book states to restore.
      */
-    boolean canUndoAddressBook();
+    boolean canUndoModulePlanner();
 
     /**
      * Returns true if the model has undone planner book states to restore.
      */
-    boolean canRedoAddressBook();
+    boolean canRedoModulePlanner();
 
     /**
      * Restores the model's planner book to its previous state.
      */
-    void undoAddressBook();
+    void undoModulePlanner();
 
     /**
      * Restores the model's planner book to its previously undone state.
      */
-    void redoAddressBook();
+    void redoModulePlanner();
 
     /**
      * Saves the current planner book state for undo/redo.
      */
-    void commitAddressBook();
+    void commitModulePlanner();
 }

@@ -5,32 +5,23 @@ import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
-import seedu.planner.commons.events.model.AddressBookChangedEvent;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
 import seedu.planner.model.enumeration.FocusArea;
 import seedu.planner.model.enumeration.Major;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
-import seedu.planner.model.person.Person;
-import seedu.planner.model.util.SampleModulePlannerUtil;
 
 /**
  * Represents the in-memory model of the planner book data.
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
-    // TODO: Delete this
-    private final VersionedAddressBook versionedAddressBook;
-    private final FilteredList<Person> filteredPersons;
 
     private final ModuleInfo[] moduleInfo;
 
@@ -42,22 +33,8 @@ public class ModelManager extends ComponentManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, UserPrefs userPrefs) {
-        this(addressBook, new ModuleInfo[] {}, userPrefs);
-    }
-
-    public ModelManager(ReadOnlyAddressBook addressBook, ModuleInfo[] moduleInfo, UserPrefs userPrefs) {
-        super();
-        requireAllNonNull(addressBook, userPrefs);
-
-        logger.fine("Initializing with planner book: " + addressBook + " and user prefs " + userPrefs);
-
-        versionedAddressBook = new VersionedAddressBook(addressBook);
-        filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
-
-        this.moduleInfo = moduleInfo;
-        versionedModulePlanner = new VersionedModulePlanner(
-                SampleModulePlannerUtil.genModulePlanner(new ModulePlanner()));
+    public ModelManager(ReadOnlyModulePlanner modulePlanner, UserPrefs userPrefs) {
+        this(modulePlanner, new ModuleInfo[] {}, userPrefs);
     }
 
     //@@author Hilda-Ang
@@ -73,10 +50,6 @@ public class ModelManager extends ComponentManager implements Model {
 
         versionedModulePlanner = new VersionedModulePlanner(modulePlanner);
         this.moduleInfo = moduleInfo;
-
-        //TODO: Delete this
-        this.versionedAddressBook = new VersionedAddressBook(new AddressBook());
-        filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -129,52 +102,19 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author
 
     @Override
-    public void resetData(ReadOnlyAddressBook newData) {
-        versionedAddressBook.resetData(newData);
-        indicateAddressBookChanged();
+    public void resetData(ReadOnlyModulePlanner newData) {
+        versionedModulePlanner.resetData(newData);
+        indicateModulePlannerChanged();
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return versionedAddressBook;
+    public ReadOnlyModulePlanner getModulePlanner() {
+        return versionedModulePlanner;
     }
 
     /** Raises an event to indicate the model has changed */
-    private void indicateAddressBookChanged() {
-        raise(new AddressBookChangedEvent(versionedAddressBook));
-    }
-
     private void indicateModulePlannerChanged() {
         raise(new ModulePlannerChangedEvent(versionedModulePlanner));
-    }
-
-    //=========== Person methods =============================================================================
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return versionedAddressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        versionedAddressBook.removePerson(target);
-        indicateAddressBookChanged();
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        versionedAddressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        indicateAddressBookChanged();
-    }
-
-    @Override
-    public void updatePerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        versionedAddressBook.updatePerson(target, editedPerson);
-        indicateAddressBookChanged();
     }
 
     //=========== Module methods =============================================================================
@@ -199,23 +139,6 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //@@author
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return FXCollections.unmodifiableObservableList(filteredPersons);
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
 
     // @@author rongjiecomputer
     public ModuleInfo[] getModuleInfo() {
@@ -243,30 +166,30 @@ public class ModelManager extends ComponentManager implements Model {
     //=========== Undo/Redo =================================================================================
 
     @Override
-    public boolean canUndoAddressBook() {
-        return versionedAddressBook.canUndo();
+    public boolean canUndoModulePlanner() {
+        return versionedModulePlanner.canUndo();
     }
 
     @Override
-    public boolean canRedoAddressBook() {
-        return versionedAddressBook.canRedo();
+    public boolean canRedoModulePlanner() {
+        return versionedModulePlanner.canRedo();
     }
 
     @Override
-    public void undoAddressBook() {
-        versionedAddressBook.undo();
-        indicateAddressBookChanged();
+    public void undoModulePlanner() {
+        versionedModulePlanner.undo();
+        indicateModulePlannerChanged();
     }
 
     @Override
-    public void redoAddressBook() {
-        versionedAddressBook.redo();
-        indicateAddressBookChanged();
+    public void redoModulePlanner() {
+        versionedModulePlanner.redo();
+        indicateModulePlannerChanged();
     }
 
     @Override
-    public void commitAddressBook() {
-        versionedAddressBook.commit();
+    public void commitModulePlanner() {
+        versionedModulePlanner.commit();
     }
 
     @Override
@@ -283,7 +206,6 @@ public class ModelManager extends ComponentManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return versionedAddressBook.equals(other.versionedAddressBook)
-                && filteredPersons.equals(other.filteredPersons);
+        return versionedModulePlanner.equals(other.versionedModulePlanner);
     }
 }
