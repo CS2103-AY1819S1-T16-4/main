@@ -98,6 +98,15 @@ public interface Model {
     boolean hasModule(Module module);
 
     /**
+     * Checks if the {@code Module} is offered by the
+     * relevant educational institution.
+     *
+     * @param module The module
+     * @return True if the module is offered, else false
+     */
+    boolean isModuleOffered(Module module);
+
+    /**
      * Deletes the modules.
      *
      * @param modules The modules

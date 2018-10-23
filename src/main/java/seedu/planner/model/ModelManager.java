@@ -19,8 +19,10 @@ import seedu.planner.model.enumeration.FocusArea;
 import seedu.planner.model.enumeration.Major;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
+import seedu.planner.model.module.ModuleType;
 import seedu.planner.model.person.Person;
 import seedu.planner.model.util.SampleModulePlannerUtil;
+import seedu.planner.storage.ModuleInfoStorage;
 
 /**
  * Represents the in-memory model of the planner book data.
@@ -191,11 +193,39 @@ public class ModelManager extends ComponentManager implements Model {
         indicateModulePlannerChanged();
     }
 
+    @Override
+    public boolean isModuleOffered(Module module) {
+        for (ModuleInfo mi : moduleInfo) {
+            if (mi.getCode().equals(module.getCode())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Retrieves the actual module information of the {@code module}
+     * from {@code moduleInfo} and returns a new module based on
+     * the actual module information.
+     *
+     * @param module The module to be retrieved
+     * @return The module with the actual module information
+     */
+    private Module finalizeModule(Module module) {
+        for (ModuleInfo mi : moduleInfo) {
+            if (mi.getCode().equals(module.getCode())) {
+                return new Module(ModuleType.PROGRAMME_REQUIREMENTS, mi);
+            }
+        }
+        return new Module("Unknown");
+    }
+
     //@@author RomaRomama
 
     @Override
     public void addModules(List<Module> modules, int index) {
         versionedModulePlanner.addModules(modules, index);
+        indicateModulePlannerChanged();
     }
 
     //@@author
