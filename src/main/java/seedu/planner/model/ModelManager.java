@@ -5,6 +5,7 @@ import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -195,12 +196,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public boolean isModuleOffered(Module module) {
-        for (ModuleInfo mi : moduleInfo) {
-            if (mi.getCode().equals(module.getCode())) {
-                return true;
-            }
-        }
-        return false;
+        return ModuleInfo.getFromModuleCode(module.getCode()).isPresent();
     }
 
     /**
@@ -212,10 +208,9 @@ public class ModelManager extends ComponentManager implements Model {
      * @return The module with the actual module information
      */
     private Module finalizeModule(Module module) {
-        for (ModuleInfo mi : moduleInfo) {
-            if (mi.getCode().equals(module.getCode())) {
-                return new Module(ModuleType.PROGRAMME_REQUIREMENTS, mi);
-            }
+        Optional<ModuleInfo> optModuleInfo = ModuleInfo.getFromModuleCode(module.getCode());
+        if (optModuleInfo.isPresent()) {
+            return new Module(ModuleType.PROGRAMME_REQUIREMENTS, optModuleInfo.get());
         }
         return new Module("Unknown");
     }
