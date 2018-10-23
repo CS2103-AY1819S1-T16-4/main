@@ -23,19 +23,19 @@ public interface ModulePlannerStorage {
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      */
-    Optional<ModulePlanner> readModulePlanner() throws DataConversionException;
+    Optional<ReadOnlyModulePlanner> readModulePlanner() throws DataConversionException;
 
     /**
      * @see #readModulePlanner()
      */
-    Optional<ModulePlanner> readModulePlanner(Path filePath) throws DataConversionException;
+    Optional<ReadOnlyModulePlanner> readModulePlanner(Path filePath) throws DataConversionException;
 
     /**
      * Saves the given {@link ReadOnlyModulePlanner} to the storage.
-     * @param addressBook cannot be null.
+     * @param modulePlanner cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveModulePlanner(ReadOnlyModulePlanner addressBook) throws IOException;
+    void saveModulePlanner(ReadOnlyModulePlanner modulePlanner) throws IOException;
 
     /**
      * @see #saveModulePlanner(ReadOnlyModulePlanner)

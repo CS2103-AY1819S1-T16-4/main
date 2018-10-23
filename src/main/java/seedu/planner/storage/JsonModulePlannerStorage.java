@@ -35,7 +35,7 @@ public class JsonModulePlannerStorage implements ModulePlannerStorage {
     }
 
     @Override
-    public Optional<ModulePlanner> readModulePlanner() throws DataConversionException {
+    public Optional<ReadOnlyModulePlanner> readModulePlanner() throws DataConversionException {
         return readModulePlanner(filePath);
     }
 
@@ -44,7 +44,7 @@ public class JsonModulePlannerStorage implements ModulePlannerStorage {
      * @param filePath location of the data. Cannot be null
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ModulePlanner> readModulePlanner(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyModulePlanner> readModulePlanner(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         if (!Files.exists(filePath)) {
@@ -56,7 +56,7 @@ public class JsonModulePlannerStorage implements ModulePlannerStorage {
             filePath, JsonSerializableModulePlanner.class);
         try {
             if (jsonModulePlanner.isPresent()) {
-                return Optional.of(jsonModulePlanner.get().toModelType());
+                return Optional.<ReadOnlyModulePlanner>of(jsonModulePlanner.get().toModelType());
             }
             return Optional.empty();
         } catch (IllegalValueException ive) {
@@ -66,8 +66,8 @@ public class JsonModulePlannerStorage implements ModulePlannerStorage {
     }
 
     @Override
-    public void saveModulePlanner(ReadOnlyModulePlanner addressBook) throws IOException {
-        saveModulePlanner(addressBook, filePath);
+    public void saveModulePlanner(ReadOnlyModulePlanner modulePlanner) throws IOException {
+        saveModulePlanner(modulePlanner, filePath);
     }
 
     /**

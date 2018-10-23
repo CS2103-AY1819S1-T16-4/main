@@ -10,6 +10,7 @@ import seedu.planner.model.ReadOnlyModulePlanner;
 import seedu.planner.model.semester.Semester;
 
 // @@author rongjiecomputer
+
 /*
  * An Immutable {@code ModulePlanner} that is serializable to JSON format.
  */
@@ -34,8 +35,7 @@ public class JsonSerializableModulePlanner {
     /*
      * Converts this moduleplanner into the model's {@code ModulePlanner} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated or duplicates in the
-     * {@code XmlAdaptedPerson}.
+     * @throws IllegalValueException if there were any data constraints violated.
      */
     public ModulePlanner toModelType() throws IllegalValueException {
         ModulePlanner planner = new ModulePlanner();
