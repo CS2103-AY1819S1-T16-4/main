@@ -26,7 +26,7 @@ public class DeleteModuleCommand extends Command {
             + "Parameters: "
             + PREFIX_CODE + "MODULE CODE "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_CODE + "CS2103T ";
+            + PREFIX_CODE + "CS2103T";
 
     public static final String MESSAGE_DELETE_MODULES_SUCCESS = "Deleted Module(s): %1$s";
 

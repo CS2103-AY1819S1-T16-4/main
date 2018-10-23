@@ -175,6 +175,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean isModuleOffered(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         //@@author RomaRomama
         @Override
         public void addModules(List<Module> modules, int index) {

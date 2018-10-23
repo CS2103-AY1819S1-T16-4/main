@@ -472,16 +472,20 @@ It implements the following operation:
 The operation is exposed in `Model` interface as `Model#getFilteredTakenModuleList(int index)`.
 
 [NOTE]
-A valid index should be an integer between 1 to 8 inclusive, where index 1 represents year 1 semester 1, index 2 represents year 1 semester 2, and so on.
+A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
 
 Below is an example usage scenario and how the list mechanism works.
 
 Step 1. The user launches the application. `ModulePlanner` is initialised with 8 `Semester` objects in `List<Module> semesters`.
 
-Step 2. The user executes `add y/1 s/1 CS1231`. The `add` command inserts `Module` CS1231 to the list `modulesTaken` for `Semester` object with index 1 (stored in index 0 of `semesters`).
+Step 2. The user executes `add y/1 s/1 CS1231`. The `add` command inserts `Module` CS1231 to the list `modulesTaken` for `Semester` object with index 0.
 
-Step 3. The user wants to see the list of modules for year 1 semester 1 by executing `list y/1 s/1`. The `list` command parses `y/1 s/1` to index 1 and calls `Model#getFilteredTakenModuleList(int index)`.
+Step 3. The user wants to see the list of modules for year 1 semester 1 by executing `list y/1 s/1`. The `list` command parses `y/1 s/1` to index 0 and calls `Model#getFilteredTakenModuleList(int index)`.
 It will execute `ModulePlanner#listModulesTaken(int index)` which will call `Semester#getModulesTaken()` in the relevant `Semester`. The returned result will be a list of modules and will be displayed to the user.
+
+The following sequence diagram shows how the list operation works:
+
+image::ListSequenceDiagram.png[width="800"]
 
 ==== Design Considerations
 

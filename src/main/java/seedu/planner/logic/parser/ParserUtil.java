@@ -4,9 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_FOCUS_AREA_CONSTRAINTS;
 import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_MAJOR_CONSTRAINTS;
 import static seedu.planner.model.module.ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS;
-import static seedu.planner.model.tab.Tab.MESSAGE_TAB_NAME_CONSTRAINTS;
-import static seedu.planner.model.tab.Tab.TAB_NAME_REGEX;
-import static seedu.planner.model.util.IndexUtil.convertYearAndSemesterToIndex;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -60,6 +57,7 @@ public class ParserUtil {
      * @throws ParseException if the moduleCode does not meet the constraints
      */
     private static Module parseModuleCode(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
         moduleCode = moduleCode.trim();
 
         if (moduleCode.isEmpty()) {
@@ -88,27 +86,6 @@ public class ParserUtil {
         }
 
         return modules;
-    }
-
-    /**
-     * Parses the tab name into its respective index.
-     *
-     * @param tabName The tab name
-     * @return The index if the tab name is valid
-     * @throws ParseException if the tab name is invalid
-     */
-    public static int parseTabName(String tabName) throws ParseException {
-        requireNonNull(tabName);
-        tabName = tabName.trim();
-        if (!tabName.matches(TAB_NAME_REGEX)) {
-            throw new ParseException(MESSAGE_TAB_NAME_CONSTRAINTS);
-        }
-
-        String[] characters = tabName.split("");
-        int year = Integer.parseInt(characters[1]);
-        int semester = Integer.parseInt(characters[3]);
-
-        return convertYearAndSemesterToIndex(year, semester);
     }
 
     /**

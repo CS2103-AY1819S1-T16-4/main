@@ -63,7 +63,7 @@ public class SetUpCommand extends Command {
 
         if (!IndexUtil.isValidYear(year) && !IndexUtil.isValidSemester(semester)
                 && !model.hasMajor(major) && !model.hasFocusAreas(focusAreas)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+            throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
         }
 
         model.setUpUserProfile(year, semester, major, focusAreas);

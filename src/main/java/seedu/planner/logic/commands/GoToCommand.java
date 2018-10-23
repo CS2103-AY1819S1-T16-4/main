@@ -1,8 +1,16 @@
 package seedu.planner.logic.commands;
 
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
+import static seedu.planner.model.util.IndexUtil.convertYearAndSemesterToIndex;
+import static seedu.planner.model.util.IndexUtil.isValidSemester;
+import static seedu.planner.model.util.IndexUtil.isValidYear;
+
 import seedu.planner.commons.core.EventsCenter;
+import seedu.planner.commons.core.Messages;
 import seedu.planner.commons.events.ui.TabSwitchEvent;
 import seedu.planner.logic.CommandHistory;
+import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 
 //@@author GabrielYik
@@ -15,32 +23,38 @@ public class GoToCommand extends Command {
     public static final String COMMAND_WORD = "goto";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes from one tab to another.\n"
-            + "Parameters: TABNAME\n"
-            + "Example: " + COMMAND_WORD + "y1s1";
+            + "Parameters: "
+            + PREFIX_YEAR + "YEAR "
+            + PREFIX_SEMESTER + "SEMESTER "
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_YEAR + "1" + " "
+            + PREFIX_SEMESTER + "2";
 
-    public static final String SHOWING_GOTO_MESSAGE = "Go to %1$s";
+    public static final String SHOWING_GOTO_MESSAGE = "Go to Y%1$sS%2$s";
 
-    private final int tabIndex;
-    private final String tabName;
+    private final int year;
+    private final int semester;
 
     /**
      * Constructs a {@code GoToCommand}.
-     * The {@code tabName} refers to the name seen on the tab in the ui. For e.g. Y1S2.
-     * The {@code tabIndex} refers to the zero-based index of the tab in the ui.
-     * For e.g. the leftmost tab, which name is Y1S1, has an index of 0.
      *
-     * @param tabName The name of the tab
-     * @param tabIndex The index of the tab
+     * @param year The year to go to
+     * @param semester The semester in the year to go to
      */
-    public GoToCommand(String tabName, int tabIndex) {
-        this.tabName = tabName;
-        this.tabIndex = tabIndex;
+    public GoToCommand(int year, int semester) {
+        this.year = year;
+        this.semester = semester;
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory commandHistory) {
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
+        if (!isValidYear(year) && !isValidSemester(semester)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
+        }
+
+        int tabIndex = convertYearAndSemesterToIndex(year, semester);
         EventsCenter.getInstance().post(new TabSwitchEvent(tabIndex));
-        return new CommandResult(String.format(SHOWING_GOTO_MESSAGE, tabName));
+        return new CommandResult(String.format(SHOWING_GOTO_MESSAGE, year, semester));
     }
 
     @Override
@@ -55,7 +69,6 @@ public class GoToCommand extends Command {
         }
 
         GoToCommand command = (GoToCommand) other;
-        return this.tabName.equals(command.tabName)
-                && this.tabIndex == command.tabIndex;
+        return this.year == command.year && this.semester == command.semester;
     }
 }

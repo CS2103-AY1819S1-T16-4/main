@@ -2,10 +2,14 @@ package seedu.planner.commons.util;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static seedu.planner.commons.util.StringUtil.containsOnlyLettersAndWhiteSpace;
+import static seedu.planner.commons.util.StringUtil.convertCollectionToString;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.Rule;
@@ -153,5 +157,52 @@ public class StringUtilTest {
     public void getDetails_nullGiven_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         StringUtil.getDetails(null);
+    }
+
+    //------------- Tests for containsOnlyLettersAndWhiteSpace ----------------
+
+    @Test
+    public void containsOnlyLettersAndWhiteSpace_validArg_returnsTrue() {
+        // No space
+        assertTrue(containsOnlyLettersAndWhiteSpace("Software"));
+        // One space
+        assertTrue(containsOnlyLettersAndWhiteSpace("Software Engineering"));
+        // Two spaces
+        assertTrue(containsOnlyLettersAndWhiteSpace("Software  Engineering"));
+    }
+
+    @Test
+    public void containsOnlyLettersAndWhiteSpace_invalidArg_returnsFalse() {
+        // Space on right
+        assertFalse(containsOnlyLettersAndWhiteSpace("Software "));
+        // Space on left
+        assertFalse(containsOnlyLettersAndWhiteSpace(" Software "));
+
+        // One space
+        assertFalse(containsOnlyLettersAndWhiteSpace(" "));
+        // Two spaces
+        assertFalse(containsOnlyLettersAndWhiteSpace("  "));
+
+        // Empty String
+        assertFalse(containsOnlyLettersAndWhiteSpace(""));
+    }
+
+    @Test
+    public void containsOnlyLettersAndWhiteSpace_nullGiven_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        containsOnlyLettersAndWhiteSpace(null);
+    }
+
+    //-------------- Tests for convertCollectionToString -------------------
+
+    @Test
+    public void convertCollectionToString_validArg_returnsString() {
+        assertEquals(convertCollectionToString(List.of(1, 2, 3, 4)), "1 2 3 4");
+    }
+
+    @Test
+    public void convertCollectionToString_nullGiven_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        convertCollectionToString(null);
     }
 }

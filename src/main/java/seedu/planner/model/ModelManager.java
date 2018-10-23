@@ -3,6 +3,7 @@ package seedu.planner.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -19,6 +20,7 @@ import seedu.planner.model.enumeration.FocusArea;
 import seedu.planner.model.enumeration.Major;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
+import seedu.planner.model.module.ModuleType;
 import seedu.planner.model.person.Person;
 import seedu.planner.model.util.SampleModulePlannerUtil;
 
@@ -191,11 +193,57 @@ public class ModelManager extends ComponentManager implements Model {
         indicateModulePlannerChanged();
     }
 
+    @Override
+    public boolean isModuleOffered(Module module) {
+        for (ModuleInfo mi : moduleInfo) {
+            if (mi.getCode().equals(module.getCode())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Retrieves the actual module information of the {@code module}
+     * from {@code moduleInfo} and {@code finalizes} that module
+     * with the actual module information.
+     *
+     * @param module The module to be finalized
+     * @return The module with the actual module information
+     */
+    private Module finalizeModule(Module module) {
+        for (ModuleInfo mi : moduleInfo) {
+            if (mi.getCode().equals(module.getCode())) {
+                return new Module(ModuleType.PROGRAMME_REQUIREMENTS, mi);
+            }
+        }
+        return new Module("Unknown");
+    }
+
+    /**
+     * Retrieves the actual module information of the {@code modules}
+     * and finalizes the modules with their actual module information.
+     * Individual modules are finalized using the method
+     * {@link #finalizeModule(Module) finalizeModule}.
+     *
+     * @param modules The modules to be finalized
+     * @return The modules with their actual module information
+     */
+    public List<Module> finalizeModules(List<Module> modules) {
+        List<Module> finalizedModules = new ArrayList<>();
+        for (Module m : modules) {
+            finalizedModules.add(finalizeModule(m));
+        }
+        return finalizedModules;
+    }
+
     //@@author RomaRomama
 
     @Override
     public void addModules(List<Module> modules, int index) {
-        versionedModulePlanner.addModules(modules, index);
+        List<Module> finalizedModules = finalizeModules(modules);
+        versionedModulePlanner.addModules(finalizedModules, index);
+        indicateModulePlannerChanged();
     }
 
     //@@author
