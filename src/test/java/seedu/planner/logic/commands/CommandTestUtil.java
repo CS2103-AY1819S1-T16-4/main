@@ -37,14 +37,14 @@ public class CommandTestUtil {
     public static final String MODULE_DESC_CS1010 = " " + PREFIX_CODE + VALID_MODULE_CS1010;
     public static final String MODULE_DESC_CS1231 = " " + PREFIX_CODE + VALID_MODULE_CS1231;
 
-    public static final int VALID_YEAR_ONE = 1;
-    public static final int VALID_SEMESTER_ONE = 1;
+    public static final String VALID_YEAR_ONE = "1";
+    public static final String VALID_SEMESTER_ONE = "1;
 
     public static final String VALID_YEAR_DESC_ONE = " " + PREFIX_YEAR + VALID_YEAR_ONE;
     public static final String VALID_SEMESTER_DESC_ONE = " " + PREFIX_SEMESTER + VALID_SEMESTER_ONE;
 
-    public static final int INVALID_YEAR_FIVE = 5;
-    public static final int INVALID_SEMESTER_THREE = 3;
+    public static final String INVALID_YEAR_FIVE = "5";
+    public static final String INVALID_SEMESTER_THREE = "3";
 
     public static final String INVALID_YEAR_DESC_FIVE = " " + PREFIX_YEAR + INVALID_YEAR_FIVE;
     public static final String INVALID_SEMESTER_DESC_THREE = " " + PREFIX_SEMESTER + INVALID_SEMESTER_THREE;

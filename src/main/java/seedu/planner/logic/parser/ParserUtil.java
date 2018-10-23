@@ -29,8 +29,8 @@ import seedu.planner.model.util.ModuleUtil;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    private static final String MESSAGE_INVALID_YEAR = "Year is not between 1 to 4.";
-    private static final String MESSAGE_INVALID_SEMESTER = "Semester is not between 1 to 2.";
+    public static final String MESSAGE_INVALID_YEAR = "Year is not between 1 to 4.";
+    public static final String MESSAGE_INVALID_SEMESTER = "Semester is not between 1 to 2.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
