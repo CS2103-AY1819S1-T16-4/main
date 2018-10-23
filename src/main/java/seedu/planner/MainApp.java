@@ -96,7 +96,7 @@ public class MainApp extends Application {
             moduleInfoOptional = storage.readModuleInfo();
             if (!moduleInfoOptional.isPresent()) {
                 logger.info("Module info file not found. Will be starting with a sample module database");
-                // TODO(rongjiecomputer) Actually use sample data.
+                // TODO(rongjiecomputer) Actually use sample data when #108 is merged.
                 initialModuleInfo = new ModuleInfo[] {};
             } else {
                 initialModuleInfo = moduleInfoOptional.get();
