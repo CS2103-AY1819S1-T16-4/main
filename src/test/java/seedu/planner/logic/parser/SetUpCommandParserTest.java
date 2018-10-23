@@ -20,7 +20,7 @@ import seedu.planner.logic.commands.SetUpCommand;
 
 public class SetUpCommandParserTest {
 
-    SetUpCommandParser parser = new SetUpCommandParser();
+    private SetUpCommandParser parser = new SetUpCommandParser();
 
     @Test
     public void parse_validArgs_returnsGoToCommand() {
