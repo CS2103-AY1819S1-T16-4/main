@@ -9,6 +9,8 @@ import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,6 +19,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 import seedu.planner.MainApp;
+import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.commons.util.JsonUtil;
 
@@ -37,17 +40,22 @@ public class ModuleInfo {
      * Class to retrieve {@code ModuleInfo} from JSON file packaged in JAR file.
      */
     public static class ModuleInfoRetriever {
-        public static final String MODULE_INFO_FILE_PATH = "/data/moduleInfo.json";
+        private static final String MODULE_INFO_FILE_PATH = "/data/moduleInfo.json";
+        private static Logger logger = LogsCenter.getLogger(ModuleInfoRetriever.class);
 
         private static ModuleInfoRetriever instance = null;
 
         private ModuleInfo[] moduleInfoList;
 
-        private ModuleInfoRetriever() throws DataConversionException {
+        private ModuleInfoRetriever() {
             try {
                 URI path = MainApp.class.getResource(MODULE_INFO_FILE_PATH).toURI();
                 moduleInfoList = JsonUtil.readJsonFile(Paths.get(path), ModuleInfo[].class).get();
             } catch (URISyntaxException e) {
+                logger.warning("Problem while reading from resource file. Will be starting with an empty module database");
+                moduleInfoList = new ModuleInfo[] {};
+            } catch (DataConversionException e) {
+                logger.warning("Problem while reading from resource file. Will be starting with an empty module database");
                 moduleInfoList = new ModuleInfo[] {};
             }
         }
@@ -57,7 +65,7 @@ public class ModuleInfo {
          *
          * @throws DataConversionException
          */
-        public static ModuleInfoRetriever getInstance() throws DataConversionException {
+        public static ModuleInfoRetriever getInstance() {
             if (instance == null) {
                 instance = new ModuleInfoRetriever();
             }
@@ -238,11 +246,7 @@ public class ModuleInfo {
      * @param moduleCode Module code
      */
     public static Optional<ModuleInfo> getFromModuleCode(String moduleCode) {
-        try {
-            return ModuleInfoRetriever.getInstance().getFromModuleCode(moduleCode);
-        } catch (DataConversionException e) {
-            return Optional.empty();
-        }
+        return ModuleInfoRetriever.getInstance().getFromModuleCode(moduleCode);
     }
 
     @Override

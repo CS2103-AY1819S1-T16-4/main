@@ -41,7 +41,7 @@ import seedu.planner.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 2, 0, true);
+    public static final Version VERSION = new Version(1, 3, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -55,7 +55,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Module Planner ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -86,15 +86,9 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
-        ModuleInfo[] initialModuleInfo;
 
-        try {
-            ModuleInfo.ModuleInfoRetriever retriever = ModuleInfo.ModuleInfoRetriever.getInstance();
-            initialModuleInfo = retriever.getModuleInfoList();
-        } catch (DataConversionException e) {
-            logger.warning("Problem while reading from resource file. Will be starting with an empty module database");
-            initialModuleInfo = new ModuleInfo[] {};
-        }
+        ModuleInfo.ModuleInfoRetriever retriever = ModuleInfo.ModuleInfoRetriever.getInstance();
+        ModuleInfo[] initialModuleInfo = retriever.getModuleInfoList();
 
         try {
             addressBookOptional = storage.readAddressBook();
@@ -197,7 +191,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Module Planner ] =============================");
         ui.stop();
         try {
             storage.saveUserPrefs(userPrefs);
