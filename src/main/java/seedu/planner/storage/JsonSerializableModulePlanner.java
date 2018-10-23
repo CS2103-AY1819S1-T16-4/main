@@ -11,7 +11,7 @@ import seedu.planner.model.semester.Semester;
 
 // @@author rongjiecomputer
 /*
- * An Immutable ModulePlanner that is serializable to JSON format
+ * An Immutable {@code ModulePlanner} that is serializable to JSON format.
  */
 public class JsonSerializableModulePlanner {
     private List<JsonAdaptedSemester> semesters;
@@ -24,7 +24,7 @@ public class JsonSerializableModulePlanner {
     }
 
     /**
-     * Conversion
+     * Conversion.
      */
     public JsonSerializableModulePlanner(ReadOnlyModulePlanner src) {
         this();

@@ -2,12 +2,11 @@ package seedu.planner.storage;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.logging.Logger;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.exceptions.DataConversionException;

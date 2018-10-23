@@ -9,7 +9,6 @@ import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -52,10 +51,12 @@ public class ModuleInfo {
                 URI path = MainApp.class.getResource(MODULE_INFO_FILE_PATH).toURI();
                 moduleInfoList = JsonUtil.readJsonFile(Paths.get(path), ModuleInfo[].class).get();
             } catch (URISyntaxException e) {
-                logger.warning("Problem while reading from resource file. Will be starting with an empty module database");
+                logger.warning("Problem while reading from resource file. "
+                    + "Will be starting with an empty module database");
                 moduleInfoList = new ModuleInfo[] {};
             } catch (DataConversionException e) {
-                logger.warning("Problem while reading from resource file. Will be starting with an empty module database");
+                logger.warning("Problem while reading from resource file. "
+                    + "Will be starting with an empty module database");
                 moduleInfoList = new ModuleInfo[] {};
             }
         }
