@@ -33,6 +33,9 @@ public class ModuleInfo {
 
     private static ImmutableMap<String, ModuleInfo> codeToModuleInfoMap = null;
 
+    /**
+     * Class to retrieve {@code ModuleInfo} from JSON file packaged in JAR file.
+     */
     public static class ModuleInfoRetriever {
         public static final String MODULE_INFO_FILE_PATH = "/data/moduleInfo.json";
 
