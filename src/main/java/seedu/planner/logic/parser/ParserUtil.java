@@ -97,6 +97,7 @@ public class ParserUtil {
      * @throws ParseException if the major's format is wrong
      */
     public static String parseMajor(String major) throws ParseException {
+        requireNonNull(major);
         if (!StringUtil.containsOnlyLettersAndWhiteSpace(major)) {
             throw new ParseException(MESSAGE_MAJOR_CONSTRAINTS);
         }
