@@ -76,7 +76,7 @@ public class DeleteModuleCommand extends Command {
         }
 
         DeleteModuleCommand command = (DeleteModuleCommand) other;
-        return modulesToDelete.stream().allMatch(
-                x -> command.modulesToDelete.stream().anyMatch(y -> y.equals(x)));
+        return modulesToDelete.stream().allMatch(x ->
+            command.modulesToDelete.stream().anyMatch(y -> y.equals(x)));
     }
 }
