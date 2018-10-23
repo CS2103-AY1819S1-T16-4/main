@@ -37,9 +37,9 @@ public class JsonAdaptedSemester {
         index = sem.getIndex();
         year = sem.getYear();
         modulesTaken = sem.getModulesTaken().stream().map(
-                m -> new JsonAdaptedModule(m)).collect(Collectors.toList());
+            m -> new JsonAdaptedModule(m)).collect(Collectors.toList());
         modulesAvailable = sem.getModulesAvailable().stream().map(
-                m -> new JsonAdaptedModule(m)).collect(Collectors.toList());
+            m -> new JsonAdaptedModule(m)).collect(Collectors.toList());
     }
 
     public Semester toModelType() throws IllegalValueException {

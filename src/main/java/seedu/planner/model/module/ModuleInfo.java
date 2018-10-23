@@ -4,11 +4,8 @@ package seedu.planner.model.module;
 
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
@@ -22,7 +19,6 @@ import com.google.common.collect.ImmutableMap;
 import seedu.planner.MainApp;
 import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.commons.util.JsonUtil;
-import seedu.planner.storage.JsonAdaptedModule;
 
 /**
  * Represents an immutable {@code ModuleInfo} class.
@@ -34,6 +30,8 @@ public class ModuleInfo {
             + "where WX(Y) refers to a prefix like CS or CEG that describes the type of the module, "
             + "1234 refers to a sequence of positive numbers, "
             + "and (Z) refers to an optional postfix.";
+
+    private static ImmutableMap<String, ModuleInfo> codeToModuleInfoMap = null;
 
     public static class ModuleInfoRetriever {
         public static final String MODULE_INFO_FILE_PATH = "/data/moduleInfo.json";
@@ -51,6 +49,11 @@ public class ModuleInfo {
             }
         }
 
+        /**
+         * Get singleton instance of {@code ModuleInfoRetriever}.
+         *
+         * @throws DataConversionException
+         */
         public static ModuleInfoRetriever getInstance() throws DataConversionException {
             if (instance == null) {
                 instance = new ModuleInfoRetriever();
@@ -100,8 +103,6 @@ public class ModuleInfo {
     private String name;
 
     private ModuleType[] possibleTypes;
-
-    private static ImmutableMap<String, ModuleInfo> codeToModuleInfoMap = null;
 
     /**
      * Module credit. We set the type to be float because some modules have 0.5 MC.

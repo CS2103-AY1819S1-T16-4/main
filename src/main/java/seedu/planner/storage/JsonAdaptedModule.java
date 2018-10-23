@@ -11,8 +11,8 @@ import seedu.planner.model.module.ModuleType;
  * JSON serializable {@code Module} class.
  */
 public class JsonAdaptedModule {
-    public String type;
-    public String moduleCode;
+    private String type;
+    private String moduleCode;
 
     /**
      * Default constructor for JSON deserialization.
