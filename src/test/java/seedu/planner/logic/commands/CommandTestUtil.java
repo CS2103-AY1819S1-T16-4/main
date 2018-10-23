@@ -3,6 +3,7 @@ package seedu.planner.logic.commands;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -25,6 +26,12 @@ import seedu.planner.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+
+    public static final String VALID_MODULE_CS1010 = "CS1010";
+    public static final String VALID_MODULE_CS1231 = "CS1231";
+
+    public static final String MODULE_DESC_CS1010 = " " + PREFIX_CODE + VALID_MODULE_CS1010;
+    public static final String MODULE_DESC_CS1231 = " " + PREFIX_CODE + VALID_MODULE_CS1231;
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
