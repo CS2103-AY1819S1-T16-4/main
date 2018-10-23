@@ -4,13 +4,11 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.commons.util.StringUtil.containsOnlyLettersAndWhiteSpace;
 import static seedu.planner.commons.util.StringUtil.convertCollectionToString;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

@@ -5,6 +5,9 @@ import static seedu.planner.model.util.IndexUtil.convertYearAndSemesterToIndex;
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.semester.Semester;
 
+/**
+ * A class that generates a sample module planner for testing.
+ */
 public class SampleModulePlanner {
     /**
      * Generates a sample {@code ModulePlanner}.

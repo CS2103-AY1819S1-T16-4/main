@@ -1,19 +1,13 @@
 package seedu.planner.testutil;
 
-import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
-import seedu.planner.model.semester.Semester;
-import seedu.planner.model.util.SampleModulesUtil;
 
 /**
- * A utility class containing a list of {@code Module} objects to be used in tests.
+ * A utility class that generates sample modules for testing.
  */
 public class SampleModules {
 

@@ -26,8 +26,8 @@ import seedu.planner.testutil.SampleModules;
 public class DeleteModuleCommandParserTest {
 
     private DeleteModuleCommandParser parser = new DeleteModuleCommandParser();
-    List<Module> list1 = SampleModules.getModules(0,1);
-    List<Module> list2 = SampleModules.getModules(0,2);
+    private List<Module> list1 = SampleModules.getModules(0, 1);
+    private List<Module> list2 = SampleModules.getModules(0, 2);
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
