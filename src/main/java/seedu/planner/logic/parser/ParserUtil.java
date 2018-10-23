@@ -60,6 +60,7 @@ public class ParserUtil {
      * @throws ParseException if the moduleCode does not meet the constraints
      */
     private static Module parseModuleCode(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
         moduleCode = moduleCode.trim();
 
         if (moduleCode.isEmpty()) {
