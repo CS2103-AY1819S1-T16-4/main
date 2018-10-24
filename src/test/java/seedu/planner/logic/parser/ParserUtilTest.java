@@ -231,22 +231,6 @@ public class ParserUtilTest {
     // Test for Module Planner
 
     @Test
-    public void parseModuleCode_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseModuleCode((String) null));
-    }
-
-    @Test
-    public void parseModuleCode_invalidValue_throwsParseException() {
-        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseModuleCode(INVALID_MODULE_CODE_1));
-    }
-
-    @Test
-    public void parseModuleCode_validValue_returnsModule() throws Exception {
-        Module expectedModule = new Module(VALID_MODULE_CODE_1);
-        assertEquals(expectedModule, ParserUtil.parseModuleCode(VALID_MODULE_CODE_1));
-    }
-
-    @Test
     public void parseModuleCodes_null_throwsNullPointerException() throws Exception {
         thrown.expect(NullPointerException.class);
         ParserUtil.parseModuleCodes(null);
@@ -287,22 +271,6 @@ public class ParserUtilTest {
     public void parseMajor_validValue_returnsMajor() throws Exception {
         String expectedMajor = VALID_MAJOR;
         assertEquals(expectedMajor, ParserUtil.parseMajor(VALID_MAJOR));
-    }
-
-    @Test
-    public void parseFocusArea_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseFocusArea((String) null));
-    }
-
-    @Test
-    public void parseFocusArea_invalidValue_throwsParseException() {
-        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseFocusArea(INVALID_FOCUS_AREA_1));
-    }
-
-    @Test
-    public void parseFocusArea_validValue_returnsFocusArea() throws Exception {
-        String expectedFocusArea = VALID_FOCUS_AREA_1;
-        assertEquals(expectedFocusArea, ParserUtil.parseFocusArea(VALID_FOCUS_AREA_1));
     }
 
     @Test
