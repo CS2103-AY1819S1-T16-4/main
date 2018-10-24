@@ -1,7 +1,6 @@
 package seedu.planner.logic.commands;
 
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.Before;
 import org.junit.Test;
