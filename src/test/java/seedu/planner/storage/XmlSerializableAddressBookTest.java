@@ -12,7 +12,6 @@ import org.junit.rules.ExpectedException;
 import seedu.planner.commons.exceptions.IllegalValueException;
 import seedu.planner.commons.util.XmlUtil;
 import seedu.planner.model.AddressBook;
-import seedu.planner.testutil.TypicalPersons;
 
 public class XmlSerializableAddressBookTest {
 
@@ -29,7 +28,7 @@ public class XmlSerializableAddressBookTest {
         XmlSerializableAddressBook dataFromFile = XmlUtil.getDataFromFile(TYPICAL_PERSONS_FILE,
                 XmlSerializableAddressBook.class);
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
+        AddressBook typicalPersonsAddressBook = new AddressBook();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 
