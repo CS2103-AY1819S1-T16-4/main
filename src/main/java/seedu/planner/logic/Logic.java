@@ -5,7 +5,6 @@ import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.Module;
-import seedu.planner.model.person.Person;
 
 /**
  * API of the Logic component

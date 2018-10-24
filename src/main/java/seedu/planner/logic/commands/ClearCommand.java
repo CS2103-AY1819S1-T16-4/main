@@ -3,7 +3,6 @@ package seedu.planner.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.planner.logic.CommandHistory;
-import seedu.planner.model.AddressBook;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;
 

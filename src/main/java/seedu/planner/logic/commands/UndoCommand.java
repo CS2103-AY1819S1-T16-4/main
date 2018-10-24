@@ -1,7 +1,6 @@
 package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.planner.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
@@ -25,7 +24,6 @@ public class UndoCommand extends Command {
         }
 
         model.undoModulePlanner();
-//        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
