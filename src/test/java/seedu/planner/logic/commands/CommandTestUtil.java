@@ -1,31 +1,17 @@
 package seedu.planner.logic.commands;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_FOCUS_AREA;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import seedu.planner.commons.core.index.Index;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.AddressBook;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;
-import seedu.planner.model.person.NameContainsKeywordsPredicate;
-import seedu.planner.model.person.Person;
-import seedu.planner.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
