@@ -11,13 +11,13 @@ import guitests.guihandles.CommandBoxHandle;
 import javafx.scene.input.KeyCode;
 import seedu.planner.logic.Logic;
 import seedu.planner.logic.LogicManager;
-import seedu.planner.logic.commands.ListModuleCommand;
+import seedu.planner.logic.commands.ClearCommand;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
 
 public class CommandBoxTest extends GuiUnitTest {
 
-    private static final String COMMAND_THAT_SUCCEEDS = ListModuleCommand.COMMAND_WORD;
+    private static final String COMMAND_THAT_SUCCEEDS = ClearCommand.COMMAND_WORD;
     private static final String COMMAND_THAT_FAILS = "invalid command";
 
     private ArrayList<String> defaultStyleOfCommandBox;
