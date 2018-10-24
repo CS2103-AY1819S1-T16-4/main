@@ -14,7 +14,6 @@ import java.util.List;
 import org.junit.Test;
 
 import seedu.planner.commons.core.index.Index;
-import seedu.planner.logic.commands.DeleteCommand;
 import seedu.planner.logic.commands.FindCommand;
 import seedu.planner.logic.commands.RedoCommand;
 import seedu.planner.logic.commands.UndoCommand;

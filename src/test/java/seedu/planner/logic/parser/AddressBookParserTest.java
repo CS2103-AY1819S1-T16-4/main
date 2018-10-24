@@ -14,9 +14,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.planner.logic.commands.AddCommand;
 import seedu.planner.logic.commands.ClearCommand;
-import seedu.planner.logic.commands.DeleteCommand;
 import seedu.planner.logic.commands.EditCommand;
 import seedu.planner.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.planner.logic.commands.ExitCommand;

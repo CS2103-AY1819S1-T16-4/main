@@ -8,7 +8,6 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.planner.logic.commands.AddCommand;
 import seedu.planner.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.planner.model.person.Person;
 import seedu.planner.model.tag.Tag;

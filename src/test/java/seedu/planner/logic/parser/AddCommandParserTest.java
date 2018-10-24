@@ -31,7 +31,6 @@ import static seedu.planner.testutil.TypicalPersons.BOB;
 
 import org.junit.Test;
 
-import seedu.planner.logic.commands.AddCommand;
 import seedu.planner.model.person.Address;
 import seedu.planner.model.person.Email;
 import seedu.planner.model.person.Name;

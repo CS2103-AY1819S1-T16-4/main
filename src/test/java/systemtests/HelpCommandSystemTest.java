@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import guitests.GuiRobot;
 import guitests.guihandles.HelpWindowHandle;
-import seedu.planner.logic.commands.DeleteCommand;
 import seedu.planner.logic.commands.HelpCommand;
 import seedu.planner.logic.commands.SelectCommand;
 import seedu.planner.ui.BrowserPanel;
