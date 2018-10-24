@@ -270,7 +270,7 @@ public class VersionedModulePlannerTest {
                                              ReadOnlyModulePlanner expectedCurrentState,
                                              List<ReadOnlyModulePlanner> expectedStatesAfterPointer) {
         // check state currently pointing at is correct
-        assertEquals(new AddressBook(versionedModulePlanner), expectedCurrentState);
+        assertEquals(new ModulePlanner(versionedModulePlanner), expectedCurrentState);
 
         // shift pointer to start of state list
         while (versionedModulePlanner.canUndo()) {
@@ -297,23 +297,23 @@ public class VersionedModulePlannerTest {
     }
 
     /**
-     * Creates and returns a {@code VersionedAddressBook} with the {@code addressBookStates} added into it, and the
-     * {@code VersionedAddressBook#currentStatePointer} at the end of list.
+     * Creates and returns a {@code VersionedModulePlanner} with the {@code modulePlannerStates} added into it, and the
+     * {@code VersionedModulePlanner#currentStatePointer} at the end of list.
      */
-    private VersionedAddressBook prepareModulePlannerList(ReadOnlyModulePlanner... modulePlannerStates) {
+    private VersionedModulePlanner prepareModulePlannerList(ReadOnlyModulePlanner... modulePlannerStates) {
         assertFalse(modulePlannerStates.length == 0);
 
-        VersionedAddressBook versionedAddressBook = new VersionedAddressBook(modulePlannerStates[0]);
+        VersionedModulePlanner versionedModulePlanner = new VersionedModulePlanner(modulePlannerStates[0]);
         for (int i = 1; i < modulePlannerStates.length; i++) {
-            versionedAddressBook.resetData(modulePlannerStates[i]);
-            versionedAddressBook.commit();
+            versionedModulePlanner.resetData(modulePlannerStates[i]);
+            versionedModulePlanner.commit();
         }
 
-        return versionedAddressBook;
+        return versionedModulePlanner;
     }
 
     /**
-     * Shifts the {@code versionedAddressBook#currentStatePointer} by {@code count} to the left of its list.
+     * Shifts the {@code versionedModulePlanner#currentStatePointer} by {@code count} to the left of its list.
      */
     private void shiftCurrentStatePointerLeftwards(VersionedModulePlanner versionedModulePlanner, int count) {
         for (int i = 0; i < count; i++) {

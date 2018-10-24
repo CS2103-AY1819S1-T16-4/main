@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -35,7 +36,9 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personInModulePlanner_returnsTrue() {
-        modelManager.addModules(new ArrayList<Module>().add(SAMPLE_MODULE));
+        List<Module> moduleList = new ArrayList<>();
+        ((ArrayList) moduleList).add(SAMPLE_MODULE);
+        modelManager.addModules(moduleList);
         assertTrue(modelManager.hasModule(SAMPLE_MODULE));
     }
 
@@ -51,7 +54,7 @@ public class ModelManagerTest {
     public void equals() {
         // TODO: User ModulePlannerBuilder()
         ModulePlanner modulePlanner = new ModulePlanner().addModules(new ArrayList<Module>().add(SAMPLE_MODULE), 0);
-        AddressBook differentModulePlanner = new ModulePlanner();
+        ModulePlanner differentModulePlanner = new ModulePlanner();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true

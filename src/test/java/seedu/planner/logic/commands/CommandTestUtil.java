@@ -77,7 +77,7 @@ public class CommandTestUtil {
             String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        ModulePlanner expectedModulePlanner = new AddressBook(actualModel.getModulePlanner());
+        ModulePlanner expectedModulePlanner = new ModulePlanner(actualModel.getModulePlanner());
 
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
 
