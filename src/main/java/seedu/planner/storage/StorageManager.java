@@ -73,7 +73,7 @@ public class StorageManager extends ComponentManager implements Storage {
 
     @Override
     public void saveModulePlanner(ReadOnlyModulePlanner modulePlanner) throws IOException {
-        saveModulePlanner(modulePlanner, addressBookStorage.getAddressBookFilePath());
+        saveModulePlanner(modulePlanner, modulePlannerStorage.getModulePlannerFilePath());
     }
 
     @Override
