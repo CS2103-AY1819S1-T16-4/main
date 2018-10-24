@@ -38,7 +38,7 @@ public class ModelManagerTest {
     public void hasPerson_personInModulePlanner_returnsTrue() {
         List<Module> moduleList = new ArrayList<>();
         ((ArrayList) moduleList).add(SAMPLE_MODULE);
-        modelManager.addModules(moduleList);
+        modelManager.addModules(moduleList, 0);
         assertTrue(modelManager.hasModule(SAMPLE_MODULE));
     }
 
@@ -53,7 +53,9 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         // TODO: User ModulePlannerBuilder()
-        ModulePlanner modulePlanner = new ModulePlanner().addModules(new ArrayList<Module>().add(SAMPLE_MODULE), 0);
+        List<Module> moduleList = new ArrayList<>();
+        ((ArrayList) moduleList).add(SAMPLE_MODULE);
+        ModulePlanner modulePlanner = new ModulePlanner().addModules(moduleList, 0);
         ModulePlanner differentModulePlanner = new ModulePlanner();
         UserPrefs userPrefs = new UserPrefs();
 

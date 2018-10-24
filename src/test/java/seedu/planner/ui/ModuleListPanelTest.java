@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import guitests.guihandles.PersonListPanelHandle;
 import seedu.planner.commons.events.ui.JumpToListRequestEvent;
 
-public class PersonListPanelTest extends GuiUnitTest {
+public class ModuleListPanelTest extends GuiUnitTest {
     // private static final ObservableList<Person> TYPICAL_PERSONS = FXCollections.observableList(getTypicalPersons());
 
     private static final JumpToListRequestEvent JUMP_TO_SECOND_EVENT = new JumpToListRequestEvent(INDEX_SECOND_PERSON);
