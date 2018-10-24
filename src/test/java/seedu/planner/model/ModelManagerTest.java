@@ -30,12 +30,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInModulePlanner_returnsFalse() {
+    public void hasModule_moduleNotInModulePlanner_returnsFalse() {
         assertFalse(modelManager.hasModule(SAMPLE_MODULE));
     }
 
     @Test
-    public void hasPerson_personInModulePlanner_returnsTrue() {
+    public void hasModule_moduleInModulePlanner_returnsTrue() {
         List<Module> moduleList = new ArrayList<>();
         moduleList.add(SAMPLE_MODULE);
         modelManager.addModules(moduleList, 0);
