@@ -9,7 +9,6 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
-import seedu.planner.model.AddressBook;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;
 

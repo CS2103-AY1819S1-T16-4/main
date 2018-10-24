@@ -263,7 +263,8 @@ public class VersionedModulePlannerTest {
     /**
      * Asserts that {@code versionedModulePlanner} is currently pointing at {@code expectedCurrentState},
      * states before {@code versionedModulePlanner#currentStatePointer} is equal to {@code expectedStatesBeforePointer},
-     * and states after {@code versionedModulePlanner#currentStatePointer} is equal to {@code expectedStatesAfterPointer}.
+     * and states after {@code versionedModulePlanner#currentStatePointer} is equal to
+     * {@code expectedStatesAfterPointer}.
      */
     private void assertModulePlannerListStatus(VersionedModulePlanner versionedModulePlanner,
                                              List<ReadOnlyModulePlanner> expectedStatesBeforePointer,

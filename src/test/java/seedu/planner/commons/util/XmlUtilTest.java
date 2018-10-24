@@ -19,7 +19,6 @@ import seedu.planner.model.AddressBook;
 import seedu.planner.storage.XmlAdaptedPerson;
 import seedu.planner.storage.XmlAdaptedTag;
 import seedu.planner.storage.XmlSerializableAddressBook;
-import seedu.planner.testutil.AddressBookBuilder;
 import seedu.planner.testutil.TestUtil;
 
 public class XmlUtilTest {

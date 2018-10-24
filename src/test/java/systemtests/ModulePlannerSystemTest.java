@@ -164,7 +164,7 @@ public abstract class ModulePlannerSystemTest {
     /**
      * Deletes all persons in the planner book.
      */
-     /*
+    /*
     protected void deleteAllPersons() {
         executeCommand(ClearCommand.COMMAND_WORD);
         assertEquals(0, getModel().getAddressBook().getPersonList().size());
