@@ -50,6 +50,7 @@ public class ModuleInfo {
             try {
                 URI path = MainApp.class.getResource(MODULE_INFO_FILE_PATH).toURI();
                 moduleInfoList = JsonUtil.readJsonFile(Paths.get(path), ModuleInfo[].class).get();
+                ModuleInfo.finalizeModuleInfo(moduleInfoList);
             } catch (URISyntaxException e) {
                 logger.warning("Problem while reading from resource file. "
                     + "Will be starting with an empty module database");

@@ -24,7 +24,9 @@ import seedu.planner.logic.LogicManager;
 import seedu.planner.model.AddressBook;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
+import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.ReadOnlyAddressBook;
+import seedu.planner.model.ReadOnlyModulePlanner;
 import seedu.planner.model.UserPrefs;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.util.SampleDataUtil;
@@ -92,10 +94,23 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyModulePlanner> modulePlannerOptional;
         ReadOnlyAddressBook initialData;
+        ReadOnlyModulePlanner initialModulePlanner;
 
         ModuleInfo.ModuleInfoRetriever retriever = ModuleInfo.ModuleInfoRetriever.getInstance();
         ModuleInfo[] initialModuleInfo = retriever.getModuleInfoList();
+
+        try {
+            modulePlannerOptional = storage.readModulePlanner();
+            if (!modulePlannerOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a empty ModulePlanner");
+            }
+            initialModulePlanner = modulePlannerOptional.orElse(new ModulePlanner());
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty ModulePlanner");
+            initialModulePlanner = new ModulePlanner();
+        }
 
         try {
             addressBookOptional = storage.readAddressBook();
@@ -111,7 +126,7 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, initialModuleInfo, userPrefs);
+        return new ModelManager(initialData, initialModulePlanner, initialModuleInfo, userPrefs);
     }
 
     private void initLogging(Config config) {

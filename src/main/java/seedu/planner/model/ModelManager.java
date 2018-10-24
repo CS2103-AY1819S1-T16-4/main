@@ -46,10 +46,11 @@ public class ModelManager extends ComponentManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, UserPrefs userPrefs) {
-        this(addressBook, new ModuleInfo[] {}, userPrefs);
+        this(addressBook, new ModulePlanner(), new ModuleInfo[] {}, userPrefs);
     }
 
-    public ModelManager(ReadOnlyAddressBook addressBook, ModuleInfo[] moduleInfo, UserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyModulePlanner modulePlanner,
+                        ModuleInfo[] moduleInfo, UserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -59,8 +60,7 @@ public class ModelManager extends ComponentManager implements Model {
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
 
         this.moduleInfo = moduleInfo;
-        versionedModulePlanner = new VersionedModulePlanner(
-                SampleModulePlannerUtil.genModulePlanner(new ModulePlanner()));
+        versionedModulePlanner = new VersionedModulePlanner(modulePlanner);
     }
 
     //@@author Hilda-Ang
