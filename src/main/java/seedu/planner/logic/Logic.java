@@ -20,9 +20,6 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
-
     //@@author GabrielYik
 
     //TODO: confirm if the list is filtered or sorted or both
