@@ -3,12 +3,10 @@ package systemtests;
 import static guitests.guihandles.WebViewUtil.waitUntilBrowserLoaded;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static seedu.planner.ui.BrowserPanel.DEFAULT_PAGE;
 import static seedu.planner.ui.StatusBarFooter.SYNC_STATUS_INITIAL;
 import static seedu.planner.ui.StatusBarFooter.SYNC_STATUS_UPDATED;
 import static seedu.planner.ui.UiPart.FXML_FILE_FOLDER;
-import static seedu.planner.ui.testutil.GuiTestAssert.assertListMatching;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -34,13 +32,9 @@ import seedu.planner.MainApp;
 import seedu.planner.TestApp;
 import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.core.index.Index;
-import seedu.planner.logic.commands.ClearCommand;
-import seedu.planner.logic.commands.FindCommand;
-import seedu.planner.logic.commands.ListCommand;
-import seedu.planner.logic.commands.SelectCommand;
 import seedu.planner.model.AddressBook;
 import seedu.planner.model.Model;
-import seedu.planner.testutil.TypicalPersons;
+import seedu.planner.model.ModulePlanner;
 import seedu.planner.ui.BrowserPanel;
 import seedu.planner.ui.CommandBox;
 
@@ -48,7 +42,7 @@ import seedu.planner.ui.CommandBox;
  * A system test class for AddressBook, which provides access to handles of GUI components and helper methods
  * for test verification.
  */
-public abstract class AddressBookSystemTest {
+public abstract class ModulePlannerSystemTest {
     @ClassRule
     public static ClockRule clockRule = new ClockRule();
 
@@ -84,8 +78,8 @@ public abstract class AddressBookSystemTest {
     /**
      * Returns the data to be loaded into the file in {@link #getDataFileLocation()}.
      */
-    protected AddressBook getInitialData() {
-        return TypicalPersons.getTypicalAddressBook();
+    protected ModulePlanner getInitialData() {
+        return null; // TypicalPersons.getTypicalAddressBook();
     }
 
     /**
@@ -141,34 +135,42 @@ public abstract class AddressBookSystemTest {
     /**
      * Displays all persons in the planner book.
      */
+    /*
     protected void showAllPersons() {
         executeCommand(ListCommand.COMMAND_WORD);
         assertEquals(getModel().getAddressBook().getPersonList().size(), getModel().getFilteredPersonList().size());
     }
+    */
 
     /**
      * Displays all persons with any parts of their names matching {@code keyword} (case-insensitive).
      */
+    /*
     protected void showPersonsWithName(String keyword) {
         executeCommand(FindCommand.COMMAND_WORD + " " + keyword);
         assertTrue(getModel().getFilteredPersonList().size() < getModel().getAddressBook().getPersonList().size());
     }
+    */
 
     /**
      * Selects the person at {@code index} of the displayed list.
      */
+    /*
     protected void selectPerson(Index index) {
         executeCommand(SelectCommand.COMMAND_WORD + " " + index.getOneBased());
         assertEquals(index.getZeroBased(), getPersonListPanel().getSelectedCardIndex());
     }
+    */
 
     /**
      * Deletes all persons in the planner book.
      */
+     /*
     protected void deleteAllPersons() {
         executeCommand(ClearCommand.COMMAND_WORD);
         assertEquals(0, getModel().getAddressBook().getPersonList().size());
     }
+    */
 
     /**
      * Asserts that the {@code CommandBox} displays {@code expectedCommandInput}, the {@code ResultDisplay} displays
@@ -179,8 +181,8 @@ public abstract class AddressBookSystemTest {
             Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
-        assertEquals(new AddressBook(expectedModel.getAddressBook()), testApp.readStorageAddressBook());
-        assertListMatching(getPersonListPanel(), expectedModel.getFilteredPersonList());
+        assertEquals(new AddressBook(expectedModel.getModulePlanner()), testApp.readStorageAddressBook());
+        // assertListMatching(getPersonListPanel(), expectedModel.getFilteredPersonList());
     }
 
     /**
@@ -276,7 +278,7 @@ public abstract class AddressBookSystemTest {
     private void assertApplicationStartingStateIsCorrect() {
         assertEquals("", getCommandBox().getInput());
         assertEquals("", getResultDisplay().getText());
-        assertListMatching(getPersonListPanel(), getModel().getFilteredPersonList());
+        // assertListMatching(getPersonListPanel(), getModel().getFilteredPersonList());
         assertEquals(MainApp.class.getResource(FXML_FILE_FOLDER + DEFAULT_PAGE), getBrowserPanel().getLoadedUrl());
         assertEquals(Paths.get(".").resolve(testApp.getStorageSaveLocation()).toString(),
                 getStatusBarFooter().getSaveLocation());
