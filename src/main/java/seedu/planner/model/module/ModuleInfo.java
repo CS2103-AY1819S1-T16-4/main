@@ -4,18 +4,19 @@ package seedu.planner.model.module;
 
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.io.Resources;
 
 import seedu.planner.MainApp;
 import seedu.planner.commons.core.LogsCenter;
@@ -48,14 +49,13 @@ public class ModuleInfo {
 
         private ModuleInfoRetriever() {
             try {
-                URI path = MainApp.class.getResource(MODULE_INFO_FILE_PATH).toURI();
-                moduleInfoList = JsonUtil.readJsonFile(Paths.get(path), ModuleInfo[].class).get();
+                URL resource = MainApp.class.getResource(MODULE_INFO_FILE_PATH);
+                String text = Resources.toString(resource, Charsets.UTF_8);
+
+                moduleInfoList = JsonUtil.fromJsonString(text, ModuleInfo[].class);
+
                 ModuleInfo.finalizeModuleInfo(moduleInfoList);
-            } catch (URISyntaxException e) {
-                logger.warning("Problem while reading from resource file. "
-                    + "Will be starting with an empty module database");
-                moduleInfoList = new ModuleInfo[] {};
-            } catch (DataConversionException e) {
+            } catch (IOException e) {
                 logger.warning("Problem while reading from resource file. "
                     + "Will be starting with an empty module database");
                 moduleInfoList = new ModuleInfo[] {};

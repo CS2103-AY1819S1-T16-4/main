@@ -13,7 +13,7 @@ public class UserPrefs {
 
     private GuiSettings guiSettings;
     private Path addressBookFilePath = Paths.get("data" , "addressbook.xml");
-    private Path moduleInfoFilePath = Paths.get("data", "moduleInfo.json");
+    private Path modulePlannerFilePath = Paths.get("data", "modulePlanner.json");
 
     public UserPrefs() {
         setGuiSettings(500, 500, 0, 0);
@@ -39,12 +39,12 @@ public class UserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
-    public Path getModuleInfoFilePath() {
-        return moduleInfoFilePath;
+    public Path getModulePlannerFilePath() {
+        return modulePlannerFilePath;
     }
 
-    public void setModuleInfoFilePath(Path moduleInfoFilePath) {
-        this.moduleInfoFilePath = moduleInfoFilePath;
+    public void setModulePlannerFilePath(Path modulePlannerFilePath) {
+        this.modulePlannerFilePath = modulePlannerFilePath;
     }
 
     @Override

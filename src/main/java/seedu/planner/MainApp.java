@@ -2,7 +2,6 @@ package seedu.planner;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -71,9 +70,7 @@ public class MainApp extends Application {
 
         AddressBookStorage addressBookStorage = new XmlAddressBookStorage(userPrefs.getAddressBookFilePath());
 
-        // TODO(rongjiecomputer) Put path to UserPrefs.
-        ModulePlannerStorage modulePlannerStorage = new JsonModulePlannerStorage(
-            Paths.get("data", "modulePlanner.json"));
+        ModulePlannerStorage modulePlannerStorage = new JsonModulePlannerStorage(userPrefs.getModulePlannerFilePath());
         storage = new StorageManager(addressBookStorage, modulePlannerStorage, userPrefsStorage);
 
         initLogging(config);
