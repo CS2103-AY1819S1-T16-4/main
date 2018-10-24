@@ -15,7 +15,7 @@ public class ClearCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyModulePlanner_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
         expectedModel.commitModulePlanner();
@@ -24,7 +24,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyModulePlanner_success() {
         // TODO: Change "new ModulePlanner()" to "getTypicalModulePlanner()"
         Model model = new ModelManager(new ModulePlanner(), new UserPrefs());
         Model expectedModel = new ModelManager(new ModulePlanner(), new UserPrefs());

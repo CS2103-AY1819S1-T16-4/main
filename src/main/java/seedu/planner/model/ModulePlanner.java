@@ -149,4 +149,16 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             this.semesters.add(i, semesters.get(i));
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ModulePlanner // instanceof handles nulls
+                && semesters.equals(((ModulePlanner) other).semesters));
+    }
+
+    @Override
+    public int hashCode() {
+        return semesters.hashCode();
+    }
 }

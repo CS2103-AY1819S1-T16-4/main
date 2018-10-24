@@ -124,4 +124,16 @@ public class Semester {
     public ObservableList<Module> getModulesAvailable() {
         return modulesAvailable;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Semester // instanceof handles nulls
+                && modulesTaken.equals(((Semester) other).modulesTaken));
+    }
+
+    @Override
+    public int hashCode() {
+        return modulesTaken.hashCode();
+    }
 }
