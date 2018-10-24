@@ -24,7 +24,7 @@ import seedu.planner.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ModulePlannerParser {
 
     /**
      * Used for initial separation of command word and args.

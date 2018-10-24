@@ -8,11 +8,10 @@ import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.logic.commands.Command;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
-import seedu.planner.logic.parser.AddressBookParser;
+import seedu.planner.logic.parser.ModulePlannerParser;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.Model;
 import seedu.planner.model.module.Module;
-import seedu.planner.model.person.Person;
 
 /**
  * The main LogicManager of the app.
@@ -22,28 +21,23 @@ public class LogicManager extends ComponentManager implements Logic {
 
     private final Model model;
     private final CommandHistory history;
-    private final AddressBookParser addressBookParser;
+    private final ModulePlannerParser modulePlannerParser;
 
     public LogicManager(Model model) {
         this.model = model;
         history = new CommandHistory();
-        addressBookParser = new AddressBookParser();
+        modulePlannerParser = new ModulePlannerParser();
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         try {
-            Command command = addressBookParser.parseCommand(commandText);
+            Command command = modulePlannerParser.parseCommand(commandText);
             return command.execute(model, history);
         } finally {
             history.add(commandText);
         }
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
     }
 
     //@@author GabrielYik

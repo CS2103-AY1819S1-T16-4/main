@@ -36,7 +36,7 @@ public class AddressBookParserTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ModulePlannerParser parser = new ModulePlannerParser();
 
     @Test
     public void parseCommand_add() throws Exception {

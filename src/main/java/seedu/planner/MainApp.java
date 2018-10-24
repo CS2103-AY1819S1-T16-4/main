@@ -93,9 +93,7 @@ public class MainApp extends Application {
      * or an empty planner book will be used instead if errors occur when reading {@code storage}'s planner book.
      */
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
         Optional<ReadOnlyModulePlanner> modulePlannerOptional;
-        ReadOnlyAddressBook initialData;
         ReadOnlyModulePlanner initialModulePlanner;
 
         ModuleInfo.ModuleInfoRetriever retriever = ModuleInfo.ModuleInfoRetriever.getInstance();
@@ -112,21 +110,7 @@ public class MainApp extends Application {
             initialModulePlanner = new ModulePlanner();
         }
 
-        try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        }
-
-        return new ModelManager(initialData, initialModulePlanner, initialModuleInfo, userPrefs);
+        return new ModelManager(initialModulePlanner, initialModuleInfo, userPrefs);
     }
 
     private void initLogging(Config config) {
