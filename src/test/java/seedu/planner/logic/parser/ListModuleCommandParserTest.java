@@ -16,7 +16,7 @@ import org.junit.Test;
 
 import seedu.planner.logic.commands.ListModuleCommand;
 
-//@@Hilda-Ang
+//@@author Hilda-Ang
 
 public class ListModuleCommandParserTest {
 
