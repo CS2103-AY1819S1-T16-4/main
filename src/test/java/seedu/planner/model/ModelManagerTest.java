@@ -55,7 +55,8 @@ public class ModelManagerTest {
         // TODO: User ModulePlannerBuilder()
         List<Module> moduleList = new ArrayList<>();
         ((ArrayList) moduleList).add(SAMPLE_MODULE);
-        ModulePlanner modulePlanner = new ModulePlanner().addModules(moduleList, 0);
+        ModulePlanner modulePlanner = new ModulePlanner();
+        modulePlanner.addModules(moduleList, 0);
         ModulePlanner differentModulePlanner = new ModulePlanner();
         UserPrefs userPrefs = new UserPrefs();
 

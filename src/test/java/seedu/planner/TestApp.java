@@ -15,6 +15,7 @@ import seedu.planner.model.AddressBook;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
 import seedu.planner.model.ReadOnlyAddressBook;
+import seedu.planner.model.ReadOnlyModulePlanner;
 import seedu.planner.model.UserPrefs;
 import seedu.planner.storage.UserPrefsStorage;
 import seedu.planner.storage.XmlSerializableAddressBook;
@@ -32,22 +33,24 @@ public class TestApp extends MainApp {
 
     protected static final Path DEFAULT_PREF_FILE_LOCATION_FOR_TESTING =
             TestUtil.getFilePathInSandboxFolder("pref_testing.json");
-    protected Supplier<ReadOnlyAddressBook> initialDataSupplier = () -> null;
+    protected Supplier<ReadOnlyModulePlanner> initialDataSupplier = () -> null;
     protected Path saveFileLocation = SAVE_LOCATION_FOR_TESTING;
 
     public TestApp() {
     }
 
-    public TestApp(Supplier<ReadOnlyAddressBook> initialDataSupplier, Path saveFileLocation) {
+    public TestApp(Supplier<ReadOnlyModulePlanner> initialDataSupplier, Path saveFileLocation) {
         super();
         this.initialDataSupplier = initialDataSupplier;
         this.saveFileLocation = saveFileLocation;
 
         // If some initial local data has been provided, write those to the file
+        /*
         if (initialDataSupplier.get() != null) {
             createDataFileWithData(new XmlSerializableAddressBook(this.initialDataSupplier.get()),
                     this.saveFileLocation);
         }
+        */
     }
 
     @Override

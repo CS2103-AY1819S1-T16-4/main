@@ -9,7 +9,6 @@ import org.testfx.api.FxToolkit;
 import guitests.guihandles.MainWindowHandle;
 import javafx.stage.Stage;
 import seedu.planner.TestApp;
-import seedu.planner.model.ReadOnlyAddressBook;
 import seedu.planner.model.ReadOnlyModulePlanner;
 
 /**
