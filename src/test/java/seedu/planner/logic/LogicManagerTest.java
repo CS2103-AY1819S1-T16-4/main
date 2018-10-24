@@ -1,7 +1,6 @@
 package seedu.planner.logic;
 
 import static org.junit.Assert.assertEquals;
-import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import org.junit.Rule;
@@ -32,12 +31,14 @@ public class LogicManagerTest {
         assertHistoryCorrect(invalidCommand);
     }
 
+    /*
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         assertHistoryCorrect(deleteCommand);
     }
+    */
 
     @Test
     public void execute_validCommand_success() {
