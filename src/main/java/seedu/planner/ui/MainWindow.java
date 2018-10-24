@@ -36,7 +36,7 @@ import seedu.planner.model.UserPrefs;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow_Test" + ".fxml";
+    private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -136,42 +136,29 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
 
         //@@author GabrielYik
+        takenModulesListPanels = new ModuleListPanel[MAX_NUMBER_SEMESTERS];
+        availableModulesListPanels = new ModuleListPanel[MAX_NUMBER_SEMESTERS];
 
-        if (FXML.equals("MainWindow_Test.fxml")) {
-            takenModulesListPanels = new ModuleListPanel[MAX_NUMBER_SEMESTERS];
-            availableModulesListPanels = new ModuleListPanel[MAX_NUMBER_SEMESTERS];
+        for (int semesterIndex = 0; semesterIndex < MAX_NUMBER_SEMESTERS; semesterIndex++) {
+            takenModulesListPanels[semesterIndex] = new ModuleListPanel(
+                    logic.getFilteredTakenModuleList(semesterIndex));
+            availableModulesListPanels[semesterIndex] = new ModuleListPanel(
+                    logic.getFilteredAvailableModuleList(semesterIndex));
+        }
 
-            for (int semesterIndex = 0; semesterIndex < MAX_NUMBER_SEMESTERS; semesterIndex++) {
-                takenModulesListPanels[semesterIndex] = new ModuleListPanel(
-                        logic.getFilteredTakenModuleList(semesterIndex));
-                availableModulesListPanels[semesterIndex] = new ModuleListPanel(
-                        logic.getFilteredAvailableModuleList(semesterIndex));
+        ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
+        for (int semesterIndex = 0; semesterIndex < semesterTabs.size(); semesterIndex++) {
+            SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
+            ObservableList<Node> nodes = splitPane.getItems();
+
+            for (int i = 0; i < NUMBER_MODULE_GROUPS; i++) {
+                VBox vBox = (VBox) nodes.get(i);
+                StackPane stackPane = (StackPane) vBox.getChildren().get(0);
+                Node n = (i == 0)
+                        ? takenModulesListPanels[semesterIndex].getRoot()
+                        : availableModulesListPanels[semesterIndex].getRoot();
+                stackPane.getChildren().add(n);
             }
-
-            ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
-            for (int semesterIndex = 0; semesterIndex < semesterTabs.size(); semesterIndex++) {
-                SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
-                ObservableList<Node> nodes = splitPane.getItems();
-
-                for (int i = 0; i < NUMBER_MODULE_GROUPS; i++) {
-                    VBox vBox = (VBox) nodes.get(i);
-                    StackPane stackPane = (StackPane) vBox.getChildren().get(0);
-                    Node n = (i == 0)
-                            ? takenModulesListPanels[semesterIndex].getRoot()
-                            : availableModulesListPanels[semesterIndex].getRoot();
-                    stackPane.getChildren().add(n);
-                }
-            }
-
-        } else {
-
-            //@@author
-
-            browserPanel = new BrowserPanel();
-            browserPlaceholder.getChildren().add(browserPanel.getRoot());
-
-            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         }
 
         ResultDisplay resultDisplay = new ResultDisplay();
