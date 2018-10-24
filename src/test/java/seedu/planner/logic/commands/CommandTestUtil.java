@@ -3,10 +3,15 @@ package seedu.planner.logic.commands;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_FOCUS_AREA;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +30,32 @@ import seedu.planner.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+
+    public static final String VALID_MODULE_CS1010 = "CS1010";
+    public static final String VALID_MODULE_CS1231 = "CS1231";
+
+    public static final String MODULE_DESC_CS1010 = " " + PREFIX_CODE + VALID_MODULE_CS1010;
+    public static final String MODULE_DESC_CS1231 = " " + PREFIX_CODE + VALID_MODULE_CS1231;
+
+    public static final int VALID_YEAR_ONE = 1;
+    public static final int VALID_SEMESTER_ONE = 1;
+
+    public static final String VALID_YEAR_DESC_ONE = " " + PREFIX_YEAR + VALID_YEAR_ONE;
+    public static final String VALID_SEMESTER_DESC_ONE = " " + PREFIX_SEMESTER + VALID_SEMESTER_ONE;
+
+    public static final int INVALID_YEAR_FIVE = 5;
+    public static final int INVALID_SEMESTER_THREE = 3;
+
+    public static final String INVALID_YEAR_DESC_FIVE = " " + PREFIX_YEAR + INVALID_YEAR_FIVE;
+    public static final String INVALID_SEMESTER_DESC_THREE = " " + PREFIX_SEMESTER + INVALID_SEMESTER_THREE;
+
+    public static final String VALID_MAJOR_CS = "Computer Science";
+    public static final String VALID_FOCUS_AREA_SE = "Software Engineering";
+    public static final String VALID_FOCUS_AREA_PL = "Programming Languages";
+
+    public static final String VALID_MAJOR_DESC_CS = " " + PREFIX_MAJOR + VALID_MAJOR_CS;
+    public static final String VALID_FOCUS_AREA_DESC_SE = " " + PREFIX_FOCUS_AREA + VALID_FOCUS_AREA_SE;
+    public static final String VALID_FOCUS_AREA_DESC_PL = " " + PREFIX_FOCUS_AREA + VALID_FOCUS_AREA_PL;
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";

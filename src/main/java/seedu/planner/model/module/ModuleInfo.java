@@ -4,13 +4,23 @@ package seedu.planner.model.module;
 
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+
+import seedu.planner.MainApp;
+import seedu.planner.commons.core.LogsCenter;
+import seedu.planner.commons.exceptions.DataConversionException;
+import seedu.planner.commons.util.JsonUtil;
 
 /**
  * Represents an immutable {@code ModuleInfo} class.
@@ -22,6 +32,84 @@ public class ModuleInfo {
             + "where WX(Y) refers to a prefix like CS or CEG that describes the type of the module, "
             + "1234 refers to a sequence of positive numbers, "
             + "and (Z) refers to an optional postfix.";
+
+    private static ImmutableMap<String, ModuleInfo> codeToModuleInfoMap = null;
+
+    /**
+     * Class to retrieve {@code ModuleInfo} from JSON file packaged in JAR file.
+     */
+    public static class ModuleInfoRetriever {
+        private static final String MODULE_INFO_FILE_PATH = "/data/moduleInfo.json";
+        private static Logger logger = LogsCenter.getLogger(ModuleInfoRetriever.class);
+
+        private static ModuleInfoRetriever instance = null;
+
+        private ModuleInfo[] moduleInfoList;
+
+        private ModuleInfoRetriever() {
+            try {
+                URI path = MainApp.class.getResource(MODULE_INFO_FILE_PATH).toURI();
+                moduleInfoList = JsonUtil.readJsonFile(Paths.get(path), ModuleInfo[].class).get();
+                ModuleInfo.finalizeModuleInfo(moduleInfoList);
+            } catch (URISyntaxException e) {
+                logger.warning("Problem while reading from resource file. "
+                    + "Will be starting with an empty module database");
+                moduleInfoList = new ModuleInfo[] {};
+            } catch (DataConversionException e) {
+                logger.warning("Problem while reading from resource file. "
+                    + "Will be starting with an empty module database");
+                moduleInfoList = new ModuleInfo[] {};
+            }
+        }
+
+        /**
+         * Get singleton instance of {@code ModuleInfoRetriever}.
+         *
+         * @throws DataConversionException
+         */
+        public static ModuleInfoRetriever getInstance() {
+            if (instance == null) {
+                instance = new ModuleInfoRetriever();
+            }
+            return instance;
+        }
+
+        public ModuleInfo[] getModuleInfoList() {
+            return moduleInfoList;
+        }
+
+        /**
+         *  Map module code to {@code ModuleInfo}.
+         *
+         * @param moduleCode Module code
+         */
+        public Optional<ModuleInfo> getFromModuleCode(String moduleCode) {
+            if (codeToModuleInfoMap.containsKey(moduleCode)) {
+                return Optional.<ModuleInfo>of(codeToModuleInfoMap.get(moduleCode));
+            }
+            return Optional.empty();
+        }
+
+        /**
+         * Takes in a list of {@code ModuleInfo}s deserialzied by JSON parser and
+         * finalize {@code ModuleInfo}s' internal structure.
+         *
+         * @param moduleInfo List of {@code ModuleInfo}s deserialized by JSON parser.
+         */
+        public static ModuleInfo[] finalizeModuleInfo(ModuleInfo[] moduleInfo) {
+            ImmutableMap.Builder<String, ModuleInfo> builder = ImmutableMap.builder();
+            for (ModuleInfo mInfo : moduleInfo) {
+                builder.put(mInfo.getCode(), mInfo);
+            }
+
+            codeToModuleInfoMap = builder.build();
+
+            for (ModuleInfo mInfo : moduleInfo) {
+                mInfo.finalize(codeToModuleInfoMap);
+            }
+            return moduleInfo;
+        }
+    }
 
     private String code;
 
@@ -119,7 +207,7 @@ public class ModuleInfo {
      *
      * @param map An immutable map that maps module code to {@code ModuleInfo}.
      */
-    public void finalize(ImmutableMap<String, ModuleInfo> map) {
+    private void finalize(ImmutableMap<String, ModuleInfo> map) {
         Preconditions.checkState(!finalized);
 
         prereqModuleInfo = Arrays.stream(prerequisites)
@@ -146,14 +234,21 @@ public class ModuleInfo {
             builder.put(mInfo.getCode(), mInfo);
         }
 
-        // TODO(rongjiecomputer) This code->moduleInfo map is useful for other class too.
-        // Figure out a place to expose this to other classes.
-        ImmutableMap<String, ModuleInfo> map = builder.build();
+        codeToModuleInfoMap = builder.build();
 
         for (ModuleInfo mInfo : moduleInfo) {
-            mInfo.finalize(map);
+            mInfo.finalize(codeToModuleInfoMap);
         }
         return moduleInfo;
+    }
+
+    /**
+     *  Map module code to {@code ModuleInfo}.
+     *
+     * @param moduleCode Module code
+     */
+    public static Optional<ModuleInfo> getFromModuleCode(String moduleCode) {
+        return ModuleInfoRetriever.getInstance().getFromModuleCode(moduleCode);
     }
 
     @Override

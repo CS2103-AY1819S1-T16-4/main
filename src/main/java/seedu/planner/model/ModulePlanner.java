@@ -80,12 +80,12 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @return True if the module exists, false if not
      */
     public boolean hasModule(Module module) {
-        boolean result = true;
         for (Semester semester : semesters) {
-            result = result && semester.containsModule(module);
+            if (semester.containsModule(module)) {
+                return true;
+            }
         }
-
-        return result;
+        return false;
     }
 
     /**

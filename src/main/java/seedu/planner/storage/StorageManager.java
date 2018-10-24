@@ -14,8 +14,8 @@ import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
 import seedu.planner.commons.events.storage.DataSavingExceptionEvent;
 import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.model.ReadOnlyAddressBook;
+import seedu.planner.model.ReadOnlyModulePlanner;
 import seedu.planner.model.UserPrefs;
-import seedu.planner.model.module.ModuleInfo;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -24,15 +24,15 @@ public class StorageManager extends ComponentManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
-    private ModuleInfoStorage moduleInfoStorage;
+    private ModulePlannerStorage modulePlannerStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
-    public StorageManager(AddressBookStorage addressBookStorage, ModuleInfoStorage moduleInfoStorage,
+    public StorageManager(AddressBookStorage addressBookStorage, ModulePlannerStorage modulePlannerStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
-        this.moduleInfoStorage = moduleInfoStorage;
         this.addressBookStorage = addressBookStorage;
+        this.modulePlannerStorage = modulePlannerStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -53,15 +53,33 @@ public class StorageManager extends ComponentManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-    // ================ ModuleInfo methods ===============================
+    // ================ ModulePlanner methods ============================
 
-
-    public Path getModuleInfoFilePath() {
-        return moduleInfoStorage.getModuleInfoFilePath();
+    @Override
+    public Path getModulePlannerFilePath() {
+        return modulePlannerStorage.getModulePlannerFilePath();
     }
 
-    public Optional<ModuleInfo[]> readModuleInfo() throws DataConversionException, IOException {
-        return moduleInfoStorage.readModuleInfo();
+    @Override
+    public Optional<ReadOnlyModulePlanner> readModulePlanner() throws DataConversionException {
+        return readModulePlanner(modulePlannerStorage.getModulePlannerFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyModulePlanner> readModulePlanner(Path filePath) throws DataConversionException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return modulePlannerStorage.readModulePlanner(filePath);
+    }
+
+    @Override
+    public void saveModulePlanner(ReadOnlyModulePlanner modulePlanner) throws IOException {
+        saveModulePlanner(modulePlanner, addressBookStorage.getAddressBookFilePath());
+    }
+
+    @Override
+    public void saveModulePlanner(ReadOnlyModulePlanner modulePlanner, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        modulePlannerStorage.saveModulePlanner(modulePlanner, filePath);
     }
 
     // ================ AddressBook methods ==============================
@@ -108,5 +126,10 @@ public class StorageManager extends ComponentManager implements Storage {
     @Subscribe
     public void handleModulePlannerChangedEvent(ModulePlannerChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event, "Local data changed, saving to file"));
+        try {
+            saveModulePlanner(event.data);
+        } catch (IOException e) {
+            raise(new DataSavingExceptionEvent(e));
+        }
     }
 }

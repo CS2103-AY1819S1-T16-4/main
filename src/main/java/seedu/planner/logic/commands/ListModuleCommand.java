@@ -36,11 +36,17 @@ public class ListModuleCommand extends Command {
         this.index = index;
     }
 
-    //TODO
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.getFilteredTakenModuleList(index);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListModuleCommand // instanceof handles nulls
+                && index == ((ListModuleCommand) other).index);
     }
 }

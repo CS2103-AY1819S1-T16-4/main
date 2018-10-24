@@ -50,6 +50,14 @@ public class Semester {
         this.hasBeenTaken = hasBeenTaken;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
     /**
      * Adds one or more module(s) to the list of modules taken.
      *

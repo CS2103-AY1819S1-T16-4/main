@@ -4,9 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_FOCUS_AREA_CONSTRAINTS;
 import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_MAJOR_CONSTRAINTS;
 import static seedu.planner.model.module.ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS;
-import static seedu.planner.model.tab.Tab.MESSAGE_TAB_NAME_CONSTRAINTS;
-import static seedu.planner.model.tab.Tab.TAB_NAME_REGEX;
-import static seedu.planner.model.util.IndexUtil.convertYearAndSemesterToIndex;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,8 +29,8 @@ import seedu.planner.model.util.ModuleUtil;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    private static final String MESSAGE_INVALID_YEAR = "Year is not between 1 to 4.";
-    private static final String MESSAGE_INVALID_SEMESTER = "Semester is not between 1 to 2.";
+    public static final String MESSAGE_INVALID_YEAR = "Year is not between 1 to 4.";
+    public static final String MESSAGE_INVALID_SEMESTER = "Semester is not between 1 to 2.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
@@ -60,6 +57,7 @@ public class ParserUtil {
      * @throws ParseException if the moduleCode does not meet the constraints
      */
     private static Module parseModuleCode(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
         moduleCode = moduleCode.trim();
 
         if (moduleCode.isEmpty()) {
@@ -91,27 +89,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses the tab name into its respective index.
-     *
-     * @param tabName The tab name
-     * @return The index if the tab name is valid
-     * @throws ParseException if the tab name is invalid
-     */
-    public static int parseTabName(String tabName) throws ParseException {
-        requireNonNull(tabName);
-        tabName = tabName.trim();
-        if (!tabName.matches(TAB_NAME_REGEX)) {
-            throw new ParseException(MESSAGE_TAB_NAME_CONSTRAINTS);
-        }
-
-        String[] characters = tabName.split("");
-        int year = Integer.parseInt(characters[1]);
-        int semester = Integer.parseInt(characters[3]);
-
-        return convertYearAndSemesterToIndex(year, semester);
-    }
-
-    /**
      * Parses a major.
      * The major is checked if it's in the correct format.
      *
@@ -120,6 +97,7 @@ public class ParserUtil {
      * @throws ParseException if the major's format is wrong
      */
     public static String parseMajor(String major) throws ParseException {
+        requireNonNull(major);
         if (!StringUtil.containsOnlyLettersAndWhiteSpace(major)) {
             throw new ParseException(MESSAGE_MAJOR_CONSTRAINTS);
         }
@@ -187,7 +165,7 @@ public class ParserUtil {
     public static int parseSemester(String semester) throws ParseException {
         requireNonNull(semester);
         int semesterIndex = Integer.parseInt(semester.trim());
-        if (!IndexUtil.isValidYear(semesterIndex)) {
+        if (!IndexUtil.isValidSemester(semesterIndex)) {
             throw new ParseException(MESSAGE_INVALID_SEMESTER);
         }
         return semesterIndex;

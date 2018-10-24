@@ -2,6 +2,7 @@ package seedu.planner;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -23,14 +24,16 @@ import seedu.planner.logic.LogicManager;
 import seedu.planner.model.AddressBook;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
+import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.ReadOnlyAddressBook;
+import seedu.planner.model.ReadOnlyModulePlanner;
 import seedu.planner.model.UserPrefs;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.util.SampleDataUtil;
 import seedu.planner.storage.AddressBookStorage;
-import seedu.planner.storage.JsonModuleInfoStorage;
+import seedu.planner.storage.JsonModulePlannerStorage;
 import seedu.planner.storage.JsonUserPrefsStorage;
-import seedu.planner.storage.ModuleInfoStorage;
+import seedu.planner.storage.ModulePlannerStorage;
 import seedu.planner.storage.Storage;
 import seedu.planner.storage.StorageManager;
 import seedu.planner.storage.UserPrefsStorage;
@@ -43,7 +46,7 @@ import seedu.planner.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 2, 0, true);
+    public static final Version VERSION = new Version(1, 3, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -57,7 +60,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Module Planner ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -67,8 +70,11 @@ public class MainApp extends Application {
         userPrefs = initPrefs(userPrefsStorage);
 
         AddressBookStorage addressBookStorage = new XmlAddressBookStorage(userPrefs.getAddressBookFilePath());
-        ModuleInfoStorage moduleInfoStorage = new JsonModuleInfoStorage(userPrefs.getModuleInfoFilePath());
-        storage = new StorageManager(addressBookStorage, moduleInfoStorage, userPrefsStorage);
+
+        // TODO(rongjiecomputer) Put path to UserPrefs.
+        ModulePlannerStorage modulePlannerStorage = new JsonModulePlannerStorage(
+            Paths.get("data", "modulePlanner.json"));
+        storage = new StorageManager(addressBookStorage, modulePlannerStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -88,26 +94,22 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyModulePlanner> modulePlannerOptional;
         ReadOnlyAddressBook initialData;
-        Optional<ModuleInfo[]> moduleInfoOptional;
-        ModuleInfo[] initialModuleInfo;
+        ReadOnlyModulePlanner initialModulePlanner;
+
+        ModuleInfo.ModuleInfoRetriever retriever = ModuleInfo.ModuleInfoRetriever.getInstance();
+        ModuleInfo[] initialModuleInfo = retriever.getModuleInfoList();
 
         try {
-            moduleInfoOptional = storage.readModuleInfo();
-            if (!moduleInfoOptional.isPresent()) {
-                logger.info("Module info file not found. Will be starting with a sample module database");
-                // TODO(rongjiecomputer) Actually use sample data when #108 is merged.
-                initialModuleInfo = new ModuleInfo[] {};
-            } else {
-                initialModuleInfo = moduleInfoOptional.get();
+            modulePlannerOptional = storage.readModulePlanner();
+            if (!modulePlannerOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a empty ModulePlanner");
             }
+            initialModulePlanner = modulePlannerOptional.orElse(new ModulePlanner());
         } catch (DataConversionException e) {
-            logger.warning("Module info file not in the correct format."
-                    + " Will be starting with an empty module database");
-            initialModuleInfo = new ModuleInfo[] {};
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty module database");
-            initialModuleInfo = new ModuleInfo[] {};
+            logger.warning("Data file not in the correct format. Will be starting with an empty ModulePlanner");
+            initialModulePlanner = new ModulePlanner();
         }
 
         try {
@@ -124,7 +126,7 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, initialModuleInfo, userPrefs);
+        return new ModelManager(initialData, initialModulePlanner, initialModuleInfo, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -211,7 +213,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Module Planner ] =============================");
         ui.stop();
         try {
             storage.saveUserPrefs(userPrefs);

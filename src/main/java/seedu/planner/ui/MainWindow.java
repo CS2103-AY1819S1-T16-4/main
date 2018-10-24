@@ -36,7 +36,7 @@ import seedu.planner.model.UserPrefs;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow.fxml";
+    private static final String FXML = "MainWindow_Test" + ".fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
