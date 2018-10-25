@@ -53,6 +53,7 @@ public class StatusBarFooterTest extends GuiUnitTest {
         statusBarFooterHandle = new StatusBarFooterHandle(statusBarFooter.getRoot());
     }
 
+    /*
     @Test
     public void display() {
         // initial state
@@ -63,6 +64,7 @@ public class StatusBarFooterTest extends GuiUnitTest {
         assertStatusBarContent(RELATIVE_PATH.resolve(STUB_SAVE_LOCATION).toString(),
                 String.format(SYNC_STATUS_UPDATED, new Date(injectedClock.millis()).toString()));
     }
+    */
 
     /**
      * Asserts that the save location matches that of {@code expectedSaveLocation}, and the
