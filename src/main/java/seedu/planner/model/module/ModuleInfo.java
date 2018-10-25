@@ -29,10 +29,11 @@ import seedu.planner.commons.util.JsonUtil;
  * REQUIRES: Module code is globally unique, no two ModuleInfo object has the same module code.
  */
 public class ModuleInfo {
-    public static final String MESSAGE_MODULE_CODE_CONSTRAINTS = "Module codes should be of the format WX(Y)1234(Z), "
-            + "where WX(Y) refers to a prefix like CS or CEG that describes the type of the module, "
-            + "1234 refers to a sequence of positive numbers, "
-            + "and (Z) refers to an optional postfix.";
+    public static final String MESSAGE_MODULE_CODE_CONSTRAINTS = "Module codes should be of the format VW(X)1234(YZ).\n"
+            + "VW refers to a prefix like CS or CG that describes the type of the module.\n"
+            + "(X) refers to an optional prefix add-on.\n"
+            + "1234 refers to a sequence of positive numbers.\n"
+            + "(YZ) refers to an optional postfix.";
 
     private static ImmutableMap<String, ModuleInfo> codeToModuleInfoMap = null;
 
