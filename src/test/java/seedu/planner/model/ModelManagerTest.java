@@ -8,6 +8,7 @@ import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
 import seedu.planner.testutil.ModulePlannerBuilder;
 
 public class ModelManagerTest {

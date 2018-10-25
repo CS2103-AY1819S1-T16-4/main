@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
+
 import seedu.planner.testutil.ModulePlannerBuilder;
 
 public class VersionedModulePlannerTest {
@@ -206,7 +207,8 @@ public class VersionedModulePlannerTest {
 
     @Test
     public void equals() {
-        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(modulePlannerWithCS1010, modulePlannerWithCS2030);
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(modulePlannerWithCS1010,
+            modulePlannerWithCS2030);
 
         // same values -> returns true
         VersionedModulePlanner copy = prepareModulePlannerList(modulePlannerWithCS1010, modulePlannerWithCS2030);
@@ -222,7 +224,8 @@ public class VersionedModulePlannerTest {
         assertFalse(versionedModulePlanner.equals(1));
 
         // different state list -> returns false
-        VersionedModulePlanner differentModulePlannerList = prepareModulePlannerList(modulePlannerWithCS2030, emptyModulePlanner);
+        VersionedModulePlanner differentModulePlannerList = prepareModulePlannerList(modulePlannerWithCS2030,
+            emptyModulePlanner);
         assertFalse(versionedModulePlanner.equals(differentModulePlannerList));
 
         // different current pointer index -> returns false

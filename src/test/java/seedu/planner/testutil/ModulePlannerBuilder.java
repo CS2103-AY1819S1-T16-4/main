@@ -1,12 +1,12 @@
 package seedu.planner.testutil;
 
-import seedu.planner.model.ModulePlanner;
-import seedu.planner.model.module.Module;
+import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
+import seedu.planner.model.ModulePlanner;
+import seedu.planner.model.module.Module;
 
 /**
  * A utility class to help with building ModulePlanner objects.

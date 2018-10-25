@@ -1,15 +1,15 @@
 package seedu.planner.testutil;
 
-import seedu.planner.model.ModulePlanner;
-import seedu.planner.model.module.Module;
-import seedu.planner.model.module.ModuleInfo;
-import seedu.planner.model.module.ModuleType;
+import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
+import seedu.planner.model.ModulePlanner;
+import seedu.planner.model.module.Module;
+import seedu.planner.model.module.ModuleInfo;
+import seedu.planner.model.module.ModuleType;
 
 public class TypicalModules {
 

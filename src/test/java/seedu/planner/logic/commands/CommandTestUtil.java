@@ -7,14 +7,14 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.module.Module;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Contains helper methods for testing commands.

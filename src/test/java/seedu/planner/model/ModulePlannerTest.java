@@ -2,16 +2,15 @@ package seedu.planner.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.getTypicalModulePlanner;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class ModulePlannerTest {
 
