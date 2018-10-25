@@ -136,16 +136,9 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         setSemesters(newData.getSemesters());
     }
 
-    //TODO: change to private once SampleModuleUtil is not needed, and remove the toRemove boolean
-    public void setSemesters(List<Semester> semesters) {
-        boolean toRemove = false;
-        if (this.semesters.size() != 0) {
-            toRemove = true;
-        }
+    private void setSemesters(List<Semester> semesters) {
         for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
-            if (toRemove) {
-                this.semesters.remove(i);
-            }
+            this.semesters.remove(i);
             this.semesters.add(i, semesters.get(i));
         }
     }
