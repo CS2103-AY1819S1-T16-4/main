@@ -27,14 +27,12 @@ import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.ReadOnlyModulePlanner;
 import seedu.planner.model.UserPrefs;
 import seedu.planner.model.module.ModuleInfo;
-import seedu.planner.storage.AddressBookStorage;
 import seedu.planner.storage.JsonModulePlannerStorage;
 import seedu.planner.storage.JsonUserPrefsStorage;
 import seedu.planner.storage.ModulePlannerStorage;
 import seedu.planner.storage.Storage;
 import seedu.planner.storage.StorageManager;
 import seedu.planner.storage.UserPrefsStorage;
-import seedu.planner.storage.XmlAddressBookStorage;
 import seedu.planner.ui.Ui;
 import seedu.planner.ui.UiManager;
 
@@ -66,12 +64,10 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         userPrefs = initPrefs(userPrefsStorage);
 
-        AddressBookStorage addressBookStorage = new XmlAddressBookStorage(userPrefs.getAddressBookFilePath());
-
         // TODO(rongjiecomputer) Put path to UserPrefs.
         ModulePlannerStorage modulePlannerStorage = new JsonModulePlannerStorage(
             Paths.get("data", "modulePlanner.json"));
-        storage = new StorageManager(addressBookStorage, modulePlannerStorage, userPrefsStorage);
+        storage = new StorageManager(modulePlannerStorage, userPrefsStorage);
 
         initLogging(config);
 

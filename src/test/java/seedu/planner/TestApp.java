@@ -11,9 +11,9 @@ import seedu.planner.commons.core.GuiSettings;
 import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.commons.util.FileUtil;
 import seedu.planner.commons.util.XmlUtil;
-import seedu.planner.model.AddressBook;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
+import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.ReadOnlyModulePlanner;
 import seedu.planner.model.UserPrefs;
 import seedu.planner.storage.UserPrefsStorage;
@@ -71,13 +71,11 @@ public class TestApp extends MainApp {
     /**
      * Returns a defensive copy of the planner book data stored inside the storage file.
      */
-    public AddressBook readStorageAddressBook() {
+    public ModulePlanner readStorageModulePlanner() {
         try {
-            return new AddressBook(storage.readAddressBook().get());
+            return new ModulePlanner(storage.readModulePlanner().get());
         } catch (DataConversionException dce) {
             throw new AssertionError("Data is not in the AddressBook format.", dce);
-        } catch (IOException ioe) {
-            throw new AssertionError("Storage file cannot be found.", ioe);
         }
     }
 
@@ -85,7 +83,7 @@ public class TestApp extends MainApp {
      * Returns the file path of the storage file.
      */
     public Path getStorageSaveLocation() {
-        return storage.getAddressBookFilePath();
+        return storage.getModulePlannerFilePath();
     }
 
     /**

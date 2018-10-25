@@ -14,7 +14,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import seedu.planner.commons.core.LogsCenter;
-import seedu.planner.commons.events.model.AddressBookChangedEvent;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
 
 /**
@@ -72,14 +71,6 @@ public class StatusBarFooter extends UiPart<Region> {
 
     private void setSyncStatus(String status) {
         Platform.runLater(() -> syncStatus.setText(status));
-    }
-
-    @Subscribe
-    public void handleAddressBookChangedEvent(AddressBookChangedEvent abce) {
-        long now = clock.millis();
-        String lastUpdated = new Date(now).toString();
-        logger.info(LogsCenter.getEventHandlingLogMessage(abce, "Setting last updated status to " + lastUpdated));
-        setSyncStatus(String.format(SYNC_STATUS_UPDATED, lastUpdated));
     }
 
     @Subscribe
