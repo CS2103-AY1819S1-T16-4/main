@@ -10,12 +10,12 @@ import seedu.planner.model.Model;
 //@@author Hilda-Ang
 
 /**
- * Placeholder for ListModuleCommand.
+ * Placeholder for ListCommand.
  * Lists all modules the user has taken or is available to take.
  */
-public class ListModuleCommand extends Command {
+public class ListCommand extends Command {
 
-    public static final String COMMAND_WORD = "listModule";
+    public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken or suggested for a semester. "
             + "Parameters: "
@@ -30,9 +30,9 @@ public class ListModuleCommand extends Command {
     private int index;
 
     /**
-     * Creates a ListModuleCommand to list modules for specified semester.
+     * Creates a ListCommand to list modules for specified semester.
      */
-    public ListModuleCommand(int index) {
+    public ListCommand(int index) {
         this.index = index;
     }
 
@@ -46,7 +46,7 @@ public class ListModuleCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ListModuleCommand // instanceof handles nulls
-                && index == ((ListModuleCommand) other).index);
+                || (other instanceof ListCommand // instanceof handles nulls
+                && index == ((ListCommand) other).index);
     }
 }

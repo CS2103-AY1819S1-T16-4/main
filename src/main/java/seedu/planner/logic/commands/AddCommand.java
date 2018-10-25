@@ -20,9 +20,9 @@ import seedu.planner.model.module.Module;
 /**
  * Add a module to the module planner
  */
-public class AddModuleCommand extends Command {
+public class AddCommand extends Command {
 
-    public static final String COMMAND_WORD = "addModule";
+    public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add current/future modules to the module planner. "
@@ -44,7 +44,7 @@ public class AddModuleCommand extends Command {
     /**
      * Add module method
      */
-    public AddModuleCommand(List<Module> modules, int index) {
+    public AddCommand(List<Module> modules, int index) {
         requireAllNonNull(modules, index);
         semesterIndex = index;
         modulesToAdd = modules;

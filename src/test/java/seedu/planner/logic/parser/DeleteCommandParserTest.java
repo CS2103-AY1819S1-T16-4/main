@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import seedu.planner.logic.commands.DeleteModuleCommand;
+import seedu.planner.logic.commands.DeleteCommand;
 import seedu.planner.model.module.Module;
 import seedu.planner.testutil.SampleModules;
 
@@ -23,21 +23,21 @@ import seedu.planner.testutil.SampleModules;
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class DeleteModuleCommandParserTest {
+public class DeleteCommandParserTest {
 
-    private DeleteModuleCommandParser parser = new DeleteModuleCommandParser();
+    private DeleteCommandParser parser = new DeleteCommandParser();
     private List<Module> list1 = SampleModules.getModules(0, 1);
     private List<Module> list2 = SampleModules.getModules(0, 2);
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, MODULE_DESC_CS1010, new DeleteModuleCommand(list1));
-        assertParseSuccess(parser, MODULE_DESC_CS1010 + MODULE_DESC_CS1231, new DeleteModuleCommand(list2));
+        assertParseSuccess(parser, MODULE_DESC_CS1010, new DeleteCommand(list1));
+        assertParseSuccess(parser, MODULE_DESC_CS1010 + MODULE_DESC_CS1231, new DeleteCommand(list2));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, DeleteModuleCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }

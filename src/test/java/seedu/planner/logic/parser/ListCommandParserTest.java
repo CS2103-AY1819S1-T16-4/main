@@ -14,24 +14,24 @@ import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.Test;
 
-import seedu.planner.logic.commands.ListModuleCommand;
+import seedu.planner.logic.commands.ListCommand;
 
 //@@author Hilda-Ang
 
-public class ListModuleCommandParserTest {
+public class ListCommandParserTest {
 
-    private ListModuleCommandParser parser = new ListModuleCommandParser();
+    private ListCommandParser parser = new ListCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE,
-            new ListModuleCommand(0));
+            new ListCommand(0));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListModuleCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE);
 
         // missing year prefix
         assertParseFailure(parser, VALID_YEAR_ONE + VALID_SEMESTER_DESC_ONE, expectedMessage);
@@ -59,6 +59,6 @@ public class ListModuleCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListModuleCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
     }
 }

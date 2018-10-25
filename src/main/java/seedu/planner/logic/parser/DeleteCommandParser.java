@@ -6,35 +6,35 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import java.util.List;
 import java.util.stream.Stream;
 
-import seedu.planner.logic.commands.DeleteModuleCommand;
+import seedu.planner.logic.commands.DeleteCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.Module;
 
 //@@author GabrielYik
 
 /**
- * A parser that parse an input argument and creates a DeleteModuleCommand.
+ * A parser that parse an input argument and creates a DeleteCommand.
  */
-public class DeleteModuleCommandParser implements Parser<DeleteModuleCommand> {
+public class DeleteCommandParser implements Parser<DeleteCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteModuleCommand
-     * and returns a DeleteModuleCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteCommand
+     * and returns a DeleteCommand object for execution.
      *
      * @throws ParseException If the user input does not conform to the expected format
      */
     @Override
-    public DeleteModuleCommand parse(String args) throws ParseException {
+    public DeleteCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 args, PREFIX_CODE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CODE) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteModuleCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         List<Module> modules = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_CODE));
 
-        return new DeleteModuleCommand(modules);
+        return new DeleteCommand(modules);
     }
 
     /**

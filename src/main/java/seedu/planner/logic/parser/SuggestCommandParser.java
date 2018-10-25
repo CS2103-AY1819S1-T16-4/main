@@ -6,35 +6,35 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.stream.Stream;
 
-import seedu.planner.logic.commands.ListModuleCommand;
+import seedu.planner.logic.commands.SuggestCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.util.IndexUtil;
 
 //@@author Hilda-Ang
 
 /**
- * Parses input arguments and creates a new ListModuleCommand object.
+ * Parses input arguments and creates a new SuggestCommand object.
  */
-public class ListModuleCommandParser implements Parser<ListModuleCommand> {
+public class SuggestCommandParser implements Parser<SuggestCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ListModuleCommand
-     * and returns a ListModuleCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SuggestCommand
+     * and returns a ListCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public ListModuleCommand parse(String args) throws ParseException {
+    public SuggestCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_YEAR, PREFIX_SEMESTER);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_YEAR, PREFIX_SEMESTER) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListModuleCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SuggestCommand.MESSAGE_USAGE));
         }
 
         int year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
         int semester = ParserUtil.parseSemester(argMultimap.getValue(PREFIX_SEMESTER).get());
 
-        return new ListModuleCommand(IndexUtil.convertYearAndSemesterToIndex(year, semester));
+        return new SuggestCommand(IndexUtil.convertYearAndSemesterToIndex(year, semester));
     }
 
     /**
