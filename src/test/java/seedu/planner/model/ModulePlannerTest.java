@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertTrue;
+import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.getTypicalModulePlanner;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
@@ -66,7 +67,7 @@ public class ModulePlannerTest {
 
     @Test
     public void hasModule_moduleInModulePlanner_returnsTrue() {
-        modulePlanner.addModules(getTypicalModules());
+        modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
         assertTrue(modulePlanner.hasModule(CS1010));
     }
 

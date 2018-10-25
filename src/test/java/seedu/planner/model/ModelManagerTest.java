@@ -44,7 +44,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        ModulePlanner modulePlanner = new ModulePlannerBuilder().withModule(CS1010);
+        ModulePlanner modulePlanner = new ModulePlannerBuilder().withModule(CS1010).build();
         ModulePlanner differentModulePlanner = new ModulePlanner();
         UserPrefs userPrefs = new UserPrefs();
 

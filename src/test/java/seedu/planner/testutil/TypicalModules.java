@@ -45,7 +45,9 @@ public class TypicalModules {
     public static ModulePlanner getTypicalModulePlanner() {
         ModulePlanner mp = new ModulePlanner();
         for (Module module : getTypicalModules()) {
-            mp.addModules(module, INDEX_FIRST);
+            List<Module> moduleList = new ArrayList<>();
+            moduleList.add(module);
+            mp.addModules(moduleList, INDEX_FIRST);
         }
         return mp;
     }
