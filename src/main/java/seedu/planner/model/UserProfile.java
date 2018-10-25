@@ -3,8 +3,8 @@ package seedu.planner.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.planner.model.enumeration.FocusArea;
-import seedu.planner.model.enumeration.Major;
+import seedu.planner.model.course.FocusArea;
+import seedu.planner.model.course.Major;
 
 //@@author GabrielYik
 

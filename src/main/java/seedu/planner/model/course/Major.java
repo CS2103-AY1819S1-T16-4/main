@@ -1,4 +1,4 @@
-package seedu.planner.model.enumeration;
+package seedu.planner.model.course;
 
 //@@author GabrielYik
 
