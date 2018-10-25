@@ -1,6 +1,7 @@
 package seedu.planner.logic.commands;
 
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.planner.testutil.TypicalModules.getTypicalModulePlanner;
 
 import org.junit.Test;
 
@@ -25,10 +26,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyModulePlanner_success() {
-        // TODO: Change "new ModulePlanner()" to "getTypicalModulePlanner()"
-        Model model = new ModelManager(new ModulePlanner(), new UserPrefs());
-        Model expectedModel = new ModelManager(new ModulePlanner(), new UserPrefs());
-
+        Model model = new ModelManager(getTypicalModulePlanner(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalModulePlanner(), new UserPrefs());
         expectedModel.resetData(new ModulePlanner());
         expectedModel.commitModulePlanner();
 

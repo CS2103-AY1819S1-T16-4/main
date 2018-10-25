@@ -1,8 +1,16 @@
 package seedu.planner.model;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import static org.junit.Assert.assertTrue;
+import static seedu.planner.testutil.TypicalModules.CS1010;
+import static seedu.planner.testutil.TypicalModules.getTypicalModulePlanner;
+import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
 public class ModulePlannerTest {
 
@@ -24,14 +32,12 @@ public class ModulePlannerTest {
         modulePlanner.resetData(null);
     }
 
-    /*
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyModulePlanner_replacesData() {
+        ModulePlanner newData = getTypicalModulePlanner();
+        modulePlanner.resetData(newData);
+        assertEquals(newData, modulePlanner);
     }
-    */
 
     /*
     @Test
@@ -53,20 +59,16 @@ public class ModulePlannerTest {
         modulePlanner.hasModule(null);
     }
 
-    /*
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasModule_moduleNotInModulePlanner_returnsFalse() {
+        assertFalse(modulePlanner.hasModule(CS1010));
     }
-    */
 
-    /*
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasModule_moduleInModulePlanner_returnsTrue() {
+        modulePlanner.addModules(getTypicalModules());
+        assertTrue(modulePlanner.hasModule(CS1010));
     }
-    */
 
     /*
     @Test

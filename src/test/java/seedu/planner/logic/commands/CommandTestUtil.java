@@ -12,6 +12,8 @@ import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;
 
+import java.util.ArrayList;
+
 /**
  * Contains helper methods for testing commands.
  */
@@ -88,6 +90,15 @@ public class CommandTestUtil {
             assertEquals(expectedModulePlanner, actualModel.getModulePlanner());
             assertEquals(expectedCommandHistory, actualCommandHistory);
         }
+    }
+
+    /**
+     * Deletes the first module in {@code model}'s filtered list from {@code model}'s planner book.
+     */
+    public static void deleteFirstModule(Model model) {
+        Module firstModule = model.getFilteredTakenModuleList(0).get(0);
+        model.deleteModules(new ArrayList<Module>(firstModule));
+        model.commitModulePlanner();
     }
 
 }

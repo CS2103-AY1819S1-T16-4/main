@@ -2,262 +2,233 @@ package seedu.planner.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static seedu.planner.testutil.Assert.assertThrows;
+import static seedu.planner.testutil.TypicalModules.CS1010;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
+import seedu.planner.testutil.ModulePlannerBuilder;
 
 public class VersionedModulePlannerTest {
-    /*
-    @Test
-    public void commit_singleAddressBook_noStatesRemovedCurrentStateSaved() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(emptyAddressBook);
 
-        versionedAddressBook.commit();
-        assertAddressBookListStatus(versionedAddressBook,
-                Collections.singletonList(emptyAddressBook),
-                emptyAddressBook,
+    private final ReadOnlyModulePlanner modulePlannerWithCS1010 = new ModulePlannerBuilder().withModule(CS1010).build();
+    private final ReadOnlyModulePlanner modulePlannerWithCS2030 = new ModulePlannerBuilder().withModule(CS2030).build();
+    private final ReadOnlyModulePlanner emptyModulePlanner = new ModulePlanner();
+
+    @Test
+    public void commit_singleModulePlanner_noStatesRemovedCurrentStateSaved() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(emptyModulePlanner);
+
+        versionedModulePlanner.commit();
+        assertModulePlannerListStatus(versionedModulePlanner,
+                Collections.singletonList(emptyModulePlanner),
+                emptyModulePlanner,
                 Collections.emptyList());
     }
-    */
 
-    /*
     @Test
-    public void commit_multipleAddressBookPointerAtEndOfStateList_noStatesRemovedCurrentStateSaved() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
+    public void commit_multipleModulePlannerPointerAtEndOfStateList_noStatesRemovedCurrentStateSaved() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
 
-        versionedAddressBook.commit();
-        assertAddressBookListStatus(versionedAddressBook,
-                Arrays.asList(emptyAddressBook, addressBookWithAmy, addressBookWithBob),
-                addressBookWithBob,
+        versionedModulePlanner.commit();
+        assertModulePlannerListStatus(versionedModulePlanner,
+                Arrays.asList(emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030),
+                modulePlannerWithCS2030,
                 Collections.emptyList());
     }
-    */
 
-    /*
     @Test
-    public void commit_multipleAddressBookPointerNotAtEndOfStateList_statesAfterPointerRemovedCurrentStateSaved() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 2);
+    public void commit_multipleModulePlannerPointerNotAtEndOfStateList_statesAfterPointerRemovedCurrentStateSaved() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
+        shiftCurrentStatePointerLeftwards(versionedModulePlanner, 2);
 
-        versionedAddressBook.commit();
-        assertAddressBookListStatus(versionedAddressBook,
-                Collections.singletonList(emptyAddressBook),
-                emptyAddressBook,
+        versionedModulePlanner.commit();
+        assertModulePlannerListStatus(versionedModulePlanner,
+                Collections.singletonList(emptyModulePlanner),
+                emptyModulePlanner,
                 Collections.emptyList());
     }
-    */
 
-    /*
     @Test
-    public void canUndo_multipleAddressBookPointerAtEndOfStateList_returnsTrue() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
+    public void canUndo_multipleModulePlannerPointerAtEndOfStateList_returnsTrue() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
 
-        assertTrue(versionedAddressBook.canUndo());
+        assertTrue(versionedModulePlanner.canUndo());
     }
-    */
 
-    /*
     @Test
-    public void canUndo_multipleAddressBookPointerAtStartOfStateList_returnsTrue() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 1);
+    public void canUndo_multipleModulePlannerPointerAtStartOfStateList_returnsTrue() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
+        shiftCurrentStatePointerLeftwards(versionedModulePlanner, 1);
 
-        assertTrue(versionedAddressBook.canUndo());
+        assertTrue(versionedModulePlanner.canUndo());
     }
-    */
 
-    /*
     @Test
-    public void canUndo_singleAddressBook_returnsFalse() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(emptyAddressBook);
+    public void canUndo_singleModulePlanner_returnsFalse() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(emptyModulePlanner);
 
-        assertFalse(versionedAddressBook.canUndo());
+        assertFalse(versionedModulePlanner.canUndo());
     }
-    */
 
-    /*
     @Test
-    public void canUndo_multipleAddressBookPointerAtStartOfStateList_returnsFalse() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 2);
+    public void canUndo_multipleModulePlannerPointerAtStartOfStateList_returnsFalse() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
+        shiftCurrentStatePointerLeftwards(versionedModulePlanner, 2);
 
-        assertFalse(versionedAddressBook.canUndo());
+        assertFalse(versionedModulePlanner.canUndo());
     }
-    */
 
-    /*
     @Test
-    public void canRedo_multipleAddressBookPointerNotAtEndOfStateList_returnsTrue() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 1);
+    public void canRedo_multipleModulePlannerPointerNotAtEndOfStateList_returnsTrue() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
+        shiftCurrentStatePointerLeftwards(versionedModulePlanner, 1);
 
-        assertTrue(versionedAddressBook.canRedo());
+        assertTrue(versionedModulePlanner.canRedo());
     }
-    */
 
-    /*
     @Test
-    public void canRedo_multipleAddressBookPointerAtStartOfStateList_returnsTrue() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 2);
+    public void canRedo_multipleModulePlannerPointerAtStartOfStateList_returnsTrue() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
+        shiftCurrentStatePointerLeftwards(versionedModulePlanner, 2);
 
-        assertTrue(versionedAddressBook.canRedo());
+        assertTrue(versionedModulePlanner.canRedo());
     }
-    */
 
-    /*
     @Test
-    public void canRedo_singleAddressBook_returnsFalse() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(emptyAddressBook);
+    public void canRedo_singleModulePlanner_returnsFalse() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(emptyModulePlanner);
 
-        assertFalse(versionedAddressBook.canRedo());
+        assertFalse(versionedModulePlanner.canRedo());
     }
-    */
 
-    /*
     @Test
-    public void canRedo_multipleAddressBookPointerAtEndOfStateList_returnsFalse() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
+    public void canRedo_multipleModulePlannerPointerAtEndOfStateList_returnsFalse() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
 
-        assertFalse(versionedAddressBook.canRedo());
+        assertFalse(versionedModulePlanner.canRedo());
     }
-    */
 
-    /*
     @Test
-    public void undo_multipleAddressBookPointerAtEndOfStateList_success() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
+    public void undo_multipleModulePlannerPointerAtEndOfStateList_success() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
 
-        versionedAddressBook.undo();
-        assertAddressBookListStatus(versionedAddressBook,
-                Collections.singletonList(emptyAddressBook),
-                addressBookWithAmy,
-                Collections.singletonList(addressBookWithBob));
+        versionedModulePlanner.undo();
+        assertModulePlannerListStatus(versionedModulePlanner,
+                Collections.singletonList(emptyModulePlanner),
+                modulePlannerWithCS1010,
+                Collections.singletonList(modulePlannerWithCS2030));
     }
-    */
 
-    /*
     @Test
-    public void undo_multipleAddressBookPointerNotAtStartOfStateList_success() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 1);
+    public void undo_multipleModulePlannerPointerNotAtStartOfStateList_success() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
+        shiftCurrentStatePointerLeftwards(versionedModulePlanner, 1);
 
-        versionedAddressBook.undo();
-        assertAddressBookListStatus(versionedAddressBook,
+        versionedModulePlanner.undo();
+        assertModulePlannerListStatus(versionedModulePlanner,
                 Collections.emptyList(),
-                emptyAddressBook,
-                Arrays.asList(addressBookWithAmy, addressBookWithBob));
+                emptyModulePlanner,
+                Arrays.asList(modulePlannerWithCS1010, modulePlannerWithCS2030));
     }
-    */
 
-    /*
     @Test
-    public void undo_singleAddressBook_throwsNoUndoableStateException() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(emptyAddressBook);
+    public void undo_singleModulePlanner_throwsNoUndoableStateException() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(emptyModulePlanner);
 
-        assertThrows(VersionedAddressBook.NoUndoableStateException.class, versionedAddressBook::undo);
+        assertThrows(VersionedModulePlanner.NoUndoableStateException.class, versionedModulePlanner::undo);
     }
-    */
 
-    /*
     @Test
-    public void undo_multipleAddressBookPointerAtStartOfStateList_throwsNoUndoableStateException() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 2);
+    public void undo_multipleModulePlannerPointerAtStartOfStateList_throwsNoUndoableStateException() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
+        shiftCurrentStatePointerLeftwards(versionedModulePlanner, 2);
 
-        assertThrows(VersionedAddressBook.NoUndoableStateException.class, versionedAddressBook::undo);
+        assertThrows(VersionedModulePlanner.NoUndoableStateException.class, versionedModulePlanner::undo);
     }
-    */
 
-    /*
     @Test
-    public void redo_multipleAddressBookPointerNotAtEndOfStateList_success() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 1);
+    public void redo_multipleModulePlannerPointerNotAtEndOfStateList_success() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
+        shiftCurrentStatePointerLeftwards(versionedModulePlanner, 1);
 
-        versionedAddressBook.redo();
-        assertAddressBookListStatus(versionedAddressBook,
-                Arrays.asList(emptyAddressBook, addressBookWithAmy),
-                addressBookWithBob,
+        versionedModulePlanner.redo();
+        assertModulePlannerListStatus(versionedModulePlanner,
+                Arrays.asList(emptyModulePlanner, modulePlannerWithCS1010),
+                modulePlannerWithCS2030,
                 Collections.emptyList());
     }
-    */
 
-    /*
     @Test
-    public void redo_multipleAddressBookPointerAtStartOfStateList_success() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 2);
+    public void redo_multipleModulePlannerPointerAtStartOfStateList_success() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
+        shiftCurrentStatePointerLeftwards(versionedModulePlanner, 2);
 
-        versionedAddressBook.redo();
-        assertAddressBookListStatus(versionedAddressBook,
-                Collections.singletonList(emptyAddressBook),
-                addressBookWithAmy,
-                Collections.singletonList(addressBookWithBob));
+        versionedModulePlanner.redo();
+        assertModulePlannerListStatus(versionedModulePlanner,
+                Collections.singletonList(emptyModulePlanner),
+                modulePlannerWithCS1010,
+                Collections.singletonList(modulePlannerWithCS2030));
     }
-    */
 
-    /*
     @Test
-    public void redo_singleAddressBook_throwsNoRedoableStateException() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(emptyAddressBook);
+    public void redo_singleModulePlanner_throwsNoRedoableStateException() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(emptyModulePlanner);
 
-        assertThrows(VersionedAddressBook.NoRedoableStateException.class, versionedAddressBook::redo);
+        assertThrows(VersionedModulePlanner.NoRedoableStateException.class, versionedModulePlanner::redo);
     }
-    */
 
-    /*
     @Test
-    public void redo_multipleAddressBookPointerAtEndOfStateList_throwsNoRedoableStateException() {
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
+    public void redo_multipleModulePlannerPointerAtEndOfStateList_throwsNoRedoableStateException() {
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(
+                emptyModulePlanner, modulePlannerWithCS1010, modulePlannerWithCS2030);
 
-        assertThrows(VersionedAddressBook.NoRedoableStateException.class, versionedAddressBook::redo);
+        assertThrows(VersionedModulePlanner.NoRedoableStateException.class, versionedModulePlanner::redo);
     }
-    */
 
     @Test
     public void equals() {
-        /*
-        VersionedAddressBook versionedAddressBook = prepareAddressBookList(addressBookWithAmy, addressBookWithBob);
+        VersionedModulePlanner versionedModulePlanner = prepareModulePlannerList(modulePlannerWithCS1010, modulePlannerWithCS2030);
 
         // same values -> returns true
-        VersionedAddressBook copy = prepareAddressBookList(addressBookWithAmy, addressBookWithBob);
-        assertTrue(versionedAddressBook.equals(copy));
+        VersionedModulePlanner copy = prepareModulePlannerList(modulePlannerWithCS1010, modulePlannerWithCS2030);
+        assertTrue(versionedModulePlanner.equals(copy));
 
         // same object -> returns true
-        assertTrue(versionedAddressBook.equals(versionedAddressBook));
+        assertTrue(versionedModulePlanner.equals(versionedModulePlanner));
 
         // null -> returns false
-        assertFalse(versionedAddressBook.equals(null));
+        assertFalse(versionedModulePlanner.equals(null));
 
         // different types -> returns false
-        assertFalse(versionedAddressBook.equals(1));
+        assertFalse(versionedModulePlanner.equals(1));
 
         // different state list -> returns false
-        VersionedAddressBook differentAddressBookList = prepareAddressBookList(addressBookWithBob, addressBookWithCarl);
-        assertFalse(versionedAddressBook.equals(differentAddressBookList));
+        VersionedModulePlanner differentModulePlannerList = prepareModulePlannerList(modulePlannerWithCS2030, emptyModulePlanner);
+        assertFalse(versionedModulePlanner.equals(differentModulePlannerList));
 
         // different current pointer index -> returns false
-        VersionedAddressBook differentCurrentStatePointer = prepareAddressBookList(
-                addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 1);
-        assertFalse(versionedAddressBook.equals(differentCurrentStatePointer));
-        */
+        VersionedModulePlanner differentCurrentStatePointer = prepareModulePlannerList(
+                modulePlannerWithCS1010, modulePlannerWithCS2030);
+        shiftCurrentStatePointerLeftwards(versionedModulePlanner, 1);
+        assertFalse(versionedModulePlanner.equals(differentCurrentStatePointer));
     }
 
     /**

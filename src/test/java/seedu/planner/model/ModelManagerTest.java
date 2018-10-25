@@ -2,21 +2,15 @@ package seedu.planner.model;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import static seedu.planner.testutil.TypicalModules.CS1010;
+import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import seedu.planner.model.module.Module;
+import seedu.planner.testutil.ModulePlannerBuilder;
 
 public class ModelManagerTest {
-
-    // TODO: Extract to TypicalModules and remove this
-    private static final Module SAMPLE_MODULE = new Module("CS2103");
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -31,15 +25,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasModule_moduleNotInModulePlanner_returnsFalse() {
-        assertFalse(modelManager.hasModule(SAMPLE_MODULE));
+        assertFalse(modelManager.hasModule(CS1010));
     }
 
     @Test
     public void hasModule_moduleInModulePlanner_returnsTrue() {
-        List<Module> moduleList = new ArrayList<>();
-        moduleList.add(SAMPLE_MODULE);
-        modelManager.addModules(moduleList, 0);
-        assertTrue(modelManager.hasModule(SAMPLE_MODULE));
+        modelManager.addModules(getTypicalModules(), 0);
+        assertTrue(modelManager.hasModule(CS1010));
     }
 
     /*
@@ -52,11 +44,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        // TODO: User ModulePlannerBuilder()
-        List<Module> moduleList = new ArrayList<>();
-        moduleList.add(SAMPLE_MODULE);
-        ModulePlanner modulePlanner = new ModulePlanner();
-        modulePlanner.addModules(moduleList, 0);
+        ModulePlanner modulePlanner = new ModulePlannerBuilder().withModule(CS1010);
         ModulePlanner differentModulePlanner = new ModulePlanner();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -83,8 +71,8 @@ public class ModelManagerTest {
         // assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // different userPrefs -> returns true
-        UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertTrue(modelManager.equals(new ModelManager(modulePlanner, differentUserPrefs)));
+        // UserPrefs differentUserPrefs = new UserPrefs();
+        // differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        // assertTrue(modelManager.equals(new ModelManager(modulePlanner, differentUserPrefs)));
     }
 }

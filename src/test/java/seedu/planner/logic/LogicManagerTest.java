@@ -1,6 +1,7 @@
 package seedu.planner.logic;
 
 import static org.junit.Assert.assertEquals;
+import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import org.junit.Rule;
@@ -9,6 +10,7 @@ import org.junit.rules.ExpectedException;
 
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.HistoryCommand;
+import seedu.planner.logic.commands.ListModuleCommand;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.Model;
@@ -30,23 +32,19 @@ public class LogicManagerTest {
         assertHistoryCorrect(invalidCommand);
     }
 
-    /*
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         assertHistoryCorrect(deleteCommand);
     }
-    */
 
-    /*
     @Test
     public void execute_validCommand_success() {
         String listModuleCommand = ListModuleCommand.COMMAND_WORD;
         assertCommandSuccess(listModuleCommand, ListModuleCommand.MESSAGE_SUCCESS, model);
         assertHistoryCorrect(listModuleCommand);
     }
-    */
 
     /*
     @Test
