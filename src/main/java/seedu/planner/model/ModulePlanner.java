@@ -136,7 +136,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         setSemesters(newData.getSemesters());
     }
 
-    private void setSemesters(List<Semester> semesters) {
+    public void setSemesters(List<Semester> semesters) {
         for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
             this.semesters.remove(i);
             this.semesters.add(i, semesters.get(i));
