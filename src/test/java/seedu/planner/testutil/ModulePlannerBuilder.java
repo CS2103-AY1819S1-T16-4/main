@@ -29,7 +29,8 @@ public class ModulePlannerBuilder {
      * Adds a l@code Module} to the {@code ModulePlanner} that we are building.
      */
     public ModulePlannerBuilder withModule(Module module) {
-        List<Module> modules = (new ArrayList<>()).add(module);
+        List<Module> modules = new ArrayList<>();
+        modules.add(module);
         modulePlanner.addModules(modules, INDEX_FIRST);
         return this;
     }

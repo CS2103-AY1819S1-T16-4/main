@@ -40,8 +40,8 @@ public class ModuleInfoBuilder {
         name = moduleInfoToCopy.getName();
         possibleTypes = moduleInfoToCopy.getPossibleTypes().clone();
         creditCount = moduleInfoToCopy.getCreditCount();
-        preclusions = moduleInfoToCopy.getPreclusions().clone();
-        prerequisites = moduleInfoToCopy.getPrerequisites().clone();
+        preclusions = moduleInfoToCopy.getPreclusions().stream().map(m -> m.getCode()).toArray(String[]::new);
+        prerequisites = moduleInfoToCopy.getPrerequisites().stream().map(m -> m.getCode()).toArray(String[]::new);
     }
 
     /**

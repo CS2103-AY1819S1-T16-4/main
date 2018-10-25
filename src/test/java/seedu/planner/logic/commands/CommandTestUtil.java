@@ -11,8 +11,10 @@ import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;
+import seedu.planner.model.module.Module;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Contains helper methods for testing commands.
@@ -97,7 +99,9 @@ public class CommandTestUtil {
      */
     public static void deleteFirstModule(Model model) {
         Module firstModule = model.getFilteredTakenModuleList(0).get(0);
-        model.deleteModules(new ArrayList<Module>(firstModule));
+        List<Module> moduleList = new ArrayList<>();
+        moduleList.add(firstModule)
+        model.deleteModules(moduleList);
         model.commitModulePlanner();
     }
 
