@@ -1,7 +1,6 @@
 package seedu.planner.logic;
 
 import static org.junit.Assert.assertEquals;
-import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import org.junit.Rule;

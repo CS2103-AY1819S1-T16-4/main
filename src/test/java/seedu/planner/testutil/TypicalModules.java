@@ -11,6 +11,9 @@ import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
 
+/**
+ * A utility class containing {@code Modules} to be used.
+ */
 public class TypicalModules {
 
     private static final ModuleInfo CS1010_INFORMATION = new ModuleInfoBuilder()
