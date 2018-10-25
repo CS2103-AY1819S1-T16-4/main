@@ -19,6 +19,7 @@ import seedu.planner.model.course.Major;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
+import seedu.planner.model.user.UserProfile;
 
 /**
  * Represents the in-memory model of the planner book data.
