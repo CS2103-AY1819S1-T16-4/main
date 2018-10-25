@@ -13,8 +13,8 @@ public class ModuleInfoBuilder {
     public static final ModuleType[] DEFAULT_POSSIBLE_TYPES = {ModuleType.PROGRAMME_REQUIREMENTS,
         ModuleType.UNRESTRICTED_ELECTIVES};
     public static final float DEFAULT_CREDIT_COUNT = 4;
-    public static final String[] DEFAULT_PRECLUSIONS = ["CS1020"];
-    public static final String[] DEFAULT_PREREQUISITES = ["CS1010"];
+    public static final String[] DEFAULT_PRECLUSIONS = new String[] {"CS1020"};
+    public static final String[] DEFAULT_PREREQUISITES = new String[] {"CS1010"};
 
     private String code;
     private String name;
