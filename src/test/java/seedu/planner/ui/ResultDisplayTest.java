@@ -1,10 +1,6 @@
 package seedu.planner.ui;
 
-import static org.junit.Assert.assertEquals;
-import static seedu.planner.testutil.EventsUtil.postNow;
-
 import org.junit.Before;
-import org.junit.Test;
 
 import guitests.guihandles.ResultDisplayHandle;
 import seedu.planner.commons.events.ui.NewResultAvailableEvent;

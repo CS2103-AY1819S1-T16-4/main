@@ -1,19 +1,9 @@
 package seedu.planner.ui;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assume.assumeFalse;
-import static seedu.planner.ui.HelpWindow.USERGUIDE_FILE_PATH;
-
-import java.net.URL;
-
 import org.junit.Before;
-import org.junit.Test;
 import org.testfx.api.FxToolkit;
 
 import guitests.guihandles.HelpWindowHandle;
-import javafx.stage.Stage;
 
 public class HelpWindowTest extends GuiUnitTest {
 

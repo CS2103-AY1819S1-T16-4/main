@@ -1,17 +1,13 @@
 package seedu.planner.ui;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
 import org.testfx.api.FxToolkit;
 
 import guitests.guihandles.StageHandle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import seedu.planner.commons.core.Config;
-import seedu.planner.commons.events.ui.ExitAppRequestEvent;
 import seedu.planner.logic.LogicManager;
 import seedu.planner.model.ModelManager;
 import seedu.planner.model.UserPrefs;

@@ -1,21 +1,16 @@
 package seedu.planner.ui;
 
 import static org.junit.Assert.assertEquals;
-import static seedu.planner.testutil.EventsUtil.postNow;
-import static seedu.planner.ui.StatusBarFooter.SYNC_STATUS_INITIAL;
-import static seedu.planner.ui.StatusBarFooter.SYNC_STATUS_UPDATED;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
-import java.util.Date;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 
 import guitests.guihandles.StatusBarFooterHandle;
 import seedu.planner.commons.events.model.AddressBookChangedEvent;
