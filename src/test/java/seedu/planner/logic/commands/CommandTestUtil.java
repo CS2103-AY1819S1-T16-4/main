@@ -100,7 +100,7 @@ public class CommandTestUtil {
     public static void deleteFirstModule(Model model) {
         Module firstModule = model.getFilteredTakenModuleList(0).get(0);
         List<Module> moduleList = new ArrayList<>();
-        moduleList.add(firstModule)
+        moduleList.add(firstModule);
         model.deleteModules(moduleList);
         model.commitModulePlanner();
     }
