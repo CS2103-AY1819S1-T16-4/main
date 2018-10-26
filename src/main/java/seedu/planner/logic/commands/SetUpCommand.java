@@ -61,8 +61,8 @@ public class SetUpCommand extends Command {
     public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
 
-        if (!IndexUtil.isValidYear(year) && !IndexUtil.isValidSemester(semester)
-                && !model.hasMajor(major) && !model.hasFocusAreas(focusAreas)) {
+        if (!IndexUtil.isValidYear(year) || !IndexUtil.isValidSemester(semester)
+                || !model.hasMajor(major) || !model.hasFocusAreas(focusAreas)) {
             throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
         }
 
