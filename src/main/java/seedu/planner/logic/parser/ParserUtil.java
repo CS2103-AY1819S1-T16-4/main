@@ -58,17 +58,14 @@ public class ParserUtil {
      */
     private static Module parseModuleCode(String moduleCode) throws ParseException {
         requireNonNull(moduleCode);
-        moduleCode = moduleCode.trim();
-
-        if (moduleCode.isEmpty()) {
+        String trimmedModuleCode = moduleCode.trim();
+        if (trimmedModuleCode.isEmpty()) {
             throw new ParseException(MESSAGE_MODULE_CODE_CONSTRAINTS);
         }
-
-        if (!ModuleUtil.hasValidCodeFormat(moduleCode)) {
+        if (!ModuleUtil.hasValidCodeFormat(trimmedModuleCode)) {
             throw new ParseException(MESSAGE_MODULE_CODE_CONSTRAINTS);
         }
-
-        return new Module(moduleCode);
+        return new Module(trimmedModuleCode);
     }
 
     /**
@@ -79,12 +76,10 @@ public class ParserUtil {
      */
     public static List<Module> parseModuleCodes(Collection<String> moduleCodes) throws ParseException {
         requireNonNull(moduleCodes);
-
         List<Module> modules = new ArrayList<>();
         for (String m : moduleCodes) {
             modules.add(parseModuleCode(m));
         }
-
         return modules;
     }
 
@@ -98,10 +93,11 @@ public class ParserUtil {
      */
     public static String parseMajor(String major) throws ParseException {
         requireNonNull(major);
-        if (!StringUtil.containsOnlyLettersAndWhiteSpace(major)) {
+        String trimmedMajor = major.trim();
+        if (!StringUtil.containsOnlyLettersAndWhiteSpace(trimmedMajor)) {
             throw new ParseException(MESSAGE_MAJOR_CONSTRAINTS);
         }
-        return major;
+        return trimmedMajor;
     }
 
     /**
@@ -114,10 +110,11 @@ public class ParserUtil {
      */
     private static String parseFocusArea(String focusArea) throws ParseException {
         requireNonNull(focusArea);
-        if (!StringUtil.containsOnlyLettersAndWhiteSpace(focusArea)) {
+        String trimmedFocusArea = focusArea.trim();
+        if (!StringUtil.containsOnlyLettersAndWhiteSpace(trimmedFocusArea)) {
             throw new ParseException(MESSAGE_FOCUS_AREA_CONSTRAINTS);
         }
-        return focusArea;
+        return trimmedFocusArea;
     }
 
     /**
