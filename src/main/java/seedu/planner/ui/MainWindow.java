@@ -25,6 +25,7 @@ import seedu.planner.commons.core.Config;
 import seedu.planner.commons.core.GuiSettings;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.ui.ExitAppRequestEvent;
+import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
 import seedu.planner.commons.events.ui.TabSwitchEvent;
 import seedu.planner.logic.Logic;
@@ -44,9 +45,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private ModuleListPanel[] takenModulesListPanels;
-    private ModuleListPanel[] availableModulesListPanels;
-    private Config config;
     private UserPrefs prefs;
     private HelpWindow helpWindow;
 
@@ -71,7 +69,6 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.config = config;
         this.prefs = prefs;
 
         // Configure the UI
@@ -128,14 +125,14 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
 
         //@@author GabrielYik
-        takenModulesListPanels = new ModuleListPanel[MAX_NUMBER_SEMESTERS];
-        availableModulesListPanels = new ModuleListPanel[MAX_NUMBER_SEMESTERS];
+        ModuleListPanel[] takenModulesListPanels = new ModuleListPanel[MAX_NUMBER_SEMESTERS];
+        ModuleListPanel[] availableModulesListPanels = new ModuleListPanel[MAX_NUMBER_SEMESTERS];
 
         for (int semesterIndex = 0; semesterIndex < MAX_NUMBER_SEMESTERS; semesterIndex++) {
             takenModulesListPanels[semesterIndex] = new ModuleListPanel(
-                    logic.getFilteredTakenModuleList(semesterIndex));
+                    logic.getTakenModuleList(semesterIndex));
             availableModulesListPanels[semesterIndex] = new ModuleListPanel(
-                    logic.getFilteredAvailableModuleList(semesterIndex));
+                    logic.getAvailableModuleList(semesterIndex));
         }
 
         ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
@@ -224,5 +221,17 @@ public class MainWindow extends UiPart<Stage> {
     @Subscribe
     private void handleTabSwitch(TabSwitchEvent event) {
         semestersTabPane.getSelectionModel().select(event.getIndex());
+    }
+
+    @Subscribe
+    private void handleFindModule(FindModuleEvent event) {
+        ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
+        for (int semesterIndex = 0; semesterIndex < semesterTabs.size(); semesterIndex++) {
+            SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
+            ObservableList<Node> nodes = splitPane.getItems();
+            StackPane stackPane = (StackPane) nodes.get(2);
+            FindModulePanel findModulePanel = new FindModulePanel(event.getModule());
+            stackPane.getChildren().add(findModulePanel.getRoot());
+        }
     }
 }
