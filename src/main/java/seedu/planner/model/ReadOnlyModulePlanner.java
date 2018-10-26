@@ -24,13 +24,12 @@ public interface ReadOnlyModulePlanner {
      * @param index The nominal semester index the {@code Module}s are stored at
      * @return An {@code ObservableList} of the {@code Module}s
      */
-    ObservableList<Module> listModulesTaken(int index);
+    ObservableList<Module> getModulesTaken(int index);
 
     /**
      * Returns an unmodifiable view of the {@code Module}s available.
      *
-     * @param index The nominal semester index the {@code Module}s are stored at
      * @return An {@code ObservableList} of the {@code Module}s
      */
-    ObservableList<Module> listModulesAvailable(int index);
+    ObservableList<Module> getModulesAvailable();
 }

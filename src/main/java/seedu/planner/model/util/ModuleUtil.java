@@ -1,5 +1,10 @@
 package seedu.planner.model.util;
 
+import seedu.planner.model.module.Module;
+import seedu.planner.model.module.ModuleInfo;
+
+import java.util.List;
+
 /**
  * Helper functions for handling module.
  */
@@ -18,4 +23,37 @@ public class ModuleUtil {
     }
 
     //@@author
+
+    //@@author Hilda-Ang
+    private static boolean hasFulfilledAllPrerequisites(List<Module> modulesTaken, Module moduleToCheck) {
+        List<ModuleInfo> prerequisites = moduleToCheck.getPrerequisites();
+
+        for (ModuleInfo p: prerequisites) {
+            Module m = new Module(p.getCode());
+
+            if (!modulesTaken.contains(m)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static boolean hasNotFulfilledAnyPreclusions(List<Module> modulesTaken, Module moduleToCheck) {
+        List<ModuleInfo> preclusions = moduleToCheck.getPreclusions();
+
+        for (ModuleInfo p: preclusions) {
+            Module m = new Module(p.getCode());
+
+            if (modulesTaken.contains(m)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean isModuleAvailableToTake(List<Module> modulesTaken, Module module) {
+        return hasFulfilledAllPrerequisites(modulesTaken, module) && hasNotFulfilledAnyPreclusions(modulesTaken, module);
+    }
 }
