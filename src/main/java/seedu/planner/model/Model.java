@@ -7,14 +7,11 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
-import seedu.planner.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     //TODO: can have a predicate to filter taken and available modules
     /** {@code Predicate} that always evaluate to true */
