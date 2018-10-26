@@ -7,7 +7,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.semester.Semester;
