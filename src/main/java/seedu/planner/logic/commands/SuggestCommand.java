@@ -35,7 +35,7 @@ public class SuggestCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        model.getFilteredAvailableModuleList(index);
+        model.getAvailableModuleList(index);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -100,17 +100,28 @@ public interface Model {
      */
     ModuleInfo[] getModuleInfo();
 
+    /**
+     * Retrieves the actual module information of the {@code modules}
+     * and finalizes the modules with their actual module information.
+     * Individual modules are finalized using the method
+     * {@link ModelManager#finalizeModule(Module) finalizeModule}.
+     *
+     * @param modules The modules to be finalized
+     * @return The modules with their actual module information
+     */
+    List<Module> finalizeModules(List<Module> modules);
+
     // @@author
 
     //@@author GabrielYik
 
     //TODO: confirm filtered or sorted or both
     /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getFilteredTakenModuleList(int index);
+    ObservableList<Module> getTakenModuleList(int index);
 
     //TODO: confirm filtered or sorted or both
     /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getFilteredAvailableModuleList(int index);
+    ObservableList<Module> getAvailableModuleList(int index);
 
     //@@author
 

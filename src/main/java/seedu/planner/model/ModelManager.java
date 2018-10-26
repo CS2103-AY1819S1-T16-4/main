@@ -84,7 +84,7 @@ public class ModelManager extends ComponentManager implements Model {
      * @param focusArea The focus area
      * @return True if the focus area is offered, else false
      */
-    private boolean hasFocusArea(String focusArea) {
+    public boolean hasFocusArea(String focusArea) {
         for (FocusArea fa : FocusArea.values()) {
             if (fa.toString().equals(focusArea)) {
                 return true;
@@ -148,7 +148,7 @@ public class ModelManager extends ComponentManager implements Model {
      * @param module The module to be finalized
      * @return The module with the actual module information
      */
-    private Module finalizeModule(Module module) {
+    public Module finalizeModule(Module module) {
         Optional<ModuleInfo> optModuleInfo = ModuleInfo.getFromModuleCode(module.getCode());
         if (optModuleInfo.isPresent()) {
             return new Module(ModuleType.PROGRAMME_REQUIREMENTS, optModuleInfo.get());
@@ -156,15 +156,7 @@ public class ModelManager extends ComponentManager implements Model {
         return new Module("Unknown");
     }
 
-    /**
-     * Retrieves the actual module information of the {@code modules}
-     * and finalizes the modules with their actual module information.
-     * Individual modules are finalized using the method
-     * {@link #finalizeModule(Module) finalizeModule}.
-     *
-     * @param modules The modules to be finalized
-     * @return The modules with their actual module information
-     */
+    @Override
     public List<Module> finalizeModules(List<Module> modules) {
         List<Module> finalizedModules = new ArrayList<>();
         for (Module m : modules) {
@@ -194,13 +186,13 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author GabrielYik
 
     @Override
-    public ObservableList<Module> getFilteredTakenModuleList(int index) {
+    public ObservableList<Module> getTakenModuleList(int index) {
         return FXCollections.unmodifiableObservableList(
                 versionedModulePlanner.listModulesTaken(index));
     }
 
     @Override
-    public ObservableList<Module> getFilteredAvailableModuleList(int index) {
+    public ObservableList<Module> getAvailableModuleList(int index) {
         return FXCollections.unmodifiableObservableList(
                 versionedModulePlanner.listModulesAvailable(index));
     }

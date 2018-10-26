@@ -39,7 +39,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        model.getFilteredTakenModuleList(index);
+        model.getTakenModuleList(index);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
