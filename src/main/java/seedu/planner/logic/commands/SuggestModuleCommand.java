@@ -26,16 +26,10 @@ public class SuggestModuleCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Showed all available modules.";
 
-    private int index;
-
-    public SuggestModuleCommand(int index) {
-        this.index = index;
-    }
-
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        model.getFilteredAvailableModuleList(index);
+        model.getFilteredAvailableModuleList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

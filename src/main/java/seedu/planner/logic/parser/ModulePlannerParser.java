@@ -79,7 +79,7 @@ public class ModulePlannerParser {
             return new ListModuleCommandParser().parse(arguments);
 
         case SuggestModuleCommand.COMMAND_WORD:
-            return new SuggestModuleCommandParser().parse(arguments);
+            return new SuggestModuleCommand();
 
         case GoToCommand.COMMAND_WORD:
             return new GoToCommandParser().parse(arguments);
