@@ -110,7 +110,7 @@ public interface Model {
 
     //TODO: confirm filtered or sorted or both
     /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getFilteredAvailableModuleList(int index);
+    ObservableList<Module> getFilteredAvailableModuleList();
 
     //@@author
 
