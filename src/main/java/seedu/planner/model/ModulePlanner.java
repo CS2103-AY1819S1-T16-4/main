@@ -39,7 +39,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
         for (int i = 1; i <= MAX_NUMBER_SEMESTERS / MAX_SEMESTERS_PER_YEAR; i++) {
             for (int j = 1; j <= MAX_SEMESTERS_PER_YEAR; j++) {
-                semesters.add(new Semester(i, j, false));
+                semesters.add(new Semester(i, j));
             }
         }
     }
