@@ -135,7 +135,7 @@ public class MainWindow extends UiPart<Stage> {
             takenModulesListPanels[semesterIndex] = new ModuleListPanel(
                     logic.getFilteredTakenModuleList(semesterIndex));
             availableModulesListPanels[semesterIndex] = new ModuleListPanel(
-                    logic.getFilteredAvailableModuleList(semesterIndex));
+                    logic.getFilteredAvailableModuleList());
         }
 
         ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();

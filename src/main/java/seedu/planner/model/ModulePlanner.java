@@ -122,7 +122,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     @Override
     public ObservableList<Module> getModulesAvailable() {
-        ObservableList<Module> modulesAvailable = new ObservableListBase();
+        List<Module> modulesAvailable = new ArrayList<>();
         List<Module> modulesTaken = this.getAllModulesTaken();
         List<Module> allModules = this.getAllModulesFromStorage();
 
@@ -132,7 +132,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             }
         }
 
-        return FXCollections.unmodifiableObservableList(modulesAvailable);
+        return FXCollections.observableList(modulesAvailable);
     }
 
     /**
@@ -183,6 +183,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             Module m = new Module(mi.getCode());
             allModules.add(m);
         }
+        return allModules;
     }
 
     @Override

@@ -27,7 +27,7 @@ public interface Logic {
 
     //TODO: confirm if the list is filtered or sorted or both
     /** Returns an unmodifiable view of the filtered list of available modules */
-    ObservableList<Module> getFilteredAvailableModuleList(int semesterIndex);
+    ObservableList<Module> getFilteredAvailableModuleList();
 
     //@@author
 

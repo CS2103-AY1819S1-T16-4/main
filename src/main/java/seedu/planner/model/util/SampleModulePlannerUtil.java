@@ -26,9 +26,8 @@ public class SampleModulePlannerUtil {
                 year++;
             }
 
-            Semester semester = new Semester(year, i, true);
+            Semester semester = new Semester(year, i);
             semester.addModules(SampleModulesUtil.genModules(0, 4));
-            semester.addAvailableModules(SampleModulesUtil.genModules(2, 6));
             semesters.add(i, semester);
         }
 
