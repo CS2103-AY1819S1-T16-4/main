@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Computer Science",
+    "modules": [
+      { "name": "CS1010", "types": ["PR_F"] },
+      { "name": "CS1231", "types": ["PR_F"] },
+      { "name": "CS2030", "types": ["PR_F"] },
+      { "name": "CS2040", "types": ["PR_F"] },
+      { "name": "CS2100", "types": ["PR_F"] },
+      { "name": "CS2103T", "types": ["PR_F"] },
+      { "name": "CS2105", "types": ["PR_F"] },
+      { "name": "CS2106", "types": ["PR_F"] },
+
+      { "name": "CS3230", "types": ["PR_IER"] },
+      { "name": "CP3880", "types": ["PR_IER"] },
+      { "name": "CP3200", "types": ["PR_IER"] },
+      { "name": "CP3202", "types": ["PR_IER"] },
+      { "name": "IS4010", "types": ["PR_IER"] },
+      { "name": "CP3200", "types": ["PR_IER"] },
+      { "name": "CP3107", "types": ["PR_IER"] },
+
+      { "name": "IS1103/X" , "types": ["PR_IT"] },
+      { "name": "CS2101", "types": ["PR_IT"] },
+      { "name": "ES2660", "types": ["PR_IT"] },
+
+      { "name": "MA1521", "types": ["PR_MS_M"] },
+      { "name": "MA1101R", "types": ["PR_MS_M"] },
+      { "name": "ST2334", "types": ["PR_MS_M"] },
+      { "name": "PC1221/X", "types": ["PR_MS_S"] },
+
+      { "name": "CS3203", "types": ["PR_BD"] },
+      { "name": ["CS3216", "CS3217"], "types": ["PR_BD"] },
+      { "name": ["CS3281", "CS3282"], "types": ["PR_BD"] },
+
+      { "name": "GEH", "types": ["ULR"] },
+      { "name": "GER", "types": ["ULR"] },
+      { "name": "GET", "types": ["ULR"] },
+      { "name": "GEQ", "types": ["ULR"] },
+      { "name": "GES", "types": ["ULR"] },
+
+      { "name": "CS3230", "types": ["PR_BD_FA_AP_AT"] },
+      { "name": "CS3236", "types": ["PR_BD_FA_AP_AT"] },
+      { "name": "CS4231", "types": ["PR_BD_FA_AP_AT"] },
+      { "name": "CS4232", "types": ["PR_BD_FA_AP_AT"] },
+      { "name": "CS4234", "types": ["PR_BD_FA_AP_AT"] },
+
+      { "name": "CS3233", "types": ["PR_BD_FA_E_AT"] },
+      { "name": "CS4257", "types": ["PR_BD_FA_E_AT"] },
+      { "name": "CS5230", "types": ["PR_BD_FA_E_AT"] },
+      { "name": "CS5234", "types": ["PR_BD_FA_E_AT"] },
+      { "name": "CS5236", "types": ["PR_BD_FA_E_AT"] },
+      { "name": "CS5237", "types": ["PR_BD_FA_E_AT"] },
+      { "name": "CS5238", "types": ["PR_BD_FA_E_AT"] },
+      { "name": "CS5330", "types": ["PR_BD_FA_E_AT"] },
+
+      { "name": "CS3243", "types": ["PR_BD_FA_AP_AI"] },
+      { "name": "CS3244", "types": ["PR_BD_FA_AP_AI"] },
+      { "name": "CS4243", "types": ["PR_BD_FA_AP_AI"] },
+      { "name": "CS4244", "types": ["PR_BD_FA_AP_AI"] },
+      { "name": "CS4246", "types": ["PR_BD_FA_AP_AI"] },
+      { "name": "CS4248", "types": ["PR_BD_FA_AP_AI"] },
+
+      { "name": "CS4216" , "types": ["PR_BD_FA_E_AI"] },
+      { "name": "CS4220", "types": ["PR_BD_FA_E_AI"] },
+      { "name": "CS5209", "types": ["PR_BD_FA_E_AI"] },
+      { "name": "CS5215", "types": ["PR_BD_FA_E_AI"] },
+      { "name": "CS5228", "types": ["PR_BD_FA_E_AI"] },
+      { "name": "CS5242", "types": ["PR_BD_FA_E_AI"] },
+      { "name": "CS5247", "types": ["PR_BD_FA_E_AI"] },
+      { "name": "CS5340", "types": ["PR_BD_FA_E_AI"] },
+      { "name": "CS5339", "types": ["PR_BD_FA_E_AI"] }
+    ]
+  }
+]
