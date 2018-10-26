@@ -3,9 +3,9 @@ package seedu.planner.model.user;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.planner.model.user.exceptions.UserProfileNotSetUpException;
 import seedu.planner.model.course.FocusArea;
 import seedu.planner.model.course.Major;
+import seedu.planner.model.user.exceptions.UserProfileNotSetUpException;
 
 //@@author GabrielYik
 

@@ -13,6 +13,9 @@ import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.module.Module;
 
+/**
+ * A class representing the {@code find} command.
+ */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";

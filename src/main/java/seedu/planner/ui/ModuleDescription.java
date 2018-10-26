@@ -7,6 +7,11 @@ import javafx.scene.layout.Region;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 
+/**
+ * A UI component that displays information of a {@code Module}.
+ * This class is meant to be subclassed since it does not specify
+ * its corresponding fxml file.
+ */
 public class ModuleDescription extends UiPart<Region> {
 
     public final Module module;

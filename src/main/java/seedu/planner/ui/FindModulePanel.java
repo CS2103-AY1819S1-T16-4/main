@@ -1,11 +1,6 @@
 package seedu.planner.ui;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Region;
 import seedu.planner.model.module.Module;
-import seedu.planner.model.module.ModuleInfo;
 
 //@@author GabrielYik
 

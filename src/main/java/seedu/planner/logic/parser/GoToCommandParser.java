@@ -12,7 +12,7 @@ import seedu.planner.logic.parser.exceptions.ParseException;
 //@@author GabrielYik
 
 /**
- * A parser that parses an argument for the {@code GoToCommandParser}.
+ * A parser that parses an argument for the {@code GoToCommand}.
  */
 public class GoToCommandParser implements Parser<GoToCommand> {
 

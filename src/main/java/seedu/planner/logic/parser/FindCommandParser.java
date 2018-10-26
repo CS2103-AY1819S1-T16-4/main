@@ -10,6 +10,9 @@ import seedu.planner.logic.commands.FindCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.Module;
 
+/**
+ * A parser that parses an argument for the {@code FindCommand}.
+ */
 public class FindCommandParser implements Parser<FindCommand> {
 
     @Override
