@@ -216,7 +216,7 @@ public class StringUtilTest {
         assertTrue(areEqualIgnoreCase("Pathfinder", "Pathfinder"));
 
         // Both difference case
-        assertFalse(areEqualIgnoreCase("Pathfinder", "PaThFiNdEr"));
+        assertTrue(areEqualIgnoreCase("Pathfinder", "PaThFiNdEr"));
     }
 
     @Test
