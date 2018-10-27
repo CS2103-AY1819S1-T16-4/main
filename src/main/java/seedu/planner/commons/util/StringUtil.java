@@ -9,8 +9,6 @@ import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.Collection;
 
-import seedu.planner.logic.parser.Parser;
-
 /**
  * Helper functions for handling strings.
  */
@@ -108,6 +106,14 @@ public class StringUtil {
         return sb.toString().trim();
     }
 
+    /**
+     * Checks if two strings are equal while ignoring their cases.
+     *
+     * @param s1 The first string
+     * @param s2 The second string
+     * @return True if both strings are equal while ignoring their case,
+     *  else false
+     */
     public static boolean areEqualIgnoreCase(String s1, String s2) {
         requireAllNonNull(s1, s2);
         return s1.toLowerCase().equals(s2.toLowerCase());
@@ -127,7 +133,7 @@ public class StringUtil {
         if (word.length() == 1) {
             return word.toUpperCase();
         } else {
-            return word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase();
+            return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
         }
     }
 
