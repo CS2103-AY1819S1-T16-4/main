@@ -1,6 +1,7 @@
 package seedu.planner.logic.commands;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_FOCUS_AREA;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
@@ -10,22 +11,35 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.planner.commons.events.BaseEvent;
+import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.module.Module;
+import seedu.planner.ui.testutil.EventsCollectorRule;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
 
-    public static final String VALID_MODULE_CS1010 = "CS1010";
-    public static final String VALID_MODULE_CS1231 = "CS1231";
+    public static final String VALID_MODULE_CODE_CS1010 = "CS1010";
+    public static final String VALID_MODULE_CODE_CS1231 = "CS1231";
+    public static final String VALID_MODULE_CODE_CS2030 = "CS2030";
 
-    public static final String MODULE_DESC_CS1010 = " " + PREFIX_CODE + VALID_MODULE_CS1010;
-    public static final String MODULE_DESC_CS1231 = " " + PREFIX_CODE + VALID_MODULE_CS1231;
+    public static final Module VALID_MODULE_CS1010 = new Module(VALID_MODULE_CODE_CS1010);
+    public static final Module VALID_MODULE_CS2030 = new Module(VALID_MODULE_CODE_CS2030);
+
+    public static final String INVALID_MODULE_CODE_CS0000 = "CS0000";
+
+    public static final Module INVALID_MODULE_CS0000 = new Module(INVALID_MODULE_CODE_CS0000);
+
+    public static final String VALID_MODULE_CODE_DESC_CS1010 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS1010;
+    public static final String VALID_MODULE_CODE_DESC_CS1231 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS1231;
+
+    public static final String INVALID_MODULE_CODE_DESC_CS0000 = " " + PREFIX_CODE + INVALID_MODULE_CODE_CS0000;
 
     public static final int VALID_YEAR_ONE = 1;
     public static final int VALID_SEMESTER_ONE = 1;
