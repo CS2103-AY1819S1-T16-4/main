@@ -26,7 +26,8 @@
       { "name": "MA1521", "types": ["PR_MS_M"] },
       { "name": "MA1101R", "types": ["PR_MS_M"] },
       { "name": "ST2334", "types": ["PR_MS_M"] },
-      { "name": "PC1221/X", "types": ["PR_MS_S"] },
+      { "name": "PC1221", "types": ["PR_MS_S"] },
+      { "name": "PC1221X", "types": ["PR_MS_S"] },
 
       { "name": "CS3203", "types": ["PR_BD"] },
       { "name": ["CS3216", "CS3217"], "types": ["PR_BD"] },
