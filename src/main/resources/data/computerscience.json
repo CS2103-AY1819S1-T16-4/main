@@ -19,7 +19,7 @@
       { "name": "CP3200", "types": ["PR_IER"] },
       { "name": "CP3107", "types": ["PR_IER"] },
 
-      { "name": "IS1103/X" , "types": ["PR_IT"] },
+      { "name": "IS1103" , "types": ["PR_IT"] },
       { "name": "CS2101", "types": ["PR_IT"] },
       { "name": "ES2660", "types": ["PR_IT"] },
 
@@ -33,11 +33,8 @@
       { "name": ["CS3216", "CS3217"], "types": ["PR_BD"] },
       { "name": ["CS3281", "CS3282"], "types": ["PR_BD"] },
 
-      { "name": "GEH", "types": ["ULR"] },
-      { "name": "GER", "types": ["ULR"] },
-      { "name": "GET", "types": ["ULR"] },
-      { "name": "GEQ", "types": ["ULR"] },
-      { "name": "GES", "types": ["ULR"] },
+      { "name": "GER1000", "types": ["ULR"] },
+      { "name": "GEQ1000", "types": ["ULR"] },
 
       { "name": "CS3230", "types": ["PR_BD_FA_AP_AT"] },
       { "name": "CS3236", "types": ["PR_BD_FA_AP_AT"] },
