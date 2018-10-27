@@ -150,6 +150,8 @@ public class MainWindow extends UiPart<Stage> {
             }
         }
 
+        //@@author
+
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
