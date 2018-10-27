@@ -42,7 +42,7 @@ public class GoToCommandTest {
         CommandResult result;
         try {
             result = goToCommand.execute(model, commandHistory);
-        } catch(CommandException ce) {
+        } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
 

@@ -11,14 +11,11 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.planner.commons.events.BaseEvent;
-import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.module.Module;
-import seedu.planner.ui.testutil.EventsCollectorRule;
 
 /**
  * Contains helper methods for testing commands.

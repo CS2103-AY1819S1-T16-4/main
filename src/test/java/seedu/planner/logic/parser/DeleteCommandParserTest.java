@@ -32,7 +32,8 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
         assertParseSuccess(parser, VALID_MODULE_CODE_DESC_CS1010, new DeleteCommand(list1));
-        assertParseSuccess(parser, VALID_MODULE_CODE_DESC_CS1010 + VALID_MODULE_CODE_DESC_CS1231, new DeleteCommand(list2));
+        assertParseSuccess(parser, VALID_MODULE_CODE_DESC_CS1010 + VALID_MODULE_CODE_DESC_CS1231,
+                new DeleteCommand(list2));
     }
 
     @Test
