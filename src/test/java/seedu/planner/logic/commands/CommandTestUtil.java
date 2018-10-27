@@ -1,7 +1,6 @@
 package seedu.planner.logic.commands;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_FOCUS_AREA;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;

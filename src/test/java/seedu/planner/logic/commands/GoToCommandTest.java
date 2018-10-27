@@ -52,7 +52,7 @@ public class GoToCommandTest {
     }
 
     @Test
-    public void execute_InvalidArgs_throwsCommandException() throws CommandException {
+    public void execute_invalidArgs_throwsCommandException() throws CommandException {
         GoToCommand goToCommand = new GoToCommand(INVALID_YEAR_FIVE, INVALID_SEMESTER_THREE);
 
         String expectedMessage = Messages.MESSAGE_INVALID_PARAMETERS;

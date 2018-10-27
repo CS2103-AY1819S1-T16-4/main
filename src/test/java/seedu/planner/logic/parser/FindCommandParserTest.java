@@ -1,9 +1,9 @@
 package seedu.planner.logic.parser;
 
-import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CS0000;
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC_CS0000;
-import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
+import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CS0000;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1010;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.Test;
