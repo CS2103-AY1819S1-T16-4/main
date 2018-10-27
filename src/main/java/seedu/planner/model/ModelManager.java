@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
+import seedu.planner.commons.util.StringUtil;
 import seedu.planner.model.course.FocusArea;
 import seedu.planner.model.course.Major;
 import seedu.planner.model.module.Module;
@@ -69,7 +70,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public boolean hasMajor(String major) {
         for (Major m : Major.values()) {
-            if (m.toString().equals(major)) {
+            if (StringUtil.areEqualIgnoreCase(m.toString(), major)) {
                 return true;
             }
         }
@@ -86,7 +87,7 @@ public class ModelManager extends ComponentManager implements Model {
      */
     public boolean hasFocusArea(String focusArea) {
         for (FocusArea fa : FocusArea.values()) {
-            if (fa.toString().equals(focusArea)) {
+            if (StringUtil.areEqualIgnoreCase(fa.toString(), focusArea)) {
                 return true;
             }
         }
