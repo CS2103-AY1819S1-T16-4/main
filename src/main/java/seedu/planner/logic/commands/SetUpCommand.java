@@ -29,7 +29,8 @@ public class SetUpCommand extends Command {
     public static final String MESSAGE_SET_UP_SUCCESS = "Set up complete.\n"
             + "Your User Profile\n"
             + "Year: %1$d | Semester: %2$d\n"
-            + "Major: %3$s | Focus Areas(s): %4$s";
+            + "Major: %3$s\n"
+            + "Focus Areas(s): %4$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets up your user profile.\n"
