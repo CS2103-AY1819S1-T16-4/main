@@ -48,7 +48,7 @@ public class GoToCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
-        if (!isValidYear(year) && !isValidSemester(semester)) {
+        if (!isValidYear(year) || !isValidSemester(semester)) {
             throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
         }
 
