@@ -220,15 +220,21 @@ public class StringUtilTest {
     }
 
     @Test
-    public void areEqualIgnoreCase_nullGiven_throwsNullPointerException() {
+    public void areEqualIgnoreCase_nullGivenBoth_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         areEqualIgnoreCase(null, null);
+    }
+
+    @Test
+    public void areEqualIgnoreCase_nullGivenOne_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        areEqualIgnoreCase("pluto", null);
     }
 
     //-------------- Tests for capitalizeSentence -------------------
 
     @Test
-    public void capitalizeSentence_validArg_retursCorrectString() {
+    public void capitalizeSentence_validArg_returnsCorrectString() {
         // All small case
         assertEquals(capitalizeSentence("mars pathfinder"), "Mars Pathfinder");
 

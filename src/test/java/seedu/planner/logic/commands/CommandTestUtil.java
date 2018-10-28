@@ -26,6 +26,7 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_CODE_CS2030 = "CS2030";
 
     public static final Module VALID_MODULE_CS1010 = new Module(VALID_MODULE_CODE_CS1010);
+    public static final Module VALID_MODULE_CS1231 = new Module(VALID_MODULE_CODE_CS1231);
     public static final Module VALID_MODULE_CS2030 = new Module(VALID_MODULE_CODE_CS2030);
 
     public static final String INVALID_MODULE_CODE_CS0000 = "CS0000";
@@ -52,6 +53,9 @@ public class CommandTestUtil {
     public static final String VALID_MAJOR_CS = "Computer Science";
     public static final String VALID_FOCUS_AREA_SE = "Software Engineering";
     public static final String VALID_FOCUS_AREA_PL = "Programming Languages";
+
+    public static final String INVALID_MAJOR_SS = "Sleep Science";
+    public static final String INVALID_FOCUS_AREA_LD = "Lucid Dreaming";
 
     public static final String VALID_MAJOR_DESC_CS = " " + PREFIX_MAJOR + VALID_MAJOR_CS;
     public static final String VALID_FOCUS_AREA_DESC_SE = " " + PREFIX_FOCUS_AREA + VALID_FOCUS_AREA_SE;

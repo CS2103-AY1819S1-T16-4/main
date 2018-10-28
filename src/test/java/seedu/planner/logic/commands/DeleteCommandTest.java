@@ -2,6 +2,7 @@ package seedu.planner.logic.commands;
 
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CS0000;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1231;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2030;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -53,6 +54,16 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidModule_throwsCommandException() {
         Module moduleToDelete = INVALID_MODULE_CS0000;
+        DeleteCommand deleteCommand = new DeleteCommand(List.of(moduleToDelete));
+
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_MODULES, moduleToDelete);
+
+        assertCommandFailure(deleteCommand, model, commandHistory, expectedMessage);
+    }
+
+    @Test
+    public void execute_validModuleNotYetAdded_throwsCommandException() {
+        Module moduleToDelete = VALID_MODULE_CS1231;
         DeleteCommand deleteCommand = new DeleteCommand(List.of(moduleToDelete));
 
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_MODULES, moduleToDelete);

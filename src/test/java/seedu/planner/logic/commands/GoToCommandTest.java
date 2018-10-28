@@ -62,4 +62,16 @@ public class GoToCommandTest {
 
         goToCommand.execute(model, commandHistory);
     }
+
+    @Test
+    public void execute_oneInvalidArg_throwsCommandException() throws CommandException {
+        GoToCommand goToCommand = new GoToCommand(INVALID_YEAR_FIVE, VALID_SEMESTER_ONE);
+
+        String expectedMessage = Messages.MESSAGE_INVALID_PARAMETERS;
+
+        thrown.expect(CommandException.class);
+        thrown.expectMessage(expectedMessage);
+
+        goToCommand.execute(model, commandHistory);
+    }
 }
