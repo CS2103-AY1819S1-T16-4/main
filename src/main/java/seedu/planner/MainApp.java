@@ -26,7 +26,6 @@ import seedu.planner.model.ModelManager;
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.ReadOnlyModulePlanner;
 import seedu.planner.model.UserPrefs;
-import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.storage.JsonModulePlannerStorage;
 import seedu.planner.storage.JsonUserPrefsStorage;
 import seedu.planner.storage.ModulePlannerStorage;
