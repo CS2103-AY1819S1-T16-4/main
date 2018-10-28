@@ -21,21 +21,6 @@ public class ModuleBuilder {
     }
 
     /**
-     * Initializes the ModuleBuilder with the data of {@code moduleToCopy}.
-     */
-    public ModuleBuilder(Module moduleToCopy) {
-        type = moduleToCopy.getType();
-        information = new ModuleInfoBuilder()
-            .withCode(moduleToCopy.getCode())
-            .withName(moduleToCopy.getName())
-            .withPossibleTypes(moduleToCopy.getPossibleTypes())
-            .withCreditCount(moduleToCopy.getCreditCount())
-            .withPreclusions(moduleToCopy.getPreclusions().stream().map(m -> m.getCode()).toArray(String[]::new))
-            .withPrerequisites(moduleToCopy.getPrerequisites().stream().map(m -> m.getCode()).toArray(String[]::new))
-            .build();
-    }
-
-    /**
      * Sets the type of the {@code Module} that we are building.
      */
     public ModuleBuilder withType(ModuleType type) {

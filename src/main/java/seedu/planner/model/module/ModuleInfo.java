@@ -1,8 +1,6 @@
 package seedu.planner.model.module;
 
-//@@author GabrielYik @@author rongjiecomputer
-
-import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
+//@@author GabrielYik
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +18,6 @@ import com.google.common.io.Resources;
 
 import seedu.planner.MainApp;
 import seedu.planner.commons.core.LogsCenter;
-import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.commons.util.JsonUtil;
 
 /**
@@ -35,48 +32,35 @@ public class ModuleInfo {
             + "1234 refers to a sequence of positive numbers.\n"
             + "(YZ) refers to an optional postfix.";
 
-    private static ImmutableMap<String, ModuleInfo> codeToModuleInfoMap = null;
+    // @@author rongjiecomputer
+
+    private static final String DEFAULT_FILE_PATH = "/data/moduleInfo.json";
+
+    // An object that is initialized from JSON file and act like a const data.
+    private static final ModuleInfoRetriever instance = new ModuleInfoRetriever(DEFAULT_FILE_PATH);
 
     /**
      * Class to retrieve {@code ModuleInfo} from JSON file packaged in JAR file.
      */
-    public static class ModuleInfoRetriever {
-        private static final String MODULE_INFO_FILE_PATH = "/data/moduleInfo.json";
+    private static class ModuleInfoRetriever {
         private static Logger logger = LogsCenter.getLogger(ModuleInfoRetriever.class);
 
-        private static ModuleInfoRetriever instance = null;
-
+        private ImmutableMap<String, ModuleInfo> codeToModuleInfoMap;
         private ModuleInfo[] moduleInfoList;
 
-        private ModuleInfoRetriever() {
+        ModuleInfoRetriever(String path) {
             try {
-                URL resource = MainApp.class.getResource(MODULE_INFO_FILE_PATH);
+                URL resource = MainApp.class.getResource(path);
                 String text = Resources.toString(resource, Charsets.UTF_8);
 
                 moduleInfoList = JsonUtil.fromJsonString(text, ModuleInfo[].class);
 
-                ModuleInfo.finalizeModuleInfo(moduleInfoList);
+                moduleInfoList = finalizeModuleInfo(moduleInfoList);
             } catch (IOException e) {
                 logger.warning("Problem while reading from resource file. "
                     + "Will be starting with an empty module database");
                 moduleInfoList = new ModuleInfo[] {};
             }
-        }
-
-        /**
-         * Get singleton instance of {@code ModuleInfoRetriever}.
-         *
-         * @throws DataConversionException
-         */
-        public static ModuleInfoRetriever getInstance() {
-            if (instance == null) {
-                instance = new ModuleInfoRetriever();
-            }
-            return instance;
-        }
-
-        public ModuleInfo[] getModuleInfoList() {
-            return moduleInfoList;
         }
 
         /**
@@ -97,7 +81,7 @@ public class ModuleInfo {
          *
          * @param moduleInfo List of {@code ModuleInfo}s deserialized by JSON parser.
          */
-        public static ModuleInfo[] finalizeModuleInfo(ModuleInfo[] moduleInfo) {
+        public ModuleInfo[] finalizeModuleInfo(ModuleInfo[] moduleInfo) {
             ImmutableMap.Builder<String, ModuleInfo> builder = ImmutableMap.builder();
             for (ModuleInfo mInfo : moduleInfo) {
                 builder.put(mInfo.getCode(), mInfo);
@@ -111,6 +95,8 @@ public class ModuleInfo {
             return moduleInfo;
         }
     }
+
+    // @@author
 
     private String code;
 
@@ -153,27 +139,6 @@ public class ModuleInfo {
      */
     public ModuleInfo(String code) {
         this.code = code;
-    }
-
-    /**
-     * Creates a new {@code ModuleInfo}. For testing only.
-     *
-     * @param code          The {@code Module} code
-     * @param name          The {@code Module} name
-     * @param possibleTypes The possible {@code ModuleType}s
-     * @param creditCount   The credit count
-     * @param preclusions   An array of preclusion module code strings
-     * @param prerequisites An array of prerequisite module code strings
-     */
-    public ModuleInfo(String code, String name, ModuleType[] possibleTypes,
-                      float creditCount, String[] preclusions, String[] prerequisites) {
-        requireAllNonNull(code, name, possibleTypes, creditCount, preclusions, prerequisites);
-        this.code = code;
-        this.name = name;
-        this.possibleTypes = possibleTypes;
-        this.creditCount = creditCount;
-        this.preclusions = preclusions;
-        this.prerequisites = prerequisites;
     }
 
     public String getCode() {
@@ -223,24 +188,8 @@ public class ModuleInfo {
         finalized = true;
     }
 
-    /**
-     * Takes in a list of {@code ModuleInfo}s deserialzied by JSON parser and
-     * finalize {@code ModuleInfo}s' internal structure.
-     *
-     * @param moduleInfo List of {@code ModuleInfo}s deserialized by JSON parser.
-     */
-    public static ModuleInfo[] finalizeModuleInfo(ModuleInfo[] moduleInfo) {
-        ImmutableMap.Builder<String, ModuleInfo> builder = ImmutableMap.builder();
-        for (ModuleInfo mInfo : moduleInfo) {
-            builder.put(mInfo.getCode(), mInfo);
-        }
-
-        codeToModuleInfoMap = builder.build();
-
-        for (ModuleInfo mInfo : moduleInfo) {
-            mInfo.finalize(codeToModuleInfoMap);
-        }
-        return moduleInfo;
+    public static ModuleInfo[] getModuleInfoList() {
+        return instance.moduleInfoList;
     }
 
     /**
@@ -249,7 +198,7 @@ public class ModuleInfo {
      * @param moduleCode Module code
      */
     public static Optional<ModuleInfo> getFromModuleCode(String moduleCode) {
-        return ModuleInfoRetriever.getInstance().getFromModuleCode(moduleCode);
+        return instance.getFromModuleCode(moduleCode);
     }
 
     @Override

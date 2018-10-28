@@ -27,37 +27,26 @@ import seedu.planner.model.user.UserProfile;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final ModuleInfo[] moduleInfo;
-
     private UserProfile userProfile;
 
     private final VersionedModulePlanner versionedModulePlanner;
-
-    // TODO: Delete this
-    /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
-     */
-    public ModelManager(ReadOnlyModulePlanner modulePlanner, UserPrefs userPrefs) {
-        this(modulePlanner, new ModuleInfo[] {}, userPrefs);
-    }
 
     //@@author Hilda-Ang
 
     /**
      * Initializes a ModelManager with the given modulePlanner and userPrefs.
      */
-    public ModelManager(ReadOnlyModulePlanner modulePlanner, ModuleInfo[] moduleInfo, UserPrefs userPrefs) {
+    public ModelManager(ReadOnlyModulePlanner modulePlanner, UserPrefs userPrefs) {
         super();
         requireAllNonNull(modulePlanner, userPrefs);
 
         logger.fine("Initializing with planner: " + modulePlanner + " and user prefs " + userPrefs);
 
         versionedModulePlanner = new VersionedModulePlanner(modulePlanner);
-        this.moduleInfo = moduleInfo;
     }
 
     public ModelManager() {
-        this(new ModulePlanner(), new ModuleInfo[]{}, new UserPrefs());
+        this(new ModulePlanner(), new UserPrefs());
     }
 
     @Override
@@ -177,8 +166,14 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author
 
     // @@author rongjiecomputer
+
+    /**
+     * Get a list of ModuleInfo from JSON file.
+     *
+     * @deprecated Use ModuleInfo.getModuleInfoList() directly instead.
+     */
     public ModuleInfo[] getModuleInfo() {
-        return moduleInfo;
+        return ModuleInfo.getModuleInfoList();
     }
     // @@author
 

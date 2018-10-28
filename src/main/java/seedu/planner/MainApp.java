@@ -2,7 +2,6 @@ package seedu.planner;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -26,7 +25,6 @@ import seedu.planner.model.ModelManager;
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.ReadOnlyModulePlanner;
 import seedu.planner.model.UserPrefs;
-import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.storage.JsonModulePlannerStorage;
 import seedu.planner.storage.JsonUserPrefsStorage;
 import seedu.planner.storage.ModulePlannerStorage;
@@ -64,9 +62,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         userPrefs = initPrefs(userPrefsStorage);
 
-        // TODO(rongjiecomputer) Put path to UserPrefs.
         ModulePlannerStorage modulePlannerStorage = new JsonModulePlannerStorage(
-            Paths.get("data", "modulePlanner.json"));
+            userPrefs.getModulePlannerFilePath());
         storage = new StorageManager(modulePlannerStorage, userPrefsStorage);
 
         initLogging(config);
@@ -89,9 +86,6 @@ public class MainApp extends Application {
         Optional<ReadOnlyModulePlanner> modulePlannerOptional;
         ReadOnlyModulePlanner initialModulePlanner;
 
-        ModuleInfo.ModuleInfoRetriever retriever = ModuleInfo.ModuleInfoRetriever.getInstance();
-        ModuleInfo[] initialModuleInfo = retriever.getModuleInfoList();
-
         try {
             modulePlannerOptional = storage.readModulePlanner();
             if (!modulePlannerOptional.isPresent()) {
@@ -103,7 +97,7 @@ public class MainApp extends Application {
             initialModulePlanner = new ModulePlanner();
         }
 
-        return new ModelManager(initialModulePlanner, initialModuleInfo, userPrefs);
+        return new ModelManager(initialModulePlanner, userPrefs);
     }
 
     private void initLogging(Config config) {
