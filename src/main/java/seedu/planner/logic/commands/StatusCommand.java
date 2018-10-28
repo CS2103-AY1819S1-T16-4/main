@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
-import seedu.planner.model.module.Module;
 import seedu.planner.model.ModulePlanner;
+import seedu.planner.model.module.Module;
 
 /**
  * Display the credit count status of the user in the planner
