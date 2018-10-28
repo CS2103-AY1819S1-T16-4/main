@@ -44,8 +44,8 @@ public class ModuleInfo {
     private static class ModuleInfoRetriever {
         private static Logger logger = LogsCenter.getLogger(ModuleInfoRetriever.class);
 
-        public ImmutableMap<String, ModuleInfo> codeToModuleInfoMap;
-        public ModuleInfo[] moduleInfoList;
+        private ImmutableMap<String, ModuleInfo> codeToModuleInfoMap;
+        private ModuleInfo[] moduleInfoList;
 
         ModuleInfoRetriever(String path) {
             try {
