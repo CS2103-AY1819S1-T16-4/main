@@ -20,6 +20,10 @@ import java.util.List;
 import org.junit.Test;
 
 //@@author RomaRomama
+
+/**
+ * Tests for AddCommandParser
+ */
 public class AddCommandParserTest {
 
     private AddCommandParser parser = new AddCommandParser();
