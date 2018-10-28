@@ -12,4 +12,5 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_MODULES = "Invalid modules: %s";
     public static final String MESSAGE_INVALID_PARAMETERS = "Invalid parameters";
+    public static final String MESSAGE_EXISTED_MODULES = "Following module(s) already existed in the planner: %s";
 }

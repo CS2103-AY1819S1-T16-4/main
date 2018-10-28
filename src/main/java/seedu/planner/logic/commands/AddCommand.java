@@ -36,7 +36,6 @@ public class AddCommand extends Command {
             + PREFIX_CODE + "CS3244 ";
 
     public static final String MESSAGE_SUCCESS = "Added Module(s): %1$s";
-    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module planner";
 
     private final int semesterIndex;
     private final List<Module> modulesToAdd;
@@ -55,9 +54,15 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         List<Module> invalidModules = new ArrayList<>();
+        List<Module> existedModules = new ArrayList<>();
+
         for (Module m : modulesToAdd) {
             if (!model.isModuleOffered(m)) {
                 invalidModules.add(m);
+            }
+
+            if (model.hasModule(m)) {
+                existedModules.add(m);
             }
         }
 
@@ -68,6 +73,15 @@ public class AddCommand extends Command {
             }
             throw new CommandException(String.format(
                     Messages.MESSAGE_INVALID_MODULES, sb.toString().trim()));
+        }
+
+        if (!existedModules.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (Module m: existedModules) {
+                sb.append(m.toString() + " ");
+            }
+            throw new CommandException(String.format(
+                    Messages.MESSAGE_EXISTED_MODULES, sb.toString().trim()));
         }
 
         StringBuilder sb = new StringBuilder();
