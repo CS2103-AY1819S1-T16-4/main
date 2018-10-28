@@ -7,7 +7,7 @@ import seedu.planner.model.Model;
 import seedu.planner.model.module.Module;
 
 /**
- *
+ * Display the credit count status of the user in the planner
  */
 public class StatusCommand extends Command {
 

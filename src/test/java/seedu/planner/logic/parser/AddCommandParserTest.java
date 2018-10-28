@@ -1,9 +1,5 @@
 package seedu.planner.logic.parser;
 
-import seedu.planner.logic.commands.AddCommand;
-import seedu.planner.model.module.Module;
-import seedu.planner.testutil.SampleModules;
-
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.planner.logic.commands.CommandTestUtil.MODULE_DESC_CS1010;
 import static seedu.planner.logic.commands.CommandTestUtil.MODULE_DESC_CS1231;
@@ -18,6 +14,10 @@ import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseSucces
 import java.util.List;
 
 import org.junit.Test;
+
+import seedu.planner.logic.commands.AddCommand;
+import seedu.planner.model.module.Module;
+import seedu.planner.testutil.SampleModules;
 
 //@@author RomaRomama
 
@@ -38,7 +38,7 @@ public class AddCommandParserTest {
 
         //adding multiple modules
         assertParseSuccess(parser, VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE
-                + MODULE_DESC_CS1010, new AddCommand(list2, 0));
+                + MODULE_DESC_CS1010 + MODULE_DESC_CS1231, new AddCommand(list2, 0));
     }
 
     @Test
