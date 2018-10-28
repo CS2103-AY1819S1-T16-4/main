@@ -89,9 +89,6 @@ public class MainApp extends Application {
         Optional<ReadOnlyModulePlanner> modulePlannerOptional;
         ReadOnlyModulePlanner initialModulePlanner;
 
-        ModuleInfo.ModuleInfoRetriever retriever = ModuleInfo.ModuleInfoRetriever.getInstance();
-        ModuleInfo[] initialModuleInfo = retriever.getModuleInfoList();
-
         try {
             modulePlannerOptional = storage.readModulePlanner();
             if (!modulePlannerOptional.isPresent()) {
@@ -103,7 +100,7 @@ public class MainApp extends Application {
             initialModulePlanner = new ModulePlanner();
         }
 
-        return new ModelManager(initialModulePlanner, initialModuleInfo, userPrefs);
+        return new ModelManager(initialModulePlanner, userPrefs);
     }
 
     private void initLogging(Config config) {
