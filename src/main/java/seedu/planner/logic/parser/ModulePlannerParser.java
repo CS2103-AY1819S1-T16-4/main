@@ -18,6 +18,7 @@ import seedu.planner.logic.commands.HistoryCommand;
 import seedu.planner.logic.commands.ListCommand;
 import seedu.planner.logic.commands.RedoCommand;
 import seedu.planner.logic.commands.SetUpCommand;
+import seedu.planner.logic.commands.StatusCommand;
 import seedu.planner.logic.commands.SuggestCommand;
 import seedu.planner.logic.commands.UndoCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
@@ -82,6 +83,9 @@ public class ModulePlannerParser {
 
         case SetUpCommand.COMMAND_WORD:
             return new SetUpCommandParser().parse(arguments);
+
+        case StatusCommand.COMMAND_WORD:
+            return new StatusCommand();
 
         case SuggestCommand.COMMAND_WORD:
             return new SuggestCommandParser().parse(arguments);
