@@ -63,9 +63,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         userPrefs = initPrefs(userPrefsStorage);
 
-        // TODO(rongjiecomputer) Put path to UserPrefs.
         ModulePlannerStorage modulePlannerStorage = new JsonModulePlannerStorage(
-            Paths.get("data", "modulePlanner.json"));
+            userPrefs.getModulePlannerFilePath());
         storage = new StorageManager(modulePlannerStorage, userPrefsStorage);
 
         initLogging(config);
