@@ -127,6 +127,15 @@ public class ModuleInfo {
     public ModuleInfo() {
     }
 
+    /**
+     * Constructs a {@code ModuleInfo} from a given module code.
+     *
+     * @param code A valid module code.
+     */
+    public ModuleInfo(String code) {
+        this.code = code;
+    }
+
     public String getCode() {
         return code;
     }
