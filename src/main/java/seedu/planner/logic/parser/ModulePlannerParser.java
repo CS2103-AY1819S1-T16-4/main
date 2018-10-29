@@ -6,18 +6,20 @@ import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.planner.logic.commands.AddModuleCommand;
+import seedu.planner.logic.commands.AddCommand;
 import seedu.planner.logic.commands.ClearCommand;
 import seedu.planner.logic.commands.Command;
-import seedu.planner.logic.commands.DeleteModuleCommand;
+import seedu.planner.logic.commands.DeleteCommand;
 import seedu.planner.logic.commands.ExitCommand;
+import seedu.planner.logic.commands.FindCommand;
 import seedu.planner.logic.commands.GoToCommand;
 import seedu.planner.logic.commands.HelpCommand;
 import seedu.planner.logic.commands.HistoryCommand;
-import seedu.planner.logic.commands.ListModuleCommand;
+import seedu.planner.logic.commands.ListCommand;
 import seedu.planner.logic.commands.RedoCommand;
 import seedu.planner.logic.commands.SetUpCommand;
-import seedu.planner.logic.commands.SuggestModuleCommand;
+import seedu.planner.logic.commands.StatusCommand;
+import seedu.planner.logic.commands.SuggestCommand;
 import seedu.planner.logic.commands.UndoCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
@@ -49,43 +51,47 @@ public class ModulePlannerParser {
 
         switch (commandWord) {
 
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case HistoryCommand.COMMAND_WORD:
-            return new HistoryCommand();
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
-        case UndoCommand.COMMAND_WORD:
-            return new UndoCommand();
-
-        case RedoCommand.COMMAND_WORD:
-            return new RedoCommand();
-
-        /* ===== Adapted commands for modules ===== */
-
-        case AddModuleCommand.COMMAND_WORD:
-            return new AddModuleCommandParser().parse(arguments);
-
-        case DeleteModuleCommand.COMMAND_WORD:
-            return new DeleteModuleCommandParser().parse(arguments);
-
-        case ListModuleCommand.COMMAND_WORD:
-            return new ListModuleCommandParser().parse(arguments);
-
-        case SuggestModuleCommand.COMMAND_WORD:
-            return new SuggestModuleCommand();
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
         case GoToCommand.COMMAND_WORD:
             return new GoToCommandParser().parse(arguments);
 
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        case HistoryCommand.COMMAND_WORD:
+            return new HistoryCommand();
+
+        case ListCommand.COMMAND_WORD:
+            return new ListCommandParser().parse(arguments);
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
         case SetUpCommand.COMMAND_WORD:
             return new SetUpCommandParser().parse(arguments);
+
+        case StatusCommand.COMMAND_WORD:
+            return new StatusCommand();
+
+        case SuggestCommand.COMMAND_WORD:
+            return new SuggestCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

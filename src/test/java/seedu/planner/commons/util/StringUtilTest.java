@@ -5,6 +5,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static seedu.planner.commons.util.StringUtil.areEqualIgnoreCase;
+import static seedu.planner.commons.util.StringUtil.capitalizeSentence;
 import static seedu.planner.commons.util.StringUtil.containsOnlyLettersAndWhiteSpace;
 import static seedu.planner.commons.util.StringUtil.convertCollectionToString;
 
@@ -204,5 +206,54 @@ public class StringUtilTest {
     public void convertCollectionToString_nullGiven_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         convertCollectionToString(null);
+    }
+
+    //-------------- Tests for areEqualIgnoreCase -------------------
+
+    @Test
+    public void areEqualIgnoreCase_validArgs_returnsTrue() {
+        // Both same case
+        assertTrue(areEqualIgnoreCase("Pathfinder", "Pathfinder"));
+
+        // Both difference case
+        assertTrue(areEqualIgnoreCase("Pathfinder", "PaThFiNdEr"));
+    }
+
+    @Test
+    public void areEqualIgnoreCase_nullGivenBoth_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        areEqualIgnoreCase(null, null);
+    }
+
+    @Test
+    public void areEqualIgnoreCase_nullGivenOne_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        areEqualIgnoreCase("pluto", null);
+    }
+
+    //-------------- Tests for capitalizeSentence -------------------
+
+    @Test
+    public void capitalizeSentence_validArg_returnsCorrectString() {
+        // All small case
+        assertEquals(capitalizeSentence("mars pathfinder"), "Mars Pathfinder");
+
+        // All big case
+        assertEquals(capitalizeSentence("MARS PATHFINDER"), "Mars Pathfinder");
+
+        // All single letters
+        assertEquals(capitalizeSentence("m p"), "M P");
+
+        // White space
+        assertEquals(capitalizeSentence(" "), "");
+
+        // Empty string
+        assertEquals(capitalizeSentence(""), "");
+    }
+
+    @Test
+    public void capitalizeSentence_nullGiven_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        capitalizeSentence(null);
     }
 }

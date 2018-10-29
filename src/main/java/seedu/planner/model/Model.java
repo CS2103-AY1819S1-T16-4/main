@@ -7,14 +7,11 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
-import seedu.planner.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     //TODO: can have a predicate to filter taken and available modules
     /** {@code Predicate} that always evaluate to true */
@@ -100,13 +97,24 @@ public interface Model {
      */
     ModuleInfo[] getModuleInfo();
 
+    /**
+     * Retrieves the actual module information of the {@code modules}
+     * and finalizes the modules with their actual module information.
+     * Individual modules are finalized using the method
+     * {@link ModelManager#finalizeModule(Module) finalizeModule}.
+     *
+     * @param modules The modules to be finalized
+     * @return The modules with their actual module information
+     */
+    List<Module> finalizeModules(List<Module> modules);
+
     // @@author
 
     //@@author GabrielYik
 
     //TODO: confirm filtered or sorted or both
     /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getFilteredTakenModuleList(int index);
+    ObservableList<Module> getTakenModuleList(int index);
 
     //TODO: confirm filtered or sorted or both
     /** Returns an unmodifiable view of the filtered module list */

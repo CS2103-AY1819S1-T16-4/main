@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="moduleDescription" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox>
+         <children>
+            <HBox spacing="5.0">
+               <children>
+                  <Label fx:id="moduleCode" styleClass="moduleDescription_label_big" text="code" />
+                  <Label fx:id="moduleName" styleClass="moduleDescription_label_big" text="name" />
+               </children>
+            </HBox>
+            <Label fx:id="moduleType" styleClass="moduleDescription_label_small" text="module type" />
+            <Label fx:id="creditCount" styleClass="moduleDescription_label_small" text="credit count" />
+            <HBox>
+               <children>
+                  <Label fx:id="preclusion" styleClass="moduleDescription_label_small" text="preclusions" />
+                  <FlowPane fx:id="preclusions" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label fx:id="prerequisite" styleClass="moduleDescription_label_small" text="prerequisites" />
+                  <FlowPane fx:id="prerequisites" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>

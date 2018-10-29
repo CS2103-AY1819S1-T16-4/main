@@ -1,0 +1,26 @@
+{
+  "authors":
+    [
+    {
+      "githubId": "Hilda-Ang",
+        "displayName": "HILDA...RAENI",
+        "authorNames": ["Hilda-Ang"]
+    },
+    {
+      "githubId": "rongjiecomputer",
+      "displayName": "LOO R...G JIE",
+      "authorNames": ["rongjiecomputer"]
+    },
+    {
+      "githubId": "RomaRomama",
+      "displayName": "REZKY...PUTRA",
+      "authorNames": ["RomaRomama"]
+    },
+    {
+      "githubId": "GabrielYik",
+      "displayName": "YIK R...BRIEL",
+      "authorNames": ["GabrielYik", "Gabriel Yik Ren Jun"]
+    }
+  ]
+}
+

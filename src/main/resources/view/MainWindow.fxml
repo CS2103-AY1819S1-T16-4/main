@@ -49,29 +49,33 @@
                 <TabPane fx:id="semestersTabPane" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" tabMinWidth="140.0">
                     <tabs>
                         <Tab text="Y1S1">
-                            <content>
-                                <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
-                                    <VBox minWidth="340.0" prefWidth="340.0" SplitPane.resizableWithParent="false">
-                                        <padding>
-                                            <Insets bottom="10" left="10" right="10" top="10" />
-                                        </padding>
-                                        <StackPane VBox.vgrow="ALWAYS" />
-                                    </VBox>
-                                    <VBox minWidth="340.0" prefWidth="340.0">
-                                        <padding>
-                                            <Insets bottom="10" left="10" right="10" top="10" />
-                                        </padding>
-                                        <children>
-                                            <StackPane VBox.vgrow="ALWAYS" />
-                                        </children>
-                                    </VBox>
-                                    <StackPane minWidth="340.0" prefWidth="340.0">
-                                        <padding>
-                                            <Insets bottom="10" left="10" right="10" top="10" />
-                                        </padding>
-                                    </StackPane>
-                                </SplitPane>
-                            </content>
+                     <content>
+                        <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
+                           <items>
+                              <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
+                                 <padding>
+                                    <Insets bottom="10" left="10" right="10" top="10" />
+                                 </padding>
+                                 <children>
+                                    <StackPane VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                              <VBox minWidth="340" prefWidth="340">
+                                 <padding>
+                                    <Insets bottom="10" left="10" right="10" top="10" />
+                                 </padding>
+                                 <children>
+                                    <StackPane VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                              <StackPane prefWidth="340">
+                                 <padding>
+                                    <Insets bottom="10" left="10" right="10" top="10" />
+                                 </padding>
+                              </StackPane>
+                           </items>
+                        </SplitPane>
+                     </content>
                         </Tab>
                         <Tab text="Y1S2">
                             <content>

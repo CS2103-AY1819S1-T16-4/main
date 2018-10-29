@@ -21,11 +21,22 @@ import seedu.planner.model.module.Module;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_MODULE_CS1010 = "CS1010";
-    public static final String VALID_MODULE_CS1231 = "CS1231";
+    public static final String VALID_MODULE_CODE_CS1010 = "CS1010";
+    public static final String VALID_MODULE_CODE_CS1231 = "CS1231";
+    public static final String VALID_MODULE_CODE_CS2030 = "CS2030";
 
-    public static final String MODULE_DESC_CS1010 = " " + PREFIX_CODE + VALID_MODULE_CS1010;
-    public static final String MODULE_DESC_CS1231 = " " + PREFIX_CODE + VALID_MODULE_CS1231;
+    public static final Module VALID_MODULE_CS1010 = new Module(VALID_MODULE_CODE_CS1010);
+    public static final Module VALID_MODULE_CS1231 = new Module(VALID_MODULE_CODE_CS1231);
+    public static final Module VALID_MODULE_CS2030 = new Module(VALID_MODULE_CODE_CS2030);
+
+    public static final String INVALID_MODULE_CODE_CS0000 = "CS0000";
+
+    public static final Module INVALID_MODULE_CS0000 = new Module(INVALID_MODULE_CODE_CS0000);
+
+    public static final String VALID_MODULE_CODE_DESC_CS1010 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS1010;
+    public static final String VALID_MODULE_CODE_DESC_CS1231 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS1231;
+
+    public static final String INVALID_MODULE_CODE_DESC_CS0000 = " " + PREFIX_CODE + INVALID_MODULE_CODE_CS0000;
 
     public static final int VALID_YEAR_ONE = 1;
     public static final int VALID_SEMESTER_ONE = 1;
@@ -42,6 +53,9 @@ public class CommandTestUtil {
     public static final String VALID_MAJOR_CS = "Computer Science";
     public static final String VALID_FOCUS_AREA_SE = "Software Engineering";
     public static final String VALID_FOCUS_AREA_PL = "Programming Languages";
+
+    public static final String INVALID_MAJOR_SS = "Sleep Science";
+    public static final String INVALID_FOCUS_AREA_LD = "Lucid Dreaming";
 
     public static final String VALID_MAJOR_DESC_CS = " " + PREFIX_MAJOR + VALID_MAJOR_CS;
     public static final String VALID_FOCUS_AREA_DESC_SE = " " + PREFIX_FOCUS_AREA + VALID_FOCUS_AREA_SE;
@@ -98,7 +112,7 @@ public class CommandTestUtil {
      * Deletes the first module in {@code model}'s filtered list from {@code model}'s planner book.
      */
     public static void deleteFirstModule(Model model) {
-        Module firstModule = model.getFilteredTakenModuleList(0).get(0);
+        Module firstModule = model.getTakenModuleList(0).get(0);
         List<Module> moduleList = new ArrayList<>();
         moduleList.add(firstModule);
         model.deleteModules(moduleList);

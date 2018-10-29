@@ -2,6 +2,7 @@ package seedu.planner.commons.util;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.AppUtil.checkArgument;
+import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -102,6 +103,59 @@ public class StringUtil {
         for (E e : collection) {
             sb.append(e + " ");
         }
+        return sb.toString().trim();
+    }
+
+    /**
+     * Checks if two strings are equal while ignoring their cases.
+     *
+     * @param s1 The first string
+     * @param s2 The second string
+     * @return True if both strings are equal while ignoring their case,
+     *  else false
+     */
+    public static boolean areEqualIgnoreCase(String s1, String s2) {
+        requireAllNonNull(s1, s2);
+        return s1.toLowerCase().equals(s2.toLowerCase());
+    }
+
+    /**
+     * Capitalizes the first letter of the {@code word}.
+     * If the word is made up of a single letter,
+     * the letter itself is capitalized.
+     *
+     * @param word The word
+     * @return The word with each first letter capitalized
+     */
+    private static String capitalizeWord(String word) {
+        requireNonNull(word);
+
+        if (word.length() == 1) {
+            return word.toUpperCase();
+        } else {
+            return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
+        }
+    }
+
+    /**
+     * Capitalizes the first letter of each word in the {@code sentence}.
+     *
+     * @param sentence The sentence
+     * @return The sentence with each word having its first
+     *  letter capitalized
+     */
+    public static String capitalizeSentence(String sentence) {
+        requireNonNull(sentence);
+        String[] words = sentence.split(" ");
+
+        StringBuilder sb = new StringBuilder();
+        for (String word : words) {
+            if (containsOnlyLettersAndWhiteSpace(word)) {
+                word = capitalizeWord(word);
+                sb.append(word + " ");
+            }
+        }
+
         return sb.toString().trim();
     }
 }

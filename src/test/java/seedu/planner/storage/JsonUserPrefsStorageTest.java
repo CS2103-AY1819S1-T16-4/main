@@ -71,18 +71,18 @@ public class JsonUserPrefsStorageTest {
         assertEquals(new UserPrefs(), actual);
     }
 
+
     @Test
     public void readUserPrefs_extraValuesInFile_extraValuesIgnored() throws DataConversionException {
         UserPrefs expected = getTypicalUserPrefs();
         UserPrefs actual = readUserPrefs("ExtraValuesUserPref.json").get();
-
         assertEquals(expected, actual);
     }
 
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(1000, 500, 300, 100);
-        userPrefs.setAddressBookFilePath(Paths.get("addressbook.xml"));
+        userPrefs.setModulePlannerFilePath(Paths.get("modulePlanner.json"));
         return userPrefs;
     }
 

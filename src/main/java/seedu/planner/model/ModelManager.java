@@ -14,11 +14,13 @@ import javafx.collections.ObservableList;
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
-import seedu.planner.model.enumeration.FocusArea;
-import seedu.planner.model.enumeration.Major;
+import seedu.planner.commons.util.StringUtil;
+import seedu.planner.model.course.FocusArea;
+import seedu.planner.model.course.Major;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
+import seedu.planner.model.user.UserProfile;
 
 /**
  * Represents the in-memory model of the planner book data.
@@ -26,37 +28,26 @@ import seedu.planner.model.module.ModuleType;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final ModuleInfo[] moduleInfo;
-
     private UserProfile userProfile;
 
     private final VersionedModulePlanner versionedModulePlanner;
-
-    // TODO: Delete this
-    /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
-     */
-    public ModelManager(ReadOnlyModulePlanner modulePlanner, UserPrefs userPrefs) {
-        this(modulePlanner, new ModuleInfo[] {}, userPrefs);
-    }
 
     //@@author Hilda-Ang
 
     /**
      * Initializes a ModelManager with the given modulePlanner and userPrefs.
      */
-    public ModelManager(ReadOnlyModulePlanner modulePlanner, ModuleInfo[] moduleInfo, UserPrefs userPrefs) {
+    public ModelManager(ReadOnlyModulePlanner modulePlanner, UserPrefs userPrefs) {
         super();
         requireAllNonNull(modulePlanner, userPrefs);
 
         logger.fine("Initializing with planner: " + modulePlanner + " and user prefs " + userPrefs);
 
         versionedModulePlanner = new VersionedModulePlanner(modulePlanner);
-        this.moduleInfo = moduleInfo;
     }
 
     public ModelManager() {
-        this(new ModulePlanner(), new ModuleInfo[]{}, new UserPrefs());
+        this(new ModulePlanner(), new UserPrefs());
     }
 
     @Override
@@ -68,7 +59,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public boolean hasMajor(String major) {
         for (Major m : Major.values()) {
-            if (m.toString().equals(major)) {
+            if (StringUtil.areEqualIgnoreCase(m.toString(), major)) {
                 return true;
             }
         }
@@ -83,9 +74,9 @@ public class ModelManager extends ComponentManager implements Model {
      * @param focusArea The focus area
      * @return True if the focus area is offered, else false
      */
-    private boolean hasFocusArea(String focusArea) {
+    public boolean hasFocusArea(String focusArea) {
         for (FocusArea fa : FocusArea.values()) {
-            if (fa.toString().equals(focusArea)) {
+            if (StringUtil.areEqualIgnoreCase(fa.toString(), focusArea)) {
                 return true;
             }
         }
@@ -147,7 +138,7 @@ public class ModelManager extends ComponentManager implements Model {
      * @param module The module to be finalized
      * @return The module with the actual module information
      */
-    private Module finalizeModule(Module module) {
+    public Module finalizeModule(Module module) {
         Optional<ModuleInfo> optModuleInfo = ModuleInfo.getFromModuleCode(module.getCode());
         if (optModuleInfo.isPresent()) {
             return new Module(ModuleType.PROGRAMME_REQUIREMENTS, optModuleInfo.get());
@@ -155,15 +146,7 @@ public class ModelManager extends ComponentManager implements Model {
         return new Module("Unknown");
     }
 
-    /**
-     * Retrieves the actual module information of the {@code modules}
-     * and finalizes the modules with their actual module information.
-     * Individual modules are finalized using the method
-     * {@link #finalizeModule(Module) finalizeModule}.
-     *
-     * @param modules The modules to be finalized
-     * @return The modules with their actual module information
-     */
+    @Override
     public List<Module> finalizeModules(List<Module> modules) {
         List<Module> finalizedModules = new ArrayList<>();
         for (Module m : modules) {
@@ -184,8 +167,14 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author
 
     // @@author rongjiecomputer
+
+    /**
+     * Get a list of ModuleInfo from JSON file.
+     *
+     * @deprecated Use ModuleInfo.getModuleInfoList() directly instead.
+     */
     public ModuleInfo[] getModuleInfo() {
-        return moduleInfo;
+        return ModuleInfo.getModuleInfoList();
     }
     // @@author
 
@@ -193,7 +182,7 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author GabrielYik
 
     @Override
-    public ObservableList<Module> getFilteredTakenModuleList(int index) {
+    public ObservableList<Module> getTakenModuleList(int index) {
         return FXCollections.unmodifiableObservableList(
                 versionedModulePlanner.getModulesTaken(index));
     }
