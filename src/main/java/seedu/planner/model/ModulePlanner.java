@@ -122,8 +122,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     @Override
     public ObservableList<Module> getModulesAvailable() {
         List<Module> modulesAvailable = new ArrayList<>();
-        List<Module> modulesTaken = this.getAllModulesTaken();
-        List<Module> allModules = this.getAllModulesFromStorage();
+        List<Module> modulesTaken = getAllModulesTaken();
+        List<Module> allModules = getAllModulesFromStorage();
 
         for (Module m: allModules) {
             if (ModuleUtil.isModuleAvailableToTake(modulesTaken, m)) {
