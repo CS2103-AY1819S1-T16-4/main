@@ -11,13 +11,13 @@ import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_ONE;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import seedu.planner.logic.commands.AddCommand;
 import seedu.planner.model.module.Module;
 import seedu.planner.testutil.SampleModules;
-
-import java.util.List;
 
 //@@author RomaRomama
 
