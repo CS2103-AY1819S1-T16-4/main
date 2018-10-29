@@ -7,11 +7,11 @@ import seedu.planner.model.module.Module;
 /**
  * A UI component that displays information of a {@code Module}.
  */
-public class ModuleListCard extends ModuleDescription {
+public class ModuleCard extends ModuleDescription {
 
-    private static final String FXML = "ModuleListCard.fxml";
+    private static final String FXML = "ModuleCard.fxml";
 
-    public ModuleListCard(Module module) {
+    public ModuleCard(Module module) {
         super(module, FXML);
     }
 
@@ -23,12 +23,12 @@ public class ModuleListCard extends ModuleDescription {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ModuleListCard)) {
+        if (!(other instanceof ModuleCard)) {
             return false;
         }
 
         // state check
-        ModuleListCard card = (ModuleListCard) other;
+        ModuleCard card = (ModuleCard) other;
         return module.equals(card.module);
     }
 }
