@@ -2,10 +2,8 @@ package seedu.planner.model.user;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.SortedSet;
 
 import seedu.planner.model.course.FocusArea;
 import seedu.planner.model.course.Major;
