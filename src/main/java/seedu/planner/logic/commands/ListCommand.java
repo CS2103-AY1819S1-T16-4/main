@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.planner.model.util.IndexUtil.isValidIndex;
-import static seedu.planner.model.util.IndexUtil.isValidSemester;
-import static seedu.planner.model.util.IndexUtil.isValidYear;
 
 import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.CommandHistory;
