@@ -168,7 +168,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @return A list of all {@code Module}s in the storage.
      */
     private List<Module> getAllModulesFromStorage() {
-        ModuleInfo[] allModuleInfo = ModuleInfo.ModuleInfoRetriever.getInstance().getModuleInfoList();
+        ModuleInfo[] allModuleInfo = ModuleInfo.getModuleInfoList();
         List<Module> allModules = new ArrayList<>();
 
         for (ModuleInfo mi: allModuleInfo) {

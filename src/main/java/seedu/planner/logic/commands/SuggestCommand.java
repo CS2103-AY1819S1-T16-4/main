@@ -29,7 +29,7 @@ public class SuggestCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        model.getFilteredAvailableModuleList();
+        model.getAvailableModuleList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

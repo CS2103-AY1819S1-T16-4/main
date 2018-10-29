@@ -188,7 +188,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public ObservableList<Module> getFilteredAvailableModuleList() {
+    public ObservableList<Module> getAvailableModuleList() {
         return FXCollections.unmodifiableObservableList(
                 versionedModulePlanner.getModulesAvailable());
     }
