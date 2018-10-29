@@ -61,6 +61,11 @@ public class CommandTestUtil {
     public static final String VALID_FOCUS_AREA_DESC_SE = " " + PREFIX_FOCUS_AREA + VALID_FOCUS_AREA_SE;
     public static final String VALID_FOCUS_AREA_DESC_PL = " " + PREFIX_FOCUS_AREA + VALID_FOCUS_AREA_PL;
 
+    public static final int VALID_INDEX_ZERO = 0;
+    public static final int VALID_INDEX_ONE = 1;
+
+    public static final int INVALID_INDEX_EIGHT = 8;
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

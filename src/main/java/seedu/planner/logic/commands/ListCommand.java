@@ -3,8 +3,13 @@ package seedu.planner.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
+import static seedu.planner.model.util.IndexUtil.isValidIndex;
+import static seedu.planner.model.util.IndexUtil.isValidSemester;
+import static seedu.planner.model.util.IndexUtil.isValidYear;
 
+import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.CommandHistory;
+import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 
 //@@author Hilda-Ang
@@ -37,10 +42,15 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+
+        if (!isValidIndex(index)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
+        }
+
         model.getTakenModuleList(index);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, index));
     }
 
     @Override

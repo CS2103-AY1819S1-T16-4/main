@@ -29,6 +29,16 @@ public class IndexUtil {
     }
 
     /**
+     * Checks that the given index is valid, i.e. is between 0 and 7 inclusive.
+     *
+     * @param index Index to be checked.
+     * @return True if the given index is valid.
+     */
+    public static boolean isValidIndex(int index) {
+        return index >= 0 && index <= 7;
+    }
+
+    /**
      * Converts the given year and semester to an index between 0 and 7,
      * e.g. year 1 semester 1 will be converted to index 0,
      * year 1 semester 2 will be converted to index 1,
