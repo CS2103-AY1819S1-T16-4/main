@@ -92,4 +92,20 @@ public class AddCommand extends Command {
         model.addModules(modulesToAdd, semesterIndex);
         return new CommandResult(String.format(MESSAGE_SUCCESS, sb.toString().trim()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddCommand)) {
+            return false;
+        }
+
+        AddCommand command = (AddCommand) other;
+        return modulesToAdd.stream().allMatch(x ->
+                command.modulesToAdd.stream().anyMatch(y -> y.equals(x)));
+    }
 }
