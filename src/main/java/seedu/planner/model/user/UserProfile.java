@@ -1,6 +1,8 @@
 package seedu.planner.model.user;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import seedu.planner.model.course.FocusArea;
@@ -11,7 +13,6 @@ import seedu.planner.model.user.exceptions.UserProfileNotSetUpException;
 
 /**
  * Represents the profile of the user.
- * This class is a singleton.
  */
 public class UserProfile {
 
@@ -19,9 +20,9 @@ public class UserProfile {
     private int year;
     private int semester;
     private Major major;
-    private Set<FocusArea> focusAreas;
+    private List<FocusArea> focusAreas;
 
-    private UserProfile(int year, int semester, Major major, Set<FocusArea> focusAreas) {
+    private UserProfile(int year, int semester, Major major, List<FocusArea> focusAreas) {
         this.year = year;
         this.semester = semester;
         this.major = major;
@@ -90,14 +91,17 @@ public class UserProfile {
      * using the method {@link #mapFocusArea(String) mapFocusArea}
      *
      * @param focusAreas The focus areas as {@code String}s
-     * @return The focus areas as {@code FocusArea}s
+     * @return The focus areas as {@code FocusArea}s and sorted
      */
-    public static Set<FocusArea> mapFocusAreas(Set<String> focusAreas) {
-        Set<FocusArea> focusAreasSet = new HashSet<>();
+    public static List<FocusArea> mapFocusAreas(Set<String> focusAreas) {
+        List<FocusArea> focusAreaList = new ArrayList<FocusArea>();
+
         for (String fa : focusAreas) {
-            focusAreasSet.add(mapFocusArea(fa));
+            focusAreaList.add(mapFocusArea(fa));
         }
-        return focusAreasSet;
+        Collections.sort(focusAreaList);
+
+        return focusAreaList;
     }
 
     /**
@@ -132,7 +136,7 @@ public class UserProfile {
      *
      * @return The focus areas
      */
-    public Set<FocusArea> getFocusAreas() {
+    public List<FocusArea> getFocusAreas() {
         return focusAreas;
     }
 }

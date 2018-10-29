@@ -6,8 +6,11 @@ import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Helper functions for handling strings.
@@ -99,9 +102,15 @@ public class StringUtil {
     public static <E> String convertCollectionToString(Collection<E> collection) {
         requireNonNull(collection);
 
-        StringBuilder sb = new StringBuilder();
+        List<String> list = new ArrayList<>();
         for (E e : collection) {
-            sb.append(e + " ");
+            list.add(e.toString());
+        }
+        Collections.sort(list);
+
+        StringBuilder sb = new StringBuilder();
+        for (String s : list) {
+            sb.append(s + " ");
         }
         return sb.toString().trim();
     }

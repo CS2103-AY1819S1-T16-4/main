@@ -48,7 +48,7 @@ public class SetUpCommandTest {
 
         String expectedMessage = String.format(MESSAGE_SET_UP_SUCCESS,
                 VALID_YEAR_ONE, VALID_SEMESTER_ONE, VALID_MAJOR_CS,
-                VALID_FOCUS_AREA_SE + " " + VALID_FOCUS_AREA_PL);
+                VALID_FOCUS_AREA_PL + " " + VALID_FOCUS_AREA_SE);
         Model expectedModel = new ModelManager();
         expectedModel.setUpUserProfile(VALID_YEAR_ONE, VALID_SEMESTER_ONE,
                 VALID_MAJOR_CS, Set.of(VALID_FOCUS_AREA_SE, VALID_FOCUS_AREA_PL));
