@@ -43,7 +43,7 @@ public class JsonSerializableModulePlanner {
         for (JsonAdaptedSemester sem : this.semesters) {
             semesters.add(sem.toModelType());
         }
-        planner.setSemesters(semesters);
+        planner.setModulesInSemesters(semesters);
         return planner;
     }
 }

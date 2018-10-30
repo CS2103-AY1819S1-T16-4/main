@@ -5,6 +5,7 @@ import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ import seedu.planner.model.course.Major;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
+import seedu.planner.model.semester.Semester;
 import seedu.planner.model.user.UserProfile;
 
 /**
@@ -49,6 +51,8 @@ public class ModelManager extends ComponentManager implements Model {
     public ModelManager() {
         this(new ModulePlanner(), new UserPrefs());
     }
+
+    //@@author GabrielYik
 
     @Override
     public void setUpUserProfile(int year, int semester, String major, Set<String> focusAreas) {

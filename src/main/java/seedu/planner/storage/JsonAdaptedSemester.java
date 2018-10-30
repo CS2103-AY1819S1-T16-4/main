@@ -35,7 +35,7 @@ public class JsonAdaptedSemester {
     JsonAdaptedSemester(Semester sem) {
         index = sem.getIndex();
         year = sem.getYear();
-        modulesTaken = sem.getModulesTaken().stream().map(
+        modulesTaken = sem.getModules().stream().map(
             m -> new JsonAdaptedModule(m)).collect(Collectors.toList());
     }
 

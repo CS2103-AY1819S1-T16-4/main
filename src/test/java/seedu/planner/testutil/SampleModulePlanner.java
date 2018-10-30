@@ -20,7 +20,7 @@ public class SampleModulePlanner {
             for (int sem = 1; sem <= 2; sem++) {
                 Semester semester = new Semester(year, sem);
                 semester.addModules(SampleModules.getModules(0, 4));
-                modulePlanner.addModules(semester.getModulesTaken(),
+                modulePlanner.addModules(semester.getModules(),
                         convertYearAndSemesterToIndex(year, sem));
             }
         }
