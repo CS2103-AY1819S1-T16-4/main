@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.planner.testutil.TypicalModules.CS1010;
-import static seedu.planner.testutil.TypicalModules.CS2030;
 import static seedu.planner.testutil.TypicalModules.getTypicalModulePlanner;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
@@ -47,7 +46,7 @@ public class ModulePlannerTest {
         addressBook.resetData(newData);
     }
     */
-    
+
     @Test
     public void addModules_invalidIndex_throwsIndexOutOfBoundsException() {
         thrown.expect(IndexOutOfBoundsException.class);
@@ -133,13 +132,13 @@ public class ModulePlannerTest {
         ModulePlanner differentModulePlanner = getTypicalModulePlanner();
         assertNotEquals(modulePlanner.getModulesAvailable(), differentModulePlanner.getModulesAvailable());
     }
-    
-    @Test 
+
+    @Test
     public void equals() {
         modulePlanner.addModules(getTypicalModules(), 1);
         ModulePlanner differentModulePlanner = new ModulePlanner();
         differentModulePlanner.addModules(getTypicalModules(), 1);
-    
+
         // same modules in same semester -> returns true
         assertTrue(modulePlanner.equals(differentModulePlanner));
 

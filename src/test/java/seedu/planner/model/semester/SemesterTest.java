@@ -7,12 +7,12 @@ import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.CS2030;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import seedu.planner.model.module.Module;
 

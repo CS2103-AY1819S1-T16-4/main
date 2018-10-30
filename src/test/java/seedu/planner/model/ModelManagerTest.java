@@ -5,13 +5,13 @@ import static org.junit.Assert.assertTrue;
 import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
+import java.nio.file.Paths;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.planner.testutil.ModulePlannerBuilder;
-
-import java.nio.file.Paths;
 
 public class ModelManagerTest {
 
@@ -72,9 +72,9 @@ public class ModelManagerTest {
         // different modulePlanner -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentModulePlanner, userPrefs)));
 
-         // different userPrefs -> returns true
-         UserPrefs differentUserPrefs = new UserPrefs();
-         differentUserPrefs.setModulePlannerFilePath(Paths.get("differentFilePath"));
-         assertTrue(modelManager.equals(new ModelManager(modulePlanner, differentUserPrefs)));
+        // different userPrefs -> returns true
+        UserPrefs differentUserPrefs = new UserPrefs();
+        differentUserPrefs.setModulePlannerFilePath(Paths.get("differentFilePath"));
+        assertTrue(modelManager.equals(new ModelManager(modulePlanner, differentUserPrefs)));
     }
 }
