@@ -5,6 +5,7 @@ import static seedu.planner.logic.commands.CommandTestUtil.INVALID_SEMESTER_DESC
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_YEAR_DESC_FIVE;
 import static seedu.planner.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.planner.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_INDEX_ZERO;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_DESC_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_DESC_ONE;
@@ -26,7 +27,7 @@ public class ListCommandParserTest {
     public void parse_allFieldsPresent_success() {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE,
-            new ListCommand(0));
+            new ListCommand(VALID_INDEX_ZERO));
     }
 
     @Test
