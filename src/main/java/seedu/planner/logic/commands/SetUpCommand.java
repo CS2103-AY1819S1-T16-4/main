@@ -27,6 +27,14 @@ public class SetUpCommand extends Command {
 
     public static final String MESSAGE_FOCUS_AREA_CONSTRAINTS = "The focus area should contain only alphabets";
 
+    public static final String MESSAGE_INVALID_YEAR = "Invalid year (%d): must be in range of [0, 4]\n";
+
+    public static final String MESSAGE_INVALID_SEMESTER = "Invalid semester (%d): must be in range of [1, 2]\n";
+
+    public static final String MESSAGE_INVALID_MAJOR = "Invalid major (%s)\n";
+
+    public static final String MESSAGE_INVALID_FOCUS_AREAS = "One or more focus area is invalid\n";
+
     public static final String MESSAGE_SET_UP_SUCCESS = "Set up complete.\n"
             + "Your User Profile\n"
             + "Year: %1$d | Semester: %2$d\n"
@@ -66,19 +74,19 @@ public class SetUpCommand extends Command {
         String errorMsg = "";
 
         if (!IndexUtil.isValidYear(year)) {
-            errorMsg += String.format("Invalid year (%d): must be in range of [0, 4]\n", year);
+            errorMsg += String.format(MESSAGE_INVALID_YEAR, year);
         }
 
         if (!IndexUtil.isValidSemester(semester)) {
-            errorMsg += String.format("Invalid semester (%d): must be in range of [1, 2]\n", semester);
+            errorMsg += String.format(MESSAGE_INVALID_SEMESTER, semester);
         }
 
         if (!Major.hasMajor(major)) {
-            errorMsg += String.format("Invalid major (%s)\n", major);
+            errorMsg += String.format(MESSAGE_INVALID_MAJOR, major);
         }
 
         if (!focusAreas.isEmpty() && !FocusArea.hasFocusAreas(focusAreas)) {
-            errorMsg += String.format("One or more focus area is invalid\n");
+            errorMsg += String.format(MESSAGE_INVALID_FOCUS_AREAS);
         }
 
         if (errorMsg.length() > 0) {
