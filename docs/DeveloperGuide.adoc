@@ -174,7 +174,7 @@ image::UiClassDiagram.png[width="800"]
 *API* : link:{repoURL}/src/main/java/seedu/planner/ui/Ui.java[`Ui.java`]
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`,
-`ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `BrowserPanel` etc.
+`ResultDisplay`, `ModuleListPanel`, `StatusBarFooter`, `FindModulePanel` etc.
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching
@@ -246,6 +246,57 @@ Classes used by multiple components are in the `seedu.planner.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+=== Add feature
+==== Current Implementation
+
+The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester'-s. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
+The implementation is as follows:
+
+* `ModulePlanner#addModules(List<Module> modules, int index)` -- Add the list of `modules` into the semester specified by `index`.
+
+The operation above is exposed in the `Model` interface as `Model#addModules(List<Module> modules, int index)`
+
+[NOTE]
+A valid module is one that exists, has its module specified correctly and has not been taken or planned to take yet by the user.
+
+Below are the possible scenarios of how it works, given a valid module `MA1521` and an invalid module `MA1234`.
+
+===== All valid modules
+
+The user executes `add y/1 s/1 MA1521` to add the `Module` with module code `MA1521` into year 1 semester 1 `Module` lists.
+The `add` command calls `Model#addModules(...)`, which adds the module into the `Semester` with index 3.
+
+[NOTE]
+This applies to when more than one valid module is supplied.
+
+===== All Invalid Modules
+The user executes `add y/1 s/2 MA1234` command. However, since that module does not exist or is already stored in a `Semester`,
+the command fails and `Model#addModules(...)` will not be called.
+The user will be informed of the invalid module.
+
+[NOTE]
+This applies to where more than one invalid module is supplied.
+
+===== Some Invalid Modules
+The user executes `add y/2 s/1 MA1521 MA1234`. However, only the module `MA1521` is valid.
+In this case, the command will not fail entirely and only the valid module `MA1521` will be added.
+The user will be informed of the invalid module.
+
+===== No Modules
+The user executes `add`. As the command has no supplied arguments, the command will fail
+and the user will be informed to input arguments.
+
+==== Design Considerations
+
+===== Different semester start
+The current implementation only assumes the user is closing into their year 1 semester 1. Further enhancement could be made by having other starting semesters
+
+1. To mirror the real world - it is impossible for a student to void a module that has already been taken.
+
+2. To prevent undefined behaviour - deleting a module already taken might make all future modules not yet taken to be inaccurately planned.
+Also, all currently suggested modules to the user might too be inaccurate.
+
+
 === Delete feature
 ==== Current Implementation
 
@@ -303,6 +354,41 @@ Only modules which the user has not taken are allowed to be deleted. There are s
 2. To prevent undefined behaviour - deleting a module already taken might make all future modules not yet taken to be inaccurately planned.
 Also, all currently suggested modules to the user might too be inaccurate.
 
+=== List feature
+==== Current Implementation
+
+The list mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`-s and each `Semester` stores a list `modulesTaken` containing modules that the user has taken or is planning to take.
+It implements the following operation:
+
+* `ModulePlanner#listModulesTaken(int index)` -- Retrieves a list of modules from the `Semester` specified by `index`.
+
+The operation is exposed in `Model` interface as `Model#getFilteredTakenModuleList(int index)`.
+
+[NOTE]
+A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
+
+Below is an example usage scenario and how the list mechanism works.
+
+Step 1. The user launches the application. `ModulePlanner` is initialised with 8 `Semester` objects in `List<Module> semesters`.
+
+Step 2. The user executes `add y/1 s/1 CS1231`. The `add` command inserts `Module` CS1231 to the list `modulesTaken` for `Semester` object with index 0.
+
+Step 3. The user wants to see the list of modules for year 1 semester 1 by executing `list y/1 s/1`. The `list` command parses `y/1 s/1` to index 0 and calls `Model#getFilteredTakenModuleList(int index)`.
+It will execute `ModulePlanner#listModulesTaken(int index)` which will call `Semester#getModulesTaken()` in the relevant `Semester`. The returned result will be a list of modules and will be displayed to the user.
+
+The following sequence diagram shows how the list operation works:
+
+image::ListSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Aspect: How list of modules is retrieved for list command
+* **Alternative 1 (current choice):** Updates list of modules whenever it is modified by a command (e.g. `add`) and immediately retrieves the list upon `list` command.
+** Pros: Easy to implement.
+** Cons: May have performance issue in terms of running time if commands that modify the list are called frequently.
+* **Alternative 2:** Saves all commands that modify list of modules without applying it and updates the list based on the commands only when it is retrieved upon `list` command.
+** Pros: May be more effective in terms of running time because it only modifies the list when needed.
+** Cons: Implementation will be more complicated as we have to store all commands that modify the list.
 
 // tag::undoredo[]
 === Undo/Redo feature
@@ -411,92 +497,6 @@ image::UndoRedoActivityDiagram.png[width="650"]
 Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
-=== Add feature
-==== Current Implementation
-
-The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester'-s. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
-The implementation is as follows:
-
-*'ModulePlanner#addModules(List<Module> modules, int index)' -- Add the list of modules 'modules' into the semester specified by 'index'.
-
-The operation above is exposed in the 'Model' interface as 'Model#addModules(List<Module> modules, int index)'
-
-[NOTE]
-A valid module is one that exists, has its module specified correctly and has not been taken or planned to take yet by the user.
-
-Below are the possible scenarios of how it works, given a valid module 'MA1521' and an invalid module 'MA1234'.
-
-===== All valid modules
-
-The user executes 'add y/1 s/1 MA1521' to add the 'Module' with module code 'MA1521' into year 1 semester 1 'Module' lists.
-The `add` command calls `Model#addModules(...)`, which adds the module into the 'Semester' with index 3.
-
-[NOTE]
-This applies to when more than one valid module is supplied.
-
-===== All Invalid Modules
-The user executes `add y/1 s/2 MA1234` command. However, since that module does not exist or is already stored in a 'Semester',
-the command fails and `Model#addModules(...)` will not be called.
-The user will be informed of the invalid module.
-
-[NOTE]
-This applies to where more than one invalid module is supplied.
-
-===== Some Invalid Modules
-The user executes `add y/2 s/1 MA1521 MA1234`. However, only the module `MA1521` is valid.
-In this case, the command will not fail entirely and only the valid module `MA1521` will be added.
-The user will be informed of the invalid module.
-
-===== No Modules
-The user executes `add`. As the command has no supplied arguments, the command will fail
-and the user will be informed to input arguments.
-
-==== Design Considerations
-
-===== Different semester start
-The current implementation only assumes the user is closing into their year 1 semester 1. Further enhancement could be made by having other starting semesters
-
-1. To mirror the real world - it is impossible for a student to void a module that has already been taken.
-
-2. To prevent undefined behaviour - deleting a module already taken might make all future modules not yet taken to be inaccurately planned.
-Also, all currently suggested modules to the user might too be inaccurate.
-
-=== List feature
-==== Current Implementation
-
-The list mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`-s and each `Semester` stores a list `modulesTaken` containing modules that the user has taken or is planning to take.
-It implements the following operation:
-
-* `ModulePlanner#listModulesTaken(int index)` -- Retrieves a list of modules from the `Semester` specified by `index`.
-
-The operation is exposed in `Model` interface as `Model#getFilteredTakenModuleList(int index)`.
-
-[NOTE]
-A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
-
-Below is an example usage scenario and how the list mechanism works.
-
-Step 1. The user launches the application. `ModulePlanner` is initialised with 8 `Semester` objects in `List<Module> semesters`.
-
-Step 2. The user executes `add y/1 s/1 CS1231`. The `add` command inserts `Module` CS1231 to the list `modulesTaken` for `Semester` object with index 0.
-
-Step 3. The user wants to see the list of modules for year 1 semester 1 by executing `list y/1 s/1`. The `list` command parses `y/1 s/1` to index 0 and calls `Model#getFilteredTakenModuleList(int index)`.
-It will execute `ModulePlanner#listModulesTaken(int index)` which will call `Semester#getModulesTaken()` in the relevant `Semester`. The returned result will be a list of modules and will be displayed to the user.
-
-The following sequence diagram shows how the list operation works:
-
-image::ListSequenceDiagram.png[width="800"]
-
-==== Design Considerations
-
-===== Aspect: How list of modules is retrieved for list command
-* **Alternative 1 (current choice):** Updates list of modules whenever it is modified by a command (e.g. `add`) and immediately retrieves the list upon `list` command.
-** Pros: Easy to implement.
-** Cons: May have performance issue in terms of running time if commands that modify the list are called frequently.
-* **Alternative 2:** Saves all commands that modify list of modules without applying it and updates the list based on the commands only when it is retrieved upon `list` command.
-** Pros: May be more effective in terms of running time because it only modifies the list when needed.
-** Cons: Implementation will be more complicated as we have to store all commands that modify the list.
-
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
@@ -512,7 +512,7 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 * `INFO` : Information showing the noteworthy actions by the App
 * `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
-== Module Information
+=== Retrieval and Use of Module Information
 
 Information of a NUS module such as module code, module credit and prerequisite modules are stored in `ModuleInfo` class.
 This class is made to be immutable to avoid accidental changes to the class.
