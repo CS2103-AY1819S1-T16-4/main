@@ -8,8 +8,6 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Set;
 
-import seedu.planner.commons.core.Messages;
-import seedu.planner.commons.core.index.Index;
 import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;

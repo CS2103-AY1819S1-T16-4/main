@@ -33,6 +33,7 @@ public class JsonSerializableModulePlanner {
     public JsonSerializableModulePlanner(ReadOnlyModulePlanner src) {
         this();
         semesters.addAll(src.getSemesters().stream().map(JsonAdaptedSemester::new).collect(Collectors.toList()));
+        userProfile = src.getUserProfile();
     }
 
     /**
