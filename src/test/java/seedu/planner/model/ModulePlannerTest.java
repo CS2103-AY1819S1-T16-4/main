@@ -2,6 +2,7 @@ package seedu.planner.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.planner.testutil.TypicalModules.CS1010;
@@ -68,6 +69,18 @@ public class ModulePlannerTest {
     public void hasModule_moduleInModulePlanner_returnsTrue() {
         modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
         assertTrue(modulePlanner.hasModule(CS1010));
+    }
+
+    @Test
+    public void getModulesAvailable_sameModules_returnsSameList() {
+        ModulePlanner otherModulePlanner = new ModulePlanner();
+        assertEquals(modulePlanner.getModulesAvailable(), otherModulePlanner.getModulesAvailable());
+    }
+
+    @Test
+    public void getModulesAvailable_differentModules_returnsDifferentList() {
+        ModulePlanner otherModulePlanner = getTypicalModulePlanner();
+        assertNotEquals(modulePlanner.getModulesAvailable(), otherModulePlanner.getModulesAvailable());
     }
 
     /*
