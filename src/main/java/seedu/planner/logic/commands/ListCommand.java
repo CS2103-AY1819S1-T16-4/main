@@ -13,14 +13,13 @@ import seedu.planner.model.Model;
 //@@author Hilda-Ang
 
 /**
- * Placeholder for ListCommand.
- * Lists all modules the user has taken or is available to take.
+ * Lists all modules the user has taken for a specified year and semester.
  */
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken or suggested for a semester. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken for a semester. "
             + "Parameters: "
             + PREFIX_YEAR + "YEAR "
             + PREFIX_SEMESTER + "SEMESTER "
