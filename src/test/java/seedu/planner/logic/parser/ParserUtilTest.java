@@ -3,7 +3,6 @@ package seedu.planner.logic.parser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
-import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CS0000;
 
 import java.util.Arrays;
 import java.util.Collections;

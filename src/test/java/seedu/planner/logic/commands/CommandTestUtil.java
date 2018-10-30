@@ -7,9 +7,7 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.planner.logic.CommandHistory;

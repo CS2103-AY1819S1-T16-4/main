@@ -2,9 +2,7 @@ package seedu.planner.testutil;
 
 import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.planner.model.ModulePlanner;
