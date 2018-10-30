@@ -21,40 +21,6 @@ public class ModelManagerTest {
     private ModelManager modelManager = new ModelManager();
 
     @Test
-    public void hasMajor_invalidMajor_returnsFalse() {
-        assertFalse(modelManager.hasMajor("asdfjk"));
-    }
-
-    @Test
-    public void hasMajor_validMajor_returnsTrue() {
-        assertTrue(modelManager.hasMajor("computer science"));
-        assertTrue(modelManager.hasMajor("cOMpuTer EnGineeRING"));
-    }
-
-    @Test
-    public void hasFocusArea_invalidFocusArea_returnsFalse() {
-        assertFalse(modelManager.hasFocusArea("asdfjk"));
-    }
-
-    @Test
-    public void hasFocusArea_validFocusArea_returnsTrue() {
-        assertTrue(modelManager.hasFocusArea("SOFTWARE ENGINEERING"));
-        assertTrue(modelManager.hasFocusArea("daTaBAse SystemS"));
-    }
-
-    @Test
-    public void hasFocusAreas_setWithInvalidFocusAreas_returnsFalse() {
-        Set<String> focusAreas = Set.of("Software Engineering", "Artificial Intelligence", "asdf");
-        assertFalse(modelManager.hasFocusAreas(focusAreas));
-    }
-
-    @Test
-    public void hasFocusAreas_setWithValidFocusAreas_returnsTrue() {
-        Set<String> focusAreas = Set.of("Software Engineering", "Artificial Intelligence", "Database Systems");
-        assertTrue(modelManager.hasFocusAreas(focusAreas));
-    }
-
-    @Test
     public void hasModule_nullModule_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         modelManager.hasModule(null);
