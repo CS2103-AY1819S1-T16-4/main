@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,12 +59,12 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-     * Add one or more module(s) to list of modules taken for the specified semester.
+     * Add one or more module(s) to set of modules taken for the specified semester.
      *
-     * @param modules A list of valid modules to be added
+     * @param modules A set of valid modules to be added
      * @param index A valid semester
      */
-    public void addModules(List<Module> modules, int index) {
+    public void addModules(Set<Module> modules, int index) {
         semesters.get(index).addModules(modules);
     }
 
@@ -72,7 +73,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      *
      * @param modules A list of valid modules to be deleted
      */
-    public void deleteModules(List<Module> modules) {
+    public void deleteModules(Set<Module> modules) {
         for (Semester semester : semesters) {
             semester.deleteModules(modules);
         }

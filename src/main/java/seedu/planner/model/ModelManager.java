@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -80,7 +81,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void deleteModules(List<Module> moduleCodes) {
+    public void deleteModules(Set<Module> moduleCodes) {
         versionedModulePlanner.deleteModules(moduleCodes);
         indicateModulePlannerChanged();
     }
@@ -107,8 +108,8 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public List<Module> finalizeModules(List<Module> modules) {
-        List<Module> finalizedModules = new ArrayList<>();
+    public Set<Module> finalizeModules(Set<Module> modules) {
+        Set<Module> finalizedModules = new HashSet<>();
         for (Module m : modules) {
             finalizedModules.add(finalizeModule(m));
         }
@@ -118,8 +119,8 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author RomaRomama
 
     @Override
-    public void addModules(List<Module> modules, int index) {
-        List<Module> finalizedModules = finalizeModules(modules);
+    public void addModules(Set<Module> modules, int index) {
+        Set<Module> finalizedModules = finalizeModules(modules);
         versionedModulePlanner.addModules(finalizedModules, index);
         indicateModulePlannerChanged();
     }

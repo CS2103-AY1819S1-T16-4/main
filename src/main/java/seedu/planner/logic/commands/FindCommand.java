@@ -1,9 +1,10 @@
 package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.planner.commons.util.CollectionUtil.getAnyOne;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 
-import java.util.List;
+import java.util.Set;
 
 import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.core.Messages;
@@ -44,7 +45,8 @@ public class FindCommand extends Command {
                     Messages.MESSAGE_INVALID_MODULES, moduleToFind));
         }
 
-        Module finalizedModule = model.finalizeModules(List.of(moduleToFind)).get(0);
+        Set<Module> finalizedModules = model.finalizeModules(Set.of(moduleToFind));
+        Module finalizedModule = getAnyOne(finalizedModules).get();
         EventsCenter.getInstance().post(new FindModuleEvent(finalizedModule));
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleToFind));

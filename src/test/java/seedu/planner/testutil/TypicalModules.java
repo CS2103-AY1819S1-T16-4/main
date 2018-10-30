@@ -2,9 +2,9 @@ package seedu.planner.testutil;
 
 import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.module.Module;
@@ -30,14 +30,14 @@ public class TypicalModules {
     public static ModulePlanner getTypicalModulePlanner() {
         ModulePlanner mp = new ModulePlanner();
         for (Module module : getTypicalModules()) {
-            List<Module> moduleList = new ArrayList<>();
-            moduleList.add(module);
-            mp.addModules(moduleList, INDEX_FIRST);
+            Set<Module> modules = new HashSet<>();
+            modules.add(module);
+            mp.addModules(modules, INDEX_FIRST);
         }
         return mp;
     }
 
-    public static List<Module> getTypicalModules() {
-        return new ArrayList<>(Arrays.asList(CS1010, CS2030));
+    public static Set<Module> getTypicalModules() {
+        return new HashSet<>(Arrays.asList(CS1010, CS2030));
     }
 }

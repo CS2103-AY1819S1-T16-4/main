@@ -1,5 +1,6 @@
 package seedu.planner.logic.commands;
 
+import static seedu.planner.commons.util.CollectionUtil.getAnyOne;
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CS0000;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1231;
@@ -7,7 +8,7 @@ import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2030;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
 
-import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,10 +40,11 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validModule_success() {
-        List<Module> moduleToDelete = List.of(VALID_MODULE_CS1010);
+        Set<Module> moduleToDelete = Set.of(VALID_MODULE_CS1010);
         DeleteCommand deleteCommand = new DeleteCommand(moduleToDelete);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_MODULES_SUCCESS, moduleToDelete.get(0));
+        String expectedMessage = String.format(
+                DeleteCommand.MESSAGE_DELETE_MODULES_SUCCESS, getAnyOne(moduleToDelete).get());
         ModulePlanner expectedModulePlanner = new ModulePlannerBuilder()
                 .withModule(VALID_MODULE_CS2030)
                 .build();
@@ -53,20 +55,18 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidModule_throwsCommandException() {
-        Module moduleToDelete = INVALID_MODULE_CS0000;
-        DeleteCommand deleteCommand = new DeleteCommand(List.of(moduleToDelete));
+        DeleteCommand deleteCommand = new DeleteCommand(Set.of(INVALID_MODULE_CS0000));
 
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_MODULES, moduleToDelete);
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_MODULES, INVALID_MODULE_CS0000);
 
         assertCommandFailure(deleteCommand, model, commandHistory, expectedMessage);
     }
 
     @Test
     public void execute_validModuleNotYetAdded_throwsCommandException() {
-        Module moduleToDelete = VALID_MODULE_CS1231;
-        DeleteCommand deleteCommand = new DeleteCommand(List.of(moduleToDelete));
+        DeleteCommand deleteCommand = new DeleteCommand(Set.of(VALID_MODULE_CS1231));
 
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_MODULES, moduleToDelete);
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_MODULES, VALID_MODULE_CS1231);
 
         assertCommandFailure(deleteCommand, model, commandHistory, expectedMessage);
     }

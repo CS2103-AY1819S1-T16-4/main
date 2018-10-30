@@ -2,6 +2,8 @@ package seedu.planner.model.module;
 
 //@@author Hilda-Ang //@@author GabrielYik
 
+import java.util.Objects;
+
 import com.google.common.collect.ImmutableList;
 
 /**
@@ -109,5 +111,10 @@ public class Module {
     @Override
     public String toString() {
         return getCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, information);
     }
 }

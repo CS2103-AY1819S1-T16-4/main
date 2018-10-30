@@ -1,7 +1,9 @@
 package seedu.planner.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.planner.commons.exceptions.IllegalValueException;
@@ -45,7 +47,7 @@ public class JsonAdaptedSemester {
      * @throws IllegalValueException
      */
     public Semester toModelType() throws IllegalValueException {
-        List<Module> modulesTaken = new ArrayList<>();
+        Set<Module> modulesTaken = new HashSet<>();
         for (JsonAdaptedModule jsonAdaptedModule : this.modulesTaken) {
             Module toModelType = jsonAdaptedModule.toModelType();
             modulesTaken.add(toModelType);
