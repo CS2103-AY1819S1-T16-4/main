@@ -146,4 +146,9 @@ public class Semester {
     public int hashCode() {
         return modulesTaken.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return "Year " + year + " | Semester " + index;
+    }
 }

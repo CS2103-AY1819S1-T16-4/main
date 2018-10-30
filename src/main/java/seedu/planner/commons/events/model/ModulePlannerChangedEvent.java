@@ -1,7 +1,10 @@
 package seedu.planner.commons.events.model;
 
+import java.util.List;
+
 import seedu.planner.commons.events.BaseEvent;
 import seedu.planner.model.ReadOnlyModulePlanner;
+import seedu.planner.model.semester.Semester;
 
 /**
  * Indicates the ModulePlanner in the model has changed.
@@ -16,6 +19,12 @@ public class ModulePlannerChangedEvent extends BaseEvent {
 
     @Override
     public String toString() {
-        return "number of persons ";
+        StringBuilder sb = new StringBuilder();
+        List<Semester> semesters = data.getSemesters();
+        for (Semester semester : semesters) {
+            sb.append("\n" + semester.toString() + " : " + semester.getModules().size());
+        }
+
+        return sb.toString();
     }
 }
