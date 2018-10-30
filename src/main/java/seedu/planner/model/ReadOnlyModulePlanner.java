@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.semester.Semester;
+import seedu.planner.model.user.UserProfile;
 
 //@@author GabrielYik
 
@@ -12,6 +13,12 @@ import seedu.planner.model.semester.Semester;
  * Represents an unmodifiable view of a {@code ModulePlanner}.
  */
 public interface ReadOnlyModulePlanner {
+    /**
+     * Returns user profile object.
+     *
+     * Do not modify the content of the object.
+     */
+    UserProfile getUserProfile();
 
     /**
      * Returns an unmodifiable view of the {@code Semester}s.
