@@ -8,17 +8,18 @@ import static seedu.planner.logic.commands.CommandTestUtil.VALID_FOCUS_AREA_DESC
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_FOCUS_AREA_SE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MAJOR_CS;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MAJOR_DESC_CS;
-import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS2030;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1010;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS2030;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_DESC_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_DESC_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_ONE;
-import static seedu.planner.model.util.IndexUtil.convertYearAndSemesterToIndex;
 import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
+
+import java.util.List;
+import java.util.Set;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -40,10 +41,6 @@ import seedu.planner.logic.commands.SuggestCommand;
 import seedu.planner.logic.commands.UndoCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.Module;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 public class ModulePlannerParserTest {
     @Rule
