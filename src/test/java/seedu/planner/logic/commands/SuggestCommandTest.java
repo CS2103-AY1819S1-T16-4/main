@@ -16,6 +16,7 @@ public class SuggestCommandTest {
 
     @Test
     public void execute_suggest_success() {
-        assertCommandSuccess(new SuggestCommand(), model, commandHistory, SuggestCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new SuggestCommand(), model, commandHistory, SuggestCommand.MESSAGE_SUCCESS,
+            expectedModel);
     }
 }
