@@ -1,8 +1,8 @@
 package seedu.planner.logic.parser;
 
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.planner.logic.commands.CommandTestUtil.MODULE_DESC_CS1010;
-import static seedu.planner.logic.commands.CommandTestUtil.MODULE_DESC_CS1231;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1010;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1231;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -31,8 +31,9 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, MODULE_DESC_CS1010, new DeleteCommand(list1));
-        assertParseSuccess(parser, MODULE_DESC_CS1010 + MODULE_DESC_CS1231, new DeleteCommand(list2));
+        assertParseSuccess(parser, VALID_MODULE_CODE_DESC_CS1010, new DeleteCommand(list1));
+        assertParseSuccess(parser, VALID_MODULE_CODE_DESC_CS1010 + VALID_MODULE_CODE_DESC_CS1231,
+                new DeleteCommand(list2));
     }
 
     @Test

@@ -102,8 +102,6 @@ public class ModuleInfo {
 
     private String name;
 
-    private ModuleType[] possibleTypes;
-
     /**
      * Module credit. We set the type to be float because some modules have 0.5 MC.
      */
@@ -130,12 +128,9 @@ public class ModuleInfo {
     }
 
     /**
-     * Creates a new {@code ModuleInfo}.
-     * This {@code ModuleInfo} does not have all its
-     * attributes initialised and is meant to be used
-     * as a lightweight and convenient object.
+     * Constructs a {@code ModuleInfo} from a given module code.
      *
-     * @param code The {@code Module} code
+     * @param code A valid module code.
      */
     public ModuleInfo(String code) {
         this.code = code;
@@ -147,10 +142,6 @@ public class ModuleInfo {
 
     public String getName() {
         return name;
-    }
-
-    public ModuleType[] getPossibleTypes() {
-        return possibleTypes;
     }
 
     public float getCreditCount() {

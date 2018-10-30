@@ -24,7 +24,7 @@ Module Planner is for NUS Computer Science undergraduate students who *prefer to
 
 .  Ensure you have Java version `9` or later installed in your Computer.
 .  Download the latest `moduleplanner.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Copy the file to the folder you want to use as the home folder for your Module Planner.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 image::ui.png[width="790"]
@@ -33,8 +33,8 @@ image::ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* **`add`**`y/1 s/1 CS1231 MA1521` : adds modules CS1231 and MA1521 to year 1 semester 1 modules list.
-* **`delete`**`CS1231` : deletes module CS1231 from year 1 semester 1 modules list.
+* **`add`**`y/1 s/1 c/CS1231 c/MA1521` : adds modules CS1231 and MA1521 to the year 1 semester 1 modules list.
+* **`delete`**`c/CS1231` : deletes module CS1231 from the Module Planner.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -46,71 +46,85 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 *Command Format*
 
 * Words in `UPPER_CASE` are the parameters that you can supply, e.g. in `list y/YEAR`, `YEAR` is a parameter which can be used as `add y/1`.
-* Items in square brackets are optional e.g `setup [m/MAJOR]` can be used as `setup m/CS` or as `setup`.
+* Items in square brackets are optional e.g `setup ... [f/FOCUS_AREA]` can be used as `setup ... f/software engineering` or as `setup ...`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `MODULE_CODE...` can be used as `{nbsp}` (i.e. 0 times), `CS1231`, `CS1231 MA1521` etc.
 ====
 
-=== Viewing help : `help`
-
-Format: `help`
-
 === Adding modules: `add`
 
-Adds modules to the list of modules that you have taken or want to take for a specific year and semester. Specifying the year and semester will put the modules to the modules list for that year and semester. Not specifying it will add the modules to list of modules already taken. +
-Format: `add [y/YEAR s/SEMESTER] MODULE_CODE...`
+Adds the specified modules to the list of modules that you have taken or want to take for the specified year and semester. +
+Format: `add y/YEAR s/SEMESTER c/MODULE_CODE...`
 
 [TIP]
 You can add 1 or more modules.
 
 Examples:
 
-* `add y/1 s/1 CS1231 CS1101S MA1521`
-* `add MA1101R`
+* `add y/1 s/1 c/MA1101R`
+* `add y/1 s/1 c/CS1231 c/CS1101S`
+
+=== Deleting modules : `delete`
+
+Deletes the specified modules from list of current or future modules for the specified year and semester. +
+Format: `delete c/MODULE_CODE...`
+
+Examples:
+
+* `delete c/CS1010`
+* `delete c/CS1231 c/MA1521`
+
+=== Finding information on a module : `find`
+
+Retrieves the information of the specified module. +
+Format: `find c/MODULE_CODE`
+
+Example:
+
+* `find c/CS1010`
+
+=== Going to a different year and semester : `goto`
+
+Changes the view to the specified year and semester. +
+Format: `goto y/YEAR s/SEMESTER`
+
+Example:
+
+* `goto y/1 s/1`
 
 === Listing modules : `list`
 
-Shows a list of modules that you have taken if the specified year and semester has passed, or list of modules that you plan to take for the specified year and semester.+
+Shows a list of modules that you have taken if the specified year and semester has passed, or list of modules that you plan to take for the specified year and semester. +
 Format: `list y/YEAR s/SEMESTER`
 
 Examples:
 
 * `list y/1 s/1`
 
-=== Suggesting modules : `suggest`
-
-Shows a list of modules available for you to take based on modules that you have taken or are planning to take.+
-Format: `suggest`
-
-Examples:
-
-* `suggest`
-
-=== Deleting modules : `delete`
-
-Deletes the specified modules from list of current or future modules for a specific year and semester. +
-Format: `delete MODULE_CODE...`
-
-Examples:
-
-* `delete CS1231 MA1521`
-
 === Setting user profile : `setup`
 
 Initialises your profile to allow personalisation. Year and semester correspond to your current year and semester of study. +
-Format: `setup [m/MAJOR] [y/YEAR] [s/SEMESTER] [f/FOCUS_AREA]`
+Format: `setup y/YEAR s/SEMESTER m/MAJOR [f/FOCUS_AREA]`
 
 Examples:
 
-* `setup m/CS y/1 s/1 f/machine learning`
+* `setup y/1 s/1 m/computer science f/software engineering`
 
 === Getting status update : `status`
 
 Shows how many core, unrestricted electives, and general education modules that you have taken and how many more you need to take. +
 Format: `status`
 
+=== Suggesting modules : `suggest`
+
+Shows a list of modules available for you to take based on modules that you have taken or are planning to take. +
+Format: `suggest`
+
+=== Viewing help : `help`
+
+Format: `help`
+
 === Exiting the program : `exit`
 
-Exits the program. +
 Format: `exit`
 
 === Saving the data
@@ -125,15 +139,28 @@ There is no need to save manually.
 
 == Command Summary
 
-* *Add* `add [y/YEAR s/SEMESTER] MODULE_CODE...` +
-e.g. `add y/1 s/1 CS1231 CS1101S MA1521`
+* *Add* `add y/YEAR s/SEMESTER c/MODULE_CODE...` +
+e.g. `add y/1 s/1 c/CS1231 c/CS1101S`
+
+* *Delete* : `delete c/MODULE_CODE...` +
+e.g. `delete c/CS1231 c/MA1521`
+
+* *Find* : `find c/MODULE_CODE` +
+e.g. `find c/CS1O10`
+
+* *Goto* : `goto y/YEAR s/SEMESTER` +
+e.g. `goto y/1 s/1`
+
 * *List* : `list y/YEAR s/SEMESTER` +
 e.g. `list y/1 s/1`
-* *Suggest* : `suggest`
-* *Delete* : `delete MODULE_CODE...` +
-e.g. `delete CS1231 MA1521`
-* *Setup* : `setup [m/MAJOR] [y/YEAR] [s/SEMESTER] [f/FOCUS_AREA]` +
-e.g. `setup m/CS y/1 s/1 f/machine learning`
+
+* *Setup* : `setup y/YEAR s/SEMESTER m/MAJOR [f/FOCUS_AREA]` +
+e.g. `setup y/1 s/1 m/computer science f/machine learning`
+
 * *Status* : `status`
+
+* *Suggest* : `suggest`
+
 * *Help* : `help`
+
 * *Exit* : `exit`

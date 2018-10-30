@@ -27,7 +27,7 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CODE + "CS1010 ";
 
-    public static final String MESSAGE_SUCCESS = "Retrieved module information";
+    public static final String MESSAGE_SUCCESS = "Retrieved module information for %1$s";
 
     private Module moduleToFind;
 
@@ -47,6 +47,21 @@ public class FindCommand extends Command {
         Module finalizedModule = model.finalizeModules(List.of(moduleToFind)).get(0);
         EventsCenter.getInstance().post(new FindModuleEvent(finalizedModule));
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleToFind));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof FindCommand)) {
+            return false;
+        }
+
+        FindCommand command = (FindCommand) other;
+        return moduleToFind.equals(command.moduleToFind);
     }
 }

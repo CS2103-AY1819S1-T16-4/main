@@ -8,8 +8,8 @@ package seedu.planner.model.course;
  * is Computer Science students.
  */
 public enum Major {
-    COMPUTER_SCIENCE("Computer science"),
-    COMPUTER_ENGINEERING("Computer engineering"),
+    COMPUTER_SCIENCE("Computer Science"),
+    COMPUTER_ENGINEERING("Computer Engineering"),
     UNKNOWN("Unknown");
 
     private final String name;

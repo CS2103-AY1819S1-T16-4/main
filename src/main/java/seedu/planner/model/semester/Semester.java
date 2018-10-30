@@ -30,24 +30,19 @@ public class Semester {
     private final int index;
     private final int year;
 
-    // Indicator of whether user has passed the index
-    private boolean hasBeenTaken;
-
     // Modules lists
-    private ObservableList<Module> modulesTaken = FXCollections.observableArrayList();
-    private ObservableList<Module> modulesAvailable = FXCollections.observableArrayList();
+    private ObservableList<Module> modulesTaken;
 
     /**
      * Constructs a {@code Semester}.
      *
      * @param year A valid year
      * @param index A valid index
-     * @param hasBeenTaken Whether the semester has been taken
      */
-    public Semester(int year, int index, boolean hasBeenTaken) {
+    public Semester(int year, int index) {
         this.year = year;
         this.index = index;
-        this.hasBeenTaken = hasBeenTaken;
+        this.modulesTaken = FXCollections.observableArrayList();
     }
 
     public int getIndex() {
@@ -65,15 +60,6 @@ public class Semester {
      */
     public void addModules(List<Module> modules) {
         modulesTaken.addAll(modules);
-    }
-
-    /**
-     * Adds one or more modules(s) to the list of modules available.
-     *
-     * @param modules A non-empty list of modules to be added
-     */
-    public void addAvailableModules(List<Module> modules) {
-        modulesAvailable.addAll(modules);
     }
 
     /**
@@ -99,30 +85,12 @@ public class Semester {
     }
 
     /**
-     * Changes the {@code Semester}'s status from currently being taken
-     * to taken.
-     */
-    public void archive() {
-        this.hasBeenTaken = true;
-    }
-
-    /**
      * Returns the list of modules taken in this semester.
      *
      * @return A list of modules taken
      */
     public ObservableList<Module> getModulesTaken() {
         return modulesTaken;
-    }
-
-    /**
-     * Returns a list of modules that the user is available to take
-     * in this semester.
-     *
-     * @return A list of available modules
-     */
-    public ObservableList<Module> getModulesAvailable() {
-        return modulesAvailable;
     }
 
     @Override

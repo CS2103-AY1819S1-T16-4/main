@@ -22,7 +22,6 @@ public class JsonAdaptedSemester {
 
     // Modules lists
     private List<JsonAdaptedModule> modulesTaken = new ArrayList<>();
-    private List<JsonAdaptedModule> modulesAvailable = new ArrayList<>();
 
     /**
      * Default constructor. For JSON Deserialization.
@@ -38,8 +37,6 @@ public class JsonAdaptedSemester {
         year = sem.getYear();
         modulesTaken = sem.getModulesTaken().stream().map(
             m -> new JsonAdaptedModule(m)).collect(Collectors.toList());
-        modulesAvailable = sem.getModulesAvailable().stream().map(
-            m -> new JsonAdaptedModule(m)).collect(Collectors.toList());
     }
 
     /**
@@ -53,13 +50,7 @@ public class JsonAdaptedSemester {
             Module toModelType = jsonAdaptedModule.toModelType();
             modulesTaken.add(toModelType);
         }
-        List<Module> modulesAvailable = new ArrayList<>();
-        for (JsonAdaptedModule m : this.modulesAvailable) {
-            Module module = m.toModelType();
-            modulesAvailable.add(module);
-        }
-        Semester sem = new Semester(year, index, hasBeenTaken);
-        sem.addAvailableModules(modulesAvailable);
+        Semester sem = new Semester(year, index);
         sem.addModules(modulesTaken);
         return sem;
     }

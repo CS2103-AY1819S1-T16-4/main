@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
+import seedu.planner.commons.util.StringUtil;
 import seedu.planner.model.course.FocusArea;
 import seedu.planner.model.course.Major;
 import seedu.planner.model.module.Module;
@@ -147,13 +148,13 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public ObservableList<Module> getTakenModuleList(int index) {
         return FXCollections.unmodifiableObservableList(
-                versionedModulePlanner.listModulesTaken(index));
+                versionedModulePlanner.getModulesTaken(index));
     }
 
     @Override
-    public ObservableList<Module> getAvailableModuleList(int index) {
+    public ObservableList<Module> getAvailableModuleList() {
         return FXCollections.unmodifiableObservableList(
-                versionedModulePlanner.listModulesAvailable(index));
+                versionedModulePlanner.getModulesAvailable());
     }
 
     //@@author

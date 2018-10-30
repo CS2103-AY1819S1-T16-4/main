@@ -24,8 +24,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the list of taken modules */
     ObservableList<Module> getTakenModuleList(int semesterIndex);
 
-    /** Returns an unmodifiable view of the list of available modules */
-    ObservableList<Module> getAvailableModuleList(int semesterIndex);
+    //TODO: confirm if the list is filtered or sorted or both
+    /** Returns an unmodifiable view of the filtered list of available modules */
+    ObservableList<Module> getAvailableModuleList();
 
     //@@author
 

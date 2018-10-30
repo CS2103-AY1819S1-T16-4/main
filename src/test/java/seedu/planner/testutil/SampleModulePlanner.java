@@ -18,9 +18,8 @@ public class SampleModulePlanner {
         ModulePlanner modulePlanner = new ModulePlanner();
         for (int year = 1; year <= 4; year++) {
             for (int sem = 1; sem <= 2; sem++) {
-                Semester semester = new Semester(year, sem, true);
+                Semester semester = new Semester(year, sem);
                 semester.addModules(SampleModules.getModules(0, 4));
-                semester.addAvailableModules(SampleModules.getModules(2, 6));
                 modulePlanner.addModules(semester.getModulesTaken(),
                         convertYearAndSemesterToIndex(year, sem));
             }
