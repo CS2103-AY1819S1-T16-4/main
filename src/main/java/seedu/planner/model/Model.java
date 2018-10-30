@@ -1,6 +1,5 @@
 package seedu.planner.model;
 
-import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 

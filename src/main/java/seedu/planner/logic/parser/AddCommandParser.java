@@ -5,7 +5,6 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 

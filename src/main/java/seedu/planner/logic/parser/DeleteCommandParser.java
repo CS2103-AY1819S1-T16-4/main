@@ -3,7 +3,6 @@ package seedu.planner.logic.parser;
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
