@@ -9,10 +9,13 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 import java.util.Set;
 
 import seedu.planner.commons.core.Messages;
+import seedu.planner.commons.core.index.Index;
 import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
+import seedu.planner.model.course.FocusArea;
+import seedu.planner.model.course.Major;
 import seedu.planner.model.util.IndexUtil;
 
 /**
@@ -61,9 +64,26 @@ public class SetUpCommand extends Command {
     public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
 
-        if (!IndexUtil.isValidYear(year) || !IndexUtil.isValidSemester(semester)
-                || !model.hasMajor(major) || !model.hasFocusAreas(focusAreas)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
+        String errorMsg = "";
+
+        if (!IndexUtil.isValidYear(year)) {
+            errorMsg += String.format("Invalid year (%d): must be in range of [0, 4]\n", year);
+        }
+
+        if (!IndexUtil.isValidSemester(semester)) {
+            errorMsg += String.format("Invalid semester (%d): must be in range of [1, 2]\n", semester);
+        }
+
+        if (!Major.hasMajor(major)) {
+            errorMsg += String.format("Invalid major (%s)\n", major);
+        }
+
+        if (!focusAreas.isEmpty() && !FocusArea.hasFocusAreas(focusAreas)) {
+            errorMsg += String.format("One or more focus area is invalid\n");
+        }
+
+        if (errorMsg.length() > 0) {
+            throw new CommandException(errorMsg);
         }
 
         model.setUpUserProfile(year, semester, major, focusAreas);

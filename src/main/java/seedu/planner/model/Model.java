@@ -27,30 +27,10 @@ public interface Model {
      */
     void setUpUserProfile(int year, int semester, String major, Set<String> focusAreas);
 
-    /**
-     * Checks if the major exists.
-     * The major is checked against a list of available
-     * majors offered by the relevant educational institution.
-     *
-     * @param major The major
-     * @return True if the major is offered, else false
-     */
-    boolean hasMajor(String major);
-
-    /**
-     * Checks if the focus area exists.
-     * The focus area is checked against a list of available
-     * focus areas offered by the relevant educational institution.
-     *
-     * @param focusArea The focus area
-     * @return True if the focus area is offered, else false
-     */
-    boolean hasFocusAreas(Set<String> focusArea);
-
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyModulePlanner newData);
 
-    /** Returns the AddressBook */
+    /** Returns the ModulePlanner */
     ReadOnlyModulePlanner getModulePlanner();
 
     /**
@@ -94,6 +74,8 @@ public interface Model {
     /**
      * Returns an immutable list of {@code ModuleInfo}s.
      * Note: return type might change to ImmutableList<ModuleInfo> in the future.
+     *
+     * @deprecated Use ModuleInfo.getModuleInfoList() directly instead.
      */
     ModuleInfo[] getModuleInfo();
 

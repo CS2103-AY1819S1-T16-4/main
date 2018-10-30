@@ -18,6 +18,21 @@ public enum Major {
         this.name = name;
     }
 
+    /**
+     * Check if a string matches a {@code Major} enum value.
+     *
+     * Note: Case-insensitive
+     */
+    public static boolean hasMajor(String major) {
+        major = major.toLowerCase();
+        for (Major m : Major.values()) {
+            if (m.toString().toLowerCase().equals(major)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return name;

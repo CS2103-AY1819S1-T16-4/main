@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.semester.Semester;
+import seedu.planner.model.user.UserProfile;
 
 //@@author Hilda-Ang //@@author GabrielYik
 
@@ -29,6 +30,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     public static final int NUMBER_MODULE_GROUPS = 2;
 
     private final List<Semester> semesters;
+    private UserProfile userProfile;
 
     /**
      * Constructs a {@code ModulePlanner} and initializes an array of 8 {@code Semester}
@@ -36,6 +38,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public ModulePlanner() {
         semesters = new ArrayList<>(MAX_NUMBER_SEMESTERS);
+        userProfile = new UserProfile();
 
         for (int i = 1; i <= MAX_NUMBER_SEMESTERS / MAX_SEMESTERS_PER_YEAR; i++) {
             for (int j = 1; j <= MAX_SEMESTERS_PER_YEAR; j++) {
@@ -86,6 +89,15 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             }
         }
         return false;
+    }
+
+    @Override
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile u) {
+        userProfile = u;
     }
 
     /**

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -51,45 +52,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void setUpUserProfile(int year, int semester, String major, Set<String> focusAreas) {
-        UserProfile.setUp(year, semester, major, focusAreas);
-        userProfile = UserProfile.getInstance();
-    }
-
-    @Override
-    public boolean hasMajor(String major) {
-        for (Major m : Major.values()) {
-            if (m.toString().equals(major)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Checks if the {@code focusArea} is valid.
-     * The focus area is checked against a list of available
-     * focus areas offered by the relevant educational institution.
-     *
-     * @param focusArea The focus area
-     * @return True if the focus area is offered, else false
-     */
-    public boolean hasFocusArea(String focusArea) {
-        for (FocusArea fa : FocusArea.values()) {
-            if (fa.toString().equals(focusArea)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean hasFocusAreas(Set<String> focusArea) {
-        for (String fa : focusArea) {
-            if (!hasFocusArea(fa)) {
-                return false;
-            }
-        }
-        return true;
+        versionedModulePlanner.setUserProfile(new UserProfile(year, semester, major, focusAreas));
+        indicateModulePlannerChanged();
     }
 
     //@@author

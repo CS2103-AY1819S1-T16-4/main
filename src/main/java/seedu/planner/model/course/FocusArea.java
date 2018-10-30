@@ -2,6 +2,8 @@ package seedu.planner.model.course;
 
 //@@author GabrielYik
 
+import java.util.Set;
+
 /**
  * Represents the focus areas of computer science students.
  * These focus areas are applicable only to new cohorts from AY2015-16 onwards.
@@ -23,6 +25,35 @@ public enum FocusArea {
 
     FocusArea(String name) {
         this.name = name;
+    }
+
+    /**
+     * Check if a string matches a {@code FocusArea} enum value.
+     *
+     * Note: Case-insensitive
+     */
+    private static boolean hasFocusArea(String focusArea) {
+        focusArea = focusArea.toLowerCase();
+        for (FocusArea fa : FocusArea.values()) {
+            if (fa.toString().toLowerCase().equals(focusArea)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check if a set of strings all match the enum values of {@code FocusArea}.
+     *
+     * Note: Case-insensitive
+     */
+    public static boolean hasFocusAreas(Set<String> focusArea) {
+        for (String fa : focusArea) {
+            if (!hasFocusArea(fa)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
