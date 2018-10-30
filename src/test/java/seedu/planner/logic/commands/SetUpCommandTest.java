@@ -17,7 +17,6 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
@@ -115,10 +114,10 @@ public class SetUpCommandTest {
         SetUpCommand setUpCommand = new SetUpCommand(INVALID_YEAR_FIVE, INVALID_SEMESTER_THREE,
                 INVALID_MAJOR_SS, Set.of(INVALID_FOCUS_AREA_LD));
 
-        String expectedMessage = String.format(SetUpCommand.MESSAGE_INVALID_YEAR, INVALID_YEAR_FIVE) +
-            String.format(SetUpCommand.MESSAGE_INVALID_SEMESTER, INVALID_SEMESTER_THREE) +
-            String.format(SetUpCommand.MESSAGE_INVALID_MAJOR, INVALID_MAJOR_SS) +
-            String.format(SetUpCommand.MESSAGE_INVALID_FOCUS_AREAS);
+        String expectedMessage = String.format(SetUpCommand.MESSAGE_INVALID_YEAR, INVALID_YEAR_FIVE)
+            + String.format(SetUpCommand.MESSAGE_INVALID_SEMESTER, INVALID_SEMESTER_THREE)
+            + String.format(SetUpCommand.MESSAGE_INVALID_MAJOR, INVALID_MAJOR_SS)
+            + String.format(SetUpCommand.MESSAGE_INVALID_FOCUS_AREAS);
 
         assertCommandFailure(setUpCommand, model, commandHistory, expectedMessage);
     }
