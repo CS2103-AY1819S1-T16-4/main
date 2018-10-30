@@ -29,43 +29,40 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#delete-feature">3.1. Delete feature</a></li>
-<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
-<li><a href="#add-feature">3.3. Add feature</a></li>
-<li><a href="#list-feature">3.4. List feature</a></li>
+<li><a href="#add-feature">3.1. Add feature</a></li>
+<li><a href="#delete-feature">3.2. Delete feature</a></li>
+<li><a href="#list-feature">3.3. List feature</a></li>
+<li><a href="#undo-redo-feature">3.4. Undo/Redo feature</a></li>
 <li><a href="#logging">3.5. Logging</a></li>
+<li><a href="#retrieval-and-use-of-module-information">3.6. Retrieval and Use of Module Information</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
-<li><a href="#module-information">4. Module Information</a>
+<li><a href="#documentation">4. Documentation</a>
 <ul class="sectlevel2">
-<li><a href="#Implementation-Configuration">4.1. Configuration</a></li>
+<li><a href="#editing-documentation">4.1. Editing Documentation</a></li>
+<li><a href="#publishing-documentation">4.2. Publishing Documentation</a></li>
+<li><a href="#converting-documentation-to-pdf-format">4.3. Converting Documentation to PDF format</a></li>
+<li><a href="#Docs-SiteWideDocSettings">4.4. Site-wide Documentation Settings</a></li>
+<li><a href="#Docs-PerFileDocSettings">4.5. Per-file Documentation Settings</a></li>
+<li><a href="#site-template">4.6. Site Template</a></li>
 </ul>
 </li>
-<li><a href="#documentation">5. Documentation</a>
+<li><a href="#Testing">5. Testing</a>
 <ul class="sectlevel2">
-<li><a href="#editing-documentation">5.1. Editing Documentation</a></li>
-<li><a href="#publishing-documentation">5.2. Publishing Documentation</a></li>
-<li><a href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF format</a></li>
-<li><a href="#Docs-SiteWideDocSettings">5.4. Site-wide Documentation Settings</a></li>
-<li><a href="#Docs-PerFileDocSettings">5.5. Per-file Documentation Settings</a></li>
-<li><a href="#site-template">5.6. Site Template</a></li>
+<li><a href="#running-tests">5.1. Running Tests</a></li>
+<li><a href="#types-of-tests">5.2. Types of tests</a></li>
+<li><a href="#troubleshooting-testing">5.3. Troubleshooting Testing</a></li>
 </ul>
 </li>
-<li><a href="#Testing">6. Testing</a>
+<li><a href="#dev-ops">6. Dev Ops</a>
 <ul class="sectlevel2">
-<li><a href="#running-tests">6.1. Running Tests</a></li>
-<li><a href="#types-of-tests">6.2. Types of tests</a></li>
-<li><a href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></li>
-</ul>
-</li>
-<li><a href="#dev-ops">7. Dev Ops</a>
-<ul class="sectlevel2">
-<li><a href="#build-automation">7.1. Build Automation</a></li>
-<li><a href="#continuous-integration">7.2. Continuous Integration</a></li>
-<li><a href="#coverage-reporting">7.3. Coverage Reporting</a></li>
-<li><a href="#documentation-previews">7.4. Documentation Previews</a></li>
-<li><a href="#making-a-release">7.5. Making a Release</a></li>
-<li><a href="#managing-dependencies">7.6. Managing Dependencies</a></li>
+<li><a href="#build-automation">6.1. Build Automation</a></li>
+<li><a href="#continuous-integration">6.2. Continuous Integration</a></li>
+<li><a href="#coverage-reporting">6.3. Coverage Reporting</a></li>
+<li><a href="#documentation-previews">6.4. Documentation Previews</a></li>
+<li><a href="#making-a-release">6.5. Making a Release</a></li>
+<li><a href="#managing-dependencies">6.6. Managing Dependencies</a></li>
 </ul>
 </li>
 <li><a href="#product-scope">Appendix A: Product Scope</a></li>
@@ -446,7 +443,7 @@ reduce direct coupling between components.
 </div>
 <div class="paragraph">
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>,
-<code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc.
+<code>ResultDisplay</code>, <code>ModuleListPanel</code>, <code>StatusBarFooter</code>, <code>FindModulePanel</code> etc.
 All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
@@ -582,9 +579,118 @@ e.g. the UI can be bound to this list so that the UI automatically updates when 
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="delete-feature"><a class="link" href="#delete-feature">3.1. Delete feature</a></h3>
+<h3 id="add-feature"><a class="link" href="#add-feature">3.1. Add feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester'-s. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
+The implementation is as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ModulePlanner#addModules(List&lt;Module&gt; modules, int index)</code>&#8201;&#8212;&#8201;Add the list of <code>modules</code> into the semester specified by <code>index</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The operation above is exposed in the <code>Model</code> interface as <code>Model#addModules(List&lt;Module&gt; modules, int index)</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A valid module is one that exists, has its module specified correctly and has not been taken or planned to take yet by the user.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Below are the possible scenarios of how it works, given a valid module <code>MA1521</code> and an invalid module <code>MA1234</code>.</p>
+</div>
+<div class="sect4">
+<h5 id="all-valid-modules"><a class="link" href="#all-valid-modules">All valid modules</a></h5>
+<div class="paragraph">
+<p>The user executes <code>add y/1 s/1 MA1521</code> to add the <code>Module</code> with module code <code>MA1521</code> into year 1 semester 1 <code>Module</code> lists.
+The <code>add</code> command calls <code>Model#addModules(&#8230;&#8203;)</code>, which adds the module into the <code>Semester</code> with index 3.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This applies to when more than one valid module is supplied.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="all-invalid-modules"><a class="link" href="#all-invalid-modules">All Invalid Modules</a></h5>
+<div class="paragraph">
+<p>The user executes <code>add y/1 s/2 MA1234</code> command. However, since that module does not exist or is already stored in a <code>Semester</code>,
+the command fails and <code>Model#addModules(&#8230;&#8203;)</code> will not be called.
+The user will be informed of the invalid module.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This applies to where more than one invalid module is supplied.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="some-invalid-modules"><a class="link" href="#some-invalid-modules">Some Invalid Modules</a></h5>
+<div class="paragraph">
+<p>The user executes <code>add y/2 s/1 MA1521 MA1234</code>. However, only the module <code>MA1521</code> is valid.
+In this case, the command will not fail entirely and only the valid module <code>MA1521</code> will be added.
+The user will be informed of the invalid module.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="no-modules"><a class="link" href="#no-modules">No Modules</a></h5>
+<div class="paragraph">
+<p>The user executes <code>add</code>. As the command has no supplied arguments, the command will fail
+and the user will be informed to input arguments.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="different-semester-start"><a class="link" href="#different-semester-start">Different semester start</a></h5>
+<div class="paragraph">
+<p>The current implementation only assumes the user is closing into their year 1 semester 1. Further enhancement could be made by having other starting semesters</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To mirror the real world - it is impossible for a student to void a module that has already been taken.</p>
+</li>
+<li>
+<p>To prevent undefined behaviour - deleting a module already taken might make all future modules not yet taken to be inaccurately planned.
+Also, all currently suggested modules to the user might too be inaccurate.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-feature"><a class="link" href="#delete-feature">3.2. Delete feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The current delete mechanism targets valid modules and is facilitated by <code>ModulePlanner</code>.
 <code>ModulePlanner</code> stores a list of all the semesters the user has taken and will take.
@@ -628,7 +734,7 @@ A valid module is one that exists, has its module code specified correctly and m
 For convenience, let&#8217;s define two modules: a valid module <code>MA1521</code> and an invalid module <code>MA1234</code>.</p>
 </div>
 <div class="sect4">
-<h5 id="all-valid-modules"><a class="link" href="#all-valid-modules">All Valid Modules</a></h5>
+<h5 id="all-valid-modules-2"><a class="link" href="#all-valid-modules-2">All Valid Modules</a></h5>
 <div class="paragraph">
 <p>The user executes <code>delete MA1521</code> command to delete the <code>Module</code> with the module code <code>MA1521</code>.
 The <code>delete</code> command calls <code>Model#deleteModules(&#8230;&#8203;)</code>, which removes the module from the semester where it is found.</p>
@@ -647,7 +753,7 @@ This applies to when more than one valid module is supplied.
 </div>
 </div>
 <div class="sect4">
-<h5 id="all-invalid-modules"><a class="link" href="#all-invalid-modules">All Invalid Modules</a></h5>
+<h5 id="all-invalid-modules-2"><a class="link" href="#all-invalid-modules-2">All Invalid Modules</a></h5>
 <div class="paragraph">
 <p>The user executes <code>delete MA1234</code> command. However, since that module does not exist,
 the command fails and <code>Model#deleteModules(&#8230;&#8203;)</code> will not be called.
@@ -667,7 +773,7 @@ This applies to where more than one invalid module is supplied.
 </div>
 </div>
 <div class="sect4">
-<h5 id="some-invalid-modules"><a class="link" href="#some-invalid-modules">Some Invalid Modules</a></h5>
+<h5 id="some-invalid-modules-2"><a class="link" href="#some-invalid-modules-2">Some Invalid Modules</a></h5>
 <div class="paragraph">
 <p>The user executes <code>delete MA1521 MA1234</code>. However, only the module <code>MA1521</code> is valid.
 In this case, the command will not fail entirely and only the valid module <code>MA1521</code> will be deleted.
@@ -675,7 +781,7 @@ The user will be informed of the invalid module.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="no-modules"><a class="link" href="#no-modules">No Modules</a></h5>
+<h5 id="no-modules-2"><a class="link" href="#no-modules-2">No Modules</a></h5>
 <div class="paragraph">
 <p>The user executes <code>delete</code>. As the command has no supplied arguments, the command will fail
 and the user will be informed to input arguments.</p>
@@ -683,7 +789,7 @@ and the user will be informed to input arguments.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="type-of-modules-allowed"><a class="link" href="#type-of-modules-allowed">Type of Modules Allowed</a></h5>
 <div class="paragraph">
@@ -704,9 +810,98 @@ Also, all currently suggested modules to the user might too be inaccurate.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
+<h3 id="list-feature"><a class="link" href="#list-feature">3.3. List feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The list mechanism is facilitated by <code>ModulePlanner</code>. <code>ModulePlanner</code> stores a list of all <code>Semester</code>-s and each <code>Semester</code> stores a list <code>modulesTaken</code> containing modules that the user has taken or is planning to take.
+It implements the following operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ModulePlanner#listModulesTaken(int index)</code>&#8201;&#8212;&#8201;Retrieves a list of modules from the <code>Semester</code> specified by <code>index</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The operation is exposed in <code>Model</code> interface as <code>Model#getFilteredTakenModuleList(int index)</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Below is an example usage scenario and how the list mechanism works.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application. <code>ModulePlanner</code> is initialised with 8 <code>Semester</code> objects in <code>List&lt;Module&gt; semesters</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>add y/1 s/1 CS1231</code>. The <code>add</code> command inserts <code>Module</code> CS1231 to the list <code>modulesTaken</code> for <code>Semester</code> object with index 0.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The user wants to see the list of modules for year 1 semester 1 by executing <code>list y/1 s/1</code>. The <code>list</code> command parses <code>y/1 s/1</code> to index 0 and calls <code>Model#getFilteredTakenModuleList(int index)</code>.
+It will execute <code>ModulePlanner#listModulesTaken(int index)</code> which will call <code>Semester#getModulesTaken()</code> in the relevant <code>Semester</code>. The returned result will be a list of modules and will be displayed to the user.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the list operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ListSequenceDiagram.png" alt="ListSequenceDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-list-of-modules-is-retrieved-for-list-command"><a class="link" href="#aspect-how-list-of-modules-is-retrieved-for-list-command">Aspect: How list of modules is retrieved for list command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Updates list of modules whenever it is modified by a command (e.g. <code>add</code>) and immediately retrieves the list upon <code>list</code> command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: May have performance issue in terms of running time if commands that modify the list are called frequently.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Saves all commands that modify list of modules without applying it and updates the list based on the commands only when it is retrieved upon <code>list</code> command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: May be more effective in terms of running time because it only modifies the list when needed.</p>
+</li>
+<li>
+<p>Cons: Implementation will be more complicated as we have to store all commands that modify the list.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.4. Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedModulePlanner</code>.
 It extends <code>ModulePlanner</code> with an undo/redo history, stored internally as an <code>modulePlannerStateList</code> and <code>currentStatePointer</code>.
@@ -862,7 +1057,7 @@ This is the behavior that most modern desktop applications follow.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -933,200 +1128,6 @@ Violates Single Responsibility Principle and Separation of Concerns as <code>His
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-feature"><a class="link" href="#add-feature">3.3. Add feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
-<div class="paragraph">
-<p>The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester'-s. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
-The implementation is as follows:</p>
-</div>
-<div class="paragraph">
-<p>*'ModulePlanner#addModules(List&lt;Module&gt; modules, int index)'&#8201;&#8212;&#8201;Add the list of modules 'modules' into the semester specified by 'index'.</p>
-</div>
-<div class="paragraph">
-<p>The operation above is exposed in the 'Model' interface as 'Model#addModules(List&lt;Module&gt; modules, int index)'</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-A valid module is one that exists, has its module specified correctly and has not been taken or planned to take yet by the user.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Below are the possible scenarios of how it works, given a valid module 'MA1521' and an invalid module 'MA1234'.</p>
-</div>
-<div class="sect4">
-<h5 id="all-valid-modules-2"><a class="link" href="#all-valid-modules-2">All valid modules</a></h5>
-<div class="paragraph">
-<p>The user executes 'add y/1 s/1 MA1521' to add the 'Module' with module code 'MA1521' into year 1 semester 1 'Module' lists.
-The <code>add</code> command calls <code>Model#addModules(&#8230;&#8203;)</code>, which adds the module into the 'Semester' with index 3.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This applies to when more than one valid module is supplied.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="all-invalid-modules-2"><a class="link" href="#all-invalid-modules-2">All Invalid Modules</a></h5>
-<div class="paragraph">
-<p>The user executes <code>add y/1 s/2 MA1234</code> command. However, since that module does not exist or is already stored in a 'Semester',
-the command fails and <code>Model#addModules(&#8230;&#8203;)</code> will not be called.
-The user will be informed of the invalid module.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This applies to where more than one invalid module is supplied.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="some-invalid-modules-2"><a class="link" href="#some-invalid-modules-2">Some Invalid Modules</a></h5>
-<div class="paragraph">
-<p>The user executes <code>add y/2 s/1 MA1521 MA1234</code>. However, only the module <code>MA1521</code> is valid.
-In this case, the command will not fail entirely and only the valid module <code>MA1521</code> will be added.
-The user will be informed of the invalid module.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="no-modules-2"><a class="link" href="#no-modules-2">No Modules</a></h5>
-<div class="paragraph">
-<p>The user executes <code>add</code>. As the command has no supplied arguments, the command will fail
-and the user will be informed to input arguments.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="different-semester-start"><a class="link" href="#different-semester-start">Different semester start</a></h5>
-<div class="paragraph">
-<p>The current implementation only assumes the user is closing into their year 1 semester 1. Further enhancement could be made by having other starting semesters</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>To mirror the real world - it is impossible for a student to void a module that has already been taken.</p>
-</li>
-<li>
-<p>To prevent undefined behaviour - deleting a module already taken might make all future modules not yet taken to be inaccurately planned.
-Also, all currently suggested modules to the user might too be inaccurate.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="list-feature"><a class="link" href="#list-feature">3.4. List feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
-<div class="paragraph">
-<p>The list mechanism is facilitated by <code>ModulePlanner</code>. <code>ModulePlanner</code> stores a list of all <code>Semester</code>-s and each <code>Semester</code> stores a list <code>modulesTaken</code> containing modules that the user has taken or is planning to take.
-It implements the following operation:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>ModulePlanner#listModulesTaken(int index)</code>&#8201;&#8212;&#8201;Retrieves a list of modules from the <code>Semester</code> specified by <code>index</code>.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The operation is exposed in <code>Model</code> interface as <code>Model#getFilteredTakenModuleList(int index)</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Below is an example usage scenario and how the list mechanism works.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application. <code>ModulePlanner</code> is initialised with 8 <code>Semester</code> objects in <code>List&lt;Module&gt; semesters</code>.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>add y/1 s/1 CS1231</code>. The <code>add</code> command inserts <code>Module</code> CS1231 to the list <code>modulesTaken</code> for <code>Semester</code> object with index 0.</p>
-</div>
-<div class="paragraph">
-<p>Step 3. The user wants to see the list of modules for year 1 semester 1 by executing <code>list y/1 s/1</code>. The <code>list</code> command parses <code>y/1 s/1</code> to index 0 and calls <code>Model#getFilteredTakenModuleList(int index)</code>.
-It will execute <code>ModulePlanner#listModulesTaken(int index)</code> which will call <code>Semester#getModulesTaken()</code> in the relevant <code>Semester</code>. The returned result will be a list of modules and will be displayed to the user.</p>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the list operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/ListSequenceDiagram.png" alt="ListSequenceDiagram" width="800">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-list-of-modules-is-retrieved-for-list-command"><a class="link" href="#aspect-how-list-of-modules-is-retrieved-for-list-command">Aspect: How list of modules is retrieved for list command</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Updates list of modules whenever it is modified by a command (e.g. <code>add</code>) and immediately retrieves the list upon <code>list</code> command.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement.</p>
-</li>
-<li>
-<p>Cons: May have performance issue in terms of running time if commands that modify the list are called frequently.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Saves all commands that modify list of modules without applying it and updates the list based on the commands only when it is retrieved upon <code>list</code> command.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: May be more effective in terms of running time because it only modifies the list when needed.</p>
-</li>
-<li>
-<p>Cons: Implementation will be more complicated as we have to store all commands that modify the list.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
@@ -1134,7 +1135,7 @@ It will execute <code>ModulePlanner#listModulesTaken(int index)</code> which wil
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.1, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1164,11 +1165,8 @@ It will execute <code>ModulePlanner#listModulesTaken(int index)</code> which wil
 </ul>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="module-information"><a class="link" href="#module-information">4. Module Information</a></h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="retrieval-and-use-of-module-information"><a class="link" href="#retrieval-and-use-of-module-information">3.6. Retrieval and Use of Module Information</a></h3>
 <div class="paragraph">
 <p>Information of a NUS module such as module code, module credit and prerequisite modules are stored in <code>ModuleInfo</code> class.
 This class is made to be immutable to avoid accidental changes to the class.</p>
@@ -1195,8 +1193,9 @@ are stored as an array of <code>String</code>, so we need to call <code>ModuleIn
 <div class="paragraph">
 <p>For command implementer, you can access the list of <code>ModuleInfo</code> from <code>Model#getModuleInfo()</code>.</p>
 </div>
+</div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.1. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1204,7 +1203,7 @@ are stored as an array of <code>String</code>, so we need to call <code>ModuleIn
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">5. Documentation</a></h2>
+<h2 id="documentation"><a class="link" href="#documentation">4. Documentation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We use asciidoc for writing documentation.</p>
@@ -1222,20 +1221,20 @@ We chose asciidoc over Markdown because asciidoc, although a bit more complex th
 </table>
 </div>
 <div class="sect2">
-<h3 id="editing-documentation"><a class="link" href="#editing-documentation">5.1. Editing Documentation</a></h3>
+<h3 id="editing-documentation"><a class="link" href="#editing-documentation">4.1. Editing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html#rendering-asciidoc-files">UsingGradle.adoc</a> to learn how to render <code>.adoc</code> files locally to preview the end result of your edits.
 Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your <code>.adoc</code> files in real-time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">5.2. Publishing Documentation</a></h3>
+<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">4.2. Publishing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingTravis.html#deploying-github-pages">UsingTravis.adoc</a> to learn how to deploy GitHub Pages using Travis.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF format</a></h3>
+<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">4.3. Converting Documentation to PDF format</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://www.google.com/chrome/browser/desktop/">Google Chrome</a> for converting documentation to PDF format, as Chrome&#8217;s PDF engine preserves hyperlinks used in webpages.</p>
 </div>
@@ -1266,7 +1265,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 </div>
 </div>
 <div class="sect2">
-<h3 id="Docs-SiteWideDocSettings"><a class="link" href="#Docs-SiteWideDocSettings">5.4. Site-wide Documentation Settings</a></h3>
+<h3 id="Docs-SiteWideDocSettings"><a class="link" href="#Docs-SiteWideDocSettings">4.4. Site-wide Documentation Settings</a></h3>
 <div class="paragraph">
 <p>The <a href="https://github.com/CS2103-AY1819S1-T16-4/main/blob/master/build.gradle"><code>build.gradle</code></a> file specifies some project-specific <a href="https://asciidoctor.org/docs/user-manual/#attributes">asciidoc attributes</a> which affects how all documentation files within this project are rendered.</p>
 </div>
@@ -1325,7 +1324,7 @@ This will render the SE-EDU navigation bar at the top of the page, and add some 
 </table>
 </div>
 <div class="sect2">
-<h3 id="Docs-PerFileDocSettings"><a class="link" href="#Docs-PerFileDocSettings">5.5. Per-file Documentation Settings</a></h3>
+<h3 id="Docs-PerFileDocSettings"><a class="link" href="#Docs-PerFileDocSettings">4.5. Per-file Documentation Settings</a></h3>
 <div class="paragraph">
 <p>Each <code>.adoc</code> file may also specify some file-specific <a href="https://asciidoctor.org/docs/user-manual/#attributes">asciidoc attributes</a> which affects how the file is rendered.</p>
 </div>
@@ -1382,7 +1381,7 @@ One of: <code>UserGuide</code>, <code>DeveloperGuide</code>, <code>LearningOutco
 </table>
 </div>
 <div class="sect2">
-<h3 id="site-template"><a class="link" href="#site-template">5.6. Site Template</a></h3>
+<h3 id="site-template"><a class="link" href="#site-template">4.6. Site Template</a></h3>
 <div class="paragraph">
 <p>The files in <a href="https://github.com/CS2103-AY1819S1-T16-4/main/blob/master/docs/stylesheets"><code>docs/stylesheets</code></a> are the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS stylesheets</a> of the site.
 You can modify them to change some properties of the site&#8217;s design.</p>
@@ -1411,10 +1410,10 @@ The SE-EDU team does not provide support for modified template files.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="Testing"><a class="link" href="#Testing">6. Testing</a></h2>
+<h2 id="Testing"><a class="link" href="#Testing">5. Testing</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="running-tests"><a class="link" href="#running-tests">6.1. Running Tests</a></h3>
+<h3 id="running-tests"><a class="link" href="#running-tests">5.1. Running Tests</a></h3>
 <div class="paragraph">
 <p>There are three ways to run tests.</p>
 </div>
@@ -1476,7 +1475,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 </div>
 </div>
 <div class="sect2">
-<h3 id="types-of-tests"><a class="link" href="#types-of-tests">6.2. Types of tests</a></h3>
+<h3 id="types-of-tests"><a class="link" href="#types-of-tests">5.2. Types of tests</a></h3>
 <div class="paragraph">
 <p>We have two types of tests:</p>
 </div>
@@ -1518,7 +1517,7 @@ e.g. <code>seedu.planner.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></h3>
+<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">5.3. Troubleshooting Testing</a></h3>
 <div class="paragraph">
 <p><strong>Problem: <code>HelpWindowTest</code> fails with a <code>NullPointerException</code>.</strong></p>
 </div>
@@ -1536,34 +1535,34 @@ e.g. <code>seedu.planner.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">7. Dev Ops</a></h2>
+<h2 id="dev-ops"><a class="link" href="#dev-ops">6. Dev Ops</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="build-automation"><a class="link" href="#build-automation">7.1. Build Automation</a></h3>
+<h3 id="build-automation"><a class="link" href="#build-automation">6.1. Build Automation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html">UsingGradle.adoc</a> to learn how to use Gradle for build automation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="continuous-integration"><a class="link" href="#continuous-integration">7.2. Continuous Integration</a></h3>
+<h3 id="continuous-integration"><a class="link" href="#continuous-integration">6.2. Continuous Integration</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects. See <a href="UsingTravis.html">UsingTravis.adoc</a> and <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="coverage-reporting"><a class="link" href="#coverage-reporting">7.3. Coverage Reporting</a></h3>
+<h3 id="coverage-reporting"><a class="link" href="#coverage-reporting">6.3. Coverage Reporting</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://coveralls.io/">Coveralls</a> to track the code coverage of our projects. See <a href="UsingCoveralls.html">UsingCoveralls.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="documentation-previews"><a class="link" href="#documentation-previews">7.4. Documentation Previews</a></h3>
+<h3 id="documentation-previews"><a class="link" href="#documentation-previews">6.4. Documentation Previews</a></h3>
 <div class="paragraph">
 <p>When a pull request has changes to asciidoc files, you can use <a href="https://www.netlify.com/">Netlify</a> to see a preview of how the HTML version of those asciidoc files will look like when the pull request is merged. See <a href="UsingNetlify.html">UsingNetlify.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="making-a-release"><a class="link" href="#making-a-release">7.5. Making a Release</a></h3>
+<h3 id="making-a-release"><a class="link" href="#making-a-release">6.5. Making a Release</a></h3>
 <div class="paragraph">
 <p>Here are the steps to create a new release.</p>
 </div>
@@ -1585,7 +1584,7 @@ e.g. <code>seedu.planner.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">7.6. Managing Dependencies</a></h3>
+<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">6.6. Managing Dependencies</a></h3>
 <div class="paragraph">
 <p>A project often depends on third-party libraries. For example, Module Planner depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
 a. Include those libraries in the repo (this bloats the repo size)<br>
@@ -2007,4 +2006,4 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 10:40:20 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 12:01:34 UTC</div></div></div></body></html>
