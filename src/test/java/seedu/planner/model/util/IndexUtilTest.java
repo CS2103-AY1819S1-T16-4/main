@@ -1,7 +1,10 @@
 package seedu.planner.model.util;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static seedu.planner.model.util.IndexUtil.convertYearAndSemesterToIndex;
+import static seedu.planner.model.util.IndexUtil.isValidIndex;
 import static seedu.planner.model.util.IndexUtil.isValidSemester;
 import static seedu.planner.model.util.IndexUtil.isValidYear;
 
@@ -34,8 +37,20 @@ public class IndexUtilTest {
     }
 
     @Test
-    public void isValidSemester_validSemester_returnsTrue() {
-        assertTrue(isValidSemester(1));
-        assertTrue(isValidSemester(2));
+    public void isValidIndex_validIndex_returnsTrue() {
+        assertTrue(isValidIndex(0));
+        assertTrue(isValidIndex(7));;
+    }
+
+    @Test
+    public void isValidIndex_invalidIndex_returnsFalse() {
+        assertTrue(isValidIndex(-1));
+        assertTrue(isValidIndex(8));
+    }
+
+    @Test
+    public void convertYearAndSemesterToIndex_success() {
+        assertEquals(convertYearAndSemesterToIndex(1, 1), 0);
+        assertEquals(convertYearAndSemesterToIndex(4, 2), 7);
     }
 }
