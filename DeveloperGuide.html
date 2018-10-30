@@ -559,7 +559,7 @@ e.g. the UI can be bound to this list so that the UI automatically updates when 
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can read an array of <code>ModuleInfo</code> objects in json format.</p>
+<p>can save <code>ReadOnlyModulePlanner</code> object in json format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -1184,14 +1184,16 @@ in the sentences with regular expression, downside of this is that we won&#8217;
 the condition is met immediately (even though this is incorrect for rules like "(MA1101R AND MA1221) OR MA1521").</p>
 </div>
 <div class="paragraph">
-<p><code>JsonModuleInfoStorage</code> opens the processed <code>data/moduleInfo.json</code> file and deserialize its content into an array of
-<code>ModuleInfo</code> objects. As JSON can only hold simple values such as strings and numbers, prerequisites and preclusion
-are stored as an array of <code>String</code>, so we need to call <code>ModuleInfo.finalizeModuleInfo</code> to convert the strings into
-<code>ModuleInfo`s as well before we can start querying prerequisite and preclusion from `ModuleInfo#getPrerequisites</code> and
-<code>ModuleInfo#getPreclusions</code>.</p>
+<p><code>ModuleInfoRetriever</code> opens the processed <code>data/moduleInfo.json</code> file packaged in the JAR file and deserialize its
+content into an array of <code>ModuleInfo</code> objects. As JSON can only hold simple values such as strings and numbers,
+prerequisites and preclusion are stored as an array of <code>String</code>, so we need to call <code>ModuleInfo.finalizeModuleInfo</code> to
+convert the strings into <code>ModuleInfo`s as well before we can start querying prerequisite and preclusion from
+`ModuleInfo#getPrerequisites</code> and <code>ModuleInfo#getPreclusions</code>.</p>
 </div>
 <div class="paragraph">
-<p>For command implementer, you can access the list of <code>ModuleInfo</code> from <code>Model#getModuleInfo()</code>.</p>
+<p>For command implementer, you can access the complete list of <code>ModuleInfo</code> from <code>ModuleInfo#getModuleInfoList()</code>.
+You can convert a module code string to a <code>ModuleInfo</code> object by passing the string to
+<code>ModuleInfo#getFromModuleCode(String code)</code>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2006,4 +2008,4 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 12:01:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 12:06:38 UTC</div></div></div></body></html>
