@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.planner.testutil.TypicalModules.CS1010;
+import static seedu.planner.testutil.TypicalModules.CS2030;
 import static seedu.planner.testutil.TypicalModules.getTypicalModulePlanner;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
@@ -19,13 +20,6 @@ public class ModulePlannerTest {
     public ExpectedException thrown = ExpectedException.none();
 
     private final ModulePlanner modulePlanner = new ModulePlanner();
-
-    /*
-    @Test
-    public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
-    }
-    */
 
     @Test
     public void resetData_null_throwsNullPointerException() {
@@ -53,6 +47,18 @@ public class ModulePlannerTest {
         addressBook.resetData(newData);
     }
     */
+    
+    @Test
+    public void addModules_invalidIndex_throwsIndexOutOfBoundsException() {
+        thrown.expect(IndexOutOfBoundsException.class);
+        modulePlanner.addModules(getTypicalModules(), 8);
+    }
+
+    @Test
+    public void addModules_validIndex_success() {
+        modulePlanner.addModules(getTypicalModules(), 0);
+        assertEquals(modulePlanner.getModulesTaken(0), getTypicalModules());
+    }
 
     @Test
     public void hasModule_nullModule_throwsNullPointerException() {
@@ -72,15 +78,83 @@ public class ModulePlannerTest {
     }
 
     @Test
+    public void getSemesters_modifyList_throwsUnsupportedOperationException() {
+        thrown.expect(UnsupportedOperationException.class);
+        modulePlanner.getSemesters().remove(0);
+    }
+
+    @Test
+    public void getModulesTaken_sameIndex_returnsSameList() {
+        modulePlanner.addModules(getTypicalModules(), 0);
+        assertEquals(modulePlanner.getModulesTaken(0), modulePlanner.getModulesTaken(0));
+    }
+
+    @Test
+    public void getModulesTaken_differentIndex_returnsDifferentList() {
+        modulePlanner.addModules(getTypicalModules(), 0);
+        assertNotEquals(modulePlanner.getModulesTaken(0), modulePlanner.getModulesTaken(1));
+    }
+
+    @Test
+    public void getModulesTaken_differentIndexSameModules_returnsSameList() {
+        modulePlanner.addModules(getTypicalModules(), 1);
+        ModulePlanner differentModulePlanner = getTypicalModulePlanner();
+        assertEquals(modulePlanner.getModulesTaken(1), differentModulePlanner.getModulesTaken(0));
+    }
+
+    @Test
+    public void getModulesTaken_sameIndexDifferentModules_returnsDifferentList() {
+        modulePlanner.addModules(getTypicalModules(), 0);
+        assertNotEquals(modulePlanner.getModulesTaken(0), new ModulePlanner().getModulesTaken(0));
+    }
+
+    @Test
+    public void getModulesTaken_modifyList_throwsUnsupportedOperationException() {
+        thrown.expect(UnsupportedOperationException.class);
+        modulePlanner.getModulesTaken(0).remove(0);
+    }
+
+    @Test
     public void getModulesAvailable_sameModules_returnsSameList() {
-        ModulePlanner otherModulePlanner = new ModulePlanner();
-        assertEquals(modulePlanner.getModulesAvailable(), otherModulePlanner.getModulesAvailable());
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        assertEquals(modulePlanner.getModulesAvailable(), differentModulePlanner.getModulesAvailable());
+    }
+
+    @Test
+    public void getModulesAvailable_sameModulesAdded_returnsSameList() {
+        modulePlanner.addModules(getTypicalModules(), 0);
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), 7);
+        assertEquals(modulePlanner.getModulesAvailable(), differentModulePlanner.getModulesAvailable());
     }
 
     @Test
     public void getModulesAvailable_differentModules_returnsDifferentList() {
-        ModulePlanner otherModulePlanner = getTypicalModulePlanner();
-        assertNotEquals(modulePlanner.getModulesAvailable(), otherModulePlanner.getModulesAvailable());
+        ModulePlanner differentModulePlanner = getTypicalModulePlanner();
+        assertNotEquals(modulePlanner.getModulesAvailable(), differentModulePlanner.getModulesAvailable());
+    }
+    
+    @Test 
+    public void equals() {
+        modulePlanner.addModules(getTypicalModules(), 1);
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), 1);
+    
+        // same modules in same semester -> returns true
+        assertTrue(modulePlanner.equals(differentModulePlanner));
+
+        // same object -> returns true
+        assertTrue(modulePlanner.equals(modulePlanner));
+
+        // null -> returns false
+        assertFalse(modulePlanner.equals(null));
+
+        // different types -> returns false
+        assertFalse(modulePlanner.equals(5));
+
+        // different modules in different semester -> returns false
+        assertFalse(modulePlanner.equals(getTypicalModulePlanner()));
+
     }
 
     /*
@@ -90,14 +164,6 @@ public class ModulePlannerTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
-    }
-    */
-
-    /*
-    @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        thrown.expect(UnsupportedOperationException.class);
-        addressBook.getPersonList().remove(0);
     }
     */
 

@@ -11,6 +11,8 @@ import org.junit.rules.ExpectedException;
 
 import seedu.planner.testutil.ModulePlannerBuilder;
 
+import java.nio.file.Paths;
+
 public class ModelManagerTest {
 
     @Rule
@@ -70,14 +72,9 @@ public class ModelManagerTest {
         // different modulePlanner -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentModulePlanner, userPrefs)));
 
-        // different filteredList -> returns false
-        // String[] keywords = ALICE.getName().fullName.split("\\s+");
-        // modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        // assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-
-        // different userPrefs -> returns true
-        // UserPrefs differentUserPrefs = new UserPrefs();
-        // differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        // assertTrue(modelManager.equals(new ModelManager(modulePlanner, differentUserPrefs)));
+         // different userPrefs -> returns true
+         UserPrefs differentUserPrefs = new UserPrefs();
+         differentUserPrefs.setModulePlannerFilePath(Paths.get("differentFilePath"));
+         assertTrue(modelManager.equals(new ModelManager(modulePlanner, differentUserPrefs)));
     }
 }
