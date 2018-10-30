@@ -14,13 +14,13 @@ import seedu.planner.model.course.Major;
  * Represents the profile of the user.
  */
 public class UserProfile {
-    private int year;
-    private int semester;
-    private Major major;
-    private List<FocusArea> focusAreas;
+    private final int year;
+    private final int semester;
+    private final Major major;
+    private final List<FocusArea> focusAreas;
 
     public UserProfile() {
-        this(1, 1, Major.COMPUTER_SCIENCE, List.of(FocusArea.SOFTWARE_ENGINEERING));
+        this(1, 1, Major.COMPUTER_SCIENCE, new ArrayList<>());
     }
 
     /**
