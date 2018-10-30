@@ -8,7 +8,9 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
+import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.semester.Semester;
+import seedu.planner.model.util.ModuleUtil;
 
 //@@author Hilda-Ang //@@author GabrielYik
 
@@ -39,7 +41,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
         for (int i = 1; i <= MAX_NUMBER_SEMESTERS / MAX_SEMESTERS_PER_YEAR; i++) {
             for (int j = 1; j <= MAX_SEMESTERS_PER_YEAR; j++) {
-                semesters.add(new Semester(i, j, false));
+                semesters.add(new Semester(i, j));
             }
         }
     }
@@ -107,25 +109,29 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @return A list of modules taken in the semester.
      */
     @Override
-    public ObservableList<Module> listModulesTaken(int index) {
+    public ObservableList<Module> getModulesTaken(int index) {
         return FXCollections.unmodifiableObservableList(
                 semesters.get(index).getModulesTaken());
     }
 
-
-    //TODO: available modules might not be placed by year
     /**
-     * Returns all {@code Module}s available in the {@code Semester} wrapped in an
-     * {@code ObservableList}.
+     * Returns all {@code Module}s available wrapped in an {@code ObservableList}.
      *
-     * @param index The nominal {@code Semester} index the {@code Module}s
-     *                      are stored at
      * @return An {@code ObservableList} containing all the {@code Module}s
      */
     @Override
-    public ObservableList<Module> listModulesAvailable(int index) {
-        return FXCollections.unmodifiableObservableList(
-                semesters.get(index).getModulesAvailable());
+    public ObservableList<Module> getModulesAvailable() {
+        List<Module> modulesAvailable = new ArrayList<>();
+        List<Module> modulesTaken = getAllModulesTaken();
+        List<Module> allModules = getAllModulesFromStorage();
+
+        for (Module m: allModules) {
+            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, m)) {
+                modulesAvailable.add(m);
+            }
+        }
+
+        return FXCollections.observableList(modulesAvailable);
     }
 
     /**
@@ -141,6 +147,35 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             this.semesters.remove(i);
             this.semesters.add(i, semesters.get(i));
         }
+    }
+
+    /**
+     * Combines the list of {@code Module}s taken from every {@code Semester}.
+     *
+     * @return A list of all {@code Module}s the user has taken.
+     */
+    private List<Module> getAllModulesTaken() {
+        List<Module> modulesTaken = new ArrayList<>();
+        for (Semester s: semesters) {
+            modulesTaken.addAll(s.getModulesTaken());
+        }
+        return modulesTaken;
+    }
+
+    /**
+     * Get a list of all {@code Module}s data stored.
+     *
+     * @return A list of all {@code Module}s in the storage.
+     */
+    private List<Module> getAllModulesFromStorage() {
+        ModuleInfo[] allModuleInfo = ModuleInfo.getModuleInfoList();
+        List<Module> allModules = new ArrayList<>();
+
+        for (ModuleInfo mi: allModuleInfo) {
+            Module m = new Module(mi.getCode());
+            allModules.add(m);
+        }
+        return allModules;
     }
 
     @Override

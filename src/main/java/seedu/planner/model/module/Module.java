@@ -22,7 +22,7 @@ public class Module {
      * @param code The {@code Module} code
      */
     public Module(String code) {
-        information = new ModuleInfo(code);
+        information = ModuleInfo.getFromModuleCode(code).orElse(new ModuleInfo(code));
     }
 
     //TODO: verify if ModuleInfo contains ModuleType
@@ -61,16 +61,7 @@ public class Module {
      * @return The {@code ModuleType}
      */
     public ModuleType getType() {
-        return type;
-    }
-
-    /**
-     * Gets the possible {@code ModuleType}s.
-     *
-     * @return The possible {@code ModuleType}s
-     */
-    public ModuleType[] getPossibleTypes() {
-        return information.getPossibleTypes();
+        return ModuleType.PROGRAMME_REQUIREMENTS;
     }
 
     /**

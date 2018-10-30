@@ -1,5 +1,10 @@
 package seedu.planner.model.util;
 
+import java.util.List;
+
+import seedu.planner.model.module.Module;
+import seedu.planner.model.module.ModuleInfo;
+
 /**
  * Helper functions for handling module.
  */
@@ -18,4 +23,61 @@ public class ModuleUtil {
     }
 
     //@@author
+
+    //@@author Hilda-Ang
+
+    /**
+     * Checks if all the prerequisites for the given {@code Module} have been taken.
+     *
+     * @param modulesTaken List of {@code Module}s that the user had taken.
+     * @param moduleToCheck The {@code Module} to be checked.
+     * @return True if all the prerequisites have been taken.
+     */
+    private static boolean hasFulfilledAllPrerequisites(List<Module> modulesTaken, Module moduleToCheck) {
+        List<ModuleInfo> prerequisites = moduleToCheck.getPrerequisites();
+
+        for (ModuleInfo p: prerequisites) {
+            Module m = new Module(p.getCode());
+
+            if (!modulesTaken.contains(m)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Checks if none of the preclusions for the given {@code Module} has been taken.
+     *
+     * @param modulesTaken List of {@code Module}s that the user had taken.
+     * @param moduleToCheck The {@code Module} to be checked.
+     * @return True if none of the preclusions have been taken.
+     */
+    private static boolean hasNotFulfilledAnyPreclusions(List<Module> modulesTaken, Module moduleToCheck) {
+        List<ModuleInfo> preclusions = moduleToCheck.getPreclusions();
+
+        for (ModuleInfo p: preclusions) {
+            Module m = new Module(p.getCode());
+
+            if (modulesTaken.contains(m)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Checks if the module can be taken by user, i.e all the prerequisites have been taken
+     * and none of the preclusions have been taken.
+     *
+     * @param modulesTaken List of {@code Module}s that the user had taken.
+     * @param module moduleToCheck The {@code Module} to be checked.
+     * @return True if all the prerequisites are fulfilled and no preclusion has been fulfilled.
+     */
+    public static boolean isModuleAvailableToTake(List<Module> modulesTaken, Module module) {
+        return hasFulfilledAllPrerequisites(modulesTaken, module)
+            && hasNotFulfilledAnyPreclusions(modulesTaken, module);
+    }
 }

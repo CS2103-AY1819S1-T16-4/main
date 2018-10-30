@@ -70,6 +70,15 @@ public class ModuleInfo {
     public ModuleInfo() {
 
     }
+  
+    /**
+     * Constructs a {@code ModuleInfo} from a given module code.
+     *
+     * @param code A valid module code.
+     */
+    public ModuleInfo(String code) {
+        this.code = code;
+    }
 
     /**
      * Class to retrieve {@code ModuleInfo} from JSON file packaged in JAR file.
@@ -128,28 +137,12 @@ public class ModuleInfo {
         }
     }
 
-    /**
-     * Creates a new {@code ModuleInfo}.
-     * This {@code ModuleInfo} does not have all its
-     * attributes initialised and is meant to be used
-     * as a lightweight and convenient object.
-     *
-     * @param code The {@code Module} code
-     */
-    public ModuleInfo(String code) {
-        this.code = code;
-    }
-
     public String getCode() {
         return code;
     }
 
     public String getName() {
         return name;
-    }
-
-    public ModuleType[] getPossibleTypes() {
-        return possibleTypes;
     }
 
     public float getCreditCount() {
