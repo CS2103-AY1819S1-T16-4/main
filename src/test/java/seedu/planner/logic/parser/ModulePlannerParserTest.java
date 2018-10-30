@@ -4,6 +4,21 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_FOCUS_AREA_DESC_SE;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_FOCUS_AREA_SE;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MAJOR_CS;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MAJOR_DESC_CS;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS2030;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1010;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS2030;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_DESC_ONE;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_ONE;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_DESC_ONE;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_ONE;
+import static seedu.planner.model.util.IndexUtil.convertYearAndSemesterToIndex;
+import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.planner.testutil.TypicalModules.CS1010;
+import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -24,6 +39,11 @@ import seedu.planner.logic.commands.StatusCommand;
 import seedu.planner.logic.commands.SuggestCommand;
 import seedu.planner.logic.commands.UndoCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
+import seedu.planner.model.module.Module;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class ModulePlannerParserTest {
     @Rule
@@ -33,8 +53,11 @@ public class ModulePlannerParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        assertTrue(parser.parseCommand(AddCommand.COMMAND_WORD) instanceof AddCommand);
-        assertTrue(parser.parseCommand(AddCommand.COMMAND_WORD + " 3") instanceof AddCommand);
+        List<Module> modules = getTypicalModules();
+        AddCommand command = (AddCommand) parser.parseCommand(AddCommand.COMMAND_WORD + VALID_YEAR_DESC_ONE
+            + VALID_SEMESTER_DESC_ONE + VALID_MODULE_CODE_DESC_CS1010 + VALID_MODULE_CODE_DESC_CS2030);
+        assertEquals(new AddCommand(modules, INDEX_FIRST),
+            command);
     }
 
     @Test
@@ -45,8 +68,10 @@ public class ModulePlannerParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD) instanceof DeleteCommand);
-        assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD + " 3") instanceof DeleteCommand);
+        List<Module> modules = getTypicalModules();
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(DeleteCommand.COMMAND_WORD
+            + VALID_MODULE_CODE_DESC_CS1010 + VALID_MODULE_CODE_DESC_CS2030);
+        assertEquals(new DeleteCommand(modules), command);
     }
 
     @Test
@@ -57,14 +82,16 @@ public class ModulePlannerParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        assertTrue(parser.parseCommand(FindCommand.COMMAND_WORD) instanceof FindCommand);
-        assertTrue(parser.parseCommand(FindCommand.COMMAND_WORD + " 3") instanceof FindCommand);
+        FindCommand command = (FindCommand) parser.parseCommand(FindCommand.COMMAND_WORD
+            + VALID_MODULE_CODE_DESC_CS1010);
+        assertEquals(new FindCommand(CS1010), command);
     }
 
     @Test
     public void parseCommand_goTo() throws Exception {
-        assertTrue(parser.parseCommand(GoToCommand.COMMAND_WORD) instanceof GoToCommand);
-        assertTrue(parser.parseCommand(GoToCommand.COMMAND_WORD + " 3") instanceof GoToCommand);
+        GoToCommand command = (GoToCommand) parser.parseCommand(GoToCommand.COMMAND_WORD
+            + VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE);
+        assertEquals(new GoToCommand(VALID_YEAR_ONE, VALID_SEMESTER_ONE), command);
     }
 
     @Test
@@ -88,8 +115,9 @@ public class ModulePlannerParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        ListCommand command = (ListCommand) parser.parseCommand(ListCommand.COMMAND_WORD
+            + VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE);
+        assertEquals(new ListCommand(INDEX_FIRST), command);
     }
 
     @Test
@@ -100,8 +128,10 @@ public class ModulePlannerParserTest {
 
     @Test
     public void parseCommand_setUp() throws Exception {
-        assertTrue(parser.parseCommand(SetUpCommand.COMMAND_WORD) instanceof SetUpCommand);
-        assertTrue(parser.parseCommand(SetUpCommand.COMMAND_WORD + " 3") instanceof SetUpCommand);
+        SetUpCommand command = (SetUpCommand) parser.parseCommand(SetUpCommand.COMMAND_WORD
+            + VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE + VALID_MAJOR_DESC_CS + VALID_FOCUS_AREA_DESC_SE);
+        assertEquals(new SetUpCommand(VALID_YEAR_ONE, VALID_SEMESTER_ONE, VALID_MAJOR_CS, Set.of(VALID_FOCUS_AREA_SE)),
+            command);
     }
 
     @Test

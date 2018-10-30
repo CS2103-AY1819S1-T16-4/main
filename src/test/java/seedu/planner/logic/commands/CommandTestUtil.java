@@ -35,6 +35,7 @@ public class CommandTestUtil {
 
     public static final String VALID_MODULE_CODE_DESC_CS1010 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS1010;
     public static final String VALID_MODULE_CODE_DESC_CS1231 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS1231;
+    public static final String VALID_MODULE_CODE_DESC_CS2030 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS2030;
 
     public static final String INVALID_MODULE_CODE_DESC_CS0000 = " " + PREFIX_CODE + INVALID_MODULE_CODE_CS0000;
 
