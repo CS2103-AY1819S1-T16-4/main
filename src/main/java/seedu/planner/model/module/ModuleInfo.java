@@ -70,7 +70,7 @@ public class ModuleInfo {
     public ModuleInfo() {
 
     }
-  
+
     /**
      * Constructs a {@code ModuleInfo} from a given module code.
      *
