@@ -32,8 +32,8 @@ public class IndexUtilTest {
 
     @Test
     public void isValidSemester_invalidSemester_returnsFalse() {
-        assertTrue(isValidSemester(0));
-        assertTrue(isValidSemester(3));
+        assertFalse(isValidSemester(0));
+        assertFalse(isValidSemester(3));
     }
 
     @Test
@@ -44,8 +44,8 @@ public class IndexUtilTest {
 
     @Test
     public void isValidIndex_invalidIndex_returnsFalse() {
-        assertTrue(isValidIndex(-1));
-        assertTrue(isValidIndex(8));
+        assertFalse(isValidIndex(-1));
+        assertFalse(isValidIndex(8));
     }
 
     @Test
