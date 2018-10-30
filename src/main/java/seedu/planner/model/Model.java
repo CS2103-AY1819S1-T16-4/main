@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
-import seedu.planner.model.module.ModuleInfo;
 
 /**
  * The API of the Model component.
