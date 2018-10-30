@@ -72,14 +72,6 @@ public interface Model {
     // @@author rongjiecomputer
 
     /**
-     * Returns an immutable list of {@code ModuleInfo}s.
-     * Note: return type might change to ImmutableList<ModuleInfo> in the future.
-     *
-     * @deprecated Use ModuleInfo.getModuleInfoList() directly instead.
-     */
-    ModuleInfo[] getModuleInfo();
-
-    /**
      * Retrieves the actual module information of the {@code modules}
      * and finalizes the modules with their actual module information.
      * Individual modules are finalized using the method

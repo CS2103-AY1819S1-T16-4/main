@@ -126,18 +126,6 @@ public class ModelManager extends ComponentManager implements Model {
 
     //@@author
 
-    // @@author rongjiecomputer
-
-    /**
-     * Get a list of ModuleInfo from JSON file.
-     *
-     * @deprecated Use ModuleInfo.getModuleInfoList() directly instead.
-     */
-    public ModuleInfo[] getModuleInfo() {
-        return ModuleInfo.getModuleInfoList();
-    }
-    // @@author
-
     //=========== Filtered Module List Accessors =============================================================
     //@@author GabrielYik
 
