@@ -2,6 +2,7 @@ package seedu.planner.model.semester;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -43,6 +44,19 @@ public class Semester {
         this.year = year;
         this.index = index;
         this.modulesTaken = FXCollections.observableArrayList();
+    }
+
+    /**
+     * Constructs a {@code Semester} with the
+     * modules from {@code semester}.
+     *
+     * @param semester The semester which modules are used
+     *  to construct the new semester
+     */
+    public Semester(Semester semester) {
+        year = semester.getYear();
+        index = semester.getIndex();
+        modulesTaken = semester.getModulesAsCopy();
     }
 
     public int getIndex() {
@@ -89,8 +103,36 @@ public class Semester {
      *
      * @return A list of modules taken
      */
-    public ObservableList<Module> getModulesTaken() {
+    public ObservableList<Module> getModules() {
         return modulesTaken;
+    }
+
+    /**
+     * Replaces all the current modules taken in {@code this}
+     * with the modules taken in {@code semester}.
+     *
+     * @param semester The semester which modules taken are
+     *  used as replacement
+     */
+    public void setModulesTaken(Semester semester) {
+        modulesTaken.clear();
+        modulesTaken.addAll(semester.getModules());
+    }
+
+    /**
+     * Copies the modules of {@code this} and
+     * returns them in an {@code ObservableList}.
+     *
+     * @return The copied modules of {@code this} wrapped
+     *  in an {@code ObservableList}
+     */
+    public ObservableList<Module> getModulesAsCopy() {
+        List<Module> modulesTakenCopy = new ArrayList<>();
+        for (Module module : modulesTaken) {
+            Module moduleCopy = new Module(module.getCode());
+            modulesTakenCopy.add(moduleCopy);
+        }
+        return FXCollections.observableList(modulesTakenCopy);
     }
 
     @Override
@@ -105,5 +147,10 @@ public class Semester {
     @Override
     public int hashCode() {
         return modulesTaken.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Year " + year + " | Semester " + index;
     }
 }

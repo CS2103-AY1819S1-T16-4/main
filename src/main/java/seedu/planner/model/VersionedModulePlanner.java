@@ -81,12 +81,12 @@ public class VersionedModulePlanner extends ModulePlanner {
             return false;
         }
 
-        VersionedModulePlanner otherVersionedAddressBook = (VersionedModulePlanner) other;
+        VersionedModulePlanner otherVersionedModulePlanner = (VersionedModulePlanner) other;
 
         // state check
-        return super.equals(otherVersionedAddressBook)
-                && modulePlannerStateList.equals(otherVersionedAddressBook.modulePlannerStateList)
-                && currentStatePointer == otherVersionedAddressBook.currentStatePointer;
+        return super.equals(otherVersionedModulePlanner)
+                && modulePlannerStateList.equals(otherVersionedModulePlanner.modulePlannerStateList)
+                && currentStatePointer == otherVersionedModulePlanner.currentStatePointer;
     }
 
     /**

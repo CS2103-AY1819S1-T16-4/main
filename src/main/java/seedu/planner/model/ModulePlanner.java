@@ -103,14 +103,18 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-     * Returns all {@code Semester}s wrapped in an {@code ObservableList}.
+     * Returns a copy of all the {@code Semester}s.
      *
-     * @return An {@code ObservableList} containing all the {@code Semester}s
+     * @return A list of {@code Semester}s
      */
     @Override
-    public ObservableList<Semester> getSemesters() {
-        return FXCollections.unmodifiableObservableList(
-                FXCollections.observableList(semesters));
+    public List<Semester> getSemesters() {
+        List<Semester> semestersCopy = new ArrayList<>();
+        for (Semester semester : semesters) {
+            Semester semesterCopy = new Semester(semester);
+            semestersCopy.add(semesterCopy);
+        }
+        return semestersCopy;
     }
 
     /**
@@ -123,7 +127,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     @Override
     public ObservableList<Module> getModulesTaken(int index) {
         return FXCollections.unmodifiableObservableList(
-                semesters.get(index).getModulesTaken());
+                semesters.get(index).getModules());
     }
 
     /**
@@ -151,13 +155,13 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void resetData(ReadOnlyModulePlanner newData) {
         requireNonNull(newData);
-        setSemesters(newData.getSemesters());
+        setModulesInSemesters(newData.getSemesters());
     }
 
-    public void setSemesters(List<Semester> semesters) {
+
+    public void setModulesInSemesters(List<Semester> semesters) {
         for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
-            this.semesters.remove(i);
-            this.semesters.add(i, semesters.get(i));
+            this.semesters.get(i).setModulesTaken(semesters.get(i));
         }
     }
 
@@ -169,7 +173,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private List<Module> getAllModulesTaken() {
         List<Module> modulesTaken = new ArrayList<>();
         for (Semester s: semesters) {
-            modulesTaken.addAll(s.getModulesTaken());
+            modulesTaken.addAll(s.getModules());
         }
         return modulesTaken;
     }
