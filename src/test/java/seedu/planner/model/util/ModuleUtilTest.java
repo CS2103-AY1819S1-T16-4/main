@@ -2,8 +2,15 @@ package seedu.planner.model.util;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static seedu.planner.model.util.ModuleUtil.isModuleAvailableToTake;
+import static seedu.planner.testutil.TypicalModules.CS1010;
+import static seedu.planner.testutil.TypicalModules.CS1020;
+import static seedu.planner.testutil.TypicalModules.CS2040;
+import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 public class ModuleUtilTest {
 
@@ -26,5 +33,17 @@ public class ModuleUtilTest {
         assertFalse(ModuleUtil.hasValidCodeFormat("CSCS10101JJJ"));
     }
 
-    //@@author
+    //@@author Hilda-Ang
+
+    @Test
+    public void isModuleAvailableToTake_moduleAvailable_returnsTrue() {
+        assertTrue(isModuleAvailableToTake(new ArrayList<>(), CS1010));
+        assertTrue(isModuleAvailableToTake(getTypicalModules(), CS2040));
+    }
+
+    @Test
+    public void isModuleAvailableToTake_moduleNotAvailable_returnsFalse() {
+        assertFalse(isModuleAvailableToTake(new ArrayList<>(), CS2040));
+        assertFalse(isModuleAvailableToTake(getTypicalModules(), CS1020));
+    }
 }

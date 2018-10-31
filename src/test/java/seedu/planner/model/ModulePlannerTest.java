@@ -95,19 +95,6 @@ public class ModulePlannerTest {
     }
 
     @Test
-    public void getModulesTaken_differentIndexSameModules_returnsSameList() {
-        modulePlanner.addModules(getTypicalModules(), 1);
-        ModulePlanner differentModulePlanner = getTypicalModulePlanner();
-        assertEquals(modulePlanner.getModulesTaken(1), differentModulePlanner.getModulesTaken(0));
-    }
-
-    @Test
-    public void getModulesTaken_sameIndexDifferentModules_returnsDifferentList() {
-        modulePlanner.addModules(getTypicalModules(), 0);
-        assertNotEquals(modulePlanner.getModulesTaken(0), new ModulePlanner().getModulesTaken(0));
-    }
-
-    @Test
     public void getModulesTaken_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
         modulePlanner.getModulesTaken(0).remove(0);

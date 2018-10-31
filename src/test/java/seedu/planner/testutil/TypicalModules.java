@@ -19,8 +19,14 @@ public class TypicalModules {
     public static final Module CS1010 = new ModuleBuilder().withType(ModuleType.PROGRAMME_REQUIREMENTS)
         .withInformation(ModuleInfo.getFromModuleCode("CS1010").get()).build();
 
+    public static final Module CS1020 = new ModuleBuilder().withType(ModuleType.PROGRAMME_REQUIREMENTS)
+        .withInformation(ModuleInfo.getFromModuleCode("CS1020").get()).build();
+
     public static final Module CS2030 = new ModuleBuilder().withType(ModuleType.PROGRAMME_REQUIREMENTS)
         .withInformation(ModuleInfo.getFromModuleCode("CS2030").get()).build();
+
+    public static final Module CS2040 = new ModuleBuilder().withType(ModuleType.PROGRAMME_REQUIREMENTS)
+        .withInformation(ModuleInfo.getFromModuleCode("CS2040").get()).build();
 
     private TypicalModules() {}
 
