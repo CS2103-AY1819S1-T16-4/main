@@ -149,12 +149,6 @@ public class ModelManager extends ComponentManager implements Model {
 
     //@@author
 
-    @Override
-    public void updateAvailableModuleList(Predicate<Module> predicate) {
-        requireNonNull(predicate);
-        availableModules.setPredicate(predicate);
-    }
-
     //=========== Undo/Redo =================================================================================
 
     @Override
