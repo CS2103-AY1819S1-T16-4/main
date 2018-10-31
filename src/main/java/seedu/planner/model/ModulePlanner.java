@@ -8,7 +8,6 @@ import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.UniqueModuleList;

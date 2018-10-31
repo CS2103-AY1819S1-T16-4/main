@@ -93,15 +93,6 @@ public class Module {
         return information.getPrerequisites();
     }
 
-    public boolean isSameModule(Module otherModule) {
-        if (otherModule == this) {
-            return true;
-        }
-
-        return otherModule != null
-                && otherModule.getCode().equals(getCode());
-    }
-
     @Override
     public boolean equals(Object other) {
 
@@ -114,7 +105,7 @@ public class Module {
         }
 
         Module module = (Module) other;
-        return this.information.getCode().equals(module.getCode());
+        return this.getCode().equals(module.getCode());
     }
 
     @Override
