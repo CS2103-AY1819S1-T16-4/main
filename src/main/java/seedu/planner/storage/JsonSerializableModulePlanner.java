@@ -8,6 +8,7 @@ import seedu.planner.commons.exceptions.IllegalValueException;
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.ReadOnlyModulePlanner;
 import seedu.planner.model.semester.Semester;
+import seedu.planner.model.user.UserProfile;
 
 // @@author rongjiecomputer
 
@@ -16,12 +17,14 @@ import seedu.planner.model.semester.Semester;
  */
 public class JsonSerializableModulePlanner {
     private List<JsonAdaptedSemester> semesters;
+    private UserProfile userProfile;
 
     /**
      * Default constructor for JSON serialization.
      */
     public JsonSerializableModulePlanner() {
         semesters = new ArrayList<>(ModulePlanner.MAX_NUMBER_SEMESTERS);
+        userProfile = new UserProfile();
     }
 
     /**
@@ -30,6 +33,7 @@ public class JsonSerializableModulePlanner {
     public JsonSerializableModulePlanner(ReadOnlyModulePlanner src) {
         this();
         semesters.addAll(src.getSemesters().stream().map(JsonAdaptedSemester::new).collect(Collectors.toList()));
+        userProfile = src.getUserProfile();
     }
 
     /**
@@ -44,6 +48,7 @@ public class JsonSerializableModulePlanner {
             semesters.add(sem.toModelType());
         }
         planner.setSemesters(semesters);
+        planner.setUserProfile(userProfile);
         return planner;
     }
 }

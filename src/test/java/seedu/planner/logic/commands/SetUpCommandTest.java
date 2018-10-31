@@ -17,7 +17,6 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
@@ -71,21 +70,54 @@ public class SetUpCommandTest {
     }
 
     @Test
-    public void execute_invalidArgs_throwsCommandException() {
-        SetUpCommand setUpCommand = new SetUpCommand(INVALID_YEAR_FIVE, INVALID_SEMESTER_THREE,
-                INVALID_MAJOR_SS, Set.of(INVALID_FOCUS_AREA_LD));
+    public void execute_invalidYear_throwsCommandException() {
+        SetUpCommand setUpCommand = new SetUpCommand(INVALID_YEAR_FIVE, VALID_SEMESTER_ONE,
+                VALID_MAJOR_CS, Set.of(VALID_FOCUS_AREA_SE));
 
-        String expectedMessage = Messages.MESSAGE_INVALID_PARAMETERS;
+        String expectedMessage = String.format(SetUpCommand.MESSAGE_INVALID_YEAR, INVALID_YEAR_FIVE);
 
         assertCommandFailure(setUpCommand, model, commandHistory, expectedMessage);
     }
 
     @Test
-    public void execute_oneInvalidArg_throwsCommandException() {
-        SetUpCommand setUpCommand = new SetUpCommand(INVALID_YEAR_FIVE, VALID_SEMESTER_ONE,
+    public void execute_invalidSemester_throwsCommandException() {
+        SetUpCommand setUpCommand = new SetUpCommand(VALID_YEAR_ONE, INVALID_SEMESTER_THREE,
                 VALID_MAJOR_CS, Set.of(VALID_FOCUS_AREA_SE));
 
-        String expectedMessage = Messages.MESSAGE_INVALID_PARAMETERS;
+        String expectedMessage = String.format(SetUpCommand.MESSAGE_INVALID_SEMESTER, INVALID_SEMESTER_THREE);
+
+        assertCommandFailure(setUpCommand, model, commandHistory, expectedMessage);
+    }
+
+    @Test
+    public void execute_invalidMajor_throwsCommandException() {
+        SetUpCommand setUpCommand = new SetUpCommand(VALID_YEAR_ONE, VALID_SEMESTER_ONE,
+                INVALID_MAJOR_SS, Set.of(VALID_FOCUS_AREA_SE));
+
+        String expectedMessage = String.format(SetUpCommand.MESSAGE_INVALID_MAJOR, INVALID_MAJOR_SS);
+
+        assertCommandFailure(setUpCommand, model, commandHistory, expectedMessage);
+    }
+
+    @Test
+    public void execute_invalidFocusAreas_throwsCommandException() {
+        SetUpCommand setUpCommand = new SetUpCommand(VALID_YEAR_ONE, VALID_SEMESTER_ONE,
+                VALID_MAJOR_CS, Set.of(INVALID_FOCUS_AREA_LD));
+
+        String expectedMessage = String.format(SetUpCommand.MESSAGE_INVALID_FOCUS_AREAS);
+
+        assertCommandFailure(setUpCommand, model, commandHistory, expectedMessage);
+    }
+
+    @Test
+    public void execute_invalidCombined_throwsCommandException() {
+        SetUpCommand setUpCommand = new SetUpCommand(INVALID_YEAR_FIVE, INVALID_SEMESTER_THREE,
+                INVALID_MAJOR_SS, Set.of(INVALID_FOCUS_AREA_LD));
+
+        String expectedMessage = String.format(SetUpCommand.MESSAGE_INVALID_YEAR, INVALID_YEAR_FIVE)
+            + String.format(SetUpCommand.MESSAGE_INVALID_SEMESTER, INVALID_SEMESTER_THREE)
+            + String.format(SetUpCommand.MESSAGE_INVALID_MAJOR, INVALID_MAJOR_SS)
+            + String.format(SetUpCommand.MESSAGE_INVALID_FOCUS_AREAS);
 
         assertCommandFailure(setUpCommand, model, commandHistory, expectedMessage);
     }

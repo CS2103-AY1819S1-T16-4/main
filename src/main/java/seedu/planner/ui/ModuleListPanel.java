@@ -66,7 +66,7 @@ public class ModuleListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Module} using a {@code ModuleListCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Module} using a {@code ModuleCard}.
      */
     class ModuleListViewCell extends ListCell<Module> {
         @Override
@@ -77,7 +77,7 @@ public class ModuleListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ModuleListCard(module).getRoot());
+                setGraphic(new ModuleCard(module).getRoot());
             }
         }
     }

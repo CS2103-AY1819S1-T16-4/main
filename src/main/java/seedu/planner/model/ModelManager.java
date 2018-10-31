@@ -14,9 +14,6 @@ import javafx.collections.ObservableList;
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
-import seedu.planner.commons.util.StringUtil;
-import seedu.planner.model.course.FocusArea;
-import seedu.planner.model.course.Major;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
@@ -52,45 +49,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void setUpUserProfile(int year, int semester, String major, Set<String> focusAreas) {
-        UserProfile.setUp(year, semester, major, focusAreas);
-        userProfile = UserProfile.getInstance();
-    }
-
-    @Override
-    public boolean hasMajor(String major) {
-        for (Major m : Major.values()) {
-            if (StringUtil.areEqualIgnoreCase(m.toString(), major)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Checks if the {@code focusArea} is valid.
-     * The focus area is checked against a list of available
-     * focus areas offered by the relevant educational institution.
-     *
-     * @param focusArea The focus area
-     * @return True if the focus area is offered, else false
-     */
-    public boolean hasFocusArea(String focusArea) {
-        for (FocusArea fa : FocusArea.values()) {
-            if (StringUtil.areEqualIgnoreCase(fa.toString(), focusArea)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean hasFocusAreas(Set<String> focusArea) {
-        for (String fa : focusArea) {
-            if (!hasFocusArea(fa)) {
-                return false;
-            }
-        }
-        return true;
+        versionedModulePlanner.setUserProfile(new UserProfile(year, semester, major, focusAreas));
+        indicateModulePlannerChanged();
     }
 
     //@@author
@@ -165,18 +125,6 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //@@author
-
-    // @@author rongjiecomputer
-
-    /**
-     * Get a list of ModuleInfo from JSON file.
-     *
-     * @deprecated Use ModuleInfo.getModuleInfoList() directly instead.
-     */
-    public ModuleInfo[] getModuleInfo() {
-        return ModuleInfo.getModuleInfoList();
-    }
-    // @@author
 
     //=========== Filtered Module List Accessors =============================================================
     //@@author GabrielYik

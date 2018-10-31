@@ -7,7 +7,6 @@ import java.util.Set;
 
 import seedu.planner.model.course.FocusArea;
 import seedu.planner.model.course.Major;
-import seedu.planner.model.user.exceptions.UserProfileNotSetUpException;
 
 //@@author GabrielYik
 
@@ -15,44 +14,37 @@ import seedu.planner.model.user.exceptions.UserProfileNotSetUpException;
  * Represents the profile of the user.
  */
 public class UserProfile {
+    private final int year;
+    private final int semester;
+    private final Major major;
+    private final List<FocusArea> focusAreas;
 
-    private static UserProfile instance;
-    private int year;
-    private int semester;
-    private Major major;
-    private List<FocusArea> focusAreas;
+    public UserProfile() {
+        this(1, 1, Major.COMPUTER_SCIENCE, new ArrayList<>());
+    }
 
-    private UserProfile(int year, int semester, Major major, List<FocusArea> focusAreas) {
+    /**
+     * Copy constructor
+     */
+    public UserProfile(UserProfile copy) {
+        this.year = copy.year;
+        this.semester = copy.semester;
+        this.major = copy.major;
+        this.focusAreas = new ArrayList<>(copy.focusAreas);
+    }
+
+    public UserProfile(int year, int semester, String major, Set<String> focusAreas) {
+        this.year = year;
+        this.semester = semester;
+        this.major = mapMajor(major);
+        this.focusAreas = mapFocusAreas(focusAreas);
+    }
+
+    public UserProfile(int year, int semester, Major major, List<FocusArea> focusAreas) {
         this.year = year;
         this.semester = semester;
         this.major = major;
         this.focusAreas = focusAreas;
-    }
-
-    /**
-     * Gets an instance of the user profile.
-     * If the user profile does not exist,
-     * {@code UserProfileNotSetUpException} is thrown.
-     *
-     * @return The user profile instance.
-     */
-    public static UserProfile getInstance() {
-        if (instance == null) {
-            throw new UserProfileNotSetUpException();
-        }
-        return instance;
-    }
-
-    /**
-     * Sets up the user profile.
-     *
-     * @param year The current year of study
-     * @param semester The current semester in the year of study
-     * @param major The major
-     * @param focusAreas The focus areas
-     */
-    public static void setUp(int year, int semester, String major, Set<String> focusAreas) {
-        instance = new UserProfile(year, semester, mapMajor(major), mapFocusAreas(focusAreas));
     }
 
     /**

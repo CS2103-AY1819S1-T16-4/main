@@ -1,6 +1,6 @@
 package seedu.planner.model.module;
 
-//@@author GabrielYik
+//@@author rongjiecomputer
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,12 +32,53 @@ public class ModuleInfo {
             + "1234 refers to a sequence of positive numbers.\n"
             + "(YZ) refers to an optional postfix.";
 
-    // @@author rongjiecomputer
-
     private static final String DEFAULT_FILE_PATH = "/data/moduleInfo.json";
 
     // An object that is initialized from JSON file and act like a const data.
     private static final ModuleInfoRetriever instance = new ModuleInfoRetriever(DEFAULT_FILE_PATH);
+
+    private String code;
+
+    private String name;
+
+    private ModuleType[] possibleTypes;
+
+    /**
+     * Represents module credit.
+     * The type is set to be float because
+     * some modules can have non-integer module credits.
+     */
+    private float creditCount;
+
+    @JsonProperty("preclusions")
+    private String[] preclusions;
+
+    @JsonProperty("prerequisites")
+    private String[] prerequisites;
+
+    @JsonIgnore
+    private ImmutableList<ModuleInfo> precluModuleInfo;
+
+    @JsonIgnore
+    private ImmutableList<ModuleInfo> prereqModuleInfo;
+
+    private boolean finalized = false;
+
+    /**
+     * Default constructor required by JSON parser.
+     */
+    public ModuleInfo() {
+
+    }
+
+    /**
+     * Constructs a {@code ModuleInfo} from a given module code.
+     *
+     * @param code A valid module code.
+     */
+    public ModuleInfo(String code) {
+        this.code = code;
+    }
 
     /**
      * Class to retrieve {@code ModuleInfo} from JSON file packaged in JAR file.
@@ -94,46 +135,6 @@ public class ModuleInfo {
             }
             return moduleInfo;
         }
-    }
-
-    // @@author
-
-    private String code;
-
-    private String name;
-
-    /**
-     * Module credit. We set the type to be float because some modules have 0.5 MC.
-     */
-    private float creditCount;
-
-    @JsonProperty("preclusions")
-    private String[] preclusions;
-
-    @JsonProperty("prerequisites")
-    private String[] prerequisites;
-
-    @JsonIgnore
-    private ImmutableList<ModuleInfo> precluModuleInfo;
-
-    @JsonIgnore
-    private ImmutableList<ModuleInfo> prereqModuleInfo;
-
-    private boolean finalized = false;
-
-    /**
-     * Default constructor required by JSON parser.
-     */
-    public ModuleInfo() {
-    }
-
-    /**
-     * Constructs a {@code ModuleInfo} from a given module code.
-     *
-     * @param code A valid module code.
-     */
-    public ModuleInfo(String code) {
-        this.code = code;
     }
 
     public String getCode() {
@@ -232,5 +233,4 @@ public class ModuleInfo {
         }
         return str + " }";
     }
-    // @@author
 }
