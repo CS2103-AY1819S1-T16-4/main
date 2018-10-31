@@ -100,6 +100,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         for (Semester semester : semesters) {
             semester.deleteModules(modules);
         }
+        setAvailableModules(getModulesAvailable());
     }
 
     /**
