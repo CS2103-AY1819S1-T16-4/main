@@ -26,7 +26,7 @@ public class SemesterTest {
     @Test
     public void addModulesTaken_success() {
         semester.addModules(getTypicalModules());
-        assertEquals(semester.getModulesTaken(), getTypicalModules());
+        assertEquals(semester.getModules(), getTypicalModules());
     }
 
     @Test
@@ -49,13 +49,32 @@ public class SemesterTest {
     @Test
     public void containsModule_moduleInSemester_returnsTrue() {
         semester.addModules(getTypicalModules());
-
         assertTrue(semester.containsModule(CS1010));
     }
 
     @Test
     public void containsModule_moduleNotInSemester_returnsFalse() {
         assertFalse(semester.containsModule(CS1010));
+    }
+
+    @Test
+    public void setModulesTaken_null_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        semester.setModulesTaken(null);
+    }
+
+    @Test
+    public void setModulesTaken_validSemester_success() {
+        Semester differentSemester = new Semester(2, 1);
+        differentSemester.addModules(getTypicalModules());
+        semester.setModulesTaken(differentSemester);
+        assertEquals(semester.getModules(), differentSemester.getModules());
+    }
+
+    @Test
+    public void getModulesAsCopy_returnsSameModules() {
+        semester.addModules(getTypicalModules());
+        assertEquals(semester.getModulesAsCopy(), semester.getModules());
     }
 
     @Test

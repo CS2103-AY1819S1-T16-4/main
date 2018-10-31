@@ -77,12 +77,6 @@ public class ModulePlannerTest {
     }
 
     @Test
-    public void getSemesters_modifyList_throwsUnsupportedOperationException() {
-        thrown.expect(UnsupportedOperationException.class);
-        modulePlanner.getSemesters().remove(0);
-    }
-
-    @Test
     public void getModulesTaken_sameIndex_returnsSameList() {
         modulePlanner.addModules(getTypicalModules(), 0);
         assertEquals(modulePlanner.getModulesTaken(0), modulePlanner.getModulesTaken(0));
