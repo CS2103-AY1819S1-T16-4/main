@@ -77,7 +77,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * {@code modules} must not contain duplicate modules.
      */
     public void setAvailableModules(List<Module> modules) {
-        this.availableModules.setModules(modules);
+        availableModules.setModules(modules);
     }
 
     /**
