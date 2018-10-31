@@ -23,7 +23,6 @@ import guitests.guihandles.ResultDisplayHandle;
 import guitests.guihandles.StatusBarFooterHandle;
 import seedu.planner.TestApp;
 import seedu.planner.commons.core.EventsCenter;
-import seedu.planner.commons.core.index.Index;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.ui.CommandBox;
@@ -180,11 +179,6 @@ public abstract class ModulePlannerSystemTest {
      */
     protected void assertSelectedCardDeselected() { }
 
-    /**
-     * Asserts that the browser's url is changed to display the details of the person in the person list panel at
-     * {@code expectedSelectedCardIndex}, and only the card at {@code expectedSelectedCardIndex} is selected.
-     */
-    protected void assertSelectedCardChanged(Index expectedSelectedCardIndex) { }
 
     /**
      * Asserts that the browser's url and the selected card in the person list panel remain unchanged.

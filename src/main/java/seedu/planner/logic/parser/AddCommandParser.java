@@ -5,7 +5,7 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.planner.logic.commands.AddCommand;
@@ -36,7 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         int year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
         int semester = ParserUtil.parseSemester(argMultimap.getValue(PREFIX_SEMESTER).get());
-        List<Module> codes = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_CODE));
+        Set<Module> codes = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_CODE));
 
         return new AddCommand(codes, IndexUtil.convertYearAndSemesterToIndex(year, semester));
     }

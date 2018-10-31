@@ -5,13 +5,10 @@ import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_FOCUS_AREA_CONST
 import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_MAJOR_CONSTRAINTS;
 import static seedu.planner.model.module.ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import seedu.planner.commons.core.index.Index;
 import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.Module;
@@ -19,28 +16,13 @@ import seedu.planner.model.util.IndexUtil;
 import seedu.planner.model.util.ModuleUtil;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various Parser classes.
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_YEAR = "Year is not between 1 to 4.";
     public static final String MESSAGE_INVALID_SEMESTER = "Semester is not between 1 to 2.";
 
-    /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
-        requireNonNull(oneBasedIndex);
-        String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
 
     //@@author GabrielYik
 
@@ -69,9 +51,9 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code moduleCodes} do not meet the constraints.
      */
-    public static List<Module> parseModuleCodes(Collection<String> moduleCodes) throws ParseException {
+    public static Set<Module> parseModuleCodes(Collection<String> moduleCodes) throws ParseException {
         requireNonNull(moduleCodes);
-        List<Module> modules = new ArrayList<>();
+        Set<Module> modules = new HashSet<>();
         for (String m : moduleCodes) {
             modules.add(parseModuleCode(m));
         }

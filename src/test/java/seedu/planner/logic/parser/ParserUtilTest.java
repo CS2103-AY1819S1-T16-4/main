@@ -2,15 +2,11 @@ package seedu.planner.logic.parser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
 
-import static seedu.planner.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.Rule;
@@ -44,28 +40,6 @@ public class ParserUtilTest {
     @Rule
     public final ExpectedException thrown = ExpectedException.none();
 
-    @Test
-    public void parseIndex_invalidInput_throwsParseException() throws Exception {
-        thrown.expect(ParseException.class);
-        ParserUtil.parseIndex("10 a");
-    }
-
-    @Test
-    public void parseIndex_outOfRangeInput_throwsParseException() throws Exception {
-        thrown.expect(ParseException.class);
-        thrown.expectMessage(MESSAGE_INVALID_INDEX);
-        ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1));
-    }
-
-    @Test
-    public void parseIndex_validInput_success() throws Exception {
-        // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
-
-        // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
-    }
-
     //@@author Hilda-Ang
 
     // Test for Module Planner
@@ -88,13 +62,13 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseModuleCodes_collectionWithValidModuleCodes_returnsModuleList() throws Exception {
-        List<Module> actualModuleList = ParserUtil.parseModuleCodes(
-            Arrays.asList(VALID_MODULE_CODE_1, VALID_MODULE_CODE_2));
-        List<Module> expectedModuleList = new ArrayList<>(
-            Arrays.asList(new Module(VALID_MODULE_CODE_1), new Module(VALID_MODULE_CODE_2)));
+    public void parseModuleCodes_collectionWithValidModuleCodes_returnsModuleSet() throws Exception {
+        Set<Module> actualModules = ParserUtil.parseModuleCodes(
+            Set.of(VALID_MODULE_CODE_1, VALID_MODULE_CODE_2));
+        Set<Module> expectedModules = new HashSet<>(
+            Set.of(new Module(VALID_MODULE_CODE_1), new Module(VALID_MODULE_CODE_2)));
 
-        assertEquals(expectedModuleList, actualModuleList);
+        assertTrue(areEqualIgnoreOrder(actualModules, expectedModules));
     }
 
     @Test
@@ -109,8 +83,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseMajor_validValue_returnsMajor() throws Exception {
-        String expectedMajor = VALID_MAJOR;
-        assertEquals(expectedMajor, ParserUtil.parseMajor(VALID_MAJOR));
+        assertEquals(VALID_MAJOR, ParserUtil.parseMajor(VALID_MAJOR));
     }
 
     @Test

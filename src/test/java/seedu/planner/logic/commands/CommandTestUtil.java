@@ -7,8 +7,8 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
@@ -35,6 +35,7 @@ public class CommandTestUtil {
 
     public static final String VALID_MODULE_CODE_DESC_CS1010 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS1010;
     public static final String VALID_MODULE_CODE_DESC_CS1231 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS1231;
+    public static final String VALID_MODULE_CODE_DESC_CS2030 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS2030;
 
     public static final String INVALID_MODULE_CODE_DESC_CS0000 = " " + PREFIX_CODE + INVALID_MODULE_CODE_CS0000;
 
@@ -118,9 +119,9 @@ public class CommandTestUtil {
      */
     public static void deleteFirstModule(Model model) {
         Module firstModule = model.getTakenModuleList(0).get(0);
-        List<Module> moduleList = new ArrayList<>();
-        moduleList.add(firstModule);
-        model.deleteModules(moduleList);
+        Set<Module> modules = new HashSet<>();
+        modules.add(firstModule);
+        model.deleteModules(modules);
         model.commitModulePlanner();
     }
 
