@@ -88,8 +88,6 @@ public interface Model {
 
     //@@author
 
-    void updateAvailableModuleList(Predicate<Module> predicate);
-
     /**
      * Returns true if the model has previous planner book states to restore.
      */
