@@ -4,11 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
+import seedu.planner.model.module.UniqueModuleList;
 import seedu.planner.model.semester.Semester;
 import seedu.planner.model.user.UserProfile;
 import seedu.planner.model.util.ModuleUtil;
@@ -19,6 +22,8 @@ import seedu.planner.model.util.ModuleUtil;
  * Wraps all data at the module planner level.
  */
 public class ModulePlanner implements ReadOnlyModulePlanner {
+
+    private static final Logger logger = LogsCenter.getLogger(ModulePlanner.class);
 
     public static final int MAX_NUMBER_SEMESTERS = 8;
     public static final int MAX_SEMESTERS_PER_YEAR = 2;
@@ -33,6 +38,19 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
     private final List<Semester> semesters;
     private UserProfile userProfile;
+
+    private final UniqueModuleList availableModules;
+
+    /*
+     * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     *
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     *   among constructors.
+     */
+    {
+        availableModules = new UniqueModuleList();
+    }
 
     /**
      * Constructs a {@code ModulePlanner} and initializes an array of 8 {@code Semester}
@@ -58,6 +76,14 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
+     * Replaces the contents of the module list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
+     */
+    public void setAvailableModules(List<Module> modules) {
+        this.availableModules.setModules(modules);
+    }
+
+    /**
      * Add one or more module(s) to list of modules taken for the specified semester.
      *
      * @param modules A list of valid modules to be added
@@ -65,6 +91,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void addModules(List<Module> modules, int index) {
         semesters.get(index).addModules(modules);
+        setAvailableModules(getModulesAvailable());
     }
 
     /**
@@ -135,19 +162,9 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      *
      * @return An {@code ObservableList} containing all the {@code Module}s
      */
-    @Override
-    public ObservableList<Module> getModulesAvailable() {
-        List<Module> modulesAvailable = new ArrayList<>();
-        List<Module> modulesTaken = getAllModulesTaken();
-        List<Module> allModules = getAllModulesFromStorage();
-
-        for (Module m: allModules) {
-            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, m)) {
-                modulesAvailable.add(m);
-            }
-        }
-
-        return FXCollections.observableList(modulesAvailable);
+    public ObservableList<Module> getAvailableModuleList() {
+        setAvailableModules(getModulesAvailable());
+        return availableModules.asUnmodifiableObservableList();
     }
 
     /**
@@ -163,6 +180,19 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
             this.semesters.get(i).setModulesTaken(semesters.get(i));
         }
+    }
+
+    private List<Module> getModulesAvailable() {
+        List<Module> modulesAvailable = new ArrayList<>();
+        List<Module> modulesTaken = getAllModulesTaken();
+        List<Module> allModules = getAllModulesFromStorage();
+
+        for (Module m: allModules) {
+            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, m)) {
+                modulesAvailable.add(m);
+            }
+        }
+        return modulesAvailable;
     }
 
     /**
