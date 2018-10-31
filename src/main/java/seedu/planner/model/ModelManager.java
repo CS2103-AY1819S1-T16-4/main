@@ -6,7 +6,6 @@ import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
