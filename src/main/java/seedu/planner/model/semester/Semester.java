@@ -2,9 +2,9 @@ package seedu.planner.model.semester;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Set;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
