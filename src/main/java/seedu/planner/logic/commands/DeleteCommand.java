@@ -63,6 +63,7 @@ public class DeleteCommand extends Command {
         }
 
         model.deleteModules(modulesToDelete);
+        model.commitModulePlanner();
         return new CommandResult(String.format(MESSAGE_DELETE_MODULES_SUCCESS, sb.toString().trim()));
     }
 

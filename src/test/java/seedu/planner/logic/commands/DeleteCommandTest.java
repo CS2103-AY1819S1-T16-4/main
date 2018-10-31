@@ -45,10 +45,13 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(
                 DeleteCommand.MESSAGE_DELETE_MODULES_SUCCESS, getAnyOne(moduleToDelete).get());
-        ModulePlanner expectedModulePlanner = new ModulePlannerBuilder()
+        ModulePlanner modulePlanner = new ModulePlannerBuilder()
+                .withModule(VALID_MODULE_CS1010)
                 .withModule(VALID_MODULE_CS2030)
                 .build();
-        Model expectedModel = new ModelManager(expectedModulePlanner, new UserPrefs());
+        Model expectedModel = new ModelManager(modulePlanner, new UserPrefs());
+        expectedModel.deleteModules(Set.of(VALID_MODULE_CS1010));
+        expectedModel.commitModulePlanner();
 
         assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
     }

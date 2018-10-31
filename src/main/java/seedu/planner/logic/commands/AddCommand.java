@@ -91,6 +91,7 @@ public class AddCommand extends Command {
         }
 
         model.addModules(modulesToAdd, semesterIndex);
+        model.commitModulePlanner();
         return new CommandResult(String.format(MESSAGE_SUCCESS, sb.toString().trim()));
     }
 

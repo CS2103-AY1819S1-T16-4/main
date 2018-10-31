@@ -1,5 +1,7 @@
 package seedu.planner.model;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.semester.Semester;
@@ -23,7 +25,7 @@ public interface ReadOnlyModulePlanner {
      *
      * @return An {@code ObservableList} of the {@code Semester}s
      */
-    ObservableList<Semester> getSemesters();
+    List<Semester> getSemesters();
 
     /**
      * Returns an unmodifiable view of the {@code Module}s taken.
