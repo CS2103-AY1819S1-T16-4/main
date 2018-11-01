@@ -18,7 +18,6 @@ import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
-import java.util.List;
 import java.util.Set;
 
 import org.junit.Rule;

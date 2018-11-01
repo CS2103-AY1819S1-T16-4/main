@@ -9,11 +9,11 @@ import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.getTypicalModulePlanner;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
+import java.util.HashSet;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import java.util.HashSet;
 
 public class ModulePlannerTest {
 
