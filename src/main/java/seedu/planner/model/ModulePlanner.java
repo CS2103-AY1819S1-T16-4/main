@@ -24,20 +24,12 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     public static final int MAX_NUMBER_SEMESTERS = 8;
     public static final int MAX_SEMESTERS_PER_YEAR = 2;
 
-    private static int currentIndex;
-
-    /**
-     * The number of {@code Module} groups that is shown to the user.
-     * Currently, there are two groups: one for modules taken and
-     * one for modules available. A {@code Module} group is different
-     * from a {@code ModuleType}.
-     */
-    public static final int NUMBER_MODULE_GROUPS = 2;
-
     private final List<Semester> semesters;
     private UserProfile userProfile;
 
     private final ObservableList<Module> availableModules = FXCollections.observableArrayList();
+
+    private int currentIndex;
 
     /**
      * Constructs a {@code ModulePlanner} and initializes an array of 8 {@code Semester}
@@ -173,11 +165,22 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         }
     }
 
+    /**
+     * Updates the list of modules available based on given index and stores the index for add and delete commands.
+     *
+     * @param index An integer from 0 to 7 inclusive indicating the year and semester to suggest.
+     */
     public void suggestModules(int index) {
         currentIndex = index;
         setAvailableModules(getModulesAvailable(index));
     }
 
+    /**
+     * Get a list of all the modules user can take based on the modules user has taken until given index.
+     *
+     * @param index An integer from 0 to 7 inclusive to show the current year and semester to suggest.
+     * @return A list of {@code Module}s the user is available to take.
+     */
     private List<Module> getModulesAvailable(int index) {
         List<Module> modulesAvailable = new ArrayList<>();
         List<Module> modulesTaken = getAllModulesTaken();
@@ -213,7 +216,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     private List<Module> getAllModulesTakenUntilIndex(int index) {
         List<Module> modulesTaken = new ArrayList<>();
-        for (int i = 0;  i <= index; i++) {
+        for (int i = 0; i <= index; i++) {
             modulesTaken.addAll(semesters.get(i).getModules());
         }
         return modulesTaken;
