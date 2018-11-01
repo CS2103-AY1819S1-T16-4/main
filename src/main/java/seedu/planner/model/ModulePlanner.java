@@ -162,6 +162,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void resetData(ReadOnlyModulePlanner newData) {
         requireNonNull(newData);
+        setAvailableModules(getModulesAvailable(currentIndex));
         setModulesInSemesters(newData.getSemesters());
     }
 

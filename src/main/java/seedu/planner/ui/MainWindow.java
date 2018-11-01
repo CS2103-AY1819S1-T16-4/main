@@ -245,4 +245,19 @@ public class MainWindow extends UiPart<Stage> {
             stackPane.getChildren().add(n);
         }
     }
+
+    @Subscribe
+    private void handleGoTo(GoToEvent event) {
+        ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
+        for (int semesterIndex = 0; semesterIndex < semesterTabs.size(); semesterIndex++) {
+            SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
+            ObservableList<Node> nodes = splitPane.getItems();
+
+            VBox vBox = (VBox) nodes.get(1);
+            StackPane stackPane = (StackPane) vBox.getChildren().get(0);
+            SuggestModulePanel suggestModulePanel = new SuggestModulePanel();
+            Node n = suggestModulePanel.getRoot();
+            stackPane.getChildren().add(n);
+        }
+    }
 }
