@@ -88,7 +88,7 @@ public class ModulePlannerParser {
             return new StatusCommand();
 
         case SuggestCommand.COMMAND_WORD:
-            return new SuggestCommand();
+            return new SuggestCommandParser().parse(arguments);
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();

@@ -80,9 +80,10 @@ public class ModuleUtil {
      * @param module moduleToCheck The {@code Module} to be checked.
      * @return True if all the prerequisites are fulfilled and no preclusion has been fulfilled.
      */
-    public static boolean isModuleAvailableToTake(List<Module> modulesTaken, Module module) {
+    public static boolean isModuleAvailableToTake(List<Module> modulesTaken, List<Module> modulesTakenUntilIndex,
+        Module module) {
         return hasNotTakenModule(modulesTaken, module)
-            && hasFulfilledAllPrerequisites(modulesTaken, module)
+            && hasFulfilledAllPrerequisites(modulesTakenUntilIndex, module)
             && hasNotFulfilledAnyPreclusions(modulesTaken, module);
     }
 }

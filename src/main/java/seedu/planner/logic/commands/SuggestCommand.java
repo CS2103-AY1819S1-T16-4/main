@@ -3,8 +3,11 @@ package seedu.planner.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
+import static seedu.planner.model.util.IndexUtil.isValidIndex;
 
+import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.CommandHistory;
+import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 
 //@@author Hilda-Ang
@@ -26,10 +29,31 @@ public class SuggestCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Showed all available modules.";
 
+    private int index;
+
+    /**
+     * Creates a SuggestCommand to list modules for specified semester.
+     */
+    public SuggestCommand(int index) {
+        this.index = index;
+    }
+
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        model.getAvailableModuleList();
-        return new CommandResult(MESSAGE_SUCCESS);
+
+        if (!isValidIndex(index)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
+        }
+
+        model.suggestModules(index);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, index));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SuggestCommand // instanceof handles nulls
+                && index == ((SuggestCommand) other).index);
     }
 }

@@ -130,7 +130,12 @@ public class ModelManager extends ComponentManager implements Model {
         indicateModulePlannerChanged();
     }
 
-    //@@author
+    //@@author Hilda-Ang
+
+    @Override
+    public void suggestModules(int index) {
+        versionedModulePlanner.suggestModules(index);
+    }
 
     //=========== Filtered Module List Accessors =============================================================
     //@@author GabrielYik

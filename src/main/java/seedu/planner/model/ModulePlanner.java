@@ -76,7 +76,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void addModules(Set<Module> modules, int index) {
         semesters.get(index).addModules(modules);
-        setAvailableModules(getModulesAvailable());
+        setAvailableModules(getModulesAvailable(index));
     }
 
     /**
@@ -88,7 +88,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         for (Semester semester : semesters) {
             semester.deleteModules(modules);
         }
-        setAvailableModules(getModulesAvailable());
+        setAvailableModules(getModulesAvailable(0));
     }
 
     /**
@@ -149,7 +149,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @return An {@code ObservableList} containing all the {@code Module}s
      */
     public ObservableList<Module> getAvailableModuleList() {
-        setAvailableModules(getModulesAvailable());
+        setAvailableModules(getModulesAvailable(MAX_NUMBER_SEMESTERS - 1));
         return availableModules;
     }
 
@@ -168,13 +168,18 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         }
     }
 
-    private List<Module> getModulesAvailable() {
+    public void suggestModules(int index) {
+        setAvailableModules(getModulesAvailable(index));
+    }
+
+    private List<Module> getModulesAvailable(int index) {
         List<Module> modulesAvailable = new ArrayList<>();
         List<Module> modulesTaken = getAllModulesTaken();
+        List<Module> modulesTakenUntilIndex = getAllModulesTakenUntilIndex(index);
         List<Module> allModules = getAllModulesFromStorage();
 
         for (Module m: allModules) {
-            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, m)) {
+            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenUntilIndex, m)) {
                 modulesAvailable.add(m);
             }
         }
@@ -190,6 +195,20 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         List<Module> modulesTaken = new ArrayList<>();
         for (Semester s: semesters) {
             modulesTaken.addAll(s.getModules());
+        }
+        return modulesTaken;
+    }
+
+    /**
+     * Combines the list of {@code Module}s taken for every {@code Semester} until current index.
+     *
+     * @param index The current index user is at.
+     * @return A list of all {@code Module}s the user has taken until the specified index.
+     */
+    private List<Module> getAllModulesTakenUntilIndex(int index) {
+        List<Module> modulesTaken = new ArrayList<>();
+        for (int i = 0;  i <= index; i++) {
+            modulesTaken.addAll(semesters.get(i).getModules());
         }
         return modulesTaken;
     }
