@@ -224,9 +224,7 @@ public class MainWindow extends UiPart<Stage> {
 
             VBox vBox = (VBox) nodes.get(1);
             StackPane stackPane = (StackPane) vBox.getChildren().get(0);
-            SuggestModulePanel suggestModulePanel = new SuggestModulePanel();
-            Node n = suggestModulePanel.getRoot();
-            stackPane.getChildren().add(n);
+            stackPane.getChildren().clear();
         }
     }
 
@@ -251,7 +249,7 @@ public class MainWindow extends UiPart<Stage> {
 
             VBox vBox = (VBox) nodes.get(1);
             StackPane stackPane = (StackPane) vBox.getChildren().get(0);
-            SuggestModulePanel suggestModulePanel = new SuggestModulePanel(event.getModuleList());
+            ModuleListPanel suggestModulePanel = new ModuleListPanel(event.getModuleList());
             Node n = suggestModulePanel.getRoot();
             stackPane.getChildren().add(n);
         }
