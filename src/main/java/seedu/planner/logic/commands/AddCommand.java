@@ -1,6 +1,7 @@
 package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
@@ -8,6 +9,7 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.CommandHistory;
@@ -38,18 +40,17 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Added Module(s): %1$s";
 
     private final int semesterIndex;
-    private final List<Module> modulesToAdd;
+    private final Set<Module> modulesToAdd;
 
     /**
      * Add module method
      */
-    public AddCommand(List<Module> modules, int index) {
+    public AddCommand(Set<Module> modules, int index) {
         requireAllNonNull(modules, index);
         semesterIndex = index;
         modulesToAdd = modules;
     }
 
-    //TODO
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
@@ -106,7 +107,6 @@ public class AddCommand extends Command {
         }
 
         AddCommand command = (AddCommand) other;
-        return modulesToAdd.stream().allMatch(x ->
-                command.modulesToAdd.stream().anyMatch(y -> y.equals(x)));
+        return areEqualIgnoreOrder(modulesToAdd, command.modulesToAdd);
     }
 }

@@ -119,6 +119,11 @@ Format: `status`
 Shows a list of modules available for you to take based on modules that you have taken or are planning to take. +
 Format: `suggest`
 
+[NOTE]
+Currently, this feature is still under development. When it is done in v1.4, it will be able to suggest
+modules for students majoring in Computer Science, and taking the focus areas of
+Algorithms and Theory, Artificial Intelligence and Software Engineering.
+
 === Viewing help : `help`
 
 Format: `help`

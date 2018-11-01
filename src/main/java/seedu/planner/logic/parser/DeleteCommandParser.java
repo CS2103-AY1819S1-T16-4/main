@@ -3,7 +3,7 @@ package seedu.planner.logic.parser;
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.planner.logic.commands.DeleteCommand;
@@ -32,7 +32,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        List<Module> modules = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_CODE));
+        Set<Module> modules = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_CODE));
 
         return new DeleteCommand(modules);
     }

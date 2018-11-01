@@ -1,6 +1,5 @@
 package seedu.planner.model;
 
-import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -54,19 +53,17 @@ public interface Model {
      *
      * @param modules The modules
      */
-    void deleteModules(List<Module> modules);
+    void deleteModules(Set<Module> modules);
 
     //@@author RomaRomama
 
     /**
-     * Add list of modules into the specified semester
+     * Add set of modules into the specified semester
      *
-     * @param modules List of modules
+     * @param modules Set of modules
      * @param index Index of the semester
      */
-    void addModules(List<Module> modules, int index);
-
-    //@@author
+    void addModules(Set<Module> modules, int index);
 
     // @@author rongjiecomputer
 
@@ -79,17 +76,13 @@ public interface Model {
      * @param modules The modules to be finalized
      * @return The modules with their actual module information
      */
-    List<Module> finalizeModules(List<Module> modules);
-
-    // @@author
+    Set<Module> finalizeModules(Set<Module> modules);
 
     //@@author GabrielYik
 
-    //TODO: confirm filtered or sorted or both
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getTakenModuleList(int index);
 
-    //TODO: confirm filtered or sorted or both
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getAvailableModuleList();
 

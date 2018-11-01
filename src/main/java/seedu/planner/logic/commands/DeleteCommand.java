@@ -1,10 +1,12 @@
 package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.CommandHistory;
@@ -30,9 +32,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_MODULES_SUCCESS = "Deleted Module(s): %1$s";
 
-    private final List<Module> modulesToDelete;
+    private final Set<Module> modulesToDelete;
 
-    public DeleteCommand(List<Module> modules) {
+    public DeleteCommand(Set<Module> modules) {
         this.modulesToDelete = modules;
     }
 
@@ -77,7 +79,6 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand command = (DeleteCommand) other;
-        return modulesToDelete.stream().allMatch(x ->
-            command.modulesToDelete.stream().anyMatch(y -> y.equals(x)));
+        return areEqualIgnoreOrder(modulesToDelete, command.modulesToDelete);
     }
 }

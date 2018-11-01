@@ -2,17 +2,18 @@ package seedu.planner.logic.parser;
 
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1010;
-import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1231;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS2030;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2030;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
 import seedu.planner.logic.commands.DeleteCommand;
 import seedu.planner.model.module.Module;
-import seedu.planner.testutil.SampleModules;
 
 //@@author GabrielYik
 
@@ -26,14 +27,14 @@ import seedu.planner.testutil.SampleModules;
 public class DeleteCommandParserTest {
 
     private DeleteCommandParser parser = new DeleteCommandParser();
-    private List<Module> list1 = SampleModules.getModules(0, 1);
-    private List<Module> list2 = SampleModules.getModules(0, 2);
+    private Set<Module> moduleSet1 = Set.of(VALID_MODULE_CS1010);
+    private Set<Module> moduleSet2 = Set.of(VALID_MODULE_CS1010, VALID_MODULE_CS2030);
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, VALID_MODULE_CODE_DESC_CS1010, new DeleteCommand(list1));
-        assertParseSuccess(parser, VALID_MODULE_CODE_DESC_CS1010 + VALID_MODULE_CODE_DESC_CS1231,
-                new DeleteCommand(list2));
+        assertParseSuccess(parser, VALID_MODULE_CODE_DESC_CS1010, new DeleteCommand(moduleSet1));
+        assertParseSuccess(parser, VALID_MODULE_CODE_DESC_CS1010 + VALID_MODULE_CODE_DESC_CS2030,
+                new DeleteCommand(moduleSet2));
     }
 
     @Test

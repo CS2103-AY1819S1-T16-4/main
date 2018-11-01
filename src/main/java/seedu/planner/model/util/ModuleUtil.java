@@ -26,6 +26,10 @@ public class ModuleUtil {
 
     //@@author Hilda-Ang
 
+    private static boolean hasNotTakenModule(List<Module> modulesTaken, Module moduleToCheck) {
+        return !modulesTaken.contains(moduleToCheck);
+    }
+
     /**
      * Checks if all the prerequisites for the given {@code Module} have been taken.
      *
@@ -77,7 +81,8 @@ public class ModuleUtil {
      * @return True if all the prerequisites are fulfilled and no preclusion has been fulfilled.
      */
     public static boolean isModuleAvailableToTake(List<Module> modulesTaken, Module module) {
-        return hasFulfilledAllPrerequisites(modulesTaken, module)
+        return hasNotTakenModule(modulesTaken, module)
+            && hasFulfilledAllPrerequisites(modulesTaken, module)
             && hasNotFulfilledAnyPreclusions(modulesTaken, module);
     }
 }

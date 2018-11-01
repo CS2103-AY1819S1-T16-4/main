@@ -1,9 +1,11 @@
 package seedu.planner.logic.parser;
 
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.planner.commons.util.CollectionUtil.getAnyOne;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.planner.logic.commands.FindCommand;
@@ -25,9 +27,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        List<Module> moduleCodes = ParserUtil.parseModuleCodes(List.of(argMultimap.getValue(PREFIX_CODE).get()));
+        Set<Module> modules = ParserUtil.parseModuleCodes(List.of(argMultimap.getValue(PREFIX_CODE).get()));
+        Module module = getAnyOne(modules).get();
 
-        return new FindCommand(moduleCodes.get(0));
+        return new FindCommand(module);
     }
 
     /**

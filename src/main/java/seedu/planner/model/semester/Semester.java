@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -68,20 +69,20 @@ public class Semester {
     }
 
     /**
-     * Adds one or more module(s) to the list of modules taken.
+     * Adds one or more module(s) to the set of modules taken.
      *
-     * @param modules A non-empty list of modules to be added
+     * @param modules A non-empty set of modules to be added
      */
-    public void addModules(List<Module> modules) {
+    public void addModules(Set<Module> modules) {
         modulesTaken.addAll(modules);
     }
 
     /**
-     * Deletes one or more module(s) from list of modules taken if present.
+     * Deletes one or more module(s) from set of modules taken if present.
      *
-     * @param modules A non-empty list of modules to be deleted
+     * @param modules A non-empty set of modules to be deleted
      */
-    public void deleteModules(List<Module> modules) {
+    public void deleteModules(Set<Module> modules) {
         for (Module m : modules) {
             modulesTaken.remove(m);
         }

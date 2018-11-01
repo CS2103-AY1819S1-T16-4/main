@@ -3,14 +3,14 @@ package seedu.planner.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
@@ -29,6 +29,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final VersionedModulePlanner versionedModulePlanner;
 
+    private final FilteredList<Module> availableModules;
+
     //@@author Hilda-Ang
 
     /**
@@ -41,6 +43,8 @@ public class ModelManager extends ComponentManager implements Model {
         logger.fine("Initializing with planner: " + modulePlanner + " and user prefs " + userPrefs);
 
         versionedModulePlanner = new VersionedModulePlanner(modulePlanner);
+
+        availableModules = new FilteredList<>(versionedModulePlanner.getAvailableModuleList());
     }
 
     public ModelManager() {
@@ -82,7 +86,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void deleteModules(List<Module> moduleCodes) {
+    public void deleteModules(Set<Module> moduleCodes) {
         versionedModulePlanner.deleteModules(moduleCodes);
         indicateModulePlannerChanged();
     }
@@ -109,8 +113,8 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public List<Module> finalizeModules(List<Module> modules) {
-        List<Module> finalizedModules = new ArrayList<>();
+    public Set<Module> finalizeModules(Set<Module> modules) {
+        Set<Module> finalizedModules = new HashSet<>();
         for (Module m : modules) {
             finalizedModules.add(finalizeModule(m));
         }
@@ -120,8 +124,8 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author RomaRomama
 
     @Override
-    public void addModules(List<Module> modules, int index) {
-        List<Module> finalizedModules = finalizeModules(modules);
+    public void addModules(Set<Module> modules, int index) {
+        Set<Module> finalizedModules = finalizeModules(modules);
         versionedModulePlanner.addModules(finalizedModules, index);
         indicateModulePlannerChanged();
     }
@@ -139,8 +143,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public ObservableList<Module> getAvailableModuleList() {
-        return FXCollections.unmodifiableObservableList(
-                versionedModulePlanner.getModulesAvailable());
+        return FXCollections.unmodifiableObservableList(availableModules);
     }
 
     //@@author
