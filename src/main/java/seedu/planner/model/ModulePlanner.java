@@ -24,6 +24,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     public static final int MAX_NUMBER_SEMESTERS = 8;
     public static final int MAX_SEMESTERS_PER_YEAR = 2;
 
+    private static int currentIndex;
+
     /**
      * The number of {@code Module} groups that is shown to the user.
      * Currently, there are two groups: one for modules taken and
@@ -50,6 +52,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
                 semesters.add(new Semester(i, j));
             }
         }
+
+        currentIndex = 0;
     }
 
     /**
@@ -76,7 +80,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void addModules(Set<Module> modules, int index) {
         semesters.get(index).addModules(modules);
-        setAvailableModules(getModulesAvailable(index));
+        setAvailableModules(getModulesAvailable(currentIndex));
     }
 
     /**
@@ -88,7 +92,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         for (Semester semester : semesters) {
             semester.deleteModules(modules);
         }
-        setAvailableModules(getModulesAvailable(0));
+        setAvailableModules(getModulesAvailable(currentIndex));
     }
 
     /**
@@ -149,7 +153,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @return An {@code ObservableList} containing all the {@code Module}s
      */
     public ObservableList<Module> getAvailableModuleList() {
-        setAvailableModules(getModulesAvailable(MAX_NUMBER_SEMESTERS - 1));
+        setAvailableModules(getModulesAvailable(currentIndex));
         return availableModules;
     }
 
@@ -169,6 +173,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     public void suggestModules(int index) {
+        currentIndex = index;
         setAvailableModules(getModulesAvailable(index));
     }
 
