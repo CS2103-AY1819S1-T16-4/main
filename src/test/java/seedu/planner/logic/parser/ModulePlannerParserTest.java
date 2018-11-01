@@ -125,8 +125,8 @@ public class ModulePlannerParserTest {
     @Test
     public void parseCommand_setUp() throws Exception {
         SetUpCommand command = (SetUpCommand) parser.parseCommand(SetUpCommand.COMMAND_WORD
-            + VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE + VALID_MAJOR_DESC_CS + VALID_FOCUS_AREA_DESC_SE);
-        assertEquals(new SetUpCommand(VALID_YEAR_ONE, VALID_SEMESTER_ONE, VALID_MAJOR_CS, Set.of(VALID_FOCUS_AREA_SE)),
+            + VALID_MAJOR_DESC_CS + VALID_FOCUS_AREA_DESC_SE);
+        assertEquals(new SetUpCommand(VALID_MAJOR_CS, Set.of(VALID_FOCUS_AREA_SE)),
             command);
     }
 

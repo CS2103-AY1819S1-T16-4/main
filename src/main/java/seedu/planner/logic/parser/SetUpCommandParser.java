@@ -3,8 +3,6 @@ package seedu.planner.logic.parser;
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_FOCUS_AREA;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.HashSet;
 import java.util.Set;

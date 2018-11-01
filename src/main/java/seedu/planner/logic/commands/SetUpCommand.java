@@ -3,8 +3,6 @@ package seedu.planner.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_FOCUS_AREA;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Set;
 
@@ -14,7 +12,6 @@ import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.course.FocusArea;
 import seedu.planner.model.course.Major;
-import seedu.planner.model.util.IndexUtil;
 
 /**
  * Sets up the user profile.
@@ -33,8 +30,8 @@ public class SetUpCommand extends Command {
 
     public static final String MESSAGE_SET_UP_SUCCESS = "Set up complete.\n"
             + "Your User Profile\n"
-            + "Major: %3$s\n"
-            + "Focus Areas(s): %4$s";
+            + "Major: %1$s\n"
+            + "Focus Areas(s): %2$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets up your user profile.\n"
