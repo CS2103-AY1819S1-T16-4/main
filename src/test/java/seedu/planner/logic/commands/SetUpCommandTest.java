@@ -1,5 +1,7 @@
 package seedu.planner.logic.commands;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_FOCUS_AREA_LD;
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MAJOR_SS;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_FOCUS_AREA_PL;
@@ -82,5 +84,25 @@ public class SetUpCommandTest {
             + String.format(SetUpCommand.MESSAGE_INVALID_FOCUS_AREAS));
 
         assertCommandFailure(setUpCommand, model, commandHistory, expectedMessage);
+    }
+
+    @Test
+    public void equals() {
+        SetUpCommand setUpCommand = new SetUpCommand(VALID_MAJOR_CS, Set.of(VALID_FOCUS_AREA_SE));
+
+        // same object -> returns true
+        assertTrue(setUpCommand.equals(setUpCommand));
+
+        // same major and focus area -> returns true
+        assertTrue(setUpCommand.equals(new SetUpCommand(VALID_MAJOR_CS, Set.of(VALID_FOCUS_AREA_SE))));
+
+        // different focus area -> returns false
+        assertFalse(setUpCommand.equals(new SetUpCommand(VALID_MAJOR_CS, Set.of(VALID_FOCUS_AREA_PL))));
+
+        // null -> returns false
+        assertFalse(setUpCommand.equals(null));
+
+        // different type -> returns false
+        assertFalse(setUpCommand.equals(5));
     }
 }
