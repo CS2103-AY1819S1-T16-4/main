@@ -18,12 +18,10 @@ public interface Model {
     /**
      * Sets up the user profile.
      *
-     * @param year The year of study
-     * @param semester The semester in the year of study
      * @param major The major
      * @param focusAreas The focus areas
      */
-    void setUpUserProfile(int year, int semester, String major, Set<String> focusAreas);
+    void setUpUserProfile(String major, Set<String> focusAreas);
 
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyModulePlanner newData);

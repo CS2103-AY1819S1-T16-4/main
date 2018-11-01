@@ -54,8 +54,8 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author GabrielYik
 
     @Override
-    public void setUpUserProfile(int year, int semester, String major, Set<String> focusAreas) {
-        versionedModulePlanner.setUserProfile(new UserProfile(year, semester, major, focusAreas));
+    public void setUpUserProfile(String major, Set<String> focusAreas) {
+        versionedModulePlanner.setUserProfile(new UserProfile(major, focusAreas));
         indicateModulePlannerChanged();
     }
 

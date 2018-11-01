@@ -27,42 +27,29 @@ public class SetUpCommand extends Command {
 
     public static final String MESSAGE_FOCUS_AREA_CONSTRAINTS = "The focus area should contain only alphabets";
 
-    public static final String MESSAGE_INVALID_YEAR = "Invalid year (%d): must be in range of [0, 4]\n";
-
-    public static final String MESSAGE_INVALID_SEMESTER = "Invalid semester (%d): must be in range of [1, 2]\n";
-
     public static final String MESSAGE_INVALID_MAJOR = "Invalid major (%s)\n";
 
     public static final String MESSAGE_INVALID_FOCUS_AREAS = "One or more focus area is invalid\n";
 
     public static final String MESSAGE_SET_UP_SUCCESS = "Set up complete.\n"
             + "Your User Profile\n"
-            + "Year: %1$d | Semester: %2$d\n"
             + "Major: %3$s\n"
             + "Focus Areas(s): %4$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets up your user profile.\n"
             + "Parameters: "
-            + PREFIX_YEAR + "YEAR "
-            + PREFIX_SEMESTER + "SEMESTER "
             + PREFIX_MAJOR + "MAJOR "
             + "[" + PREFIX_FOCUS_AREA + "FOCUS AREA]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_YEAR + "1 "
-            + PREFIX_SEMESTER + "1 "
             + PREFIX_MAJOR + "Computer Science "
             + PREFIX_FOCUS_AREA + "Software Engineering "
             + PREFIX_FOCUS_AREA + "Programming Languages";
 
-    private int year;
-    private int semester;
     private String major;
     private Set<String> focusAreas;
 
-    public SetUpCommand(int year, int semester, String major, Set<String> focusAreas) {
-        this.year = year;
-        this.semester = semester;
+    public SetUpCommand(String major, Set<String> focusAreas) {
         this.major = major;
         this.focusAreas = focusAreas;
     }
@@ -72,14 +59,6 @@ public class SetUpCommand extends Command {
         requireNonNull(model);
 
         String errorMsg = "";
-
-        if (!IndexUtil.isValidYear(year)) {
-            errorMsg += String.format(MESSAGE_INVALID_YEAR, year);
-        }
-
-        if (!IndexUtil.isValidSemester(semester)) {
-            errorMsg += String.format(MESSAGE_INVALID_SEMESTER, semester);
-        }
 
         if (!Major.hasMajor(major)) {
             errorMsg += String.format(MESSAGE_INVALID_MAJOR, major);
@@ -93,9 +72,9 @@ public class SetUpCommand extends Command {
             throw new CommandException(errorMsg);
         }
 
-        model.setUpUserProfile(year, semester, major, focusAreas);
+        model.setUpUserProfile(major, focusAreas);
         return new CommandResult(String.format(
-                MESSAGE_SET_UP_SUCCESS, year, semester, major, StringUtil.convertCollectionToString(focusAreas)));
+                MESSAGE_SET_UP_SUCCESS, major, StringUtil.convertCollectionToString(focusAreas)));
     }
 
     @Override
@@ -110,9 +89,7 @@ public class SetUpCommand extends Command {
         }
 
         SetUpCommand command = (SetUpCommand) other;
-        return this.year == command.year
-                && this.semester == command.semester
-                && this.major.equals(command.major)
+        return this.major.equals(command.major)
                 && this.focusAreas.equals(command.focusAreas);
     }
 }

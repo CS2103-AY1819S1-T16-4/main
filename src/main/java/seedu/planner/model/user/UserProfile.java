@@ -14,35 +14,27 @@ import seedu.planner.model.course.Major;
  * Represents the profile of the user.
  */
 public class UserProfile {
-    private final int year;
-    private final int semester;
     private final Major major;
     private final List<FocusArea> focusAreas;
 
     public UserProfile() {
-        this(1, 1, Major.COMPUTER_SCIENCE, new ArrayList<>());
+        this(Major.COMPUTER_SCIENCE, new ArrayList<>());
     }
 
     /**
      * Copy constructor
      */
     public UserProfile(UserProfile copy) {
-        this.year = copy.year;
-        this.semester = copy.semester;
         this.major = copy.major;
         this.focusAreas = new ArrayList<>(copy.focusAreas);
     }
 
-    public UserProfile(int year, int semester, String major, Set<String> focusAreas) {
-        this.year = year;
-        this.semester = semester;
+    public UserProfile(String major, Set<String> focusAreas) {
         this.major = mapMajor(major);
         this.focusAreas = mapFocusAreas(focusAreas);
     }
 
-    public UserProfile(int year, int semester, Major major, List<FocusArea> focusAreas) {
-        this.year = year;
-        this.semester = semester;
+    public UserProfile(Major major, List<FocusArea> focusAreas) {
         this.major = major;
         this.focusAreas = focusAreas;
     }
@@ -94,24 +86,6 @@ public class UserProfile {
         Collections.sort(focusAreaList);
 
         return focusAreaList;
-    }
-
-    /**
-     * Returns the current year of study.
-     *
-     * @return The current year of study
-     */
-    public int getYear() {
-        return year;
-    }
-
-    /**
-     * Returns the current semester in the year of study.
-     *
-     * @return The current semester in the year of study
-     */
-    public int getSemester() {
-        return semester;
     }
 
     /**
