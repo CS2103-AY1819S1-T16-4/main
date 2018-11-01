@@ -1,7 +1,6 @@
 package seedu.planner.ui;
 
 import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
-import static seedu.planner.model.ModulePlanner.NUMBER_MODULE_GROUPS;
 
 import java.util.logging.Logger;
 
@@ -217,6 +216,18 @@ public class MainWindow extends UiPart<Stage> {
     @Subscribe
     private void handleTabSwitch(TabSwitchEvent event) {
         semestersTabPane.getSelectionModel().select(event.getIndex());
+
+        ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
+        for (int semesterIndex = 0; semesterIndex < semesterTabs.size(); semesterIndex++) {
+            SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
+            ObservableList<Node> nodes = splitPane.getItems();
+
+            VBox vBox = (VBox) nodes.get(1);
+            StackPane stackPane = (StackPane) vBox.getChildren().get(0);
+            SuggestModulePanel suggestModulePanel = new SuggestModulePanel();
+            Node n = suggestModulePanel.getRoot();
+            stackPane.getChildren().add(n);
+        }
     }
 
     @Subscribe
@@ -246,18 +257,4 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    @Subscribe
-    private void handleGoTo(GoToEvent event) {
-        ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
-        for (int semesterIndex = 0; semesterIndex < semesterTabs.size(); semesterIndex++) {
-            SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
-            ObservableList<Node> nodes = splitPane.getItems();
-
-            VBox vBox = (VBox) nodes.get(1);
-            StackPane stackPane = (StackPane) vBox.getChildren().get(0);
-            SuggestModulePanel suggestModulePanel = new SuggestModulePanel();
-            Node n = suggestModulePanel.getRoot();
-            stackPane.getChildren().add(n);
-        }
-    }
 }
