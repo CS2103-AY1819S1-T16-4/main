@@ -140,6 +140,8 @@ public class Semester {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Semester // instanceof handles nulls
+                && index == ((Semester) other).getIndex()
+                && year == ((Semester) other).getYear()
                 && modulesTaken.equals(((Semester) other).modulesTaken));
     }
 

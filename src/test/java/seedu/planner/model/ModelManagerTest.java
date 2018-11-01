@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
+import java.nio.file.Paths;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -35,13 +37,17 @@ public class ModelManagerTest {
         assertTrue(modelManager.hasModule(CS1010));
     }
 
-    /*
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getTakenModuleList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        modelManager.getFilteredPersonList().remove(0);
+        modelManager.getTakenModuleList(0).remove(0);
     }
-    */
+
+    @Test
+    public void getAvailableModuleList_modifyList_throwsUnsupportedOperationException() {
+        thrown.expect(UnsupportedOperationException.class);
+        modelManager.getAvailableModuleList().remove(0);
+    }
 
     @Test
     public void equals() {
@@ -66,14 +72,9 @@ public class ModelManagerTest {
         // different modulePlanner -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentModulePlanner, userPrefs)));
 
-        // different filteredList -> returns false
-        // String[] keywords = ALICE.getName().fullName.split("\\s+");
-        // modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        // assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-
         // different userPrefs -> returns true
-        // UserPrefs differentUserPrefs = new UserPrefs();
-        // differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        // assertTrue(modelManager.equals(new ModelManager(modulePlanner, differentUserPrefs)));
+        UserPrefs differentUserPrefs = new UserPrefs();
+        differentUserPrefs.setModulePlannerFilePath(Paths.get("differentFilePath"));
+        assertTrue(modelManager.equals(new ModelManager(modulePlanner, differentUserPrefs)));
     }
 }

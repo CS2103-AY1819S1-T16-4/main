@@ -2,11 +2,14 @@ package seedu.planner.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.getTypicalModulePlanner;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
+
+import java.util.HashSet;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -18,13 +21,6 @@ public class ModulePlannerTest {
     public ExpectedException thrown = ExpectedException.none();
 
     private final ModulePlanner modulePlanner = new ModulePlanner();
-
-    /*
-    @Test
-    public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
-    }
-    */
 
     @Test
     public void resetData_null_throwsNullPointerException() {
@@ -54,6 +50,18 @@ public class ModulePlannerTest {
     */
 
     @Test
+    public void addModules_invalidIndex_throwsIndexOutOfBoundsException() {
+        thrown.expect(IndexOutOfBoundsException.class);
+        modulePlanner.addModules(getTypicalModules(), 8);
+    }
+
+    @Test
+    public void addModules_validIndex_success() {
+        modulePlanner.addModules(getTypicalModules(), 0);
+        assertEquals(new HashSet<>(modulePlanner.getModulesTaken(0)), getTypicalModules());
+    }
+
+    @Test
     public void hasModule_nullModule_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         modulePlanner.hasModule(null);
@@ -70,6 +78,67 @@ public class ModulePlannerTest {
         assertTrue(modulePlanner.hasModule(CS1010));
     }
 
+    @Test
+    public void getModulesTaken_sameIndex_returnsSameList() {
+        modulePlanner.addModules(getTypicalModules(), 0);
+        assertEquals(modulePlanner.getModulesTaken(0), modulePlanner.getModulesTaken(0));
+    }
+
+    @Test
+    public void getModulesTaken_differentIndex_returnsDifferentList() {
+        modulePlanner.addModules(getTypicalModules(), 0);
+        assertNotEquals(modulePlanner.getModulesTaken(0), modulePlanner.getModulesTaken(1));
+    }
+
+    @Test
+    public void getModulesTaken_modifyList_throwsUnsupportedOperationException() {
+        thrown.expect(UnsupportedOperationException.class);
+        modulePlanner.getModulesTaken(0).remove(0);
+    }
+
+    @Test
+    public void getModulesAvailable_sameModules_returnsSameList() {
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        assertEquals(modulePlanner.getAvailableModuleList(), differentModulePlanner.getAvailableModuleList());
+    }
+
+    @Test
+    public void getModulesAvailable_sameModulesAdded_returnsSameList() {
+        modulePlanner.addModules(getTypicalModules(), 0);
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), 7);
+        assertEquals(modulePlanner.getAvailableModuleList(), differentModulePlanner.getAvailableModuleList());
+    }
+
+    @Test
+    public void getModulesAvailable_differentModules_returnsDifferentList() {
+        ModulePlanner differentModulePlanner = getTypicalModulePlanner();
+        assertNotEquals(modulePlanner.getAvailableModuleList(), differentModulePlanner.getAvailableModuleList());
+    }
+
+    @Test
+    public void equals() {
+        modulePlanner.addModules(getTypicalModules(), 1);
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), 1);
+
+        // same modules in same semester -> returns true
+        assertTrue(modulePlanner.equals(differentModulePlanner));
+
+        // same object -> returns true
+        assertTrue(modulePlanner.equals(modulePlanner));
+
+        // null -> returns false
+        assertFalse(modulePlanner.equals(null));
+
+        // different types -> returns false
+        assertFalse(modulePlanner.equals(5));
+
+        // different modules in different semester -> returns false
+        assertFalse(modulePlanner.equals(getTypicalModulePlanner()));
+
+    }
+
     /*
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
@@ -77,14 +146,6 @@ public class ModulePlannerTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
-    }
-    */
-
-    /*
-    @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        thrown.expect(UnsupportedOperationException.class);
-        addressBook.getPersonList().remove(0);
     }
     */
 
