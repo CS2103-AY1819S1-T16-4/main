@@ -5,10 +5,15 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.planner.model.util.IndexUtil.isValidIndex;
 
+import javafx.collections.ObservableList;
+
+import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.core.Messages;
+import seedu.planner.commons.events.ui.SuggestModuleEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
+import seedu.planner.model.module.Module;
 
 //@@author Hilda-Ang
 
@@ -47,6 +52,9 @@ public class SuggestCommand extends Command {
         }
 
         model.suggestModules(index);
+        ObservableList<Module> moduleList = model.getAvailableModuleList();
+        EventsCenter.getInstance().post(new SuggestModuleEvent(moduleList));
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, index));
     }
 

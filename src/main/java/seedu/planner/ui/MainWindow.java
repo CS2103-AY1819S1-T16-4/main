@@ -27,6 +27,7 @@ import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.ui.ExitAppRequestEvent;
 import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
+import seedu.planner.commons.events.ui.SuggestModuleEvent;
 import seedu.planner.commons.events.ui.TabSwitchEvent;
 import seedu.planner.logic.Logic;
 import seedu.planner.model.UserPrefs;
@@ -126,13 +127,10 @@ public class MainWindow extends UiPart<Stage> {
 
         //@@author GabrielYik
         ModuleListPanel[] takenModulesListPanels = new ModuleListPanel[MAX_NUMBER_SEMESTERS];
-        ModuleListPanel[] availableModulesListPanels = new ModuleListPanel[MAX_NUMBER_SEMESTERS];
 
         for (int semesterIndex = 0; semesterIndex < MAX_NUMBER_SEMESTERS; semesterIndex++) {
             takenModulesListPanels[semesterIndex] = new ModuleListPanel(
                     logic.getTakenModuleList(semesterIndex));
-            availableModulesListPanels[semesterIndex] = new ModuleListPanel(
-                    logic.getAvailableModuleList());
         }
 
         ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
@@ -140,14 +138,10 @@ public class MainWindow extends UiPart<Stage> {
             SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
             ObservableList<Node> nodes = splitPane.getItems();
 
-            for (int i = 0; i < NUMBER_MODULE_GROUPS; i++) {
-                VBox vBox = (VBox) nodes.get(i);
-                StackPane stackPane = (StackPane) vBox.getChildren().get(0);
-                Node n = (i == 0)
-                        ? takenModulesListPanels[semesterIndex].getRoot()
-                        : availableModulesListPanels[semesterIndex].getRoot();
-                stackPane.getChildren().add(n);
-            }
+            VBox vBox = (VBox) nodes.get(0);
+            StackPane stackPane = (StackPane) vBox.getChildren().get(0);
+            Node n = takenModulesListPanels[semesterIndex].getRoot();
+            stackPane.getChildren().add(n);
         }
 
         //@@author
@@ -234,6 +228,21 @@ public class MainWindow extends UiPart<Stage> {
             StackPane stackPane = (StackPane) nodes.get(2);
             FindModulePanel findModulePanel = new FindModulePanel(event.getModule());
             stackPane.getChildren().add(findModulePanel.getRoot());
+        }
+    }
+
+    @Subscribe
+    private void handleSuggestModule(SuggestModuleEvent event) {
+        ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
+        for (int semesterIndex = 0; semesterIndex < semesterTabs.size(); semesterIndex++) {
+            SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
+            ObservableList<Node> nodes = splitPane.getItems();
+
+            VBox vBox = (VBox) nodes.get(1);
+            StackPane stackPane = (StackPane) vBox.getChildren().get(0);
+            SuggestModulePanel suggestModulePanel = new SuggestModulePanel(event.getModuleList());
+            Node n = suggestModulePanel.getRoot();
+            stackPane.getChildren().add(n);
         }
     }
 }
