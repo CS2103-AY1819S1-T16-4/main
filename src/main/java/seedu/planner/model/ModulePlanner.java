@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
-import seedu.planner.model.module.UniqueModuleList;
 import seedu.planner.model.semester.Semester;
 import seedu.planner.model.user.UserProfile;
 import seedu.planner.model.util.ModuleUtil;
@@ -36,18 +35,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private final List<Semester> semesters;
     private UserProfile userProfile;
 
-    private final UniqueModuleList availableModules;
-
-    /*
-     * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-    {
-        availableModules = new UniqueModuleList();
-    }
+    private final ObservableList<Module> availableModules = FXCollections.observableArrayList();
 
     /**
      * Constructs a {@code ModulePlanner} and initializes an array of 8 {@code Semester}
@@ -77,7 +65,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * {@code modules} must not contain duplicate modules.
      */
     public void setAvailableModules(List<Module> modules) {
-        availableModules.setModules(modules);
+        availableModules.setAll(modules);
     }
 
     /**
@@ -162,7 +150,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public ObservableList<Module> getAvailableModuleList() {
         setAvailableModules(getModulesAvailable());
-        return availableModules.asUnmodifiableObservableList();
+        return availableModules;
     }
 
     /**
