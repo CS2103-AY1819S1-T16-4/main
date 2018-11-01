@@ -42,15 +42,16 @@ public class ModuleUtilTest {
     public void isModuleAvailableToTake_moduleAvailable_returnsTrue() {
         List<Module> modules = new ArrayList<>();
         modules.addAll(getTypicalModules());
-        assertTrue(isModuleAvailableToTake(new ArrayList<>(), CS1010));
-        assertTrue(isModuleAvailableToTake(modules, CS2040));
+        assertTrue(isModuleAvailableToTake(new ArrayList<>(), new ArrayList<>(), CS1010));
+        assertTrue(isModuleAvailableToTake(modules, modules, CS2040));
     }
 
     @Test
     public void isModuleAvailableToTake_moduleNotAvailable_returnsFalse() {
         List<Module> modules = new ArrayList<>();
         modules.addAll(getTypicalModules());
-        assertFalse(isModuleAvailableToTake(new ArrayList<>(), CS2040));
-        assertFalse(isModuleAvailableToTake(modules, CS1020));
+        assertFalse(isModuleAvailableToTake(new ArrayList<>(), new ArrayList<>(), CS2040));
+        assertFalse(isModuleAvailableToTake(modules, modules, CS1020));
+        assertFalse(isModuleAvailableToTake(modules, new ArrayList<>(), CS2040));
     }
 }

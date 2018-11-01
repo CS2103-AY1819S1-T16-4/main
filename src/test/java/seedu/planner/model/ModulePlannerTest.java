@@ -103,14 +103,6 @@ public class ModulePlannerTest {
     }
 
     @Test
-    public void getModulesAvailable_sameModulesAdded_returnsSameList() {
-        modulePlanner.addModules(getTypicalModules(), 0);
-        ModulePlanner differentModulePlanner = new ModulePlanner();
-        differentModulePlanner.addModules(getTypicalModules(), 7);
-        assertEquals(modulePlanner.getAvailableModuleList(), differentModulePlanner.getAvailableModuleList());
-    }
-
-    @Test
     public void getModulesAvailable_differentModules_returnsDifferentList() {
         ModulePlanner differentModulePlanner = getTypicalModulePlanner();
         assertNotEquals(modulePlanner.getAvailableModuleList(), differentModulePlanner.getAvailableModuleList());

@@ -6,6 +6,7 @@ import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_FOCUS_AREA_DESC_SE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_FOCUS_AREA_SE;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_INDEX_ZERO;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MAJOR_CS;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MAJOR_DESC_CS;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1010;
@@ -138,8 +139,10 @@ public class ModulePlannerParserTest {
 
     @Test
     public void parseCommand_suggest() throws Exception {
-        assertTrue(parser.parseCommand(SuggestCommand.COMMAND_WORD) instanceof SuggestCommand);
-        assertTrue(parser.parseCommand(SuggestCommand.COMMAND_WORD + " 3") instanceof SuggestCommand);
+        SuggestCommand command = (SuggestCommand) parser.parseCommand(SuggestCommand.COMMAND_WORD
+            + VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE);
+        assertEquals(new SuggestCommand(VALID_INDEX_ZERO),
+            command);
     }
 
     @Test
