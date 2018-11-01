@@ -7,8 +7,8 @@ import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.CS2030;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -26,13 +26,13 @@ public class SemesterTest {
     @Test
     public void addModulesTaken_success() {
         semester.addModules(getTypicalModules());
-        assertEquals(semester.getModules(), getTypicalModules());
+        assertEquals(new HashSet<>(semester.getModules()), getTypicalModules());
     }
 
     @Test
     public void deleteModules_modulesInSemester_success() {
         semester.addModules(getTypicalModules());
-        List<Module> modules = new ArrayList<>();
+        Set<Module> modules = new HashSet<>();
         modules.add(CS1010);
         semester.deleteModules(modules);
 

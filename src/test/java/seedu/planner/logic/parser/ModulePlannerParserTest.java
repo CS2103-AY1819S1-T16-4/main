@@ -50,7 +50,7 @@ public class ModulePlannerParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        List<Module> modules = getTypicalModules();
+        Set<Module> modules = getTypicalModules();
         AddCommand command = (AddCommand) parser.parseCommand(AddCommand.COMMAND_WORD + VALID_YEAR_DESC_ONE
             + VALID_SEMESTER_DESC_ONE + VALID_MODULE_CODE_DESC_CS1010 + VALID_MODULE_CODE_DESC_CS2030);
         assertEquals(new AddCommand(modules, INDEX_FIRST),
@@ -65,7 +65,7 @@ public class ModulePlannerParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        List<Module> modules = getTypicalModules();
+        Set<Module> modules = getTypicalModules();
         DeleteCommand command = (DeleteCommand) parser.parseCommand(DeleteCommand.COMMAND_WORD
             + VALID_MODULE_CODE_DESC_CS1010 + VALID_MODULE_CODE_DESC_CS2030);
         assertEquals(new DeleteCommand(modules), command);

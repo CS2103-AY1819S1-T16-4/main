@@ -13,6 +13,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.HashSet;
+
 public class ModulePlannerTest {
 
     @Rule
@@ -56,7 +58,7 @@ public class ModulePlannerTest {
     @Test
     public void addModules_validIndex_success() {
         modulePlanner.addModules(getTypicalModules(), 0);
-        assertEquals(modulePlanner.getModulesTaken(0), getTypicalModules());
+        assertEquals(new HashSet<>(modulePlanner.getModulesTaken(0)), getTypicalModules());
     }
 
     @Test
@@ -97,7 +99,7 @@ public class ModulePlannerTest {
     @Test
     public void getModulesAvailable_sameModules_returnsSameList() {
         ModulePlanner differentModulePlanner = new ModulePlanner();
-        assertEquals(modulePlanner.getModulesAvailable(), differentModulePlanner.getModulesAvailable());
+        assertEquals(modulePlanner.getAvailableModuleList(), differentModulePlanner.getAvailableModuleList());
     }
 
     @Test
@@ -105,13 +107,13 @@ public class ModulePlannerTest {
         modulePlanner.addModules(getTypicalModules(), 0);
         ModulePlanner differentModulePlanner = new ModulePlanner();
         differentModulePlanner.addModules(getTypicalModules(), 7);
-        assertEquals(modulePlanner.getModulesAvailable(), differentModulePlanner.getModulesAvailable());
+        assertEquals(modulePlanner.getAvailableModuleList(), differentModulePlanner.getAvailableModuleList());
     }
 
     @Test
     public void getModulesAvailable_differentModules_returnsDifferentList() {
         ModulePlanner differentModulePlanner = getTypicalModulePlanner();
-        assertNotEquals(modulePlanner.getModulesAvailable(), differentModulePlanner.getModulesAvailable());
+        assertNotEquals(modulePlanner.getAvailableModuleList(), differentModulePlanner.getAvailableModuleList());
     }
 
     @Test

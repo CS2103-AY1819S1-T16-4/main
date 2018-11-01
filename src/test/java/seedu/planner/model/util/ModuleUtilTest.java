@@ -9,8 +9,11 @@ import static seedu.planner.testutil.TypicalModules.CS2040;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
+
+import seedu.planner.model.module.Module;
 
 public class ModuleUtilTest {
 
@@ -37,13 +40,17 @@ public class ModuleUtilTest {
 
     @Test
     public void isModuleAvailableToTake_moduleAvailable_returnsTrue() {
+        List<Module> modules = new ArrayList<>();
+        modules.addAll(getTypicalModules());
         assertTrue(isModuleAvailableToTake(new ArrayList<>(), CS1010));
-        assertTrue(isModuleAvailableToTake(getTypicalModules(), CS2040));
+        assertTrue(isModuleAvailableToTake(modules, CS2040));
     }
 
     @Test
     public void isModuleAvailableToTake_moduleNotAvailable_returnsFalse() {
+        List<Module> modules = new ArrayList<>();
+        modules.addAll(getTypicalModules());
         assertFalse(isModuleAvailableToTake(new ArrayList<>(), CS2040));
-        assertFalse(isModuleAvailableToTake(getTypicalModules(), CS1020));
+        assertFalse(isModuleAvailableToTake(modules, CS1020));
     }
 }
