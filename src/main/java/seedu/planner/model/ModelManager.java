@@ -137,7 +137,8 @@ public class ModelManager extends ComponentManager implements Model {
         versionedModulePlanner.suggestModules(index);
     }
 
-    //=========== Filtered Module List Accessors =============================================================
+    //=========== Module List Accessors =============================================================
+
     //@@author GabrielYik
 
     @Override
