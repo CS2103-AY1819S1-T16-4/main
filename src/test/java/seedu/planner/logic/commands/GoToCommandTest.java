@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.planner.commons.core.Messages;
-import seedu.planner.commons.events.ui.TabSwitchEvent;
+import seedu.planner.commons.events.ui.GoToEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -47,7 +47,7 @@ public class GoToCommandTest {
         }
 
         assertEquals(expectedMessage, result.feedbackToUser);
-        assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof TabSwitchEvent);
+        assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof GoToEvent);
         assertEquals(eventsCollectorRule.eventsCollector.getSize(), 1);
     }
 

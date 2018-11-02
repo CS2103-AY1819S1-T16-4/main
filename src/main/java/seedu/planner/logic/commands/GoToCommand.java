@@ -8,7 +8,7 @@ import static seedu.planner.model.util.IndexUtil.isValidYear;
 
 import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.core.Messages;
-import seedu.planner.commons.events.ui.TabSwitchEvent;
+import seedu.planner.commons.events.ui.GoToEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -53,7 +53,7 @@ public class GoToCommand extends Command {
         }
 
         int tabIndex = convertYearAndSemesterToIndex(year, semester);
-        EventsCenter.getInstance().post(new TabSwitchEvent(tabIndex));
+        EventsCenter.getInstance().post(new GoToEvent(tabIndex));
         return new CommandResult(String.format(SHOWING_GOTO_MESSAGE, year, semester));
     }
 

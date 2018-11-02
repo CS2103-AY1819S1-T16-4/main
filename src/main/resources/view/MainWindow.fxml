@@ -54,7 +54,7 @@
                         <StackPane VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
-                  <VBox fx:id="suggestedModulesPlaceholder" minWidth="340.0" prefWidth="340">
+                  <VBox fx:id="suggestedModulesPlaceholder" minWidth="340.0" prefWidth="340.0">
                      <padding>
                         <Insets bottom="10" left="10" right="10" top="10" />
                      </padding>
@@ -62,7 +62,7 @@
                         <StackPane VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
-                  <StackPane fx:id="multiPurposePanelPlaceholder" prefWidth="340">
+                  <StackPane fx:id="multiPurposePanelPlaceholder" minWidth="340.0" prefWidth="340.0">
                      <padding>
                         <Insets bottom="10" left="10" right="10" top="10" />
                      </padding>

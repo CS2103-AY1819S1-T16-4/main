@@ -21,10 +21,16 @@ import seedu.planner.model.module.Module;
  */
 public class ModuleListPanel extends UiPart<Region> {
     private static final String FXML = "ModuleListPanel.fxml";
+
     private static final String YEAR = "Year ";
+
     private static final String DIVIDER = " | ";
+
     private static final String SEMESTER = "Semester ";
+
     private final Logger logger = LogsCenter.getLogger(ModuleListPanel.class);
+
+    private final ModulePanelType type;
 
     @FXML
     private Label title;
@@ -37,6 +43,7 @@ public class ModuleListPanel extends UiPart<Region> {
 
     public ModuleListPanel(ObservableList<Module> moduleList, int index, ModulePanelType type) {
         super(FXML);
+        this.type = type;
 
         setConnections(moduleList);
         setHeader(index, type);
@@ -66,6 +73,11 @@ public class ModuleListPanel extends UiPart<Region> {
         String semester = splitYearAndSemester[1];
         title.setText("Modules " + type.toString());
         subTitle.setText(YEAR + year + DIVIDER + SEMESTER + semester);
+    }
+
+    public ModuleListPanel timeless() {
+        subTitle.setText("");
+        return this;
     }
 
     /**

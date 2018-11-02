@@ -8,25 +8,32 @@ import java.util.logging.Logger;
 
 import com.google.common.eventbus.Subscribe;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.planner.commons.core.Config;
 import seedu.planner.commons.core.GuiSettings;
 import seedu.planner.commons.core.LogsCenter;
+import seedu.planner.commons.events.ui.AddModuleEvent;
+import seedu.planner.commons.events.ui.ClearEvent;
 import seedu.planner.commons.events.ui.ExitAppRequestEvent;
 import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
 import seedu.planner.commons.events.ui.SuggestModuleEvent;
-import seedu.planner.commons.events.ui.TabSwitchEvent;
+import seedu.planner.commons.events.ui.GoToEvent;
 import seedu.planner.logic.Logic;
 import seedu.planner.model.UserPrefs;
+import seedu.planner.model.module.Module;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -35,6 +42,10 @@ import seedu.planner.model.UserPrefs;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+
+    private static final int CURRENT_NODE = 1;
+
+    private static final int TIMELESS = -1;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -47,6 +58,10 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     private List<ModuleListPanel> takenModuleListPanels;
+
+    private ModuleListPanel timelessTakenModuleListPanel;
+
+    private ModuleListPanel timelessSuggestedModuleListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -130,6 +145,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         initTakenModulesPanel();
+        initSuggestedModulesPanel();
 
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -148,15 +164,30 @@ public class MainWindow extends UiPart<Stage> {
         takenModuleListPanels = new ArrayList<>(MAX_NUMBER_SEMESTERS);
 
         for (int semesterIndex = 0; semesterIndex < MAX_NUMBER_SEMESTERS; semesterIndex++) {
-            ModuleListPanel takenModuleListPanel = new ModuleListPanel(
-                    logic.getTakenModuleList(semesterIndex), semesterIndex, ModulePanelType.TAKEN);
+            ObservableList<Module> modules = logic.getTakenModuleList(semesterIndex);
+            ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules,
+                    semesterIndex, ModulePanelType.TAKEN);
             takenModuleListPanels.add(semesterIndex, takenModuleListPanel);
         }
+        timelessTakenModuleListPanel = new ModuleListPanel(FXCollections.emptyObservableList(),
+                TIMELESS, ModulePanelType.TAKEN).timeless();
 
-        takenModulesPlaceholder.getChildren().add(takenModuleListPanels.get(0).getRoot());
+        takenModulesPlaceholder.getChildren().add(timelessTakenModuleListPanel.getRoot());
     }
 
+    private void initSuggestedModulesPanel() {
+        timelessSuggestedModuleListPanel = new ModuleListPanel(FXCollections.emptyObservableList(),
+                TIMELESS, ModulePanelType.SUGGESTED).timeless();
+        suggestedModulesPlaceholder.getChildren().add(timelessSuggestedModuleListPanel.getRoot());
+    }
 
+    private void updatePane(Pane pane, UiPart<Region> part) {
+        if (pane.getChildren().size() == 1) {
+            pane.getChildren().add(part.getRoot());
+        } else {
+            pane.getChildren().set(CURRENT_NODE, part.getRoot());
+        }
+    }
 
     //@@author
 
@@ -221,20 +252,44 @@ public class MainWindow extends UiPart<Stage> {
     //@@author GabrielYik
 
     @Subscribe
-    private void handleGoToEvent(TabSwitchEvent event) {
+    private void handleAddModuleEvent(AddModuleEvent event) {
+        updatePane(takenModulesPlaceholder, takenModuleListPanels.get(event.getIndex()));
+    }
+
+    @Subscribe
+    private void handleGoToEvent(GoToEvent event) {
         ModuleListPanel panelReplacement = takenModuleListPanels.get(event.getIndex());
-        takenModulesPlaceholder.getChildren().setAll(panelReplacement.getRoot());
+        takenModulesPlaceholder.getChildren().set(CURRENT_NODE, panelReplacement.getRoot());
     }
 
     @Subscribe
     private void handleFindEvent(FindModuleEvent event) {
         FindModulePanel findModulePanel = new FindModulePanel(event.getModule());
-        multiPurposePanelPlaceholder.getChildren().add(findModulePanel.getRoot());
-        initTakenModulesPanel();
+        updateMultiPurposePanel(findModulePanel);
+    }
+
+    private void updateMultiPurposePanel(ModuleDescription newPanel) {
+        updatePane(multiPurposePanelPlaceholder, newPanel);
+    }
+
+    @Subscribe
+    private void handleClearEvent(ClearEvent event) {
+        clearTakenModulesPanel();
+        clearSuggestedModulesPanel();
+    }
+
+    private void clearTakenModulesPanel() {
+        updatePane(takenModulesPlaceholder, timelessTakenModuleListPanel);
+    }
+
+    private void clearSuggestedModulesPanel() {
+        updatePane(suggestedModulesPlaceholder, timelessSuggestedModuleListPanel);
     }
 
     @Subscribe
     private void handleSuggestModule(SuggestModuleEvent event) {
-
+        ModuleListPanel panel = new ModuleListPanel(event.getModuleList(),
+                event.getIndex(), ModulePanelType.SUGGESTED);
+        suggestedModulesPlaceholder.getChildren().set(CURRENT_NODE, panel.getRoot());
     }
 }

@@ -3,13 +3,13 @@ package seedu.planner.commons.events.ui;
 import seedu.planner.commons.events.BaseEvent;
 
 /**
- * An event to switch tabs in the ui.
+ * An event to switch the year semester view in the ui.
  */
-public class TabSwitchEvent extends BaseEvent {
+public class GoToEvent extends BaseEvent {
 
     private final int index;
 
-    public TabSwitchEvent(int index) {
+    public GoToEvent(int index) {
         this.index = index;
     }
 
