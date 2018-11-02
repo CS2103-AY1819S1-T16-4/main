@@ -51,4 +51,27 @@ public class IndexUtil {
     public static int convertYearAndSemesterToIndex(int year, int semester) {
         return year * NUM_OF_SEMESTER_IN_YEAR - NUM_OF_SEMESTER_IN_YEAR + semester - 1;
     }
+
+    /**
+     * Converts an index to the corresponding year and semester.
+     *
+     * @param index The index
+     * @return The corresponding year and semester concatenated as a string
+     */
+    //TODO: gabriel - throw exception and write tests for that
+    public static String convertIndexToYearAndSemester(int index) {
+        if (!isValidIndex(index)) {
+            return "00";
+        }
+
+        int year = 1;
+        int semester = 1;
+        while (index >= 2) {
+            index -= 2;
+            year++;
+        }
+        semester += index;
+
+        return String.valueOf(year) + String.valueOf(semester);
+    }
 }
