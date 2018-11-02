@@ -1,9 +1,12 @@
 package seedu.planner.ui;
 
+import static seedu.planner.model.util.IndexUtil.convertIndexToYearAndSemester;
+
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -18,14 +21,25 @@ import seedu.planner.model.module.Module;
  */
 public class ModuleListPanel extends UiPart<Region> {
     private static final String FXML = "ModuleListPanel.fxml";
+    private static final String YEAR = "Year ";
+    private static final String DIVIDER = " | ";
+    private static final String SEMESTER = "Semester ";
     private final Logger logger = LogsCenter.getLogger(ModuleListPanel.class);
+
+    @FXML
+    private Label title;
+
+    @FXML
+    private Label subTitle;
 
     @FXML
     private ListView<Module> moduleListView;
 
-    public ModuleListPanel(ObservableList<Module> moduleList) {
+    public ModuleListPanel(ObservableList<Module> moduleList, int index, ModulePanelType type) {
         super(FXML);
+
         setConnections(moduleList);
+        setHeader(index, type);
         registerAsAnEventHandler(this);
     }
 
@@ -43,6 +57,15 @@ public class ModuleListPanel extends UiPart<Region> {
                         raise(new ModulePanelSelectionChangedEvent(newValue));
                     }
                 });
+    }
+
+    private void setHeader(int index, ModulePanelType type) {
+        String yearAndSemester = convertIndexToYearAndSemester(index);
+        String[] splitYearAndSemester = yearAndSemester.split("");
+        String year = splitYearAndSemester[0];
+        String semester = splitYearAndSemester[1];
+        title.setText("Modules " + type.toString());
+        subTitle.setText(YEAR + year + DIVIDER + SEMESTER + semester);
     }
 
     /**

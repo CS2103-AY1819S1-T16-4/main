@@ -402,3 +402,18 @@
     -fx-font-size: 15px;
     -fx-text-fill: #010504;
 }
+
+.moduleListPanel_title {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: orange;
+    -fx-padding: 0 0 0 10;
+}
+
+.moduleListPanel_subTitle {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 15px;
+    -fx-text-fill: #D3D3D3;
+    -fx-padding: 8 0 0 0;
+}
