@@ -29,7 +29,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
     private final ObservableList<Module> availableModules = FXCollections.observableArrayList();
 
-    private int currentIndex;
+    private int index;
 
     /**
      * Constructs a {@code ModulePlanner} and initializes an array of 8 {@code Semester}
@@ -45,7 +45,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             }
         }
 
-        currentIndex = 0;
+        index = 0;
     }
 
     /**
@@ -72,7 +72,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void addModules(Set<Module> modules, int index) {
         semesters.get(index).addModules(modules);
-        setAvailableModules(getModulesAvailable(currentIndex));
+        setAvailableModules(getModulesAvailable(this.index));
     }
 
     /**
@@ -84,7 +84,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         for (Semester semester : semesters) {
             semester.deleteModules(modules);
         }
-        setAvailableModules(getModulesAvailable(currentIndex));
+        setAvailableModules(getModulesAvailable(index));
     }
 
     /**
@@ -145,7 +145,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @return An {@code ObservableList} containing all the {@code Module}s
      */
     public ObservableList<Module> getAvailableModuleList() {
-        setAvailableModules(getModulesAvailable(currentIndex));
+        setAvailableModules(getModulesAvailable(index));
         return availableModules;
     }
 
@@ -154,7 +154,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void resetData(ReadOnlyModulePlanner newData) {
         requireNonNull(newData);
-        setAvailableModules(getModulesAvailable(currentIndex));
+        setAvailableModules(getModulesAvailable(index));
         setModulesInSemesters(newData.getSemesters());
     }
 
@@ -171,7 +171,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @param index An integer from 0 to 7 inclusive indicating the year and semester to suggest.
      */
     public void suggestModules(int index) {
-        currentIndex = index;
+        this.index = index;
         setAvailableModules(getModulesAvailable(index));
     }
 
