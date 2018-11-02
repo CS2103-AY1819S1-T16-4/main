@@ -52,7 +52,7 @@ public class SuggestCommand extends Command {
         }
 
         model.suggestModules(index);
-        ObservableList<Module> moduleList = model.getAvailableModuleList();
+        ObservableList<Module> moduleList = model.getAvailableModules();
         EventsCenter.getInstance().post(new SuggestModuleEvent(moduleList));
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, index));

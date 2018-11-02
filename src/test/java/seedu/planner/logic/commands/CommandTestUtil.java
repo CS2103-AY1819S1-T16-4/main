@@ -118,7 +118,7 @@ public class CommandTestUtil {
      * Deletes the first module in {@code model}'s filtered list from {@code model}'s planner book.
      */
     public static void deleteFirstModule(Model model) {
-        Module firstModule = model.getTakenModuleList(0).get(0);
+        Module firstModule = model.getTakenModules(0).get(0);
         Set<Module> modules = new HashSet<>();
         modules.add(firstModule);
         model.deleteModules(modules);

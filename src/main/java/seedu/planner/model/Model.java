@@ -82,10 +82,10 @@ public interface Model {
     //@@author GabrielYik
 
     /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getTakenModuleList(int index);
+    ObservableList<Module> getTakenModules(int index);
 
     /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getAvailableModuleList();
+    ObservableList<Module> getAvailableModules();
 
     //@@author
 
