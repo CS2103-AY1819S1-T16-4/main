@@ -39,10 +39,12 @@ public class ParserUtil {
         if (trimmedModuleCode.isEmpty()) {
             throw new ParseException(MESSAGE_MODULE_CODE_CONSTRAINTS);
         }
-        if (!ModuleUtil.hasValidCodeFormat(trimmedModuleCode)) {
+
+        String upperCasedTrimmedModuleCode = trimmedModuleCode.toUpperCase();
+        if (!ModuleUtil.hasValidCodeFormat(upperCasedTrimmedModuleCode)) {
             throw new ParseException(MESSAGE_MODULE_CODE_CONSTRAINTS);
         }
-        return new Module(trimmedModuleCode);
+        return new Module(upperCasedTrimmedModuleCode);
     }
 
     /**
