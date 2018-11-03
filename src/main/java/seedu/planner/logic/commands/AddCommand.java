@@ -3,6 +3,7 @@ package seedu.planner.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.planner.commons.util.StringUtil.convertCollectionToString;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
@@ -13,9 +14,10 @@ import java.util.Set;
 
 import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.CommandHistory;
-import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.module.Module;
+import seedu.planner.model.module.ModuleInfo;
+import seedu.planner.model.util.ModuleUtil;
 
 //@@author RomaRomama
 
@@ -39,6 +41,13 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Added Module(s): %1$s";
 
+    private static final String MESSAGE_EQUIVALENT = "Following Module(s) are equivalent: %1$s";
+    private static final String MESSAGE_EXISTED_MODULES = "Following module(s) already exist in the planner: %1$s";
+    private static final String MESSAGE_PRECLUDED_MODULES = "Following module(s) have some of its preclusion"
+            + " in the planner: %1$s";
+    private static final String MESSAGE_UNFULFILLED = "Following module(s) have its prerequisites not fulfilled"
+            + " in the planner: %1$s";
+
     private final int semesterIndex;
     private final Set<Module> modulesToAdd;
 
@@ -52,47 +61,93 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         List<Module> invalidModules = new ArrayList<>();
         List<Module> existedModules = new ArrayList<>();
+        List<Module> precludedModules = new ArrayList<>();
+        List<Module> unfulfilledModules = new ArrayList<>();
 
+        //Filter modules that doesn't exist
         for (Module m : modulesToAdd) {
             if (!model.isModuleOffered(m)) {
                 invalidModules.add(m);
             }
+        }
+        modulesToAdd.removeAll(invalidModules);
 
+         //Filter modules that already exist in the planner
+        for (Module m : modulesToAdd) {
             if (model.hasModule(m)) {
                 existedModules.add(m);
             }
         }
+        modulesToAdd.removeAll(existedModules);
+
+         //Filter modules that have its preclusion in the planner
+        for (Module m: modulesToAdd) {
+            List<ModuleInfo> preclusions = m.getPreclusions();
+            for (ModuleInfo preclusion: preclusions) {
+                if (model.hasModule(new Module(preclusion.getCode()))) {
+                    precludedModules.add(m);
+                }
+            }
+        }
+        modulesToAdd.removeAll(precludedModules);
+
+        //Filters all equivalent modules
+        List<List<Module>> equivalentModules = ModuleUtil.findModuleEquivalences(new ArrayList<>(modulesToAdd));
+        for (List<Module> lm : equivalentModules) {
+            modulesToAdd.removeAll(lm);
+        }
+
+        //Filters all unfulfilled modules
+        for (Module m : modulesToAdd) {
+            int i = 0;
+            List<Module> upToIndex = new ArrayList<>();
+            while (i < semesterIndex) {
+                upToIndex.addAll(model.getTakenModuleList(i));
+                i++;
+            }
+            if (!ModuleUtil.hasFulfilledAllPrerequisites(upToIndex, m)) {
+                unfulfilledModules.add(m);
+            }
+            if (i == 0 && !m.getPrerequisites().isEmpty()) {
+                unfulfilledModules.add(m);
+            }
+        }
+        modulesToAdd.removeAll(unfulfilledModules);
+
+        String result = String.format(MESSAGE_SUCCESS, convertCollectionToString(modulesToAdd));
 
         if (!invalidModules.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for (Module m : invalidModules) {
-                sb.append(m.toString() + " ");
-            }
-            throw new CommandException(String.format(
-                    Messages.MESSAGE_INVALID_MODULES, sb.toString().trim()));
+            result += "\n" + String.format(Messages.MESSAGE_INVALID_MODULES, convertCollectionToString(invalidModules));
         }
 
         if (!existedModules.isEmpty()) {
+            result += "\n" + String.format(MESSAGE_EXISTED_MODULES, convertCollectionToString(existedModules));
+        }
+
+        if (!precludedModules.isEmpty()) {
+            result += "\n" + String.format(MESSAGE_PRECLUDED_MODULES, convertCollectionToString(precludedModules));
+        }
+
+        if (!equivalentModules.isEmpty()) {
             StringBuilder sb = new StringBuilder();
-            for (Module m: existedModules) {
-                sb.append(m.toString() + " ");
+            for (List<Module> equivalence : equivalentModules) {
+                sb.append("(");
+                sb.append(convertCollectionToString(equivalence));
+                sb.append(") ");
             }
-            throw new CommandException(String.format(
-                    Messages.MESSAGE_EXISTED_MODULES, sb.toString().trim()));
+            result += "\n" + String.format(MESSAGE_EQUIVALENT, sb.toString().trim());
         }
 
-        StringBuilder sb = new StringBuilder();
-        for (Module m : modulesToAdd) {
-            sb.append(m.toString() + " ");
+        if (!unfulfilledModules.isEmpty()) {
+            result += "\n" + String.format(MESSAGE_UNFULFILLED, convertCollectionToString(unfulfilledModules));
         }
-
         model.addModules(modulesToAdd, semesterIndex);
         model.commitModulePlanner();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, sb.toString().trim()));
+        return new CommandResult(result);
     }
 
     @Override
