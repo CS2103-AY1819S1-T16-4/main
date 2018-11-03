@@ -11,10 +11,6 @@ import seedu.planner.model.module.Module;
  */
 public interface Model {
 
-    //TODO: can have a predicate to filter taken and available modules
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
-
     /**
      * Sets up the user profile.
      *
