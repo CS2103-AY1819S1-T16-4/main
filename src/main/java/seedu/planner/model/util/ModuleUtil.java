@@ -123,7 +123,7 @@ public class ModuleUtil {
                     Iterator<ModuleInfo> iter2 = equivalence.iterator();
                     List<ModuleInfo> toAdd = new ArrayList<>();
 
-                    while (iter2.hasNext() && toAdd.size() == 0)  {
+                    while (iter2.hasNext() && toAdd.size() == 0) {
                         ModuleInfo toCompare = iter2.next();
                         List<ModuleInfo> preclusions1 = current.getPreclusions();
                         List<ModuleInfo> preclusions2 = toCompare.getPreclusions();

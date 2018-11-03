@@ -39,7 +39,14 @@ public class Module {
         this.information = information;
     }
 
-    public ModuleInfo getInfo() { return information; }
+    /**
+     * Gets the (@code Module) information.
+     *
+     * @return the (@code Module) information.
+     */
+    public ModuleInfo getInfo() {
+        return information;
+    }
 
     /**
      * Gets the {@code Module} code.

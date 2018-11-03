@@ -76,7 +76,7 @@ public class AddCommand extends Command {
         }
         modulesToAdd.removeAll(invalidModules);
 
-         //Filter modules that already exist in the planner
+        //Filter modules that already exist in the planner
         for (Module m : modulesToAdd) {
             if (model.hasModule(m)) {
                 existedModules.add(m);
@@ -84,7 +84,7 @@ public class AddCommand extends Command {
         }
         modulesToAdd.removeAll(existedModules);
 
-         //Filter modules that have its preclusion in the planner
+        //Filter modules that have its preclusion in the planner
         for (Module m: modulesToAdd) {
             List<ModuleInfo> preclusions = m.getPreclusions();
             for (ModuleInfo preclusion: preclusions) {
