@@ -39,6 +39,8 @@ public class Module {
         this.information = information;
     }
 
+    public ModuleInfo getInfo() { return information; }
+
     /**
      * Gets the {@code Module} code.
      *
