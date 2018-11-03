@@ -1,7 +1,6 @@
 package seedu.planner.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.planner.commons.util.StringUtil.containsOnlyLettersAndWhiteSpace;
 import static seedu.planner.commons.util.StringUtil.containsOnlyNumbers;
 import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_FOCUS_AREA_CONSTRAINTS;
 import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_MAJOR_CONSTRAINTS;
@@ -10,8 +9,6 @@ import static seedu.planner.model.module.ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAI
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.xml.parsers.ParserConfigurationException;
 
 import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;

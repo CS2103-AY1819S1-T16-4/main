@@ -1,5 +1,8 @@
 package seedu.planner.ui;
 
+/**
+ * Represents the type of module panels.
+ */
 public enum ModulePanelType {
     TAKEN("Taken"),
     SUGGESTED("Suggested");

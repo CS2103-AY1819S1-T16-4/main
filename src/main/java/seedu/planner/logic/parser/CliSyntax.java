@@ -1,7 +1,5 @@
 package seedu.planner.logic.parser;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,7 +14,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_MAJOR = new Prefix("m/");
     public static final Prefix PREFIX_FOCUS_AREA = new Prefix("f/");
 
-    public static final Set<Prefix> prefixesLimitedToOne = Set.of(
+    private static final Set<Prefix> prefixesLimitedToOne = Set.of(
             PREFIX_YEAR, PREFIX_SEMESTER, PREFIX_MAJOR);
 
     public static final boolean isPrefixLimitedToOne(Prefix prefix) {

@@ -1,7 +1,5 @@
 package seedu.planner.logic.parser;
 
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_FOCUS_AREA;
 import static seedu.planner.logic.parser.ParserUtil.MESSAGE_EXTRA_PREFIX_VALUE;
 
 import java.util.ArrayList;

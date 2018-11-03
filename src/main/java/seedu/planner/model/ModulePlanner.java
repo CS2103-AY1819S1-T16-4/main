@@ -115,6 +115,11 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         setAvailableModules(getModulesAvailable(index));
     }
 
+    /**
+     * Counts the number of modules in the module planner.
+     *
+     * @return The total number of modules
+     */
     private int countModules() {
         int count = 0;
         for (Semester semester : semesters) {
@@ -154,7 +159,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      *  deleted from
      * @param invalidatedModules The invalidated modules
      */
-    private void deleteInvalidatedModules(Semester semester, Set<Module> deletedModules, List<Module> invalidatedModules) {
+    private void deleteInvalidatedModules(Semester semester, Set<Module> deletedModules,
+            List<Module> invalidatedModules) {
         if (!invalidatedModules.isEmpty()) {
             Set<Module> modulesToDelete = new HashSet<>(invalidatedModules);
             semester.deleteModules(modulesToDelete);

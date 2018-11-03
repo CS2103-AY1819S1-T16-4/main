@@ -27,7 +27,6 @@ public class Module implements Comparable<Module> {
         information = ModuleInfo.getFromModuleCode(code).orElse(new ModuleInfo(code));
     }
 
-    //TODO: verify if ModuleInfo contains ModuleType
     /**
      * Creates a {@code Module}.
      *

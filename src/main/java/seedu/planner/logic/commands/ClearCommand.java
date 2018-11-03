@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.events.ui.ClearEvent;
-import seedu.planner.commons.events.ui.GoToEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;

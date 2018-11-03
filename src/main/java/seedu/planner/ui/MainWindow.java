@@ -28,9 +28,9 @@ import seedu.planner.commons.events.ui.AddModuleEvent;
 import seedu.planner.commons.events.ui.ClearEvent;
 import seedu.planner.commons.events.ui.ExitAppRequestEvent;
 import seedu.planner.commons.events.ui.FindModuleEvent;
+import seedu.planner.commons.events.ui.GoToEvent;
 import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
 import seedu.planner.commons.events.ui.SuggestModuleEvent;
-import seedu.planner.commons.events.ui.GoToEvent;
 import seedu.planner.logic.Logic;
 import seedu.planner.model.UserPrefs;
 import seedu.planner.model.module.Module;
@@ -160,6 +160,11 @@ public class MainWindow extends UiPart<Stage> {
 
     //@@author GabrielYik
 
+    /**
+     * Initialises the taken module panels with taken modules if any.
+     * The taken modules placeholder is then initialised with a blank
+     * taken module panel.
+     */
     private void initTakenModulesPanel() {
         takenModuleListPanels = new ArrayList<>(MAX_NUMBER_SEMESTERS);
 
@@ -181,6 +186,16 @@ public class MainWindow extends UiPart<Stage> {
         suggestedModulesPlaceholder.getChildren().add(timelessSuggestedModuleListPanel.getRoot());
     }
 
+    /**
+     * Updates the {@code pane} with {@code part}. If the pane
+     * has no other child other than itself, the {@code part}
+     * will be added to the children of {@code pane}. If pane
+     * has another child other than itself, the child will be
+     * removed and {@code part} added in its place.
+     *
+     * @param pane The pane
+     * @param part The part
+     */
     private void updatePane(Pane pane, UiPart<Region> part) {
         if (pane.getChildren().size() == 1) {
             pane.getChildren().add(part.getRoot());

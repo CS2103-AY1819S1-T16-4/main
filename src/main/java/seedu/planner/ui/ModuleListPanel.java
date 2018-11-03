@@ -50,6 +50,18 @@ public class ModuleListPanel extends UiPart<Region> {
         registerAsAnEventHandler(this);
     }
 
+    /**
+     * Sets {@code this} to be timeless. Timeless refers to the
+     * state of {@code this} where no modules are displayed, the
+     * subtitle is not displayed, and only the title is displayed.
+     *
+     * @return {@code this}
+     */
+    public ModuleListPanel timeless() {
+        subTitle.setText("");
+        return this;
+    }
+
     private void setConnections(ObservableList<Module> moduleList) {
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListPanel.ModuleListViewCell());
@@ -73,11 +85,6 @@ public class ModuleListPanel extends UiPart<Region> {
         String semester = splitYearAndSemester[1];
         title.setText("Modules " + type.toString());
         subTitle.setText(YEAR + year + DIVIDER + SEMESTER + semester);
-    }
-
-    public ModuleListPanel timeless() {
-        subTitle.setText("");
-        return this;
     }
 
     /**

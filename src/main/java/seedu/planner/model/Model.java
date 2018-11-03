@@ -1,7 +1,6 @@
 package seedu.planner.model;
 
 import java.util.Set;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
