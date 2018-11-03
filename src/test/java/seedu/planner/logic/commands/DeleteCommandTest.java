@@ -7,12 +7,8 @@ import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1231;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2030;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2040;
-import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2103T;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.planner.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.planner.testutil.TypicalIndexes.INDEX_THIRD;
 
 import java.util.Set;
 

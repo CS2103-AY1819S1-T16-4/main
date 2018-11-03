@@ -35,6 +35,14 @@ public class ModulePlannerBuilder {
         return this;
     }
 
+    /**
+     * Adds a {@code Module} to the specified semester {@code index}
+     * in the {@code ModulePlanner} that we are building.
+     *
+     * @param module The module to be added
+     * @param index The semester index
+     * @return {@code this}
+     */
     public ModulePlannerBuilder withModuleAt(Module module, int index) {
         Set<Module> modules = new HashSet<>();
         modules.add(module);

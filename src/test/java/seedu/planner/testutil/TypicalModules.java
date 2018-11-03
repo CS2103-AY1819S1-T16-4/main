@@ -3,8 +3,6 @@ package seedu.planner.testutil;
 import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.planner.testutil.TypicalIndexes.INDEX_SECOND;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 
 import seedu.planner.model.ModulePlanner;
