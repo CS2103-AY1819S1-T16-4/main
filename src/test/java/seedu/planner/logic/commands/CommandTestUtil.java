@@ -65,7 +65,6 @@ public class CommandTestUtil {
 
     public static final String VALID_MAJOR_DESC_CS = " " + PREFIX_MAJOR + VALID_MAJOR_CS;
     public static final String VALID_FOCUS_AREA_DESC_SE = " " + PREFIX_FOCUS_AREA + VALID_FOCUS_AREA_SE;
-    public static final String VALID_FOCUS_AREA_DESC_PL = " " + PREFIX_FOCUS_AREA + VALID_FOCUS_AREA_PL;
 
     public static final int VALID_INDEX_ZERO = 0;
     public static final int VALID_INDEX_ONE = 1;
