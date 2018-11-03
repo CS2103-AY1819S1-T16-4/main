@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class StringUtil {
 
-    private static final String ALL_LETTERS_REGEX = "[a-zA-Z]+( +[a-zA-Z]+)*";
+    private static final String ALL_LETTERS_AND_WHITESPACE_REGEX = "[a-zA-Z]+( +[a-zA-Z]+)*";
     private static final String ALL_NUMBERS_REGEX = "[0-9]+";
 
     /**
@@ -87,7 +87,7 @@ public class StringUtil {
      */
     public static boolean containsOnlyLettersAndWhiteSpace(String s) {
         requireNonNull(s);
-        return s.trim().matches(ALL_LETTERS_REGEX);
+        return s.trim().matches(ALL_LETTERS_AND_WHITESPACE_REGEX);
     }
 
     /**
