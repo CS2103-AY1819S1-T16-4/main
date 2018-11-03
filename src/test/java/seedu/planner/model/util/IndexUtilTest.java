@@ -63,4 +63,10 @@ public class IndexUtilTest {
         assertEquals(convertIndexToYearAndSemester(4), "31");
         assertEquals(convertIndexToYearAndSemester(6), "41");
     }
+
+    @Test
+    public void convertIndexToYearAndSemester_invalidIndex_failure() {
+        assertEquals(convertIndexToYearAndSemester(-1), "00");
+        assertEquals(convertIndexToYearAndSemester(8), "00");
+    }
 }

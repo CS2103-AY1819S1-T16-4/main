@@ -54,11 +54,12 @@ public class IndexUtil {
 
     /**
      * Converts an index to the corresponding year and semester.
+     * If the index is not valid (not between 0 and 7), "00" is
+     * returned.
      *
      * @param index The index
      * @return The corresponding year and semester concatenated as a string
      */
-    //TODO: gabriel - throw exception and write tests for that
     public static String convertIndexToYearAndSemester(int index) {
         if (!isValidIndex(index)) {
             return "00";

@@ -121,6 +121,7 @@ public class ParserUtilTest {
     @Test
     public void parseYear_invalidValue_throwsParseException() {
         Assert.assertThrows(ParseException.class, () -> ParserUtil.parseYear(INVALID_YEAR));
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseYear("1a"));
     }
 
     @Test
@@ -144,6 +145,7 @@ public class ParserUtilTest {
     @Test
     public void parseSemester_invalidValue_throwsParseException() {
         Assert.assertThrows(ParseException.class, () -> ParserUtil.parseSemester(INVALID_SEMESTER));
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseSemester("1a"));
     }
 
     @Test
