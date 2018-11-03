@@ -9,7 +9,7 @@ import com.google.common.collect.ImmutableList;
 /**
  * Temporary {@code Module} class placeholder.
  */
-public class Module {
+public class Module implements Comparable<Module> {
 
     private ModuleType type;
 
@@ -91,6 +91,11 @@ public class Module {
      */
     public ImmutableList<ModuleInfo> getPrerequisites() {
         return information.getPrerequisites();
+    }
+
+    @Override
+    public int compareTo(Module other) {
+        return getCode().compareTo(other.getCode());
     }
 
     @Override
