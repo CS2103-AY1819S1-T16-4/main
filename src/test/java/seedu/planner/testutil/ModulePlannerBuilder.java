@@ -26,12 +26,19 @@ public class ModulePlannerBuilder {
     }
 
     /**
-     * Adds a l@code Module} to the {@code ModulePlanner} that we are building.
+     * Adds a {@code Module} to the {@code ModulePlanner} that we are building.
      */
     public ModulePlannerBuilder withModule(Module module) {
         Set<Module> modules = new HashSet<>();
         modules.add(module);
         modulePlanner.addModules(modules, INDEX_FIRST);
+        return this;
+    }
+
+    public ModulePlannerBuilder withModuleAt(Module module, int index) {
+        Set<Module> modules = new HashSet<>();
+        modules.add(module);
+        modulePlanner.addModules(modules, index);
         return this;
     }
 

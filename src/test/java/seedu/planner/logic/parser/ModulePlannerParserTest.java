@@ -10,7 +10,9 @@ import static seedu.planner.logic.commands.CommandTestUtil.VALID_INDEX_ZERO;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MAJOR_CS;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MAJOR_DESC_CS;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1010;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1231;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS2030;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS2040;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_DESC_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_DESC_ONE;
@@ -51,8 +53,13 @@ public class ModulePlannerParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Set<Module> modules = getTypicalModules();
-        AddCommand command = (AddCommand) parser.parseCommand(AddCommand.COMMAND_WORD + VALID_YEAR_DESC_ONE
-            + VALID_SEMESTER_DESC_ONE + VALID_MODULE_CODE_DESC_CS1010 + VALID_MODULE_CODE_DESC_CS2030);
+        AddCommand command = (AddCommand) parser.parseCommand(AddCommand.COMMAND_WORD
+                + VALID_YEAR_DESC_ONE
+                + VALID_SEMESTER_DESC_ONE
+                + VALID_MODULE_CODE_DESC_CS1010
+                + VALID_MODULE_CODE_DESC_CS1231
+                + VALID_MODULE_CODE_DESC_CS2030
+                + VALID_MODULE_CODE_DESC_CS2040);
         assertEquals(new AddCommand(modules, INDEX_FIRST),
             command);
     }
@@ -67,7 +74,10 @@ public class ModulePlannerParserTest {
     public void parseCommand_delete() throws Exception {
         Set<Module> modules = getTypicalModules();
         DeleteCommand command = (DeleteCommand) parser.parseCommand(DeleteCommand.COMMAND_WORD
-            + VALID_MODULE_CODE_DESC_CS1010 + VALID_MODULE_CODE_DESC_CS2030);
+                + VALID_MODULE_CODE_DESC_CS1010
+                + VALID_MODULE_CODE_DESC_CS1231
+                + VALID_MODULE_CODE_DESC_CS2030
+                + VALID_MODULE_CODE_DESC_CS2040);
         assertEquals(new DeleteCommand(modules), command);
     }
 

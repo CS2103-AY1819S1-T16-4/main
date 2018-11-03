@@ -24,10 +24,14 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_CODE_CS1010 = "CS1010";
     public static final String VALID_MODULE_CODE_CS1231 = "CS1231";
     public static final String VALID_MODULE_CODE_CS2030 = "CS2030";
+    public static final String VALID_MODULE_CODE_CS2040 = "CS2040";
+    public static final String VALID_MODULE_CODE_CS2103T = "CS2103T";
 
     public static final Module VALID_MODULE_CS1010 = new Module(VALID_MODULE_CODE_CS1010);
     public static final Module VALID_MODULE_CS1231 = new Module(VALID_MODULE_CODE_CS1231);
     public static final Module VALID_MODULE_CS2030 = new Module(VALID_MODULE_CODE_CS2030);
+    public static final Module VALID_MODULE_CS2040 = new Module(VALID_MODULE_CODE_CS2040);
+    public static final Module VALID_MODULE_CS2103T = new Module(VALID_MODULE_CODE_CS2103T);
 
     public static final String INVALID_MODULE_CODE_CS0000 = "CS0000";
 
@@ -36,6 +40,7 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_CODE_DESC_CS1010 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS1010;
     public static final String VALID_MODULE_CODE_DESC_CS1231 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS1231;
     public static final String VALID_MODULE_CODE_DESC_CS2030 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS2030;
+    public static final String VALID_MODULE_CODE_DESC_CS2040 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS2040;
 
     public static final String INVALID_MODULE_CODE_DESC_CS0000 = " " + PREFIX_CODE + INVALID_MODULE_CODE_CS0000;
 
@@ -117,11 +122,8 @@ public class CommandTestUtil {
     /**
      * Deletes the first module in {@code model}'s filtered list from {@code model}'s planner book.
      */
-    public static void deleteFirstModule(Model model) {
-        Module firstModule = model.getTakenModules(0).get(0);
-        Set<Module> modules = new HashSet<>();
-        modules.add(firstModule);
-        model.deleteModules(modules);
+    public static void deleteModule(Model model, Module module) {
+        model.deleteModules(Set.of(module));
         model.commitModulePlanner();
     }
 

@@ -4,16 +4,25 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2030;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2040;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2103T;
 import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.planner.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.planner.testutil.TypicalIndexes.INDEX_THIRD;
 import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.getTypicalModulePlanner;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import seedu.planner.testutil.ModulePlannerBuilder;
 
 public class ModulePlannerTest {
 
@@ -35,20 +44,6 @@ public class ModulePlannerTest {
         assertEquals(newData, modulePlanner);
     }
 
-    /*
-    @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
-
-        thrown.expect(DuplicatePersonException.class);
-        addressBook.resetData(newData);
-    }
-    */
-
     @Test
     public void addModules_invalidIndex_throwsIndexOutOfBoundsException() {
         thrown.expect(IndexOutOfBoundsException.class);
@@ -58,7 +53,21 @@ public class ModulePlannerTest {
     @Test
     public void addModules_validIndex_success() {
         modulePlanner.addModules(getTypicalModules(), 0);
-        assertEquals(new HashSet<>(modulePlanner.getModulesTaken(0)), getTypicalModules());
+        assertEquals(new HashSet<>(modulePlanner.getTakenModules(0)), getTypicalModules());
+    }
+
+    @Test
+    public void deleteModules_validModule_success() {
+        ModulePlanner modulePlanner = new ModulePlannerBuilder()
+                .withModuleAt(VALID_MODULE_CS1010, INDEX_FIRST)
+                .withModuleAt(VALID_MODULE_CS2030, INDEX_SECOND)
+                .withModuleAt(VALID_MODULE_CS2040, INDEX_SECOND)
+                .withModuleAt(VALID_MODULE_CS2103T, INDEX_THIRD)
+                .build();
+        modulePlanner.deleteModules(Set.of(VALID_MODULE_CS1010));
+        ModulePlanner expectedModulePlanner = new ModulePlannerBuilder()
+                .build();
+        assertEquals(expectedModulePlanner, modulePlanner);
     }
 
     @Test
@@ -81,31 +90,31 @@ public class ModulePlannerTest {
     @Test
     public void getModulesTaken_sameIndex_returnsSameList() {
         modulePlanner.addModules(getTypicalModules(), 0);
-        assertEquals(modulePlanner.getModulesTaken(0), modulePlanner.getModulesTaken(0));
+        assertEquals(modulePlanner.getTakenModules(0), modulePlanner.getTakenModules(0));
     }
 
     @Test
     public void getModulesTaken_differentIndex_returnsDifferentList() {
         modulePlanner.addModules(getTypicalModules(), 0);
-        assertNotEquals(modulePlanner.getModulesTaken(0), modulePlanner.getModulesTaken(1));
+        assertNotEquals(modulePlanner.getTakenModules(0), modulePlanner.getTakenModules(1));
     }
 
     @Test
     public void getModulesTaken_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        modulePlanner.getModulesTaken(0).remove(0);
+        modulePlanner.getTakenModules(0).remove(0);
     }
 
     @Test
     public void getModulesAvailable_sameModules_returnsSameList() {
         ModulePlanner differentModulePlanner = new ModulePlanner();
-        assertEquals(modulePlanner.getAvailableModuleList(), differentModulePlanner.getAvailableModuleList());
+        assertEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
     }
 
     @Test
     public void getModulesAvailable_differentModules_returnsDifferentList() {
         ModulePlanner differentModulePlanner = getTypicalModulePlanner();
-        assertNotEquals(modulePlanner.getAvailableModuleList(), differentModulePlanner.getAvailableModuleList());
+        assertNotEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
     }
 
     @Test
@@ -130,33 +139,4 @@ public class ModulePlannerTest {
         assertFalse(modulePlanner.equals(getTypicalModulePlanner()));
 
     }
-
-    /*
-    @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
-    }
-    */
-
-    /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
-     */
-    /*
-    private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
-
-        AddressBookStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
-        }
-
-        @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
-        }
-    }
-    */
-
 }
