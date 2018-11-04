@@ -1,6 +1,5 @@
 package seedu.planner.logic.commands;
 
-
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_CS0000;
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CS0000;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_INDEX_ONE;
