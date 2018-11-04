@@ -69,7 +69,7 @@ public class ArgumentMultimap {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values.
      */
-    public boolean containsPrefixes(Prefix... prefixes) throws ParseException {
+    public boolean containsAllPrefixes(Prefix... prefixes) throws ParseException {
         for (Prefix prefix : prefixes) {
             if (!getValue(prefix).isPresent()) {
                 return false;

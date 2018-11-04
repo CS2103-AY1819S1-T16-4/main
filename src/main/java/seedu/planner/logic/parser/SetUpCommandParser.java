@@ -21,7 +21,7 @@ public class SetUpCommandParser implements Parser<SetUpCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 args, PREFIX_MAJOR, PREFIX_FOCUS_AREA);
 
-        if (!argMultimap.containsPrefixes(PREFIX_MAJOR) || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.containsAllPrefixes(PREFIX_MAJOR) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetUpCommand.MESSAGE_USAGE));
         }
 

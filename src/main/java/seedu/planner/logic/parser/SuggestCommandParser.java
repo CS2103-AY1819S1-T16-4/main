@@ -25,7 +25,7 @@ public class SuggestCommandParser implements Parser<SuggestCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_YEAR, PREFIX_SEMESTER);
 
-        if (!argMultimap.containsPrefixes(PREFIX_YEAR, PREFIX_SEMESTER) || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.containsAllPrefixes(PREFIX_YEAR, PREFIX_SEMESTER) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SuggestCommand.MESSAGE_USAGE));
         }
 
