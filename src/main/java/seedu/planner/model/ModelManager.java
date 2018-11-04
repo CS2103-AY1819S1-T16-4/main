@@ -25,8 +25,6 @@ import seedu.planner.model.user.UserProfile;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private UserProfile userProfile;
-
     private final VersionedModulePlanner versionedModulePlanner;
 
     private final FilteredList<Module> availableModules;

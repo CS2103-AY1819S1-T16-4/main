@@ -61,6 +61,7 @@ for mod in obj:
     newMod["code"] = moduleCode
     newMod["name"] = mod["ModuleTitle"]
     newMod["creditCount"] = float(mod["ModuleCredit"])
+    newMod["description"] = mod.get("ModuleDescription", "")
     newMod["preclusions"] = scrapeAllModules(mod.get("Preclusion", ""))
     newMod["prerequisites"] = scrapeAllModules(mod.get("Prerequisite", ""))
     newObj.append(newMod)
@@ -79,10 +80,10 @@ for module in newObj:
 
 print(count)
 
-output = os.path.join(CURRENT_DIR, "..", "data", "moduleInfo.json")
+output = os.path.join(CURRENT_DIR, "..", "src", "main", "resources", "data", "moduleInfo.json")
 
 with open(output, "w", encoding="utf8") as f:
-  json.dump(newObj, f, indent=2)
+  json.dump(newObj, f, separators=(',',':')) # indent=2
 
 with open(output, "a", encoding="utf8") as f:
   f.write("\n")

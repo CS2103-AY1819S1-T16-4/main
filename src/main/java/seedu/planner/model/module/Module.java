@@ -58,6 +58,13 @@ public class Module {
     }
 
     /**
+     * Gets the {@code Module} description.
+     */
+    public String getDescription() {
+        return information.getDescription();
+    }
+
+    /**
      * Gets the {@code ModuleType}.
      *
      * @return The {@code ModuleType}

@@ -1,1 +1,2 @@
 *.pdf binary
+/src/main/resources/data/moduleInfo.json binary

@@ -3,6 +3,7 @@ package seedu.planner.commons.util;
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -19,9 +20,13 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
 
+import seedu.planner.MainApp;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.exceptions.DataConversionException;
+import seedu.planner.model.module.ModuleInfo;
 
 /**
  * Converts a Java object instance to JSON and vice versa
@@ -74,6 +79,21 @@ public class JsonUtil {
         }
 
         return Optional.of(jsonFile);
+    }
+
+
+    /**
+     * Extract JSON file from resource and deserialize its content.
+     *
+     * @param path The path string of the resource file.
+     * @param <T> The generic type to create an instance of
+     * @return The instance of T with the specified values in the JSON string
+     */
+    public static <T> T readJsonResourceFile(String path, Class<T> instanceClass) throws IOException {
+        URL resource = MainApp.class.getResource(path);
+        String text = Resources.toString(resource, Charsets.UTF_8);
+
+        return fromJsonString(text, instanceClass);
     }
 
     /**
