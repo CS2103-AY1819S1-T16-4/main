@@ -26,7 +26,6 @@ import com.google.common.io.Resources;
 import seedu.planner.MainApp;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.exceptions.DataConversionException;
-import seedu.planner.model.module.ModuleInfo;
 
 /**
  * Converts a Java object instance to JSON and vice versa
