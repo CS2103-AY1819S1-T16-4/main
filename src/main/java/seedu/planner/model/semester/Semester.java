@@ -33,7 +33,7 @@ public class Semester {
     private final int year;
 
     // Modules lists
-    private ObservableList<Module> modulesTaken;
+    private ObservableList<Module> takenModules;
 
     /**
      * Constructs a {@code Semester}.
@@ -44,7 +44,7 @@ public class Semester {
     public Semester(int year, int index) {
         this.year = year;
         this.index = index;
-        this.modulesTaken = FXCollections.observableArrayList();
+        this.takenModules = FXCollections.observableArrayList();
     }
 
     /**
@@ -57,7 +57,7 @@ public class Semester {
     public Semester(Semester semester) {
         year = semester.getYear();
         index = semester.getIndex();
-        modulesTaken = semester.getModulesAsCopy();
+        takenModules = semester.getModulesAsCopy();
     }
 
     public int getIndex() {
@@ -74,7 +74,7 @@ public class Semester {
      * @param modules A non-empty set of modules to be added
      */
     public void addModules(Set<Module> modules) {
-        modulesTaken.addAll(modules);
+        takenModules.addAll(modules);
     }
 
     /**
@@ -84,7 +84,7 @@ public class Semester {
      */
     public void deleteModules(Set<Module> modules) {
         for (Module m : modules) {
-            modulesTaken.remove(m);
+            takenModules.remove(m);
         }
     }
 
@@ -96,7 +96,7 @@ public class Semester {
      */
     public boolean containsModule(Module module) {
         requireNonNull(module);
-        return modulesTaken.stream().anyMatch(module::equals);
+        return takenModules.stream().anyMatch(module::equals);
     }
 
     /**
@@ -105,7 +105,7 @@ public class Semester {
      * @return A list of modules taken
      */
     public ObservableList<Module> getModules() {
-        return modulesTaken;
+        return takenModules;
     }
 
     /**
@@ -115,9 +115,9 @@ public class Semester {
      * @param semester The semester which modules taken are
      *  used as replacement
      */
-    public void setModulesTaken(Semester semester) {
-        modulesTaken.clear();
-        modulesTaken.addAll(semester.getModules());
+    public void setTakenModules(Semester semester) {
+        takenModules.clear();
+        takenModules.addAll(semester.getModules());
     }
 
     /**
@@ -129,7 +129,7 @@ public class Semester {
      */
     public ObservableList<Module> getModulesAsCopy() {
         List<Module> modulesTakenCopy = new ArrayList<>();
-        for (Module module : modulesTaken) {
+        for (Module module : takenModules) {
             Module moduleCopy = new Module(module.getCode());
             modulesTakenCopy.add(moduleCopy);
         }
@@ -142,12 +142,12 @@ public class Semester {
                 || (other instanceof Semester // instanceof handles nulls
                 && index == ((Semester) other).getIndex()
                 && year == ((Semester) other).getYear()
-                && modulesTaken.equals(((Semester) other).modulesTaken));
+                && takenModules.equals(((Semester) other).takenModules));
     }
 
     @Override
     public int hashCode() {
-        return modulesTaken.hashCode();
+        return takenModules.hashCode();
     }
 
     @Override

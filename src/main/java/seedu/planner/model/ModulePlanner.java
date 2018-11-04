@@ -3,6 +3,7 @@ package seedu.planner.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,7 +15,7 @@ import seedu.planner.model.semester.Semester;
 import seedu.planner.model.user.UserProfile;
 import seedu.planner.model.util.ModuleUtil;
 
-//@@author Hilda-Ang //@@author GabrielYik
+//@@author Hilda-Ang
 
 /**
  * Wraps all data at the module planner level.
@@ -75,17 +76,99 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         setAvailableModules(getModulesAvailable(this.index));
     }
 
+    //@@author GabrielYik
+
     /**
      * Delete one or more module(s) from list of modules taken for the specified semester.
      *
      * @param modules A list of valid modules to be deleted
      */
     public void deleteModules(Set<Module> modules) {
+        // Iterate once to delete the specified modules
         for (Semester semester : semesters) {
             semester.deleteModules(modules);
         }
+
+        /*
+         * Delete invalidated modules repeatedly until there are no more changes
+         * to the total number of modules in the module planner
+         */
+        Set<Module> deletedModules = new HashSet<>(modules);
+        int previousModuleCount = countModules();
+        while (true) {
+            for (int index = 0; index < MAX_NUMBER_SEMESTERS; index++) {
+                Semester semester = semesters.get(index);
+                List<Module> invalidatedModules = new ArrayList<>();
+                invalidateModules(semester, deletedModules, invalidatedModules);
+                deleteInvalidatedModules(semester, deletedModules, invalidatedModules);
+            }
+
+            int currentModuleCount = countModules();
+            if (currentModuleCount == previousModuleCount) {
+                break;
+            }
+            if (currentModuleCount < previousModuleCount) {
+                previousModuleCount = currentModuleCount;
+            }
+        }
+
         setAvailableModules(getModulesAvailable(index));
     }
+
+    /**
+     * Counts the number of modules in the module planner.
+     *
+     * @return The total number of modules
+     */
+    private int countModules() {
+        int count = 0;
+        for (Semester semester : semesters) {
+            count += semester.getModules().size();
+        }
+        return count;
+    }
+
+    /**
+     * Checks if all the modules in {@code semester} have their prerequisites
+     * fulfilled. If any of the modules do not, they will be added to
+     * {@code invalidatedModules}.
+     *
+     * @param semester The semester which modules are to be checked
+     * @param deletedModules The modules to be checked against
+     * @param invalidatedModules The group of modules any of the modules in
+     *  {@code semester} will be added to if it does not fulfill all of
+     *  it's prerequisites
+     */
+    private void invalidateModules(Semester semester, Set<Module> deletedModules, List<Module> invalidatedModules) {
+        for (Module module : semester.getModules()) {
+            List<ModuleInfo> prerequisites = module.getPrerequisites();
+            if (!prerequisites.isEmpty()) {
+                boolean hasHadPrerequisiteDeleted = prerequisites.stream().anyMatch(x ->
+                        deletedModules.stream().anyMatch(y -> x.getCode().equals(y.getCode())));
+                if (hasHadPrerequisiteDeleted) {
+                    invalidatedModules.add(module);
+                }
+            }
+        }
+    }
+
+    /**
+     * Deletes the {@code invalidatedModules} from the modules {@code semester} has.
+     *
+     * @param semester The semester which the {@code invalidatedModules} are to be
+     *  deleted from
+     * @param invalidatedModules The invalidated modules
+     */
+    private void deleteInvalidatedModules(Semester semester, Set<Module> deletedModules,
+            List<Module> invalidatedModules) {
+        if (!invalidatedModules.isEmpty()) {
+            Set<Module> modulesToDelete = new HashSet<>(invalidatedModules);
+            semester.deleteModules(modulesToDelete);
+            deletedModules.addAll(modulesToDelete);
+        }
+    }
+
+    //@@author Hilda-Ang
 
     /**
      * Checks if the {@code Module} exists in the module planner.
@@ -134,7 +217,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @return A list of modules taken in the semester.
      */
     @Override
-    public ObservableList<Module> getModulesTaken(int index) {
+    public ObservableList<Module> getTakenModules(int index) {
         return FXCollections.unmodifiableObservableList(
                 semesters.get(index).getModules());
     }
@@ -144,7 +227,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      *
      * @return An {@code ObservableList} containing all the {@code Module}s
      */
-    public ObservableList<Module> getAvailableModuleList() {
+    public ObservableList<Module> getAvailableModules() {
         setAvailableModules(getModulesAvailable(index));
         return availableModules;
     }
@@ -161,7 +244,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
     public void setModulesInSemesters(List<Semester> semesters) {
         for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
-            this.semesters.get(i).setModulesTaken(semesters.get(i));
+            this.semesters.get(i).setTakenModules(semesters.get(i));
         }
     }
 

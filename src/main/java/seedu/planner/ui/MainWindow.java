@@ -2,34 +2,38 @@ package seedu.planner.ui;
 
 import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import com.google.common.eventbus.Subscribe;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.planner.commons.core.Config;
 import seedu.planner.commons.core.GuiSettings;
 import seedu.planner.commons.core.LogsCenter;
+import seedu.planner.commons.events.ui.AddModuleEvent;
+import seedu.planner.commons.events.ui.ClearEvent;
 import seedu.planner.commons.events.ui.ExitAppRequestEvent;
 import seedu.planner.commons.events.ui.FindModuleEvent;
+import seedu.planner.commons.events.ui.GoToEvent;
 import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
 import seedu.planner.commons.events.ui.SuggestModuleEvent;
-import seedu.planner.commons.events.ui.TabSwitchEvent;
 import seedu.planner.logic.Logic;
 import seedu.planner.model.UserPrefs;
+import seedu.planner.model.module.Module;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -39,29 +43,46 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static final int CURRENT_NODE = 1;
+
+    private static final int TIMELESS = -1;
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
+
     private Logic logic;
 
-    // Independent Ui parts residing in this Ui container
     private UserPrefs prefs;
+
     private HelpWindow helpWindow;
 
-    @FXML
-    private TabPane semestersTabPane;
+    private List<ModuleListPanel> takenModuleListPanels;
+
+    private ModuleListPanel timelessTakenModuleListPanel;
+
+    private ModuleListPanel timelessSuggestedModuleListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
+    private VBox takenModulesPlaceholder;
+
+    @FXML
+    private VBox suggestedModulesPlaceholder;
+
+    @FXML
+    private StackPane multiPurposePanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane statusBarPlaceholder;
+
+    @FXML
+    private MenuItem helpMenuItem;
 
     public MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
         super(FXML, primaryStage);
@@ -123,37 +144,67 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-
-        //@@author GabrielYik
-        ModuleListPanel[] takenModulesListPanels = new ModuleListPanel[MAX_NUMBER_SEMESTERS];
-
-        for (int semesterIndex = 0; semesterIndex < MAX_NUMBER_SEMESTERS; semesterIndex++) {
-            takenModulesListPanels[semesterIndex] = new ModuleListPanel(
-                    logic.getTakenModuleList(semesterIndex));
-        }
-
-        ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
-        for (int semesterIndex = 0; semesterIndex < semesterTabs.size(); semesterIndex++) {
-            SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
-            ObservableList<Node> nodes = splitPane.getItems();
-
-            VBox vBox = (VBox) nodes.get(0);
-            StackPane stackPane = (StackPane) vBox.getChildren().get(0);
-            Node n = takenModulesListPanels[semesterIndex].getRoot();
-            stackPane.getChildren().add(n);
-        }
-
-        //@@author
+        initTakenModulesPanel();
+        initSuggestedModulesPanel();
 
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(prefs.getModulePlannerFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
+
+
+    //@@author GabrielYik
+
+    /**
+     * Initialises the taken module panels with taken modules if any.
+     * The taken modules placeholder is then initialised with a blank
+     * taken module panel.
+     */
+    private void initTakenModulesPanel() {
+        takenModuleListPanels = new ArrayList<>(MAX_NUMBER_SEMESTERS);
+
+        for (int semesterIndex = 0; semesterIndex < MAX_NUMBER_SEMESTERS; semesterIndex++) {
+            ObservableList<Module> modules = logic.getTakenModules(semesterIndex);
+            ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules,
+                    semesterIndex, ModulePanelType.TAKEN);
+            takenModuleListPanels.add(semesterIndex, takenModuleListPanel);
+        }
+        timelessTakenModuleListPanel = new ModuleListPanel(FXCollections.emptyObservableList(),
+                TIMELESS, ModulePanelType.TAKEN).timeless();
+
+        takenModulesPlaceholder.getChildren().add(timelessTakenModuleListPanel.getRoot());
+    }
+
+    private void initSuggestedModulesPanel() {
+        timelessSuggestedModuleListPanel = new ModuleListPanel(FXCollections.emptyObservableList(),
+                TIMELESS, ModulePanelType.SUGGESTED).timeless();
+        suggestedModulesPlaceholder.getChildren().add(timelessSuggestedModuleListPanel.getRoot());
+    }
+
+    /**
+     * Updates the {@code pane} with {@code part}. If the pane
+     * has no other child other than itself, the {@code part}
+     * will be added to the children of {@code pane}. If pane
+     * has another child other than itself, the child will be
+     * removed and {@code part} added in its place.
+     *
+     * @param pane The pane
+     * @param part The part
+     */
+    private void updatePane(Pane pane, UiPart<Region> part) {
+        if (pane.getChildren().size() == 1) {
+            pane.getChildren().add(part.getRoot());
+        } else {
+            pane.getChildren().set(CURRENT_NODE, part.getRoot());
+        }
+    }
+
+    //@@author
 
     void hide() {
         primaryStage.hide();
@@ -213,46 +264,47 @@ public class MainWindow extends UiPart<Stage> {
         handleHelp();
     }
 
+    //@@author GabrielYik
+
     @Subscribe
-    private void handleTabSwitch(TabSwitchEvent event) {
-        semestersTabPane.getSelectionModel().select(event.getIndex());
-
-        ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
-        for (int semesterIndex = 0; semesterIndex < semesterTabs.size(); semesterIndex++) {
-            SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
-            ObservableList<Node> nodes = splitPane.getItems();
-
-            VBox vBox = (VBox) nodes.get(1);
-            StackPane stackPane = (StackPane) vBox.getChildren().get(0);
-            stackPane.getChildren().clear();
-        }
+    private void handleAddModuleEvent(AddModuleEvent event) {
+        updatePane(takenModulesPlaceholder, takenModuleListPanels.get(event.getIndex()));
     }
 
     @Subscribe
-    private void handleFindModule(FindModuleEvent event) {
-        ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
-        for (int semesterIndex = 0; semesterIndex < semesterTabs.size(); semesterIndex++) {
-            SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
-            ObservableList<Node> nodes = splitPane.getItems();
-            StackPane stackPane = (StackPane) nodes.get(2);
-            FindModulePanel findModulePanel = new FindModulePanel(event.getModule());
-            stackPane.getChildren().add(findModulePanel.getRoot());
-        }
+    private void handleGoToEvent(GoToEvent event) {
+        ModuleListPanel panelReplacement = takenModuleListPanels.get(event.getIndex());
+        takenModulesPlaceholder.getChildren().set(CURRENT_NODE, panelReplacement.getRoot());
+    }
+
+    @Subscribe
+    private void handleFindEvent(FindModuleEvent event) {
+        FindModulePanel findModulePanel = new FindModulePanel(event.getModule());
+        updateMultiPurposePanel(findModulePanel);
+    }
+
+    private void updateMultiPurposePanel(ModuleDescription newPanel) {
+        updatePane(multiPurposePanelPlaceholder, newPanel);
+    }
+
+    @Subscribe
+    private void handleClearEvent(ClearEvent event) {
+        clearTakenModulesPanel();
+        clearSuggestedModulesPanel();
+    }
+
+    private void clearTakenModulesPanel() {
+        updatePane(takenModulesPlaceholder, timelessTakenModuleListPanel);
+    }
+
+    private void clearSuggestedModulesPanel() {
+        updatePane(suggestedModulesPlaceholder, timelessSuggestedModuleListPanel);
     }
 
     @Subscribe
     private void handleSuggestModule(SuggestModuleEvent event) {
-        ObservableList<Tab> semesterTabs = semestersTabPane.getTabs();
-        for (int semesterIndex = 0; semesterIndex < semesterTabs.size(); semesterIndex++) {
-            SplitPane splitPane = (SplitPane) semesterTabs.get(semesterIndex).getContent();
-            ObservableList<Node> nodes = splitPane.getItems();
-
-            VBox vBox = (VBox) nodes.get(1);
-            StackPane stackPane = (StackPane) vBox.getChildren().get(0);
-            ModuleListPanel suggestModulePanel = new ModuleListPanel(event.getModuleList());
-            Node n = suggestModulePanel.getRoot();
-            stackPane.getChildren().add(n);
-        }
+        ModuleListPanel panel = new ModuleListPanel(event.getModuleList(),
+                event.getIndex(), ModulePanelType.SUGGESTED);
+        suggestedModulesPlaceholder.getChildren().set(CURRENT_NODE, panel.getRoot());
     }
-
 }

@@ -31,7 +31,7 @@ public class StatusCommand extends Command {
         int[] creditCounts = new int[ModulePlanner.MAX_NUMBER_SEMESTERS];
         int totalCreditCount = 0;
         for (int i = 0; i < ModulePlanner.MAX_NUMBER_SEMESTERS; i++) {
-            for (Module module : model.getTakenModuleList(i)) {
+            for (Module module : model.getTakenModules(i)) {
                 creditCounts[i] += module.getCreditCount();
             }
             totalCreditCount += creditCounts[i];

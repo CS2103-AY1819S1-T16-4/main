@@ -3,6 +3,7 @@ package seedu.planner.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.planner.commons.util.StringUtil.convertCollectionToString;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
@@ -11,7 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.core.Messages;
+import seedu.planner.commons.events.ui.AddModuleEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -68,31 +71,23 @@ public class AddCommand extends Command {
         }
 
         if (!invalidModules.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for (Module m : invalidModules) {
-                sb.append(m.toString() + " ");
-            }
-            throw new CommandException(String.format(
-                    Messages.MESSAGE_INVALID_MODULES, sb.toString().trim()));
+            String errorMessage = String.format(Messages.MESSAGE_INVALID_MODULES,
+                    convertCollectionToString(invalidModules));
+            throw new CommandException(errorMessage);
         }
 
         if (!existedModules.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for (Module m: existedModules) {
-                sb.append(m.toString() + " ");
-            }
-            throw new CommandException(String.format(
-                    Messages.MESSAGE_EXISTED_MODULES, sb.toString().trim()));
-        }
-
-        StringBuilder sb = new StringBuilder();
-        for (Module m : modulesToAdd) {
-            sb.append(m.toString() + " ");
+            String errorMessage = String.format(Messages.MESSAGE_EXISTED_MODULES,
+                    convertCollectionToString(existedModules));
+            throw new CommandException(errorMessage);
         }
 
         model.addModules(modulesToAdd, semesterIndex);
         model.commitModulePlanner();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, sb.toString().trim()));
+
+        EventsCenter.getInstance().post(new AddModuleEvent(semesterIndex));
+        String successMessage = String.format(MESSAGE_SUCCESS, convertCollectionToString(modulesToAdd));
+        return new CommandResult(successMessage);
     }
 
     @Override

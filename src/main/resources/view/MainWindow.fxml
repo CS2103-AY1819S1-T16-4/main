@@ -7,8 +7,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -46,244 +44,33 @@
                         <Insets bottom="5" left="10" right="10" top="5" />
                     </padding>
                 </StackPane>
-                <TabPane fx:id="semestersTabPane" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" tabMinWidth="140.0">
-                    <tabs>
-                        <Tab text="Y1S1">
-                     <content>
-                        <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
-                           <items>
-                              <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
-                                 <padding>
-                                    <Insets bottom="10" left="10" right="10" top="10" />
-                                 </padding>
-                                 <children>
-                                    <StackPane VBox.vgrow="ALWAYS" />
-                                 </children>
-                              </VBox>
-                              <VBox minWidth="340" prefWidth="340">
-                                 <padding>
-                                    <Insets bottom="10" left="10" right="10" top="10" />
-                                 </padding>
-                                 <children>
-                                    <StackPane VBox.vgrow="ALWAYS" />
-                                 </children>
-                              </VBox>
-                              <StackPane prefWidth="340">
-                                 <padding>
-                                    <Insets bottom="10" left="10" right="10" top="10" />
-                                 </padding>
-                              </StackPane>
-                           </items>
-                        </SplitPane>
-                     </content>
-                        </Tab>
-                        <Tab text="Y1S2">
-                            <content>
-                                <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
-                                    <items>
-                                        <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <VBox minWidth="340" prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <StackPane prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                        </StackPane>
-                                    </items>
-                                </SplitPane>
-                            </content>
-                        </Tab>
-                        <Tab text="Y2S1">
-                            <content>
-                                <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
-                                    <items>
-                                        <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <VBox minWidth="340" prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <StackPane prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                        </StackPane>
-                                    </items>
-                                </SplitPane>
-                            </content>
-                        </Tab>
-                        <Tab text="Y2S2">
-                            <content>
-                                <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
-                                    <items>
-                                        <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <VBox minWidth="340" prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <StackPane prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                        </StackPane>
-                                    </items>
-                                </SplitPane>
-                            </content>
-                        </Tab>
-                        <Tab text="Y3S1">
-                            <content>
-                                <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
-                                    <items>
-                                        <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <VBox minWidth="340" prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <StackPane prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                        </StackPane>
-                                    </items>
-                                </SplitPane>
-                            </content>
-                        </Tab>
-                        <Tab text="Y3S2">
-                            <content>
-                                <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
-                                    <items>
-                                        <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <VBox minWidth="340" prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <StackPane prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                        </StackPane>
-                                    </items>
-                                </SplitPane>
-                            </content>
-                        </Tab>
-                        <Tab text="Y4S1">
-                            <content>
-                                <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
-                                    <items>
-                                        <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <VBox minWidth="340" prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <StackPane prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                        </StackPane>
-                                    </items>
-                                </SplitPane>
-                            </content>
-                        </Tab>
-                        <Tab text="Y4S2">
-                            <content>
-                                <SplitPane id="splitPane" dividerPositions="0.4, 0.5">
-                                    <items>
-                                        <VBox minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <VBox minWidth="340" prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                            <children>
-                                                <StackPane VBox.vgrow="ALWAYS" />
-                                            </children>
-                                        </VBox>
-                                        <StackPane prefWidth="340">
-                                            <padding>
-                                                <Insets bottom="10" left="10" right="10" top="10" />
-                                            </padding>
-                                        </StackPane>
-                                    </items>
-                                </SplitPane>
-                            </content>
-                        </Tab>
-                    </tabs>
-                </TabPane>
+            <SplitPane dividerPositions="0.29797979797979796, 0.5">
+              <items>
+                  <VBox fx:id="takenModulesPlaceholder" minWidth="340.0" prefWidth="340.0">
+                     <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                     </padding>
+                     <children>
+                        <StackPane VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="suggestedModulesPlaceholder" minWidth="340.0" prefWidth="340.0">
+                     <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                     </padding>
+                     <children>
+                        <StackPane VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <StackPane fx:id="multiPurposePanelPlaceholder" minWidth="340.0" prefWidth="340.0">
+                     <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                     </padding>
+                  </StackPane>
+              </items>
+            </SplitPane>
 
-                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+                <StackPane fx:id="statusBarPlaceholder" VBox.vgrow="NEVER" />
             </VBox>
         </Scene>
     </scene>

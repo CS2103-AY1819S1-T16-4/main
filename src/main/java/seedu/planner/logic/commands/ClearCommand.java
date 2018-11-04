@@ -2,6 +2,8 @@ package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.planner.commons.core.EventsCenter;
+import seedu.planner.commons.events.ui.ClearEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;
@@ -20,6 +22,8 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         model.resetData(new ModulePlanner());
         model.commitModulePlanner();
+
+        EventsCenter.getInstance().post(new ClearEvent());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

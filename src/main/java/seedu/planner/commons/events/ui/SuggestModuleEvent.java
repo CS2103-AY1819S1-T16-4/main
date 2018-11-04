@@ -12,12 +12,19 @@ import seedu.planner.model.module.Module;
 public class SuggestModuleEvent extends BaseEvent {
     private final ObservableList<Module> moduleList;
 
-    public SuggestModuleEvent(ObservableList<Module> moduleList) {
+    private final int index;
+
+    public SuggestModuleEvent(ObservableList<Module> moduleList, int index) {
         this.moduleList = moduleList;
+        this.index = index;
     }
 
     public ObservableList<Module> getModuleList() {
         return moduleList;
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     @Override

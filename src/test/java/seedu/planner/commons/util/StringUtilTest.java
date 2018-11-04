@@ -171,18 +171,17 @@ public class StringUtilTest {
         assertTrue(containsOnlyLettersAndWhiteSpace("Software Engineering"));
         // Two spaces
         assertTrue(containsOnlyLettersAndWhiteSpace("Software  Engineering"));
+        // Space on right
+        assertTrue(containsOnlyLettersAndWhiteSpace("Software "));
+        // Space on left
+        assertTrue(containsOnlyLettersAndWhiteSpace(" Software "));
     }
 
     @Test
     public void containsOnlyLettersAndWhiteSpace_invalidArg_returnsFalse() {
-        // Space on right
-        assertFalse(containsOnlyLettersAndWhiteSpace("Software "));
-        // Space on left
-        assertFalse(containsOnlyLettersAndWhiteSpace(" Software "));
-
-        // One space
+        // One space no letters
         assertFalse(containsOnlyLettersAndWhiteSpace(" "));
-        // Two spaces
+        // Two spaces no letters
         assertFalse(containsOnlyLettersAndWhiteSpace("  "));
 
         // Empty String

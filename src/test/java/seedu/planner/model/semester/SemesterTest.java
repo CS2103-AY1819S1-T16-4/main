@@ -60,14 +60,14 @@ public class SemesterTest {
     @Test
     public void setModulesTaken_null_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        semester.setModulesTaken(null);
+        semester.setTakenModules(null);
     }
 
     @Test
     public void setModulesTaken_validSemester_success() {
         Semester differentSemester = new Semester(2, 1);
         differentSemester.addModules(getTypicalModules());
-        semester.setModulesTaken(differentSemester);
+        semester.setTakenModules(differentSemester);
         assertEquals(semester.getModules(), differentSemester.getModules());
     }
 

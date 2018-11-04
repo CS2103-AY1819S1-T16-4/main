@@ -3,6 +3,7 @@ package seedu.planner.model.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static seedu.planner.model.util.IndexUtil.convertIndexToYearAndSemester;
 import static seedu.planner.model.util.IndexUtil.convertYearAndSemesterToIndex;
 import static seedu.planner.model.util.IndexUtil.isValidIndex;
 import static seedu.planner.model.util.IndexUtil.isValidSemester;
@@ -52,5 +53,20 @@ public class IndexUtilTest {
     public void convertYearAndSemesterToIndex_success() {
         assertEquals(convertYearAndSemesterToIndex(1, 1), 0);
         assertEquals(convertYearAndSemesterToIndex(4, 2), 7);
+    }
+
+    @Test
+    public void convertIndexToYearAndSemester_validIndex_success() {
+        assertEquals(convertIndexToYearAndSemester(0), "11");
+        assertEquals(convertIndexToYearAndSemester(1), "12");
+        assertEquals(convertIndexToYearAndSemester(2), "21");
+        assertEquals(convertIndexToYearAndSemester(4), "31");
+        assertEquals(convertIndexToYearAndSemester(6), "41");
+    }
+
+    @Test
+    public void convertIndexToYearAndSemester_invalidIndex_failure() {
+        assertEquals(convertIndexToYearAndSemester(-1), "00");
+        assertEquals(convertIndexToYearAndSemester(8), "00");
     }
 }

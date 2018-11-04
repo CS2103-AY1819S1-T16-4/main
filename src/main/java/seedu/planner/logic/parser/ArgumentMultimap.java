@@ -1,10 +1,14 @@
 package seedu.planner.logic.parser;
 
+import static seedu.planner.logic.parser.ParserUtil.MESSAGE_EXTRA_PREFIX_VALUE;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import seedu.planner.logic.parser.exceptions.ParseException;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -34,8 +38,12 @@ public class ArgumentMultimap {
     /**
      * Returns the last value of {@code prefix}.
      */
-    public Optional<String> getValue(Prefix prefix) {
+    public Optional<String> getValue(Prefix prefix) throws ParseException {
         List<String> values = getAllValues(prefix);
+        if (values.size() > 1 && CliSyntax.isPrefixLimitedToOne(prefix)) {
+            throw new ParseException(String.format(
+                    MESSAGE_EXTRA_PREFIX_VALUE, prefix));
+        }
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
     }
 
@@ -54,7 +62,19 @@ public class ArgumentMultimap {
     /**
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      */
-    public String getPreamble() {
+    public String getPreamble() throws ParseException {
         return getValue(new Prefix("")).orElse("");
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values.
+     */
+    public boolean containsAllPrefixes(Prefix... prefixes) throws ParseException {
+        for (Prefix prefix : prefixes) {
+            if (!getValue(prefix).isPresent()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

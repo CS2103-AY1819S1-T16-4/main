@@ -1,8 +1,10 @@
 package seedu.planner.logic.commands;
 
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1231;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.planner.logic.commands.CommandTestUtil.deleteFirstModule;
+import static seedu.planner.logic.commands.CommandTestUtil.deleteModule;
 import static seedu.planner.testutil.TypicalModules.getTypicalModulePlanner;
 
 import org.junit.Before;
@@ -22,11 +24,11 @@ public class UndoCommandTest {
     @Before
     public void setUp() {
         // set up of models' undo/redo history
-        deleteFirstModule(model);
-        deleteFirstModule(model);
+        deleteModule(model, VALID_MODULE_CS1010);
+        deleteModule(model, VALID_MODULE_CS1231);
 
-        deleteFirstModule(expectedModel);
-        deleteFirstModule(expectedModel);
+        deleteModule(expectedModel, VALID_MODULE_CS1010);
+        deleteModule(expectedModel, VALID_MODULE_CS1231);
     }
 
     @Test

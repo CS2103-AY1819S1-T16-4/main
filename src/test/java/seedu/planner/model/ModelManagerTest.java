@@ -40,13 +40,13 @@ public class ModelManagerTest {
     @Test
     public void getTakenModuleList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        modelManager.getTakenModuleList(0).remove(0);
+        modelManager.getTakenModules(0).remove(0);
     }
 
     @Test
     public void getAvailableModuleList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        modelManager.getAvailableModuleList().remove(0);
+        modelManager.getAvailableModules().remove(0);
     }
 
     @Test

@@ -46,7 +46,7 @@ public class ListCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
         }
 
-        model.getTakenModuleList(index);
+        model.getTakenModules(index);
         return new CommandResult(String.format(MESSAGE_SUCCESS, index));
     }
 

@@ -3,13 +3,14 @@ package seedu.planner.commons.events.ui;
 import seedu.planner.commons.events.BaseEvent;
 
 /**
- * An event to switch tabs in the ui.
+ * An event that moves the current ui view to the period
+ * where the module(s) is/are added.
  */
-public class TabSwitchEvent extends BaseEvent {
+public class AddModuleEvent extends BaseEvent {
 
-    private final int index;
+    public final int index;
 
-    public TabSwitchEvent(int index) {
+    public AddModuleEvent(int index) {
         this.index = index;
     }
 

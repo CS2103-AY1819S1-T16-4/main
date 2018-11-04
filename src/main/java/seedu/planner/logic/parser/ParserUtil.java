@@ -1,6 +1,7 @@
 package seedu.planner.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.planner.commons.util.StringUtil.containsOnlyNumbers;
 import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_FOCUS_AREA_CONSTRAINTS;
 import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_MAJOR_CONSTRAINTS;
 import static seedu.planner.model.module.ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS;
@@ -22,6 +23,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_YEAR = "Year is not between 1 to 4.";
     public static final String MESSAGE_INVALID_SEMESTER = "Semester is not between 1 to 2.";
+    public static final String MESSAGE_EXTRA_PREFIX_VALUE = "Input only one value for the prefix %1$s";
 
 
     //@@author GabrielYik
@@ -39,10 +41,12 @@ public class ParserUtil {
         if (trimmedModuleCode.isEmpty()) {
             throw new ParseException(MESSAGE_MODULE_CODE_CONSTRAINTS);
         }
-        if (!ModuleUtil.hasValidCodeFormat(trimmedModuleCode)) {
+
+        String upperCasedTrimmedModuleCode = trimmedModuleCode.toUpperCase();
+        if (!ModuleUtil.hasValidCodeFormat(upperCasedTrimmedModuleCode)) {
             throw new ParseException(MESSAGE_MODULE_CODE_CONSTRAINTS);
         }
-        return new Module(trimmedModuleCode);
+        return new Module(upperCasedTrimmedModuleCode);
     }
 
     /**
@@ -123,7 +127,11 @@ public class ParserUtil {
      */
     public static int parseYear(String year) throws ParseException {
         requireNonNull(year);
-        int yearIndex = Integer.parseInt(year.trim());
+        String trimmedYear = year.trim();
+        if (!containsOnlyNumbers(trimmedYear)) {
+            throw new ParseException(MESSAGE_INVALID_YEAR);
+        }
+        int yearIndex = Integer.parseInt(trimmedYear);
         if (!IndexUtil.isValidYear(yearIndex)) {
             throw new ParseException(MESSAGE_INVALID_YEAR);
         }
@@ -138,7 +146,12 @@ public class ParserUtil {
      */
     public static int parseSemester(String semester) throws ParseException {
         requireNonNull(semester);
-        int semesterIndex = Integer.parseInt(semester.trim());
+        String trimmedSemester = semester.trim();
+        if (!containsOnlyNumbers(trimmedSemester)) {
+            throw new ParseException(MESSAGE_INVALID_SEMESTER);
+        }
+
+        int semesterIndex = Integer.parseInt(trimmedSemester);
         if (!IndexUtil.isValidSemester(semesterIndex)) {
             throw new ParseException(MESSAGE_INVALID_SEMESTER);
         }
