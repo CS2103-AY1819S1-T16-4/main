@@ -11,6 +11,8 @@ import static seedu.planner.logic.commands.CommandTestUtil.VALID_MAJOR_CS;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MAJOR_DESC_CS;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1010;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS2030;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2030;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_DESC_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_DESC_ONE;
