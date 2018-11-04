@@ -1,7 +1,6 @@
 package seedu.planner.model;
 
 import java.util.Set;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
@@ -10,10 +9,6 @@ import seedu.planner.model.module.Module;
  * The API of the Model component.
  */
 public interface Model {
-
-    //TODO: can have a predicate to filter taken and available modules
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
     /**
      * Sets up the user profile.
@@ -82,10 +77,10 @@ public interface Model {
     //@@author GabrielYik
 
     /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getTakenModuleList(int index);
+    ObservableList<Module> getTakenModules(int index);
 
     /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getAvailableModuleList();
+    ObservableList<Module> getAvailableModules();
 
     //@@author
 

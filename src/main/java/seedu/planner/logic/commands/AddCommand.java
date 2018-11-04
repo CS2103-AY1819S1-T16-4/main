@@ -12,7 +12,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.core.Messages;
+import seedu.planner.commons.events.ui.AddModuleEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 import seedu.planner.model.module.Module;
@@ -145,7 +147,11 @@ public class AddCommand extends Command {
         }
         model.addModules(copyToAdd, semesterIndex);
         model.commitModulePlanner();
-        return new CommandResult(result);
+
+        EventsCenter.getInstance().post(new AddModuleEvent(semesterIndex));
+        String successMessage = String.format(MESSAGE_SUCCESS, convertCollectionToString(modulesToAdd));
+        return new CommandResult(successMessage);
+
     }
 
     @Override

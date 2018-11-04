@@ -6,7 +6,6 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.commands.SetUpCommand;
@@ -22,7 +21,7 @@ public class SetUpCommandParser implements Parser<SetUpCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 args, PREFIX_MAJOR, PREFIX_FOCUS_AREA);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MAJOR) || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.containsAllPrefixes(PREFIX_MAJOR) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetUpCommand.MESSAGE_USAGE));
         }
 
@@ -49,13 +48,5 @@ public class SetUpCommandParser implements Parser<SetUpCommand> {
         }
 
         return formattedFocusAreas;
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

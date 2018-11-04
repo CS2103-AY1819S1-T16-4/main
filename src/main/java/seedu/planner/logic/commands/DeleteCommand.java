@@ -2,6 +2,7 @@ package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
+import static seedu.planner.commons.util.StringUtil.convertCollectionToString;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 
 import java.util.ArrayList;
@@ -49,12 +50,9 @@ public class DeleteCommand extends Command {
         }
 
         if (!invalidModules.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for (Module m : invalidModules) {
-                sb.append(m.toString() + " ");
-            }
-            throw new CommandException(String.format(
-                    Messages.MESSAGE_INVALID_MODULES, sb.toString().trim()));
+            String errorMessage = String.format(Messages.MESSAGE_INVALID_MODULES,
+                    convertCollectionToString(invalidModules));
+            throw new CommandException(errorMessage);
         }
 
         StringBuilder sb = new StringBuilder();
@@ -64,7 +62,9 @@ public class DeleteCommand extends Command {
 
         model.deleteModules(modulesToDelete);
         model.commitModulePlanner();
-        return new CommandResult(String.format(MESSAGE_DELETE_MODULES_SUCCESS, sb.toString().trim()));
+        String successMessage = String.format(MESSAGE_DELETE_MODULES_SUCCESS,
+                convertCollectionToString(modulesToDelete));
+        return new CommandResult(successMessage);
     }
 
     @Override

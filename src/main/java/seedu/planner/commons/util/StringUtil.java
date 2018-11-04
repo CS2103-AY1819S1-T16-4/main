@@ -17,7 +17,8 @@ import java.util.List;
  */
 public class StringUtil {
 
-    private static final String ALL_LETTERS_REGEX = "[a-zA-Z]+( +[a-zA-Z]+)*";
+    private static final String ALL_LETTERS_AND_WHITESPACE_REGEX = "[a-zA-Z]+( +[a-zA-Z]+)*";
+    private static final String ALL_NUMBERS_REGEX = "[0-9]+";
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
@@ -86,7 +87,18 @@ public class StringUtil {
      */
     public static boolean containsOnlyLettersAndWhiteSpace(String s) {
         requireNonNull(s);
-        return s.matches(ALL_LETTERS_REGEX);
+        return s.trim().matches(ALL_LETTERS_AND_WHITESPACE_REGEX);
+    }
+
+    /**
+     * Checks if the String contains only numbers.
+     *
+     * @param s The String
+     * @return True if the String contains only numbers
+     */
+    public static boolean containsOnlyNumbers(String s) {
+        requireNonNull(s);
+        return s.trim().matches(ALL_NUMBERS_REGEX);
     }
 
     /**
@@ -125,7 +137,7 @@ public class StringUtil {
      */
     public static boolean areEqualIgnoreCase(String s1, String s2) {
         requireAllNonNull(s1, s2);
-        return s1.toLowerCase().equals(s2.toLowerCase());
+        return s1.toLowerCase().trim().equals(s2.toLowerCase().trim());
     }
 
     /**

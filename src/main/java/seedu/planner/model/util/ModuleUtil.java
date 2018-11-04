@@ -33,7 +33,7 @@ public class ModuleUtil {
     }
 
     /**
-     * Checks if all the prerequisites for the given {@code Module} have been taken.
+     * Checks if any of the prerequisites for the given {@code Module} have been taken.
      *
      * @param modulesTaken List of {@code Module}s that the user had taken.
      * @param moduleToCheck The {@code Module} to be checked.
@@ -60,7 +60,7 @@ public class ModuleUtil {
             }
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -95,7 +95,7 @@ public class ModuleUtil {
     public static boolean isModuleAvailableToTake(List<Module> modulesTaken, List<Module> modulesTakenUntilIndex,
         Module module) {
         return hasNotTakenModule(modulesTaken, module)
-            && hasFulfilledAllPrerequisites(modulesTakenUntilIndex, module)
+            && hasFulfilledAnyPrerequisites(modulesTakenUntilIndex, module)
             && hasNotFulfilledAnyPreclusions(modulesTaken, module);
     }
 

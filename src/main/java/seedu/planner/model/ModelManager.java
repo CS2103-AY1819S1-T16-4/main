@@ -2,8 +2,11 @@ package seedu.planner.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -11,6 +14,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
@@ -29,6 +33,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final VersionedModulePlanner versionedModulePlanner;
 
+    private final List<SortedList<Module>> takenModules;
+
     private final FilteredList<Module> availableModules;
 
     //@@author Hilda-Ang
@@ -44,7 +50,13 @@ public class ModelManager extends ComponentManager implements Model {
 
         versionedModulePlanner = new VersionedModulePlanner(modulePlanner);
 
-        availableModules = new FilteredList<>(versionedModulePlanner.getAvailableModuleList());
+        takenModules = new ArrayList<>();
+        for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
+            takenModules.add(new SortedList<>(versionedModulePlanner.getTakenModules(i), (x, y) ->
+                    x.compareTo(y)));
+        }
+
+        availableModules = new FilteredList<>(versionedModulePlanner.getAvailableModules());
     }
 
     public ModelManager() {
@@ -137,17 +149,17 @@ public class ModelManager extends ComponentManager implements Model {
         versionedModulePlanner.suggestModules(index);
     }
 
-    //=========== Filtered Module List Accessors =============================================================
+    //=========== Module List Accessors =============================================================
+
     //@@author GabrielYik
 
     @Override
-    public ObservableList<Module> getTakenModuleList(int index) {
-        return FXCollections.unmodifiableObservableList(
-                versionedModulePlanner.getModulesTaken(index));
+    public ObservableList<Module> getTakenModules(int index) {
+        return FXCollections.unmodifiableObservableList(takenModules.get(index));
     }
 
     @Override
-    public ObservableList<Module> getAvailableModuleList() {
+    public ObservableList<Module> getAvailableModules() {
         return FXCollections.unmodifiableObservableList(availableModules);
     }
 
