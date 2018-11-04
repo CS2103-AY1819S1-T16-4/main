@@ -144,9 +144,9 @@ public class AddCommandTest {
     @Test
     public void execute_allPosibilities_success() {
         //Do all the above simultaneously
-        moduleToAdd = Set.of(new Module("MA1301"), new Module("CS1010E"), INVALID_MODULE_CS0000
-                , new Module("MA1301X"), new Module ("CS3230"), VALID_MODULE_CS2030
-                , new Module("GER1000"), VALID_MODULE_CS1010);
+        moduleToAdd = Set.of(new Module("MA1301"), new Module("CS1010E"), INVALID_MODULE_CS0000,
+                new Module("MA1301X"), new Module ("CS3230"), VALID_MODULE_CS2030,
+                new Module("GER1000"), VALID_MODULE_CS1010);
         AddCommand addCommand = new AddCommand(moduleToAdd, VALID_INDEX_ONE);
         String expectedMessage = String.format(AddCommand.MESSAGE_SUCCESS, VALID_MODULE_CODE_CS2030 + " GER1000")
                 + "\n" + String.format(Messages.MESSAGE_INVALID_MODULES, INVALID_MODULE_CODE_CS0000)
