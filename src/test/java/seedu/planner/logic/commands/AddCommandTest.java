@@ -1,9 +1,10 @@
 package seedu.planner.logic.commands;
 
-import static seedu.planner.logic.commands.CommandTestUtil.VALID_INDEX_ONE;
-import static seedu.planner.logic.commands.CommandTestUtil.VALID_INDEX_ZERO;
+
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_CS0000;
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CS0000;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_INDEX_ONE;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_INDEX_ZERO;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS1010;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS2030;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
@@ -45,7 +46,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_EmptyPrerequisiteModuleAdded_success() {
+    public void execute_emptyPrerequisiteModuleAdded_success() {
         //Add Module with No prerequisite.
         moduleToAdd.add(new Module("GER1000"));
         AddCommand addCommand = new AddCommand(moduleToAdd, VALID_INDEX_ZERO);
