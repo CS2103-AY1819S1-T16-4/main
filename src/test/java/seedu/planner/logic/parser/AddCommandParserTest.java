@@ -31,7 +31,7 @@ public class AddCommandParserTest {
     private Set<Module> moduleSet2 = Set.of(VALID_MODULE_CS1010, VALID_MODULE_CS1231);
 
     @Test
-    public void bla() {
+    public void parse_validArgs_success() {
         assertParseSuccess(parser, VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE
                 + VALID_MODULE_CODE_DESC_CS1010, new AddCommand(moduleSet1, 0));
 

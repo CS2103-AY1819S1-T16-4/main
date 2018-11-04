@@ -8,6 +8,7 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -62,29 +63,30 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
+        Set<Module> copyToAdd = new HashSet<>(modulesToAdd);
         List<Module> invalidModules = new ArrayList<>();
         List<Module> existedModules = new ArrayList<>();
         List<Module> precludedModules = new ArrayList<>();
         List<Module> unfulfilledModules = new ArrayList<>();
 
         //Filter modules that doesn't exist
-        for (Module m : modulesToAdd) {
+        for (Module m : copyToAdd) {
             if (!model.isModuleOffered(m)) {
                 invalidModules.add(m);
             }
         }
-        modulesToAdd.removeAll(invalidModules);
+        copyToAdd.removeAll(invalidModules);
 
         //Filter modules that already exist in the planner
-        for (Module m : modulesToAdd) {
+        for (Module m : copyToAdd) {
             if (model.hasModule(m)) {
                 existedModules.add(m);
             }
         }
-        modulesToAdd.removeAll(existedModules);
+        copyToAdd.removeAll(existedModules);
 
         //Filter modules that have its preclusion in the planner
-        for (Module m: modulesToAdd) {
+        for (Module m: copyToAdd) {
             List<ModuleInfo> preclusions = m.getPreclusions();
             for (ModuleInfo preclusion: preclusions) {
                 if (model.hasModule(new Module(preclusion.getCode()))) {
@@ -92,16 +94,16 @@ public class AddCommand extends Command {
                 }
             }
         }
-        modulesToAdd.removeAll(precludedModules);
+        copyToAdd.removeAll(precludedModules);
 
         //Filters all equivalent modules
-        List<List<Module>> equivalentModules = ModuleUtil.findModuleEquivalences(new ArrayList<>(modulesToAdd));
+        List<List<Module>> equivalentModules = ModuleUtil.findModuleEquivalences(new ArrayList<>(copyToAdd));
         for (List<Module> lm : equivalentModules) {
-            modulesToAdd.removeAll(lm);
+            copyToAdd.removeAll(lm);
         }
 
         //Filters all unfulfilled modules
-        for (Module m : modulesToAdd) {
+        for (Module m : copyToAdd) {
             int i = 0;
             List<Module> upToIndex = new ArrayList<>();
             while (i < semesterIndex) {
@@ -112,9 +114,9 @@ public class AddCommand extends Command {
                 unfulfilledModules.add(m);
             }
         }
-        modulesToAdd.removeAll(unfulfilledModules);
+        copyToAdd.removeAll(unfulfilledModules);
 
-        String result = String.format(MESSAGE_SUCCESS, convertCollectionToString(modulesToAdd));
+        String result = String.format(MESSAGE_SUCCESS, convertCollectionToString(copyToAdd));
 
         if (!invalidModules.isEmpty()) {
             result += "\n" + String.format(Messages.MESSAGE_INVALID_MODULES, convertCollectionToString(invalidModules));
@@ -141,7 +143,7 @@ public class AddCommand extends Command {
         if (!unfulfilledModules.isEmpty()) {
             result += "\n" + String.format(MESSAGE_UNFULFILLED, convertCollectionToString(unfulfilledModules));
         }
-        model.addModules(modulesToAdd, semesterIndex);
+        model.addModules(copyToAdd, semesterIndex);
         model.commitModulePlanner();
         return new CommandResult(result);
     }
