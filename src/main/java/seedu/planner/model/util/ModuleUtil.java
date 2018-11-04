@@ -44,23 +44,23 @@ public class ModuleUtil {
         List<List<ModuleInfo>> groupedByEquivalence = groupModuleInfosByEquivalence(prerequisites);
 
         for (List<ModuleInfo> equivalence : groupedByEquivalence) {
-            boolean oneIsNotContained = true;
+            boolean isOneNotContained = true;
 
             for (ModuleInfo moduleInfo : equivalence) {
                 Module toModule = new Module(moduleInfo.getCode());
 
                 if (modulesTaken.contains(toModule)) {
-                    oneIsNotContained = false;
+                    isOneNotContained = false;
                 }
 
             }
 
-            if (oneIsNotContained) {
+            if (isOneNotContained) {
                 return false;
             }
         }
 
-        return false;
+        return true;
     }
 
     /**
@@ -93,12 +93,51 @@ public class ModuleUtil {
      * @return True if all the prerequisites are fulfilled and no preclusion has been fulfilled.
      */
     public static boolean isModuleAvailableToTake(List<Module> modulesTaken, List<Module> modulesTakenUntilIndex,
-        Module module) {
+                                                  Module module) {
         return hasNotTakenModule(modulesTaken, module)
-            && hasFulfilledAnyPrerequisites(modulesTakenUntilIndex, module)
-            && hasNotFulfilledAnyPreclusions(modulesTaken, module);
+                && hasFulfilledAllPrerequisites(modulesTakenUntilIndex, module)
+                && hasNotFulfilledAnyPreclusions(modulesTaken, module);
     }
 
+    //@@author RomaRomama
+
+    /**
+     * Extracts the equivalent modules of the head of the list.
+     *
+     * @param modules list of modules
+     * @return List of all modules equivalent to the head
+     */
+    private static List<ModuleInfo> extractHeadEquivalent(List<ModuleInfo> modules) {
+        Iterator<ModuleInfo> iter1 = modules.iterator();
+        List<ModuleInfo> equivalence = new ArrayList<>();
+
+        while (iter1.hasNext()) {
+            ModuleInfo current = iter1.next();
+
+            if (equivalence.isEmpty()) {
+                equivalence.add(current);
+                iter1.remove();
+            } else {
+                Iterator<ModuleInfo> iter2 = equivalence.iterator();
+                List<ModuleInfo> toAdd = new ArrayList<>();
+
+                while (iter2.hasNext() && toAdd.size() == 0) {
+                    ModuleInfo toCompare = iter2.next();
+                    List<ModuleInfo> preclusions1 = current.getPreclusions();
+                    List<ModuleInfo> preclusions2 = toCompare.getPreclusions();
+
+                    if (preclusions1.contains(toCompare) || preclusions2.contains(current)) {
+                        toAdd.add(current);
+                        iter1.remove();
+                    }
+                }
+
+                equivalence.addAll(toAdd);
+            }
+        }
+
+        return equivalence;
+    }
     /**
      * Finds all equivalent moduleinfos from a given set of moduleinfos.
      *
@@ -110,34 +149,7 @@ public class ModuleUtil {
         List<List<ModuleInfo>> equivalenceSet = new ArrayList<>();
 
         while (copyModuleInfoList.size() > 0) {
-            Iterator<ModuleInfo> iter1 = copyModuleInfoList.iterator();
-            List<ModuleInfo> equivalence = new ArrayList<>();
-
-            while (iter1.hasNext()) {
-                ModuleInfo current = iter1.next();
-
-                if (equivalence.isEmpty()) {
-                    equivalence.add(current);
-                    iter1.remove();
-                } else {
-                    Iterator<ModuleInfo> iter2 = equivalence.iterator();
-                    List<ModuleInfo> toAdd = new ArrayList<>();
-
-                    while (iter2.hasNext() && toAdd.size() == 0) {
-                        ModuleInfo toCompare = iter2.next();
-                        List<ModuleInfo> preclusions1 = current.getPreclusions();
-                        List<ModuleInfo> preclusions2 = toCompare.getPreclusions();
-
-                        if (preclusions1.contains(toCompare) || preclusions2.contains(current)) {
-                            toAdd.add(current);
-                            iter1.remove();
-                        }
-                    }
-
-                    equivalence.addAll(toAdd);
-                }
-            }
-
+            List<ModuleInfo> equivalence = extractHeadEquivalent(copyModuleInfoList);
             copyModuleInfoList.removeAll(equivalence);
             if (equivalence.size() > 1) {
                 equivalenceSet.add(equivalence);
@@ -198,4 +210,6 @@ public class ModuleUtil {
 
         return toModuleList;
     }
+
+    //@@author
 }
