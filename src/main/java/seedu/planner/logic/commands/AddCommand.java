@@ -1,7 +1,6 @@
 package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.planner.commons.util.StringUtil.convertCollectionToString;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
@@ -41,11 +40,11 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Added Module(s): %1$s";
 
-    private static final String MESSAGE_EQUIVALENT = "Following Module(s) are equivalent: %1$s";
-    private static final String MESSAGE_EXISTED_MODULES = "Following module(s) already exist in the planner: %1$s";
-    private static final String MESSAGE_PRECLUDED_MODULES = "Following module(s) have some of its preclusion"
+    public static final String MESSAGE_EQUIVALENT = "Following Module(s) are equivalent: %1$s";
+    public static final String MESSAGE_EXISTED_MODULES = "Following module(s) already exist in the planner: %1$s";
+    public static final String MESSAGE_PRECLUDED_MODULES = "Following module(s) have some of its preclusion"
             + " in the planner: %1$s";
-    private static final String MESSAGE_UNFULFILLED = "Following module(s) have its prerequisites not fulfilled"
+    public static final String MESSAGE_UNFULFILLED = "Following module(s) have its prerequisites not fulfilled"
             + " in the planner: %1$s";
 
     private final int semesterIndex;
@@ -112,9 +111,6 @@ public class AddCommand extends Command {
             if (!ModuleUtil.hasFulfilledAllPrerequisites(upToIndex, m)) {
                 unfulfilledModules.add(m);
             }
-            if (i == 0 && !m.getPrerequisites().isEmpty()) {
-                unfulfilledModules.add(m);
-            }
         }
         modulesToAdd.removeAll(unfulfilledModules);
 
@@ -162,6 +158,6 @@ public class AddCommand extends Command {
         }
 
         AddCommand command = (AddCommand) other;
-        return areEqualIgnoreOrder(modulesToAdd, command.modulesToAdd);
+        return modulesToAdd.equals(command.modulesToAdd) && semesterIndex == command.semesterIndex;
     }
 }
