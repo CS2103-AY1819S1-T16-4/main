@@ -3,20 +3,16 @@ package seedu.planner.model.module;
 //@@author rongjiecomputer
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.io.Resources;
 
-import seedu.planner.MainApp;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.util.JsonUtil;
 
@@ -140,7 +136,9 @@ public class ModuleInfo {
         return name;
     }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
     public float getCreditCount() {
         return creditCount;
