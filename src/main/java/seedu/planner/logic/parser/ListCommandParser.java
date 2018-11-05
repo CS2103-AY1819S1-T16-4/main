@@ -25,13 +25,18 @@ public class ListCommandParser implements Parser<ListCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_YEAR, PREFIX_SEMESTER);
 
-        if (!argMultimap.containsAllPrefixes(PREFIX_YEAR, PREFIX_SEMESTER) || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-        int year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
-        int semester = ParserUtil.parseSemester(argMultimap.getValue(PREFIX_SEMESTER).get());
+        String year = argMultimap.getValue(PREFIX_YEAR).orElse(null);
 
-        return new ListCommand(IndexUtil.convertYearAndSemesterToIndex(year, semester));
+        if (year == null) {
+            return new ListCommand(-1);
+        }
+
+        int intYear = ParserUtil.parseYear(year);
+
+        return new ListCommand(intYear);
     }
 }

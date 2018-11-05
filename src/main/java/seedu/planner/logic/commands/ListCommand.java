@@ -5,10 +5,13 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.planner.model.util.IndexUtil.isValidIndex;
 
+import javafx.collections.ObservableList;
+
 import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
+import seedu.planner.model.module.Module;
 
 //@@author Hilda-Ang
 
@@ -21,33 +24,35 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken for a semester. "
             + "Parameters: "
-            + PREFIX_YEAR + "YEAR "
-            + PREFIX_SEMESTER + "SEMESTER "
+            + "[" + PREFIX_YEAR + "YEAR ]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_YEAR + "1 "
-            + PREFIX_SEMESTER + "1 ";
+            + PREFIX_YEAR + "1 ";
 
-    public static final String MESSAGE_SUCCESS = "Listed all modules taken";
+    public static final String MESSAGE_SUCCESS_ALL = "Listed all modules taken";
+    public static final String MESSAGE_SUCCESS_YEAR = "Listed all modules taken for year ";
 
-    private int index;
+    private int year;
 
     /**
      * Creates a ListCommand to list modules for specified semester.
      */
-    public ListCommand(int index) {
-        this.index = index;
+    public ListCommand(int year) {
+        this.year = year;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        if (!isValidIndex(index)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
+        if (year  == -1) {
+            model.listTakenModulesAll();
+            ObservableList<Module> modules = model.listModules();
+            return new CommandResult(MESSAGE_SUCCESS_ALL)
         }
 
-        model.getTakenModules(index);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, index));
+        model.listTakenModulesYear(year);
+        ObservableList<Module> modules = model.listModules();
+        return new CommandResult(String.format(MESSAGE_SUCCESS_YEAR, year));
     }
 
     @Override
