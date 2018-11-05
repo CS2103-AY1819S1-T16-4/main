@@ -2,7 +2,6 @@ package seedu.planner.commons.util;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
 import static seedu.planner.commons.util.CollectionUtil.convertCollectionToString;
@@ -158,7 +157,7 @@ public class CollectionUtilTest {
     @Test
     public void formatMessage_nullMessageGiven_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        formatMessage(null, List.of(1,2));
+        formatMessage(null, List.of(1, 2));
     }
 
     @Test
