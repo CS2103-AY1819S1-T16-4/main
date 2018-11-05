@@ -86,6 +86,9 @@ public class ArgumentMultimap {
      */
     public int checkPrefixValueCount(Prefix prefix) {
         List<String> values = argMultimap.get(prefix);
+        if (values == null) {
+            return 0;
+        }
         return values.size();
     }
 }
