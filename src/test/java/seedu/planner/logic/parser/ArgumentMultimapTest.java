@@ -18,10 +18,10 @@ import seedu.planner.logic.parser.exceptions.ParseException;
 
 public class ArgumentMultimapTest {
 
+    private static ArgumentMultimap argMultimap;
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    private static ArgumentMultimap argMultimap;
 
     @BeforeClass
     public static void setup() {
