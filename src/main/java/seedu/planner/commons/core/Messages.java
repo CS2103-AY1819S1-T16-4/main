@@ -7,10 +7,9 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
 
     public static final String MESSAGE_INVALID_MODULES = "Invalid modules: %1$s";
     public static final String MESSAGE_INVALID_PARAMETERS = "Invalid parameters";
+    public static final String MESSAGE_EXTRA_PREFIX_VALUES = "Extra values for prefix %1$s";
 
 }

@@ -77,4 +77,15 @@ public class ArgumentMultimap {
         }
         return true;
     }
+
+    /**
+     * Checks the number of values that are associated with the {@code prefix}.
+     *
+     * @param prefix The prefix which values are to be counted
+     * @return The number of values
+     */
+    public int checkPrefixValueCount(Prefix prefix) {
+        List<String> values = argMultimap.get(prefix);
+        return values.size();
+    }
 }
