@@ -7,7 +7,6 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
 import java.util.Set;
 
 import seedu.planner.commons.util.CollectionUtil;
-import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
