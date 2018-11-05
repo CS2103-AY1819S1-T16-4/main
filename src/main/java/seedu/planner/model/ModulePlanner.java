@@ -30,6 +30,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private UserProfile userProfile;
 
     private final ObservableList<Module> availableModules = FXCollections.observableArrayList();
+    private final ObservableList<Module> takenModules = FXCollections.observableArrayList();
 
     private int index;
 
@@ -224,20 +225,26 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     public ObservableList<Module> getTakenModulesAll() {
-        ObservableList<Module> modules = FXCollections.emptyObservableList();
+        List<Module> modules = new ArrayList<>();
         for (Semester s: semesters) {
             modules.addAll(s.getModules());
         }
-        return modules;
+        setTakenModules(modules);
+        return takenModules;
     }
 
     public ObservableList<Module> getTakenModulesYear(int year) {
         int[] indices = IndexUtil.getIndicesFromYear(year);
-        ObservableList<Module> modules = FXCollections.emptyObservableList();
+        List<Module> modules =new ArrayList<>();
         for (int i = 0; i < indices.length; i++) {
             modules.addAll(semesters.get(indices[i]).getModules());
         }
-        return modules;
+        setTakenModules(modules);
+        return takenModules;
+    }
+
+    private void setTakenModules(List<Module> modules) {
+        takenModules.setAll(modules);
     }
 
     /**
