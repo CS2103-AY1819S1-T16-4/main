@@ -1,8 +1,8 @@
 package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.planner.commons.util.CollectionUtil.convertCollectionToString;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.planner.commons.util.StringUtil.convertCollectionToString;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
@@ -209,7 +209,6 @@ public class AddCommand extends Command {
 
         EventsCenter.getInstance().post(new AddModuleEvent(semesterIndex));
         return new CommandResult(result);
-
     }
 
     @Override

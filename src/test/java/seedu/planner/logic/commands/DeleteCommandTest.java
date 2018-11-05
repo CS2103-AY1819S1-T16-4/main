@@ -1,7 +1,7 @@
 package seedu.planner.logic.commands;
 
+import static seedu.planner.commons.util.CollectionUtil.formatMessage;
 import static seedu.planner.commons.util.CollectionUtil.getAnyOne;
-import static seedu.planner.commons.util.StringUtil.convertCollectionToString;
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CS0000;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1231;
@@ -9,7 +9,9 @@ import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2030;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2040;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.planner.logic.commands.DeleteCommand.MESSAGE_DELETE_MODULES_SUCCESS;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Before;
@@ -55,7 +57,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(moduleToDelete);
 
         String expectedMessage = String.format(
-                DeleteCommand.MESSAGE_DELETE_MODULES_SUCCESS, getAnyOne(moduleToDelete).get());
+                MESSAGE_DELETE_MODULES_SUCCESS, getAnyOne(moduleToDelete).get());
         expectedModel.deleteModules(moduleToDelete);
         expectedModel.commitModulePlanner();
 
@@ -67,8 +69,7 @@ public class DeleteCommandTest {
         Set<Module> modulesToDelete = Set.of(VALID_MODULE_CS1010, VALID_MODULE_CS1231);
         DeleteCommand deleteCommand = new DeleteCommand(modulesToDelete);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_MODULES_SUCCESS,
-                convertCollectionToString(modulesToDelete));
+        String expectedMessage = formatMessage(MESSAGE_DELETE_MODULES_SUCCESS, modulesToDelete);
         expectedModel.deleteModules(modulesToDelete);
         expectedModel.commitModulePlanner();
 
@@ -76,21 +77,38 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidModule_throwsCommandException() {
+    public void execute_notOfferedModule_throwsCommandException() {
         DeleteCommand deleteCommand = new DeleteCommand(Set.of(INVALID_MODULE_CS0000));
 
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_MODULES, INVALID_MODULE_CS0000);
+        String expectedMessage = String.format(Messages.MESSAGE_NOT_OFFERED_MODULES, INVALID_MODULE_CS0000);
 
         assertCommandFailure(deleteCommand, model, commandHistory, expectedMessage);
     }
 
     @Test
-    public void execute_validModuleNotYetAdded_throwsCommandException() {
+    public void execute_nonExistentModule_throwsCommandException() {
         DeleteCommand deleteCommand = new DeleteCommand(Set.of(VALID_MODULE_CS2040));
 
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_MODULES, VALID_MODULE_CS2040);
+        String expectedMessage = String.format(Messages.MESSAGE_NON_EXISTENT_MODULES, VALID_MODULE_CS2040);
 
         assertCommandFailure(deleteCommand, model, commandHistory, expectedMessage);
+    }
+
+    @Test
+    public void execute_validAndNotOfferedAndNonExistentModule() {
+        Set<Module> modulesToDelete = new HashSet<>();
+        modulesToDelete.add(VALID_MODULE_CS1010);
+        modulesToDelete.add(INVALID_MODULE_CS0000);
+        modulesToDelete.add(VALID_MODULE_CS2040);
+        DeleteCommand deleteCommand = new DeleteCommand(modulesToDelete);
+
+        String expectedMessage = String.format(MESSAGE_DELETE_MODULES_SUCCESS, VALID_MODULE_CS1010);
+        expectedMessage += "\n" + String.format(Messages.MESSAGE_NOT_OFFERED_MODULES, INVALID_MODULE_CS0000);
+        expectedMessage += "\n" + String.format(Messages.MESSAGE_NON_EXISTENT_MODULES, VALID_MODULE_CS2040);
+        expectedModel.deleteModules(Set.of(VALID_MODULE_CS1010));
+        expectedModel.commitModulePlanner();
+
+        assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
 }
