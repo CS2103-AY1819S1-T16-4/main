@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -65,5 +66,44 @@ public class CollectionUtil {
         requireAllNonNull(items1, items1);
         return items1.stream().allMatch(x -> items2.stream().anyMatch(y -> x.equals(y)))
                 && items2.stream().allMatch(x -> items1.stream().anyMatch(y -> x.equals(y)));
+    }
+
+    /**
+     * Takes the elements in a collection and combines them into a string
+     * with each element separated by a whitespace.
+     * The class of the element has to override the {@code toString()} method
+     * for this method to work properly.
+     *
+     * @param collection The collection
+     * @param <E> The runtime type of the collection
+     * @return The string containing all the elements in the collection
+     */
+    public static <E> String convertCollectionToString(Collection<E> collection) {
+        requireNonNull(collection);
+
+        List<String> list = new ArrayList<>();
+        for (E e : collection) {
+            list.add(e.toString());
+        }
+        Collections.sort(list);
+
+        StringBuilder sb = new StringBuilder();
+        for (String s : list) {
+            sb.append(s + " ");
+        }
+        return sb.toString().trim();
+    }
+
+    /**
+     * Formats the {@code message} with the String associated with the {@code collection}.
+     *
+     * @param message The message
+     * @param collection The collection
+     * @param <E> The runtime type of the collection
+     * @return The formatted message
+     */
+    public static <E> String formatMessage(String message, Collection<E> collection) {
+        requireAllNonNull(message, collection);
+        return String.format(message, convertCollectionToString(collection));
     }
 }
