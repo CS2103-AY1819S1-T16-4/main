@@ -224,22 +224,24 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
                 semesters.get(index).getModules());
     }
 
-    public ObservableList<Module> getTakenModulesAll() {
+    public void listTakenModulesAll() {
         List<Module> modules = new ArrayList<>();
         for (Semester s: semesters) {
             modules.addAll(s.getModules());
         }
         setTakenModules(modules);
-        return takenModules;
     }
 
-    public ObservableList<Module> getTakenModulesYear(int year) {
+    public void listTakenModulesYear(int year) {
         int[] indices = IndexUtil.getIndicesFromYear(year);
         List<Module> modules =new ArrayList<>();
         for (int i = 0; i < indices.length; i++) {
             modules.addAll(semesters.get(indices[i]).getModules());
         }
         setTakenModules(modules);
+    }
+
+    public ObservableList<Module> listTakenModules() {
         return takenModules;
     }
 

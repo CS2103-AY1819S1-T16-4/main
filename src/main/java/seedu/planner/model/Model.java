@@ -61,6 +61,12 @@ public interface Model {
     //@@author Hilda-Ang
     void suggestModules(int index);
 
+    void listTakenModulesAll();
+
+    void listTakenModulesYear(int year);
+
+    ObservableList<Module> listModules();
+
     // @@author rongjiecomputer
 
     /**

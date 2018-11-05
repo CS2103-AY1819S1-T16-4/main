@@ -75,4 +75,24 @@ public class IndexUtil {
 
         return String.valueOf(year) + String.valueOf(semester);
     }
+
+    public static int[] getIndicesFromYear(int year) {
+        int[] indices = new int[2];
+
+        if (year  == 1) {
+            indices[0] = 0;
+            indices[1] = 1;
+        } else if (year == 2) {
+            indices[0] = 2;
+            indices[1] = 3;
+        } else if (year == 3) {
+            indices[0] = 4;
+            indices[1] = 5;
+        } else if (year == 4) {
+            indices[0] = 6;
+            indices[1] = 7;
+        }
+
+        return indices;
+    }
 }
