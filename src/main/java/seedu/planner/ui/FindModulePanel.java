@@ -2,7 +2,6 @@ package seedu.planner.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
 import seedu.planner.model.module.Module;
 
 //@@author GabrielYik
