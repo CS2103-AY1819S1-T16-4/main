@@ -13,6 +13,7 @@ import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.semester.Semester;
 import seedu.planner.model.user.UserProfile;
+import seedu.planner.model.util.IndexUtil;
 import seedu.planner.model.util.ModuleUtil;
 
 //@@author Hilda-Ang
@@ -220,6 +221,23 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     public ObservableList<Module> getTakenModules(int index) {
         return FXCollections.unmodifiableObservableList(
                 semesters.get(index).getModules());
+    }
+
+    public ObservableList<Module> getTakenModulesAll() {
+        ObservableList<Module> modules = FXCollections.emptyObservableList();
+        for (Semester s: semesters) {
+            modules.addAll(s.getModules());
+        }
+        return modules;
+    }
+
+    public ObservableList<Module> getTakenModulesYear(int year) {
+        int[] indices = IndexUtil.getIndicesFromYear(year);
+        ObservableList<Module> modules = FXCollections.emptyObservableList();
+        for (int i = 0; i < indices.length; i++) {
+            modules.addAll(semesters.get(indices[i]).getModules());
+        }
+        return modules;
     }
 
     /**
