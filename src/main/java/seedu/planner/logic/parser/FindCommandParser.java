@@ -24,7 +24,8 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (!argMultimap.containsAllPrefixes(PREFIX_CODE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
+            throw new ParseException(errorMessage);
         }
 
         if (argMultimap.checkPrefixValueCount(PREFIX_CODE) != 1) {
