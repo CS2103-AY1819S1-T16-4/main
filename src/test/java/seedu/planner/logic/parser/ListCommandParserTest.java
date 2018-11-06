@@ -4,7 +4,6 @@ import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_YEAR_DESC_FIVE;
 import static seedu.planner.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.planner.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_DESC_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_DESC_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_ONE;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseFailure;
