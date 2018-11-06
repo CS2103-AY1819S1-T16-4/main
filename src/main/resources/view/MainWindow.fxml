@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
@@ -62,11 +63,15 @@
                         <StackPane VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
-                  <StackPane fx:id="multiPurposePanelPlaceholder" minWidth="340.0" prefWidth="340.0">
-                     <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
-                     </padding>
-                  </StackPane>
+                  <ScrollPane hbarPolicy="NEVER">
+                     <content>
+                        <StackPane fx:id="multiPurposePanelPlaceholder" prefWidth="340.0">
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </StackPane>
+                     </content>
+                  </ScrollPane>
               </items>
             </SplitPane>
 

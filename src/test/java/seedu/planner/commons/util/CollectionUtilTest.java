@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
+import static seedu.planner.commons.util.CollectionUtil.convertCollectionToString;
+import static seedu.planner.commons.util.CollectionUtil.formatMessage;
 import static seedu.planner.commons.util.CollectionUtil.getAnyOne;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -14,9 +16,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class CollectionUtilTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
     @Test
     public void requireAllNonNullVarargs() {
         // no arguments
@@ -126,6 +134,42 @@ public class CollectionUtilTest {
         List<Integer> list1 = List.of(1, 2);
         List<Integer> list2 = List.of(3);
         assertFalse(areEqualIgnoreOrder(list1, list2));
+    }
+
+    @Test
+    public void convertCollectionToString_validArg_returnsString() {
+        assertEquals(convertCollectionToString(List.of(1, 2, 3, 4)), "1 2 3 4");
+    }
+
+    @Test
+    public void convertCollectionToString_nullGiven_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        convertCollectionToString(null);
+    }
+
+    @Test
+    public void formatMessage_nonNullArgsGiven() {
+        List<Integer> list = List.of(1, 2, 3);
+        assertEquals("Hello 1 2 3", formatMessage("Hello %1$s", list));
+        assertEquals("Hello", formatMessage("Hello", list));
+    }
+
+    @Test
+    public void formatMessage_nullMessageGiven_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        formatMessage(null, List.of(1, 2));
+    }
+
+    @Test
+    public void formatMessage_nullCollectionGiven_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        formatMessage("Hello", null);
+    }
+
+    @Test
+    public void formatMessage_allNullGiven_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        formatMessage(null, null);
     }
 
     //@@author
