@@ -283,9 +283,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private List<Module> getModulesAvailable(int index) {
         List<Module> modulesAvailable = new ArrayList<>();
         List<Module> modulesTaken = getAllModulesTaken();
-
-        // |index| is the current year/semester, so only modules taken in semesters before |index| can be considered.
-        List<Module> modulesTakenUntilIndex = getAllModulesTakenUntilIndex(index - 1);
+        List<Module> modulesTakenUntilIndex = getAllModulesTakenUntilIndex(index);
         List<Module> allModules = getAllModulesFromStorage();
 
         // Step 1. Filter modules that user can actually take.
