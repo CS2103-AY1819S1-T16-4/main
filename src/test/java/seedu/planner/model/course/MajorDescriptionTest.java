@@ -22,7 +22,6 @@ public class MajorDescriptionTest {
 
     /**
      * Create dummy Major Description object to test serialization and deserialization.
-     * @return
      */
     private MajorDescription createDummyMajorDescription() {
         List<ModuleDescription> modules = new ArrayList<>();
