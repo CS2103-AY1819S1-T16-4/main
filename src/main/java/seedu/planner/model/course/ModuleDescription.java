@@ -3,6 +3,10 @@ package seedu.planner.model.course;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class to describe properties of a Module when taken by a Major.
+ * See also {@link ModuleDescription}.
+ */
 public class ModuleDescription {
     private String name;
     private ProgrammeRequirement requirement;

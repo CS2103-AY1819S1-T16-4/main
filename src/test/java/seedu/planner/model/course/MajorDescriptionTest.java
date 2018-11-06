@@ -5,11 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 
 import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.commons.util.JsonUtil;
@@ -53,5 +57,19 @@ public class MajorDescriptionTest {
                 MajorDescription[].class).get();
         assertEquals(deserializedMajorDescription.length, 1);
         assertEquals(majorDescription, deserializedMajorDescription[0]);
+    }
+
+    @Test
+    public void dumm() throws IOException {
+        MajorDescription majorDescription = createDummyMajorDescription();
+        Map<Major, MajorDescription> map = new HashMap<>();
+        map.put(Major.COMPUTER_SCIENCE, majorDescription);
+
+        String s = JsonUtil.toJsonString(map);
+
+        TypeReference<HashMap<Major, MajorDescription>> typeRef = new TypeReference<>() {};
+
+        Map<Major, MajorDescription> m = JsonUtil.getObjectMapper().readValue(s, typeRef);
+        assertEquals(m, map);
     }
 }

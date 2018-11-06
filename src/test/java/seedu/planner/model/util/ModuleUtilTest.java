@@ -1,5 +1,6 @@
 package seedu.planner.model.util;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.model.util.ModuleUtil.isModuleAvailableToTake;
@@ -52,5 +53,34 @@ public class ModuleUtilTest {
         assertFalse(isModuleAvailableToTake(new ArrayList<>(), new ArrayList<>(), CS2040));
         assertFalse(isModuleAvailableToTake(modules, modules, CS1020));
         assertFalse(isModuleAvailableToTake(modules, new ArrayList<>(), CS2040));
+    }
+
+    // @@author rongjiecomputer
+    @Test
+    public void matchModuleCodePrefixes() {
+        List<String> prefixes = List.of("CS", "ES", "CEG");
+        // Module code in list
+        assertTrue(ModuleUtil.matchModuleCodePrefixes("CS1010", prefixes));
+        assertTrue(ModuleUtil.matchModuleCodePrefixes("ES1010", prefixes));
+
+        assertFalse(ModuleUtil.matchModuleCodePrefixes("AC1000", prefixes));
+
+        // Only true if the whole alphabets part of module code is matched.
+        assertTrue(ModuleUtil.matchModuleCodePrefixes("CEG1010", prefixes));
+        assertFalse(ModuleUtil.matchModuleCodePrefixes("CE1010", prefixes));
+    }
+
+    @Test
+    public void rankModuleCodePrefixes() {
+        List<String> prefixes = List.of("CS", "CEG", "CE", "IS");
+
+        // Module code in list
+        assertEquals(ModuleUtil.rankModuleCodePrefixes("CS1010", prefixes), 0);
+
+        assertEquals(ModuleUtil.rankModuleCodePrefixes("CEG1010", prefixes), 1);
+        assertEquals(ModuleUtil.rankModuleCodePrefixes("CE1010", prefixes), 2);
+
+        // Module code not in list
+        assertEquals(ModuleUtil.rankModuleCodePrefixes("AC1010", prefixes), 4);
     }
 }

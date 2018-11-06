@@ -1,68 +1,73 @@
-[ {
-  "major" : "COMPUTER_SCIENCE",
-  "modules" : [ {
-    "name" : "CS1010",
-    "requirement" : "FOUNDATION",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "CS1231",
-    "requirement" : "FOUNDATION",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "CS2030",
-    "requirement" : "FOUNDATION",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "CS2040",
-    "requirement" : "FOUNDATION",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "CS2100",
-    "requirement" : "FOUNDATION",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "CS2103T",
-    "requirement" : "BREATH_AND_DEPTH",
-    "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
-  }, {
-    "name" : "CS2105",
-    "requirement" : "FOUNDATION",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "CS2106",
-    "requirement" : "FOUNDATION",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "CS3230",
-    "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "CP3880",
-    "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "CP3200",
-    "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "CP3202",
-    "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "IS4010",
-    "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "CP3200",
-    "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "CP3107",
-    "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
-    "focusAreas" : [ ]
-  }, {
-    "name" : "IS1103",
-    "requirement" : "IT_PROFESSIONALISM",
-    "focusAreas" : [ ]
-  } ]
-} ]
+{
+  "COMPUTER_SCIENCE" : {
+    "major" : "COMPUTER_SCIENCE",
+    "facultyModuleCodePrefixes": [
+      "CS", "CP", "IS", "IT", "MA", "ES"
+    ],
+    "modules" : [ {
+      "name" : "CS1010",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "CS1231",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "CS2030",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "CS2040",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "CS2100",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "CS2103T",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "name" : "CS2105",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "CS2106",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "CS3230",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "CP3880",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "CP3200",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "CP3202",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "IS4010",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "CP3200",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "CP3107",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "name" : "IS1103",
+      "requirement" : "IT_PROFESSIONALISM",
+      "focusAreas" : [ ]
+    } ]
+  }
+}

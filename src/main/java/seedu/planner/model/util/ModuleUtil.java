@@ -99,6 +99,50 @@ public class ModuleUtil {
                 && hasNotFulfilledAnyPreclusions(modulesTaken, module);
     }
 
+    // @@author rongjiecomputer
+
+    /**
+     * Returns true if {@code moduleCode} matches {@code prefix} and moduleCode[len(prefix)] is a digit.
+     * <p>REQUIRES:
+     * <ul>
+     *     <li>{@code moduleCode} must starts with alphabets and ends with digits.
+     *     <li>{@code prefix} must contains alphabets only.
+     */
+    private static boolean matchModuleCodePrefix(String moduleCode, String prefix) {
+        return moduleCode.startsWith(prefix) && Character.isDigit(moduleCode.charAt(prefix.length()));
+    }
+
+    /**
+     * Returns true if {@code moduleCode} matches any prefix in {@code prefixes}.
+     * <p>REQUIRES:
+     * <ul>
+     *     <li>{@code moduleCode} must starts with alphabets and ends with digits.
+     *     <li>All prefix in {@code prefixes} must contains alphabets only.
+     */
+    public static boolean matchModuleCodePrefixes(String moduleCode, List<String> prefixes) {
+        return prefixes.stream().anyMatch(
+                prefix -> matchModuleCodePrefix(moduleCode, prefix));
+    }
+
+    /**
+     * Give {@code moduleCode} a ranking based on {@code prefixes}.
+     * If {@code moduleCode} matches prefix i (starts from 0), returns i,
+     * <p>REQUIRES:
+     * <ul>
+     *     <li>{@code moduleCode} must starts with alphabets and ends with digits.
+     *     <li>All prefix in {@code prefixes} must contains alphabets only.
+     */
+    public static int rankModuleCodePrefixes(String moduleCode, List<String> prefixes) {
+        int rank = 0;
+        for (String prefix : prefixes) {
+            if (matchModuleCodePrefix(moduleCode, prefix)) {
+                break;
+            }
+            rank++;
+        }
+        return rank;
+    }
+
     //@@author RomaRomama
 
     /**
