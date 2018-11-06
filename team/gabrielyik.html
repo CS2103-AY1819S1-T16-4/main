@@ -1,0 +1,398 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Gabriel Yik - Project Portfolio</title><link rel="stylesheet" href="./gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Module Planner</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S1-T16-4/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Gabriel Yik - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-moduleplanner"><a class="link" href="#project-moduleplanner">Project: ModulePlanner</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is a project portfolio about a team project that I have completed recently.
+The product born from this effort is called ModulePlanner.</p>
+</div>
+<div class="paragraph">
+<p>ModulePlanner is an desktop application that helps Computer Science students in the
+National University of Singapore to plan their modules throughout their academic journey.</p>
+</div>
+<div class="paragraph">
+<p>It has a graphical user interface but the user interacts with it mainly through the
+command line interface (keyboard only).</p>
+</div>
+<div class="paragraph">
+<p>The main features are the adding and deleting of modules, as well as the suggesting of
+new modules that the user can take based on their academic requirements.</p>
+</div>
+<div class="paragraph">
+<p>Over the next few sections, I will describe my role and contributions to the project.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="role"><a class="link" href="#role">Role</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Developer</p>
+</li>
+<li>
+<p>UI in-charge</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of Contributions</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="major-enhancements"><a class="link" href="#major-enhancements">Major Enhancements</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Implemented the commands <code>delete</code>, <code>find</code> and <code>goto</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>delete</code> command allows the deletion of modules</p>
+</li>
+<li>
+<p>The <code>find</code> command allows the retrieving of module information.</p>
+</li>
+<li>
+<p>The <code>goto</code> command allows the switching of year and semester.
+which allows the user to add or delete modules from the different
+years and semesters.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="minor-enhancement"><a class="link" href="#minor-enhancement">Minor Enhancement</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Co-authored the command <code>setup</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>setup</code> command is run once on the first time ModulePlanner starts up.
+<code>setup</code> asks the user to input parameters like their year and semester of study,
+their major and focus areas. This gives ModulePlanner the necessary information
+to tailor the modules suggested to the user.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Updated the UI and controllers</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Added a column to display suggested modules and another to display
+results of the <code>find</code> and <code>status</code> commands.</p>
+</li>
+<li>
+<p>Updated the application icon to fit ModulePlanner.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other Contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the documentation</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the README, which serves as a welcome page/ entry point into ModulePlanner.</p>
+</li>
+<li>
+<p>Updated the User Guide with information on how to use the new commands.</p>
+</li>
+<li>
+<p>Ordered the commands list in the User Guide alphabetically (except the <code>help</code> and
+<code>exit</code> commands which are placed at the end) to make it easier for the user to find
+the command they are looking for.</p>
+</li>
+<li>
+<p>Updated the Developer Guide with descriptions on how the commands are implemented
+and why they are done so.</p>
+</li>
+<li>
+<p>Updated the diagram PowerPoints (except for the ones on <code>Storage</code>) in the
+ Developer Guide to reflect the structure and behaviour of ModulePlanner
+in the user and developer guide.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Reviewed the pull requests of my team mates</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Points checked include: coding style, index errors, possible regressions to other
+components and the pros and cons of adding new classes and structure.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Managed releases <code>v1.2</code> and <code>v1.3</code> on GitHub</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-code"><a class="link" href="#contributions-to-code">Contributions to Code</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are some sections which I contributed to the codebase.<br>
+  They showcase my ability to write code that is readable and maintainable.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> CommandResult execute(Model model, CommandHistory commandHistory) <span class="directive">throws</span> CommandException {
+    <span class="keyword">if</span> (!isValidYear(year) || !isValidSemester(semester)) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
+    }
+
+    <span class="type">int</span> tabIndex = convertYearAndSemesterToIndex(year, semester);
+    EventsCenter.getInstance().post(<span class="keyword">new</span> TabSwitchEvent(tabIndex));
+    <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(SHOWING_GOTO_MESSAGE, year, semester));
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide.<br>
+  They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="deleting-modules-code-delete-code"><a class="link" href="#deleting-modules-code-delete-code">Deleting modules : <code>delete</code></a></h3>
+<div class="paragraph">
+<p>Deletes the specified modules from list of current or future modules for the specified year and semester.<br>
+Format: <code>delete c/MODULE_CODE&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete c/CS1010</code></p>
+</li>
+<li>
+<p><code>delete c/CS1231 c/MA1521</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-information-on-a-module-code-find-code"><a class="link" href="#finding-information-on-a-module-code-find-code">Finding information on a module : <code>find</code></a></h3>
+<div class="paragraph">
+<p>Retrieves the information of the specified module.<br>
+Format: <code>find c/MODULE_CODE</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find c/CS1010</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="going-to-a-different-year-and-semester-code-goto-code"><a class="link" href="#going-to-a-different-year-and-semester-code-goto-code">Going to a different year and semester : <code>goto</code></a></h3>
+<div class="paragraph">
+<p>Changes the view to the specified year and semester.<br>
+Format: <code>goto y/YEAR s/SEMESTER</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>goto y/1 s/1</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide.<br>
+  They showcase my ability to write technical documentation and<br>
+  the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="delete-feature"><a class="link" href="#delete-feature">Delete Feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The current delete mechanism targets valid modules and is facilitated by <code>ModulePlanner</code>.
+<code>ModulePlanner</code> stores a list of all the semesters the user has taken and will take.
+In turn, <code>Semester</code> stores a list of the modules the user has taken or will take.</p>
+</div>
+<div class="paragraph">
+<p><code>ModulePlanner</code> uses the following operation to implement the delete mechanism:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ModulePlanner#deleteModules(List&lt;Module&gt; modules)</code>&#8201;&#8212;&#8201;Deletes the modules from whatever semester it is in.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The above operation is exposed in the <code>Model</code> interface as <code>Model#deleteModules(List&lt;Module&gt; modules)</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A valid module is one that exists, has its module code specified correctly and must have not been taken by the user.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the delete operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="DeleteSequenceDiagram.png" alt="DeleteSequenceDiagram" width="650">
+</div>
+</div>
+<div class="paragraph">
+<p>Below are some usage scenarios.
+For convenience, let&#8217;s define two modules: a valid module <code>MA1521</code> and an invalid module <code>MA1234</code>.</p>
+</div>
+<div class="sect4">
+<h5 id="all-valid-modules"><a class="link" href="#all-valid-modules">All Valid Modules</a></h5>
+<div class="paragraph">
+<p>The user executes <code>delete MA1521</code> command to delete the <code>Module</code> with the module code <code>MA1521</code>.
+The <code>delete</code> command calls <code>Model#deleteModules(&#8230;&#8203;)</code>, which removes the module from the semester where it is found.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This applies to when more than one valid module is supplied.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="all-invalid-modules"><a class="link" href="#all-invalid-modules">All Invalid Modules</a></h5>
+<div class="paragraph">
+<p>The user executes <code>delete MA1234</code> command. However, since that module does not exist,
+the command fails and <code>Model#deleteModules(&#8230;&#8203;)</code> will not be called.
+The user will be informed of the invalid module.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This applies to where more than one invalid module is supplied.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="some-invalid-modules"><a class="link" href="#some-invalid-modules">Some Invalid Modules</a></h5>
+<div class="paragraph">
+<p>The user executes <code>delete MA1521 MA1234</code>. However, only the module <code>MA1521</code> is valid.
+In this case, the command will not fail entirely and only the valid module <code>MA1521</code> will be deleted.
+The user will be informed of the invalid module.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="no-modules"><a class="link" href="#no-modules">No Modules</a></h5>
+<div class="paragraph">
+<p>The user executes <code>delete</code>. As the command has no supplied arguments, the command will fail
+and the user will be informed to input arguments.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="type-of-modules-allowed"><a class="link" href="#type-of-modules-allowed">Type of Modules Allowed</a></h5>
+<div class="paragraph">
+<p>Only modules which the user has not taken are allowed to be deleted. There are several reasons:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To mirror the real world - it is impossible for a student to void a module that has already been taken.</p>
+</li>
+<li>
+<p>To prevent undefined behaviour - deleting a module already taken might make all future modules not yet taken to be inaccurately planned.
+Also, all currently suggested modules to the user might too be inaccurate.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 03:40:17 UTC</div></div></div></body></html>
