@@ -3,7 +3,6 @@ package seedu.planner.model.course;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,13 +14,16 @@ import org.junit.rules.TemporaryFolder;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
-import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.commons.util.JsonUtil;
 
 public class MajorDescriptionTest {
     @Rule
     public TemporaryFolder testFolder = new TemporaryFolder();
 
+    /**
+     * Create dummy Major Description object to test serialization and deserialization.
+     * @return
+     */
     private MajorDescription createDummyMajorDescription() {
         List<ModuleDescription> modules = new ArrayList<>();
         modules.add(new ModuleDescription("CS1010", ProgrammeRequirement.FOUNDATION));
@@ -47,20 +49,7 @@ public class MajorDescriptionTest {
     }
 
     @Test
-    public void testSerializationAndDeserialization() throws IOException, DataConversionException {
-        MajorDescription majorDescription = createDummyMajorDescription();
-
-        Path tempFilePath = testFolder.getRoot().toPath().resolve("TempMajorDescription.json");
-        JsonUtil.saveJsonFile(new MajorDescription[] {majorDescription}, tempFilePath);
-
-        MajorDescription[] deserializedMajorDescription = JsonUtil.readJsonFile(tempFilePath,
-                MajorDescription[].class).get();
-        assertEquals(deserializedMajorDescription.length, 1);
-        assertEquals(majorDescription, deserializedMajorDescription[0]);
-    }
-
-    @Test
-    public void dumm() throws IOException {
+    public void testSerializationAndDeserialization() throws IOException {
         MajorDescription majorDescription = createDummyMajorDescription();
         Map<Major, MajorDescription> map = new HashMap<>();
         map.put(Major.COMPUTER_SCIENCE, majorDescription);
