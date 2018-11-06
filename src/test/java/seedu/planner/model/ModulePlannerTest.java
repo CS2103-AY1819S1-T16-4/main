@@ -86,7 +86,7 @@ public class ModulePlannerTest {
         modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
         assertTrue(modulePlanner.hasModule(CS1010));
     }
-    
+
     @Test
     public void suggestModules_noModulesTaken_sameAvailableModulesList() {
         modulePlanner.suggestModules(INDEX_FIRST);
