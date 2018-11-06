@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
  * Class to describe requirements of a Major.
  */
 public class MajorDescription {
-    public static final TypeReference<HashMap<Major, MajorDescription>> mapTypeRef = new TypeReference<>() {};
+    public static final TypeReference<HashMap<Major, MajorDescription>> MAP_TYPE_REF = new TypeReference<>() {};
 
     private Major major;
     private List<ModuleDescription> modules;

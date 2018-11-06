@@ -107,6 +107,7 @@ public class ModuleUtil {
      * <ul>
      *     <li>{@code moduleCode} must starts with alphabets and ends with digits.
      *     <li>{@code prefix} must contains alphabets only.
+     * </ul>
      */
     private static boolean matchModuleCodePrefix(String moduleCode, String prefix) {
         return moduleCode.startsWith(prefix) && Character.isDigit(moduleCode.charAt(prefix.length()));
@@ -118,10 +119,10 @@ public class ModuleUtil {
      * <ul>
      *     <li>{@code moduleCode} must starts with alphabets and ends with digits.
      *     <li>All prefix in {@code prefixes} must contains alphabets only.
+     * </ul>
      */
     public static boolean matchModuleCodePrefixes(String moduleCode, List<String> prefixes) {
-        return prefixes.stream().anyMatch(
-                prefix -> matchModuleCodePrefix(moduleCode, prefix));
+        return prefixes.stream().anyMatch(prefix -> matchModuleCodePrefix(moduleCode, prefix));
     }
 
     /**
@@ -131,6 +132,7 @@ public class ModuleUtil {
      * <ul>
      *     <li>{@code moduleCode} must starts with alphabets and ends with digits.
      *     <li>All prefix in {@code prefixes} must contains alphabets only.
+     * </ul>
      */
     public static int rankModuleCodePrefixes(String moduleCode, List<String> prefixes) {
         int rank = 0;

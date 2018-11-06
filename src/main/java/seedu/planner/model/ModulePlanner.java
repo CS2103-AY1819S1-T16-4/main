@@ -36,7 +36,7 @@ import seedu.planner.model.util.ModuleUtil;
  * Wraps all data at the module planner level.
  */
 public class ModulePlanner implements ReadOnlyModulePlanner {
-    private Logger logger = LogsCenter.getLogger(ModulePlanner.class);
+    private static Logger logger = LogsCenter.getLogger(ModulePlanner.class);
 
     public static final int MAX_NUMBER_SEMESTERS = 8;
     public static final int MAX_SEMESTERS_PER_YEAR = 2;
@@ -290,15 +290,20 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         try {
             URL resource = MainApp.class.getResource("/data/majorDescription.json");
             String text = Resources.toString(resource, Charsets.UTF_8);
-            map = JsonUtil.getObjectMapper().readValue(text, MajorDescription.mapTypeRef);
+            map = JsonUtil.getObjectMapper().readValue(text, MajorDescription.MAP_TYPE_REF);
         } catch (IOException e) {
             logger.warning("Unable to read majorDescription file. Start with an empty map.");
             map = new HashMap<>();
         }
 
         if (map.containsKey(userProfile.getMajor())) {
-            logger.info("User's major requirement found. Prioritize modules for the major");
-            MajorDescription majorDescription = map.get(userProfile.getMajor());
+            Major major = userProfile.getMajor();
+            MajorDescription majorDescription = map.get(major);
+
+            logger.info(String.format("Requirements for user's major (%s) found. Prioritize modules starts with (%s).",
+                    major, majorDescription.getPrefixes()));
+
+            // Step 1. Move modules that matches prefixes to the front of available module list.
             Comparator<Module> moveFacultyModuleToFront = (Module lhs, Module rhs) -> {
                 return Integer.compare(
                         ModuleUtil.rankModuleCodePrefixes(lhs.getCode(), majorDescription.getPrefixes()),
@@ -308,6 +313,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             Collections.sort(allModules, moveFacultyModuleToFront);
         }
 
+        // Step 3. Filter modules that user can actually take.
         for (Module m : allModules) {
             if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenUntilIndex, m)) {
                 modulesAvailable.add(m);

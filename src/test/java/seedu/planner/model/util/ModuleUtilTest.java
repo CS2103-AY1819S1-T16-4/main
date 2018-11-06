@@ -63,6 +63,7 @@ public class ModuleUtilTest {
         assertTrue(ModuleUtil.matchModuleCodePrefixes("CS1010", prefixes));
         assertTrue(ModuleUtil.matchModuleCodePrefixes("ES1010", prefixes));
 
+        // Module code not in list
         assertFalse(ModuleUtil.matchModuleCodePrefixes("AC1000", prefixes));
 
         // Only true if the whole alphabets part of module code is matched.
@@ -77,6 +78,7 @@ public class ModuleUtilTest {
         // Module code in list
         assertEquals(ModuleUtil.rankModuleCodePrefixes("CS1010", prefixes), 0);
 
+        // Prefix must match alphabets part entirely
         assertEquals(ModuleUtil.rankModuleCodePrefixes("CEG1010", prefixes), 1);
         assertEquals(ModuleUtil.rankModuleCodePrefixes("CE1010", prefixes), 2);
 
