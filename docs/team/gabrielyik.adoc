@@ -6,8 +6,10 @@
 This is a project portfolio about a team project that I have completed recently.
 The product born from this effort is called ModulePlanner.
 
+=== About Project
 ModulePlanner is an desktop application that helps Computer Science students in the
 National University of Singapore to plan their modules throughout their academic journey.
+It is built on top of an existing application.
 
 It has a graphical user interface but the user interacts with it mainly through the
 command line interface (keyboard only).
@@ -22,70 +24,81 @@ Over the next few sections, I will describe my role and contributions to the pro
 * UI in-charge
 
 == Summary of Contributions
-=== Major Enhancements
-* Implemented the commands `delete`, `find` and `goto`
-** The `delete` command allows the deletion of modules
-** The `find` command allows the retrieving of module information.
-** The `goto` command allows the switching of year and semester.
-   which allows the user to add or delete modules from the different
-   years and semesters.
+=== Major Enhancement
+* *Enhance Delete Command*
+** The `delete` command allows the deletion of modules from ModulePlanner.
+** When modules are deleted, modules that have the former as prerequisites are too deleted.
+   This continues until no more modules are deleted.
+** This enhanced command is better than a simple `delete` where whatever modules specified
+   are deleted without any awareness of other modules that depend on them.
+** The automatic removal of invalid modules in ModulePlanner assures the user that whatever
+   they see in ModulePlanner is up-to-date.
+** The user too does not have to manually look through modules that have their prerequisites
+   violated, hence saving them time and effort.
 
-=== Minor Enhancement
-* Co-authored the command `setup`
-** The `setup` command is run once on the first time ModulePlanner starts up.
-   `setup` asks the user to input parameters like their year and semester of study,
-   their major and focus areas. This gives ModulePlanner the necessary information
-   to tailor the modules suggested to the user.
+=== Minor Enhancements
+* *Setup Command*
+** Co-authored the `setup` command.
+** The `setup` command is run once on the first time ModulePlanner starts up. `setup` asks
+   the user to their major and optional focus areas. This gives ModulePlanner the necessary
+   information to tailor the modules suggested to the user.
 
-* Updated the UI and controllers
+* *Find and Goto Commands*
+** The `find` command allows retrieval of module information.
+** The `goto` command allows switching between the different year and semester views.
+
+* *UI and Associated Behaviours*
 ** Added a column to display suggested modules and another to display
    results of the `find` and `status` commands.
 ** Updated the application icon to fit ModulePlanner.
 
 === Other Contributions
-* Updated the documentation
-** Updated the README, which serves as a welcome page/ entry point into ModulePlanner.
-** Updated the User Guide with information on how to use the new commands.
+* *README*
+** Updated to reflect what ModulePlanner is and how it can solve the user's problems
+   in planning their modules.
+
+* *User Guide*
+** Updated with information on how to use the `delete`, `find` and `goto` commands.
 ** Ordered the commands list in the User Guide alphabetically (except the `help` and
    `exit` commands which are placed at the end) to make it easier for the user to find
    the command they are looking for.
-** Updated the Developer Guide with descriptions on how the commands are implemented
-   and why they are done so.
-** Updated the diagram PowerPoints (except for the ones on `Storage`) in the
-   Developer Guide to reflect the structure and behaviour of ModulePlanner
-  in the user and developer guide.
 
-* Reviewed the pull requests of my team mates
-** Points checked include: coding style, index errors, possible regressions to other
+* *Developer Guide*
+** Updated with descriptions on how the `delete` command is implemented and why they are
+   done so.
+** Updated the PowerPoints of the diagrams (except for the ones on `Storage`) in the
+   Developer Guide to reflect the structure and behaviour of ModulePlanner.
+
+* *Pull Requests Reviews*
+** Reviewed the pull requests of my teammates.
+** Areas checked include: coding style, index errors, possible regressions to other
    components and the pros and cons of adding new classes and structure.
 
-* Managed releases `v1.2` and `v1.3` on GitHub
+* *Issue Tracker*
+** Added new issues that arose from offline team discussions and bug discoveries.
+** Assigned teammates to the corresponding bug reports from other teams.
+
+* *Github Releases*
+** Managed the release of `v1.2` and `v1.3`
+
+* *Report Bugs and Suggestions for Others*
+** Found and reported bugs for an team.
+** Suggestions were also offered.
 
 == Contributions to Code
 |===
-|_Given below are some sections which I contributed to the codebase. +
+|_The link below brings you to my code contribution dashboard. +
   They showcase my ability to write code that is readable and maintainable._
 |===
-[source,java]
-----
-@Override
-public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
-    if (!isValidYear(year) || !isValidSemester(semester)) {
-        throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
-    }
 
-    int tabIndex = convertYearAndSemesterToIndex(year, semester);
-    EventsCenter.getInstance().post(new TabSwitchEvent(tabIndex));
-    return new CommandResult(String.format(SHOWING_GOTO_MESSAGE, year, semester));
-}
-----
-
+include::https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=gabrielyik[Code Contributions]
 
 == Contributions to the User Guide
 |===
 |_Given below are sections I contributed to the User Guide. +
   They showcase my ability to write documentation targeting end-users._
 |===
+
 === Deleting modules : `delete`
 
 Deletes the specified modules from list of current or future modules for the specified year and semester. +
