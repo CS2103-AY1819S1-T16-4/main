@@ -35,7 +35,7 @@ public class ModuleUtil {
     /**
      * Checks if any of the prerequisites for the given {@code Module} have been taken.
      *
-     * @param modulesTaken List of {@code Module}s that the user had taken.
+     * @param modulesTaken  List of {@code Module}s that the user had taken.
      * @param moduleToCheck The {@code Module} to be checked.
      * @return True if all the prerequisites have been taken.
      */
@@ -66,14 +66,14 @@ public class ModuleUtil {
     /**
      * Checks if none of the preclusions for the given {@code Module} has been taken.
      *
-     * @param modulesTaken List of {@code Module}s that the user had taken.
+     * @param modulesTaken  List of {@code Module}s that the user had taken.
      * @param moduleToCheck The {@code Module} to be checked.
      * @return True if none of the preclusions have been taken.
      */
     private static boolean hasNotFulfilledAnyPreclusions(List<Module> modulesTaken, Module moduleToCheck) {
         List<ModuleInfo> preclusions = moduleToCheck.getPreclusions();
 
-        for (ModuleInfo p: preclusions) {
+        for (ModuleInfo p : preclusions) {
             Module m = new Module(p.getCode());
 
             if (modulesTaken.contains(m)) {
@@ -89,7 +89,7 @@ public class ModuleUtil {
      * and none of the preclusions have been taken.
      *
      * @param modulesTaken List of {@code Module}s that the user had taken.
-     * @param module moduleToCheck The {@code Module} to be checked.
+     * @param module       moduleToCheck The {@code Module} to be checked.
      * @return True if all the prerequisites are fulfilled and no preclusion has been fulfilled.
      */
     public static boolean isModuleAvailableToTake(List<Module> modulesTaken, List<Module> modulesTakenUntilIndex,
@@ -105,8 +105,8 @@ public class ModuleUtil {
      * Returns true if {@code moduleCode} matches {@code prefix} and moduleCode[len(prefix)] is a digit.
      * <p>REQUIRES:
      * <ul>
-     *     <li>{@code moduleCode} must starts with alphabets and ends with digits.
-     *     <li>{@code prefix} must contains alphabets only.
+     * <li>{@code moduleCode} must starts with alphabets and ends with digits.
+     * <li>{@code prefix} must contains alphabets only.
      * </ul>
      */
     private static boolean matchModuleCodePrefix(String moduleCode, String prefix) {
@@ -117,8 +117,8 @@ public class ModuleUtil {
      * Returns true if {@code moduleCode} matches any prefix in {@code prefixes}.
      * <p>REQUIRES:
      * <ul>
-     *     <li>{@code moduleCode} must starts with alphabets and ends with digits.
-     *     <li>All prefix in {@code prefixes} must contains alphabets only.
+     * <li>{@code moduleCode} must starts with alphabets and ends with digits.
+     * <li>All prefix in {@code prefixes} must contains alphabets only.
      * </ul>
      */
     public static boolean matchModuleCodePrefixes(String moduleCode, List<String> prefixes) {
@@ -130,8 +130,8 @@ public class ModuleUtil {
      * If {@code moduleCode} matches prefix i (starts from 0), returns i,
      * <p>REQUIRES:
      * <ul>
-     *     <li>{@code moduleCode} must starts with alphabets and ends with digits.
-     *     <li>All prefix in {@code prefixes} must contains alphabets only.
+     * <li>{@code moduleCode} must starts with alphabets and ends with digits.
+     * <li>All prefix in {@code prefixes} must contains alphabets only.
      * </ul>
      */
     public static int rankModuleCodePrefixes(String moduleCode, List<String> prefixes) {
@@ -184,6 +184,7 @@ public class ModuleUtil {
 
         return equivalence;
     }
+
     /**
      * Finds all equivalent moduleinfos from a given set of moduleinfos.
      *

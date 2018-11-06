@@ -36,10 +36,10 @@ import seedu.planner.model.util.ModuleUtil;
  * Wraps all data at the module planner level.
  */
 public class ModulePlanner implements ReadOnlyModulePlanner {
-    private static Logger logger = LogsCenter.getLogger(ModulePlanner.class);
-
     public static final int MAX_NUMBER_SEMESTERS = 8;
     public static final int MAX_SEMESTERS_PER_YEAR = 2;
+
+    private static Logger logger = LogsCenter.getLogger(ModulePlanner.class);
 
     private final List<Semester> semesters;
     private UserProfile userProfile;
