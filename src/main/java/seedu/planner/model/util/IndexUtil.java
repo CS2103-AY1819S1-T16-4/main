@@ -81,7 +81,7 @@ public class IndexUtil {
     public static int[] getIndicesFromYear(int year) {
         int[] indices = new int[2];
 
-        if (year  == 1) {
+        if (year == 1) {
             indices[0] = 0;
             indices[1] = 1;
         } else if (year == 2) {

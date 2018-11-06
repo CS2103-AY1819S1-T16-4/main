@@ -177,9 +177,8 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         ObservableList<Module> modules = logic.listModules();
-            ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules, TIMELESS, ModulePanelType.TAKEN)
-                .timeless();
-            takenModuleListPanels.add(MAX_NUMBER_SEMESTERS, takenModuleListPanel);
+        ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules, TIMELESS, ModulePanelType.TAKEN).timeless();
+        takenModuleListPanels.add(MAX_NUMBER_SEMESTERS, takenModuleListPanel);
 
         timelessTakenModuleListPanel = new ModuleListPanel(FXCollections.emptyObservableList(),
                 TIMELESS, ModulePanelType.TAKEN).timeless();

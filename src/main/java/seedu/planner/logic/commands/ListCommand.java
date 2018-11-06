@@ -4,13 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.planner.model.util.IndexUtil.VALUE_NOT_AVAILABLE;
 
-import javafx.collections.ObservableList;
-
 import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.events.ui.ListModuleEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
-import seedu.planner.model.module.Module;
 
 //@@author Hilda-Ang
 
@@ -45,14 +42,12 @@ public class ListCommand extends Command {
 
         if (year == VALUE_NOT_AVAILABLE) {
             model.listTakenModulesAll();
-            ObservableList<Module> modules = model.listModules();
-            EventsCenter.getInstance().post(new ListModuleEvent(modules, year));
+            EventsCenter.getInstance().post(new ListModuleEvent(year));
             return new CommandResult(MESSAGE_SUCCESS_ALL);
         }
 
         model.listTakenModulesYear(year);
-        ObservableList<Module> modules = model.listModules();
-        EventsCenter.getInstance().post(new ListModuleEvent(modules, year));
+        EventsCenter.getInstance().post(new ListModuleEvent(year));
         return new CommandResult(String.format(MESSAGE_SUCCESS_YEAR, year));
     }
 

@@ -224,6 +224,9 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
                 semesters.get(index).getModules());
     }
 
+    /**
+     * Updates {@code modulesTaken} to contain all modules user has taken for every semester.
+     */
     public void listTakenModulesAll() {
         List<Module> modules = new ArrayList<>();
         for (Semester s: semesters) {
@@ -232,9 +235,14 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         setTakenModules(modules);
     }
 
+    /**
+     * Updates {@code modulesTaken} to contain all modules user has taken in a given year.
+     *
+     * @param year An integer between 1 to 4.
+     */
     public void listTakenModulesYear(int year) {
         int[] indices = IndexUtil.getIndicesFromYear(year);
-        List<Module> modules =new ArrayList<>();
+        List<Module> modules = new ArrayList<>();
         for (int i = 0; i < indices.length; i++) {
             modules.addAll(semesters.get(indices[i]).getModules());
         }
