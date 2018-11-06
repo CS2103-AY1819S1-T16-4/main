@@ -152,7 +152,7 @@ public class ModuleUtil {
     public static int rankModuleCodeFromPriorityList(String moduleCode, List<ModuleDescription> priorityList) {
         int rank = 0;
         for (ModuleDescription m : priorityList) {
-            if (m.getName().equals(moduleCode)) {
+            if (m.getCode().equals(moduleCode)) {
                 break;
             }
             rank++;

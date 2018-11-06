@@ -41,7 +41,6 @@ public class MajorDescriptionTest {
         modules.add(new ModuleDescription("IS4010", ProgrammeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
         modules.add(new ModuleDescription("CP3200", ProgrammeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
         modules.add(new ModuleDescription("CP3107", ProgrammeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
-
         modules.add(new ModuleDescription("IS1103", ProgrammeRequirement.IT_PROFESSIONALISM));
 
         return new MajorDescription(Major.COMPUTER_SCIENCE, modules);
@@ -75,9 +74,9 @@ public class MajorDescriptionTest {
         assertFalse(cs.equals(5));
 
         ModuleDescription cs1010_fake = new ModuleDescription("CS1010", ProgrammeRequirement.IT_PROFESSIONALISM);
-        MajorDescription cs_fake = new MajorDescription(Major.COMPUTER_SCIENCE, List.of(cs1010_fake));
+        MajorDescription csFake = new MajorDescription(Major.COMPUTER_SCIENCE, List.of(cs1010_fake));
 
         // different module description list -> false
-        assertFalse(cs.equals(cs_fake));
+        assertFalse(cs.equals(csFake));
     }
 }

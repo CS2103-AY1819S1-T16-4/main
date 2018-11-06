@@ -24,7 +24,7 @@ public class ModuleDescriptionTest {
         assertFalse(cs1010.equals(cs1231));
 
         // different programme requirement -> returns false
-        ModuleDescription cs1010_fake = new ModuleDescription("CS1010", ProgrammeRequirement.IT_PROFESSIONALISM);
-        assertFalse(cs1010.equals(cs1010_fake));
+        ModuleDescription cs1010Fake = new ModuleDescription("CS1010", ProgrammeRequirement.IT_PROFESSIONALISM);
+        assertFalse(cs1010.equals(cs1010Fake));
     }
 }

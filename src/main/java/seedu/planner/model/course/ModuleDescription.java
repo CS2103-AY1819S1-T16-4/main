@@ -8,7 +8,7 @@ import java.util.List;
  * See also {@link ModuleDescription}.
  */
 public class ModuleDescription {
-    private String name;
+    private String code;
     private ProgrammeRequirement requirement;
     private List<FocusArea> focusAreas;
 
@@ -19,18 +19,18 @@ public class ModuleDescription {
         focusAreas = new ArrayList<>();
     }
 
-    public ModuleDescription(String name, ProgrammeRequirement requirement) {
-        this(name, requirement, new ArrayList<>());
+    public ModuleDescription(String code, ProgrammeRequirement requirement) {
+        this(code, requirement, new ArrayList<>());
     }
 
-    public ModuleDescription(String name, ProgrammeRequirement requirement, List<FocusArea> focusAreas) {
-        this.name = name;
+    public ModuleDescription(String code, ProgrammeRequirement requirement, List<FocusArea> focusAreas) {
+        this.code = code;
         this.requirement = requirement;
         this.focusAreas = focusAreas;
     }
 
-    public String getName() {
-        return name;
+    public String getCode() {
+        return code;
     }
 
     public ProgrammeRequirement getRequirement() {
@@ -54,7 +54,7 @@ public class ModuleDescription {
         }
 
         ModuleDescription otherModule = (ModuleDescription) other;
-        return name.equals(otherModule.name)
+        return code.equals(otherModule.code)
             && requirement.equals(otherModule.requirement)
             && focusAreas.equals(otherModule.focusAreas);
     }
