@@ -309,8 +309,17 @@
     -fx-text-fill: white;
 }
 
+.scroll-pane .viewport {
+     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-control-inner-background: derive(#1d1d1d, 20%);
+}
+
 .scroll-bar {
     -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.scroll-bar:vertical {
+    -fx-border-color: derive(#1d1d1d, 20%);
 }
 
 .scroll-bar .thumb {
@@ -393,8 +402,8 @@
 .moduleDescription_label_big {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 20px;
-    -fx-text-fill: #010504;
-    -fx-font-weight: bold
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
 
 .moduleDescription_label_small {
