@@ -308,6 +308,6 @@ public class MainWindow extends UiPart<Stage> {
     @Subscribe
     private void handleListEvent(ListModuleEvent event) {
         ModuleListPanel panel = takenModuleListPanels.get(MAX_NUMBER_SEMESTERS);
-        takenModulesPlaceholder.getChildren().set(CURRENT_NODE, panel.getRoot());
+        setPlaceholder(takenModulesPlaceholder, panel);
     }
 }

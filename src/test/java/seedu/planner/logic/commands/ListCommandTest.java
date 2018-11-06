@@ -64,7 +64,7 @@ public class ListCommandTest {
         // null -> returns false
         assertFalse(listFirstCommand.equals(null));
 
-        // different  -> year returns false
+        // different year -> returns false
         assertFalse(listFirstCommand.equals(listSecondCommand));
     }
 }

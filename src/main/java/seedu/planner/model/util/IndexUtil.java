@@ -81,18 +81,21 @@ public class IndexUtil {
     public static int[] getIndicesFromYear(int year) {
         int[] indices = new int[2];
 
+        final int indexZero = 0;
+        final int indexOne = 1;
+
         if (year == 1) {
-            indices[0] = 0;
-            indices[1] = 1;
+            indices[indexZero] = 0;
+            indices[indexOne] = 1;
         } else if (year == 2) {
-            indices[0] = 2;
-            indices[1] = 3;
+            indices[indexZero] = 2;
+            indices[indexOne] = 3;
         } else if (year == 3) {
-            indices[0] = 4;
-            indices[1] = 5;
+            indices[indexZero] = 4;
+            indices[indexOne] = 5;
         } else if (year == 4) {
-            indices[0] = 6;
-            indices[1] = 7;
+            indices[indexZero] = 6;
+            indices[indexOne] = 7;
         }
 
         return indices;
