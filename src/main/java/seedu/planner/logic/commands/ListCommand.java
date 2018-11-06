@@ -7,7 +7,9 @@ import static seedu.planner.model.util.IndexUtil.isValidIndex;
 
 import javafx.collections.ObservableList;
 
+import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.core.Messages;
+import seedu.planner.commons.events.ui.ListModuleEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -28,8 +30,8 @@ public class ListCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_YEAR + "1 ";
 
-    public static final String MESSAGE_SUCCESS_ALL = "Listed all modules taken";
-    public static final String MESSAGE_SUCCESS_YEAR = "Listed all modules taken for year ";
+    public static final String MESSAGE_SUCCESS_ALL = "Listed all modules taken.";
+    public static final String MESSAGE_SUCCESS_YEAR = "Listed all modules taken for year %1$s.";
 
     private int year;
 
@@ -47,11 +49,13 @@ public class ListCommand extends Command {
         if (year  == -1) {
             model.listTakenModulesAll();
             ObservableList<Module> modules = model.listModules();
-            return new CommandResult(MESSAGE_SUCCESS_ALL)
+            EventsCenter.getInstance().post(new ListModuleEvent(modules, 0));
+            return new CommandResult(MESSAGE_SUCCESS_ALL);
         }
 
         model.listTakenModulesYear(year);
         ObservableList<Module> modules = model.listModules();
+        EventsCenter.getInstance().post(new ListModuleEvent(modules, year));
         return new CommandResult(String.format(MESSAGE_SUCCESS_YEAR, year));
     }
 
@@ -59,6 +63,6 @@ public class ListCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ListCommand // instanceof handles nulls
-                && index == ((ListCommand) other).index);
+                && year == ((ListCommand) other).year);
     }
 }
