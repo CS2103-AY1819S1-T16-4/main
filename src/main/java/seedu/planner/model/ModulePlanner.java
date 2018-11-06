@@ -302,11 +302,11 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private List<Module> getModulesAvailable(int index) {
         List<Module> modulesAvailable = new ArrayList<>();
         List<Module> modulesTaken = getAllModulesTaken();
-        List<Module> modulesTakenUntilIndex = getAllModulesTakenUntilIndex(index);
+        List<Module> modulesTakenBeforeIndex = getAllModulesTakenBeforeIndex(index);
         List<Module> allModules = getAllModulesFromStorage();
 
         for (Module m: allModules) {
-            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenUntilIndex, m)) {
+            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenBeforeIndex, m)) {
                 modulesAvailable.add(m);
             }
         }
@@ -332,9 +332,9 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @param index The current index user is at.
      * @return A list of all {@code Module}s the user has taken until the specified index.
      */
-    private List<Module> getAllModulesTakenUntilIndex(int index) {
+    private List<Module> getAllModulesTakenBeforeIndex(int index) {
         List<Module> modulesTaken = new ArrayList<>();
-        for (int i = 0; i <= index; i++) {
+        for (int i = 0; i < index; i++) {
             modulesTaken.addAll(semesters.get(i).getModules());
         }
         return modulesTaken;
