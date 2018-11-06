@@ -1,17 +1,14 @@
 package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
-import static seedu.planner.model.util.IndexUtil.isValidIndex;
+import static seedu.planner.model.util.IndexUtil.VALUE_NOT_AVAILABLE;
 
 import javafx.collections.ObservableList;
 
 import seedu.planner.commons.core.EventsCenter;
-import seedu.planner.commons.core.Messages;
 import seedu.planner.commons.events.ui.ListModuleEvent;
 import seedu.planner.logic.CommandHistory;
-import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.module.Module;
 
@@ -26,7 +23,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken for a semester. "
             + "Parameters: "
-            + "[" + PREFIX_YEAR + "YEAR ]\n"
+            + "[" + PREFIX_YEAR + "YEAR]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_YEAR + "1 ";
 
@@ -43,13 +40,13 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
 
-        if (year  == -1) {
+        if (year == VALUE_NOT_AVAILABLE) {
             model.listTakenModulesAll();
             ObservableList<Module> modules = model.listModules();
-            EventsCenter.getInstance().post(new ListModuleEvent(modules, 0));
+            EventsCenter.getInstance().post(new ListModuleEvent(modules, year));
             return new CommandResult(MESSAGE_SUCCESS_ALL);
         }
 

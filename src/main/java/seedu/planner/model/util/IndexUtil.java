@@ -6,6 +6,8 @@ package seedu.planner.model.util;
  * Contains utility methods for handling year, semester, and indexing.
  */
 public class IndexUtil {
+    public static final int VALUE_NOT_AVAILABLE = -1;
+
     public static final int NUM_OF_SEMESTER_IN_YEAR = 2;
 
     /**

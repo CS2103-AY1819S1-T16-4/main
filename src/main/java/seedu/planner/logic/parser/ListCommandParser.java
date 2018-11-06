@@ -1,12 +1,11 @@
 package seedu.planner.logic.parser;
 
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
+import static seedu.planner.model.util.IndexUtil.VALUE_NOT_AVAILABLE;
 
 import seedu.planner.logic.commands.ListCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
-import seedu.planner.model.util.IndexUtil;
 
 //@@author Hilda-Ang
 
@@ -23,7 +22,7 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     public ListCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_YEAR, PREFIX_SEMESTER);
+                ArgumentTokenizer.tokenize(args, PREFIX_YEAR);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
@@ -32,7 +31,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         String year = argMultimap.getValue(PREFIX_YEAR).orElse(null);
 
         if (year == null) {
-            return new ListCommand(-1);
+            return new ListCommand(VALUE_NOT_AVAILABLE);
         }
 
         int intYear = ParserUtil.parseYear(year);
