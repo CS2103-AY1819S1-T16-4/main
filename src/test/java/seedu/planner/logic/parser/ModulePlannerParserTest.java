@@ -54,9 +54,13 @@ public class ModulePlannerParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Set<Module> modules = Set.of(VALID_MODULE_CS1010, VALID_MODULE_CS2030);
+        Set<Module> modules = getTypicalModules();
         AddCommand command = (AddCommand) parser.parseCommand(AddCommand.COMMAND_WORD + VALID_YEAR_DESC_ONE
-            + VALID_SEMESTER_DESC_ONE + VALID_MODULE_CODE_DESC_CS1010 + VALID_MODULE_CODE_DESC_CS2030);
+                + VALID_SEMESTER_DESC_ONE
+                + VALID_MODULE_CODE_DESC_CS1010
+                + VALID_MODULE_CODE_DESC_CS1231
+                + VALID_MODULE_CODE_DESC_CS2030
+                + VALID_MODULE_CODE_DESC_CS2040);
         assertEquals(new AddCommand(modules, INDEX_FIRST), command);
     }
 
