@@ -33,10 +33,16 @@ public class MajorDescription {
         return major;
     }
 
+    /**
+     * Returns a list of {@code ModuleDescription} pre-sorted according to decreasing importance.
+     */
     public List<ModuleDescription> getModules() {
         return modules;
     }
 
+    /**
+     * Returns a list of module code prefixes for this major.
+     */
     public List<String> getPrefixes() {
         return facultyModuleCodePrefixes;
     }

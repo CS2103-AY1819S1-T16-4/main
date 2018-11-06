@@ -1,6 +1,8 @@
 package seedu.planner.model.course;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,8 +13,6 @@ import java.util.Map;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-
-import com.fasterxml.jackson.core.type.TypeReference;
 
 import seedu.planner.commons.util.JsonUtil;
 
@@ -55,9 +55,29 @@ public class MajorDescriptionTest {
 
         String s = JsonUtil.toJsonString(map);
 
-        TypeReference<HashMap<Major, MajorDescription>> typeRef = new TypeReference<>() {};
+        Map<Major, MajorDescription> deserialized = JsonUtil.getObjectMapper().readValue(s,
+                MajorDescription.MAP_TYPE_REF);
+        assertEquals(deserialized, map);
+    }
 
-        Map<Major, MajorDescription> m = JsonUtil.getObjectMapper().readValue(s, typeRef);
-        assertEquals(m, map);
+    @Test
+    public void equals() {
+        ModuleDescription cs1010 = new ModuleDescription("CS1010", ProgrammeRequirement.FOUNDATION);
+        MajorDescription cs = new MajorDescription(Major.COMPUTER_SCIENCE, List.of(cs1010));
+
+        // same object -> returns true
+        assertTrue(cs.equals(cs));
+
+        // null -> return false
+        assertFalse(cs.equals(null));
+
+        // different type -> returns false
+        assertFalse(cs.equals(5));
+
+        ModuleDescription cs1010_fake = new ModuleDescription("CS1010", ProgrammeRequirement.IT_PROFESSIONALISM);
+        MajorDescription cs_fake = new MajorDescription(Major.COMPUTER_SCIENCE, List.of(cs1010_fake));
+
+        // different module description list -> false
+        assertFalse(cs.equals(cs_fake));
     }
 }

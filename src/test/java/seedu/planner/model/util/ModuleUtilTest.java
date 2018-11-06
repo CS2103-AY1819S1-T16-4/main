@@ -15,6 +15,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import seedu.planner.model.course.ModuleDescription;
+import seedu.planner.model.course.ProgrammeRequirement;
 import seedu.planner.model.module.Module;
 
 public class ModuleUtilTest {
@@ -84,5 +86,21 @@ public class ModuleUtilTest {
 
         // Module code not in list
         assertEquals(ModuleUtil.rankModuleCodePrefixes("AC1010", prefixes), 4);
+    }
+
+    @Test
+    public void rankModuleCodeFromPriorityList() {
+        List<ModuleDescription> priorityList = new ArrayList<>();
+        priorityList.add(new ModuleDescription("CS1010", ProgrammeRequirement.FOUNDATION));
+        priorityList.add(new ModuleDescription("CS1231", ProgrammeRequirement.FOUNDATION));
+        priorityList.add(new ModuleDescription("CS2030", ProgrammeRequirement.FOUNDATION));
+
+        // Module code in list
+        assertEquals(ModuleUtil.rankModuleCodeFromPriorityList("CS1010", priorityList), 0);
+        assertEquals(ModuleUtil.rankModuleCodeFromPriorityList("CS2030", priorityList), 2);
+
+        // Module code not in list
+        assertEquals(ModuleUtil.rankModuleCodeFromPriorityList("CS2040", priorityList), 3);
+        assertEquals(ModuleUtil.rankModuleCodeFromPriorityList("GEQ1000", priorityList), 3);
     }
 }

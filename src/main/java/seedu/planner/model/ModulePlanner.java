@@ -283,8 +283,17 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private List<Module> getModulesAvailable(int index) {
         List<Module> modulesAvailable = new ArrayList<>();
         List<Module> modulesTaken = getAllModulesTaken();
-        List<Module> modulesTakenUntilIndex = getAllModulesTakenUntilIndex(index);
+
+        // |index| is the current year/semester, so only modules taken in semesters before |index| can be considered.
+        List<Module> modulesTakenUntilIndex = getAllModulesTakenUntilIndex(index - 1);
         List<Module> allModules = getAllModulesFromStorage();
+
+        // Step 1. Filter modules that user can actually take.
+        for (Module m : allModules) {
+            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenUntilIndex, m)) {
+                modulesAvailable.add(m);
+            }
+        }
 
         Map<Major, MajorDescription> map;
         try {
@@ -296,29 +305,40 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             map = new HashMap<>();
         }
 
+        // Note: Collections.sort uses stable sort when sorting objects, which we are exploiting here so that
+        // we can chain our sorting and still making sure that the order created by each comparator is preserved.
+        //
+        // The order of comparators you applied to the list matters!
+
         if (map.containsKey(userProfile.getMajor())) {
             Major major = userProfile.getMajor();
             MajorDescription majorDescription = map.get(major);
 
-            logger.info(String.format("Requirements for user's major (%s) found. Prioritize modules starts with (%s).",
+            logger.info(String.format("Requirements for user's major (%s) found. Prioritize modules start with %s.",
                     major, majorDescription.getPrefixes()));
 
-            // Step 1. Move modules that matches prefixes to the front of available module list.
+            List<String> prefixes = new ArrayList<>(majorDescription.getPrefixes());
+            // Add GE module prefixes for consideration.
+            prefixes.addAll(List.of("GER", "GEQ", "GES", "GET", "GEH"));
+
+            // Step 2. Move modules that matches prefixes to the front of available module list.
             Comparator<Module> moveFacultyModuleToFront = (Module lhs, Module rhs) -> {
                 return Integer.compare(
-                        ModuleUtil.rankModuleCodePrefixes(lhs.getCode(), majorDescription.getPrefixes()),
-                        ModuleUtil.rankModuleCodePrefixes(rhs.getCode(), majorDescription.getPrefixes()));
+                        ModuleUtil.rankModuleCodePrefixes(lhs.getCode(), prefixes),
+                        ModuleUtil.rankModuleCodePrefixes(rhs.getCode(), prefixes));
             };
+            Collections.sort(modulesAvailable, moveFacultyModuleToFront);
 
-            Collections.sort(allModules, moveFacultyModuleToFront);
+            // Step 3. Move more prioritized modules to the front of available module list.
+            Comparator<Module> moveImportantModuleToFront = (Module lhs, Module rhs) -> {
+                return Integer.compare(
+                        ModuleUtil.rankModuleCodeFromPriorityList(lhs.getCode(), majorDescription.getModules()),
+                        ModuleUtil.rankModuleCodeFromPriorityList(rhs.getCode(), majorDescription.getModules())
+                );
+            };
+            Collections.sort(modulesAvailable, moveImportantModuleToFront);
         }
 
-        // Step 3. Filter modules that user can actually take.
-        for (Module m : allModules) {
-            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenUntilIndex, m)) {
-                modulesAvailable.add(m);
-            }
-        }
         return modulesAvailable;
     }
 

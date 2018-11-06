@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import seedu.planner.model.course.ModuleDescription;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 
@@ -138,6 +139,20 @@ public class ModuleUtil {
         int rank = 0;
         for (String prefix : prefixes) {
             if (matchModuleCodePrefix(moduleCode, prefix)) {
+                break;
+            }
+            rank++;
+        }
+        return rank;
+    }
+
+    /**
+     * Give {@code moduleCode} a ranking based on its position in {@code priorityList}.
+     */
+    public static int rankModuleCodeFromPriorityList(String moduleCode, List<ModuleDescription> priorityList) {
+        int rank = 0;
+        for (ModuleDescription m : priorityList) {
+            if (m.getName().equals(moduleCode)) {
                 break;
             }
             rank++;
