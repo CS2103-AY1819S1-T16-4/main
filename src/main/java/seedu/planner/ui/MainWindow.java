@@ -29,6 +29,7 @@ import seedu.planner.commons.events.ui.ClearEvent;
 import seedu.planner.commons.events.ui.ExitAppRequestEvent;
 import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.commons.events.ui.GoToEvent;
+import seedu.planner.commons.events.ui.ListModuleEvent;
 import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
 import seedu.planner.commons.events.ui.SuggestModuleEvent;
 import seedu.planner.logic.Logic;
@@ -42,8 +43,6 @@ import seedu.planner.model.module.Module;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-
-    private static final int CURRENT_NODE = 1;
 
     private static final int TIMELESS = -1;
 
@@ -166,7 +165,7 @@ public class MainWindow extends UiPart<Stage> {
      * taken module panel.
      */
     private void initTakenModulesPanel() {
-        takenModuleListPanels = new ArrayList<>(MAX_NUMBER_SEMESTERS);
+        takenModuleListPanels = new ArrayList<>(MAX_NUMBER_SEMESTERS + 1);
 
         for (int semesterIndex = 0; semesterIndex < MAX_NUMBER_SEMESTERS; semesterIndex++) {
             ObservableList<Module> modules = logic.getTakenModules(semesterIndex);
@@ -174,34 +173,34 @@ public class MainWindow extends UiPart<Stage> {
                     semesterIndex, ModulePanelType.TAKEN);
             takenModuleListPanels.add(semesterIndex, takenModuleListPanel);
         }
+
+        ObservableList<Module> modules = logic.listModules();
+        ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules, TIMELESS, ModulePanelType.TAKEN).timeless();
+        takenModuleListPanels.add(MAX_NUMBER_SEMESTERS, takenModuleListPanel);
+
         timelessTakenModuleListPanel = new ModuleListPanel(FXCollections.emptyObservableList(),
                 TIMELESS, ModulePanelType.TAKEN).timeless();
 
-        takenModulesPlaceholder.getChildren().add(timelessTakenModuleListPanel.getRoot());
+        setPlaceholder(takenModulesPlaceholder, timelessTakenModuleListPanel);
     }
 
     private void initSuggestedModulesPanel() {
         timelessSuggestedModuleListPanel = new ModuleListPanel(FXCollections.emptyObservableList(),
                 TIMELESS, ModulePanelType.SUGGESTED).timeless();
-        suggestedModulesPlaceholder.getChildren().add(timelessSuggestedModuleListPanel.getRoot());
+        setPlaceholder(suggestedModulesPlaceholder, timelessSuggestedModuleListPanel);
     }
 
     /**
-     * Updates the {@code pane} with {@code part}. If the pane
-     * has no other child other than itself, the {@code part}
-     * will be added to the children of {@code pane}. If pane
-     * has another child other than itself, the child will be
-     * removed and {@code part} added in its place.
+     * Sets the placeholder with new information. Any existing
+     * children of {@code pane} are removed and the {@code part}
+     * is added to {@code pane} as a child.
      *
      * @param pane The pane
      * @param part The part
      */
-    private void updatePane(Pane pane, UiPart<Region> part) {
-        if (pane.getChildren().size() == 1) {
-            pane.getChildren().add(part.getRoot());
-        } else {
-            pane.getChildren().set(CURRENT_NODE, part.getRoot());
-        }
+    private void setPlaceholder(Pane pane, UiPart<Region> part) {
+        pane.getChildren().clear();
+        pane.getChildren().add(part.getRoot());
     }
 
     //@@author
@@ -268,23 +267,21 @@ public class MainWindow extends UiPart<Stage> {
 
     @Subscribe
     private void handleAddModuleEvent(AddModuleEvent event) {
-        updatePane(takenModulesPlaceholder, takenModuleListPanels.get(event.getIndex()));
+        int indexToGoTo = event.getIndex();
+        ModuleListPanel panel = takenModuleListPanels.get(indexToGoTo);
+        setPlaceholder(takenModulesPlaceholder, panel);
     }
 
     @Subscribe
     private void handleGoToEvent(GoToEvent event) {
-        ModuleListPanel panelReplacement = takenModuleListPanels.get(event.getIndex());
-        takenModulesPlaceholder.getChildren().set(CURRENT_NODE, panelReplacement.getRoot());
+        ModuleListPanel panel = takenModuleListPanels.get(event.getIndex());
+        setPlaceholder(takenModulesPlaceholder, panel);
     }
 
     @Subscribe
     private void handleFindEvent(FindModuleEvent event) {
-        FindModulePanel findModulePanel = new FindModulePanel(event.getModule());
-        updateMultiPurposePanel(findModulePanel);
-    }
-
-    private void updateMultiPurposePanel(ModuleDescription newPanel) {
-        updatePane(multiPurposePanelPlaceholder, newPanel);
+        FindModulePanel panel = new FindModulePanel(event.getModule());
+        setPlaceholder(multiPurposePanelPlaceholder, panel);
     }
 
     @Subscribe
@@ -294,17 +291,23 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void clearTakenModulesPanel() {
-        updatePane(takenModulesPlaceholder, timelessTakenModuleListPanel);
+        setPlaceholder(takenModulesPlaceholder, timelessTakenModuleListPanel);
     }
 
     private void clearSuggestedModulesPanel() {
-        updatePane(suggestedModulesPlaceholder, timelessSuggestedModuleListPanel);
+        setPlaceholder(suggestedModulesPlaceholder, timelessSuggestedModuleListPanel);
     }
 
     @Subscribe
     private void handleSuggestModule(SuggestModuleEvent event) {
         ModuleListPanel panel = new ModuleListPanel(event.getModuleList(),
                 event.getIndex(), ModulePanelType.SUGGESTED);
-        suggestedModulesPlaceholder.getChildren().set(CURRENT_NODE, panel.getRoot());
+        setPlaceholder(suggestedModulesPlaceholder, panel);
+    }
+
+    @Subscribe
+    private void handleListEvent(ListModuleEvent event) {
+        ModuleListPanel panel = takenModuleListPanels.get(MAX_NUMBER_SEMESTERS);
+        setPlaceholder(takenModulesPlaceholder, panel);
     }
 }

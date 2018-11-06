@@ -28,6 +28,7 @@ import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.semester.Semester;
 import seedu.planner.model.user.UserProfile;
+import seedu.planner.model.util.IndexUtil;
 import seedu.planner.model.util.ModuleUtil;
 
 //@@author Hilda-Ang
@@ -45,6 +46,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private UserProfile userProfile;
 
     private final ObservableList<Module> availableModules = FXCollections.observableArrayList();
+    private final ObservableList<Module> takenModules = FXCollections.observableArrayList();
 
     private int index;
 
@@ -239,6 +241,39 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
+     * Updates {@code modulesTaken} to contain all modules user has taken for every semester.
+     */
+    public void listTakenModulesAll() {
+        List<Module> modules = new ArrayList<>();
+        for (Semester s: semesters) {
+            modules.addAll(s.getModules());
+        }
+        setTakenModules(modules);
+    }
+
+    /**
+     * Updates {@code modulesTaken} to contain all modules user has taken in a given year.
+     *
+     * @param year An integer between 1 to 4.
+     */
+    public void listTakenModulesYear(int year) {
+        int[] indices = IndexUtil.getIndicesFromYear(year);
+        List<Module> modules = new ArrayList<>();
+        for (int i = 0; i < indices.length; i++) {
+            modules.addAll(semesters.get(indices[i]).getModules());
+        }
+        setTakenModules(modules);
+    }
+
+    public ObservableList<Module> listTakenModules() {
+        return takenModules;
+    }
+
+    private void setTakenModules(List<Module> modules) {
+        takenModules.setAll(modules);
+    }
+
+    /**
      * Returns all {@code Module}s available wrapped in an {@code ObservableList}.
      *
      * @return An {@code ObservableList} containing all the {@code Module}s
@@ -283,12 +318,12 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private List<Module> getModulesAvailable(int index) {
         List<Module> modulesAvailable = new ArrayList<>();
         List<Module> modulesTaken = getAllModulesTaken();
-        List<Module> modulesTakenUntilIndex = getAllModulesTakenUntilIndex(index);
+        List<Module> modulesTakenBeforeIndex = getAllModulesTakenBeforeIndex(index);
         List<Module> allModules = getAllModulesFromStorage();
 
         // Step 1. Filter modules that user can actually take.
         for (Module m : allModules) {
-            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenUntilIndex, m)) {
+            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenBeforeIndex, m)) {
                 modulesAvailable.add(m);
             }
         }
@@ -359,9 +394,9 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @param index The current index user is at.
      * @return A list of all {@code Module}s the user has taken until the specified index.
      */
-    private List<Module> getAllModulesTakenUntilIndex(int index) {
+    private List<Module> getAllModulesTakenBeforeIndex(int index) {
         List<Module> modulesTaken = new ArrayList<>();
-        for (int i = 0; i <= index; i++) {
+        for (int i = 0; i < index; i++) {
             modulesTaken.addAll(semesters.get(i).getModules());
         }
         return modulesTaken;

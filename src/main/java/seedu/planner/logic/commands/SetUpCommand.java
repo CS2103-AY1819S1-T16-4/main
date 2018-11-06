@@ -6,7 +6,7 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
 
 import java.util.Set;
 
-import seedu.planner.commons.util.StringUtil;
+import seedu.planner.commons.util.CollectionUtil;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -71,7 +71,7 @@ public class SetUpCommand extends Command {
 
         model.setUpUserProfile(major, focusAreas);
         return new CommandResult(String.format(
-                MESSAGE_SET_UP_SUCCESS, major, StringUtil.convertCollectionToString(focusAreas)));
+                MESSAGE_SET_UP_SUCCESS, major, CollectionUtil.convertCollectionToString(focusAreas)));
     }
 
     @Override

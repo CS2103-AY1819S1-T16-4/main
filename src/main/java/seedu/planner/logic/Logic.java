@@ -19,6 +19,8 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+    ObservableList<Module> listModules();
+
     //@@author GabrielYik
 
     /** Returns an unmodifiable view of the list of taken modules */

@@ -119,8 +119,8 @@ public class ModulePlannerParserTest {
     @Test
     public void parseCommand_list() throws Exception {
         ListCommand command = (ListCommand) parser.parseCommand(ListCommand.COMMAND_WORD
-            + VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE);
-        assertEquals(new ListCommand(INDEX_FIRST), command);
+            + VALID_YEAR_DESC_ONE);
+        assertEquals(new ListCommand(VALID_YEAR_ONE), command);
     }
 
     @Test

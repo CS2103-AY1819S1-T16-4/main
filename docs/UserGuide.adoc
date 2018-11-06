@@ -27,7 +27,7 @@ Module Planner is for NUS Computer Science undergraduate students who *prefer to
 .  Copy the file to the folder you want to use as the home folder for your Module Planner.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::ui.png[width="790"]
+image::Ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
@@ -102,8 +102,13 @@ Examples:
 
 === Setting user profile : `setup`
 
-Initialises your profile to allow personalisation. Year and semester correspond to your current year and semester of study. +
-Format: `setup y/YEAR s/SEMESTER m/MAJOR [f/FOCUS_AREA]`
+Initialises your profile with your major and optional focus areas to allow personalisation. +
+Format: `setup m/MAJOR [f/FOCUS_AREA]...`
+
+[NOTE]
+The major and focus areas should be spelt out in full. +
+Currently, this feature only supports the major of Computer Science and the focus areas of Algorithms and Theory,
+Artificial Intelligence and Software Engineering. Support for other majors and focus areas will come beyond v1.2.
 
 Examples:
 

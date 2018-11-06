@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.model.util.IndexUtil.convertIndexToYearAndSemester;
 import static seedu.planner.model.util.IndexUtil.convertYearAndSemesterToIndex;
+import static seedu.planner.model.util.IndexUtil.getIndicesFromYear;
 import static seedu.planner.model.util.IndexUtil.isValidIndex;
 import static seedu.planner.model.util.IndexUtil.isValidSemester;
 import static seedu.planner.model.util.IndexUtil.isValidYear;
@@ -68,5 +69,13 @@ public class IndexUtilTest {
     public void convertIndexToYearAndSemester_invalidIndex_failure() {
         assertEquals(convertIndexToYearAndSemester(-1), "00");
         assertEquals(convertIndexToYearAndSemester(8), "00");
+    }
+
+    @Test
+    public void getIndicesFromYear_success() {
+        assertEquals(getIndicesFromYear(1)[0], new int[] {0, 1}[0]);
+        assertEquals(getIndicesFromYear(2)[0], new int[] {2, 3}[0]);
+        assertEquals(getIndicesFromYear(3)[1], new int[] {4, 5}[1]);
+        assertEquals(getIndicesFromYear(4)[1], new int[] {6, 7}[1]);
     }
 }

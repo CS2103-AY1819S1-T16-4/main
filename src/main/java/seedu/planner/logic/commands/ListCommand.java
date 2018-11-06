@@ -1,13 +1,12 @@
 package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
-import static seedu.planner.model.util.IndexUtil.isValidIndex;
+import static seedu.planner.model.util.IndexUtil.VALUE_NOT_AVAILABLE;
 
-import seedu.planner.commons.core.Messages;
+import seedu.planner.commons.core.EventsCenter;
+import seedu.planner.commons.events.ui.ListModuleEvent;
 import seedu.planner.logic.CommandHistory;
-import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 
 //@@author Hilda-Ang
@@ -21,39 +20,41 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken for a semester. "
             + "Parameters: "
-            + PREFIX_YEAR + "YEAR "
-            + PREFIX_SEMESTER + "SEMESTER "
+            + "[" + PREFIX_YEAR + "YEAR]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_YEAR + "1 "
-            + PREFIX_SEMESTER + "1 ";
+            + PREFIX_YEAR + "1 ";
 
-    public static final String MESSAGE_SUCCESS = "Listed all modules taken";
+    public static final String MESSAGE_SUCCESS_ALL = "Listed all modules taken.";
+    public static final String MESSAGE_SUCCESS_YEAR = "Listed all modules taken for year %1$s.";
 
-    private int index;
+    private int year;
 
     /**
      * Creates a ListCommand to list modules for specified semester.
      */
-    public ListCommand(int index) {
-        this.index = index;
+    public ListCommand(int year) {
+        this.year = year;
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
 
-        if (!isValidIndex(index)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
+        if (year == VALUE_NOT_AVAILABLE) {
+            model.listTakenModulesAll();
+            EventsCenter.getInstance().post(new ListModuleEvent(year));
+            return new CommandResult(MESSAGE_SUCCESS_ALL);
         }
 
-        model.getTakenModules(index);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, index));
+        model.listTakenModulesYear(year);
+        EventsCenter.getInstance().post(new ListModuleEvent(year));
+        return new CommandResult(String.format(MESSAGE_SUCCESS_YEAR, year));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ListCommand // instanceof handles nulls
-                && index == ((ListCommand) other).index);
+                && year == ((ListCommand) other).year);
     }
 }

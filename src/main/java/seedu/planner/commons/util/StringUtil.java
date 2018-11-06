@@ -6,11 +6,7 @@ import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Helper functions for handling strings.
@@ -99,32 +95,6 @@ public class StringUtil {
     public static boolean containsOnlyNumbers(String s) {
         requireNonNull(s);
         return s.trim().matches(ALL_NUMBERS_REGEX);
-    }
-
-    /**
-     * Takes the elements in a collection and combines them into a string
-     * with each element separated by a whitespace.
-     * The class of the element has to override the {@code toString()} method
-     * for this method to work properly.
-     *
-     * @param collection The collection
-     * @param <E> The runtime type of the collection
-     * @return The string containing all the elements in the collection
-     */
-    public static <E> String convertCollectionToString(Collection<E> collection) {
-        requireNonNull(collection);
-
-        List<String> list = new ArrayList<>();
-        for (E e : collection) {
-            list.add(e.toString());
-        }
-        Collections.sort(list);
-
-        StringBuilder sb = new StringBuilder();
-        for (String s : list) {
-            sb.append(s + " ");
-        }
-        return sb.toString().trim();
     }
 
     /**

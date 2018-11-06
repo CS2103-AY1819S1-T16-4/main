@@ -31,8 +31,9 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final VersionedModulePlanner versionedModulePlanner;
 
-    private final List<SortedList<Module>> takenModules;
+    private final List<SortedList<Module>> takenModulesPerSemester;
 
+    private final FilteredList<Module> takenModules;
     private final FilteredList<Module> availableModules;
 
     //@@author Hilda-Ang
@@ -48,12 +49,13 @@ public class ModelManager extends ComponentManager implements Model {
 
         versionedModulePlanner = new VersionedModulePlanner(modulePlanner);
 
-        takenModules = new ArrayList<>();
+        takenModulesPerSemester = new ArrayList<>();
         for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
-            takenModules.add(new SortedList<>(versionedModulePlanner.getTakenModules(i), (x, y) ->
+            takenModulesPerSemester.add(new SortedList<>(versionedModulePlanner.getTakenModules(i), (x, y) ->
                     x.compareTo(y)));
         }
 
+        takenModules = new FilteredList<>(versionedModulePlanner.listTakenModules());
         availableModules = new FilteredList<>(versionedModulePlanner.getAvailableModules());
     }
 
@@ -149,11 +151,26 @@ public class ModelManager extends ComponentManager implements Model {
 
     //=========== Module List Accessors =============================================================
 
+    @Override
+    public void listTakenModulesAll() {
+        versionedModulePlanner.listTakenModulesAll();
+    }
+
+    @Override
+    public void listTakenModulesYear(int year) {
+        versionedModulePlanner.listTakenModulesYear(year);
+    }
+
+    @Override
+    public ObservableList<Module> listModules() {
+        return FXCollections.unmodifiableObservableList(takenModules);
+    }
+
     //@@author GabrielYik
 
     @Override
     public ObservableList<Module> getTakenModules(int index) {
-        return FXCollections.unmodifiableObservableList(takenModules.get(index));
+        return FXCollections.unmodifiableObservableList(takenModulesPerSemester.get(index));
     }
 
     @Override

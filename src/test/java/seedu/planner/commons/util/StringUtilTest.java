@@ -8,10 +8,8 @@ import static org.junit.Assert.assertTrue;
 import static seedu.planner.commons.util.StringUtil.areEqualIgnoreCase;
 import static seedu.planner.commons.util.StringUtil.capitalizeSentence;
 import static seedu.planner.commons.util.StringUtil.containsOnlyLettersAndWhiteSpace;
-import static seedu.planner.commons.util.StringUtil.convertCollectionToString;
 
 import java.io.FileNotFoundException;
-import java.util.List;
 import java.util.Optional;
 
 import org.junit.Rule;
@@ -192,19 +190,6 @@ public class StringUtilTest {
     public void containsOnlyLettersAndWhiteSpace_nullGiven_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         containsOnlyLettersAndWhiteSpace(null);
-    }
-
-    //-------------- Tests for convertCollectionToString -------------------
-
-    @Test
-    public void convertCollectionToString_validArg_returnsString() {
-        assertEquals(convertCollectionToString(List.of(1, 2, 3, 4)), "1 2 3 4");
-    }
-
-    @Test
-    public void convertCollectionToString_nullGiven_throwsNullPointerException() {
-        thrown.expect(NullPointerException.class);
-        convertCollectionToString(null);
     }
 
     //-------------- Tests for areEqualIgnoreCase -------------------

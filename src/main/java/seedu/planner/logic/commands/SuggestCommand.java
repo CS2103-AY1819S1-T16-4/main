@@ -32,7 +32,7 @@ public class SuggestCommand extends Command {
             + PREFIX_YEAR + "1 "
             + PREFIX_SEMESTER + "1 ";
 
-    public static final String MESSAGE_SUCCESS = "Showed all available modules.";
+    public static final String MESSAGE_SUCCESS = "Showed all available modules for specified year and semester.";
 
     private int index;
 

@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox fx:id="moduleDescription" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefWidth="186.0" spacing="5.0">
@@ -28,5 +27,8 @@
             <FlowPane fx:id="prerequisites" />
          </children>
       </HBox>
+      <Label fx:id="divider" text="divider" />
+      <Label fx:id="fullDescription" styleClass="moduleDescription_label_big" text="full description" />
+      <Label fx:id="description" styleClass="moduleDescription_label_small" text="module description" wrapText="true" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>

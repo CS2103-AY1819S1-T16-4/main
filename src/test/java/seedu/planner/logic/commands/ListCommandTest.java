@@ -2,17 +2,14 @@ package seedu.planner.logic.commands;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.planner.logic.commands.CommandTestUtil.INVALID_INDEX_EIGHT;
-import static seedu.planner.logic.commands.CommandTestUtil.VALID_INDEX_ONE;
-import static seedu.planner.logic.commands.CommandTestUtil.VALID_INDEX_ZERO;
-import static seedu.planner.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_ONE;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_TWO;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.planner.testutil.TypicalModules.getTypicalModulePlanner;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
@@ -34,31 +31,31 @@ public class ListCommandTest {
     }
 
     @Test
-    public void execute_validIndex_success() {
-        ListCommand listCommand = new ListCommand(VALID_INDEX_ZERO);
-        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS, VALID_INDEX_ZERO);
+    public void execute_validYear_success() {
+        ListCommand listCommand = new ListCommand(VALID_YEAR_ONE);
+        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_YEAR, VALID_YEAR_ONE);
 
         assertCommandSuccess(listCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndex_throwsCommandException() {
-        ListCommand listCommand = new ListCommand(INVALID_INDEX_EIGHT);
-        String expectedMessage = Messages.MESSAGE_INVALID_PARAMETERS;
+    public void execute_listAll_success() {
+        ListCommand listCommand = new ListCommand(-1);
+        String expectedMessage = ListCommand.MESSAGE_SUCCESS_ALL;
 
-        assertCommandFailure(listCommand, model, commandHistory, expectedMessage);
+        assertCommandSuccess(listCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        ListCommand listFirstCommand = new ListCommand(VALID_INDEX_ZERO);
-        ListCommand listSecondCommand = new ListCommand(VALID_INDEX_ONE);
+        ListCommand listFirstCommand = new ListCommand(VALID_YEAR_ONE);
+        ListCommand listSecondCommand = new ListCommand(VALID_YEAR_TWO);
 
         // same object -> returns true
         assertTrue(listFirstCommand.equals(listFirstCommand));
 
         // same values -> returns true
-        ListCommand listFirstCommandCopy = new ListCommand(VALID_INDEX_ZERO);
+        ListCommand listFirstCommandCopy = new ListCommand(VALID_YEAR_ONE);
         assertTrue(listFirstCommand.equals(listFirstCommandCopy));
 
         // different types -> returns false
@@ -67,7 +64,7 @@ public class ListCommandTest {
         // null -> returns false
         assertFalse(listFirstCommand.equals(null));
 
-        // different index -> returns false
+        // different year -> returns false
         assertFalse(listFirstCommand.equals(listSecondCommand));
     }
 }
