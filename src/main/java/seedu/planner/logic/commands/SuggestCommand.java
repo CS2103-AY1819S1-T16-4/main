@@ -32,6 +32,9 @@ public class SuggestCommand extends Command {
             + PREFIX_YEAR + "1 "
             + PREFIX_SEMESTER + "1 ";
 
+    public static final String MESSAGE_UNSUPPORTED_MAJOR = "Unsupported major (%s).\n"
+            + "Currently only Computer Science is supported by suggest command.";
+
     public static final String MESSAGE_SUCCESS = "Showed all available modules.";
 
     private int index;

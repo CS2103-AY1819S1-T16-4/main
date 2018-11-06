@@ -1,6 +1,6 @@
 [
   {
-    "name": "Computer Science",
+    "major": "COMPUTER_SCIENCE",
     "modules": [
       { "name": "CS1010", "types": ["PR_F"] },
       { "name": "CS1231", "types": ["PR_F"] },
