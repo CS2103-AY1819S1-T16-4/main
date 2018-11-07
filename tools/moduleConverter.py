@@ -27,7 +27,6 @@ with open(NUSMODS_JSON, "r", encoding="utf8") as f:
   obj = json.load(f)
 
 newObj = []
-count = 0
 
 modulePattern = re.compile(r"([A-Z]{2,3})(\d{4})([A-Z]{0,2})")
 
@@ -59,7 +58,6 @@ for mod in obj:
   newObj.append(newMod)
 
   Map[moduleCode] = newMod
-  count += 1
 
 # Remove module codes that do not have its module info entry
 def deleteModules(newObj):
@@ -90,7 +88,10 @@ for module in newObj:
     if moduleCode not in m["preclusions"] and moduleCode != module["code"]:
       m["preclusions"].append(module["code"])
 
-print(count)
+print(len(newObj))
+
+# Special exceptions for certain modules
+Map["CS1231"]["prerequisites"] = [] # Remove all prereq for CS1231
 
 with open(OUTPUT_JSON, "w", encoding="utf8") as f:
   json.dump(newObj, f, separators=(',',':')) # indent=2
