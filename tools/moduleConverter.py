@@ -91,7 +91,8 @@ for module in newObj:
 print(len(newObj))
 
 # Special exceptions for certain modules
-Map["CS1231"]["prerequisites"] = [] # Remove all prereq for CS1231
+for moduleCode in ["CS1231", "MA1521"]:
+  Map[moduleCode]["prerequisites"] = []
 
 with open(OUTPUT_JSON, "w", encoding="utf8") as f:
   json.dump(newObj, f, separators=(',',':')) # indent=2
