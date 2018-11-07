@@ -1,0 +1,289 @@
+{
+  "COMPUTER_SCIENCE" : {
+    "major" : "COMPUTER_SCIENCE",
+    "facultyModuleCodePrefixes": [
+      "CS", "CP", "IS", "IT", "MA", "ES"
+    ],
+    "modules" : [ {
+      "code" : "CS1010",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS1231",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS2030",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS2040",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS2100",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS2103T",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code" : "CS2105",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS2106",
+      "requirement" : "FOUNDATION",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS3230",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CP3880",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CP3200",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CP3202",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "IS4010",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CP3200",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CP3107",
+      "requirement" : "INDUSTRIAL_EXPERIENCE_REQUIREMENT",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "IS1103",
+      "requirement" : "IT_PROFESSIONALISM",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS2101",
+      "requirement" : "IT_PROFESSIONALISM",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "ES2660",
+      "requirement" : "IT_PROFESSIONALISM",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "MA1521",
+      "requirement" : "MATHEMATICS",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "MA1101R",
+      "requirement" : "MATHEMATICS",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "ST2334",
+      "requirement" : "MATHEMATICS",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "PC1221",
+      "requirement" : "SCIENCE",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "PC1221X",
+      "requirement" : "SCIENCE",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS3203",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS3216",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS3217",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS3281",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS3282",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ ]
+    }, {
+      "code" : "CS3230",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ALGORITHMS_AND_THEORY" ]
+    }, {
+      "code" : "CS3236",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ALGORITHMS_AND_THEORY" ]
+    }, {
+      "code" : "CS4231",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ALGORITHMS_AND_THEORY" ]
+    }, {
+      "code" : "CS4232",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ALGORITHMS_AND_THEORY" ]
+    }, {
+      "code" : "CS4234",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ALGORITHMS_AND_THEORY" ]
+    }, {
+      "code" : "CS3233",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ALGORITHMS_AND_THEORY" ]
+    }, {
+      "code" : "CS4257",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ALGORITHMS_AND_THEORY" ]
+    }, {
+      "code" : "CS5230",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ALGORITHMS_AND_THEORY" ]
+    }, {
+      "code" : "CS5234",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ALGORITHMS_AND_THEORY" ]
+    }, {
+      "code" : "CS5236",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ALGORITHMS_AND_THEORY" ]
+    }, {
+      "code" : "CS5237",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ALGORITHMS_AND_THEORY" ]
+    }, {
+      "code" : "CS5238",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ALGORITHMS_AND_THEORY" ]
+    }, {
+      "code" : "CS5330",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ALGORITHMS_AND_THEORY" ]
+    }, {
+      "code" : "CS3243",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS3244",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS4243",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS4244",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS4246",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS4248",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS4216",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS4220",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS5209",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS5215",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS5228",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS5242",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS5247",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS5340",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS5339",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "ARTIFICIAL_INTELLIGENCE" ]
+    }, {
+      "code" : "CS3219",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code" : "CS4211",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code" : "CS4218",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code" : "CS4239",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code" : "CS3216",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code" : "CS3217",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code" : "CS3226",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code" : "CS3234",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code" : "CS3882",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code" : "CS4217",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code" : "CS4271",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code" : "CS5219",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code" : "CS5232",
+      "requirement" : "BREATH_AND_DEPTH",
+      "focusAreas" : [ "SOFTWARE_ENGINEERING" ]
+    }, {
+      "code": "CS5272",
+      "requirement": "BREATH_AND_DEPTH",
+      "focusAreas": [ "SOFTWARE_ENGINEERING" ]
+    } ]
+  }
+}

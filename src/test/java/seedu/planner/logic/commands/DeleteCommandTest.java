@@ -11,7 +11,6 @@ import static seedu.planner.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.planner.logic.commands.DeleteCommand.MESSAGE_DELETE_MODULES_SUCCESS;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Before;
@@ -96,10 +95,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validAndNotOfferedAndNonExistentModule() {
-        Set<Module> modulesToDelete = new HashSet<>();
-        modulesToDelete.add(VALID_MODULE_CS1010);
-        modulesToDelete.add(INVALID_MODULE_CS0000);
-        modulesToDelete.add(VALID_MODULE_CS2040);
+        Set<Module> modulesToDelete = Set.of(VALID_MODULE_CS1010, INVALID_MODULE_CS0000, VALID_MODULE_CS2040);
         DeleteCommand deleteCommand = new DeleteCommand(modulesToDelete);
 
         String expectedMessage = String.format(MESSAGE_DELETE_MODULES_SUCCESS, VALID_MODULE_CS1010);

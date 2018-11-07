@@ -8,6 +8,7 @@ import static seedu.planner.commons.util.CollectionUtil.formatMessage;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -39,7 +40,7 @@ public class DeleteCommand extends Command {
     private String message;
 
     public DeleteCommand(Set<Module> modules) {
-        modulesToDelete = modules;
+        modulesToDelete = new HashSet<>(modules);
         message = "";
     }
 

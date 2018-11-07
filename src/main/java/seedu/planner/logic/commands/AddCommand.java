@@ -1,7 +1,9 @@
 package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
 import static seedu.planner.commons.util.CollectionUtil.convertCollectionToString;
+import static seedu.planner.commons.util.CollectionUtil.formatMessage;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
@@ -16,6 +18,7 @@ import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.core.Messages;
 import seedu.planner.commons.events.ui.AddModuleEvent;
 import seedu.planner.logic.CommandHistory;
+import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
@@ -35,14 +38,13 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_YEAR + "YEAR "
             + PREFIX_SEMESTER + "SEMESTER "
-            + PREFIX_CODE + "MODULE CODE "
+            + PREFIX_CODE + "MODULE CODE... "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_YEAR + "2 "
             + PREFIX_SEMESTER + "2 "
             + PREFIX_CODE + "CS3244 ";
 
     public static final String MESSAGE_SUCCESS = "Added Module(s): %1$s";
-
     public static final String MESSAGE_EQUIVALENT = "Following module(s) are equivalent: %1$s";
     public static final String MESSAGE_EXISTED_MODULES = "Following module(s) already exist in the planner: %1$s";
     public static final String MESSAGE_PRECLUDED_MODULES = "Following module(s) have some of their preclusions"
@@ -53,25 +55,26 @@ public class AddCommand extends Command {
     private final int semesterIndex;
     private final Set<Module> modulesToAdd;
 
+    private String message;
     /**
      * Add module method
      */
     public AddCommand(Set<Module> modules, int index) {
         requireAllNonNull(modules, index);
         semesterIndex = index;
-        modulesToAdd = modules;
+        modulesToAdd = new HashSet<>(modules);
+        message = "";
     }
 
     /**
-     * Retrieves all invalid modules from the list.
+     * Retrieves all invalid modules from the set based on the model.
      *
-     * @param modules List of modules
      * @param model Model used
      * @return List of invalid modules
      */
-    private List<Module> retrieveInvalidModules(Set<Module> modules, Model model) {
+    private List<Module> retrieveInvalidModules(Model model) {
         List<Module> invalidModules = new ArrayList<>();
-        for (Module m : modules) {
+        for (Module m : modulesToAdd) {
             if (!model.isModuleOffered(m)) {
                 invalidModules.add(m);
             }
@@ -81,15 +84,14 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Retrieves all existing modules in the model from the list.
+     * Retrieves all modules from the set that exist in the model.
      *
-     * @param modules List of modules
      * @param model Model used
      * @return List of existing modules
      */
-    private List<Module> retrieveExistingModules(Set<Module> modules, Model model) {
+    private List<Module> retrieveExistingModules(Model model) {
         List<Module> existingModules = new ArrayList<>();
-        for (Module m : modules) {
+        for (Module m : modulesToAdd) {
             if (model.hasModule(m)) {
                 existingModules.add(m);
             }
@@ -99,15 +101,14 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Retrieves all precluded modules from the list based from the model.
+     * Retrieves all precluded modules from the set based from the model.
      *
-     * @param modules List of modules
      * @param model Model used
      * @return List of precluded modules
      */
-    private Set<Module> retrievePrecludedModules(Set<Module> modules, Model model) {
+    private Set<Module> retrievePrecludedModules(Model model) {
         Set<Module> precludedModules = new HashSet<>();
-        for (Module m : modules) {
+        for (Module m : modulesToAdd) {
             List<ModuleInfo> preclusions = m.getPreclusions();
             for (ModuleInfo preclusion: preclusions) {
                 if (model.hasModule(new Module(preclusion.getCode()))) {
@@ -120,23 +121,21 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Retrieves all equivalent modules from the list.
+     * Retrieves all equivalent modules from the set.
      *
-     * @param modules list of modules
      * @return all grouping of equivalent modules with more than 1 member
      */
-    private List<List<Module>> retrieveEquivalentModules(Set<Module> modules) {
-        return ModuleUtil.findModuleEquivalences(new ArrayList<>(modules));
+    private List<List<Module>> retrieveEquivalentModules() {
+        return ModuleUtil.findModuleEquivalences(new ArrayList<>(modulesToAdd));
     }
 
     /**
-     * Retrieves all modules from the list which some of their prerequisites has not been fulfilled in the Model.
+     * Retrieves all modules from the set which some of their prerequisites has not been fulfilled in the Model.
      *
-     * @param modules List of modules
      * @param model Model used
      * @return List of all unfulfilled modules
      */
-    private List<Module> retrieveUnfulfilledModules(Set<Module> modules, Model model) {
+    private List<Module> retrieveUnfulfilledModules(Model model) {
         List<Module> unfulfilledModules = new ArrayList<>();
         int i = 0;
         List<Module> upToIndex = new ArrayList<>();
@@ -146,7 +145,7 @@ public class AddCommand extends Command {
             i++;
         }
 
-        for (Module m : modules) {
+        for (Module m : modulesToAdd) {
             if (!ModuleUtil.hasFulfilledAllPrerequisites(upToIndex, m)) {
                 unfulfilledModules.add(m);
             }
@@ -154,61 +153,125 @@ public class AddCommand extends Command {
 
         return unfulfilledModules;
     }
-    @Override
-    public CommandResult execute(Model model, CommandHistory history) {
-        requireNonNull(model);
-        Set<Module> copyToAdd = new HashSet<>(modulesToAdd);
 
-        List<Module> invalidModules = retrieveInvalidModules(copyToAdd, model);
-        copyToAdd.removeAll(invalidModules);
-
-        List<Module> existedModules = retrieveExistingModules(copyToAdd, model);
-        copyToAdd.removeAll(existedModules);
-
-        Set<Module> precludedModules = retrievePrecludedModules(copyToAdd, model);
-        copyToAdd.removeAll(precludedModules);
-
-        List<List<Module>> equivalentModules = retrieveEquivalentModules(copyToAdd);
-        for (List<Module> lm : equivalentModules) {
-            copyToAdd.removeAll(lm);
-        }
-
-        List<Module> unfulfilledModules = retrieveUnfulfilledModules(copyToAdd, model);
-        copyToAdd.removeAll(unfulfilledModules);
-
-        String result = String.format(MESSAGE_SUCCESS, convertCollectionToString(copyToAdd));
-
+    /**
+     * Remove invalid modules from the set.
+     *
+     * @param model Model used
+     * @throws CommandException if all modules in the set is invalid
+     */
+    private void removeInvalidModules(Model model) throws CommandException {
+        List<Module> invalidModules = retrieveInvalidModules(model);
         if (!invalidModules.isEmpty()) {
-            result += "\n" + String.format(Messages.MESSAGE_INVALID_MODULES, convertCollectionToString(invalidModules));
+            boolean areAllModulesInvalid = invalidModules.size() == modulesToAdd.size();
+            message += formatMessage(Messages.MESSAGE_INVALID_MODULES, invalidModules) + "\n";
+            if (areAllModulesInvalid) {
+                throw new CommandException(message.trim());
+            } else {
+                modulesToAdd.removeAll(invalidModules);
+            }
         }
+    }
 
-        if (!existedModules.isEmpty()) {
-            result += "\n" + String.format(MESSAGE_EXISTED_MODULES, convertCollectionToString(existedModules));
+    /**
+     * Remove all existing modules from the set.
+     *
+     * @param model Model used
+     * @throws CommandException if all modules in the set already exist in the model
+     */
+    private void removeExistingModules(Model model) throws CommandException {
+        List<Module> existingModules = retrieveExistingModules(model);
+        if (!existingModules.isEmpty()) {
+            boolean areAllModulesExist = existingModules.size() == modulesToAdd.size();
+            message += formatMessage(MESSAGE_EXISTED_MODULES, existingModules) + "\n";
+            if (areAllModulesExist) {
+                throw new CommandException(message.trim());
+            } else {
+                modulesToAdd.removeAll(existingModules);
+            }
         }
+    }
 
+    /**
+     * Remove all precluded modules.
+     *
+     * @param model Model used
+     * @throws CommandException if all modules in the set is precluded
+     */
+    private void removePrecludedModules(Model model) throws CommandException {
+        Set<Module> precludedModules = retrievePrecludedModules(model);
         if (!precludedModules.isEmpty()) {
-            result += "\n" + String.format(MESSAGE_PRECLUDED_MODULES, convertCollectionToString(precludedModules));
+            boolean areAllModulesPrecluded = precludedModules.size() == modulesToAdd.size();
+            message += formatMessage(MESSAGE_PRECLUDED_MODULES, precludedModules) + "\n";
+            if (areAllModulesPrecluded) {
+                throw new CommandException(message.trim());
+            } else {
+                modulesToAdd.removeAll(precludedModules);
+            }
         }
+    }
 
+    /**
+     * Remove all equivalent modules.
+     *
+     * @throws CommandException if no single modules in the set
+     */
+    private void removeEquivalentModules() throws CommandException {
+        List<List<Module>> equivalentModules = retrieveEquivalentModules();
         if (!equivalentModules.isEmpty()) {
+            int numberOfModules = 0;
             StringBuilder sb = new StringBuilder();
             for (List<Module> equivalence : equivalentModules) {
-                sb.append("(");
-                sb.append(convertCollectionToString(equivalence));
-                sb.append(") ");
+                numberOfModules += equivalence.size();
+                sb.append("(").append(convertCollectionToString(equivalence)).append(") ");
             }
-            result += "\n" + String.format(MESSAGE_EQUIVALENT, sb.toString().trim());
+            boolean areAllModuleNonSingle = numberOfModules == modulesToAdd.size();
+            message += String.format(MESSAGE_EQUIVALENT, sb.toString().trim()) + "\n";
+            if (areAllModuleNonSingle) {
+                throw new CommandException(message.trim());
+            } else {
+                for (List<Module> equivalence : equivalentModules) {
+                    modulesToAdd.removeAll(equivalence);
+                }
+            }
         }
+    }
 
+    /**
+     * Remove all unfulfilled modules.
+     *
+     * @param model Model used
+     * @throws CommandException if all modules in the set is unfulfilled
+     */
+    private void removeUnfulfilledModules(Model model) throws CommandException {
+        List<Module> unfulfilledModules = retrieveUnfulfilledModules(model);
         if (!unfulfilledModules.isEmpty()) {
-            result += "\n" + String.format(MESSAGE_UNFULFILLED, convertCollectionToString(unfulfilledModules));
+            boolean areAllModuleUnfulfilled = unfulfilledModules.size() == modulesToAdd.size();
+            message += formatMessage(MESSAGE_UNFULFILLED, unfulfilledModules) + "\n";
+            if (areAllModuleUnfulfilled) {
+                throw new CommandException(message.trim());
+            } else {
+                modulesToAdd.removeAll(unfulfilledModules);
+            }
         }
+    }
+    @Override
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+        requireNonNull(model);
 
-        model.addModules(copyToAdd, semesterIndex);
+        removeInvalidModules(model);
+        removeExistingModules(model);
+        removePrecludedModules(model);
+        removeEquivalentModules();
+        removeUnfulfilledModules(model);
+
+        model.addModules(modulesToAdd, semesterIndex);
         model.commitModulePlanner();
 
+        String successMessage = formatMessage(MESSAGE_SUCCESS, modulesToAdd);
+        message = successMessage + "\n" + message;
         EventsCenter.getInstance().post(new AddModuleEvent(semesterIndex));
-        return new CommandResult(result);
+        return new CommandResult(message.trim());
     }
 
     @Override
@@ -223,6 +286,7 @@ public class AddCommand extends Command {
         }
 
         AddCommand command = (AddCommand) other;
-        return modulesToAdd.equals(command.modulesToAdd) && semesterIndex == command.semesterIndex;
+        return areEqualIgnoreOrder(modulesToAdd, command.modulesToAdd)
+                && semesterIndex == command.semesterIndex;
     }
 }

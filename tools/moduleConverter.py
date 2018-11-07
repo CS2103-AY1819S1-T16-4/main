@@ -11,15 +11,7 @@ import urllib.request, urllib.error
 
 CURRENT_DIR = os.path.abspath(os.path.dirname(__file__))
 NUSMODS_JSON = os.path.join(CURRENT_DIR, "nusmods.json")
-
-WHITELISTS = ["CS", "CEG", "IS", "MA", "GE"]
-
-def filterModule(moduleCode):
-  return True
-  for w in WHITELISTS:
-    if moduleCode.startswith(w):
-      return True
-  return False
+OUTPUT_JSON = os.path.join(CURRENT_DIR, "..", "src", "main", "resources", "data", "moduleInfo.json")
 
 def notNull(str):
   return str.lower() != "nil"
@@ -35,7 +27,6 @@ with open(NUSMODS_JSON, "r", encoding="utf8") as f:
   obj = json.load(f)
 
 newObj = []
-count = 0
 
 modulePattern = re.compile(r"([A-Z]{2,3})(\d{4})([A-Z]{0,2})")
 
@@ -51,39 +42,60 @@ def scrapeAllModules(str):
   return x
 
 S = set()
+Map = {}
 
 for mod in obj:
   newMod = {}
 
   moduleCode = mod["ModuleCode"]
   S.add(moduleCode)
-  if filterModule(moduleCode):
-    newMod["code"] = moduleCode
-    newMod["name"] = mod["ModuleTitle"]
-    newMod["creditCount"] = float(mod["ModuleCredit"])
-    newMod["description"] = mod.get("ModuleDescription", "")
-    newMod["preclusions"] = scrapeAllModules(mod.get("Preclusion", ""))
-    newMod["prerequisites"] = scrapeAllModules(mod.get("Prerequisite", ""))
-    newObj.append(newMod)
-    count += 1
+  newMod["code"] = moduleCode
+  newMod["name"] = mod["ModuleTitle"]
+  newMod["creditCount"] = float(mod["ModuleCredit"])
+  newMod["description"] = mod.get("ModuleDescription", "")
+  newMod["preclusions"] = scrapeAllModules(mod.get("Preclusion", ""))
+  newMod["prerequisites"] = scrapeAllModules(mod.get("Prerequisite", ""))
+  newObj.append(newMod)
 
+  Map[moduleCode] = newMod
+
+# Remove module codes that do not have its module info entry
+def deleteModules(newObj):
+  res = 0
+  for module in newObj:
+    prereq = module["prerequisites"]
+    for m in prereq:
+      if m not in S:
+        res += 1
+        prereq.remove(m)
+
+    preclu = module["preclusions"]
+    for m in preclu:
+      if m not in S:
+        res += 1
+        preclu.remove(m)
+
+  return res
+
+while deleteModules(newObj) > 0:
+  pass
+
+# Ensure backward preclusion relationship
 for module in newObj:
-  prereq = module["prerequisites"]
-  for m in prereq:
-    if m not in S:
-      prereq.remove(m)
-
   preclu = module["preclusions"]
-  for m in preclu:
-    if m not in S:
-      preclu.remove(m)
+  for moduleCode in preclu:
+    m = Map[moduleCode]
+    if moduleCode not in m["preclusions"] and moduleCode != module["code"]:
+      m["preclusions"].append(module["code"])
 
-print(count)
+print(len(newObj))
 
-output = os.path.join(CURRENT_DIR, "..", "src", "main", "resources", "data", "moduleInfo.json")
+# Special exceptions for certain modules
+for moduleCode in ["CS1231", "MA1521"]:
+  Map[moduleCode]["prerequisites"] = []
 
-with open(output, "w", encoding="utf8") as f:
+with open(OUTPUT_JSON, "w", encoding="utf8") as f:
   json.dump(newObj, f, separators=(',',':')) # indent=2
 
-with open(output, "a", encoding="utf8") as f:
+with open(OUTPUT_JSON, "a", encoding="utf8") as f:
   f.write("\n")
