@@ -32,6 +32,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     public static final int MAX_NUMBER_SEMESTERS = 8;
     public static final int MAX_SEMESTERS_PER_YEAR = 2;
 
+    private static final int ALL_SEMESTERS = -1;
+
     private static Logger logger = LogsCenter.getLogger(ModulePlanner.class);
 
     private final List<Semester> semesters;
@@ -40,8 +42,10 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private final ObservableList<Module> availableModules = FXCollections.observableArrayList();
     private final ObservableList<Module> takenModules = FXCollections.observableArrayList();
 
-    private int index;
+
     private Map<ProgrammeRequirement, int[]> statusMap = new HashMap<>();
+    private int availableIndex;
+    private int takenIndex;
 
     /**
      * Constructs a {@code ModulePlanner} and initializes an array of 8 {@code Semester}
@@ -57,7 +61,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             }
         }
 
-        index = 0;
+        availableIndex = 0;
+        takenIndex = ALL_SEMESTERS;
     }
 
     /**
@@ -84,7 +89,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void addModules(Set<Module> modules, int index) {
         semesters.get(index).addModules(modules);
-        setAvailableModules(getModulesAvailable(this.index));
+        setAvailableModules(getModulesAvailable(availableIndex));
+        updateTakenModules();
     }
 
     //@@author GabrielYik
@@ -123,7 +129,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             }
         }
 
-        setAvailableModules(getModulesAvailable(index));
+        setAvailableModules(getModulesAvailable(availableIndex));
+        updateTakenModules();
     }
 
     /**
@@ -238,9 +245,11 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void listTakenModulesAll() {
         List<Module> modules = new ArrayList<>();
+
         for (Semester s : semesters) {
             modules.addAll(s.getModules());
         }
+        takenIndex = ALL_SEMESTERS;
         setTakenModules(modules);
     }
 
@@ -255,11 +264,23 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         for (int i = 0; i < indices.length; i++) {
             modules.addAll(semesters.get(indices[i]).getModules());
         }
+        takenIndex = year;
         setTakenModules(modules);
     }
 
     public ObservableList<Module> listTakenModules() {
         return takenModules;
+    }
+
+    /**
+     * Update {@code takenModules} according to the latest displayed list upon add or delete command.
+     */
+    private void updateTakenModules() {
+        if (takenIndex == ALL_SEMESTERS) {
+            listTakenModulesAll();
+        } else {
+            listTakenModulesYear(takenIndex);
+        }
     }
 
     private void setTakenModules(List<Module> modules) {
@@ -272,7 +293,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @return An {@code ObservableList} containing all the {@code Module}s
      */
     public ObservableList<Module> getAvailableModules() {
-        setAvailableModules(getModulesAvailable(index));
+        setAvailableModules(getModulesAvailable(availableIndex));
         return availableModules;
     }
 
@@ -281,7 +302,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void resetData(ReadOnlyModulePlanner newData) {
         requireNonNull(newData);
-        setAvailableModules(getModulesAvailable(index));
+        setAvailableModules(getModulesAvailable(availableIndex));
         setModulesInSemesters(newData.getSemesters());
     }
 
@@ -298,7 +319,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @param index An integer from 0 to 7 inclusive indicating the year and semester to suggest.
      */
     public void suggestModules(int index) {
-        this.index = index;
+        availableIndex = index;
         setAvailableModules(getModulesAvailable(index));
     }
 

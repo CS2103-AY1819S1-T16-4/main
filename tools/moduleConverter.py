@@ -85,14 +85,17 @@ for module in newObj:
   preclu = module["preclusions"]
   for moduleCode in preclu:
     m = Map[moduleCode]
-    if moduleCode not in m["preclusions"] and moduleCode != module["code"]:
+    if module["code"] not in m["preclusions"]:
       m["preclusions"].append(module["code"])
 
-print(len(newObj))
+# Remove MA1301 and MA1301X as prereq
+A_LEVEL_MATHS = ["MA1301", "MA1301X"]
+for module in newObj:
+  for ma in ["MA1301", "MA1301X"]:
+    if ma in module["prerequisites"] and module["code"] not in A_LEVEL_MATHS:
+      module["prerequisites"].remove(ma)
 
-# Special exceptions for certain modules
-for moduleCode in ["CS1231", "MA1521"]:
-  Map[moduleCode]["prerequisites"] = []
+print(len(newObj))
 
 with open(OUTPUT_JSON, "w", encoding="utf8") as f:
   json.dump(newObj, f, separators=(',',':')) # indent=2
