@@ -2,15 +2,15 @@ package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.events.ui.StatusEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
-import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.course.ProgrammeRequirement;
-import seedu.planner.model.module.Module;
 
-import java.util.Map;
 
 /**
  * Display the credit count status of the user in the planner
@@ -20,6 +20,7 @@ public class StatusCommand extends Command {
     public static final String COMMAND_WORD = "status";
     private static final String CREDITS_LEFT = "Total credits left to fulfill course requirement: ";
 
+    private Map<ProgrammeRequirement, Integer> required = new HashMap<>();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows total credit achieved "
             + "in each semester based on"
@@ -28,10 +29,18 @@ public class StatusCommand extends Command {
             + "Semester 2: 24\n"
             + CREDITS_LEFT + 116;
 
-
+    private void putRequired() {
+        required.put(ProgrammeRequirement.FOUNDATION, 36);
+        required.put(ProgrammeRequirement.MATHEMATICS, 12);
+        required.put(ProgrammeRequirement.SCIENCE, 4);
+        required.put(ProgrammeRequirement.IT_PROFESSIONALISM, 12);
+        required.put(ProgrammeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT, 8);
+        required.put(ProgrammeRequirement.BREATH_AND_DEPTH, 12);
+    }
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
+        putRequired();
 
         Map<ProgrammeRequirement, int[]> statusMap = model.status();
         StringBuilder sb = new StringBuilder();
@@ -39,6 +48,9 @@ public class StatusCommand extends Command {
             sb.append(pr.toString());
             sb.append(": ");
             sb.append(statusMap.get(pr)[0]);
+            sb.append(" (need ");
+            sb.append(Math.max(0, required.get(pr) - statusMap.get(pr)[0]));
+            sb.append(" more)");
             sb.append("\n");
         }
 

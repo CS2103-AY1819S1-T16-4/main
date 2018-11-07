@@ -2,20 +2,26 @@ package seedu.planner.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Logger;
-
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.planner.MainApp;
+
 import seedu.planner.commons.core.LogsCenter;
-import seedu.planner.commons.util.JsonUtil;
-import seedu.planner.model.course.*;
+import seedu.planner.model.course.FocusArea;
+import seedu.planner.model.course.Major;
+import seedu.planner.model.course.MajorDescription;
+import seedu.planner.model.course.ModuleDescription;
+import seedu.planner.model.course.ProgrammeRequirement;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.semester.Semester;
