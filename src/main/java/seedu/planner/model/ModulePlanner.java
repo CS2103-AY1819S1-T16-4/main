@@ -278,8 +278,11 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         return takenModules;
     }
 
+    /**
+     * Update {@code takenModules} according to the latest displayed list upon add or delete command.
+     */
     private void updateTakenModules() {
-        if (takenIndex == - 1) {
+        if (takenIndex == ALL_SEMESTERS) {
             listTakenModulesAll();
         } else {
             listTakenModulesYear(takenIndex);
@@ -296,7 +299,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @return An {@code ObservableList} containing all the {@code Module}s
      */
     public ObservableList<Module> getAvailableModules() {
-        setAvailableModules(getModulesAvailable(index));
+        setAvailableModules(getModulesAvailable(availableIndex));
         return availableModules;
     }
 
