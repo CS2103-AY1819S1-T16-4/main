@@ -1,8 +1,10 @@
 package seedu.planner.model;
 
+import java.util.Map;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.planner.model.course.ProgrammeRequirement;
 import seedu.planner.model.module.Module;
 
 /**
@@ -57,6 +59,8 @@ public interface Model {
      * @param index Index of the semester
      */
     void addModules(Set<Module> modules, int index);
+
+    Map<ProgrammeRequirement, int[]> status();
 
     //@@author Hilda-Ang
     void suggestModules(int index);

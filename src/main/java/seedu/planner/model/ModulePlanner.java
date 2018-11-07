@@ -4,14 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Logger;
 
 import com.google.common.base.Charsets;
@@ -22,8 +15,7 @@ import javafx.collections.ObservableList;
 import seedu.planner.MainApp;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.util.JsonUtil;
-import seedu.planner.model.course.Major;
-import seedu.planner.model.course.MajorDescription;
+import seedu.planner.model.course.*;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.semester.Semester;
@@ -49,6 +41,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private final ObservableList<Module> takenModules = FXCollections.observableArrayList();
 
     private int index;
+    private Map<ProgrammeRequirement, int[]> statusMap = new HashMap<>();
 
     /**
      * Constructs a {@code ModulePlanner} and initializes an array of 8 {@code Semester}
@@ -338,14 +331,13 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Sort {@code modulesAvailable} based on the information in {@code userProfile}.
      */
     private void sortAvailableModules(List<Module> modulesAvailable, UserProfile userProfile) {
-        Map<Major, MajorDescription> map;
-        try {
-            URL resource = MainApp.class.getResource("/data/majorDescription.json");
-            String text = Resources.toString(resource, Charsets.UTF_8);
-            map = JsonUtil.getObjectMapper().readValue(text, MajorDescription.MAP_TYPE_REF);
-        } catch (IOException e) {
-            logger.warning("Unable to read majorDescription file. Start with an empty map.");
-            map = new HashMap<>();
+        Major major = userProfile.getMajor();
+        MajorDescription majorDescription;
+        Optional<MajorDescription> optMajorDescription = MajorDescription.getFromMajor(major);
+        if (optMajorDescription.isPresent()) {
+            majorDescription = optMajorDescription.get();
+        } else {
+            majorDescription = new MajorDescription();
         }
 
         // Note: Collections.sort uses stable sort when sorting objects, which we are exploiting here so that
@@ -354,12 +346,6 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         // The order of comparators you applied to the list matters!
 
         // Step 1. If we have the information for this major, we stop immediately.
-        if (!map.containsKey(userProfile.getMajor())) {
-            return;
-        }
-
-        Major major = userProfile.getMajor();
-        MajorDescription majorDescription = map.get(major);
 
         logger.info(String.format("Requirements for user's major (%s) found. Prioritize modules start with %s.",
                 major, majorDescription.getPrefixes()));
@@ -429,6 +415,102 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             allModules.add(m);
         }
         return allModules;
+    }
+
+    private Optional<ModuleDescription> getModuleDescription(String code) {
+        return MajorDescription.getModuleCode(userProfile.getMajor(), code);
+    }
+
+    private void countFoundation() {
+        int count = 0;
+        for (Module m : getAllModulesTaken()) {
+            Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
+            if (moduleDescription.isPresent()
+                    && moduleDescription.get().getRequirement().toString().equals("Foundation")) {
+                count += m.getCreditCount();
+            }
+        }
+        statusMap.put(ProgrammeRequirement.FOUNDATION, new int[] {count});
+    }
+
+    private void countMathematics() {
+        int count = 0;
+        for (Module m : getAllModulesTaken()) {
+            Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
+            if (moduleDescription.isPresent()
+                    && moduleDescription.get().getRequirement().toString().equals("Mathematics")) {
+                count += m.getCreditCount();
+            }
+        }
+        statusMap.put(ProgrammeRequirement.MATHEMATICS, new int[] {count});
+    }
+
+    private void countScience() {
+        int count = 0;
+        for (Module m : getAllModulesTaken()) {
+            Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
+            if (moduleDescription.isPresent()
+                    && moduleDescription.get().getRequirement().toString().equals("Science")) {
+                count += m.getCreditCount();
+            }
+        }
+        statusMap.put(ProgrammeRequirement.SCIENCE, new int[] {count});
+    }
+
+    private void countITProfessionalism() {
+        int count = 0;
+        for (Module m : getAllModulesTaken()) {
+            Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
+            if (moduleDescription.isPresent()
+                    && moduleDescription.get().getRequirement().toString().equals("IT professionalism")) {
+                count += m.getCreditCount();
+            }
+        }
+        statusMap.put(ProgrammeRequirement.IT_PROFESSIONALISM, new int[] {count});
+    }
+
+    private void countIndustrialExperienceRequirement() {
+        int count = 0;
+        for (Module m : getAllModulesTaken()) {
+            Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
+            if (moduleDescription.isPresent()
+                    && moduleDescription.get().getRequirement()
+                    .toString().equals("Industrial Experience Requirement")) {
+                count += m.getCreditCount();
+            }
+        }
+        statusMap.put(ProgrammeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT, new int[] {count});
+    }
+
+    private void countBreadthAndDepth() {
+        List<FocusArea> userFocusAreas= userProfile.getFocusAreas();
+        if (!userFocusAreas.isEmpty()) {
+            int[] count = new int[userFocusAreas.size()];
+            for (Module m : getAllModulesTaken()) {
+                Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
+                for (int i = 0; i < count.length; i++) {
+                    if (moduleDescription.isPresent()
+                            && !moduleDescription.get().getFocusAreas().isEmpty()
+                            && moduleDescription.get().getFocusAreas().get(0) == userFocusAreas.get(i)) {
+                        count[i] += m.getCreditCount();
+                    }
+                }
+            }
+            statusMap.put(ProgrammeRequirement.BREATH_AND_DEPTH, count);
+        } else {
+            statusMap.put(ProgrammeRequirement.BREATH_AND_DEPTH, new int[] {0});
+        }
+    }
+
+    public Map<ProgrammeRequirement, int[]> status() {
+        countFoundation();
+        countMathematics();
+        countScience();
+        countITProfessionalism();
+        countBreadthAndDepth();
+        countIndustrialExperienceRequirement();
+
+        return statusMap;
     }
 
     @Override

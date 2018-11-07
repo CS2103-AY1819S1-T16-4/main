@@ -4,11 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -18,6 +14,7 @@ import javafx.collections.transformation.SortedList;
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
+import seedu.planner.model.course.ProgrammeRequirement;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
@@ -140,6 +137,10 @@ public class ModelManager extends ComponentManager implements Model {
         Set<Module> finalizedModules = finalizeModules(modules);
         versionedModulePlanner.addModules(finalizedModules, index);
         indicateModulePlannerChanged();
+    }
+
+    public Map<ProgrammeRequirement, int[]> status() {
+        return versionedModulePlanner.status();
     }
 
     //@@author Hilda-Ang

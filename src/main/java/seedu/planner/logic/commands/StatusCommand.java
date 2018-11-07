@@ -2,10 +2,15 @@ package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.planner.commons.core.EventsCenter;
+import seedu.planner.commons.events.ui.StatusEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;
+import seedu.planner.model.course.ProgrammeRequirement;
 import seedu.planner.model.module.Module;
+
+import java.util.Map;
 
 /**
  * Display the credit count status of the user in the planner
@@ -15,7 +20,6 @@ public class StatusCommand extends Command {
     public static final String COMMAND_WORD = "status";
     private static final String CREDITS_LEFT = "Total credits left to fulfill course requirement: ";
 
-    private static final int CREDIT_TO_GRADUATE = 160;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows total credit achieved "
             + "in each semester based on"
@@ -24,25 +28,21 @@ public class StatusCommand extends Command {
             + "Semester 2: 24\n"
             + CREDITS_LEFT + 116;
 
+
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
 
-        int[] creditCounts = new int[ModulePlanner.MAX_NUMBER_SEMESTERS];
-        int totalCreditCount = 0;
-        for (int i = 0; i < ModulePlanner.MAX_NUMBER_SEMESTERS; i++) {
-            for (Module module : model.getTakenModules(i)) {
-                creditCounts[i] += module.getCreditCount();
-            }
-            totalCreditCount += creditCounts[i];
-        }
-
+        Map<ProgrammeRequirement, int[]> statusMap = model.status();
         StringBuilder sb = new StringBuilder();
-        for (int i = 1; i <= ModulePlanner.MAX_NUMBER_SEMESTERS; i++) {
-            sb.append("Semester " + i + ": " + creditCounts[i - 1] + "\n");
+        for (ProgrammeRequirement pr : ProgrammeRequirement.values()) {
+            sb.append(pr.toString());
+            sb.append(": ");
+            sb.append(statusMap.get(pr)[0]);
+            sb.append("\n");
         }
-        sb.append(CREDITS_LEFT + (CREDIT_TO_GRADUATE - totalCreditCount));
 
+        EventsCenter.getInstance().post(new StatusEvent());
         return new CommandResult(sb.toString().trim());
     }
 
