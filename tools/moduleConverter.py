@@ -89,9 +89,10 @@ for module in newObj:
       m["preclusions"].append(module["code"])
 
 # Remove MA1301 and MA1301X as prereq
+A_LEVEL_MATHS = ["MA1301", "MA1301X"]
 for module in newObj:
   for ma in ["MA1301", "MA1301X"]:
-    if ma in module["preclusions"]:
+    if ma in module["preclusions"] and module["code"] not in A_LEVEL_MATHS:
       module["preclusions"].remove(ma)
 
 print(len(newObj))
