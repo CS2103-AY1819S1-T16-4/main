@@ -20,6 +20,9 @@ import seedu.planner.model.module.Module;
  * Panel containing a list of modules.
  */
 public class ModuleListPanel extends UiPart<Region> {
+
+    public static final String TIMELESS = "";
+
     private static final String FXML = "ModuleListPanel.fxml";
 
     private static final String YEAR = "Year ";
@@ -45,21 +48,27 @@ public class ModuleListPanel extends UiPart<Region> {
         super(FXML);
         this.type = type;
 
-        setConnections(moduleList);
         setHeader(index, type);
+        setConnections(moduleList);
+        registerAsAnEventHandler(this);
+    }
+
+    public ModuleListPanel(ObservableList<Module> moduleList, ModulePanelType type) {
+        super(FXML);
+        this.type = type;
+
+        setHeader(type);
+        setConnections(moduleList);
         registerAsAnEventHandler(this);
     }
 
     /**
-     * Sets {@code this} to be timeless. Timeless refers to the
-     * state of {@code this} where no modules are displayed, the
-     * subtitle is not displayed, and only the title is displayed.
+     * Sets the sub title with {@code text}.
      *
-     * @return {@code this}
+     * @param text The text
      */
-    public ModuleListPanel timeless() {
-        subTitle.setText("");
-        return this;
+    public void setSubTitle(String text) {
+        subTitle.setText(text);
     }
 
     private void setConnections(ObservableList<Module> moduleList) {
@@ -85,6 +94,11 @@ public class ModuleListPanel extends UiPart<Region> {
         String semester = splitYearAndSemester[1];
         title.setText("Modules " + type.toString());
         subTitle.setText(YEAR + year + DIVIDER + SEMESTER + semester);
+    }
+
+    private void setHeader(ModulePanelType type) {
+        title.setText("Modules " + type.toString());
+        subTitle.setText("");
     }
 
     /**
