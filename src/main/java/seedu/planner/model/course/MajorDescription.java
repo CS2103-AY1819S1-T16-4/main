@@ -11,7 +11,9 @@ import java.util.logging.Logger;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.base.Charsets;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.io.Resources;
+
 import seedu.planner.MainApp;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.util.JsonUtil;
@@ -43,19 +45,24 @@ public class MajorDescription {
         this.modules = modules;
     }
 
+    /**
+     * Class to retrieve mapping of major to module descriptions in JSON file.
+     * Adapted from seedu.planner.model.ModuleInfo.ModuleInfoRetriever.
+     */
     private static class MajorDescriptionRetriever {
         private static Logger logger = LogsCenter.getLogger(MajorDescriptionRetriever.class);
 
-        private Map<Major, MajorDescription> majorToMajorDescriptionMap;
-        private
-        MajorDescriptionRetriever(String path) {
+        private ImmutableMap<Major, MajorDescription> majorToMajorDescriptionMap;
+        private MajorDescriptionRetriever(String path) {
             try {
                 URL resource = MainApp.class.getResource(path);
                 String text = Resources.toString(resource, Charsets.UTF_8);
-                majorToMajorDescriptionMap = JsonUtil.getObjectMapper().readValue(text, MAP_TYPE_REF);
+                Map<Major, MajorDescription> mutableMap = JsonUtil.getObjectMapper().readValue(text, MAP_TYPE_REF);
+                majorToMajorDescriptionMap = ImmutableMap.copyOf(mutableMap);
             } catch (IOException e) {
                 logger.warning("Unable to read majorDescription file. Start with an empty map.");
-                majorToMajorDescriptionMap = new HashMap<>();
+                ImmutableMap.Builder<Major, MajorDescription> builder = ImmutableMap.builder();
+                majorToMajorDescriptionMap = builder.build();
             }
         }
 
