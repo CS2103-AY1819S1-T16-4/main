@@ -17,11 +17,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import seedu.planner.commons.core.LogsCenter;
+import seedu.planner.model.course.DegreeRequirement;
 import seedu.planner.model.course.FocusArea;
 import seedu.planner.model.course.Major;
 import seedu.planner.model.course.MajorDescription;
 import seedu.planner.model.course.ModuleDescription;
-import seedu.planner.model.course.DegreeRequirement;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.semester.Semester;

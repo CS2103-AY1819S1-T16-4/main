@@ -1,12 +1,10 @@
 package seedu.planner.model;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.planner.model.course.DegreeRequirement;
-import seedu.planner.model.course.FocusArea;
 import seedu.planner.model.module.Module;
 
 /**
