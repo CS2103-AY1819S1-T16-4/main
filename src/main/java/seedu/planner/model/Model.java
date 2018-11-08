@@ -60,7 +60,7 @@ public interface Model {
      */
     void addModules(Set<Module> modules, int index);
 
-    Map<ProgrammeRequirement, int[]> status();
+    Map<String, Integer> status();
 
     //@@author Hilda-Ang
     void suggestModules(int index);

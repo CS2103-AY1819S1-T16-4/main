@@ -29,12 +29,13 @@ public class StatusCommandTest {
     @Test
     public void check_Foundation_success() {
         StatusCommand statusCommand = new StatusCommand();
-        String expectedMessage = "Foundation: 4 (need 32 more)\n"
+        String expectedMessage = "University Level Requirement: 0 (need 20 more)\n"
+                + "Foundation: 4 (need 32 more)\n"
                 + "Mathematics: 0 (need 12 more)\n"
                 + "Science: 0 (need 4 more)\n"
                 + "IT Professionalism: 0 (need 12 more)\n"
-                + "Industrial Experience Requirement: 0 (need 8 more)\n"
-                + "Breadth and Depth: 0 (need 12 more)";
+                + "Industrial Experience Requirement: 0 (need 12 more)\n"
+                + "Breadth and Depth (Team Project): 0 (need 16 more)";
 
         assertCommandSuccess(statusCommand, model, commandHistory, expectedMessage, model);
     }

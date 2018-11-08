@@ -20,7 +20,6 @@ import javafx.collections.transformation.SortedList;
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
-import seedu.planner.model.course.ProgrammeRequirement;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
@@ -145,7 +144,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateModulePlannerChanged();
     }
 
-    public Map<ProgrammeRequirement, int[]> status() {
+    public Map<String, Integer> status() {
         return versionedModulePlanner.status();
     }
 
