@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.Test;
 
-import seedu.planner.model.course.ModuleDescription;
 import seedu.planner.model.course.DegreeRequirement;
+import seedu.planner.model.course.ModuleDescription;
 import seedu.planner.model.module.Module;
 
 public class ModuleUtilTest {
