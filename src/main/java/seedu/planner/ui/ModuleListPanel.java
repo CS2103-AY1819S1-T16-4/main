@@ -98,7 +98,7 @@ public class ModuleListPanel extends UiPart<Region> {
 
     private void setHeader(ModulePanelType type) {
         title.setText("Modules " + type.toString());
-        subTitle.setText("");
+        subTitle.setText(TIMELESS);
     }
 
     /**
