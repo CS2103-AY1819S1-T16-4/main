@@ -447,7 +447,9 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private void countGeneralEducation() {
         int count = 0;
         for (Module m : getAllModulesTaken()) {
-            if (m.toString().startsWith("GE")) {
+            if (m.toString().startsWith("GER") || m.toString().startsWith("GEQ")
+            || m.toString().startsWith("GET") || m.toString().startsWith("GEH")
+            || m.toString().startsWith("GES")) {
                 count += m.getCreditCount();
             }
         }
