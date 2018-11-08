@@ -1,16 +1,17 @@
 package seedu.planner.logic.commands;
 
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
+import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.UserPrefs;
 import seedu.planner.testutil.ModulePlannerBuilder;
-
-import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
-import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 public class StatusCommandTest {
 
