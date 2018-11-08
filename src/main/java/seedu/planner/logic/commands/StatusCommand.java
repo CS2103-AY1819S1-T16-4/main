@@ -23,11 +23,8 @@ public class StatusCommand extends Command {
     private Map<ProgrammeRequirement, Integer> required = new HashMap<>();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows total credit achieved "
-            + "in each semester based on"
-            + "existing modules in the planner.\n"
-            + "Example: " + "Semester 1: 20\n"
-            + "Semester 2: 24\n"
-            + CREDITS_LEFT + 116;
+            + "in each programme requirements\n"
+            + "Example: " + "Foundation: 20 (16 more)\n";
 
     private void putRequired() {
         required.put(ProgrammeRequirement.FOUNDATION, 36);
