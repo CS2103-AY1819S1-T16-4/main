@@ -63,7 +63,7 @@
                         <StackPane VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
-                  <ScrollPane hbarPolicy="NEVER">
+                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
                      <content>
                         <StackPane fx:id="multiPurposePanelPlaceholder" prefWidth="340.0">
                            <padding>
