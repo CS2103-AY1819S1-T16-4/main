@@ -103,4 +103,11 @@ public class ModuleUtilTest {
         assertEquals(ModuleUtil.rankModuleCodeFromPriorityList("CS2040", priorityList), 3);
         assertEquals(ModuleUtil.rankModuleCodeFromPriorityList("GEQ1000", priorityList), 3);
     }
+
+    @Test
+    public void findModuleEquivalence() {
+        List<Module> moduleList = List.of(new Module("CS1010"), new Module("CS1101S"));
+        assertEquals(ModuleUtil.findModuleEquivalences(moduleList),
+                List.of(List.of(new Module("CS1010"), new Module("CS1101S"))));
+    }
 }
