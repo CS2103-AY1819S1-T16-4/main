@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class ModuleDescription {
     private String code;
-    private ProgrammeRequirement requirement;
+    private DegreeRequirement requirement;
     private List<FocusArea> focusAreas;
 
     /**
@@ -19,11 +19,11 @@ public class ModuleDescription {
         focusAreas = new ArrayList<>();
     }
 
-    public ModuleDescription(String code, ProgrammeRequirement requirement) {
+    public ModuleDescription(String code, DegreeRequirement requirement) {
         this(code, requirement, new ArrayList<>());
     }
 
-    public ModuleDescription(String code, ProgrammeRequirement requirement, List<FocusArea> focusAreas) {
+    public ModuleDescription(String code, DegreeRequirement requirement, List<FocusArea> focusAreas) {
         this.code = code;
         this.requirement = requirement;
         this.focusAreas = focusAreas;
@@ -33,7 +33,7 @@ public class ModuleDescription {
         return code;
     }
 
-    public ProgrammeRequirement getRequirement() {
+    public DegreeRequirement getRequirement() {
         return requirement;
     }
 

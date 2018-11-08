@@ -3,7 +3,8 @@ package seedu.planner.model.course;
 /**
  * Enum to describe the programme requirement of a module.
  */
-public enum ProgrammeRequirement {
+public enum DegreeRequirement {
+    UNIVERSITY_LEVEL_REQUIREMENTS("University Level Requirements"),
     FOUNDATION("Foundation"),
     MATHEMATICS("Mathematics"),
     SCIENCE("Science"),
@@ -13,7 +14,7 @@ public enum ProgrammeRequirement {
 
     private String name;
 
-    ProgrammeRequirement(String name) {
+    DegreeRequirement(String name) {
         this.name = name;
     }
 
