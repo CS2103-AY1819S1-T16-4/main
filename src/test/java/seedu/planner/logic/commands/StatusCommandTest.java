@@ -27,7 +27,7 @@ public class StatusCommandTest {
     }
 
     @Test
-    public void check_Foundation_success() {
+    public void check_csFoundation_success() {
         StatusCommand statusCommand = new StatusCommand();
         String expectedMessage = "University Level Requirement: 0 (need 20 more)\n"
                 + "Foundation: 4 (need 32 more)\n"
