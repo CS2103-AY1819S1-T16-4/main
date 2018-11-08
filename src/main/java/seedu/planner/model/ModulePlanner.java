@@ -21,7 +21,7 @@ import seedu.planner.model.course.FocusArea;
 import seedu.planner.model.course.Major;
 import seedu.planner.model.course.MajorDescription;
 import seedu.planner.model.course.ModuleDescription;
-import seedu.planner.model.course.ProgrammeRequirement;
+import seedu.planner.model.course.DegreeRequirement;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.semester.Semester;
@@ -49,7 +49,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private final ObservableList<Module> takenModules = FXCollections.observableArrayList();
 
 
-    private Map<String, Integer> statusMap = new LinkedHashMap<>();
+    private Map<DegreeRequirement, int[]> statusMap = new LinkedHashMap<>();
     private int availableIndex;
     private int takenIndex;
 
@@ -453,7 +453,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
                 count += m.getCreditCount();
             }
         }
-        statusMap.put("University Level Requirement", count);
+        statusMap.put(DegreeRequirement.UNIVERSITY_LEVEL_REQUIREMENTS, new int[] {count});
     }
 
     /**
@@ -468,7 +468,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
                 count += m.getCreditCount();
             }
         }
-        statusMap.put(ProgrammeRequirement.FOUNDATION.toString(), count);
+        statusMap.put(DegreeRequirement.FOUNDATION, new int[] {count});
     }
 
     /**
@@ -483,7 +483,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
                 count += m.getCreditCount();
             }
         }
-        statusMap.put(ProgrammeRequirement.MATHEMATICS.toString(), count);
+        statusMap.put(DegreeRequirement.MATHEMATICS, new int[]{count});
     }
 
     /**
@@ -498,7 +498,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
                 count += m.getCreditCount();
             }
         }
-        statusMap.put(ProgrammeRequirement.SCIENCE.toString(), count);
+        statusMap.put(DegreeRequirement.SCIENCE, new int[] {count});
     }
 
     /**
@@ -513,7 +513,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
                 count += m.getCreditCount();
             }
         }
-        statusMap.put(ProgrammeRequirement.IT_PROFESSIONALISM.toString(), count);
+        statusMap.put(DegreeRequirement.IT_PROFESSIONALISM, new int[] {count});
     }
 
     /**
@@ -529,7 +529,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
                 count += m.getCreditCount();
             }
         }
-        statusMap.put(ProgrammeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT.toString(), count);
+        statusMap.put(DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT, new int[] {count});
     }
 
     /**
@@ -537,40 +537,33 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     private void countBreadthAndDepth() {
         List<FocusArea> userFocusAreas = new ArrayList<>(userProfile.getFocusAreas());
-        int nonFocusArea = 0;
+        int[] count = new int[2];
 
         for (Module m : getAllModulesTaken()) {
             Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
             if (moduleDescription.isPresent()
                     && moduleDescription.get().getRequirement().toString().equals("Breadth and Depth")
                     && moduleDescription.get().getFocusAreas().isEmpty()) {
-                nonFocusArea += m.getCreditCount();
+                count[0] += m.getCreditCount();
             }
         }
-        String teamProject = ProgrammeRequirement.BREATH_AND_DEPTH.toString()
-                + " (Team Project)";
-        statusMap.put(teamProject, nonFocusArea);
 
         if (!userFocusAreas.isEmpty()) {
-            int[] count = new int[userFocusAreas.size()];
             for (Module m : getAllModulesTaken()) {
                 Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
-                for (int i = 0; i < count.length; i++) {
+                int i = 0;
+                while (i < userFocusAreas.size()) {
                     if (moduleDescription.isPresent()
                             && !moduleDescription.get().getFocusAreas().isEmpty()
                             && moduleDescription.get().getFocusAreas().get(0) == userFocusAreas.get(i)) {
-                        count[i] += m.getCreditCount();
+                        count[1] += m.getCreditCount();
+                        i++;
                     }
                 }
             }
-            int i = 0;
-            while (i < userFocusAreas.size()) {
-                String focusArea = ProgrammeRequirement.BREATH_AND_DEPTH.toString()
-                        + " (" + userFocusAreas.get(i).toString() + ")";
-                statusMap.put(focusArea, count[i]);
-                i++;
-            }
         }
+
+        statusMap.put(DegreeRequirement.BREATH_AND_DEPTH, count);
     }
 
     /**
@@ -578,7 +571,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      *
      * @return the mapping
      */
-    public Map<String, Integer> status() {
+    public Map<DegreeRequirement, int[]> status() {
         countGeneralEducation();
         countFoundation();
         countMathematics();

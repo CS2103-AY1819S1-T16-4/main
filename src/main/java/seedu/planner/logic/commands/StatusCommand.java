@@ -2,15 +2,14 @@ package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.events.ui.StatusEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
+import seedu.planner.model.course.CreditRequirement;
+import seedu.planner.model.course.DegreeRequirement;
 
 
 /**
@@ -24,42 +23,42 @@ public class StatusCommand extends Command {
             + "in each programme requirements\n"
             + "Example: " + "Foundation: 20 (need 16 more)\n";
 
-    private Map<String, Integer> required = new HashMap<>();
 
-    /**
-     * Map the required credit for each course requirements.
-     */
-    private void putRequired(Map<String, Integer> map) {
-        Set<String> programmeRequirements = map.keySet();
-        if (programmeRequirements.contains("Foundation")) {
-            Iterator<String> iter = programmeRequirements.iterator();
-            required.put(iter.next(), 20);
-            required.put(iter.next(), 36);
-            required.put(iter.next(), 12);
-            required.put(iter.next(), 4);
-            required.put(iter.next(), 12);
-            required.put(iter.next(), 12);
-            required.put(iter.next(), 16);
-            while (iter.hasNext()) {
-                required.put(iter.next(), 12);
-            }
-        }
-    }
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
 
-        Map<String, Integer> statusMap = model.status();
-        putRequired(statusMap);
+        Map<DegreeRequirement, int[]> statusMap = model.status();
+        CreditRequirement[] cr = CreditRequirement.values();
+        DegreeRequirement[] dr = DegreeRequirement.values();
+        int[] need = new int[cr.length];
+        for (int i = 0; i < cr.length - 1; i++) {
+            need[i] = Math.max(0, cr[i].getRequired() - statusMap.get(dr[i])[0]);
+        }
+        int requiredFocusArea = model.numberOfFocusAreas() * cr[cr.length - 1].getRequired();
+        need[cr.length - 1] = Math.max(0, requiredFocusArea - statusMap.get(dr[dr.length - 1])[0]);
         StringBuilder sb = new StringBuilder();
-        for (String programmeRequirements : statusMap.keySet()) {
-            sb.append(programmeRequirements);
+        for (int i = 0; i < cr.length; i++) {
+            if (i == cr.length - 1) {
+                sb.append(dr[i - 1].toString());
+            } else {
+                sb.append(dr[i].toString());
+            }
+            if (i == cr.length - 2) {
+                sb.append(" (Team Project)");
+            }
+            if (i == cr.length - 1) {
+                sb.append(" (Focus Areas)");
+            }
             sb.append(": ");
-            sb.append(statusMap.get(programmeRequirements));
+            if (i == cr.length - 1) {
+                sb.append(statusMap.get(dr[i - 1])[1]);
+            } else {
+                sb.append(statusMap.get(dr[i])[0]);
+            }
             sb.append(" (need ");
-            sb.append(Math.max(0, required.get(programmeRequirements) - statusMap.get(programmeRequirements)));
-            sb.append(" more)");
-            sb.append("\n");
+            sb.append(need[i]);
+            sb.append(" more)\n");
         }
 
         EventsCenter.getInstance().post(new StatusEvent());

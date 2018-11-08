@@ -1,9 +1,12 @@
 package seedu.planner.model;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.planner.model.course.DegreeRequirement;
+import seedu.planner.model.course.FocusArea;
 import seedu.planner.model.module.Module;
 
 /**
@@ -59,7 +62,9 @@ public interface Model {
      */
     void addModules(Set<Module> modules, int index);
 
-    Map<String, Integer> status();
+    int numberOfFocusAreas();
+
+    Map<DegreeRequirement, int[]> status();
 
     //@@author Hilda-Ang
     void suggestModules(int index);

@@ -20,6 +20,7 @@ import javafx.collections.transformation.SortedList;
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
+import seedu.planner.model.course.DegreeRequirement;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
@@ -144,7 +145,9 @@ public class ModelManager extends ComponentManager implements Model {
         indicateModulePlannerChanged();
     }
 
-    public Map<String, Integer> status() {
+    public int numberOfFocusAreas() { return (versionedModulePlanner.getUserProfile().getFocusAreas()).size(); }
+
+    public Map<DegreeRequirement, int[]> status() {
         return versionedModulePlanner.status();
     }
 
