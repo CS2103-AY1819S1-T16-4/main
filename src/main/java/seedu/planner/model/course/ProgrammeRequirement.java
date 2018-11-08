@@ -8,8 +8,8 @@ public enum ProgrammeRequirement {
     MATHEMATICS("Mathematics"),
     SCIENCE("Science"),
     IT_PROFESSIONALISM("IT Professionalism"),
-    BREATH_AND_DEPTH("Breath and Depth"),
-    INDUSTRIAL_EXPERIENCE_REQUIREMENT("Industrial Experience Requirement");
+    INDUSTRIAL_EXPERIENCE_REQUIREMENT("Industrial Experience Requirement"),
+    BREATH_AND_DEPTH("Breadth and Depth");
 
     private String name;
 
