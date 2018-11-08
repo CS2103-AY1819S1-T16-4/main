@@ -15,6 +15,7 @@ import seedu.planner.model.ModelManager;
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.ReadOnlyModulePlanner;
 import seedu.planner.model.UserPrefs;
+import seedu.planner.storage.JsonSerializableModulePlanner;
 import seedu.planner.storage.UserPrefsStorage;
 import seedu.planner.testutil.TestUtil;
 
@@ -41,12 +42,10 @@ public class TestApp extends MainApp {
         this.saveFileLocation = saveFileLocation;
 
         // If some initial local data has been provided, write those to the file
-        /*
         if (initialDataSupplier.get() != null) {
-            createDataFileWithData(new XmlSerializableAddressBook(this.initialDataSupplier.get()),
+            createDataFileWithData(new JsonSerializableModulePlanner(this.initialDataSupplier.get()),
                     this.saveFileLocation);
         }
-        */
     }
 
     @Override

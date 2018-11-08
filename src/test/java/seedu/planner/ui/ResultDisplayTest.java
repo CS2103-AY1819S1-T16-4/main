@@ -1,6 +1,10 @@
 package seedu.planner.ui;
 
+import static org.junit.Assert.assertEquals;
+import static seedu.planner.testutil.EventsUtil.postNow;
+
 import org.junit.Before;
+import org.junit.Test;
 
 import guitests.guihandles.ResultDisplayHandle;
 import seedu.planner.commons.events.ui.NewResultAvailableEvent;
@@ -20,7 +24,6 @@ public class ResultDisplayTest extends GuiUnitTest {
                 ResultDisplayHandle.RESULT_DISPLAY_ID));
     }
 
-    /*
     @Test
     public void display() {
         // default result text
@@ -32,5 +35,4 @@ public class ResultDisplayTest extends GuiUnitTest {
         guiRobot.pauseForHuman();
         assertEquals(NEW_RESULT_EVENT_STUB.message, resultDisplayHandle.getText());
     }
-    */
 }
