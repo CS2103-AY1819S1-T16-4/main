@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.planner.model.course.ProgrammeRequirement;
 import seedu.planner.model.module.Module;
 
 /**
