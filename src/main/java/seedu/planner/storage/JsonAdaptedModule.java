@@ -32,6 +32,11 @@ public class JsonAdaptedModule {
         this.moduleCode = module.getCode();
     }
 
+    /**
+     * Convert to {@code Module} object.
+     *
+     * @throws IllegalValueException
+     */
     public Module toModelType() throws IllegalValueException {
         Optional<ModuleInfo> optionalModuleInfo = ModuleInfo.getFromModuleCode(moduleCode);
         if (!optionalModuleInfo.isPresent()) {

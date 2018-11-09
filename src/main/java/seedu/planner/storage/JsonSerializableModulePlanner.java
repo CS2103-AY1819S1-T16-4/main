@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import seedu.planner.commons.exceptions.IllegalValueException;
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.ReadOnlyModulePlanner;
+import seedu.planner.model.course.FocusArea;
 import seedu.planner.model.course.Major;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.semester.Semester;
@@ -21,6 +22,7 @@ import seedu.planner.model.user.UserProfile;
 public class JsonSerializableModulePlanner {
     public static final String MESSAGE_DUPLICATE_MODULE = "Duplicate module(s) across semesters.";
     public static final String MESSAGE_INVALID_MAJOR = "Invalid major in user profile.";
+    public static final String MESSAGE_INVALID_FOCUS_AREA = "Invalid focus area(s) in user profile.";
 
     private List<JsonAdaptedSemester> semesters;
     private UserProfile userProfile;
@@ -65,6 +67,10 @@ public class JsonSerializableModulePlanner {
 
         if (userProfile.getMajor() == Major.UNKNOWN) {
             throw new IllegalValueException(MESSAGE_INVALID_MAJOR);
+        }
+
+        if (userProfile.getFocusAreas().contains(FocusArea.UNKNOWN)) {
+            throw new IllegalValueException(MESSAGE_INVALID_FOCUS_AREA);
         }
 
         planner.setModulesInSemesters(semesters);

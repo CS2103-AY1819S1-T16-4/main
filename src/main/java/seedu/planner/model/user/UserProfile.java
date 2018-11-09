@@ -109,7 +109,7 @@ public class UserProfile {
     @Override
     public boolean equals(Object other) {
         return other == this || ((other instanceof UserProfile)
-                && major == ((UserProfile)other).major
-                && focusAreas == ((UserProfile)other).focusAreas);
+                && major == ((UserProfile) other).major
+                && focusAreas == ((UserProfile) other).focusAreas);
     }
 }
