@@ -174,7 +174,7 @@ public abstract class ModulePlannerSystemTest {
         // assertFalse(getPersonListPanel().isAnyCardSelected());
     }
 
-        /**
+    /**
      * Asserts that the browser's url is changed to display the details of the person in the person list panel at
      * {@code expectedSelectedCardIndex}, and only the card at {@code expectedSelectedCardIndex} is selected.
      * @see BrowserPanelHandle#isUrlChanged()

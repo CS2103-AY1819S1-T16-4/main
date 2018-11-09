@@ -5,9 +5,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Test;
+
 import guitests.GuiRobot;
 import guitests.guihandles.HelpWindowHandle;
-import org.junit.Test;
 import seedu.planner.logic.commands.HelpCommand;
 import seedu.planner.ui.StatusBarFooter;
 

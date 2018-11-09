@@ -1,13 +1,14 @@
 package systemtests;
 
+import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import org.junit.Test;
+
 import seedu.planner.logic.commands.ClearCommand;
 import seedu.planner.logic.commands.RedoCommand;
 import seedu.planner.logic.commands.UndoCommand;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
-
-import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 public class ClearCommandSystemTest extends ModulePlannerSystemTest {
 
