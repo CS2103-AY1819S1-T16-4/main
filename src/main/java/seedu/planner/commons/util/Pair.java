@@ -1,5 +1,8 @@
 package seedu.planner.commons.util;
 
+/**
+ * A convenience class to represent a pair of values.
+ */
 public class Pair {
 
     private final Object first;
