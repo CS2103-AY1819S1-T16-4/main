@@ -42,10 +42,12 @@ public class TestApp extends MainApp {
         this.saveFileLocation = saveFileLocation;
 
         // If some initial local data has been provided, write those to the file
+        /*
         if (initialDataSupplier.get() != null) {
-            createDataFileWithData(new JsonSerializableModulePlanner(this.initialDataSupplier.get()),
+            createDataFileWithData(new XmlSerializableAddressBook(this.initialDataSupplier.get()),
                     this.saveFileLocation);
         }
+        */
     }
 
     @Override
