@@ -15,7 +15,7 @@ import seedu.planner.testutil.Assert;
 
 public class JsonAdaptedModuleTest {
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
+    public void toModelType_validModuleDetails_returnsModule() throws Exception {
         JsonAdaptedModule cs1010 = new JsonAdaptedModule(CS1010);
         assertEquals(CS1010, cs1010.toModelType());
     }
