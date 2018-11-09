@@ -2,15 +2,12 @@ package seedu.planner.ui;
 
 import static seedu.planner.model.util.IndexUtil.convertIndexToYearAndSemester;
 
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.util.Pair;
 import seedu.planner.model.module.Module;
 
