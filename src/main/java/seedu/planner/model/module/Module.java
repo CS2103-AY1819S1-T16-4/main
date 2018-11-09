@@ -22,6 +22,7 @@ public class Module implements Comparable<Module> {
      * @param code The {@code Module} code
      */
     public Module(String code) {
+        type = ModuleType.PROGRAMME_REQUIREMENTS;
         information = ModuleInfo.getFromModuleCode(code).orElse(new ModuleInfo(code));
     }
 

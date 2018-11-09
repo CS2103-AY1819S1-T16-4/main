@@ -146,7 +146,7 @@ public class Semester {
      * in arbitrary order regardless of the original order in JSON file.
      * Use this function to check equality for this situation.
      */
-    private boolean slowCheckEqualsForTesting(ObservableList<Module> otherTakenModules) {
+    private boolean slowUnorderEquals(ObservableList<Module> otherTakenModules) {
         HashSet<Module> lhs = new HashSet<>(takenModules);
         HashSet<Module> rhs = new HashSet<>(otherTakenModules);
         return lhs.equals(rhs);
@@ -158,7 +158,7 @@ public class Semester {
                 || (other instanceof Semester // instanceof handles nulls
                 && index == ((Semester) other).getIndex()
                 && year == ((Semester) other).getYear()
-                && slowCheckEqualsForTesting(((Semester) other).takenModules));
+                && slowUnorderEquals(((Semester) other).takenModules));
     }
 
     @Override
