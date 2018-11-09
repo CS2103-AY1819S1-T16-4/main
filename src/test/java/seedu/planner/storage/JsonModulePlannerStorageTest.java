@@ -39,8 +39,8 @@ public class JsonModulePlannerStorageTest {
     }
 
     private java.util.Optional<ReadOnlyModulePlanner> readModulePlanner(String filePath) throws Exception {
-        return new JsonModulePlannerStorage(Paths.get(filePath)).
-                readModulePlanner(addToTestDataPathIfNotNull(filePath));
+        return new JsonModulePlannerStorage(Paths.get(filePath))
+                .readModulePlanner(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
