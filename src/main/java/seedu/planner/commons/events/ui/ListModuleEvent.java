@@ -1,7 +1,5 @@
 package seedu.planner.commons.events.ui;
 
-import static seedu.planner.model.util.IndexUtil.VALUE_NOT_AVAILABLE;
-
 import seedu.planner.commons.events.BaseEvent;
 
 /**
