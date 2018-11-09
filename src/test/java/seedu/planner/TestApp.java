@@ -15,7 +15,6 @@ import seedu.planner.model.ModelManager;
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.ReadOnlyModulePlanner;
 import seedu.planner.model.UserPrefs;
-import seedu.planner.storage.JsonSerializableModulePlanner;
 import seedu.planner.storage.UserPrefsStorage;
 import seedu.planner.testutil.TestUtil;
 
