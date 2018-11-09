@@ -6,8 +6,10 @@ import static seedu.planner.commons.util.CollectionUtil.getAnyOne;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 
 import java.util.Set;
+import java.util.logging.Logger;
 
 import seedu.planner.commons.core.EventsCenter;
+import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
@@ -30,6 +32,8 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Retrieved module information for %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(FindCommand.class);
+
     private Module moduleToFind;
 
     public FindCommand(Module moduleToFind) {
@@ -41,6 +45,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
 
         if (!model.isModuleOffered(moduleToFind)) {
+            logger.fine("In find command: " + moduleToFind + " not offered");
             throw new CommandException(String.format(
                     MESSAGE_NOT_OFFERED_MODULES, moduleToFind));
         }

@@ -10,10 +10,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
+import seedu.planner.model.ModelManager;
 import seedu.planner.model.module.Module;
 
 //@@author GabrielYik
@@ -33,6 +36,9 @@ public class DeleteCommand extends Command {
             + PREFIX_CODE + "CS2103T ";
 
     public static final String MESSAGE_DELETE_MODULES_SUCCESS = "Deleted Module(s): %1$s";
+    public static final String MESSAGE_NON_EXISTENT_MODULES = "Non-existent modules: %1$s";
+
+    private static final Logger logger = LogsCenter.getLogger(DeleteCommand.class);
 
     public static final String MESSAGE_NON_EXISTENT_MODULES = "Non-existent modules: %1$s";
 
@@ -57,6 +63,7 @@ public class DeleteCommand extends Command {
 
         String successMessage = formatMessage(MESSAGE_DELETE_MODULES_SUCCESS, modulesToDelete);
         message = successMessage + "\n" + message;
+
         return new CommandResult(message.trim());
     }
 
@@ -74,6 +81,7 @@ public class DeleteCommand extends Command {
             boolean areAllModulesNotOffered = notOfferedModules.size() == modulesToDelete.size();
             message += formatMessage(MESSAGE_NOT_OFFERED_MODULES, notOfferedModules) + "\n";
             if (areAllModulesNotOffered) {
+                logger.fine("In delete command: " + notOfferedModules + " not offered");
                 throw new CommandException(message.trim());
             } else {
                 modulesToDelete.removeAll(notOfferedModules);
@@ -95,6 +103,7 @@ public class DeleteCommand extends Command {
             boolean areAllModulesNonExistent = nonExistentModules.size() == modulesToDelete.size();
             message += formatMessage(MESSAGE_NON_EXISTENT_MODULES, nonExistentModules) + "\n";
             if (areAllModulesNonExistent) {
+                logger.fine("In delete command: " + nonExistentModules + " non existent");
                 throw new CommandException(message.trim());
             } else {
                 modulesToDelete.removeAll(nonExistentModules);
