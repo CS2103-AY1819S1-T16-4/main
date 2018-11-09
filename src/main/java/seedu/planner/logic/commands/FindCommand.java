@@ -8,7 +8,6 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import java.util.Set;
 
 import seedu.planner.commons.core.EventsCenter;
-import seedu.planner.commons.core.Messages;
 import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;

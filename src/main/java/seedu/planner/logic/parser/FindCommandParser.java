@@ -7,7 +7,6 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import java.util.List;
 import java.util.Set;
 
-import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.FindCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.Module;
