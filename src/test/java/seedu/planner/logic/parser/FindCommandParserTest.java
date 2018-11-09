@@ -8,6 +8,7 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_FOCUS_AREA;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.planner.logic.parser.FindCommandParser.MESSAGE_EXTRA_PREFIX_VALUES;
 
 import org.junit.Test;
 
@@ -42,7 +43,7 @@ public class FindCommandParserTest {
                 + VALID_MODULE_CODE_DESC_CS1231;
 
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                String.format(Messages.MESSAGE_EXTRA_PREFIX_VALUES, PREFIX_CODE));
+                String.format(MESSAGE_EXTRA_PREFIX_VALUES, PREFIX_CODE));
 
         assertParseFailure(parser, userInput, expectedMessage);
     }

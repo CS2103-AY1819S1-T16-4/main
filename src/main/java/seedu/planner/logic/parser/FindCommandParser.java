@@ -17,6 +17,8 @@ import seedu.planner.model.module.Module;
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
+    public static final String MESSAGE_EXTRA_PREFIX_VALUES = "Extra values for prefix %1$s";
+
     @Override
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
@@ -30,7 +32,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (argMultimap.checkPrefixValueCount(PREFIX_CODE) != 1) {
             String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    String.format(Messages.MESSAGE_EXTRA_PREFIX_VALUES, PREFIX_CODE));
+                    String.format(MESSAGE_EXTRA_PREFIX_VALUES, PREFIX_CODE));
             throw new ParseException(errorMessage);
         }
 
