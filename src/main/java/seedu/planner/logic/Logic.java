@@ -21,15 +21,11 @@ public interface Logic {
 
     ObservableList<Module> listModules();
 
-    //@@author GabrielYik
-
     /** Returns an unmodifiable view of the list of taken modules */
     ObservableList<Module> getTakenModules(int semesterIndex);
 
     /** Returns an unmodifiable view of the list of available modules */
     ObservableList<Module> getAvailableModules();
-
-    //@@author
 
     /** Returns the list of input entered by the user, encapsulated in a {@code ListElementPointer} object */
     ListElementPointer getHistorySnapshot();
