@@ -125,7 +125,7 @@ public class Module implements Comparable<Module> {
         }
 
         Module module = (Module) other;
-        return this.getCode().equals(module.getCode());
+        return information.equals(module.information);
     }
 
     @Override

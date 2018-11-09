@@ -52,8 +52,8 @@ public class ModulePlannerTest {
 
     @Test
     public void addModules_validIndex_success() {
-        modulePlanner.addModules(getTypicalModules(), 0);
-        assertEquals(new HashSet<>(modulePlanner.getTakenModules(0)), getTypicalModules());
+        modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
+        assertEquals(new HashSet<>(modulePlanner.getTakenModules(INDEX_FIRST)), getTypicalModules());
     }
 
     @Test
@@ -88,21 +88,58 @@ public class ModulePlannerTest {
     }
 
     @Test
+    public void suggestModules_noModulesTaken_sameAvailableModulesList() {
+        modulePlanner.suggestModules(INDEX_FIRST);
+        ModulePlanner otherModulePlanner = new ModulePlanner();
+        otherModulePlanner.suggestModules(INDEX_SECOND);
+        assertEquals(modulePlanner.getAvailableModules(), otherModulePlanner.getAvailableModules());
+    }
+
+    @Test
+    public void suggestModules_sameModulesTakenSuggestSameIndex_sameAvailableModulesList() {
+        modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
+        modulePlanner.suggestModules(INDEX_FIRST);
+        ModulePlanner otherModulePlanner = new ModulePlanner();
+        otherModulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
+        otherModulePlanner.suggestModules(INDEX_FIRST);
+        assertEquals(modulePlanner.getAvailableModules(), otherModulePlanner.getAvailableModules());
+    }
+
+    @Test
+    public void suggestModules_sameModulesTakenSuggestDifferentIndex_differentAvailableModulesList() {
+        modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
+        modulePlanner.suggestModules(INDEX_FIRST);
+        ModulePlanner otherModulePlanner = new ModulePlanner();
+        otherModulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
+        otherModulePlanner.suggestModules(INDEX_SECOND);
+        assertNotEquals(modulePlanner.getAvailableModules(), otherModulePlanner.getAvailableModules());
+    }
+
+    @Test
+    public void suggestModules_differentModulesTakenSuggestSameIndex_differentAvailableModulesList() {
+        modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
+        modulePlanner.suggestModules(INDEX_FIRST);
+        ModulePlanner otherModulePlanner = new ModulePlanner();
+        otherModulePlanner.suggestModules(INDEX_FIRST);
+        assertNotEquals(modulePlanner.getAvailableModules(), otherModulePlanner.getAvailableModules());
+    }
+
+    @Test
     public void getModulesTaken_sameIndex_returnsSameList() {
-        modulePlanner.addModules(getTypicalModules(), 0);
-        assertEquals(modulePlanner.getTakenModules(0), modulePlanner.getTakenModules(0));
+        modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
+        assertEquals(modulePlanner.getTakenModules(INDEX_FIRST), modulePlanner.getTakenModules(INDEX_FIRST));
     }
 
     @Test
     public void getModulesTaken_differentIndex_returnsDifferentList() {
-        modulePlanner.addModules(getTypicalModules(), 0);
-        assertNotEquals(modulePlanner.getTakenModules(0), modulePlanner.getTakenModules(1));
+        modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
+        assertNotEquals(modulePlanner.getTakenModules(INDEX_FIRST), modulePlanner.getTakenModules(INDEX_SECOND));
     }
 
     @Test
     public void getModulesTaken_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        modulePlanner.getTakenModules(0).remove(0);
+        modulePlanner.getTakenModules(INDEX_FIRST).remove(INDEX_FIRST);
     }
 
     @Test
@@ -119,9 +156,9 @@ public class ModulePlannerTest {
 
     @Test
     public void equals() {
-        modulePlanner.addModules(getTypicalModules(), 1);
+        modulePlanner.addModules(getTypicalModules(), INDEX_SECOND);
         ModulePlanner differentModulePlanner = new ModulePlanner();
-        differentModulePlanner.addModules(getTypicalModules(), 1);
+        differentModulePlanner.addModules(getTypicalModules(), INDEX_SECOND);
 
         // same modules in same semester -> returns true
         assertTrue(modulePlanner.equals(differentModulePlanner));

@@ -2,13 +2,28 @@ package seedu.planner.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
+
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.planner.MainApp;
+import seedu.planner.commons.core.LogsCenter;
+import seedu.planner.commons.util.JsonUtil;
+import seedu.planner.model.course.Major;
+import seedu.planner.model.course.MajorDescription;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.semester.Semester;
@@ -22,9 +37,12 @@ import seedu.planner.model.util.ModuleUtil;
  * Wraps all data at the module planner level.
  */
 public class ModulePlanner implements ReadOnlyModulePlanner {
-
     public static final int MAX_NUMBER_SEMESTERS = 8;
     public static final int MAX_SEMESTERS_PER_YEAR = 2;
+
+    private static final int ALL_SEMESTERS = -1;
+
+    private static Logger logger = LogsCenter.getLogger(ModulePlanner.class);
 
     private final List<Semester> semesters;
     private UserProfile userProfile;
@@ -32,7 +50,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private final ObservableList<Module> availableModules = FXCollections.observableArrayList();
     private final ObservableList<Module> takenModules = FXCollections.observableArrayList();
 
-    private int index;
+    private int availableIndex;
+    private int takenIndex;
 
     /**
      * Constructs a {@code ModulePlanner} and initializes an array of 8 {@code Semester}
@@ -48,7 +67,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             }
         }
 
-        index = 0;
+        availableIndex = 0;
+        takenIndex = ALL_SEMESTERS;
     }
 
     /**
@@ -71,11 +91,12 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Add one or more module(s) to set of modules taken for the specified semester.
      *
      * @param modules A set of valid modules to be added
-     * @param index A valid semester
+     * @param index   A valid semester
      */
     public void addModules(Set<Module> modules, int index) {
         semesters.get(index).addModules(modules);
-        setAvailableModules(getModulesAvailable(this.index));
+        setAvailableModules(getModulesAvailable(availableIndex));
+        updateTakenModules();
     }
 
     //@@author GabrielYik
@@ -114,7 +135,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             }
         }
 
-        setAvailableModules(getModulesAvailable(index));
+        setAvailableModules(getModulesAvailable(availableIndex));
+        updateTakenModules();
     }
 
     /**
@@ -135,11 +157,11 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * fulfilled. If any of the modules do not, they will be added to
      * {@code invalidatedModules}.
      *
-     * @param semester The semester which modules are to be checked
-     * @param deletedModules The modules to be checked against
+     * @param semester           The semester which modules are to be checked
+     * @param deletedModules     The modules to be checked against
      * @param invalidatedModules The group of modules any of the modules in
-     *  {@code semester} will be added to if it does not fulfill all of
-     *  it's prerequisites
+     *                           {@code semester} will be added to if it does not fulfill all of
+     *                           it's prerequisites
      */
     private void invalidateModules(Semester semester, Set<Module> deletedModules, List<Module> invalidatedModules) {
         for (Module module : semester.getModules()) {
@@ -157,12 +179,12 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     /**
      * Deletes the {@code invalidatedModules} from the modules {@code semester} has.
      *
-     * @param semester The semester which the {@code invalidatedModules} are to be
-     *  deleted from
+     * @param semester           The semester which the {@code invalidatedModules} are to be
+     *                           deleted from
      * @param invalidatedModules The invalidated modules
      */
     private void deleteInvalidatedModules(Semester semester, Set<Module> deletedModules,
-            List<Module> invalidatedModules) {
+                                          List<Module> invalidatedModules) {
         if (!invalidatedModules.isEmpty()) {
             Set<Module> modulesToDelete = new HashSet<>(invalidatedModules);
             semester.deleteModules(modulesToDelete);
@@ -229,9 +251,11 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void listTakenModulesAll() {
         List<Module> modules = new ArrayList<>();
-        for (Semester s: semesters) {
+
+        for (Semester s : semesters) {
             modules.addAll(s.getModules());
         }
+        takenIndex = ALL_SEMESTERS;
         setTakenModules(modules);
     }
 
@@ -246,12 +270,24 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         for (int i = 0; i < indices.length; i++) {
             modules.addAll(semesters.get(indices[i]).getModules());
         }
+        takenIndex = year;
         setTakenModules(modules);
     }
 
     @Override
     public ObservableList<Module> listTakenModules() {
         return takenModules;
+    }
+
+    /**
+     * Update {@code takenModules} according to the latest displayed list upon add or delete command.
+     */
+    private void updateTakenModules() {
+        if (takenIndex == ALL_SEMESTERS) {
+            listTakenModulesAll();
+        } else {
+            listTakenModulesYear(takenIndex);
+        }
     }
 
     private void setTakenModules(List<Module> modules) {
@@ -265,7 +301,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     @Override
     public ObservableList<Module> getAvailableModules() {
-        setAvailableModules(getModulesAvailable(index));
+        setAvailableModules(getModulesAvailable(availableIndex));
         return availableModules;
     }
 
@@ -274,7 +310,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void resetData(ReadOnlyModulePlanner newData) {
         requireNonNull(newData);
-        setAvailableModules(getModulesAvailable(index));
+        setAvailableModules(getModulesAvailable(availableIndex));
         setModulesInSemesters(newData.getSemesters());
     }
 
@@ -291,7 +327,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @param index An integer from 0 to 7 inclusive indicating the year and semester to suggest.
      */
     public void suggestModules(int index) {
-        this.index = index;
+        availableIndex = index;
         setAvailableModules(getModulesAvailable(index));
     }
 
@@ -304,16 +340,75 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private List<Module> getModulesAvailable(int index) {
         List<Module> modulesAvailable = new ArrayList<>();
         List<Module> modulesTaken = getAllModulesTaken();
-        List<Module> modulesTakenUntilIndex = getAllModulesTakenUntilIndex(index);
+        List<Module> modulesTakenBeforeIndex = getAllModulesTakenBeforeIndex(index);
         List<Module> allModules = getAllModulesFromStorage();
 
-        for (Module m: allModules) {
-            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenUntilIndex, m)) {
+        for (Module m : allModules) {
+            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenBeforeIndex, m)) {
                 modulesAvailable.add(m);
             }
         }
+
+        sortAvailableModules(modulesAvailable, userProfile);
+
         return modulesAvailable;
     }
+
+    // @@author rongjiecomputer
+
+    /**
+     * Sort {@code modulesAvailable} based on the information in {@code userProfile}.
+     */
+    private void sortAvailableModules(List<Module> modulesAvailable, UserProfile userProfile) {
+        Map<Major, MajorDescription> map;
+        try {
+            URL resource = MainApp.class.getResource("/data/majorDescription.json");
+            String text = Resources.toString(resource, Charsets.UTF_8);
+            map = JsonUtil.getObjectMapper().readValue(text, MajorDescription.MAP_TYPE_REF);
+        } catch (IOException e) {
+            logger.warning("Unable to read majorDescription file. Start with an empty map.");
+            map = new HashMap<>();
+        }
+
+        // Note: Collections.sort uses stable sort when sorting objects, which we are exploiting here so that
+        // we can chain our sorting and still making sure that the order created by each comparator is preserved.
+        //
+        // The order of comparators you applied to the list matters!
+
+        // Step 1. If we have the information for this major, we stop immediately.
+        if (!map.containsKey(userProfile.getMajor())) {
+            return;
+        }
+
+        Major major = userProfile.getMajor();
+        MajorDescription majorDescription = map.get(major);
+
+        logger.info(String.format("Requirements for user's major (%s) found. Prioritize modules start with %s.",
+                major, majorDescription.getPrefixes()));
+
+        List<String> prefixes = new ArrayList<>(majorDescription.getPrefixes());
+        // Add GE module prefixes for consideration as well.
+        prefixes.addAll(List.of("GER", "GEQ", "GES", "GET", "GEH"));
+
+        // Step 2. Move modules that matches prefixes to the front of available module list.
+        Comparator<Module> moveFacultyModuleToFront = (Module lhs, Module rhs) -> {
+            return Integer.compare(
+                    ModuleUtil.rankModuleCodePrefixes(lhs.getCode(), prefixes),
+                    ModuleUtil.rankModuleCodePrefixes(rhs.getCode(), prefixes));
+        };
+        Collections.sort(modulesAvailable, moveFacultyModuleToFront);
+
+        // Step 3. Move more prioritized modules to the front of available module list.
+        Comparator<Module> moveImportantModuleToFront = (Module lhs, Module rhs) -> {
+            return Integer.compare(
+                    ModuleUtil.rankModuleCodeFromPriorityList(lhs.getCode(), majorDescription.getModules()),
+                    ModuleUtil.rankModuleCodeFromPriorityList(rhs.getCode(), majorDescription.getModules())
+            );
+        };
+        Collections.sort(modulesAvailable, moveImportantModuleToFront);
+    }
+
+    // @@author
 
     /**
      * Combines the list of {@code Module}s taken from every {@code Semester}.
@@ -322,7 +417,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     private List<Module> getAllModulesTaken() {
         List<Module> modulesTaken = new ArrayList<>();
-        for (Semester s: semesters) {
+        for (Semester s : semesters) {
             modulesTaken.addAll(s.getModules());
         }
         return modulesTaken;
@@ -334,9 +429,9 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @param index The current index user is at.
      * @return A list of all {@code Module}s the user has taken until the specified index.
      */
-    private List<Module> getAllModulesTakenUntilIndex(int index) {
+    private List<Module> getAllModulesTakenBeforeIndex(int index) {
         List<Module> modulesTaken = new ArrayList<>();
-        for (int i = 0; i <= index; i++) {
+        for (int i = 0; i < index; i++) {
             modulesTaken.addAll(semesters.get(i).getModules());
         }
         return modulesTaken;
@@ -351,7 +446,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         ModuleInfo[] allModuleInfo = ModuleInfo.getModuleInfoList();
         List<Module> allModules = new ArrayList<>();
 
-        for (ModuleInfo mi: allModuleInfo) {
+        for (ModuleInfo mi : allModuleInfo) {
             Module m = new Module(mi.getCode());
             allModules.add(m);
         }
