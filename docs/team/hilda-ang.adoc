@@ -13,7 +13,7 @@ This project portfolio showcases the contributions I have made in a team project
 
 ModulePlanner is a desktop application made to help NUS Computer Science undergraduate students plan their modules by giving module suggestions for every semester. It is mainly designed to be used through a Command Line Interface (CLI), although it also provides a Graphical User Interface (GUI).
 
-==== *Major features*:
+* *Major Features*:
 ** Suggest available modules based on major requirements and module prerequisites.
 ** Plan modules for each semester by adding or deleting modules to or from the planner.
 ** Check module description, prerequisites, and preclusions.
@@ -24,13 +24,13 @@ The next few sections will describe my contributions to the project.
 
 * *Major enhancement*: added *the ability to suggest modules to take*
 ** What it does: allows the user to see the modules he/she is available to take in each semester, based on the modules he/she has taken.
-** Justification: This feature helps the user plan modules by checking and listing the available modules for him/her.
-** Highlights: This is the main feature of our application. It required an in-depth analysis of design alternatives. The implementation too was challenging as it interacted with many other components and commands.
+** Justification: This feature helps the user plan modules by checking and listing available modules for him/her.
+** Highlights: This is the main feature of our application. It demanded a careful consideration and thorough analysis of several design alternatives and implementation choices. The actual implementation was challenging as it interacted with many other components and commands.
 
-* *Minor enhancement*: added *the ability to list modules taken*
-** What it does: allows the user to see the modules he/she has taken for all years or for each year.
-** Justification: This feature helps the user to quickly checks the modules he/she has taken or has planned to take.
-** Highlights: This feature interacts with other features as the list is updated with each add or delete command.
+* *Major enhancement*: added *the ability to list modules taken*
+** What it does: allows the user to see the modules he/she has added for all years or for each year.
+** Justification: This feature helps the user to quickly checks the modules he/she has added.
+** Highlights: This feature interacts with other features as the list is updated with each successful execution of add or delete command.
 
 * *Minor enhancement*: removed redundant year and semester arguments from setup command.
 
@@ -40,18 +40,20 @@ The next few sections will describe my contributions to the project.
 
 ** Project management:
 *** Managed release `v1.1` on GitHub
+*** Recorded and labeled each of the user stories as an issue (https://github.com/CS2103-AY1819S1-T16-4/main/issues/8[#8], https://github.com/CS2103-AY1819S1-T16-4/main/issues/9[#9], https://github.com/CS2103-AY1819S1-T16-4/main/issues/10[#10], https://github.com/CS2103-AY1819S1-T16-4/main/issues/11[#11], https://github.com/CS2103-AY1819S1-T16-4/main/issues/12[#12], https://github.com/CS2103-AY1819S1-T16-4/main/issues/13[#13], https://github.com/CS2103-AY1819S1-T16-4/main/issues/14[#14])
+*** Assigned team members to issues and issues to milestones (https://github.com/CS2103-AY1819S1-T16-4/main/issues/45[#45], https://github.com/CS2103-AY1819S1-T16-4/main/issues/46[#46], https://github.com/CS2103-AY1819S1-T16-4/main/issues/47[#47], https://github.com/CS2103-AY1819S1-T16-4/main/issues/48[#48], https://github.com/CS2103-AY1819S1-T16-4/main/issues/49[#49], https://github.com/CS2103-AY1819S1-T16-4/main/issues/50[#50], https://github.com/CS2103-AY1819S1-T16-4/main/issues/70[#70], https://github.com/CS2103-AY1819S1-T16-4/main/issues/71[#71], https://github.com/CS2103-AY1819S1-T16-4/main/issues/72[#72], https://github.com/CS2103-AY1819S1-T16-4/main/issues/73[#73], https://github.com/CS2103-AY1819S1-T16-4/main/issues/74[#74], https://github.com/CS2103-AY1819S1-T16-4/main/issues/75[#75])
+*** Set a deadline for each milestone on Github
+** Testing:
+*** Wrote tests for shared classes (https://github.com/CS2103-AY1819S1-T16-4/main/pull/147[#147])
 ** Documentation:
-*** Modify User Guide to be relevant to current project
-*** Documented list feature design in User Guide
+*** Modify User Guide to be relevant to current project (https://github.com/CS2103-AY1819S1-T16-4/main/pull/6[#6], https://github.com/CS2103-AY1819S1-T16-4/main/pull/67[#67])
 ** Community:
-*** Refactored shared classes and tests from AddressBook to ModulePlanner
-*** PRs reviewed (with non-trivial review comments)
-*** Documented user stories and proposed features as issues
-*** Wrote tests for shared classes
-*** Reported bugs for other teams in the class
+*** Refactored AddressBook to ModulePlanner (https://github.com/CS2103-AY1819S1-T16-4/main/pull/113[#113], https://github.com/CS2103-AY1819S1-T16-4/main/pull/129[#129])
+*** PRs reviewed with non-trivial review comments (https://github.com/CS2103-AY1819S1-T16-4/main/pull/65[#65], https://github.com/CS2103-AY1819S1-T16-4/main/pull/136[#136])
+*** Reported bugs for other teams in the class (https://github.com/CS2103-AY1819S1-W14-1/main/issues/193[#193], https://github.com/CS2103-AY1819S1-W14-1/main/issues/195[#195], https://github.com/CS2103-AY1819S1-W14-1/main/issues/200[#200], https://github.com/CS2103-AY1819S1-W14-1/main/issues/223[#223])
 ** Tools:
-*** Integrated a Github plugin (Coveralls) for code coverage to the team repo
-*** Configured repo for code detection in RepoSense
+*** Integrated a Github plugin (Coveralls) for code coverage checking to the team repo (https://github.com/CS2103-AY1819S1-T16-4/main/pull/144[#144])
+*** Configured team repo to be compatible with RepoSense (https://github.com/CS2103-AY1819S1-T16-4/main/pull/124[#124])
 
 == Contributions to the User Guide
 
