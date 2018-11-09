@@ -268,6 +268,7 @@ public class MainWindow extends UiPart<Stage> {
     @Subscribe
     private void handleShowHelpEvent(ShowHelpRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         handleHelp();
     }
 
@@ -275,6 +276,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @Subscribe
     private void handleAddModuleEvent(AddModuleEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         int indexToGoTo = event.getIndex();
         ModuleListPanel panel = takenModuleListPanels.get(indexToGoTo);
         setPlaceholder(takenModulesPlaceholder, panel);
@@ -282,18 +285,24 @@ public class MainWindow extends UiPart<Stage> {
 
     @Subscribe
     private void handleGoToEvent(GoToEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         ModuleListPanel panel = takenModuleListPanels.get(event.getIndex());
         setPlaceholder(takenModulesPlaceholder, panel);
     }
 
     @Subscribe
     private void handleFindModuleEvent(FindModuleEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         FindModulePanel panel = new FindModulePanel(event.getModule());
         setPlaceholder(multiPurposePanelPlaceholder, panel);
     }
 
     @Subscribe
     private void handleClearEvent(ClearEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         clearTakenModulesPanel();
         clearSuggestedModulesPanel();
     }
@@ -308,6 +317,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @Subscribe
     private void handleSuggestModulesEvent(SuggestModulesEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         ModuleListPanel panel = new ModuleListPanel(event.getModuleList(),
                 event.getIndex(), ModulePanelType.SUGGESTED);
         setPlaceholder(suggestedModulesPlaceholder, panel);
@@ -315,6 +326,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @Subscribe
     private void handleListModulesEvent(ListModulesEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         ModuleListPanel panel = takenModuleListPanels.get(MAX_NUMBER_SEMESTERS);
         if (event.getYear() == ALL_YEARS) {
             panel.setSubTitle("All years");
