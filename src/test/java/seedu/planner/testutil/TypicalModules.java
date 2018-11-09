@@ -12,8 +12,6 @@ import java.util.Set;
 
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.module.Module;
-import seedu.planner.model.module.ModuleInfo;
-import seedu.planner.model.module.ModuleType;
 
 /**
  * A utility class containing {@code Modules} to be used.
