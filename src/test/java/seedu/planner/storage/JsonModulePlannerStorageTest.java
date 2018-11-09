@@ -39,7 +39,8 @@ public class JsonModulePlannerStorageTest {
     }
 
     private java.util.Optional<ReadOnlyModulePlanner> readModulePlanner(String filePath) throws Exception {
-        return new JsonModulePlannerStorage(Paths.get(filePath)).readModulePlanner(addToTestDataPathIfNotNull(filePath));
+        return new JsonModulePlannerStorage(Paths.get(filePath)).
+                readModulePlanner(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -111,10 +112,10 @@ public class JsonModulePlannerStorageTest {
     /**
      * Saves {@code ModulePlanner} at the specified {@code filePath}.
      */
-    private void saveModulePlanner(ReadOnlyModulePlanner ModulePlanner, String filePath) {
+    private void saveModulePlanner(ReadOnlyModulePlanner modulePlanner, String filePath) {
         try {
             new JsonModulePlannerStorage(Paths.get(filePath))
-                    .saveModulePlanner(ModulePlanner, addToTestDataPathIfNotNull(filePath));
+                    .saveModulePlanner(modulePlanner, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
