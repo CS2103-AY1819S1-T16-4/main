@@ -16,6 +16,8 @@ import seedu.planner.model.semester.Semester;
  * JSON serializable {@code Semester} class.
  */
 public class JsonAdaptedSemester {
+    public static final String MESSAGE_DUPLCIATE_MODULE = "Duplicate module(s) in a semester.";
+
     private int index;
     private int year;
 
@@ -50,6 +52,9 @@ public class JsonAdaptedSemester {
         Set<Module> modulesTaken = new HashSet<>();
         for (JsonAdaptedModule jsonAdaptedModule : this.modulesTaken) {
             Module toModelType = jsonAdaptedModule.toModelType();
+            if (modulesTaken.contains(toModelType)) {
+                throw new IllegalValueException(MESSAGE_DUPLCIATE_MODULE);
+            }
             modulesTaken.add(toModelType);
         }
         Semester sem = new Semester(year, index);

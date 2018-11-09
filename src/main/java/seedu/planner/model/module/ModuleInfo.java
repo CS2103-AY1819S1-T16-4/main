@@ -28,6 +28,8 @@ public class ModuleInfo {
             + "1234 refers to a sequence of positive numbers.\n"
             + "(YZ) refers to an optional postfix.";
 
+    public static final String MESSAGE_MODULE_CODE_NOT_FOUND = "Module code not found in database.";
+
     private static final String DEFAULT_FILE_PATH = "/data/moduleInfo.json";
 
     // An object that is initialized from JSON file and act like a const data.

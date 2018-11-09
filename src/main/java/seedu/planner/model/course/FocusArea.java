@@ -4,6 +4,8 @@ package seedu.planner.model.course;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+
 /**
  * Represents the focus areas of computer science students.
  * These focus areas are applicable only to new cohorts from AY2015-16 onwards.
@@ -19,6 +21,7 @@ public enum FocusArea {
     PARALLEL_COMPUTING("Parallel Computing"),
     PROGRAMMING_LANGUAGES("Programming Languages"),
     SOFTWARE_ENGINEERING("Software Engineering"),
+    @JsonEnumDefaultValue
     UNKNOWN("Unknown");
 
     private final String name;
