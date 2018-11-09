@@ -11,6 +11,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.planner.commons.core.LogsCenter;
+import seedu.planner.commons.util.Pair;
 import seedu.planner.model.module.Module;
 
 //@@author GabrielYik
@@ -76,10 +77,9 @@ public class ModuleListPanel extends UiPart<Region> {
     }
 
     private void setHeader(int index, ModulePanelType type) {
-        String yearAndSemester = convertIndexToYearAndSemester(index);
-        String[] splitYearAndSemester = yearAndSemester.split("");
-        String year = splitYearAndSemester[0];
-        String semester = splitYearAndSemester[1];
+        Pair yearSemesterPair = convertIndexToYearAndSemester(index);
+        int year = (int) yearSemesterPair.getFirst();
+        int semester = (int) yearSemesterPair.getSecond();
         title.setText("Modules " + type.toString());
         subTitle.setText(YEAR + year + DIVIDER + SEMESTER + semester);
     }
