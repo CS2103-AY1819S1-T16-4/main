@@ -31,10 +31,6 @@ public class ModuleListPanel extends UiPart<Region> {
 
     private static final String SEMESTER = "Semester ";
 
-    private final Logger logger = LogsCenter.getLogger(ModuleListPanel.class);
-
-    private final ModulePanelType type;
-
     @FXML
     private Label title;
 
@@ -46,7 +42,6 @@ public class ModuleListPanel extends UiPart<Region> {
 
     public ModuleListPanel(ObservableList<Module> moduleList, int index, ModulePanelType type) {
         super(FXML);
-        this.type = type;
 
         setHeader(index, type);
         setConnections(moduleList);
@@ -55,7 +50,6 @@ public class ModuleListPanel extends UiPart<Region> {
 
     public ModuleListPanel(ObservableList<Module> moduleList, ModulePanelType type) {
         super(FXML);
-        this.type = type;
 
         setHeader(type);
         setConnections(moduleList);
