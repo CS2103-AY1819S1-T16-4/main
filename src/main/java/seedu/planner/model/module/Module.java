@@ -1,7 +1,5 @@
 package seedu.planner.model.module;
 
-//@@author Hilda-Ang //@@author GabrielYik
-
 import java.util.Objects;
 
 import com.google.common.collect.ImmutableList;

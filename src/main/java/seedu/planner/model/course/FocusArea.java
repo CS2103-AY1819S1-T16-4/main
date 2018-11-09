@@ -1,7 +1,5 @@
 package seedu.planner.model.course;
 
-//@@author GabrielYik
-
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;

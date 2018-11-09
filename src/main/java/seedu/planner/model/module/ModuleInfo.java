@@ -1,7 +1,5 @@
 package seedu.planner.model.module;
 
-//@@author rongjiecomputer
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Optional;
@@ -66,7 +64,6 @@ public class ModuleInfo {
      * Default constructor required by JSON parser.
      */
     public ModuleInfo() {
-
     }
 
     /**
@@ -146,7 +143,6 @@ public class ModuleInfo {
         return creditCount;
     }
 
-    // @@author rongjiecomputer
     public ImmutableList<ModuleInfo> getPrerequisites() {
         Preconditions.checkState(finalized);
         return prereqModuleInfo;

@@ -1,7 +1,5 @@
 package seedu.planner.model.module;
 
-//@@author GabrielYik
-
 import seedu.planner.commons.exceptions.IllegalValueException;
 
 /**
