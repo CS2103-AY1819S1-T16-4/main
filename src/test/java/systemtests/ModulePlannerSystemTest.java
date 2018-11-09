@@ -148,7 +148,8 @@ public abstract class ModulePlannerSystemTest {
             Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
-        // assertEquals(new ModulePlanner(expectedModel.getModulePlanner()), testApp.readStorageAddressBook());
+        assertEquals(new ModulePlanner(expectedModel.getModulePlanner()), testApp.readStorageModulePlanner());
+        // TODO
         // assertListMatching(getPersonListPanel(), expectedModel.getFilteredPersonList());
     }
 
@@ -160,19 +161,49 @@ public abstract class ModulePlannerSystemTest {
         StatusBarFooterHandle statusBarFooterHandle = getStatusBarFooter();
         statusBarFooterHandle.rememberSaveLocation();
         statusBarFooterHandle.rememberSyncStatus();
+        // TODO
+        // getPersonListPanel().rememberSelectedPersonCard();
     }
 
     /**
      * Asserts that the previously selected card is now deselected and the browser's url remains displaying the details
      * of the previously selected person.
      */
-    protected void assertSelectedCardDeselected() { }
+    protected void assertSelectedCardDeselected() {
+        // TODO
+        // assertFalse(getPersonListPanel().isAnyCardSelected());
+    }
 
+        /**
+     * Asserts that the browser's url is changed to display the details of the person in the person list panel at
+     * {@code expectedSelectedCardIndex}, and only the card at {@code expectedSelectedCardIndex} is selected.
+     * @see BrowserPanelHandle#isUrlChanged()
+     * @see PersonListPanelHandle#isSelectedPersonCardChanged()
+     */
+    // TODO
+    /*
+    protected void assertSelectedCardChanged(Index expectedSelectedCardIndex) {
+        getPersonListPanel().navigateToCard(getPersonListPanel().getSelectedCardIndex());
+        String selectedCardName = getPersonListPanel().getHandleToSelectedCard().getName();
+        URL expectedUrl;
+        try {
+            expectedUrl = new URL(BrowserPanel.SEARCH_PAGE_URL + selectedCardName.replaceAll(" ", "%20"));
+        } catch (MalformedURLException mue) {
+            throw new AssertionError("URL expected to be valid.", mue);
+        }
+        assertEquals(expectedUrl, getBrowserPanel().getLoadedUrl());
+
+        assertEquals(expectedSelectedCardIndex.getZeroBased(), getPersonListPanel().getSelectedCardIndex());
+    }
+    */
 
     /**
      * Asserts that the browser's url and the selected card in the person list panel remain unchanged.
      */
-    protected void assertSelectedCardUnchanged() { }
+    protected void assertSelectedCardUnchanged() {
+        // TODO
+        // assertFalse(getPersonListPanel().isSelectedPersonCardChanged());
+    }
 
     /**
      * Asserts that the command box's shows the default style.

@@ -33,8 +33,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final List<SortedList<Module>> takenModulesPerSemester;
 
-    private final FilteredList<Module> takenModules;
-    private final FilteredList<Module> availableModules;
+    private final SortedList<Module> takenModules;
+    private final SortedList<Module> availableModules;
 
     //@@author Hilda-Ang
 
@@ -55,8 +55,8 @@ public class ModelManager extends ComponentManager implements Model {
                     x.compareTo(y)));
         }
 
-        takenModules = new FilteredList<>(versionedModulePlanner.listTakenModules());
-        availableModules = new FilteredList<>(versionedModulePlanner.getAvailableModules());
+        takenModules = new SortedList<>(versionedModulePlanner.listTakenModules());
+        availableModules = new SortedList<>(versionedModulePlanner.getAvailableModules());
     }
 
     public ModelManager() {
