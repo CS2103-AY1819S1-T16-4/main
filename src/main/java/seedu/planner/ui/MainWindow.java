@@ -160,9 +160,10 @@ public class MainWindow extends UiPart<Stage> {
     //@@author GabrielYik
 
     /**
-     * Initialises the taken module panels with taken modules if any.
-     * The taken modules placeholder is then initialised with a blank
-     * taken module panel.
+     * Initialises an empty taken modules panel and all the taken modules panels
+     * with taken modules if any.
+     * The taken modules placeholder is then initialised with the empty taken
+     * modules panel.
      */
     private void initTakenModulesPanel() {
         takenModuleListPanels = new ArrayList<>(MAX_NUMBER_SEMESTERS + 1);
@@ -185,6 +186,11 @@ public class MainWindow extends UiPart<Stage> {
         setPlaceholder(takenModulesPlaceholder, timelessTakenModuleListPanel);
     }
 
+    /**
+     * Initialises an empty suggested modules panel.
+     * The suggested modules placeholder is then initialised with the empty suggested
+     * mdoules panel.
+     */
     private void initSuggestedModulesPanel() {
         timelessSuggestedModuleListPanel = new ModuleListPanel(FXCollections.emptyObservableList(),
                 ModulePanelType.SUGGESTED);
