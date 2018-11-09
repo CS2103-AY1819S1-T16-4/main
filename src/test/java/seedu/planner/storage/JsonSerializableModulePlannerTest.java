@@ -15,11 +15,14 @@ import seedu.planner.model.ModulePlanner;
 import seedu.planner.testutil.TypicalModules;
 
 public class JsonSerializableModulePlannerTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableModulePlannerTest");
+    private static final Path TEST_DATA_FOLDER =
+            Paths.get("src", "test", "data", "JsonSerializableModulePlannerTest");
     private static final Path TYPICAL_MODULE_PLANNER_FILE = TEST_DATA_FOLDER.resolve("typicalModulePlanner.json");
     private static final Path INVALID_MODULE_FILE = TEST_DATA_FOLDER.resolve("invalidModuleModulePlanner.json");
-    private static final Path DUPLICATE_MODULE_SINGLE_SEMESTER_FILE = TEST_DATA_FOLDER.resolve("duplicateModuleSingleSemester.json");
-    private static final Path DUPLICATE_MODULE_ACROSS_SEMESTERS_FILE = TEST_DATA_FOLDER.resolve("duplicateModuleAcrossSemesters.json");
+    private static final Path DUPLICATE_MODULE_SINGLE_SEMESTER_FILE =
+            TEST_DATA_FOLDER.resolve("duplicateModuleSingleSemester.json");
+    private static final Path DUPLICATE_MODULE_ACROSS_SEMESTERS_FILE =
+            TEST_DATA_FOLDER.resolve("duplicateModuleAcrossSemesters.json");
     private static final Path INVALID_USER_PROFILE_FILE = TEST_DATA_FOLDER.resolve("invalidMajor.json");
     private static final Path INVALID_FOCUS_AREA_FILE = TEST_DATA_FOLDER.resolve("invalidFocusArea.json");
 
