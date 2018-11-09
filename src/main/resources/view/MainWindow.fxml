@@ -75,7 +75,7 @@
               </items>
             </SplitPane>
 
-                <StackPane fx:id="statusBarPlaceholder" VBox.vgrow="NEVER" />
+                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
             </VBox>
         </Scene>
     </scene>

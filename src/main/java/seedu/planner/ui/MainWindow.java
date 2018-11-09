@@ -78,7 +78,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusBarPlaceholder;
+    private StackPane statusbarPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -150,7 +150,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(prefs.getModulePlannerFilePath());
-        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());

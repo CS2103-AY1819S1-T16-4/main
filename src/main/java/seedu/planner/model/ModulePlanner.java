@@ -249,6 +249,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         setTakenModules(modules);
     }
 
+    @Override
     public ObservableList<Module> listTakenModules() {
         return takenModules;
     }
@@ -262,6 +263,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      *
      * @return An {@code ObservableList} containing all the {@code Module}s
      */
+    @Override
     public ObservableList<Module> getAvailableModules() {
         setAvailableModules(getModulesAvailable(index));
         return availableModules;

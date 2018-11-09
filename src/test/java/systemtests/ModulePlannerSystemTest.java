@@ -23,8 +23,11 @@ import guitests.guihandles.ResultDisplayHandle;
 import guitests.guihandles.StatusBarFooterHandle;
 import seedu.planner.TestApp;
 import seedu.planner.commons.core.EventsCenter;
+import seedu.planner.logic.commands.ClearCommand;
+import seedu.planner.logic.commands.ListCommand;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;
+import seedu.planner.testutil.TypicalModules;
 import seedu.planner.ui.CommandBox;
 
 /**
@@ -67,7 +70,7 @@ public abstract class ModulePlannerSystemTest {
      * Returns the data to be loaded into the file in {@link #getDataFileLocation()}.
      */
     protected ModulePlanner getInitialData() {
-        return null; // TypicalPersons.getTypicalAddressBook();
+        return TypicalModules.getTypicalModulePlanner();
     }
 
     /**
@@ -111,24 +114,12 @@ public abstract class ModulePlannerSystemTest {
     }
 
     /**
-     * Displays all persons in the planner book.
+     * Displays all modules in the planner book.
      */
-    /*
-    protected void showAllPersons() {
+    protected void showAllModules() {
         executeCommand(ListCommand.COMMAND_WORD);
-        assertEquals(getModel().getAddressBook().getPersonList().size(), getModel().getFilteredPersonList().size());
+        assertEquals(getModel().getModulePlanner().listTakenModules().size(), getModel().listModules().size());
     }
-    */
-
-    /**
-     * Displays all persons with any parts of their names matching {@code keyword} (case-insensitive).
-     */
-    /*
-    protected void showPersonsWithName(String keyword) {
-        executeCommand(FindCommand.COMMAND_WORD + " " + keyword);
-        assertTrue(getModel().getFilteredPersonList().size() < getModel().getAddressBook().getPersonList().size());
-    }
-    */
 
     /**
      * Selects the person at {@code index} of the displayed list.
@@ -141,14 +132,12 @@ public abstract class ModulePlannerSystemTest {
     */
 
     /**
-     * Deletes all persons in the planner book.
+     * Deletes all modules in the planner book.
      */
-    /*
-    protected void deleteAllPersons() {
+    protected void deleteAllModules() {
         executeCommand(ClearCommand.COMMAND_WORD);
-        assertEquals(0, getModel().getAddressBook().getPersonList().size());
+        assertEquals(0, getModel().getModulePlanner().listTakenModules().size());
     }
-    */
 
     /**
      * Asserts that the {@code CommandBox} displays {@code expectedCommandInput}, the {@code ResultDisplay} displays
@@ -226,6 +215,7 @@ public abstract class ModulePlannerSystemTest {
     private void assertApplicationStartingStateIsCorrect() {
         assertEquals("", getCommandBox().getInput());
         assertEquals("", getResultDisplay().getText());
+        // TODO
         // assertListMatching(getPersonListPanel(), getModel().getFilteredPersonList());
         // assertEquals(MainApp.class.getResource(FXML_FILE_FOLDER + DEFAULT_PAGE), getBrowserPanel().getLoadedUrl());
         assertEquals(Paths.get(".").resolve(testApp.getStorageSaveLocation()).toString(),
