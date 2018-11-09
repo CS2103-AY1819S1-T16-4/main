@@ -11,7 +11,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.planner.commons.core.LogsCenter;
-import seedu.planner.commons.events.ui.ModulePanelSelectionChangedEvent;
 import seedu.planner.model.module.Module;
 
 //@@author GabrielYik
@@ -74,17 +73,6 @@ public class ModuleListPanel extends UiPart<Region> {
     private void setConnections(ObservableList<Module> moduleList) {
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListPanel.ModuleListViewCell());
-        setEventHandlerForSelectionChangeEvent();
-    }
-
-    private void setEventHandlerForSelectionChangeEvent() {
-        moduleListView.getSelectionModel().selectedItemProperty()
-                .addListener((observable, oldValue, newValue) -> {
-                    if (newValue != null) {
-                        logger.fine("Selection in person list panel changed to : '" + newValue + "'");
-                        raise(new ModulePanelSelectionChangedEvent(newValue));
-                    }
-                });
     }
 
     private void setHeader(int index, ModulePanelType type) {
