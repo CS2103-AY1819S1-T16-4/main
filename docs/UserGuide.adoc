@@ -57,7 +57,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 [width="100%",cols="20%,<80%"]
 |=======================================================================
 
-|MAJOR | Supported majors are listed in `setup` and `suggest`.
+|MAJOR | Supported majors are listed in <<Setting user profile : `setup`, setup>> and `suggest`.
 
 |FOCUS_AREA | Supported focus areas are listed in `setup` and `suggest`.
 
