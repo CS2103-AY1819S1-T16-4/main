@@ -9,8 +9,6 @@ import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 import seedu.planner.model.course.DegreeRequirement;
 
-import java.util.List;
-
 /**
  * Display the credit count status of the user in the planner
  */
