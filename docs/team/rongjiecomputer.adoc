@@ -50,7 +50,6 @@ https://github.com/nus-cs2103-AY1819S1/forum/issues/122#issuecomment-433412750[#
 *** Reported bugs and suggestions for other teams in the class (examples:
 https://github.com/CS2103-AY1819S1-W16-1/main/issues/151[#151],
 https://github.com/CS2103-AY1819S1-W16-1/main/issues/157[#157])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
 ** Tools:
 *** Integrated CI services (Travis and Appveyor) to the project (https://github.com/CS2103-AY1819S1-T16-4/main/pull/2[#2])
 *** Integrated Netlify service into PR workflow so that reviewer can review documentation changes easily.
