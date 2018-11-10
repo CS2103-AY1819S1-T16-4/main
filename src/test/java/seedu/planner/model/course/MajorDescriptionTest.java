@@ -74,7 +74,7 @@ public class MajorDescriptionTest {
         assertFalse(cs.equals(5));
 
         ModuleDescription fakeModuleDescription = new ModuleDescription("CS1010",
-                ProgrammeRequirement.IT_PROFESSIONALISM);
+                DegreeRequirement.IT_PROFESSIONALISM);
         MajorDescription fakeMajorDescription = new MajorDescription(Major.COMPUTER_SCIENCE,
                 List.of(fakeModuleDescription));
 
