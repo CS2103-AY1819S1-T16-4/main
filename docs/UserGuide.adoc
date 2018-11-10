@@ -40,6 +40,7 @@ image::UiLabelled.png[width="790"]
 .. `Time Period`: displays the year and semester you are currently viewing.
 .. `Taken Modules Panel`: lists modules that you put into the specified time period.
 .. `Suggested Modules Panel`: lists modules that suggested to you for that time period.
+.. `Multipurpose Panel`: displays results for the `Find` and `Status` commands.
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
@@ -84,10 +85,15 @@ Examples:
 * `delete c/CS1010`
 * `delete c/CS1231 c/MA1521`
 
-Consider a module planner stocked with the module `CS1010` in year 1 semester 1, and the modules `CS2030`
+Consider a module planner stocked with the modules `CS1010` and `CS1231` in year 1 semester 1, and the modules `CS2030`
 and `CS2040` in year 1 semester 2. If `delete c/CS1010` is executed, you will see that `CS1010` is removed,
 as well as the modules `CS2030` and `CS2040` in year 1 semester 2 since they have `CS1010` as a prerequisite.
 
+.Before
+image::DeleteBefore.png[width="300"]
+
+.After
+image::DeleteAfter.png[width="300"]
 === Finding information on a module : `find`
 
 Retrieves the information of the specified module. +
@@ -97,7 +103,9 @@ Example:
 
 * `find c/CS1010`
 
-The retrieved module information will be displayed in the `MultiPurposePanel`.
+The retrieved module information will be displayed in the `Multipurpose Panel`.
+
+image::FindIllustration.png[width="790]
 
 === Going to a different year and semester : `goto`
 
@@ -108,7 +116,13 @@ Example:
 
 * `goto y/1 s/1`
 
-The change can be seen in `TakenModulesPanel` in the before and after images.
+The change can be seen in `Taken Modules Panel` in the before and after images.
+
+.Before
+image::GoToBefore.png[width="300"]
+
+.After
+image::GoToAfter.png[width="300"]
 
 === Listing modules : `list`
 
