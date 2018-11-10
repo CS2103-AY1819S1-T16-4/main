@@ -36,6 +36,10 @@ public enum FocusArea {
     private static boolean hasFocusArea(String focusArea) {
         focusArea = focusArea.toLowerCase();
         for (FocusArea fa : FocusArea.values()) {
+            // Do not allow the setting of an {@code UNKNOWN} focus area
+            if (fa.equals(UNKNOWN)) {
+                continue;
+            }
             if (fa.toString().toLowerCase().equals(focusArea)) {
                 return true;
             }
