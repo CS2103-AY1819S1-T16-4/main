@@ -1,6 +1,8 @@
 package seedu.planner.ui;
 
+import static seedu.planner.commons.events.ui.ListModulesEvent.ALL_YEARS;
 import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
+import static seedu.planner.ui.ModuleListPanel.TIMELESS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +31,10 @@ import seedu.planner.commons.events.ui.ClearEvent;
 import seedu.planner.commons.events.ui.ExitAppRequestEvent;
 import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.commons.events.ui.GoToEvent;
-import seedu.planner.commons.events.ui.ListModuleEvent;
+import seedu.planner.commons.events.ui.ListModulesEvent;
 import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
 import seedu.planner.commons.events.ui.StatusEvent;
-import seedu.planner.commons.events.ui.SuggestModuleEvent;
+import seedu.planner.commons.events.ui.SuggestModulesEvent;
 import seedu.planner.logic.Logic;
 import seedu.planner.model.UserPrefs;
 import seedu.planner.model.module.Module;
@@ -44,8 +46,6 @@ import seedu.planner.model.module.Module;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-
-    private static final int TIMELESS = -1;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -79,7 +79,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusBarPlaceholder;
+    private StackPane statusbarPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -151,7 +151,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(prefs.getModulePlannerFilePath());
-        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -161,33 +161,41 @@ public class MainWindow extends UiPart<Stage> {
     //@@author GabrielYik
 
     /**
-     * Initialises the taken module panels with taken modules if any.
-     * The taken modules placeholder is then initialised with a blank
-     * taken module panel.
+     * Initialises an empty taken modules panel and all the taken modules panels
+     * with taken modules if any.
+     * The taken modules placeholder is then initialised with the empty taken
+     * modules panel.
      */
     private void initTakenModulesPanel() {
         takenModuleListPanels = new ArrayList<>(MAX_NUMBER_SEMESTERS + 1);
 
         for (int semesterIndex = 0; semesterIndex < MAX_NUMBER_SEMESTERS; semesterIndex++) {
-            ObservableList<Module> modules = logic.getTakenModules(semesterIndex);
+            ObservableList<Module> modules = logic.getTakenModulesForIndex(semesterIndex);
             ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules,
                     semesterIndex, ModulePanelType.TAKEN);
             takenModuleListPanels.add(semesterIndex, takenModuleListPanel);
         }
 
-        ObservableList<Module> modules = logic.listModules();
-        ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules, TIMELESS, ModulePanelType.TAKEN).timeless();
+        ObservableList<Module> modules = logic.listTakenModules();
+        ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules, ModulePanelType.TAKEN);
         takenModuleListPanels.add(MAX_NUMBER_SEMESTERS, takenModuleListPanel);
 
         timelessTakenModuleListPanel = new ModuleListPanel(FXCollections.emptyObservableList(),
-                TIMELESS, ModulePanelType.TAKEN).timeless();
+                ModulePanelType.TAKEN);
+        timelessTakenModuleListPanel.setSubTitle(TIMELESS);
 
         setPlaceholder(takenModulesPlaceholder, timelessTakenModuleListPanel);
     }
 
+    /**
+     * Initialises an empty suggested modules panel.
+     * The suggested modules placeholder is then initialised with the empty suggested
+     * mdoules panel.
+     */
     private void initSuggestedModulesPanel() {
         timelessSuggestedModuleListPanel = new ModuleListPanel(FXCollections.emptyObservableList(),
-                TIMELESS, ModulePanelType.SUGGESTED).timeless();
+                ModulePanelType.SUGGESTED);
+        timelessSuggestedModuleListPanel.setSubTitle(TIMELESS);
         setPlaceholder(suggestedModulesPlaceholder, timelessSuggestedModuleListPanel);
     }
 
@@ -280,7 +288,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @Subscribe
-    private void handleFindEvent(FindModuleEvent event) {
+    private void handleFindModuleEvent(FindModuleEvent event) {
         FindModulePanel panel = new FindModulePanel(event.getModule());
         setPlaceholder(multiPurposePanelPlaceholder, panel);
     }
@@ -300,15 +308,20 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @Subscribe
-    private void handleSuggestModule(SuggestModuleEvent event) {
+    private void handleSuggestModulesEvent(SuggestModulesEvent event) {
         ModuleListPanel panel = new ModuleListPanel(event.getModuleList(),
                 event.getIndex(), ModulePanelType.SUGGESTED);
         setPlaceholder(suggestedModulesPlaceholder, panel);
     }
 
     @Subscribe
-    private void handleListEvent(ListModuleEvent event) {
+    private void handleListModulesEvent(ListModulesEvent event) {
         ModuleListPanel panel = takenModuleListPanels.get(MAX_NUMBER_SEMESTERS);
+        if (event.getYear() == ALL_YEARS) {
+            panel.setSubTitle("All years");
+        } else {
+            panel.setSubTitle("Year " + event.getYear());
+        }
         setPlaceholder(takenModulesPlaceholder, panel);
     }
 

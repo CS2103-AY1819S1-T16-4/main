@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
-import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 
 import seedu.planner.commons.core.ComponentManager;
@@ -36,10 +35,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final List<SortedList<Module>> takenModulesPerSemester;
 
-    private final FilteredList<Module> takenModules;
-    private final FilteredList<Module> availableModules;
-
-    //@@author Hilda-Ang
+    private final SortedList<Module> takenModules;
+    private final SortedList<Module> availableModules;
 
     /**
      * Initializes a ModelManager with the given modulePlanner and userPrefs.
@@ -54,27 +51,23 @@ public class ModelManager extends ComponentManager implements Model {
 
         takenModulesPerSemester = new ArrayList<>();
         for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
-            takenModulesPerSemester.add(new SortedList<>(versionedModulePlanner.getTakenModules(i), (x, y) ->
+            takenModulesPerSemester.add(new SortedList<>(versionedModulePlanner.getTakenModulesForIndex(i), (x, y) ->
                     x.compareTo(y)));
         }
 
-        takenModules = new FilteredList<>(versionedModulePlanner.listTakenModules());
-        availableModules = new FilteredList<>(versionedModulePlanner.getAvailableModules());
+        takenModules = new SortedList<>(versionedModulePlanner.listTakenModules());
+        availableModules = new SortedList<>(versionedModulePlanner.getAvailableModules());
     }
 
     public ModelManager() {
         this(new ModulePlanner(), new UserPrefs());
     }
 
-    //@@author GabrielYik
-
     @Override
     public void setUpUserProfile(String major, Set<String> focusAreas) {
         versionedModulePlanner.setUserProfile(new UserProfile(major, focusAreas));
         indicateModulePlannerChanged();
     }
-
-    //@@author
 
     @Override
     public void resetData(ReadOnlyModulePlanner newData) {
@@ -136,8 +129,6 @@ public class ModelManager extends ComponentManager implements Model {
         return finalizedModules;
     }
 
-    //@@author RomaRomama
-
     @Override
     public void addModules(Set<Module> modules, int index) {
         Set<Module> finalizedModules = finalizeModules(modules);
@@ -165,18 +156,16 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void listTakenModulesYear(int year) {
-        versionedModulePlanner.listTakenModulesYear(year);
+        versionedModulePlanner.listTakenModulesForYear(year);
     }
 
     @Override
-    public ObservableList<Module> listModules() {
+    public ObservableList<Module> listTakenModules() {
         return FXCollections.unmodifiableObservableList(takenModules);
     }
 
-    //@@author GabrielYik
-
     @Override
-    public ObservableList<Module> getTakenModules(int index) {
+    public ObservableList<Module> getTakenModulesForIndex(int index) {
         return FXCollections.unmodifiableObservableList(takenModulesPerSemester.get(index));
     }
 
@@ -184,8 +173,6 @@ public class ModelManager extends ComponentManager implements Model {
     public ObservableList<Module> getAvailableModules() {
         return FXCollections.unmodifiableObservableList(availableModules);
     }
-
-    //@@author
 
     //=========== Undo/Redo =================================================================================
 

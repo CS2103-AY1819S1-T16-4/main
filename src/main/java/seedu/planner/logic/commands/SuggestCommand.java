@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 
 import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.core.Messages;
-import seedu.planner.commons.events.ui.SuggestModuleEvent;
+import seedu.planner.commons.events.ui.SuggestModulesEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -37,7 +37,7 @@ public class SuggestCommand extends Command {
     private int index;
 
     /**
-     * Creates a SuggestCommand to list modules for specified semester.
+     * Creates a SuggestCommand to list modules available for specified semester.
      */
     public SuggestCommand(int index) {
         this.index = index;
@@ -53,7 +53,7 @@ public class SuggestCommand extends Command {
 
         model.suggestModules(index);
         ObservableList<Module> moduleList = model.getAvailableModules();
-        EventsCenter.getInstance().post(new SuggestModuleEvent(moduleList, index));
+        EventsCenter.getInstance().post(new SuggestModulesEvent(moduleList, index));
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, index));
     }

@@ -12,6 +12,8 @@ import static seedu.planner.model.util.IndexUtil.isValidYear;
 
 import org.junit.Test;
 
+import seedu.planner.commons.util.Pair;
+
 public class IndexUtilTest {
 
     @Test
@@ -58,17 +60,17 @@ public class IndexUtilTest {
 
     @Test
     public void convertIndexToYearAndSemester_validIndex_success() {
-        assertEquals(convertIndexToYearAndSemester(0), "11");
-        assertEquals(convertIndexToYearAndSemester(1), "12");
-        assertEquals(convertIndexToYearAndSemester(2), "21");
-        assertEquals(convertIndexToYearAndSemester(4), "31");
-        assertEquals(convertIndexToYearAndSemester(6), "41");
+        assertEquals(convertIndexToYearAndSemester(0), new Pair(1, 1));
+        assertEquals(convertIndexToYearAndSemester(1), new Pair(1, 2));
+        assertEquals(convertIndexToYearAndSemester(2), new Pair(2, 1));
+        assertEquals(convertIndexToYearAndSemester(4), new Pair(3, 1));
+        assertEquals(convertIndexToYearAndSemester(6), new Pair(4, 1));
     }
 
     @Test
     public void convertIndexToYearAndSemester_invalidIndex_failure() {
-        assertEquals(convertIndexToYearAndSemester(-1), "00");
-        assertEquals(convertIndexToYearAndSemester(8), "00");
+        assertEquals(convertIndexToYearAndSemester(-1), new Pair(0, 0));
+        assertEquals(convertIndexToYearAndSemester(8), new Pair(0, 0));
     }
 
     @Test

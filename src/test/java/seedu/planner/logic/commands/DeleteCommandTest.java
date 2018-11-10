@@ -1,5 +1,6 @@
 package seedu.planner.logic.commands;
 
+import static seedu.planner.commons.core.Messages.MESSAGE_NOT_OFFERED_MODULES;
 import static seedu.planner.commons.util.CollectionUtil.formatMessage;
 import static seedu.planner.commons.util.CollectionUtil.getAnyOne;
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CS0000;
@@ -10,13 +11,13 @@ import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2040;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.planner.logic.commands.DeleteCommand.MESSAGE_DELETE_MODULES_SUCCESS;
+import static seedu.planner.logic.commands.DeleteCommand.MESSAGE_NON_EXISTENT_MODULES;
 
 import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
@@ -51,7 +52,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validModule_validModuleRemoved() {
+    public void execute_validModule_success() {
         Set<Module> moduleToDelete = Set.of(VALID_MODULE_CS1010);
         DeleteCommand deleteCommand = new DeleteCommand(moduleToDelete);
 
@@ -64,7 +65,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validModules_validModulesRemoved() {
+    public void execute_validModules_success() {
         Set<Module> modulesToDelete = Set.of(VALID_MODULE_CS1010, VALID_MODULE_CS1231);
         DeleteCommand deleteCommand = new DeleteCommand(modulesToDelete);
 
@@ -79,7 +80,7 @@ public class DeleteCommandTest {
     public void execute_notOfferedModule_throwsCommandException() {
         DeleteCommand deleteCommand = new DeleteCommand(Set.of(INVALID_MODULE_CS0000));
 
-        String expectedMessage = String.format(Messages.MESSAGE_NOT_OFFERED_MODULES, INVALID_MODULE_CS0000);
+        String expectedMessage = String.format(MESSAGE_NOT_OFFERED_MODULES, INVALID_MODULE_CS0000);
 
         assertCommandFailure(deleteCommand, model, commandHistory, expectedMessage);
     }
@@ -88,7 +89,7 @@ public class DeleteCommandTest {
     public void execute_nonExistentModule_throwsCommandException() {
         DeleteCommand deleteCommand = new DeleteCommand(Set.of(VALID_MODULE_CS2040));
 
-        String expectedMessage = String.format(Messages.MESSAGE_NON_EXISTENT_MODULES, VALID_MODULE_CS2040);
+        String expectedMessage = String.format(MESSAGE_NON_EXISTENT_MODULES, VALID_MODULE_CS2040);
 
         assertCommandFailure(deleteCommand, model, commandHistory, expectedMessage);
     }
@@ -98,13 +99,12 @@ public class DeleteCommandTest {
         Set<Module> modulesToDelete = Set.of(VALID_MODULE_CS1010, INVALID_MODULE_CS0000, VALID_MODULE_CS2040);
         DeleteCommand deleteCommand = new DeleteCommand(modulesToDelete);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_MODULES_SUCCESS, VALID_MODULE_CS1010);
-        expectedMessage += "\n" + String.format(Messages.MESSAGE_NOT_OFFERED_MODULES, INVALID_MODULE_CS0000);
-        expectedMessage += "\n" + String.format(Messages.MESSAGE_NON_EXISTENT_MODULES, VALID_MODULE_CS2040);
+        String expectedMessage = String.format(MESSAGE_DELETE_MODULES_SUCCESS, VALID_MODULE_CS1010)
+                + "\n" + String.format(MESSAGE_NOT_OFFERED_MODULES, INVALID_MODULE_CS0000)
+                + "\n" + String.format(MESSAGE_NON_EXISTENT_MODULES, VALID_MODULE_CS2040);
         expectedModel.deleteModules(Set.of(VALID_MODULE_CS1010));
         expectedModel.commitModulePlanner();
 
         assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
     }
-
 }

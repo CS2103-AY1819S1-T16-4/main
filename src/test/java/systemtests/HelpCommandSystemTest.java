@@ -1,10 +1,14 @@
 package systemtests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Test;
+
 import guitests.GuiRobot;
 import guitests.guihandles.HelpWindowHandle;
+import seedu.planner.logic.commands.HelpCommand;
 
 /**
  * A system test class for the help window, which contains interaction with other UI components.
@@ -17,10 +21,8 @@ public class HelpCommandSystemTest extends ModulePlannerSystemTest {
 
     private final GuiRobot guiRobot = new GuiRobot();
 
-    /*
     @Test
     public void openHelpWindow() {
-        // TODO: Uncomment this
 
         //use accelerator
         getCommandBox().click();
@@ -31,6 +33,8 @@ public class HelpCommandSystemTest extends ModulePlannerSystemTest {
         getMainMenu().openHelpWindowUsingAccelerator();
         assertHelpWindowOpen();
 
+        // TODO
+        /*
         getPersonListPanel().click();
         getMainMenu().openHelpWindowUsingAccelerator();
         assertHelpWindowOpen();
@@ -38,6 +42,7 @@ public class HelpCommandSystemTest extends ModulePlannerSystemTest {
         getBrowserPanel().click();
         getMainMenu().openHelpWindowUsingAccelerator();
         assertHelpWindowNotOpen();
+        */
 
         //use menu button
         getMainMenu().openHelpWindowUsingMenu();
@@ -52,20 +57,25 @@ public class HelpCommandSystemTest extends ModulePlannerSystemTest {
         getMainWindowHandle().focus();
 
         // assert that while the help window is open the UI updates correctly for a command execution
-        // executeCommand(SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        //TODO
+        /*
+        executeCommand(SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals("", getCommandBox().getInput());
         assertCommandBoxShowsDefaultStyle();
         assertNotEquals(HelpCommand.SHOWING_HELP_MESSAGE, getResultDisplay().getText());
         assertNotEquals(BrowserPanel.DEFAULT_PAGE, getBrowserPanel().getLoadedUrl());
+        assertListMatching(getPersonListPanel(), getModel().getFilteredPersonList());
+        */
 
         // assert that the status bar too is updated correctly while the help window is open
         // note: the select command tested above does not update the status bar
-        // executeCommand(DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        // TODO
+        /*
+        executeCommand(DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertNotEquals(StatusBarFooter.SYNC_STATUS_INITIAL, getStatusBarFooter().getSyncStatus());
+        */
     }
-    */
 
-    /*
     @Test
     public void help_multipleCommands_onlyOneHelpWindowOpen() {
         getMainMenu().openHelpWindowUsingMenu();
@@ -78,7 +88,6 @@ public class HelpCommandSystemTest extends ModulePlannerSystemTest {
 
         assertEquals(1, guiRobot.getNumberOfWindowsShown(HelpWindowHandle.HELP_WINDOW_TITLE));
     }
-    */
 
     /**
      * Asserts that the help window is open, and closes it after checking.

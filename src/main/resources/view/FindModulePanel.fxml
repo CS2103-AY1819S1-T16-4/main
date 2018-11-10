@@ -7,14 +7,14 @@
 
 <VBox fx:id="moduleDescription" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefWidth="186.0" spacing="5.0">
+      <HBox prefWidth="340.0" spacing="5.0">
          <children>
-            <Label fx:id="moduleCode" styleClass="moduleDescription_label_big" text="code" />
-            <Label fx:id="moduleName" styleClass="moduleDescription_label_big" text="name" />
+            <Label fx:id="moduleCode" styleClass="moduleDescription_label_big" text="code" wrapText="true" />
+            <Label fx:id="moduleName" styleClass="moduleDescription_label_big" text="name" wrapText="true" />
          </children>
       </HBox>
-      <Label fx:id="moduleType" styleClass="moduleDescription_label_small" text="module type" />
-      <Label fx:id="creditCount" styleClass="moduleDescription_label_small" text="credit count" />
+      <Label fx:id="moduleType" styleClass="moduleDescription_label_small" text="module type" wrapText="true" />
+      <Label fx:id="creditCount" styleClass="moduleDescription_label_small" text="credit count" wrapText="true" />
       <HBox fillHeight="false" minWidth="340.0" prefWidth="340.0" spacing="1.0">
          <children>
             <Label fx:id="preclusion" minWidth="-Infinity" styleClass="moduleDescription_label_small" text="preclusions" />
@@ -27,8 +27,8 @@
             <FlowPane fx:id="prerequisites" />
          </children>
       </HBox>
-      <Label fx:id="divider" text="divider" />
-      <Label fx:id="fullDescription" styleClass="moduleDescription_label_big" text="full description" />
+      <Label fx:id="divider" text="divider" wrapText="true" />
+      <Label fx:id="fullDescription" styleClass="moduleDescription_label_big" text="full description" wrapText="true" />
       <Label fx:id="description" styleClass="moduleDescription_label_small" text="module description" wrapText="true" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>

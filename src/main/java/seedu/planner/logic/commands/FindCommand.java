@@ -1,13 +1,13 @@
 package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.planner.commons.core.Messages.MESSAGE_NOT_OFFERED_MODULES;
 import static seedu.planner.commons.util.CollectionUtil.getAnyOne;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 
 import java.util.Set;
 
 import seedu.planner.commons.core.EventsCenter;
-import seedu.planner.commons.core.Messages;
 import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
@@ -42,7 +42,7 @@ public class FindCommand extends Command {
 
         if (!model.isModuleOffered(moduleToFind)) {
             throw new CommandException(String.format(
-                    Messages.MESSAGE_INVALID_MODULES, moduleToFind));
+                    MESSAGE_NOT_OFFERED_MODULES, moduleToFind));
         }
 
         Set<Module> finalizedModules = model.finalizeModules(Set.of(moduleToFind));

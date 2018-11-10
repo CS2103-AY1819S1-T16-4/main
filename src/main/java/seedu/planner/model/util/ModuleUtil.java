@@ -25,8 +25,6 @@ public class ModuleUtil {
         return code.matches(MODULE_CODE_REGEX);
     }
 
-    //@@author
-
     //@@author Hilda-Ang
 
     private static boolean hasNotTakenModule(List<Module> modulesTaken, Module moduleToCheck) {
@@ -93,10 +91,10 @@ public class ModuleUtil {
      * @param module       moduleToCheck The {@code Module} to be checked.
      * @return True if all the prerequisites are fulfilled and no preclusion has been fulfilled.
      */
-    public static boolean isModuleAvailableToTake(List<Module> modulesTaken, List<Module> modulesTakenUntilIndex,
+    public static boolean isModuleAvailableToTake(List<Module> modulesTaken, List<Module> modulesTakenBeforeIndex,
                                                   Module module) {
         return hasNotTakenModule(modulesTaken, module)
-                && hasFulfilledAllPrerequisites(modulesTakenUntilIndex, module)
+                && hasFulfilledAllPrerequisites(modulesTakenBeforeIndex, module)
                 && hasNotFulfilledAnyPreclusions(modulesTaken, module);
     }
 

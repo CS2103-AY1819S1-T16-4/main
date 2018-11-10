@@ -1,7 +1,5 @@
 package seedu.planner.model.module;
 
-//@@author Hilda-Ang //@@author GabrielYik
-
 import java.util.Objects;
 
 import com.google.common.collect.ImmutableList;
@@ -24,6 +22,7 @@ public class Module implements Comparable<Module> {
      * @param code The {@code Module} code
      */
     public Module(String code) {
+        type = ModuleType.PROGRAMME_REQUIREMENTS;
         information = ModuleInfo.getFromModuleCode(code).orElse(new ModuleInfo(code));
     }
 

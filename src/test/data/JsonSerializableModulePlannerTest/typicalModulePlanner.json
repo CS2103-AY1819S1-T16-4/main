@@ -1,0 +1,59 @@
+{
+  "semesters" : [ {
+    "index" : 1,
+    "year" : 1,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ {
+      "type" : "Programme Requirements",
+      "moduleCode" : "CS1231"
+    }, {
+      "type" : "Programme Requirements",
+      "moduleCode" : "CS1010"
+    } ]
+  }, {
+    "index" : 2,
+    "year" : 1,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ {
+      "type" : "Programme Requirements",
+      "moduleCode" : "CS2030"
+    }, {
+      "type" : "Programme Requirements",
+      "moduleCode" : "CS2040"
+    } ]
+  }, {
+    "index" : 1,
+    "year" : 2,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  }, {
+    "index" : 2,
+    "year" : 2,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  }, {
+    "index" : 1,
+    "year" : 3,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  }, {
+    "index" : 2,
+    "year" : 3,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  }, {
+    "index" : 1,
+    "year" : 4,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  }, {
+    "index" : 2,
+    "year" : 4,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  } ],
+  "userProfile" : {
+    "major" : "COMPUTER_SCIENCE",
+    "focusAreas" : [ ]
+  }
+}

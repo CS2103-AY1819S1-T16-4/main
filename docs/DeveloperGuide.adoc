@@ -1,4 +1,4 @@
-= Module Planner - Developer Guide
+﻿= Module Planner - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -224,6 +224,8 @@ The `Model`,
 e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+// tag::storage[]
+
 [[Design-Storage]]
 === Storage component
 
@@ -236,6 +238,11 @@ The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
 * can save `ReadOnlyModulePlanner` object in json format and read it back.
+
+.Interactions inside the Storage component for whenever `ModulePlannerChangedEvent` is fired.
+image::StorageSequenceDiagram.png[width="800"]
+
+// end::storage[]
 
 [[Design-Commons]]
 === Common classes
@@ -298,11 +305,32 @@ Also, all currently suggested modules to the user might too be inaccurate.
 
 
 === Delete feature
-==== Current Implementation
 
-The current delete mechanism targets valid modules and is facilitated by `ModulePlanner`.
+==== Current Implementation
+===== About
+The current delete mechanism is facilitated by `ModulePlanner`.
 `ModulePlanner` stores a list of all the semesters the user has taken and will take.
-In turn, `Semester` stores a list of the modules the user has taken or will take.
+In turn, `Semester` stores a list of the modules the user has taken, is currently taking or will be taking.
+
+===== Process
+When a module is deleted, `ModulePlanner` will go through every module added after the semester which the
+module is deleted from and checks if those modules now have prerequisites that are not fulfilled. If there
+are now prerequisites not fulfilled for the modules checked, they too are deleted and the process repeats for them.
+For better addressing, this process will be defined as `Iterative Deletion`.
+
+===== Input
+The arguments given to the mechanism are modules, which can be a mix of valid and invalid modules.
+A valid module is defined as one that has the correct module code format, is offered by the education institute
+and has been taken, is currently being taken or will be taken by the user (is stored in the module planner).
+An invalid module is defined as the opposite.
+
+===== Result
+Out of all these arguments, only the valid modules will be deleted from the module planner. The invalid modules
+are collected and made known to the user through the `ResultDisplay`. They are separated by their types:
+**not offered** by the education institute and **non-existent** in the module planner. Modules with invalid module
+code formats are filtered out by the `DeleteCommandParser` and hence do not appear as part of the message shown in
+the `ResultDisplay`.
+
 
 `ModulePlanner` uses the following operation to implement the delete mechanism:
 
@@ -310,49 +338,133 @@ In turn, `Semester` stores a list of the modules the user has taken or will take
 
 The above operation is exposed in the `Model` interface as `Model#deleteModules(List<Module> modules)`
 
-[NOTE]
-A valid module is one that exists, has its module code specified correctly and must have not been taken by the user.
-
 The following sequence diagram shows how the delete operation works:
 
 image::DeleteSequenceDiagram.png[width="650"]
 
 Below are some usage scenarios.
-For convenience, let's define two modules: a valid module `MA1521` and an invalid module `MA1234`.
+For convenience, let's define some valid modules: `CS1010`, `CS2030` and `CS2040`
+and an invalid module `CS0000`. `CS1010` is a prerequisite for `CS2030` and `CS2040`.
+Let's also initialise a module planner with those valid modules: +
+YEAR 1 SEMESTER 1: [`CS1010`] +
+YEAR 1 SEMESTER 2: [`CS2030`, `CS2040`] +
+...
 
-===== All Valid Modules
-The user executes `delete MA1521` command to delete the `Module` with the module code `MA1521`.
+===== A Valid Module
+The user executes `delete CS1010` command to delete the valid module `CS1010`.
 The `delete` command calls `Model#deleteModules(...)`, which removes the module from the semester where it is found.
+Iterative Deletion is then applied. Since `CS2030` and `CS2040` have `CS1010` as a prerequisite, if `CS1010` is
+deleted, `CS2030` and `CS2040` will too be deleted.
+
+The module planner now has this state: +
+[`EMPTY`]
 
 [NOTE]
 This applies to when more than one valid module is supplied.
 
-===== All Invalid Modules
-The user executes `delete MA1234` command. However, since that module does not exist,
-the command fails and `Model#deleteModules(...)` will not be called.
-The user will be informed of the invalid module.
+===== An Invalid Module
+The user executes `delete CS0000` command. However, since that module is not offered by the education institute,
+the command fails and `Model#deleteModules(...)` will not be called. The user will be informed of the invalid module.
 
 [NOTE]
 This applies to where more than one invalid module is supplied.
 
-===== Some Invalid Modules
-The user executes `delete MA1521 MA1234`. However, only the module `MA1521` is valid.
-In this case, the command will not fail entirely and only the valid module `MA1521` will be deleted.
-The user will be informed of the invalid module.
+===== Mix of Valid and Invalid Modules
+The user executes `delete CS1010 CS0000`. However, only the module `CS1010` is valid.
+In this case, `Model#deleteModules(...)` is still called, but only the valid module `CS1010` will be deleted and
+Iterative Deletion applied. The user will be informed of the invalid module.
+
+[NOTE]
+This applies to where more than one valid and invalid modules are supplied.
 
 ===== No Modules
 The user executes `delete`. As the command has no supplied arguments, the command will fail
 and the user will be informed to input arguments.
 
 ==== Design Considerations
+===== Aspect: Argument leniency
+* Alternative 1: Entirely reject modules even if one is invalid.
+** Pros: Simple logic and requires minimal code.
+** Cons: Not user friendly. The user now has to expend additional effort to edit the modules inputted.
 
-===== Type of Modules Allowed
-Only modules which the user has not taken are allowed to be deleted. There are several reasons:
+* Alternative 2 (current choice): Accept the valid modules even if one is invalid.
+** Pros: User friendly. The user gets to add in the valid modules and is notified of which modules are invalid and why.
+** Cons: More complex. Requires filtering logic.
 
-1. To mirror the real world - it is impossible for a student to void a module that has already been taken.
+===== Aspect: Iterative Deletion
+* Alternative 1 (current choice): Iterate through the modules in each semester for all years. For each semester, the modules
+that do not have their prerequisite fulfilled are marked as invalid and are deleted.
+** Pros: Simple logic and requires minimal code.
+** Cons: Although the number of modules in the module planner is weakly limited by the education institute (students are only
+   required to take about 40 modules to earn a degree), the algorithm is still relatively slow.
 
-2. To prevent undefined behaviour - deleting a module already taken might make all future modules not yet taken to be inaccurately planned.
-Also, all currently suggested modules to the user might too be inaccurate.
+* Alternative 2: Construct a direct acyclic graph for all the modules in the module planner
+** Pros: Fast and efficient. There is no need to iterative through several semesters to mark modules as invalid and then
+   deleting them.
+** Cons: More complex. Due to time constraints during the project, this approach was not taken.
+
+
+=== Find feature
+==== Current Implementation
+===== About
+The find mechanism is facilitated by the posting and handling of events. The `FindCommand#execute(...)` is the event poster
+and the `MainWindow#handleFindEvent(...)` is the event handler. `find` allows the user to retrieve more information about
+a specified module.
+
+===== Input
+The argument given to the mechanism is a module, which has to be offered by the education institute. If a module is not offered,
+the command fails.
+
+===== Result
+The information about the module is retrieved and displayed in the `MultiPurposePanel`.
+
+The following sequence diagram shows how the find operation works:
+
+image::FindSequenceDiagram.png[width="650"]
+
+Below are some usage scenarios.
+
+==== Module is Offered
+The user executes `find c/CS1010`. The `MultiPurposePanel` displays the retrieved module information.
+
+==== Module is Not Offered
+The user executes `find c/CS0000`. The `MultiPurposePanel` does not display anything.
+
+
+=== Goto feature
+==== Current Implementation
+===== About
+The goto mechanism is facilitated by the posting and handling of events. The `GoToCommand#execute(...)` is the event poster
+and the `MainWindow#handleGoToEvent(...)` is the event handler. `goto` allows the user to switch between time periods in the ui.
+A time period is defined as a year-semester pair [YEAR, SEMESTER].
+
+===== Input
+The argument given to the mechanism is a year-semester pair. The year has to be between 1 and 4, and the semester has to be
+between 1 and 2.
+
+===== Result
+The ui switches time periods to the specified. The modules taken in the time period is displayed too.
+
+The following sequence diagram shows how the goto operation works:
+
+image::GoToSequenceDiagram.png[width="650"]
+
+Below are some usage scenarios.
+As a gentle reminder, a year is valid if it is between 1 and 4, and a semester is valid if it is between 1 and 2.
+
+===== Valid Year and Semester
+The user executes `goto y/1 s/1`. Since both the year and semester are valid, the ui changes accordingly.
+
+===== Invalid Year and Valid Semester
+The user executes `goto y/5 s/1`. Since only the semester is valid, command fails and the ui does not change.
+
+[NOTE]
+This applies to when the year is valid but the semester is invalid.
+
+[NOTE]
+It is possible that some users take a 5th year and beyond in their education institute. However, as of now, Module Planner does not
+support years beyond the 4th.
+
 
 === List feature
 ==== Current Implementation
@@ -360,25 +472,36 @@ Also, all currently suggested modules to the user might too be inaccurate.
 The list mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`-s and each `Semester` stores a list `modulesTaken` containing modules that the user has taken or is planning to take.
 It implements the following operation:
 
-* `ModulePlanner#listModulesTaken(int index)` -- Retrieves a list of modules from the `Semester` specified by `index`.
+* `ModulePlanner#listTakenModules()` -- Retrieves the list `takenModules`.
+* `ModulePlanner#listTakenModulesAll()` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in every `Semester`.
+* `ModulePlanner#listTakenModulesForYear(int year)` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in the `Semester`-s that belongs to the specified year.
 
-The operation is exposed in `Model` interface as `Model#getFilteredTakenModuleList(int index)`.
+The operation is exposed in `Model` interface as `Model#listTakenModules()`, `Model#listTakenModulesAll()`, and `Model#listTakenModulesForYear(int year)`.
 
 [NOTE]
 A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
 
 Below is an example usage scenario and how the list mechanism works.
 
-Step 1. The user launches the application. `ModulePlanner` is initialised with 8 `Semester` objects in `List<Module> semesters`.
+Step 1. User launches the application. `ModulePlanner` is initialised with 8 `Semester` objects in `List<Module> semesters`.
 
-Step 2. The user executes `add y/1 s/1 CS1231`. The `add` command inserts `Module` CS1231 to the list `modulesTaken` for `Semester` object with index 0.
+Step 2. User executes `add y/1 s/1 c/CS1231`. The `add` command inserts `Module` CS1231 to the list `modulesTaken` for `Semester` object with index 0.
 
-Step 3. The user wants to see the list of modules for year 1 semester 1 by executing `list y/1 s/1`. The `list` command parses `y/1 s/1` to index 0 and calls `Model#getFilteredTakenModuleList(int index)`.
-It will execute `ModulePlanner#listModulesTaken(int index)` which will call `Semester#getModulesTaken()` in the relevant `Semester`. The returned result will be a list of modules and will be displayed to the user.
+Step 3. User executes `add y/2 s/1 c/CS1010`. The `add` command inserts `Module` CS1010 to the list `modulesTaken` for `Semester` object with index 2.
 
-The following sequence diagram shows how the list operation works:
+Step 4. User wants to see the list of modules taken for year 1 by executing `list y/1`. The `list` command updates `takenModules` to contain list of modules taken in year 1 and retrieves it.
+A list containing CS1231 will be displayed to the user.
 
-image::ListSequenceDiagram.png[width="800"]
+Step 5. User wants to see the list of modules taken for all years by executing `list`. The `list` command updates `takenModules` to contain list of modules taken in all years and retrieves it.
+A list containing CS1231 and CS1010 will be displayed to the user.
+
+The following sequence diagram shows how the list operation when a valid year is specified:
+
+image::ListSequenceDiagram_1.png[width="800"]
+
+The following sequence diagram shows how the list operation when no year is specified:
+
+image::ListSequenceDiagram_2.png[width="800"]
 
 ==== Design Considerations
 
@@ -389,6 +512,81 @@ image::ListSequenceDiagram.png[width="800"]
 * **Alternative 2:** Saves all commands that modify list of modules without applying it and updates the list based on the commands only when it is retrieved upon `list` command.
 ** Pros: May be more effective in terms of running time because it only modifies the list when needed.
 ** Cons: Implementation will be more complicated as we have to store all commands that modify the list.
+
+=== Suggest feature
+==== Current Implementation
+
+The suggest mechanism displays a list of modules available in the specified index to the user, where index represents the year and semester that the user is asking suggestions for.
+It is supported by an internal list `availableModules` in `ModulePlanner`, which is regenerated after every successful execution of commands that modify `ModulePlanner` (`add`, `delete`, `clear`, etc.) and `suggest` command.
+The list `availableModules` can be retrieved through `Model#getAvailableList` using `suggest` command, which takes in one argument: a valid index that corresponds to a specific year and semester.
+
+[NOTE]
+A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
+
+Below is an example usage scenario and how the suggest mechanism works.
+
+*Step 1.* User launches the application and `ModulePlanner` is initialized.
+
+*Step 2.* User executes `suggest y/1 s/1`. The `suggest` command updates `availableModules` to a newly generated list of available modules for index 0 an stores index 0 as `availableIndex` in `ModulePlanner`. It then retrieves `availableModules` and displays it to user.
+
+*Step 3.* User executes `add y/1 s/2 c/CS1010`. The `add` command performs adding a module and updates `availableModules` to a newly generated list of available modules for the stored index 0. The suggested modules list shows an updated list of available modules in year 1 semester 1 to the user.
+Only `suggest` command will change the index (year and semester) to be displayed by the suggested modules list, other commands will only show an updated list for the last index displayed by `suggest`.
+
+*Step 4.* User executes `suggest y/1 s/2`. The `suggest` command updates `availableModules` to a newly generated list of available modules for index 1 an stores index 1 as `availableIndex` in `ModulePlanner`. It then retrieves `availableModules` and displays list of available modules in year 1 semester 2 to user.
+
+Below is how the list of available modules is generated.
+
+The method `ModulePlanner#generateAvailableModules(int index)` is called by `ModulePlanner#updateModulesAvailable`, which sets the content of `availableModules` to be the list of modules returned by `generateAvailableModules(index)`, with index being  the stored `availableIndex`.
+
+----
+private List<Module> generateAvailableModules(int index) {
+    List<Module> modulesAvailable = new ArrayList<>();
+    List<Module> modulesTaken = getAllModulesTaken();
+    List<Module> modulesTakenBeforeIndex = getAllModulesTakenBeforeIndex(index);
+    List<Module> allModules = getAllModulesFromStorage();
+
+    for (Module m : allModules) {
+        if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenBeforeIndex, m)) {
+            modulesAvailable.add(m);
+        }
+    }
+
+    sortAvailableModules(modulesAvailable, userProfile);
+
+    return modulesAvailable;
+}
+----
+
+The method `generateAvailableModules` retrieves all modules from the storage and performs availability checking on each of them. The available modules are put into a list which is then sorted such that core modules are put on top, followed by general education modules and unrestricted electives.
+The availability checking is done by the following method.
+
+----
+public static boolean isModuleAvailableToTake(List<Module> modulesTaken, List<Module> modulesTakenBeforeIndex, Module module) {
+    return hasNotTakenModule(modulesTaken, module)
+            && hasFulfilledAllPrerequisites(modulesTakenBeforeIndex, module)
+            && hasNotFulfilledAnyPreclusions(modulesTaken, module);
+}
+----
+
+A sample scenario:
+Module CS2030 has a prerequisite CS1010 and a preclusion CS1020. User has taken CS1010 in year 1 semester 2 and has not taken CS1020 or CS2030.
+
+* Executing `suggest y/2 s/1` will display CS2030 as one of the available modules, as user has fulfilled all prerequisites of CS2030 before year 2 semester 1 and has not taken any preclusion or the module itself.
+* Executing `suggest y/1 s/1` will *not* display CS2030 in the list of available modules, as user has not fulfilled all the prerequisites before year 1 semester 1 (user has only fulfilled CS1010 in the semester after).
+
+The following sequence diagram shows how the suggest operation works:
+
+image::SuggestSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Aspect: How list of available modules is regenerated
+* **Alternative 1 (current choice):** Regenerates list of available modules after every successful execution of commands that modify `ModulePlanner` and `suggest` command.
+** Pros: Easy to implement.
+** Cons: May have performance issue in terms of running time because list is regenerated even if there is no change to the content.
+* **Alternative 2:** Regenerates list of available module only after successful execution of commands that modify the content of the list of available modules.
+** Pros: May be more effective in terms of running time because it only regenerates the list when needed.
+** Cons: Implementation will be more complicated as we have to check whether a command modifies the list.
 
 // tag::undoredo[]
 === Undo/Redo feature
@@ -512,6 +710,7 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 * `INFO` : Information showing the noteworthy actions by the App
 * `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
+// tag::moduleinfo[]
 === Retrieval and Use of Module Information
 
 Information of a NUS module such as module code, module credit and prerequisite modules are stored in `ModuleInfo` class.
@@ -536,6 +735,7 @@ convert the strings into `ModuleInfo`s as well before we can start querying prer
 For command implementer, you can access the complete list of `ModuleInfo` from `ModuleInfo#getModuleInfoList()`.
 You can convert a module code string to a `ModuleInfo` object by passing the string to
 `ModuleInfo#getFromModuleCode(String code)`.
+// end::moduleinfo[]
 
 [[Implementation-Configuration]]
 === Configuration

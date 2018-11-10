@@ -50,8 +50,6 @@ public interface Model {
      */
     void deleteModules(Set<Module> modules);
 
-    //@@author RomaRomama
-
     /**
      * Add set of modules into the specified semester
      *
@@ -63,15 +61,31 @@ public interface Model {
     ObservableMap<DegreeRequirement, int[]> status();
 
     //@@author Hilda-Ang
+    /**
+     * Displays modules that are available to the user in the specified index, in the list of suggested modules.
+     *
+     * @param index An integer between 0 to 7 inclusive, signifying year and semester to be suggested.
+     */
     void suggestModules(int index);
 
+    /**
+     * Displays all modules that user has added in every semester.
+     */
     void listTakenModulesAll();
 
+    /**
+     * Displays all modules that the user has added to a specified year.
+     *
+     * @param year A valid integer between 1 to 4 inclusive, signifying year to be listed.
+     */
     void listTakenModulesYear(int year);
 
-    ObservableList<Module> listModules();
-
-    // @@author rongjiecomputer
+    /**
+     * Retrieves a list containing modules that have been taken (added to ModulePlanner) by the user.
+     *
+     * @return An unmodifiable view of modules taken by the user.
+     */
+    ObservableList<Module> listTakenModules();
 
     /**
      * Retrieves the actual module information of the {@code modules}
@@ -84,15 +98,20 @@ public interface Model {
      */
     Set<Module> finalizeModules(Set<Module> modules);
 
-    //@@author GabrielYik
+    /**
+     * Retrieves an unmodifiable view of the modules taken for (added to) a specified index.
+     *
+     * @param index An integer between 0 to 7 inclusive.
+     * @return An unmodifiable list of modules taken for index.
+     */
+    ObservableList<Module> getTakenModulesForIndex(int index);
 
-    /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getTakenModules(int index);
-
-    /** Returns an unmodifiable view of the filtered module list */
+    /**
+     * Retrieves an unmodifiable view of the modules taken for (added to) a specified index.
+     *
+     * @return An unmodifiable list of all modules that the user is available to take.
+     */
     ObservableList<Module> getAvailableModules();
-
-    //@@author
 
     /**
      * Returns true if the model has previous planner book states to restore.

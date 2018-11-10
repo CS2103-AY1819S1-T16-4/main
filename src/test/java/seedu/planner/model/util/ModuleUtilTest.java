@@ -5,7 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.model.util.ModuleUtil.isModuleAvailableToTake;
 import static seedu.planner.testutil.TypicalModules.CS1010;
-import static seedu.planner.testutil.TypicalModules.CS1020;
+import static seedu.planner.testutil.TypicalModules.CS1231;
 import static seedu.planner.testutil.TypicalModules.CS2040;
 import static seedu.planner.testutil.TypicalModules.CS2103T;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
@@ -53,7 +53,7 @@ public class ModuleUtilTest {
     public void isModuleAvailableToTake_moduleNotAvailable_returnsFalse() {
         List<Module> modules = new ArrayList<>(getTypicalModules());
         assertFalse(isModuleAvailableToTake(new ArrayList<>(), new ArrayList<>(), CS2040));
-        assertFalse(isModuleAvailableToTake(modules, modules, CS1020));
+        assertFalse(isModuleAvailableToTake(modules, modules, CS1231));
         assertFalse(isModuleAvailableToTake(modules, new ArrayList<>(), CS2040));
     }
 
