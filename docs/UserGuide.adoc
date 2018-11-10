@@ -35,12 +35,12 @@ image::Ui.png[width="790"]
 .The labelled page
 image::UiLabelled.png[width="790"]
 +
-.. `Input Box`: input commands here.
-.. `Result Display`: displays command results and other associated messages.
-.. `Time Period`: displays the year and semester you are currently viewing.
-.. `Taken Modules Panel`: lists modules that you put into the specified time period.
-.. `Suggested Modules Panel`: lists modules that suggested to you for that time period.
-.. `Multipurpose Panel`: displays results for the `Find` and `Status` commands.
+.. Input Box: input commands here.
+.. Result Display: displays command results and other associated messages.
+.. Time Period: displays the year and semester you are currently viewing.
+.. Taken Modules Panel: lists modules that you put into the specified time period.
+.. Suggested Modules Panel: lists modules that suggested to you for that time period.
+.. Multipurpose Panel: displays results for the `Find` and `Status` commands.
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
@@ -167,7 +167,7 @@ Example:
 
 * `find c/CS1010`
 
-You should see the module information for CS1010 in the `Multipurpose Panel.
+You should see the module information for CS1010 in the Multipurpose Panel.
 
 image::find.png[width="790"]
 
