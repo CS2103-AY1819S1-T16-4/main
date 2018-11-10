@@ -145,6 +145,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         initTakenModulesPanel();
         initSuggestedModulesPanel();
+        initListedModulesPanel();
 
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -175,16 +176,27 @@ public class MainWindow extends UiPart<Stage> {
             takenModuleListPanels.add(semesterIndex, takenModuleListPanel);
         }
 
-        ObservableList<Module> modules = logic.listTakenModules();
-        ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules, ModulePanelType.TAKEN);
-        takenModuleListPanels.add(MAX_NUMBER_SEMESTERS, takenModuleListPanel);
-
         timelessTakenModuleListPanel = new ModuleListPanel(FXCollections.emptyObservableList(),
                 ModulePanelType.TAKEN);
         timelessTakenModuleListPanel.setSubTitle(TIMELESS);
 
         setPlaceholder(takenModulesPlaceholder, timelessTakenModuleListPanel);
     }
+
+    //@@author Hilda-Ang
+
+    /**
+     * Initialises the listed modules panel. The listed modules panel is a variation
+     * of the taken modules panel, whereby the former collates taken modules from semesters
+     * within a year or within all years.
+     */
+    private void initListedModulesPanel() {
+        ObservableList<Module> modules = logic.listTakenModules();
+        ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules, ModulePanelType.TAKEN);
+        takenModuleListPanels.add(MAX_NUMBER_SEMESTERS, takenModuleListPanel);
+    }
+
+    //@@author GabrielYik
 
     /**
      * Initialises an empty suggested modules panel.
