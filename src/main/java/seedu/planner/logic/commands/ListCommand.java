@@ -5,7 +5,7 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.planner.model.util.IndexUtil.VALUE_NOT_AVAILABLE;
 
 import seedu.planner.commons.core.EventsCenter;
-import seedu.planner.commons.events.ui.ListModuleEvent;
+import seedu.planner.commons.events.ui.ListModulesEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 
@@ -42,12 +42,12 @@ public class ListCommand extends Command {
 
         if (year == VALUE_NOT_AVAILABLE) {
             model.listTakenModulesAll();
-            EventsCenter.getInstance().post(new ListModuleEvent(year));
+            EventsCenter.getInstance().post(new ListModulesEvent(year));
             return new CommandResult(MESSAGE_SUCCESS_ALL);
         }
 
         model.listTakenModulesYear(year);
-        EventsCenter.getInstance().post(new ListModuleEvent(year));
+        EventsCenter.getInstance().post(new ListModulesEvent(year));
         return new CommandResult(String.format(MESSAGE_SUCCESS_YEAR, year));
     }
 
