@@ -133,11 +133,6 @@ public class ModelManager extends ComponentManager implements Model {
         indicateModulePlannerChanged();
     }
 
-    /**
-     * Displays modules that is available to the user in the specified index, in the list of suggested modules.
-     *
-     * @param index An integer between 0 to 7 inclusive, signifying year and semester to be suggested.
-     */
     @Override
     public void suggestModules(int index) {
         versionedModulePlanner.suggestModules(index);
@@ -145,50 +140,26 @@ public class ModelManager extends ComponentManager implements Model {
 
     //=========== Module List Accessors =============================================================
 
-    /**
-     * Displays all modules that user has added in every semester.
-     */
     @Override
     public void listTakenModulesAll() {
         versionedModulePlanner.listTakenModulesAll();
     }
 
-    /**
-     * Displays all modules that the user has added to a specified year.
-     *
-     * @param year A valid integer between 1 to 4 inclusive, signifying year to be listed.
-     */
     @Override
     public void listTakenModulesYear(int year) {
         versionedModulePlanner.listTakenModulesForYear(year);
     }
 
-    /**
-     * Retrieves a list containing modules that have been taken (added to ModulePlanner) by the user.
-     *
-     * @return An unmodifiable view of modules taken by the user.
-     */
     @Override
     public ObservableList<Module> listTakenModules() {
         return FXCollections.unmodifiableObservableList(takenModules);
     }
 
-    /**
-     * Retrieves an unmodifiable view of the modules taken for (added to) a specified index.
-     *
-     * @param index An integer between 0 to 7 inclusive.
-     * @return An unmodifiable list of modules taken for index.
-     */
     @Override
     public ObservableList<Module> getTakenModulesForIndex(int index) {
         return FXCollections.unmodifiableObservableList(takenModulesPerSemester.get(index));
     }
 
-    /**
-     * Retrieves an unmodifiable view of the modules taken for (added to) a specified index.
-     *
-     * @return An unmodifiable list of all modules that the user is available to take.
-     */
     @Override
     public ObservableList<Module> getAvailableModules() {
         return FXCollections.unmodifiableObservableList(availableModules);

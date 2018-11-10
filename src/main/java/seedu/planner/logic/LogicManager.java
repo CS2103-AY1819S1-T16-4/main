@@ -42,13 +42,11 @@ public class LogicManager extends ComponentManager implements Logic {
 
     //@@author GabrielYik
 
-    /** Returns an unmodifiable view of the list of taken modules for a specific index */
     @Override
     public ObservableList<Module> getTakenModulesForIndex(int index) {
         return model.getTakenModulesForIndex(index);
     }
 
-    /** Returns an unmodifiable view of the list of available modules */
     @Override
     public ObservableList<Module> getAvailableModules() {
         return model.getAvailableModules();
@@ -56,7 +54,6 @@ public class LogicManager extends ComponentManager implements Logic {
 
     //@@author
 
-    /** Returns an unmodifiable view of the list of taken modules */
     @Override
     public ObservableList<Module> listTakenModules() {
         return model.listTakenModules();

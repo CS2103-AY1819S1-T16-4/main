@@ -208,11 +208,6 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         userProfile = u;
     }
 
-    /**
-     * Returns a copy of all the {@code Semester}s.
-     *
-     * @return A list of {@code Semester}s
-     */
     @Override
     public List<Semester> getSemesters() {
         List<Semester> semestersCopy = new ArrayList<>();
@@ -240,13 +235,6 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         }
     }
 
-    /**
-     * Returns all {@code Module}s taken in the {@code Semester} wrapped in an
-     * {@code ObservableList}.
-     *
-     * @param index An integer between 0 to 7 inclusive, signifying a year and semester.
-     * @return A list of modules taken in the semester.
-     */
     @Override
     public ObservableList<Module> getTakenModulesForIndex(int index) {
         return FXCollections.unmodifiableObservableList(
@@ -281,11 +269,6 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         setTakenModules(modules);
     }
 
-    /**
-     * Retrieves {@code Module}s taken wrapped in an {@code ObservableList}.
-     *
-     * @return An {@code ObservableList} containing he {@code Module}s that user has taken.
-     */
     @Override
     public ObservableList<Module> listTakenModules() {
         return takenModules;
@@ -320,11 +303,6 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         updateAvailableModules();
     }
 
-    /**
-     * Retrieves all {@code Module}s available wrapped in an {@code ObservableList}.
-     *
-     * @return An {@code ObservableList} containing all the {@code Module}s available to be taken.
-     */
     @Override
     public ObservableList<Module> getAvailableModules() {
         updateAvailableModules();
