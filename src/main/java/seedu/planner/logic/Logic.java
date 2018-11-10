@@ -19,13 +19,14 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    ObservableList<Module> listModules();
-
-    /** Returns an unmodifiable view of the list of taken modules */
-    ObservableList<Module> getTakenModules(int semesterIndex);
+    /** Returns an unmodifiable view of the list of taken modules for a specific index*/
+    ObservableList<Module> getTakenModulesForIndex(int index);
 
     /** Returns an unmodifiable view of the list of available modules */
     ObservableList<Module> getAvailableModules();
+
+    /** Returns an unmodifiable view of the list of taken modules */
+    ObservableList<Module> listTakenModules();
 
     /** Returns the list of input entered by the user, encapsulated in a {@code ListElementPointer} object */
     ListElementPointer getHistorySnapshot();

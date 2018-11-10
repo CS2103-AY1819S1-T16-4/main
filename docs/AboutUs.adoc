@@ -13,7 +13,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 
 === Gabriel Yik
 image::gabrielyik.png[width="150", align="left"]
-{empty} [https://github.com/GabrielYik[github]]
+{empty} [https://github.com/GabrielYik[github]] [<<gabrielyik#, portfolio>>]
 
 Role: Developer
 
@@ -23,7 +23,7 @@ Responsibilities: UI
 
 === Hilda Anggraeni
 image::hilda-ang.png[width="150", align="left"]
-{empty}[http://github.com/Hilda-Ang[github]]
+{empty}[http://github.com/Hilda-Ang[github]] [<<hilda-ang#, portfolio>>]
 
 Role: Developer
 
@@ -33,7 +33,7 @@ Responsibilities: Code Quality
 
 === Loo Rong Jie
 image::rongjiecomputer.png[width="150", align="left"]
-{empty}[http://github.com/rongjiecomputer[github]]
+{empty}[http://github.com/rongjiecomputer[github]] [<<rongjiecomputer#, portfolio>>]
 
 Role: Developer
 
@@ -43,7 +43,7 @@ Responsibilities: Storage
 
 === Rezky Arizaputra
 image::romaromama.png[width="150", align="left"]
-{empty}[http://github.com/RomaRomama[github]]
+{empty}[http://github.com/RomaRomama[github]] [<<romaromama#, portfolio>>]
 
 Role: Developer
 

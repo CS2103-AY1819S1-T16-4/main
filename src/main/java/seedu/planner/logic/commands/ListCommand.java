@@ -5,20 +5,21 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.planner.model.util.IndexUtil.VALUE_NOT_AVAILABLE;
 
 import seedu.planner.commons.core.EventsCenter;
-import seedu.planner.commons.events.ui.ListModuleEvent;
+import seedu.planner.commons.events.ui.ListModulesEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.model.Model;
 
 //@@author Hilda-Ang
 
 /**
- * Lists all modules the user has taken for a specified year and semester.
+ * Lists all modules the user has taken for all years or for a specific year.
  */
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken for a semester. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken for all years "
+            + "or for a specific year. "
             + "Parameters: "
             + "[" + PREFIX_YEAR + "YEAR]\n"
             + "Example: " + COMMAND_WORD + " "
@@ -30,7 +31,7 @@ public class ListCommand extends Command {
     private int year;
 
     /**
-     * Creates a ListCommand to list modules for specified semester.
+     * Creates a ListCommand to list taken modules for all years or for a specific year.
      */
     public ListCommand(int year) {
         this.year = year;
@@ -40,14 +41,16 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
 
+        // Lists modules taken for all years if no parameter year is supplied.
         if (year == VALUE_NOT_AVAILABLE) {
             model.listTakenModulesAll();
-            EventsCenter.getInstance().post(new ListModuleEvent(year));
+            EventsCenter.getInstance().post(new ListModulesEvent(year));
             return new CommandResult(MESSAGE_SUCCESS_ALL);
         }
 
+        // Lists modules taken for a specific year if a valid year is supplied.
         model.listTakenModulesYear(year);
-        EventsCenter.getInstance().post(new ListModuleEvent(year));
+        EventsCenter.getInstance().post(new ListModulesEvent(year));
         return new CommandResult(String.format(MESSAGE_SUCCESS_YEAR, year));
     }
 

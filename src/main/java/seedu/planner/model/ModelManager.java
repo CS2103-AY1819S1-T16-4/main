@@ -38,8 +38,6 @@ public class ModelManager extends ComponentManager implements Model {
     private final SortedList<Module> takenModules;
     private final SortedList<Module> availableModules;
 
-    //@@author Hilda-Ang
-
     /**
      * Initializes a ModelManager with the given modulePlanner and userPrefs.
      */
@@ -53,7 +51,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         takenModulesPerSemester = new ArrayList<>();
         for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
-            takenModulesPerSemester.add(new SortedList<>(versionedModulePlanner.getTakenModules(i), (x, y) ->
+            takenModulesPerSemester.add(new SortedList<>(versionedModulePlanner.getTakenModulesForIndex(i), (x, y) ->
                     x.compareTo(y)));
         }
 
@@ -65,15 +63,11 @@ public class ModelManager extends ComponentManager implements Model {
         this(new ModulePlanner(), new UserPrefs());
     }
 
-    //@@author GabrielYik
-
     @Override
     public void setUpUserProfile(String major, Set<String> focusAreas) {
         versionedModulePlanner.setUserProfile(new UserProfile(major, focusAreas));
         indicateModulePlannerChanged();
     }
-
-    //@@author
 
     @Override
     public void resetData(ReadOnlyModulePlanner newData) {
@@ -135,8 +129,6 @@ public class ModelManager extends ComponentManager implements Model {
         return finalizedModules;
     }
 
-    //@@author RomaRomama
-
     @Override
     public void addModules(Set<Module> modules, int index) {
         Set<Module> finalizedModules = finalizeModules(modules);
@@ -166,18 +158,16 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void listTakenModulesYear(int year) {
-        versionedModulePlanner.listTakenModulesYear(year);
+        versionedModulePlanner.listTakenModulesForYear(year);
     }
 
     @Override
-    public ObservableList<Module> listModules() {
+    public ObservableList<Module> listTakenModules() {
         return FXCollections.unmodifiableObservableList(takenModules);
     }
 
-    //@@author GabrielYik
-
     @Override
-    public ObservableList<Module> getTakenModules(int index) {
+    public ObservableList<Module> getTakenModulesForIndex(int index) {
         return FXCollections.unmodifiableObservableList(takenModulesPerSemester.get(index));
     }
 
@@ -185,8 +175,6 @@ public class ModelManager extends ComponentManager implements Model {
     public ObservableList<Module> getAvailableModules() {
         return FXCollections.unmodifiableObservableList(availableModules);
     }
-
-    //@@author
 
     //=========== Undo/Redo =================================================================================
 

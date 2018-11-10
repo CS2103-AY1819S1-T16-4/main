@@ -50,13 +50,13 @@ public class LogicManagerTest {
     @Test
     public void listModules_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        logic.listModules().remove(0);
+        logic.listTakenModules().remove(0);
     }
 
     @Test
     public void getTakenModuleList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        logic.getTakenModules(0).remove(0);
+        logic.getTakenModulesForIndex(0).remove(0);
     }
 
     @Test

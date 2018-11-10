@@ -53,7 +53,7 @@ public class ModulePlannerTest {
     @Test
     public void addModules_validIndex_success() {
         modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
-        assertEquals(new HashSet<>(modulePlanner.getTakenModules(INDEX_FIRST)), getTypicalModules());
+        assertEquals(new HashSet<>(modulePlanner.getTakenModulesForIndex(INDEX_FIRST)), getTypicalModules());
     }
 
     @Test
@@ -127,19 +127,21 @@ public class ModulePlannerTest {
     @Test
     public void getModulesTaken_sameIndex_returnsSameList() {
         modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
-        assertEquals(modulePlanner.getTakenModules(INDEX_FIRST), modulePlanner.getTakenModules(INDEX_FIRST));
+        assertEquals(modulePlanner.getTakenModulesForIndex(INDEX_FIRST),
+            modulePlanner.getTakenModulesForIndex(INDEX_FIRST));
     }
 
     @Test
     public void getModulesTaken_differentIndex_returnsDifferentList() {
         modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
-        assertNotEquals(modulePlanner.getTakenModules(INDEX_FIRST), modulePlanner.getTakenModules(INDEX_SECOND));
+        assertNotEquals(modulePlanner.getTakenModulesForIndex(INDEX_FIRST),
+            modulePlanner.getTakenModulesForIndex(INDEX_SECOND));
     }
 
     @Test
     public void getModulesTaken_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        modulePlanner.getTakenModules(INDEX_FIRST).remove(INDEX_FIRST);
+        modulePlanner.getTakenModulesForIndex(INDEX_FIRST).remove(INDEX_FIRST);
     }
 
     @Test
