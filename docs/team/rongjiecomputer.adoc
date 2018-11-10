@@ -1,0 +1,79 @@
+= Loo Rong Jie - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: ModulePlanner
+
+---
+
+== Overview
+
+This is a project portfolio about a team project that I have completed recently.
+The product born from this effort is called Module Planner.
+
+Module Planner is a desktop module planning application to help NUS Computer Science students
+figuring out what modules in order to graduate. The user interacts with it using a Command Line
+Interface (CLI), and it has a Graphical User Interface (GUI) created with JavaFX.
+
+The main features are the adding and deleting of modules, as well as the suggesting of
+new modules that the user can take based on their academic requirements.
+
+== Role
+
+* Developer
+* Storage code owner
+
+== Summary of contributions
+
+* *Major enhancement*: added *the functionality to sort suggested modules based on programme requirement of a user's major*
+** What it does: .
+** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
+** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+** Credits: _Suggest command is mainly implemented by Hilda_
+
+* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+
+* *Code contributed*: https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=rongjiecomputer
+
+* *Other contributions*:
+
+** Enhancements to existing features:
+*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
+*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+** Documentation:
+*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+** Community:
+*** Review teammates' PRs (with non-trivial review comments): https://github.com/CS2103-AY1819S1-T16-4/main/pull/199[#199]
+*** Contributed to forum discussions (examples:
+https://github.com/nus-cs2103-AY1819S1/forum/issues/46#issuecomment-424655417[#46],
+https://github.com/nus-cs2103-AY1819S1/forum/issues/115#issuecomment-432646664[#115],
+https://github.com/nus-cs2103-AY1819S1/forum/issues/122#issuecomment-433412750[#122])
+*** Reported bugs and suggestions for other teams in the class (examples:
+https://github.com/CS2103-AY1819S1-W16-1/main/issues/151[#151],
+https://github.com/CS2103-AY1819S1-W16-1/main/issues/157[#157])
+*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
+** Tools:
+*** Integrated CI services (Travis and Appveyor) to the project (https://github.com/CS2103-AY1819S1-T16-4/main/pull/2[#2])
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=undoredo]
+
+include::../UserGuide.adoc[tag=dataencryption]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=undoredo]
+
+include::../DeveloperGuide.adoc[tag=dataencryption]
+
