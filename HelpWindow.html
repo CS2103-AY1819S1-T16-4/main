@@ -62,6 +62,38 @@
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
 </div>
+<div class="title">Figure 1. The first page you will see when Module Planner starts up</div>
+</div>
+</li>
+<li>
+<p>The page is divided into several sections.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiLabelled.png" alt="UiLabelled" width="790">
+</div>
+<div class="title">Figure 2. The labelled page</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>Input Box</code>: input commands here.</p>
+</li>
+<li>
+<p><code>Result Display</code>: displays command results and other associated messages.</p>
+</li>
+<li>
+<p><code>Time Period</code>: displays the year and semester you are currently viewing.</p>
+</li>
+<li>
+<p><code>Taken Modules Panel</code>: lists modules that you put into the specified time period.</p>
+</li>
+<li>
+<p><code>Suggested Modules Panel</code>: lists modules that suggested to you for that time period.</p>
+</li>
+<li>
+<p><code>Multipurpose Panel</code>: displays results for the <code>Find</code> and <code>Status</code> commands.</p>
+</li>
+</ol>
 </div>
 </li>
 <li>
@@ -310,6 +342,23 @@ Format: <code>delete c/MODULE_CODE&#8230;&#8203;</code></p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Consider a module planner stocked with the modules <code>CS1010</code> and <code>CS1231</code> in year 1 semester 1, and the modules <code>CS2030</code>
+and <code>CS2040</code> in year 1 semester 2. If <code>delete c/CS1010</code> is executed, you will see that <code>CS1010</code> is removed,
+as well as the modules <code>CS2030</code> and <code>CS2040</code> in year 1 semester 2 since they have <code>CS1010</code> as a prerequisite.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteBefore.png" alt="DeleteBefore" width="300">
+</div>
+<div class="title">Figure 3. Before</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteAfter.png" alt="DeleteAfter" width="300">
+</div>
+<div class="title">Figure 4. After</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="finding-information-on-a-module-code-find-code"><a class="link" href="#finding-information-on-a-module-code-find-code">3.5. Finding information on a module : <code>find</code></a></h3>
@@ -328,7 +377,7 @@ Format: <code>find c/MODULE_CODE</code></p>
 </ul>
 </div>
 <div class="paragraph">
-<p>You should see the module information fo CS1010 in the rightmost panel like below.</p>
+<p>You should see the module information for CS1010 in the `Multipurpose Panel.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -351,6 +400,21 @@ Format: <code>goto y/YEAR s/SEMESTER</code></p>
 <p><code>goto y/1 s/1</code></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>The change can be seen in <code>Taken Modules Panel</code> in the before and after images.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/GoToBefore.png" alt="GoToBefore" width="300">
+</div>
+<div class="title">Figure 5. Before</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/GoToAfter.png" alt="GoToAfter" width="300">
+</div>
+<div class="title">Figure 6. After</div>
 </div>
 </div>
 <div class="sect2">
@@ -684,4 +748,4 @@ e.g. <code>suggest y/1 s/1</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 12:59:56 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 15:34:33 UTC</div></div></div></body></html>
