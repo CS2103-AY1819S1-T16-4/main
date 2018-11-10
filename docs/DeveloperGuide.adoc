@@ -413,6 +413,8 @@ The information about the module is retrieved and displayed in the `MultiPurpose
 
 The following sequence diagram shows how the find operation works:
 
+image::FindSequenceDiagram.png[width="650"]
+
 Below are some usage scenarios.
 
 ==== Module is Offered
@@ -437,6 +439,8 @@ between 1 and 2.
 The ui switches time periods to the specified. The modules taken in the time period is displayed too.
 
 The following sequence diagram shows how the goto operation works:
+
+image::GoToSequenceDiagram.png[width="650"]
 
 Below are some usage scenarios.
 As a gentle reminder, a year is valid if it is between 1 and 4, and a semester is valid if it is between 1 and 2.
