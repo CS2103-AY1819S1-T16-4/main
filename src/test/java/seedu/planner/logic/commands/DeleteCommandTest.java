@@ -1,11 +1,8 @@
 package seedu.planner.logic.commands;
 
-import static seedu.planner.commons.core.Messages.MESSAGE_NOT_OFFERED_MODULES;
 import static seedu.planner.commons.util.CollectionUtil.formatMessage;
 import static seedu.planner.commons.util.CollectionUtil.getAnyOne;
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CS0000;
-import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS2040;
-import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS2040;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1231;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2030;
@@ -93,8 +90,9 @@ public class DeleteCommandTest {
         Set<Module> modulesToDelete = Set.of(VALID_MODULE_CS1010, INVALID_MODULE_CS0000, VALID_MODULE_CS2040);
         DeleteCommand deleteCommand = new DeleteCommand(modulesToDelete);
 
+        List<Module> expectedNonExistentModules = List.of(INVALID_MODULE_CS0000, VALID_MODULE_CS2040);
         String expectedMessage = String.format(MESSAGE_DELETE_MODULES_SUCCESS, VALID_MODULE_CS1010)
-                + "\n" + formatMessage(MESSAGE_NON_EXISTENT_MODULES, List.of(INVALID_MODULE_CS0000, VALID_MODULE_CS2040));
+                + "\n" + formatMessage(MESSAGE_NON_EXISTENT_MODULES, expectedNonExistentModules);
         expectedModel.deleteModules(Set.of(VALID_MODULE_CS1010));
         expectedModel.commitModulePlanner();
 
