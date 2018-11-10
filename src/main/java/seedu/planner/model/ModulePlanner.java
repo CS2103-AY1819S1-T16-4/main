@@ -446,7 +446,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @param degreeRequirement the degree requirement
      * @return the number of modules fulfilling that degree requirement
      */
-    private int countProgrammeRequirementNonBd(DegreeRequirement degreeRequirement) {
+    private int countProgrammeRequirement(DegreeRequirement degreeRequirement) {
         int count = 0;
         for (Module m : getAllModulesTaken()) {
             Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
@@ -476,7 +476,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Insert the number of foundation modules to the credit mapping.
      */
     private void mapFoundation() {
-        int numOfFoundation = countProgrammeRequirementNonBd(DegreeRequirement.FOUNDATION);
+        int numOfFoundation = countProgrammeRequirement(DegreeRequirement.FOUNDATION);
         statusMap.put(DegreeRequirement.FOUNDATION, new int[] {numOfFoundation});
     }
 
@@ -484,7 +484,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Insert the number of mathematics modules to the credit mapping.
      */
     private void mapMathematics() {
-        int numOfMathematics = countProgrammeRequirementNonBd(DegreeRequirement.MATHEMATICS);
+        int numOfMathematics = countProgrammeRequirement(DegreeRequirement.MATHEMATICS);
         statusMap.put(DegreeRequirement.MATHEMATICS, new int[] {numOfMathematics});
     }
 
@@ -492,7 +492,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Insert the number of science modules to the credit mapping.
      */
     private void mapScience() {
-        int numOfScience = countProgrammeRequirementNonBd(DegreeRequirement.SCIENCE);
+        int numOfScience = countProgrammeRequirement(DegreeRequirement.SCIENCE);
         statusMap.put(DegreeRequirement.SCIENCE, new int[] {numOfScience});
     }
 
@@ -500,8 +500,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Insert the number of IT professionalism modules to the credit mapping..
      */
     private void mapItProfessionalism() {
-        int numOfItProfessionalism = countProgrammeRequirementNonBd(
-                                        DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT);
+        int numOfItProfessionalism = countProgrammeRequirement(
+                                        DegreeRequirement.IT_PROFESSIONALISM);
         statusMap.put(DegreeRequirement.IT_PROFESSIONALISM, new int[] {numOfItProfessionalism});
     }
 
@@ -509,7 +509,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Insert the number of industrial experience requirement modules to the credit mapping.
      */
     private void mapIndustrialExperienceRequirement() {
-        int numOfIndExpReq = countProgrammeRequirementNonBd(DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT);
+        int numOfIndExpReq = countProgrammeRequirement(DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT);
         statusMap.put(DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT, new int[] {numOfIndExpReq});
     }
 
