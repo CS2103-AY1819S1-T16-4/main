@@ -30,6 +30,16 @@ Module Planner is for NUS Computer Science undergraduate students who *prefer to
 .The first page you will see when Module Planner starts up
 image::Ui.png[width="790"]
 +
+.  The page is divided into several sections.
++
+.The labelled page
+image::UiLabelled.png[width="790"]
++
+.. `Input Box`: input commands here.
+.. `Result Display`: displays command results and other associated messages.
+.. `Time Period`: displays
+.. `Taken Modules Panel`: lists modules that you put into the specified time period.
+.. `Suggested Modules Panel`: lists modules that suggested to you for that time period.
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
