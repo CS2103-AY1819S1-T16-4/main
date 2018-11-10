@@ -12,13 +12,13 @@ import seedu.planner.model.Model;
 //@@author Hilda-Ang
 
 /**
- * Lists all modules the user has taken for a specified year or for all semesters.
+ * Lists all modules the user has taken for all years or for a specific year.
  */
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken for every semesters "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken for all years "
             + "or for a specific year. "
             + "Parameters: "
             + "[" + PREFIX_YEAR + "YEAR]\n"
@@ -31,7 +31,7 @@ public class ListCommand extends Command {
     private int year;
 
     /**
-     * Creates a ListCommand to list taken modules for every semester or for a specific year.
+     * Creates a ListCommand to list taken modules for all years or for a specific year.
      */
     public ListCommand(int year) {
         this.year = year;
@@ -41,14 +41,14 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
 
-        // Lists modules taken for every semester if no parameter year is supplied.
+        // Lists modules taken for all years if no parameter year is supplied.
         if (year == VALUE_NOT_AVAILABLE) {
             model.listTakenModulesAll();
             EventsCenter.getInstance().post(new ListModulesEvent(year));
             return new CommandResult(MESSAGE_SUCCESS_ALL);
         }
 
-        // Lists modules taken for a specified year if a valid year is supplied.
+        // Lists modules taken for a specific year if a valid year is supplied.
         model.listTakenModulesYear(year);
         EventsCenter.getInstance().post(new ListModulesEvent(year));
         return new CommandResult(String.format(MESSAGE_SUCCESS_YEAR, year));
