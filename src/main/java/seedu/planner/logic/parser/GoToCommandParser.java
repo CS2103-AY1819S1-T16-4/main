@@ -29,11 +29,4 @@ public class GoToCommandParser implements Parser<GoToCommand> {
 
         return new GoToCommand(year, semester);
     }
-
-    /*
-    private static boolean areOtherPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixesExcluded) {
-        List<Prefix> otherPrefixes = CliSyntax.getOtherPrefixes(prefixesExcluded);
-        return Stream.of()
-    }
-    */
 }
