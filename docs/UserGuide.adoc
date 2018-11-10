@@ -33,7 +33,7 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* **`setup`**`m/Computer Science` : Set up your user profile in Module Planner to get tailored module suggestion.
+* **`setup`**`m/Computer Science` : set your major to be Computer Science in Module Planner to get tailored module suggestion for Computer Science student.
 * **`suggest`**`y/1 s/1` : suggest modules you can take in first year, semester 1.
 * **`add`**`y/1 s/1 c/CS1231 c/MA1521` : adds modules CS1231 and MA1521 to the year 1 semester 1 modules list.
 * **`delete`**`c/CS1231` : deletes module CS1231 from the Module Planner.
@@ -75,7 +75,7 @@ Format: `setup m/MAJOR [f/FOCUS_AREA]...`
 
 Examples:
 
-* `setup m/Computer Engineering
+* `setup m/Computer Engineering`
 * `setup m/Computer Science f/Software Engineering`
 // end::setup[]
 
@@ -161,7 +161,7 @@ Examples:
 `list` +
 `undo` (reverses the `delete c/CS1010` command) +
 
-* `select 1` +
+* `goto y/1 s/1` +
 `list` +
 `undo` +
 The `undo` command fails as there are no undoable commands executed previously.
