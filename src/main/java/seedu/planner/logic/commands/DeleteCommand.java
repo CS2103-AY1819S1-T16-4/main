@@ -1,7 +1,6 @@
 package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.planner.commons.core.Messages.MESSAGE_NOT_OFFERED_MODULES;
 import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
 import static seedu.planner.commons.util.CollectionUtil.formatMessage;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
@@ -16,7 +15,6 @@ import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
-import seedu.planner.model.ModelManager;
 import seedu.planner.model.module.Module;
 
 //@@author GabrielYik
