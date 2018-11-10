@@ -141,7 +141,7 @@ public class AddCommand extends Command {
         List<Module> upToIndex = new ArrayList<>();
 
         while (i < semesterIndex) {
-            upToIndex.addAll(model.getTakenModules(i));
+            upToIndex.addAll(model.getTakenModulesForIndex(i));
             i++;
         }
 

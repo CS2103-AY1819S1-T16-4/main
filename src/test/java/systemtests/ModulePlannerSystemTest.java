@@ -118,7 +118,7 @@ public abstract class ModulePlannerSystemTest {
      */
     protected void showAllModules() {
         executeCommand(ListCommand.COMMAND_WORD);
-        assertEquals(getModel().getModulePlanner().listTakenModules().size(), getModel().listModules().size());
+        assertEquals(getModel().getModulePlanner().listTakenModules().size(), getModel().listTakenModules().size());
     }
 
     /**

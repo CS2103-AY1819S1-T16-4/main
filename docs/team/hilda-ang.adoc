@@ -61,9 +61,51 @@ The next few sections will describe my contributions to the project.
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-== Introduction
+=== Listing modules : `list`
 
-Module Planner is for NUS Computer Science undergraduate students who *prefer to use a desktop app* to keep track of past modules and list possible future modules based on the academic requirements. More importantly, Module Planner is optimized for those who prefer to work with a *Command Line Interface (CLI)* while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Module Planner can get your module planning tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+If a valid year is supplied, shows a list of all modules that you have added to that year. Otherwise, shows a list of all modules that you have taken in every semester. +
+Format: `list [y/YEAR]`
+
+[TIP]
+====
+* This command is NOT undoable.
+* The list of modules will be automatically updated upon adding or deleting module(s).
+====
+
+[NOTE]
+====
+* If no modules have been added to a specified year or no modules have been added to ModulePlanner, will show an empty list.
+====
+
+Examples:
+
+* `list y/1` +
+Lists all modules added to year 1, both semester 1 and 2 (if they exist).
+
+* `list` +
+Lists all modules added to every semester, from year 1 semester 1 to year 4 semester 2 (if they exist).
+
+=== Suggesting modules : `suggest`
+
+If a valid year and semester are supplied, suggests a list of modules that you are available to take in the specified year and semester, based on modules that you have added. A module is available for you if:
+
+* You have fulfilled (added to ModulePlanner) all the prerequisites of the module in the semester(s) prior to the one you specified.
+* You have not fulfilled (added to ModulePlanner) any preclusions to the module in any semester (including semester after the one you specified).
+* You have not fulfilled (added to ModulePlanner) the module in any semester (including semester after the one you specified).
+
+The list of modules is sorted, with core modules being on top, followed by general education modules and unrestricted electives modules.
+
+Format: `suggest y/YEAR s/SEMESTER`
+
+[TIP]
+====
+* This command is NOT undoable.
+* The list of suggested modules will be automatically updated upon adding or deleting module(s).
+====
+
+Examples:
+
+* `suggest y/1 s/1`
 
 == Contributions to the Developer Guide
 
@@ -77,25 +119,36 @@ Module Planner is for NUS Computer Science undergraduate students who *prefer to
 The list mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`-s and each `Semester` stores a list `modulesTaken` containing modules that the user has taken or is planning to take.
 It implements the following operation:
 
-* `ModulePlanner#listModulesTaken(int index)` -- Retrieves a list of modules from the `Semester` specified by `index`.
+* `ModulePlanner#listTakenModules()` -- Retrieves the list `takenModules`.
+* `ModulePlanner#listTakenModulesAll()` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in every `Semester`.
+* `ModulePlanner#listTakenModulesForYear(int year)` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in the `Semester`-s that belongs to the specified year.
 
-The operation is exposed in `Model` interface as `Model#getFilteredTakenModuleList(int index)`.
+The operation is exposed in `Model` interface as `Model#listTakenModules()`, `Model#listTakenModulesAll()`, and `Model#listTakenModulesForYear(int year)`.
 
 [NOTE]
 A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
 
 Below is an example usage scenario and how the list mechanism works.
 
-Step 1. The user launches the application. `ModulePlanner` is initialised with 8 `Semester` objects in `List<Module> semesters`.
+Step 1. User launches the application. `ModulePlanner` is initialised with 8 `Semester` objects in `List<Module> semesters`.
 
-Step 2. The user executes `add y/1 s/1 CS1231`. The `add` command inserts `Module` CS1231 to the list `modulesTaken` for `Semester` object with index 0.
+Step 2. User executes `add y/1 s/1 c/CS1231`. The `add` command inserts `Module` CS1231 to the list `modulesTaken` for `Semester` object with index 0.
 
-Step 3. The user wants to see the list of modules for year 1 semester 1 by executing `list y/1 s/1`. The `list` command parses `y/1 s/1` to index 0 and calls `Model#getFilteredTakenModuleList(int index)`.
-It will execute `ModulePlanner#listModulesTaken(int index)` which will call `Semester#getModulesTaken()` in the relevant `Semester`. The returned result will be a list of modules and will be displayed to the user.
+Step 3. User executes `add y/2 s/1 c/CS1010`. The `add` command inserts `Module` CS1010 to the list `modulesTaken` for `Semester` object with index 2.
 
-The following sequence diagram shows how the list operation works:
+Step 4. User wants to see the list of modules taken for year 1 by executing `list y/1`. The `list` command updates `takenModules` to contain list of modules taken in year 1 and retrieves it.
+A list containing CS1231 will be displayed to the user.
 
-image::ListSequenceDiagram.png[width="800"]
+Step 5. User wants to see the list of modules taken for all years by executing `list`. The `list` command updates `takenModules` to contain list of modules taken in all years and retrieves it.
+A list containing CS1231 and CS1010 will be displayed to the user.
+
+The following sequence diagram shows how the list operation when a valid year is specified:
+
+image::ListSequenceDiagram_1.png[width="800"]
+
+The following sequence diagram shows how the list operation when no year is specified:
+
+image::ListSequenceDiagram_2.png[width="800"]
 
 ==== Design Considerations
 
@@ -106,3 +159,78 @@ image::ListSequenceDiagram.png[width="800"]
 * **Alternative 2:** Saves all commands that modify list of modules without applying it and updates the list based on the commands only when it is retrieved upon `list` command.
 ** Pros: May be more effective in terms of running time because it only modifies the list when needed.
 ** Cons: Implementation will be more complicated as we have to store all commands that modify the list.
+
+=== Suggest feature
+==== Current Implementation
+
+The suggest mechanism displays a list of modules available in the specified index to the user, where index represents the year and semester that the user is asking suggestions for.
+It is supported by an internal list `availableModules` in `ModulePlanner`, which is regenerated after every successful execution of commands that modify `ModulePlanner` (`add`, `delete`, `clear`, etc.) and `suggest` command.
+The list `availableModules` can be retrieved through `Model#getAvailableList` using `suggest` command, which takes in one argument: a valid index that corresponds to a specific year and semester.
+
+[NOTE]
+A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
+
+Below is an example usage scenario and how the suggest mechanism works.
+
+*Step 1.* User launches the application and `ModulePlanner` is initialized.
+
+*Step 2.* User executes `suggest y/1 s/1`. The `suggest` command updates `availableModules` to a newly generated list of available modules for index 0 an stores index 0 as `availableIndex` in `ModulePlanner`. It then retrieves `availableModules` and displays it to user.
+
+*Step 3.* User executes `add y/1 s/2 c/CS1010`. The `add` command performs adding a module and updates `availableModules` to a newly generated list of available modules for the stored index 0. The suggested modules list shows an updated list of available modules in year 1 semester 1 to the user.
+Only `suggest` command will change the index (year and semester) to be displayed by the suggested modules list, other commands will only show an updated list for the last index displayed by `suggest`.
+
+*Step 4.* User executes `suggest y/1 s/2`. The `suggest` command updates `availableModules` to a newly generated list of available modules for index 1 an stores index 1 as `availableIndex` in `ModulePlanner`. It then retrieves `availableModules` and displays list of available modules in year 1 semester 2 to user.
+
+Below is how the list of available modules is generated.
+
+The method `ModulePlanner#generateAvailableModules(int index)` is called by `ModulePlanner#updateModulesAvailable`, which sets the content of `availableModules` to be the list of modules returned by `generateAvailableModules(index)`, with index being  the stored `availableIndex`.
+
+----
+private List<Module> generateAvailableModules(int index) {
+    List<Module> modulesAvailable = new ArrayList<>();
+    List<Module> modulesTaken = getAllModulesTaken();
+    List<Module> modulesTakenBeforeIndex = getAllModulesTakenBeforeIndex(index);
+    List<Module> allModules = getAllModulesFromStorage();
+
+    for (Module m : allModules) {
+        if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenBeforeIndex, m)) {
+            modulesAvailable.add(m);
+        }
+    }
+
+    sortAvailableModules(modulesAvailable, userProfile);
+
+    return modulesAvailable;
+}
+----
+
+The method `generateAvailableModules` retrieves all modules from the storage and performs availability checking on each of them. The available modules are put into a list which is then sorted such that core modules are put on top, followed by general education modules and unrestricted electives.
+The availability checking is done by the following method.
+
+----
+public static boolean isModuleAvailableToTake(List<Module> modulesTaken, List<Module> modulesTakenBeforeIndex, Module module) {
+    return hasNotTakenModule(modulesTaken, module)
+            && hasFulfilledAllPrerequisites(modulesTakenBeforeIndex, module)
+            && hasNotFulfilledAnyPreclusions(modulesTaken, module);
+}
+----
+
+A sample scenario:
+Module CS2030 has a prerequisite CS1010 and a preclusion CS1020. User has taken CS1010 in year 1 semester 2 and has not taken CS1020 or CS2030.
+
+* Executing `suggest y/2 s/1` will display CS2030 as one of the available modules, as user has fulfilled all prerequisites of CS2030 before year 2 semester 1 and has not taken any preclusion or the module itself.
+* Executing `suggest y/1 s/1` will *not* display CS2030 in the list of available modules, as user has not fulfilled all the prerequisites before year 1 semester 1 (user has only fulfilled CS1010 in the semester after).
+
+The following sequence diagram shows how the suggest operation works:
+
+image::SuggestSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Aspect: How list of available modules is regenerated
+* **Alternative 1 (current choice):** Regenerates list of available modules after every successful execution of commands that modify `ModulePlanner` and `suggest` command.
+** Pros: Easy to implement.
+** Cons: May have performance issue in terms of running time because list is regenerated even if there is no change to the content.
+* **Alternative 2:** Regenerates list of available module only after successful execution of commands that modify the content of the list of available modules.
+** Pros: May be more effective in terms of running time because it only regenerates the list when needed.
+** Cons: Implementation will be more complicated as we have to check whether a command modifies the list.

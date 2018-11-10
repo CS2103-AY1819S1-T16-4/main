@@ -1,0 +1,72 @@
+= Loo Rong Jie - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: ModulePlanner
+
+---
+
+== Overview
+
+This is a project portfolio about a team project called Module Planner when taking CS2103T,
+Software Engineering.
+
+Module Planner is a desktop module planning application to help NUS Computer Science students
+figuring out what modules in order to graduate. The user interacts with it using a Command Line
+Interface (CLI), and it has a Graphical User Interface (GUI) created with JavaFX.
+
+The main features are the adding and deleting of modules, as well as the suggesting of
+new modules that the user can take based on their academic requirements.
+
+== Role
+
+* Developer
+* Storage code owner
+
+== Summary of contributions
+
+* *Major enhancement*:
+** What it does:
+** Justification:
+** Highlights:
+** Credits:
+
+* *Code contributed*: https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=rongjiecomputer
+
+* *Other contributions*:
+
+** Enhancements to feature implemented by other teammates:
+*** Implement the ability to sort module suggestion based on user's major requirement.
+(https://github.com/CS2103-AY1819S1-T16-4/main/pull/190[#190])
+** Community:
+*** Review teammates' PRs (with non-trivial review comments): https://github.com/CS2103-AY1819S1-T16-4/main/pull/199[#199]
+*** Contributed to forum discussions (examples:
+https://github.com/nus-cs2103-AY1819S1/forum/issues/46#issuecomment-424655417[#46],
+https://github.com/nus-cs2103-AY1819S1/forum/issues/115#issuecomment-432646664[#115],
+https://github.com/nus-cs2103-AY1819S1/forum/issues/122#issuecomment-433412750[#122])
+*** Reported bugs and suggestions for other teams in the class (examples:
+https://github.com/CS2103-AY1819S1-W16-1/main/issues/151[#151],
+https://github.com/CS2103-AY1819S1-W16-1/main/issues/157[#157])
+** Tools:
+*** Integrated CI services (Travis and Appveyor) to the project (https://github.com/CS2103-AY1819S1-T16-4/main/pull/2[#2])
+*** Integrated Netlify service into PR workflow so that reviewer can review documentation changes easily.
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=setup]
+include::../UserGuide.adoc[tag=find]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=storage]
+include::../DeveloperGuide.adoc[tag=moduleinfo]
