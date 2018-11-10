@@ -29,7 +29,7 @@ public class StatusCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
 
-        ObservableMap<DegreeRequirement, int[]> statusMap = model.status();
+        ObservableMap<DegreeRequirement, int[]> statusMap = model.getStatus();
 
         EventsCenter.getInstance().post(new StatusEvent(statusMap));
         return new CommandResult(MESSAGE_SUCCESS);

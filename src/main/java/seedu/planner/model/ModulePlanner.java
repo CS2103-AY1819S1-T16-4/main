@@ -88,7 +88,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         semesters.get(index).addModules(modules);
         updateAvailableModules();
         updateTakenModules();
-        status();
+        getStatus();
     }
 
     //@@author GabrielYik
@@ -129,7 +129,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
         updateAvailableModules();
         updateTakenModules();
-        status();
+        getStatus();
     }
 
     /**
@@ -207,7 +207,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
     public void setUserProfile(UserProfile u) {
         userProfile = u;
-        status();
+        getStatus();
     }
 
     @Override
@@ -556,7 +556,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      *
      * @return the mapping
      */
-    public ObservableMap<DegreeRequirement, int[]> status() {
+    public ObservableMap<DegreeRequirement, int[]> getStatus() {
         mapGeneralEducation();
         mapFoundation();
         mapMathematics();

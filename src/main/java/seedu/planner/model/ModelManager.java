@@ -136,8 +136,8 @@ public class ModelManager extends ComponentManager implements Model {
         indicateModulePlannerChanged();
     }
 
-    public ObservableMap<DegreeRequirement, int[]> status() {
-        return versionedModulePlanner.status();
+    public ObservableMap<DegreeRequirement, int[]> getStatus() {
+        return versionedModulePlanner.getStatus();
     }
 
     //@@author Hilda-Ang

@@ -58,7 +58,7 @@ public interface Model {
      */
     void addModules(Set<Module> modules, int index);
 
-    ObservableMap<DegreeRequirement, int[]> status();
+    ObservableMap<DegreeRequirement, int[]> getStatus();
 
     //@@author Hilda-Ang
     /**
