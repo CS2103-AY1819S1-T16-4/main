@@ -72,7 +72,7 @@ public class ModuleDescription extends UiPart<Region> {
      * @return The correct grammar structure
      */
     private String getCorrectGrammar(int count) {
-        if(count == 0) {
+        if (count == 0) {
             return ": none";
         } else if (count == 1) {
             return ": ";
