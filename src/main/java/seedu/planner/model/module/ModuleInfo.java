@@ -1,7 +1,5 @@
 package seedu.planner.model.module;
 
-//@@author rongjiecomputer
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Optional;
@@ -27,6 +25,8 @@ public class ModuleInfo {
             + "(X) refers to an optional prefix add-on.\n"
             + "1234 refers to a sequence of positive numbers.\n"
             + "(YZ) refers to an optional postfix.";
+
+    public static final String MESSAGE_MODULE_CODE_NOT_FOUND = "Module code not found in database.";
 
     private static final String DEFAULT_FILE_PATH = "/data/moduleInfo.json";
 
@@ -64,7 +64,6 @@ public class ModuleInfo {
      * Default constructor required by JSON parser.
      */
     public ModuleInfo() {
-
     }
 
     /**
@@ -144,7 +143,6 @@ public class ModuleInfo {
         return creditCount;
     }
 
-    // @@author rongjiecomputer
     public ImmutableList<ModuleInfo> getPrerequisites() {
         Preconditions.checkState(finalized);
         return prereqModuleInfo;

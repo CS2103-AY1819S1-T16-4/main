@@ -6,14 +6,16 @@ import seedu.planner.commons.events.BaseEvent;
  * An event to display list of modules taken in response to {@code List} command.
  */
 public class ListModuleEvent extends BaseEvent {
-    private final int index;
+    public static final int ALL_YEARS = -1;
 
-    public ListModuleEvent(int index) {
-        this.index = index;
+    private final int year;
+
+    public ListModuleEvent(int year) {
+        this.year = year;
     }
 
-    public int getIndex() {
-        return index;
+    public int getYear() {
+        return year;
     }
 
     @Override

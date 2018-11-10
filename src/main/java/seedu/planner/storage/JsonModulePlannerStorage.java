@@ -51,8 +51,16 @@ public class JsonModulePlannerStorage implements ModulePlannerStorage {
             return Optional.empty();
         }
 
-        Optional<JsonSerializableModulePlanner> jsonModulePlanner = JsonUtil.readJsonFile(
-            filePath, JsonSerializableModulePlanner.class);
+        Optional<JsonSerializableModulePlanner> jsonModulePlanner;
+
+        try {
+            jsonModulePlanner = JsonUtil.readJsonFile(
+                    filePath, JsonSerializableModulePlanner.class);
+        } catch (DataConversionException e) {
+            logger.info("Data format error found in " + filePath + ": " + e.getMessage());
+            throw new DataConversionException(e);
+        }
+
         try {
             if (jsonModulePlanner.isPresent()) {
                 return Optional.<ReadOnlyModulePlanner>of(jsonModulePlanner.get().toModelType());

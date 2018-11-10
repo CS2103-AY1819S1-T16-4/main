@@ -48,8 +48,6 @@ public interface Model {
      */
     void deleteModules(Set<Module> modules);
 
-    //@@author RomaRomama
-
     /**
      * Add set of modules into the specified semester
      *
@@ -58,16 +56,17 @@ public interface Model {
      */
     void addModules(Set<Module> modules, int index);
 
-    //@@author Hilda-Ang
+    //TODO: hilda
     void suggestModules(int index);
 
+    //TODO: hilda
     void listTakenModulesAll();
 
+    //TODO: hilda
     void listTakenModulesYear(int year);
 
+    //TODO: hilda
     ObservableList<Module> listModules();
-
-    // @@author rongjiecomputer
 
     /**
      * Retrieves the actual module information of the {@code modules}
@@ -80,15 +79,11 @@ public interface Model {
      */
     Set<Module> finalizeModules(Set<Module> modules);
 
-    //@@author GabrielYik
-
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getTakenModules(int index);
 
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getAvailableModules();
-
-    //@@author
 
     /**
      * Returns true if the model has previous planner book states to restore.

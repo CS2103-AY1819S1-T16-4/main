@@ -105,4 +105,11 @@ public class UserProfile {
     public List<FocusArea> getFocusAreas() {
         return focusAreas;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this || ((other instanceof UserProfile)
+                && major == ((UserProfile) other).major
+                && focusAreas == ((UserProfile) other).focusAreas);
+    }
 }

@@ -1,13 +1,13 @@
 package seedu.planner.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.planner.commons.core.Messages.MESSAGE_NON_EXISTENT_MODULES;
 import static seedu.planner.commons.core.Messages.MESSAGE_NOT_OFFERED_MODULES;
 import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
 import static seedu.planner.commons.util.CollectionUtil.formatMessage;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,7 +19,7 @@ import seedu.planner.model.module.Module;
 //@@author GabrielYik
 
 /**
- * Deletes a module identified using it's module code from the module planner.
+ * Deletes a module identified using its module code from the module planner.
  */
 public class DeleteCommand extends Command {
 
@@ -34,12 +34,14 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_MODULES_SUCCESS = "Deleted Module(s): %1$s";
 
+    public static final String MESSAGE_NON_EXISTENT_MODULES = "Non-existent modules: %1$s";
+
     private final Set<Module> modulesToDelete;
 
     private String message;
 
     public DeleteCommand(Set<Module> modules) {
-        modulesToDelete = modules;
+        modulesToDelete = new HashSet<>(modules);
         message = "";
     }
 

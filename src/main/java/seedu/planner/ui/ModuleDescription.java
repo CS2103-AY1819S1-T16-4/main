@@ -1,5 +1,7 @@
 package seedu.planner.ui;
 
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -48,38 +50,35 @@ public class ModuleDescription extends UiPart<Region> {
         moduleType.setText("Fulfils: " + module.getType().toString());
         creditCount.setText("Modular Credits: " + Float.toString(module.getCreditCount()));
 
-        for (ModuleInfo m : module.getPreclusions()) {
+        List<ModuleInfo> preclusionList = module.getPreclusions();
+        for (ModuleInfo m : preclusionList) {
             preclusions.getChildren().add(new Label(m.getCode()));
         }
+        preclusion.setText("Preclusion" + getCorrectGrammar(preclusionList.size()));
 
-        switch(module.getPreclusions().size()) {
-        case 0:
-            preclusion.setText("Preclusion: none");
-            break;
-
-        case 1:
-            preclusion.setText("Preclusion: ");
-            break;
-
-        default:
-            preclusion.setText("Preclusions: ");
-        }
-
-        for (ModuleInfo m : module.getPrerequisites()) {
+        List<ModuleInfo> prerequisiteList = module.getPrerequisites();
+        for (ModuleInfo m : prerequisiteList) {
             prerequisites.getChildren().add(new Label(m.getCode()));
         }
+        prerequisite.setText("Prerequisite" + getCorrectGrammar(prerequisiteList.size()));
+    }
 
-        switch(module.getPrerequisites().size()) {
+    /**
+     * Gives the correct grammar structure (singular or plural) for the
+     * {@code preclusion} and {@code prerequisite} labels depending
+     * on the number of items they will be representing.
+     *
+     * @param count The number of items
+     * @return The correct grammar structure
+     */
+    private String getCorrectGrammar(int count) {
+        switch(count) {
         case 0:
-            prerequisite.setText("Prerequisite: none");
-            break;
-
+            return ": none";
         case 1:
-            prerequisite.setText("Prerequisite: ");
-            break;
-
+            return ": ";
         default:
-            prerequisite.setText("Prerequisites: ");
+            return "s: ";
         }
     }
 }

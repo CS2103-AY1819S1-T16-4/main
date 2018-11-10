@@ -1,6 +1,6 @@
 package seedu.planner.model.course;
 
-//@@author GabrielYik
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 
 /**
  * Represents the majors of students.
@@ -10,6 +10,7 @@ package seedu.planner.model.course;
 public enum Major {
     COMPUTER_SCIENCE("Computer Science"),
     COMPUTER_ENGINEERING("Computer Engineering"),
+    @JsonEnumDefaultValue
     UNKNOWN("Unknown");
 
     private final String name;

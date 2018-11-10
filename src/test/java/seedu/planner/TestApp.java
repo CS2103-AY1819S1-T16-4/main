@@ -9,12 +9,13 @@ import seedu.planner.commons.core.Config;
 import seedu.planner.commons.core.GuiSettings;
 import seedu.planner.commons.exceptions.DataConversionException;
 import seedu.planner.commons.util.FileUtil;
-import seedu.planner.commons.util.XmlUtil;
+import seedu.planner.commons.util.JsonUtil;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.ReadOnlyModulePlanner;
 import seedu.planner.model.UserPrefs;
+import seedu.planner.storage.JsonSerializableModulePlanner;
 import seedu.planner.storage.UserPrefsStorage;
 import seedu.planner.testutil.TestUtil;
 
@@ -24,7 +25,7 @@ import seedu.planner.testutil.TestUtil;
  */
 public class TestApp extends MainApp {
 
-    public static final Path SAVE_LOCATION_FOR_TESTING = TestUtil.getFilePathInSandboxFolder("sampleData.xml");
+    public static final Path SAVE_LOCATION_FOR_TESTING = TestUtil.getFilePathInSandboxFolder("sampleData.json");
     public static final String APP_TITLE = "Test App";
 
     protected static final Path DEFAULT_PREF_FILE_LOCATION_FOR_TESTING =
@@ -41,12 +42,10 @@ public class TestApp extends MainApp {
         this.saveFileLocation = saveFileLocation;
 
         // If some initial local data has been provided, write those to the file
-        /*
         if (initialDataSupplier.get() != null) {
-            createDataFileWithData(new XmlSerializableAddressBook(this.initialDataSupplier.get()),
+            createDataFileWithData(new JsonSerializableModulePlanner(this.initialDataSupplier.get()),
                     this.saveFileLocation);
         }
-        */
     }
 
     @Override
@@ -74,7 +73,7 @@ public class TestApp extends MainApp {
         try {
             return new ModulePlanner(storage.readModulePlanner().get());
         } catch (DataConversionException dce) {
-            throw new AssertionError("Data is not in the AddressBook format.", dce);
+            throw new AssertionError("Data is not in the ModulePlanner format.", dce);
         }
     }
 
@@ -104,12 +103,12 @@ public class TestApp extends MainApp {
     }
 
     /**
-     * Creates an XML file at the {@code filePath} with the {@code data}.
+     * Creates an JSON file at the {@code filePath} with the {@code data}.
      */
     private <T> void createDataFileWithData(T data, Path filePath) {
         try {
             FileUtil.createIfMissing(filePath);
-            XmlUtil.saveDataToFile(filePath, data);
+            JsonUtil.saveJsonFile(data, filePath);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

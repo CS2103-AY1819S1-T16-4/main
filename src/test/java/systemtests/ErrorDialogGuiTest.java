@@ -1,15 +1,24 @@
 package systemtests;
 
+import static org.junit.Assert.assertEquals;
+import static seedu.planner.testutil.EventsUtil.postLater;
+import static seedu.planner.ui.UiManager.FILE_OPS_ERROR_DIALOG_CONTENT_MESSAGE;
+import static seedu.planner.ui.UiManager.FILE_OPS_ERROR_DIALOG_HEADER_MESSAGE;
+import static seedu.planner.ui.UiManager.FILE_OPS_ERROR_DIALOG_STAGE_TITLE;
+
 import java.io.IOException;
 
+import org.junit.Test;
+
 import guitests.GuiRobot;
+import guitests.guihandles.AlertDialogHandle;
+import seedu.planner.commons.events.storage.DataSavingExceptionEvent;
 
 public class ErrorDialogGuiTest extends ModulePlannerSystemTest {
 
     private static final IOException IO_EXCEPTION_STUB = new IOException("Stub");
     private final GuiRobot guiRobot = new GuiRobot();
 
-    /*
     @Test
     public void showErrorDialogs() {
         postLater(new DataSavingExceptionEvent(IO_EXCEPTION_STUB));
@@ -21,5 +30,4 @@ public class ErrorDialogGuiTest extends ModulePlannerSystemTest {
         assertEquals(FILE_OPS_ERROR_DIALOG_CONTENT_MESSAGE + ":\n" + IO_EXCEPTION_STUB.toString(),
                 alertDialog.getContentText());
     }
-    */
 }

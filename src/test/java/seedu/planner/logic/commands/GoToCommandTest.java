@@ -34,7 +34,7 @@ public class GoToCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void execute_validArgs_success() {
+    public void execute_validYearAndSemester_success() {
         GoToCommand goToCommand = new GoToCommand(VALID_YEAR_ONE, VALID_SEMESTER_ONE);
 
         String expectedMessage = String.format(SHOWING_GOTO_MESSAGE, VALID_YEAR_ONE, VALID_SEMESTER_ONE);
@@ -52,7 +52,7 @@ public class GoToCommandTest {
     }
 
     @Test
-    public void execute_invalidArgs_throwsCommandException() throws CommandException {
+    public void execute_invalidYearAndSemester_throwsCommandException() throws CommandException {
         GoToCommand goToCommand = new GoToCommand(INVALID_YEAR_FIVE, INVALID_SEMESTER_THREE);
 
         String expectedMessage = Messages.MESSAGE_INVALID_PARAMETERS;
@@ -64,8 +64,20 @@ public class GoToCommandTest {
     }
 
     @Test
-    public void execute_oneInvalidArg_throwsCommandException() throws CommandException {
+    public void execute_invalidYearAndValidSemester_throwsCommandException() throws CommandException {
         GoToCommand goToCommand = new GoToCommand(INVALID_YEAR_FIVE, VALID_SEMESTER_ONE);
+
+        String expectedMessage = Messages.MESSAGE_INVALID_PARAMETERS;
+
+        thrown.expect(CommandException.class);
+        thrown.expectMessage(expectedMessage);
+
+        goToCommand.execute(model, commandHistory);
+    }
+
+    @Test
+    public void execute_validYearAndInvalidSemester_throwsCommandException() throws CommandException {
+        GoToCommand goToCommand = new GoToCommand(VALID_YEAR_ONE, INVALID_SEMESTER_THREE);
 
         String expectedMessage = Messages.MESSAGE_INVALID_PARAMETERS;
 

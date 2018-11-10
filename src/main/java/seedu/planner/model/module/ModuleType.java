@@ -1,7 +1,5 @@
 package seedu.planner.model.module;
 
-//@@author GabrielYik
-
 import seedu.planner.commons.exceptions.IllegalValueException;
 
 /**
@@ -17,7 +15,7 @@ public enum ModuleType {
     PR_IT_PROFESSIONALISM("PR IT Professionalism"),
     PR_MATHEMATICS_AND_SCIENCE("PR Mathematics and Science");
 
-    private static final String MESSAGE_UNKNOWN_MODULE_TYPE = "Not a known module type.";
+    public static final String MESSAGE_UNKNOWN_MODULE_TYPE = "Not a known module type.";
 
     private final String name;
 

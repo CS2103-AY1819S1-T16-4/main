@@ -2,6 +2,7 @@ package seedu.planner.logic.commands;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static seedu.planner.commons.core.Messages.MESSAGE_NOT_OFFERED_MODULES;
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_CS0000;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
 
@@ -10,7 +11,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.planner.commons.core.Messages;
 import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
@@ -68,7 +68,7 @@ public class FindCommandTest {
         FindCommand findCommand = new FindCommand(moduleToFind);
 
         thrown.expect(CommandException.class);
-        thrown.expectMessage(String.format(Messages.MESSAGE_INVALID_MODULES, moduleToFind));
+        thrown.expectMessage(String.format(MESSAGE_NOT_OFFERED_MODULES, moduleToFind));
 
         findCommand.execute(model, commandHistory);
     }
