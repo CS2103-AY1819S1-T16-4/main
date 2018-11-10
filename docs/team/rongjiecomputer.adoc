@@ -32,8 +32,6 @@ new modules that the user can take based on their academic requirements.
 ** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 ** Credits: _Suggest command is mainly implemented by Hilda_
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
-
 * *Code contributed*: https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=rongjiecomputer
 
 * *Other contributions*:

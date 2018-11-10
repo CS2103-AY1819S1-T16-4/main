@@ -57,9 +57,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 [width="100%",cols="20%,<80%"]
 |=======================================================================
 
-|MAJOR | Supported majors are listed in <<Setting user profile : `setup`, setup>> and `suggest`.
+|MAJOR | Supported majors are listed in <<Setting user profile : `setup`, `setup`>> and <<Suggesting modules : `suggest`, `suggest`>>.
 
-|FOCUS_AREA | Supported focus areas are listed in `setup` and `suggest`.
+|FOCUS_AREA | Supported focus areas are listed in <<Setting user profile : `setup`, `setup`>> and <<Suggesting modules : `suggest`, `suggest`>>.
 
 |MODULE_CODE | Must be a valid NUS module code in Academic Year 18/19.
 
@@ -202,6 +202,17 @@ If a valid year and semester are supplied, suggests a list of modules that you a
 The list of modules is sorted, with core modules being on top, followed by general education modules and unrestricted electives modules.
 
 Format: `suggest y/YEAR s/SEMESTER`
+
+****
+* This feature currently only supports majors and focus areas listed below. Support for other majors and focus areas will come beyond v1.6.
+** Major:
+*** Computer Science
+** Focus area:
+*** Algorithms and Theory
+*** Artificial Intelligence
+* If user profile is set to major or focus area(s) that are not listed above in <<Setting user profile : `setup`, `setup`>> command,
+this feature will only give you generic module suggestion sorted in lexicographical order.
+****
 
 [TIP]
 ====
