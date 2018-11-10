@@ -52,6 +52,24 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * Items with `...` after them can be used multiple times including zero times e.g. `MODULE_CODE...` can be used as `{nbsp}` (i.e. 0 times), `CS1231`, `CS1231 MA1521` etc.
 ====
 
+====
+*Fields restrictions*
+[width="100%",cols="20%,<80%"]
+|=======================================================================
+
+|MAJOR | Supported majors are listed in `setup` and `suggest`.
+
+|FOCUS_AREA | Supported focus areas are listed in `setup` and `suggest`.
+
+|MODULE_CODE | Must be valid NUS module code in Academic Year 18/19.
+
+|YEAR | Should only be integer from `1` to `4`.
+
+|SEMESTER | Should only be integer `1` or `2`.
+
+|=======================================================================
+====
+
 === Viewing help : `help`
 
 Open this user guide in a new window.
@@ -68,8 +86,20 @@ Format: `setup m/MAJOR [f/FOCUS_AREA]...`
 * The major and focus areas should be spelt out in full.
 * The major and focus areas are case insensitive. e.g. `Computer Science` is the same as `cOmpUter scienCe`.
 * This feature currently only supports majors and focus areas listed below. Support for other majors and focus areas will come beyond v1.6.
-** Major: Computer Science, Computer Engineering.
-** Focus area: Artificial Intelligence, Software Engineering.
+** Major:
+*** Computer Science
+*** Computer Engineering
+** Focus area:
+*** Algorithms and Theory
+*** Artificial Intelligence
+*** Computer Graphics and Games
+*** Computer Security
+*** Database Systems
+*** Multimedia Information Retrieval
+*** Networking and Distributed Systems
+*** Parallel Computing
+*** Programming Langiages
+*** Software Engineering
 * Default user profile is set to `Computer Science` major with no focus area.
 ****
 
