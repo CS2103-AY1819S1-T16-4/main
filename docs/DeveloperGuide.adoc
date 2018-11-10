@@ -224,6 +224,8 @@ The `Model`,
 e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+// tag::storage[]
+
 [[Design-Storage]]
 === Storage component
 
@@ -236,6 +238,11 @@ The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
 * can save `ReadOnlyModulePlanner` object in json format and read it back.
+
+.Interactions inside the Storage component for whenever `ModulePlannerChangedEvent` is fired.
+image::StorageSequenceDiagram.png[width="800"]
+
+// end::storage[]
 
 [[Design-Commons]]
 === Common classes
