@@ -8,6 +8,9 @@ import javafx.scene.layout.Region;
 import seedu.planner.model.course.CreditRequired;
 import seedu.planner.model.course.DegreeRequirement;
 
+/**
+ * Panel to display the user's progress status.
+ */
 public class StatusPanel extends UiPart<Region> {
     private static final String FXML = "StatusPanel.fxml";
 
@@ -37,13 +40,19 @@ public class StatusPanel extends UiPart<Region> {
         });
     }
 
+    /**
+     * Formats the string that shows status for non-Focus Area related modules.
+     *
+     * @param statusMap The status mapping
+     * @return String showing the progress for non-Focus Area related modules.
+     */
     private String formatNonFocusArea(ObservableMap<DegreeRequirement, int[]> statusMap) {
         DegreeRequirement[] dr = DegreeRequirement.values();
         CreditRequired[] cr = CreditRequired.values();
         StringBuilder sb = new StringBuilder();
         int i = 0;
         while (i < cr.length - 1) {
-            DegreeRequirement degreeRequirement =  dr[i];
+            DegreeRequirement degreeRequirement = dr[i];
             CreditRequired creditRequired = cr[i];
             int[] creditAchieved = statusMap.get(degreeRequirement);
             sb.append(degreeRequirement.toString()).append(": ").append(creditAchieved[0]);
@@ -53,6 +62,12 @@ public class StatusPanel extends UiPart<Region> {
         return sb.toString();
     }
 
+    /**
+     * Formats the string that shows status for Focus Area modules that the user need to take.
+     *
+     * @param statusMap The status mapping
+     * @return String showing the progress for Focus Area modules that the user need to take.
+     */
     private String formatFocusArea(ObservableMap<DegreeRequirement, int[]> statusMap) {
         int j = 0;
         DegreeRequirement focusAreaRequirements = DegreeRequirement.FOCUS_AREA_REQUIREMENTS;
