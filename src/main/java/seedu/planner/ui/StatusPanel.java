@@ -82,18 +82,4 @@ public class StatusPanel extends UiPart<Region> {
         }
         return sb.toString();
     }
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof StatusPanel)) {
-            return false;
-        }
-
-        return true;
-    }
 }
