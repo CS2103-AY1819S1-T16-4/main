@@ -4,6 +4,8 @@ import static seedu.planner.commons.core.Messages.MESSAGE_NOT_OFFERED_MODULES;
 import static seedu.planner.commons.util.CollectionUtil.formatMessage;
 import static seedu.planner.commons.util.CollectionUtil.getAnyOne;
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CS0000;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS2040;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS2040;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1231;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2030;
@@ -13,6 +15,7 @@ import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.planner.logic.commands.DeleteCommand.MESSAGE_DELETE_MODULES_SUCCESS;
 import static seedu.planner.logic.commands.DeleteCommand.MESSAGE_NON_EXISTENT_MODULES;
 
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Before;
@@ -77,15 +80,6 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_notOfferedModule_throwsCommandException() {
-        DeleteCommand deleteCommand = new DeleteCommand(Set.of(INVALID_MODULE_CS0000));
-
-        String expectedMessage = String.format(MESSAGE_NOT_OFFERED_MODULES, INVALID_MODULE_CS0000);
-
-        assertCommandFailure(deleteCommand, model, commandHistory, expectedMessage);
-    }
-
-    @Test
     public void execute_nonExistentModule_throwsCommandException() {
         DeleteCommand deleteCommand = new DeleteCommand(Set.of(VALID_MODULE_CS2040));
 
@@ -95,13 +89,12 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validAndNotOfferedAndNonExistentModule() {
+    public void execute_validAndNonExistentModule() {
         Set<Module> modulesToDelete = Set.of(VALID_MODULE_CS1010, INVALID_MODULE_CS0000, VALID_MODULE_CS2040);
         DeleteCommand deleteCommand = new DeleteCommand(modulesToDelete);
 
         String expectedMessage = String.format(MESSAGE_DELETE_MODULES_SUCCESS, VALID_MODULE_CS1010)
-                + "\n" + String.format(MESSAGE_NOT_OFFERED_MODULES, INVALID_MODULE_CS0000)
-                + "\n" + String.format(MESSAGE_NON_EXISTENT_MODULES, VALID_MODULE_CS2040);
+                + "\n" + formatMessage(MESSAGE_NON_EXISTENT_MODULES, List.of(INVALID_MODULE_CS0000, VALID_MODULE_CS2040));
         expectedModel.deleteModules(Set.of(VALID_MODULE_CS1010));
         expectedModel.commitModulePlanner();
 

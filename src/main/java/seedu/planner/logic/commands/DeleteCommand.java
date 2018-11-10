@@ -53,7 +53,6 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        removeNotOfferedModules(model);
         removeNonExistentModules(model);
 
         model.deleteModules(modulesToDelete);
@@ -63,28 +62,6 @@ public class DeleteCommand extends Command {
         message = successMessage + "\n" + message;
 
         return new CommandResult(message.trim());
-    }
-
-    /**
-     * Removes the modules not offered by the {@code model}.
-     * The modules are checked against the {@code model} to see if they
-     * are offered.
-     *
-     * @param model The model
-     * @throws CommandException if all modules to be deleted are not offered
-     */
-    private void removeNotOfferedModules(Model model) throws CommandException {
-        List<Module> notOfferedModules = collectNotOfferedModules(model);
-        if (!notOfferedModules.isEmpty()) {
-            boolean areAllModulesNotOffered = notOfferedModules.size() == modulesToDelete.size();
-            message += formatMessage(MESSAGE_NOT_OFFERED_MODULES, notOfferedModules) + "\n";
-            if (areAllModulesNotOffered) {
-                logger.fine("In delete command: " + notOfferedModules + " not offered");
-                throw new CommandException(message.trim());
-            } else {
-                modulesToDelete.removeAll(notOfferedModules);
-            }
-        }
     }
 
     /**
@@ -109,22 +86,6 @@ public class DeleteCommand extends Command {
         }
     }
 
-    /**
-     * Collects the modules that are not offered.
-     * These modules are checked against {@code model}.
-     *
-     * @param model The model
-     * @return The modules that are not offered
-     */
-    private List<Module> collectNotOfferedModules(Model model) {
-        List<Module> notOfferedModules = new ArrayList<>();
-        for (Module m : modulesToDelete) {
-            if (!model.isModuleOffered(m)) {
-                notOfferedModules.add(m);
-            }
-        }
-        return notOfferedModules;
-    }
 
     /**
      * Collects the modules that do not exist in {@code model}.
