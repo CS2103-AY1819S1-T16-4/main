@@ -55,6 +55,7 @@ https://github.com/CS2103-AY1819S1-W16-1/main/issues/157[#157])
 *** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
 ** Tools:
 *** Integrated CI services (Travis and Appveyor) to the project (https://github.com/CS2103-AY1819S1-T16-4/main/pull/2[#2])
+*** Integrated Netlify service into PR workflow so that reviewer can review documentation changes easily.
 
 == Contributions to the User Guide
 
@@ -63,9 +64,7 @@ https://github.com/CS2103-AY1819S1-W16-1/main/issues/157[#157])
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=undoredo]
-
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=setup]
 
 == Contributions to the Developer Guide
 
@@ -73,7 +72,4 @@ include::../UserGuide.adoc[tag=dataencryption]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
-
-include::../DeveloperGuide.adoc[tag=dataencryption]
-
+include::../DeveloperGuide.adoc[tag=moduleinfo]

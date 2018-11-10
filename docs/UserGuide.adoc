@@ -1,4 +1,4 @@
-= Module Planner - User Guide
+﻿= Module Planner - User Guide
 :site-section: UserGuide
 :toc:
 :toc-title:
@@ -33,6 +33,8 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
+* **`setup`**`m/Computer Science` : Set up your user profile in Module Planner to get tailored module suggestion.
+* **`suggest`**`y/1 s/1` : suggest modules you can take in first year, semester 1. 
 * **`add`**`y/1 s/1 c/CS1231 c/MA1521` : adds modules CS1231 and MA1521 to the year 1 semester 1 modules list.
 * **`delete`**`c/CS1231` : deletes module CS1231 from the Module Planner.
 * *`exit`* : exits the app
@@ -47,8 +49,35 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 * Words in `UPPER_CASE` are the parameters that you can supply, e.g. in `list y/YEAR`, `YEAR` is a parameter which can be used as `add y/1`.
 * Items in square brackets are optional e.g `setup ... [f/FOCUS_AREA]` can be used as `setup ... f/software engineering` or as `setup ...`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `MODULE_CODE...` can be used as `{nbsp}` (i.e. 0 times), `CS1231`, `CS1231 MA1521` etc.
+* Items with `...`​ after them can be used multiple times including zero times e.g. `MODULE_CODE...` can be used as `{nbsp}` (i.e. 0 times), `CS1231`, `CS1231 MA1521` etc.
 ====
+
+=== Viewing help : `help`
+
+Open this user guide in a new window.
+
+Format: `help`
+
+// tag::setup[]
+=== Setting user profile : `setup`
+
+Initialises your profile with your major and optional focus areas to allow personalisation. +
+Format: `setup m/MAJOR [f/FOCUS_AREA]...`
+
+****
+* The major and focus areas should be spelt out in full.
+* The major and focus areas are case insensitive. e.g. `Computer Science` is the same as `cOmpUter scienCe`.
+* This feature currently only supports majors and focus areas listed below. Support for other majors and focus areas will come beyond v1.6.
+** Major: Computer Science, Computer Engineering.
+** Focus area: Artificial Intelligence, Software Engineering.
+* Default user profile is set to `Computer Science` major with no focus area.
+****
+
+Examples:
+
+* `setup m/Computer Engineering
+* `setup m/Computer Science f/Software Engineering`
+// end::setup[]
 
 === Adding modules: `add`
 
@@ -99,20 +128,6 @@ Format: `list y/YEAR s/SEMESTER`
 Examples:
 
 * `list y/1 s/1`
-
-=== Setting user profile : `setup`
-
-Initialises your profile with your major and optional focus areas to allow personalisation. +
-Format: `setup m/MAJOR [f/FOCUS_AREA]...`
-
-[NOTE]
-The major and focus areas should be spelt out in full. +
-Currently, this feature only supports the major of Computer Science and the focus areas of Algorithms and Theory,
-Artificial Intelligence and Software Engineering. Support for other majors and focus areas will come beyond v1.2.
-
-Examples:
-
-* `setup y/1 s/1 m/computer science f/software engineering`
 
 === Getting status update : `status`
 
