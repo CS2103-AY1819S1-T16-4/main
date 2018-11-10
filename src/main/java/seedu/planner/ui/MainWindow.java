@@ -143,7 +143,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        initTakenModulesPanel();
+        initTakenModulesPanels();
         initSuggestedModulesPanel();
         initListedModulesPanel();
 
@@ -166,7 +166,7 @@ public class MainWindow extends UiPart<Stage> {
      * The taken modules placeholder is then initialised with the empty taken
      * modules panel.
      */
-    private void initTakenModulesPanel() {
+    private void initTakenModulesPanels() {
         takenModuleListPanels = new ArrayList<>(MAX_NUMBER_SEMESTERS + 1);
 
         for (int semesterIndex = 0; semesterIndex < MAX_NUMBER_SEMESTERS; semesterIndex++) {
