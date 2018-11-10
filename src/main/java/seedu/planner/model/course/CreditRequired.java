@@ -3,7 +3,7 @@ package seedu.planner.model.course;
 /**
  * Enum to store the amount of credits need to achieved for each Degree Requirement.
  */
-public enum CreditRequirement {
+public enum CreditRequired {
     UNIVERSITY_LEVEL_REQUIREMENTS(20),
     FOUNDATION(36),
     MATHEMATICS(12),
@@ -11,11 +11,11 @@ public enum CreditRequirement {
     IT_PROFESSIONALISM(12),
     INDUSTRIAL_EXPERIENCE_REQUIREMENT(12),
     TEAM_PROJECT(8),
-    BREADTH_AND_DEPTH(12);
+    FOCUS_AREA_REQUIREMENT(12);
 
     private int required;
 
-    CreditRequirement(int required) { this.required = required; }
+    CreditRequired(int required) { this.required = required; }
 
     public int getRequired() { return required; }
 }
