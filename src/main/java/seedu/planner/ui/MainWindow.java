@@ -1,6 +1,8 @@
 package seedu.planner.ui;
 
+import static seedu.planner.commons.events.ui.ListModuleEvent.ALL_YEARS;
 import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
+import static seedu.planner.ui.ModuleListPanel.TIMELESS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +45,6 @@ import seedu.planner.model.module.Module;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-
-    private static final int TIMELESS = -1;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -160,9 +160,10 @@ public class MainWindow extends UiPart<Stage> {
     //@@author GabrielYik
 
     /**
-     * Initialises the taken module panels with taken modules if any.
-     * The taken modules placeholder is then initialised with a blank
-     * taken module panel.
+     * Initialises an empty taken modules panel and all the taken modules panels
+     * with taken modules if any.
+     * The taken modules placeholder is then initialised with the empty taken
+     * modules panel.
      */
     private void initTakenModulesPanel() {
         takenModuleListPanels = new ArrayList<>(MAX_NUMBER_SEMESTERS + 1);
@@ -175,18 +176,25 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         ObservableList<Module> modules = logic.listModules();
-        ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules, TIMELESS, ModulePanelType.TAKEN).timeless();
+        ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules, ModulePanelType.TAKEN);
         takenModuleListPanels.add(MAX_NUMBER_SEMESTERS, takenModuleListPanel);
 
         timelessTakenModuleListPanel = new ModuleListPanel(FXCollections.emptyObservableList(),
-                TIMELESS, ModulePanelType.TAKEN).timeless();
+                ModulePanelType.TAKEN);
+        timelessTakenModuleListPanel.setSubTitle(TIMELESS);
 
         setPlaceholder(takenModulesPlaceholder, timelessTakenModuleListPanel);
     }
 
+    /**
+     * Initialises an empty suggested modules panel.
+     * The suggested modules placeholder is then initialised with the empty suggested
+     * mdoules panel.
+     */
     private void initSuggestedModulesPanel() {
         timelessSuggestedModuleListPanel = new ModuleListPanel(FXCollections.emptyObservableList(),
-                TIMELESS, ModulePanelType.SUGGESTED).timeless();
+                ModulePanelType.SUGGESTED);
+        timelessSuggestedModuleListPanel.setSubTitle(TIMELESS);
         setPlaceholder(suggestedModulesPlaceholder, timelessSuggestedModuleListPanel);
     }
 
@@ -308,6 +316,11 @@ public class MainWindow extends UiPart<Stage> {
     @Subscribe
     private void handleListEvent(ListModuleEvent event) {
         ModuleListPanel panel = takenModuleListPanels.get(MAX_NUMBER_SEMESTERS);
+        if (event.getYear() == ALL_YEARS) {
+            panel.setSubTitle("All years");
+        } else {
+            panel.setSubTitle("Year " + event.getYear());
+        }
         setPlaceholder(takenModulesPlaceholder, panel);
     }
 }

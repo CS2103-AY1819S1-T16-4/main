@@ -2,6 +2,8 @@ package seedu.planner.model.util;
 
 //@@author Hilda-Ang
 
+import seedu.planner.commons.util.Pair;
+
 /**
  * Contains utility methods for handling year, semester, and indexing.
  */
@@ -55,16 +57,18 @@ public class IndexUtil {
     }
 
     /**
-     * Converts an index to the corresponding year and semester.
-     * If the index is not valid (not between 0 and 7), "00" is
-     * returned.
+     * Converts an index to the corresponding year and semester
+     * wrapped in a {@code Pair}, with the year being the first
+     * value and the semester being the second.
+     * If the index is not valid (not between 0 and 7), a
+     * {@code Pair} is returned with both inner fields set to 0.
      *
      * @param index The index
-     * @return The corresponding year and semester concatenated as a string
+     * @return The corresponding year and semester as a Pair
      */
-    public static String convertIndexToYearAndSemester(int index) {
+    public static Pair convertIndexToYearAndSemester(int index) {
         if (!isValidIndex(index)) {
-            return "00";
+            return new Pair(0, 0);
         }
 
         int year = 1;
@@ -75,7 +79,7 @@ public class IndexUtil {
         }
         semester += index;
 
-        return String.valueOf(year) + String.valueOf(semester);
+        return new Pair(year, semester);
     }
 
     public static int[] getIndicesFromYear(int year) {

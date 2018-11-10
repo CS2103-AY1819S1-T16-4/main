@@ -1,5 +1,10 @@
 package seedu.planner.testutil;
 
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1231;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2030;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2040;
+import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2103T;
 import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.planner.testutil.TypicalIndexes.INDEX_SECOND;
 
@@ -7,32 +12,21 @@ import java.util.Set;
 
 import seedu.planner.model.ModulePlanner;
 import seedu.planner.model.module.Module;
-import seedu.planner.model.module.ModuleInfo;
-import seedu.planner.model.module.ModuleType;
 
 /**
  * A utility class containing {@code Modules} to be used.
  */
 public class TypicalModules {
 
-    public static final Module CS1010 = new ModuleBuilder().withType(ModuleType.PROGRAMME_REQUIREMENTS)
-        .withInformation(ModuleInfo.getFromModuleCode("CS1010").get()).build();
+    public static final Module CS1010 = VALID_MODULE_CS1010;
 
-    public static final Module CS1231 = new ModuleBuilder().withType(ModuleType.PROGRAMME_REQUIREMENTS)
-            .withInformation(ModuleInfo.getFromModuleCode("CS1231").get()).build();
+    public static final Module CS1231 = VALID_MODULE_CS1231;
 
-    public static final Module CS1020 = new ModuleBuilder().withType(ModuleType.PROGRAMME_REQUIREMENTS)
-        .withInformation(ModuleInfo.getFromModuleCode("CS1020").get()).build();
+    public static final Module CS2030 = VALID_MODULE_CS2030;
 
-    public static final Module CS2030 = new ModuleBuilder().withType(ModuleType.PROGRAMME_REQUIREMENTS)
-        .withInformation(ModuleInfo.getFromModuleCode("CS2030").get()).build();
+    public static final Module CS2040 = VALID_MODULE_CS2040;
 
-    public static final Module CS2040 = new ModuleBuilder().withType(ModuleType.PROGRAMME_REQUIREMENTS)
-        .withInformation(ModuleInfo.getFromModuleCode("CS2040").get()).build();
-
-    public static final Module CS2103T = new ModuleBuilder().withType(ModuleType.PROGRAMME_REQUIREMENTS)
-            .withInformation(ModuleInfo.getFromModuleCode("CS2103T").get()).build();
-
+    public static final Module CS2103T = VALID_MODULE_CS2103T;
 
 
     private TypicalModules() {}

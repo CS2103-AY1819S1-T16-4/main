@@ -1,0 +1,108 @@
+= Hilda Anggraeni - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: ModulePlanner
+
+---
+
+== Overview
+
+This project portfolio showcases the contributions I have made in a team project under CS2103T. We developed a product called ModulePlanner on top of an existing software, AddressBook - Level 4.
+
+ModulePlanner is a desktop application made to help NUS Computer Science undergraduate students plan their modules by giving module suggestions for every semester. It is mainly designed to be used through a Command Line Interface (CLI), although it also provides a Graphical User Interface (GUI).
+
+* *Major Features*:
+** Suggest available modules based on major requirements and module prerequisites.
+** Plan modules for each semester by adding or deleting modules to or from the planner.
+** Check module description, prerequisites, and preclusions.
+
+The next few sections will describe my contributions to the project.
+
+== Summary of contributions
+
+* *Major enhancement*: added *the ability to suggest modules to take*
+** What it does: allows the user to see the modules he/she is available to take in each semester, based on the modules he/she has taken.
+** Justification: This feature helps the user plan modules by checking and listing available modules for him/her.
+** Highlights: This is the main feature of our application. It demanded a careful consideration and thorough analysis of several design alternatives and implementation choices. The actual implementation was challenging as it interacted with many other components and commands.
+
+* *Major enhancement*: added *the ability to list modules taken*
+** What it does: allows the user to see the modules he/she has added for all years or for each year.
+** Justification: This feature helps the user to quickly checks the modules he/she has added.
+** Highlights: This feature interacts with other features as the list is updated with each successful execution of add or delete command.
+
+* *Minor enhancement*: removed redundant year and semester arguments from setup command.
+
+* *Code contributed*: [https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=hilda-ang]
+
+* *Other contributions*:
+
+** Project management:
+*** Managed release `v1.1` on GitHub
+*** Recorded and labeled each of the user stories as an issue (https://github.com/CS2103-AY1819S1-T16-4/main/issues/8[#8], https://github.com/CS2103-AY1819S1-T16-4/main/issues/9[#9], https://github.com/CS2103-AY1819S1-T16-4/main/issues/10[#10], https://github.com/CS2103-AY1819S1-T16-4/main/issues/11[#11], https://github.com/CS2103-AY1819S1-T16-4/main/issues/12[#12], https://github.com/CS2103-AY1819S1-T16-4/main/issues/13[#13], https://github.com/CS2103-AY1819S1-T16-4/main/issues/14[#14])
+*** Assigned team members to issues and issues to milestones (https://github.com/CS2103-AY1819S1-T16-4/main/issues/45[#45], https://github.com/CS2103-AY1819S1-T16-4/main/issues/46[#46], https://github.com/CS2103-AY1819S1-T16-4/main/issues/47[#47], https://github.com/CS2103-AY1819S1-T16-4/main/issues/48[#48], https://github.com/CS2103-AY1819S1-T16-4/main/issues/49[#49], https://github.com/CS2103-AY1819S1-T16-4/main/issues/50[#50], https://github.com/CS2103-AY1819S1-T16-4/main/issues/70[#70], https://github.com/CS2103-AY1819S1-T16-4/main/issues/71[#71], https://github.com/CS2103-AY1819S1-T16-4/main/issues/72[#72], https://github.com/CS2103-AY1819S1-T16-4/main/issues/73[#73], https://github.com/CS2103-AY1819S1-T16-4/main/issues/74[#74], https://github.com/CS2103-AY1819S1-T16-4/main/issues/75[#75])
+*** Set a deadline for each milestone on Github
+** Testing:
+*** Wrote tests for shared classes (https://github.com/CS2103-AY1819S1-T16-4/main/pull/147[#147])
+** Documentation:
+*** Modify User Guide to be relevant to current project (https://github.com/CS2103-AY1819S1-T16-4/main/pull/6[#6], https://github.com/CS2103-AY1819S1-T16-4/main/pull/67[#67])
+** Community:
+*** Refactored AddressBook to ModulePlanner (https://github.com/CS2103-AY1819S1-T16-4/main/pull/113[#113], https://github.com/CS2103-AY1819S1-T16-4/main/pull/129[#129])
+*** PRs reviewed with non-trivial review comments (https://github.com/CS2103-AY1819S1-T16-4/main/pull/65[#65], https://github.com/CS2103-AY1819S1-T16-4/main/pull/136[#136])
+*** Reported bugs for other teams in the class (https://github.com/CS2103-AY1819S1-W14-1/main/issues/193[#193], https://github.com/CS2103-AY1819S1-W14-1/main/issues/195[#195], https://github.com/CS2103-AY1819S1-W14-1/main/issues/200[#200], https://github.com/CS2103-AY1819S1-W14-1/main/issues/223[#223])
+** Tools:
+*** Integrated a Github plugin (Coveralls) for code coverage checking to the team repo (https://github.com/CS2103-AY1819S1-T16-4/main/pull/144[#144])
+*** Configured team repo to be compatible with RepoSense (https://github.com/CS2103-AY1819S1-T16-4/main/pull/124[#124])
+
+== Contributions to the User Guide
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+== Introduction
+
+Module Planner is for NUS Computer Science undergraduate students who *prefer to use a desktop app* to keep track of past modules and list possible future modules based on the academic requirements. More importantly, Module Planner is optimized for those who prefer to work with a *Command Line Interface (CLI)* while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Module Planner can get your module planning tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+=== List feature
+==== Current Implementation
+
+The list mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`-s and each `Semester` stores a list `modulesTaken` containing modules that the user has taken or is planning to take.
+It implements the following operation:
+
+* `ModulePlanner#listModulesTaken(int index)` -- Retrieves a list of modules from the `Semester` specified by `index`.
+
+The operation is exposed in `Model` interface as `Model#getFilteredTakenModuleList(int index)`.
+
+[NOTE]
+A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
+
+Below is an example usage scenario and how the list mechanism works.
+
+Step 1. The user launches the application. `ModulePlanner` is initialised with 8 `Semester` objects in `List<Module> semesters`.
+
+Step 2. The user executes `add y/1 s/1 CS1231`. The `add` command inserts `Module` CS1231 to the list `modulesTaken` for `Semester` object with index 0.
+
+Step 3. The user wants to see the list of modules for year 1 semester 1 by executing `list y/1 s/1`. The `list` command parses `y/1 s/1` to index 0 and calls `Model#getFilteredTakenModuleList(int index)`.
+It will execute `ModulePlanner#listModulesTaken(int index)` which will call `Semester#getModulesTaken()` in the relevant `Semester`. The returned result will be a list of modules and will be displayed to the user.
+
+The following sequence diagram shows how the list operation works:
+
+image::ListSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Aspect: How list of modules is retrieved for list command
+* **Alternative 1 (current choice):** Updates list of modules whenever it is modified by a command (e.g. `add`) and immediately retrieves the list upon `list` command.
+** Pros: Easy to implement.
+** Cons: May have performance issue in terms of running time if commands that modify the list are called frequently.
+* **Alternative 2:** Saves all commands that modify list of modules without applying it and updates the list based on the commands only when it is retrieved upon `list` command.
+** Pros: May be more effective in terms of running time because it only modifies the list when needed.
+** Cons: Implementation will be more complicated as we have to store all commands that modify the list.

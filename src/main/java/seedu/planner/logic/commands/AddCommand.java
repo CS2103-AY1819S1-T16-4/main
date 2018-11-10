@@ -67,20 +67,20 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Retrieves all invalid modules from the set based on the model.
+     * Retrieves all modules not offered from the set based on the model.
      *
      * @param model Model used
-     * @return List of invalid modules
+     * @return List of modules not offered
      */
-    private List<Module> retrieveInvalidModules(Model model) {
-        List<Module> invalidModules = new ArrayList<>();
+    private List<Module> retrieveNotOfferedModules(Model model) {
+        List<Module> notOfferedModules = new ArrayList<>();
         for (Module m : modulesToAdd) {
             if (!model.isModuleOffered(m)) {
-                invalidModules.add(m);
+                notOfferedModules.add(m);
             }
         }
 
-        return invalidModules;
+        return notOfferedModules;
     }
 
     /**
@@ -155,20 +155,20 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Remove invalid modules from the set.
+     * Remove modules not offered from the set.
      *
      * @param model Model used
-     * @throws CommandException if all modules in the set is invalid
+     * @throws CommandException if all modules in the set are not offered
      */
-    private void removeInvalidModules(Model model) throws CommandException {
-        List<Module> invalidModules = retrieveInvalidModules(model);
-        if (!invalidModules.isEmpty()) {
-            boolean areAllModulesInvalid = invalidModules.size() == modulesToAdd.size();
-            message += formatMessage(Messages.MESSAGE_INVALID_MODULES, invalidModules) + "\n";
-            if (areAllModulesInvalid) {
+    private void removeNotOfferedModules(Model model) throws CommandException {
+        List<Module> notOfferedModules = retrieveNotOfferedModules(model);
+        if (!notOfferedModules.isEmpty()) {
+            boolean areAllModulesOffered = notOfferedModules.size() == modulesToAdd.size();
+            message += formatMessage(Messages.MESSAGE_NOT_OFFERED_MODULES, notOfferedModules) + "\n";
+            if (areAllModulesOffered) {
                 throw new CommandException(message.trim());
             } else {
-                modulesToAdd.removeAll(invalidModules);
+                modulesToAdd.removeAll(notOfferedModules);
             }
         }
     }
@@ -259,7 +259,7 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        removeInvalidModules(model);
+        removeNotOfferedModules(model);
         removeExistingModules(model);
         removePrecludedModules(model);
         removeEquivalentModules();
