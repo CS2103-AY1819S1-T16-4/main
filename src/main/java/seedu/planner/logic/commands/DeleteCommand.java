@@ -50,6 +50,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        assert message.equals("");
 
         removeNonExistentModules(model);
 
