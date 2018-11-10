@@ -18,7 +18,8 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken for all semesters or a specific year. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List modules taken for every semesters "
+            + "or for a specific year. "
             + "Parameters: "
             + "[" + PREFIX_YEAR + "YEAR]\n"
             + "Example: " + COMMAND_WORD + " "

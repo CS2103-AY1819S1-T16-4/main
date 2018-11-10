@@ -347,7 +347,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-     * Get a list of all {@code Module}s user can take based on the {@code Module}s user has taken (added to ModulePlanner).
+     * Get a list of all {@code Module}s user can take based on the {@code Module}s user has taken.
      *
      * @param index An integer from 0 to 7 inclusive to inidcate the current year and semester to suggest.
      * @return A list of {@code Module}s the user is available to take.

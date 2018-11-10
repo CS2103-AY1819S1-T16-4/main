@@ -127,13 +127,15 @@ public class ModulePlannerTest {
     @Test
     public void getModulesTaken_sameIndex_returnsSameList() {
         modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
-        assertEquals(modulePlanner.getTakenModulesForIndex(INDEX_FIRST), modulePlanner.getTakenModulesForIndex(INDEX_FIRST));
+        assertEquals(modulePlanner.getTakenModulesForIndex(INDEX_FIRST),
+            modulePlanner.getTakenModulesForIndex(INDEX_FIRST));
     }
 
     @Test
     public void getModulesTaken_differentIndex_returnsDifferentList() {
         modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
-        assertNotEquals(modulePlanner.getTakenModulesForIndex(INDEX_FIRST), modulePlanner.getTakenModulesForIndex(INDEX_SECOND));
+        assertNotEquals(modulePlanner.getTakenModulesForIndex(INDEX_FIRST),
+            modulePlanner.getTakenModulesForIndex(INDEX_SECOND));
     }
 
     @Test
