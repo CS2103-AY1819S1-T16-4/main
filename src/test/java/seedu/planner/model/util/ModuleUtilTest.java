@@ -107,6 +107,11 @@ public class ModuleUtilTest {
     @Test
     public void findModuleEquivalence() {
         List<Module> moduleList = List.of(new Module("CS1010"), new Module("CS1101S"));
+
+        //Empty List
+        assertEquals(ModuleUtil.findModuleEquivalences(new ArrayList<>()), new ArrayList<>());
+
+        //Non-Empty List
         assertEquals(ModuleUtil.findModuleEquivalences(moduleList),
                 List.of(List.of(new Module("CS1010"), new Module("CS1101S"))));
     }
