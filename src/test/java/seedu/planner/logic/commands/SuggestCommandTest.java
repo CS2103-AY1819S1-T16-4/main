@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.planner.commons.core.Messages;
-import seedu.planner.commons.events.ui.SuggestModuleEvent;
+import seedu.planner.commons.events.ui.SuggestModulesEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -41,7 +41,7 @@ public class SuggestCommandTest {
         }
 
         assertEquals(SuggestCommand.MESSAGE_SUCCESS, result.feedbackToUser);
-        assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof SuggestModuleEvent);
+        assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof SuggestModulesEvent);
         assertEquals(eventsCollectorRule.eventsCollector.getSize(), 1);
     }
 
