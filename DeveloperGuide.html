@@ -34,10 +34,11 @@
 <li><a href="#find-feature">3.3. Find feature</a></li>
 <li><a href="#goto-feature">3.4. Goto feature</a></li>
 <li><a href="#list-feature">3.5. List feature</a></li>
-<li><a href="#undo-redo-feature">3.6. Undo/Redo feature</a></li>
-<li><a href="#logging">3.7. Logging</a></li>
-<li><a href="#retrieval-and-use-of-module-information">3.8. Retrieval and Use of Module Information</a></li>
-<li><a href="#Implementation-Configuration">3.9. Configuration</a></li>
+<li><a href="#suggest-feature">3.6. Suggest feature</a></li>
+<li><a href="#undo-redo-feature">3.7. Undo/Redo feature</a></li>
+<li><a href="#logging">3.8. Logging</a></li>
+<li><a href="#retrieval-and-use-of-module-information">3.9. Retrieval and Use of Module Information</a></li>
+<li><a href="#Implementation-Configuration">3.10. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1047,12 +1048,18 @@ It implements the following operation:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>ModulePlanner#listModulesTaken(int index)</code>&#8201;&#8212;&#8201;Retrieves a list of modules from the <code>Semester</code> specified by <code>index</code>.</p>
+<p><code>ModulePlanner#listTakenModules()</code>&#8201;&#8212;&#8201;Retrieves the list <code>takenModules</code>.</p>
+</li>
+<li>
+<p><code>ModulePlanner#listTakenModulesAll()</code>&#8201;&#8212;&#8201;Updates <code>takenModules</code> to contain a list of modules retrieved from the list <code>modulesTaken</code> in every <code>Semester</code>.</p>
+</li>
+<li>
+<p><code>ModulePlanner#listTakenModulesForYear(int year)</code>&#8201;&#8212;&#8201;Updates <code>takenModules</code> to contain a list of modules retrieved from the list <code>modulesTaken</code> in the <code>Semester</code>-s that belongs to the specified year.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The operation is exposed in <code>Model</code> interface as <code>Model#getFilteredTakenModuleList(int index)</code>.</p>
+<p>The operation is exposed in <code>Model</code> interface as <code>Model#listTakenModules()</code>, <code>Model#listTakenModulesAll()</code>, and <code>Model#listTakenModulesForYear(int year)</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1070,21 +1077,36 @@ A valid index should be an integer between 0 to 7 inclusive, where index 0 repre
 <p>Below is an example usage scenario and how the list mechanism works.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application. <code>ModulePlanner</code> is initialised with 8 <code>Semester</code> objects in <code>List&lt;Module&gt; semesters</code>.</p>
+<p>Step 1. User launches the application. <code>ModulePlanner</code> is initialised with 8 <code>Semester</code> objects in <code>List&lt;Module&gt; semesters</code>.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>add y/1 s/1 CS1231</code>. The <code>add</code> command inserts <code>Module</code> CS1231 to the list <code>modulesTaken</code> for <code>Semester</code> object with index 0.</p>
+<p>Step 2. User executes <code>add y/1 s/1 c/CS1231</code>. The <code>add</code> command inserts <code>Module</code> CS1231 to the list <code>modulesTaken</code> for <code>Semester</code> object with index 0.</p>
 </div>
 <div class="paragraph">
-<p>Step 3. The user wants to see the list of modules for year 1 semester 1 by executing <code>list y/1 s/1</code>. The <code>list</code> command parses <code>y/1 s/1</code> to index 0 and calls <code>Model#getFilteredTakenModuleList(int index)</code>.
-It will execute <code>ModulePlanner#listModulesTaken(int index)</code> which will call <code>Semester#getModulesTaken()</code> in the relevant <code>Semester</code>. The returned result will be a list of modules and will be displayed to the user.</p>
+<p>Step 3. User executes <code>add y/2 s/1 c/CS1010</code>. The <code>add</code> command inserts <code>Module</code> CS1010 to the list <code>modulesTaken</code> for <code>Semester</code> object with index 2.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the list operation works:</p>
+<p>Step 4. User wants to see the list of modules taken for year 1 by executing <code>list y/1</code>. The <code>list</code> command updates <code>takenModules</code> to contain list of modules taken in year 1 and retrieves it.
+A list containing CS1231 will be displayed to the user.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. User wants to see the list of modules taken for all years by executing <code>list</code>. The <code>list</code> command updates <code>takenModules</code> to contain list of modules taken in all years and retrieves it.
+A list containing CS1231 and CS1010 will be displayed to the user.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the list operation when a valid year is specified:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/ListSequenceDiagram.png" alt="ListSequenceDiagram" width="800">
+<img src="images/ListSequenceDiagram_1.png" alt="ListSequenceDiagram 1" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the list operation when no year is specified:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ListSequenceDiagram_2.png" alt="ListSequenceDiagram 2" width="800">
 </div>
 </div>
 </div>
@@ -1126,9 +1148,145 @@ It will execute <code>ModulePlanner#listModulesTaken(int index)</code> which wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.6. Undo/Redo feature</a></h3>
+<h3 id="suggest-feature"><a class="link" href="#suggest-feature">3.6. Suggest feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The suggest mechanism displays a list of modules available in the specified index to the user, where index represents the year and semester that the user is asking suggestions for.
+It is supported by an internal list <code>availableModules</code> in <code>ModulePlanner</code>, which is regenerated after every successful execution of commands that modify <code>ModulePlanner</code> (<code>add</code>, <code>delete</code>, <code>clear</code>, etc.) and <code>suggest</code> command.
+The list <code>availableModules</code> can be retrieved through <code>Model#getAvailableList</code> using <code>suggest</code> command, which takes in one argument: a valid index that corresponds to a specific year and semester.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Below is an example usage scenario and how the suggest mechanism works.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 1.</strong> User launches the application and <code>ModulePlanner</code> is initialized.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 2.</strong> User executes <code>suggest y/1 s/1</code>. The <code>suggest</code> command updates <code>availableModules</code> to a newly generated list of available modules for index 0 an stores index 0 as <code>availableIndex</code> in <code>ModulePlanner</code>. It then retrieves <code>availableModules</code> and displays it to user.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 3.</strong> User executes <code>add y/1 s/2 c/CS1010</code>. The <code>add</code> command performs adding a module and updates <code>availableModules</code> to a newly generated list of available modules for the stored index 0. The suggested modules list shows an updated list of available modules in year 1 semester 1 to the user.
+Only <code>suggest</code> command will change the index (year and semester) to be displayed by the suggested modules list, other commands will only show an updated list for the last index displayed by <code>suggest</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 4.</strong> User executes <code>suggest y/1 s/2</code>. The <code>suggest</code> command updates <code>availableModules</code> to a newly generated list of available modules for index 1 an stores index 1 as <code>availableIndex</code> in <code>ModulePlanner</code>. It then retrieves <code>availableModules</code> and displays list of available modules in year 1 semester 2 to user.</p>
+</div>
+<div class="paragraph">
+<p>Below is how the list of available modules is generated.</p>
+</div>
+<div class="paragraph">
+<p>The method <code>ModulePlanner#generateAvailableModules(int index)</code> is called by <code>ModulePlanner#updateModulesAvailable</code>, which sets the content of <code>availableModules</code> to be the list of modules returned by <code>generateAvailableModules(index)</code>, with index being  the stored <code>availableIndex</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>private List&lt;Module&gt; generateAvailableModules(int index) {
+    List&lt;Module&gt; modulesAvailable = new ArrayList&lt;&gt;();
+    List&lt;Module&gt; modulesTaken = getAllModulesTaken();
+    List&lt;Module&gt; modulesTakenBeforeIndex = getAllModulesTakenBeforeIndex(index);
+    List&lt;Module&gt; allModules = getAllModulesFromStorage();
+
+    for (Module m : allModules) {
+        if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenBeforeIndex, m)) {
+            modulesAvailable.add(m);
+        }
+    }
+
+    sortAvailableModules(modulesAvailable, userProfile);
+
+    return modulesAvailable;
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The method <code>generateAvailableModules</code> retrieves all modules from the storage and performs availability checking on each of them. The available modules are put into a list which is then sorted such that core modules are put on top, followed by general education modules and unrestricted electives.
+The availability checking is done by the following method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public static boolean isModuleAvailableToTake(List&lt;Module&gt; modulesTaken, List&lt;Module&gt; modulesTakenBeforeIndex, Module module) {
+    return hasNotTakenModule(modulesTaken, module)
+            &amp;&amp; hasFulfilledAllPrerequisites(modulesTakenBeforeIndex, module)
+            &amp;&amp; hasNotFulfilledAnyPreclusions(modulesTaken, module);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A sample scenario:
+Module CS2030 has a prerequisite CS1010 and a preclusion CS1020. User has taken CS1010 in year 1 semester 2 and has not taken CS1020 or CS2030.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Executing <code>suggest y/2 s/1</code> will display CS2030 as one of the available modules, as user has fulfilled all prerequisites of CS2030 before year 2 semester 1 and has not taken any preclusion or the module itself.</p>
+</li>
+<li>
+<p>Executing <code>suggest y/1 s/1</code> will <strong>not</strong> display CS2030 in the list of available modules, as user has not fulfilled all the prerequisites before year 1 semester 1 (user has only fulfilled CS1010 in the semester after).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the suggest operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SuggestSequenceDiagram.png" alt="SuggestSequenceDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-list-of-available-modules-is-regenerated"><a class="link" href="#aspect-how-list-of-available-modules-is-regenerated">Aspect: How list of available modules is regenerated</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Regenerates list of available modules after every successful execution of commands that modify <code>ModulePlanner</code> and <code>suggest</code> command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: May have performance issue in terms of running time because list is regenerated even if there is no change to the content.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Regenerates list of available module only after successful execution of commands that modify the content of the list of available modules.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: May be more effective in terms of running time because it only regenerates the list when needed.</p>
+</li>
+<li>
+<p>Cons: Implementation will be more complicated as we have to check whether a command modifies the list.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.7. Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedModulePlanner</code>.
 It extends <code>ModulePlanner</code> with an undo/redo history, stored internally as an <code>modulePlannerStateList</code> and <code>currentStatePointer</code>.
@@ -1284,7 +1442,7 @@ This is the behavior that most modern desktop applications follow.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.7.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -1355,14 +1513,14 @@ Violates Single Responsibility Principle and Separation of Concerns as <code>His
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.8. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.9, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.10, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1393,7 +1551,7 @@ Violates Single Responsibility Principle and Separation of Concerns as <code>His
 </div>
 </div>
 <div class="sect2">
-<h3 id="retrieval-and-use-of-module-information"><a class="link" href="#retrieval-and-use-of-module-information">3.8. Retrieval and Use of Module Information</a></h3>
+<h3 id="retrieval-and-use-of-module-information"><a class="link" href="#retrieval-and-use-of-module-information">3.9. Retrieval and Use of Module Information</a></h3>
 <div class="paragraph">
 <p>Information of a NUS module such as module code, module credit and prerequisite modules are stored in <code>ModuleInfo</code> class.
 This class is made to be immutable to avoid accidental changes to the class.</p>
@@ -1424,7 +1582,7 @@ You can convert a module code string to a <code>ModuleInfo</code> object by pass
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.9. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.10. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2235,4 +2393,4 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 12:57:50 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 12:59:56 UTC</div></div></div></body></html>
