@@ -13,17 +13,20 @@
 <li><a href="#quick-start">2. Quick Start</a></li>
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
-<li><a href="#adding-modules-code-add-code">3.1. Adding modules: <code>add</code></a></li>
-<li><a href="#deleting-modules-code-delete-code">3.2. Deleting modules : <code>delete</code></a></li>
-<li><a href="#finding-information-on-a-module-code-find-code">3.3. Finding information on a module : <code>find</code></a></li>
-<li><a href="#going-to-a-different-year-and-semester-code-goto-code">3.4. Going to a different year and semester : <code>goto</code></a></li>
-<li><a href="#listing-modules-code-list-code">3.5. Listing modules : <code>list</code></a></li>
-<li><a href="#setting-user-profile-code-setup-code">3.6. Setting user profile : <code>setup</code></a></li>
-<li><a href="#getting-status-update-code-status-code">3.7. Getting status update : <code>status</code></a></li>
-<li><a href="#suggesting-modules-code-suggest-code">3.8. Suggesting modules : <code>suggest</code></a></li>
-<li><a href="#viewing-help-code-help-code">3.9. Viewing help : <code>help</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.10. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.11. Saving the data</a></li>
+<li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
+<li><a href="#setting-user-profile-code-setup-code">3.2. Setting user profile : <code>setup</code></a></li>
+<li><a href="#adding-modules-code-add-code">3.3. Adding modules: <code>add</code></a></li>
+<li><a href="#deleting-modules-code-delete-code">3.4. Deleting modules : <code>delete</code></a></li>
+<li><a href="#finding-information-on-a-module-code-find-code">3.5. Finding information on a module : <code>find</code></a></li>
+<li><a href="#going-to-a-different-year-and-semester-code-goto-code">3.6. Going to a different year and semester : <code>goto</code></a></li>
+<li><a href="#listing-modules-code-list-code">3.7. Listing modules : <code>list</code></a></li>
+<li><a href="#getting-status-update-code-status-code">3.8. Getting status update : <code>status</code></a></li>
+<li><a href="#suggesting-modules-code-suggest-code">3.9. Suggesting modules : <code>suggest</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">3.10. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.11. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-modules-code-clear-code">3.12. Clearing all modules : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.13. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.14. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -70,6 +73,12 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
+<p><strong><code>setup</code></strong><code>m/Computer Science</code> : set your major to be Computer Science in Module Planner to get tailored module suggestion for Computer Science student.</p>
+</li>
+<li>
+<p><strong><code>suggest</code></strong><code>y/1 s/1</code> : suggest modules you can take in first year, semester 1.</p>
+</li>
+<li>
 <p><strong><code>add</code></strong><code>y/1 s/1 c/CS1231 c/MA1521</code> : adds modules CS1231 and MA1521 to the year 1 semester 1 modules list.</p>
 </li>
 <li>
@@ -105,14 +114,153 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Items in square brackets are optional e.g <code>setup &#8230;&#8203; [f/FOCUS_AREA]</code> can be used as <code>setup &#8230;&#8203; f/software engineering</code> or as <code>setup &#8230;&#8203;</code>.</p>
 </li>
 <li>
-<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>MODULE_CODE&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>CS1231</code>, <code>CS1231 MA1521</code> etc.</p>
+<p>Items with <code>&#8230;&#8203;</code> after them can be used multiple times including zero times e.g. <code>MODULE_CODE&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>CS1231</code>, <code>CS1231 MA1521</code> etc.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Fields restrictions</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAJOR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Supported majors are listed in <a href="#setting-user-profile-code-setup-code"><code>setup</code></a> and <a href="#suggesting-modules-code-suggest-code"><code>suggest</code></a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FOCUS_AREA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Supported focus areas are listed in <a href="#setting-user-profile-code-setup-code"><code>setup</code></a> and <a href="#suggesting-modules-code-suggest-code"><code>suggest</code></a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MODULE_CODE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Must be a valid NUS module code in Academic Year 18/19.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">YEAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should only be integer from <code>1</code> to <code>4</code> inclusive.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SEMESTER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should only be integer from <code>1</code> to <code>2</code> inclusive.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div class="sect2">
-<h3 id="adding-modules-code-add-code"><a class="link" href="#adding-modules-code-add-code">3.1. Adding modules: <code>add</code></a></h3>
+<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></h3>
+<div class="paragraph">
+<p>Open this user guide in a new window.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>help</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-user-profile-code-setup-code"><a class="link" href="#setting-user-profile-code-setup-code">3.2. Setting user profile : <code>setup</code></a></h3>
+<div class="paragraph">
+<p>Initialises your profile with your major and optionally your focus areas so that Module Planner can
+give you module suggestion that is more relevant to you.
+Format: <code>setup m/MAJOR [f/FOCUS_AREA]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The major and focus areas should be spelt out in full.</p>
+</li>
+<li>
+<p>The major and focus areas are case insensitive. e.g. <code>Computer Science</code> is the same as <code>cOmpUter scienCe</code>.</p>
+</li>
+<li>
+<p>This feature currently only supports majors and focus areas listed below. Support for other majors and focus areas will come beyond v1.6.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Major:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Computer Science</p>
+</li>
+<li>
+<p>Computer Engineering</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Focus area:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Algorithms and Theory</p>
+</li>
+<li>
+<p>Artificial Intelligence</p>
+</li>
+<li>
+<p>Computer Graphics and Games</p>
+</li>
+<li>
+<p>Computer Security</p>
+</li>
+<li>
+<p>Database Systems</p>
+</li>
+<li>
+<p>Multimedia Information Retrieval</p>
+</li>
+<li>
+<p>Networking and Distributed Systems</p>
+</li>
+<li>
+<p>Parallel Computing</p>
+</li>
+<li>
+<p>Programming Langiages</p>
+</li>
+<li>
+<p>Software Engineering</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Default user profile is set to <code>Computer Science</code> major with no focus area.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>setup m/Computer Engineering</code></p>
+</li>
+<li>
+<p><code>setup m/Computer Science f/Software Engineering</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-modules-code-add-code"><a class="link" href="#adding-modules-code-add-code">3.3. Adding modules: <code>add</code></a></h3>
 <div class="paragraph">
 <p>Adds the specified modules to the list of modules that you have taken or want to take for the specified year and semester.<br>
 Format: <code>add y/YEAR s/SEMESTER c/MODULE_CODE&#8230;&#8203;</code></p>
@@ -144,7 +292,7 @@ You can add 1 or more modules.
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-modules-code-delete-code"><a class="link" href="#deleting-modules-code-delete-code">3.2. Deleting modules : <code>delete</code></a></h3>
+<h3 id="deleting-modules-code-delete-code"><a class="link" href="#deleting-modules-code-delete-code">3.4. Deleting modules : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified modules from list of current or future modules for the specified year and semester.<br>
 Format: <code>delete c/MODULE_CODE&#8230;&#8203;</code></p>
@@ -164,7 +312,7 @@ Format: <code>delete c/MODULE_CODE&#8230;&#8203;</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="finding-information-on-a-module-code-find-code"><a class="link" href="#finding-information-on-a-module-code-find-code">3.3. Finding information on a module : <code>find</code></a></h3>
+<h3 id="finding-information-on-a-module-code-find-code"><a class="link" href="#finding-information-on-a-module-code-find-code">3.5. Finding information on a module : <code>find</code></a></h3>
 <div class="paragraph">
 <p>Retrieves the information of the specified module.<br>
 Format: <code>find c/MODULE_CODE</code></p>
@@ -179,9 +327,17 @@ Format: <code>find c/MODULE_CODE</code></p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>You should see the module information fo CS1010 in the rightmost panel like below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/find.png" alt="find" width="790">
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="going-to-a-different-year-and-semester-code-goto-code"><a class="link" href="#going-to-a-different-year-and-semester-code-goto-code">3.4. Going to a different year and semester : <code>goto</code></a></h3>
+<h3 id="going-to-a-different-year-and-semester-code-goto-code"><a class="link" href="#going-to-a-different-year-and-semester-code-goto-code">3.6. Going to a different year and semester : <code>goto</code></a></h3>
 <div class="paragraph">
 <p>Changes the view to the specified year and semester.<br>
 Format: <code>goto y/YEAR s/SEMESTER</code></p>
@@ -198,7 +354,7 @@ Format: <code>goto y/YEAR s/SEMESTER</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-modules-code-list-code"><a class="link" href="#listing-modules-code-list-code">3.5. Listing modules : <code>list</code></a></h3>
+<h3 id="listing-modules-code-list-code"><a class="link" href="#listing-modules-code-list-code">3.7. Listing modules : <code>list</code></a></h3>
 <div class="paragraph">
 <p>If a valid year is supplied, shows a list of all modules that you have added to that year. Otherwise, shows a list of all modules that you have taken in every semester.<br>
 Format: <code>list [y/YEAR]</code></p>
@@ -262,45 +418,14 @@ Lists all modules added to every semester, from year 1 semester 1 to year 4 seme
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-user-profile-code-setup-code"><a class="link" href="#setting-user-profile-code-setup-code">3.6. Setting user profile : <code>setup</code></a></h3>
-<div class="paragraph">
-<p>Initialises your profile with your major and optional focus areas to allow personalisation.<br>
-Format: <code>setup m/MAJOR [f/FOCUS_AREA]&#8230;&#8203;</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The major and focus areas should be spelt out in full.<br>
-Currently, this feature only supports the major of Computer Science and the focus areas of Algorithms and Theory,
-Artificial Intelligence and Software Engineering. Support for other majors and focus areas will come beyond v1.2.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>setup y/1 s/1 m/computer science f/software engineering</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="getting-status-update-code-status-code"><a class="link" href="#getting-status-update-code-status-code">3.7. Getting status update : <code>status</code></a></h3>
+<h3 id="getting-status-update-code-status-code"><a class="link" href="#getting-status-update-code-status-code">3.8. Getting status update : <code>status</code></a></h3>
 <div class="paragraph">
 <p>Shows how many core, unrestricted electives, and general education modules that you have taken and how many more you need to take.<br>
 Format: <code>status</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="suggesting-modules-code-suggest-code"><a class="link" href="#suggesting-modules-code-suggest-code">3.8. Suggesting modules : <code>suggest</code></a></h3>
+<h3 id="suggesting-modules-code-suggest-code"><a class="link" href="#suggesting-modules-code-suggest-code">3.9. Suggesting modules : <code>suggest</code></a></h3>
 <div class="paragraph">
 <p>If a valid year and semester are supplied, suggests a list of modules that you are available to take in the specified year and semester, based on modules that you have added. A module is available for you if:</p>
 </div>
@@ -322,6 +447,48 @@ Format: <code>status</code></p>
 </div>
 <div class="paragraph">
 <p>Format: <code>suggest y/YEAR s/SEMESTER</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>This feature currently only supports majors and focus areas listed below. Support for other majors and focus areas will come beyond v1.6.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Major:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Computer Science</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Focus area:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Algorithms and Theory</p>
+</li>
+<li>
+<p>Artificial Intelligence</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If user profile is set to major or focus area(s) that are not listed above in <a href="#setting-user-profile-code-setup-code"><code>setup</code></a> command,
+this feature will only give you generic module suggestion sorted in lexicographical order.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -377,19 +544,97 @@ Format: <code>status</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.9. Viewing help : <code>help</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.10. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>help</code></p>
+<p>Restores Module Planner to the state before the previous <em>undoable</em> command was executed.<br>
+Format: <code>undo</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Undoable commands: those commands that modify the Module Planner&#8217;s content (<code>add</code>, <code>delete</code>, and <code>clear</code>).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete c/CS1010</code><br>
+<code>list</code><br>
+<code>undo</code> (reverses the <code>delete c/CS1010</code> command)<br></p>
+</li>
+<li>
+<p><code>goto y/1 s/1</code><br>
+<code>list</code><br>
+<code>undo</code><br>
+The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
+</li>
+<li>
+<p><code>delete c/CS1010</code><br>
+<code>clear</code><br>
+<code>undo</code> (reverses the <code>clear</code> command)<br>
+<code>undo</code> (reverses the <code>delete c/CS1010</code> command)<br></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.10. Exiting the program : <code>exit</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.11. Redoing the previously undone command : <code>redo</code></a></h3>
+<div class="paragraph">
+<p>Reverses the most recent <code>undo</code> command.<br>
+Format: <code>redo</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete c/CS1010</code><br>
+<code>undo</code> (reverses the <code>delete c/CS1010</code> command)<br>
+<code>redo</code> (reapplies the <code>delete c/CS1010</code> command)<br></p>
+</li>
+<li>
+<p><code>delete c/CS1010</code><br>
+<code>redo</code><br>
+The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
+</li>
+<li>
+<p><code>delete c/CS1010</code><br>
+<code>clear</code><br>
+<code>undo</code> (reverses the <code>clear</code> command)<br>
+<code>undo</code> (reverses the <code>delete c/CS1010</code> command)<br>
+<code>redo</code> (reapplies the <code>delete c/CS1010</code> command)<br>
+<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="clearing-all-modules-code-clear-code"><a class="link" href="#clearing-all-modules-code-clear-code">3.12. Clearing all modules : <code>clear</code></a></h3>
+<div class="paragraph">
+<p>Clears all modules added into Module Planner and the module suggestion.<br>
+Format: <code>clear</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.13. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.11. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.14. Saving the data</a></h3>
 <div class="paragraph">
 <p>Module Planner data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -414,6 +659,9 @@ There is no need to save manually.</p>
 <li>
 <p><strong>Add</strong> <code>add y/YEAR s/SEMESTER c/MODULE_CODE&#8230;&#8203;</code><br>
 e.g. <code>add y/1 s/1 c/CS1231 c/CS1101S</code></p>
+</li>
+<li>
+<p><strong>Clear</strong> : <code>clear</code></p>
 </li>
 <li>
 <p><strong>Delete</strong> : <code>delete c/MODULE_CODE&#8230;&#8203;</code><br>
@@ -446,9 +694,18 @@ e.g. <code>suggest y/1 s/1</code></p>
 <p><strong>Help</strong> : <code>help</code></p>
 </li>
 <li>
+<p><strong>History</strong> : <code>history</code></p>
+</li>
+<li>
+<p><strong>Undo</strong> : <code>undo</code></p>
+</li>
+<li>
+<p><strong>Redo</strong> : <code>redo</code></p>
+</li>
+<li>
 <p><strong>Exit</strong> : <code>exit</code></p>
 </li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 03:41:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 10:51:27 UTC</div></div></div></body></html>
