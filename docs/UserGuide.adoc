@@ -77,6 +77,7 @@ Open this user guide in a new window.
 Format: `help`
 
 // tag::setup[]
+
 === Setting user profile : `setup`
 
 Initialises your profile with your major and optionally your focus areas so that Module Planner can
@@ -108,6 +109,7 @@ Examples:
 
 * `setup m/Computer Engineering`
 * `setup m/Computer Science f/Software Engineering`
+
 // end::setup[]
 
 === Adding modules: `add`
@@ -134,6 +136,7 @@ Examples:
 * `delete c/CS1231 c/MA1521`
 
 // tag::find[]
+
 === Finding information on a module : `find`
 
 Retrieves the information of the specified module. +
