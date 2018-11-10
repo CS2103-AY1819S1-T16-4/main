@@ -16,9 +16,11 @@ public class StatusCommand extends Command {
 
     public static final String COMMAND_WORD = "status";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows total credit achieved "
-            + "in each programme requirements\n"
-            + "Example: " + "Foundation: 20 (need 16 more)\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the progress of"
+            + "the user and the required credit"
+            + "in each degree requirements\n"
+            + "Example: University Level Requirement: 8/20\n"
+            + "Foundation: 4/36...";
 
     public static final String MESSAGE_SUCCESS = "Status displayed";
 
