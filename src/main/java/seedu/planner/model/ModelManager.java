@@ -35,8 +35,6 @@ public class ModelManager extends ComponentManager implements Model {
     private final SortedList<Module> takenModules;
     private final SortedList<Module> availableModules;
 
-    //@@author Hilda-Ang
-
     /**
      * Initializes a ModelManager with the given modulePlanner and userPrefs.
      */
@@ -50,7 +48,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         takenModulesPerSemester = new ArrayList<>();
         for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
-            takenModulesPerSemester.add(new SortedList<>(versionedModulePlanner.getTakenModules(i), (x, y) ->
+            takenModulesPerSemester.add(new SortedList<>(versionedModulePlanner.getTakenModulesForIndex(i), (x, y) ->
                     x.compareTo(y)));
         }
 
@@ -62,15 +60,11 @@ public class ModelManager extends ComponentManager implements Model {
         this(new ModulePlanner(), new UserPrefs());
     }
 
-    //@@author GabrielYik
-
     @Override
     public void setUpUserProfile(String major, Set<String> focusAreas) {
         versionedModulePlanner.setUserProfile(new UserProfile(major, focusAreas));
         indicateModulePlannerChanged();
     }
-
-    //@@author
 
     @Override
     public void resetData(ReadOnlyModulePlanner newData) {
@@ -132,8 +126,6 @@ public class ModelManager extends ComponentManager implements Model {
         return finalizedModules;
     }
 
-    //@@author RomaRomama
-
     @Override
     public void addModules(Set<Module> modules, int index) {
         Set<Module> finalizedModules = finalizeModules(modules);
@@ -141,8 +133,11 @@ public class ModelManager extends ComponentManager implements Model {
         indicateModulePlannerChanged();
     }
 
-    //@@author Hilda-Ang
-
+    /**
+     * Displays modules that is available to the user in the specified index, in the list of suggested modules.
+     *
+     * @param index An integer between 0 to 7 inclusive, signifying year and semester to be suggested.
+     */
     @Override
     public void suggestModules(int index) {
         versionedModulePlanner.suggestModules(index);
@@ -150,34 +145,54 @@ public class ModelManager extends ComponentManager implements Model {
 
     //=========== Module List Accessors =============================================================
 
+    /**
+     * Displays all modules that user has added in every semester.
+     */
     @Override
     public void listTakenModulesAll() {
         versionedModulePlanner.listTakenModulesAll();
     }
 
+    /**
+     * Displays all modules that the user has added to a specified year.
+     *
+     * @param year A valid integer between 1 to 4 inclusive, signifying year to be listed.
+     */
     @Override
     public void listTakenModulesYear(int year) {
-        versionedModulePlanner.listTakenModulesYear(year);
+        versionedModulePlanner.listTakenModulesForYear(year);
     }
 
+    /**
+     * Retrieves a list containing modules that have been taken (added to ModulePlanner) by the user.
+     *
+     * @return An unmodifiable view of modules taken by the user.
+     */
     @Override
-    public ObservableList<Module> listModules() {
+    public ObservableList<Module> listTakenModules() {
         return FXCollections.unmodifiableObservableList(takenModules);
     }
 
-    //@@author GabrielYik
-
+    /**
+     * Retrieves an unmodifiable view of the modules taken for (added to) a specified index.
+     *
+     * @param index An integer between 0 to 7 inclusive.
+     * @return An unmodifiable list of modules taken for index.
+     */
     @Override
-    public ObservableList<Module> getTakenModules(int index) {
+    public ObservableList<Module> getTakenModulesForIndex(int index) {
         return FXCollections.unmodifiableObservableList(takenModulesPerSemester.get(index));
     }
 
+    /**
+     * Retrieves an unmodifiable view of the modules taken for (added to) a specified index.
+     *
+     * @return An unmodifiable list of all modules that the user is available to take.
+     */
     @Override
     public ObservableList<Module> getAvailableModules() {
         return FXCollections.unmodifiableObservableList(availableModules);
     }
-
-    //@@author
 
     //=========== Undo/Redo =================================================================================
 

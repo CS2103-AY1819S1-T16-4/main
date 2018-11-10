@@ -56,17 +56,31 @@ public interface Model {
      */
     void addModules(Set<Module> modules, int index);
 
-    //TODO: hilda
+    /**
+     * Displays modules that are available to the user in the specified index, in the list of suggested modules.
+     *
+     * @param index An integer between 0 to 7 inclusive, signifying year and semester to be suggested.
+     */
     void suggestModules(int index);
 
-    //TODO: hilda
+    /**
+     * Displays all modules that user has added in every semester.
+     */
     void listTakenModulesAll();
 
-    //TODO: hilda
+    /**
+     * Displays all modules that the user has added to a specified year.
+     *
+     * @param year A valid integer between 1 to 4 inclusive, signifying year to be listed.
+     */
     void listTakenModulesYear(int year);
 
-    //TODO: hilda
-    ObservableList<Module> listModules();
+    /**
+     * Retrieves a list containing modules that have been taken (added to ModulePlanner) by the user.
+     *
+     * @return An unmodifiable view of modules taken by the user.
+     */
+    ObservableList<Module> listTakenModules();
 
     /**
      * Retrieves the actual module information of the {@code modules}
@@ -79,10 +93,19 @@ public interface Model {
      */
     Set<Module> finalizeModules(Set<Module> modules);
 
-    /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getTakenModules(int index);
+    /**
+     * Retrieves an unmodifiable view of the modules taken for (added to) a specified index.
+     *
+     * @param index An integer between 0 to 7 inclusive.
+     * @return An unmodifiable list of modules taken for index.
+     */
+    ObservableList<Module> getTakenModulesForIndex(int index);
 
-    /** Returns an unmodifiable view of the filtered module list */
+    /**
+     * Retrieves an unmodifiable view of the modules taken for (added to) a specified index.
+     *
+     * @return An unmodifiable list of all modules that the user is available to take.
+     */
     ObservableList<Module> getAvailableModules();
 
     /**

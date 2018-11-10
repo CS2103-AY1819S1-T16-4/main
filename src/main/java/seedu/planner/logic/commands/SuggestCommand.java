@@ -37,7 +37,7 @@ public class SuggestCommand extends Command {
     private int index;
 
     /**
-     * Creates a SuggestCommand to list modules for specified semester.
+     * Creates a SuggestCommand to list modules available for specified semester.
      */
     public SuggestCommand(int index) {
         this.index = index;

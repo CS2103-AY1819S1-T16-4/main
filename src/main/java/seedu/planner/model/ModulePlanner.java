@@ -80,14 +80,6 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-     * Replaces the contents of the module list with {@code modules}.
-     * {@code modules} must not contain duplicate modules.
-     */
-    public void setAvailableModules(List<Module> modules) {
-        availableModules.setAll(modules);
-    }
-
-    /**
      * Add one or more module(s) to set of modules taken for the specified semester.
      *
      * @param modules A set of valid modules to be added
@@ -95,7 +87,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void addModules(Set<Module> modules, int index) {
         semesters.get(index).addModules(modules);
-        setAvailableModules(getModulesAvailable(availableIndex));
+        updateAvailableModules();
         updateTakenModules();
     }
 
@@ -135,7 +127,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             }
         }
 
-        setAvailableModules(getModulesAvailable(availableIndex));
+        updateAvailableModules();
         updateTakenModules();
     }
 
@@ -192,8 +184,6 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         }
     }
 
-    //@@author Hilda-Ang
-
     /**
      * Checks if the {@code Module} exists in the module planner.
      *
@@ -234,14 +224,31 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
+     * Resets the existing data of this {@code ModulePlanner} with {@code newData}.
+     */
+    public void resetData(ReadOnlyModulePlanner newData) {
+        requireNonNull(newData);
+        updateAvailableModules();
+        updateTakenModules();
+        setModulesInSemesters(newData.getSemesters());
+    }
+
+
+    public void setModulesInSemesters(List<Semester> semesters) {
+        for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
+            this.semesters.get(i).setTakenModules(semesters.get(i));
+        }
+    }
+
+    /**
      * Returns all {@code Module}s taken in the {@code Semester} wrapped in an
      * {@code ObservableList}.
      *
-     * @param index A valid index.
+     * @param index An integer between 0 to 7 inclusive, signifying a year and semester.
      * @return A list of modules taken in the semester.
      */
     @Override
-    public ObservableList<Module> getTakenModules(int index) {
+    public ObservableList<Module> getTakenModulesForIndex(int index) {
         return FXCollections.unmodifiableObservableList(
                 semesters.get(index).getModules());
     }
@@ -260,11 +267,11 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-     * Updates {@code modulesTaken} to contain all modules user has taken in a given year.
+     * Updates {@code modulesTaken} to contain all modules user has taken in a specified year.
      *
-     * @param year An integer between 1 to 4.
+     * @param year An integer between 1 to 4 inclusive.
      */
-    public void listTakenModulesYear(int year) {
+    public void listTakenModulesForYear(int year) {
         int[] indices = IndexUtil.getIndicesFromYear(year);
         List<Module> modules = new ArrayList<>();
         for (int i = 0; i < indices.length; i++) {
@@ -274,52 +281,33 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         setTakenModules(modules);
     }
 
+    /**
+     * Retrieves {@code Module}s taken wrapped in an {@code ObservableList}.
+     *
+     * @return An {@code ObservableList} containing he {@code Module}s that user has taken.
+     */
     @Override
     public ObservableList<Module> listTakenModules() {
         return takenModules;
     }
 
     /**
-     * Update {@code takenModules} according to the latest displayed list upon add or delete command.
+     * Updates {@code takenModules} according to the latest displayed list upon add or delete command.
      */
     private void updateTakenModules() {
         if (takenIndex == ALL_SEMESTERS) {
             listTakenModulesAll();
         } else {
-            listTakenModulesYear(takenIndex);
+            listTakenModulesForYear(takenIndex);
         }
     }
 
+    /**
+     * Replaces the contents of the internal {@code takenModules} list with the given list of {@code Module}s.
+     * List of modules supplied must not contain duplicates.
+     */
     private void setTakenModules(List<Module> modules) {
         takenModules.setAll(modules);
-    }
-
-    /**
-     * Returns all {@code Module}s available wrapped in an {@code ObservableList}.
-     *
-     * @return An {@code ObservableList} containing all the {@code Module}s
-     */
-    @Override
-    public ObservableList<Module> getAvailableModules() {
-        setAvailableModules(getModulesAvailable(availableIndex));
-        return availableModules;
-    }
-
-    /**
-     * Resets the existing data of this {@code ModulePlanner} with {@code newData}.
-     */
-    public void resetData(ReadOnlyModulePlanner newData) {
-        requireNonNull(newData);
-        setAvailableModules(getModulesAvailable(availableIndex));
-        updateTakenModules();
-        setModulesInSemesters(newData.getSemesters());
-    }
-
-
-    public void setModulesInSemesters(List<Semester> semesters) {
-        for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
-            this.semesters.get(i).setTakenModules(semesters.get(i));
-        }
     }
 
     /**
@@ -329,16 +317,42 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void suggestModules(int index) {
         availableIndex = index;
-        setAvailableModules(getModulesAvailable(index));
+        updateAvailableModules();
     }
 
     /**
-     * Get a list of all the modules user can take based on the modules user has taken until given index.
+     * Retrieves all {@code Module}s available wrapped in an {@code ObservableList}.
      *
-     * @param index An integer from 0 to 7 inclusive to show the current year and semester to suggest.
+     * @return An {@code ObservableList} containing all the {@code Module}s available to be taken.
+     */
+    @Override
+    public ObservableList<Module> getAvailableModules() {
+        updateAvailableModules();
+        return availableModules;
+    }
+
+    /**
+     * Updates internal list of available {@code Module}s based on stored index.
+     */
+    private void updateAvailableModules() {
+        setAvailableModules(generateAvailableModules(availableIndex));
+    }
+
+    /**
+     * Replaces the contents of the internal {@code availableModules} list with the given list of {@code Module}s.
+     * List of modules supplied must not contain duplicates.
+     */
+    private void setAvailableModules(List<Module> modules) {
+        availableModules.setAll(modules);
+    }
+
+    /**
+     * Get a list of all {@code Module}s user can take based on the {@code Module}s user has taken (added to ModulePlanner).
+     *
+     * @param index An integer from 0 to 7 inclusive to inidcate the current year and semester to suggest.
      * @return A list of {@code Module}s the user is available to take.
      */
-    private List<Module> getModulesAvailable(int index) {
+    private List<Module> generateAvailableModules(int index) {
         List<Module> modulesAvailable = new ArrayList<>();
         List<Module> modulesTaken = getAllModulesTaken();
         List<Module> modulesTakenBeforeIndex = getAllModulesTakenBeforeIndex(index);
@@ -425,7 +439,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-     * Combines the list of {@code Module}s taken for every {@code Semester} until current index.
+     * Combines the list of {@code Module}s taken for every {@code Semester} before current index.
      *
      * @param index The current index user is at.
      * @return A list of all {@code Module}s the user has taken until the specified index.
@@ -439,7 +453,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-     * Get a list of all {@code Module}s data stored.
+     * Get a list of all {@code Module}s data retrieved from external party
+     * and stored internally in {@code ModulePlanner}.
      *
      * @return A list of all {@code Module}s in the storage.
      */
