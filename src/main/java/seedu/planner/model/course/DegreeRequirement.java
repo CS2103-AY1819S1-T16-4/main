@@ -10,6 +10,8 @@ public enum DegreeRequirement {
     SCIENCE("Science"),
     IT_PROFESSIONALISM("IT Professionalism"),
     INDUSTRIAL_EXPERIENCE_REQUIREMENT("Industrial Experience Requirement"),
+    TEAM_PROJECT("Team Project"),
+    FOCUS_AREA_REQUIREMENTS("Focus Area Requirements"),
     BREATH_AND_DEPTH("Breadth and Depth");
 
     private String name;
