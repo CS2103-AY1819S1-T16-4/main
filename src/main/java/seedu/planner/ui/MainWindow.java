@@ -1,6 +1,6 @@
 package seedu.planner.ui;
 
-import static seedu.planner.commons.events.ui.ListModuleEvent.ALL_YEARS;
+import static seedu.planner.commons.events.ui.ListModulesEvent.ALL_YEARS;
 import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
 import static seedu.planner.ui.ModuleListPanel.TIMELESS;
 
@@ -31,9 +31,9 @@ import seedu.planner.commons.events.ui.ClearEvent;
 import seedu.planner.commons.events.ui.ExitAppRequestEvent;
 import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.commons.events.ui.GoToEvent;
-import seedu.planner.commons.events.ui.ListModuleEvent;
+import seedu.planner.commons.events.ui.ListModulesEvent;
 import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
-import seedu.planner.commons.events.ui.SuggestModuleEvent;
+import seedu.planner.commons.events.ui.SuggestModulesEvent;
 import seedu.planner.logic.Logic;
 import seedu.planner.model.UserPrefs;
 import seedu.planner.model.module.Module;
@@ -287,7 +287,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @Subscribe
-    private void handleFindEvent(FindModuleEvent event) {
+    private void handleFindModuleEvent(FindModuleEvent event) {
         FindModulePanel panel = new FindModulePanel(event.getModule());
         setPlaceholder(multiPurposePanelPlaceholder, panel);
     }
@@ -307,14 +307,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @Subscribe
-    private void handleSuggestModule(SuggestModuleEvent event) {
+    private void handleSuggestModulesEvent(SuggestModulesEvent event) {
         ModuleListPanel panel = new ModuleListPanel(event.getModuleList(),
                 event.getIndex(), ModulePanelType.SUGGESTED);
         setPlaceholder(suggestedModulesPlaceholder, panel);
     }
 
     @Subscribe
-    private void handleListEvent(ListModuleEvent event) {
+    private void handleListModulesEvent(ListModulesEvent event) {
         ModuleListPanel panel = takenModuleListPanels.get(MAX_NUMBER_SEMESTERS);
         if (event.getYear() == ALL_YEARS) {
             panel.setSubTitle("All years");
