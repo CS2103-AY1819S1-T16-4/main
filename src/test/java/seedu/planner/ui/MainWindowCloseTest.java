@@ -1,13 +1,18 @@
 package seedu.planner.ui;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.Test;
 import org.testfx.api.FxToolkit;
 
 import guitests.guihandles.StageHandle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+
 import seedu.planner.commons.core.Config;
+import seedu.planner.commons.events.ui.ExitAppRequestEvent;
 import seedu.planner.logic.LogicManager;
 import seedu.planner.model.ModelManager;
 import seedu.planner.model.UserPrefs;
@@ -37,23 +42,19 @@ public class MainWindowCloseTest extends GuiUnitTest {
         FxToolkit.showStage();
     }
 
-    /*
     @Test
     public void close_menuBarExitButton_exitAppRequestEventPosted() {
         mainWindowHandle.clickOnMenuExitButton();
         assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof ExitAppRequestEvent);
         assertTrue(eventsCollectorRule.eventsCollector.getSize() == 1);
     }
-    */
 
-    /*
     @Test
     public void close_externalRequest_exitAppRequestEventPosted() {
         mainWindowHandle.closeMainWindowExternally();
         assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof ExitAppRequestEvent);
         assertTrue(eventsCollectorRule.eventsCollector.getSize() == 1);
     }
-    */
 
     /**
      * A handle for an empty {@code MainWindow}. The components in {@code MainWindow} are not initialized.

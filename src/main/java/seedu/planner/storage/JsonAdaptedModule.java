@@ -1,5 +1,7 @@
 package seedu.planner.storage;
 
+import java.util.Optional;
+
 import seedu.planner.commons.exceptions.IllegalValueException;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
@@ -17,10 +19,12 @@ public class JsonAdaptedModule {
     /**
      * Default constructor for JSON deserialization.
      */
-    public JsonAdaptedModule() {}
+    public JsonAdaptedModule() {
+    }
 
     /**
      * Conversion
+     *
      * @param module {@code Module} to be converted.
      */
     public JsonAdaptedModule(Module module) {
@@ -28,7 +32,16 @@ public class JsonAdaptedModule {
         this.moduleCode = module.getCode();
     }
 
+    /**
+     * Convert to {@code Module} object.
+     *
+     * @throws IllegalValueException
+     */
     public Module toModelType() throws IllegalValueException {
-        return new Module(ModuleType.fromString(type), ModuleInfo.getFromModuleCode(moduleCode).get());
+        Optional<ModuleInfo> optionalModuleInfo = ModuleInfo.getFromModuleCode(moduleCode);
+        if (!optionalModuleInfo.isPresent()) {
+            throw new IllegalValueException(ModuleInfo.MESSAGE_MODULE_CODE_NOT_FOUND);
+        }
+        return new Module(ModuleType.fromString(type), optionalModuleInfo.get());
     }
 }

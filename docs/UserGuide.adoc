@@ -45,7 +45,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters that you can supply, e.g. in `list y/YEAR`, `YEAR` is a parameter which can be used as `add y/1`.
+* Words in `UPPER_CASE` are the parameters that you can supply, e.g. in `suggest y/YEAR s/SEMESTER`, `YEAR` and `SEMESTER` are parameters which can be used as `suggest y/1 s/1`.
 * Items in square brackets are optional e.g `setup ... [f/FOCUS_AREA]` can be used as `setup ... f/software engineering` or as `setup ...`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `MODULE_CODE...` can be used as `{nbsp}` (i.e. 0 times), `CS1231`, `CS1231 MA1521` etc.
 ====
@@ -93,12 +93,28 @@ Example:
 
 === Listing modules : `list`
 
-Shows a list of modules that you have taken if the specified year and semester has passed, or list of modules that you plan to take for the specified year and semester. +
-Format: `list y/YEAR s/SEMESTER`
+If a valid year is supplied, shows a list of all modules that you have added to that year. Otherwise, shows a list of all modules that you have taken in every semester. +
+Format: `list [y/YEAR]`
+
+[TIP]
+====
+* This command is NOT undoable.
+* The list of modules will be automatically updated upon adding or deleting module(s).
+====
+
+[NOTE]
+====
+* A valid year must be an integer from 1 to 4 inclusive.
+* If no modules have been added to a specified year or no modules have been added to ModulePlanner, will show an empty list.
+====
 
 Examples:
 
-* `list y/1 s/1`
+* `list y/1` +
+Lists all modules added to year 1, both semester 1 and 2 (if they exist).
+
+* `list` +
+Lists all modules added to every semester, from year 1 semester 1 to year 4 semester 2 (if they exist).
 
 === Setting user profile : `setup`
 
@@ -121,13 +137,31 @@ Format: `status`
 
 === Suggesting modules : `suggest`
 
-Shows a list of modules available for you to take based on modules that you have taken or are planning to take. +
-Format: `suggest`
+If a valid year and semester are supplied, suggests a list of modules that you are available to take in the specified year and semester, based on modules that you have added. A module is available for you if:
+
+* You have fulfilled (added to ModulePlanner) all the prerequisites of the module in the semester(s) prior to the one you specified.
+* You have not fulfilled (added to ModulePlanner) any preclusions to the module in any semester (including semester after the one you specified).
+* You have not fulfilled (added to ModulePlanner) the module in any semester (including semester after the one you specified).
+
+The list of modules is sorted, with core modules being on top, followed by general education modules and unrestricted electives modules.
+
+Format: `suggest y/YEAR s/SEMESTER`
+
+[TIP]
+====
+* This command is NOT undoable.
+* The list of suggested modules will be automatically updated upon adding or deleting module(s).
+====
 
 [NOTE]
-Currently, this feature is still under development. When it is done in v1.4, it will be able to suggest
-modules for students majoring in Computer Science, and taking the focus areas of
-Algorithms and Theory, Artificial Intelligence and Software Engineering.
+====
+* A valid year must be an integer from 1 to 4 inclusive.
+* A valid semester is either 1 or 2.
+====
+
+Examples:
+
+* `suggest y/1 s/1`
 
 === Viewing help : `help`
 
@@ -161,15 +195,16 @@ e.g. `find c/CS1O10`
 * *Goto* : `goto y/YEAR s/SEMESTER` +
 e.g. `goto y/1 s/1`
 
-* *List* : `list y/YEAR s/SEMESTER` +
-e.g. `list y/1 s/1`
+* *List* : `list [y/YEAR]` +
+e.g. `list y/1`
 
 * *Setup* : `setup y/YEAR s/SEMESTER m/MAJOR [f/FOCUS_AREA]` +
 e.g. `setup y/1 s/1 m/computer science f/machine learning`
 
 * *Status* : `status`
 
-* *Suggest* : `suggest`
+* *Suggest* : `suggest y/YEAR s/SEMESTER` +
+e.g. `suggest y/1 s/1`
 
 * *Help* : `help`
 

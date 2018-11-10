@@ -3,6 +3,7 @@ package seedu.planner.model.semester;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -16,16 +17,20 @@ import seedu.planner.model.module.Module;
  * Represents a Semester in the module planner.
  * Holds the list of modules taken and the list of modules available for
  * that semester.
- *
+ * <p>
  * A semester can be characterised by the year it is in, and whether it is
  * the first or second semester in that year.
  */
 public class Semester {
 
-    /** Constant for the first index. */
+    /**
+     * Constant for the first index.
+     */
     public static final int FIRST = 1;
 
-    /** Constant for the second index. */
+    /**
+     * Constant for the second index.
+     */
     public static final int SECOND = 2;
 
     // Basic information
@@ -38,7 +43,7 @@ public class Semester {
     /**
      * Constructs a {@code Semester}.
      *
-     * @param year A valid year
+     * @param year  A valid year
      * @param index A valid index
      */
     public Semester(int year, int index) {
@@ -52,7 +57,7 @@ public class Semester {
      * modules from {@code semester}.
      *
      * @param semester The semester which modules are used
-     *  to construct the new semester
+     *                 to construct the new semester
      */
     public Semester(Semester semester) {
         year = semester.getYear();
@@ -113,7 +118,7 @@ public class Semester {
      * with the modules taken in {@code semester}.
      *
      * @param semester The semester which modules taken are
-     *  used as replacement
+     *                 used as replacement
      */
     public void setTakenModules(Semester semester) {
         takenModules.clear();
@@ -125,7 +130,7 @@ public class Semester {
      * returns them in an {@code ObservableList}.
      *
      * @return The copied modules of {@code this} wrapped
-     *  in an {@code ObservableList}
+     * in an {@code ObservableList}
      */
     public ObservableList<Module> getModulesAsCopy() {
         List<Module> modulesTakenCopy = new ArrayList<>();
@@ -136,13 +141,24 @@ public class Semester {
         return FXCollections.observableList(modulesTakenCopy);
     }
 
+    /**
+     * {@code Semester} produced by JSON deserialization seems to rearrange {@code Module}s
+     * in arbitrary order regardless of the original order in JSON file.
+     * Use this function to check equality for this situation.
+     */
+    private boolean slowUnorderEquals(ObservableList<Module> otherTakenModules) {
+        HashSet<Module> lhs = new HashSet<>(takenModules);
+        HashSet<Module> rhs = new HashSet<>(otherTakenModules);
+        return lhs.equals(rhs);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Semester // instanceof handles nulls
                 && index == ((Semester) other).getIndex()
                 && year == ((Semester) other).getYear()
-                && takenModules.equals(((Semester) other).takenModules));
+                && slowUnorderEquals(((Semester) other).takenModules));
     }
 
     @Override

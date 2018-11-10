@@ -25,8 +25,6 @@ public class ModuleUtil {
         return code.matches(MODULE_CODE_REGEX);
     }
 
-    //@@author
-
     //@@author Hilda-Ang
 
     private static boolean hasNotTakenModule(List<Module> modulesTaken, Module moduleToCheck) {

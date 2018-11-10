@@ -90,38 +90,38 @@ public class ModulePlannerTest {
     @Test
     public void suggestModules_noModulesTaken_sameAvailableModulesList() {
         modulePlanner.suggestModules(INDEX_FIRST);
-        ModulePlanner otherModulePlanner = new ModulePlanner();
-        otherModulePlanner.suggestModules(INDEX_SECOND);
-        assertEquals(modulePlanner.getAvailableModules(), otherModulePlanner.getAvailableModules());
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.suggestModules(INDEX_SECOND);
+        assertEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
     }
 
     @Test
     public void suggestModules_sameModulesTakenSuggestSameIndex_sameAvailableModulesList() {
         modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
         modulePlanner.suggestModules(INDEX_FIRST);
-        ModulePlanner otherModulePlanner = new ModulePlanner();
-        otherModulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
-        otherModulePlanner.suggestModules(INDEX_FIRST);
-        assertEquals(modulePlanner.getAvailableModules(), otherModulePlanner.getAvailableModules());
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
+        differentModulePlanner.suggestModules(INDEX_FIRST);
+        assertEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
     }
 
     @Test
     public void suggestModules_sameModulesTakenSuggestDifferentIndex_differentAvailableModulesList() {
         modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
         modulePlanner.suggestModules(INDEX_FIRST);
-        ModulePlanner otherModulePlanner = new ModulePlanner();
-        otherModulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
-        otherModulePlanner.suggestModules(INDEX_SECOND);
-        assertNotEquals(modulePlanner.getAvailableModules(), otherModulePlanner.getAvailableModules());
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
+        differentModulePlanner.suggestModules(INDEX_SECOND);
+        assertNotEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
     }
 
     @Test
     public void suggestModules_differentModulesTakenSuggestSameIndex_differentAvailableModulesList() {
         modulePlanner.addModules(getTypicalModules(), INDEX_FIRST);
         modulePlanner.suggestModules(INDEX_FIRST);
-        ModulePlanner otherModulePlanner = new ModulePlanner();
-        otherModulePlanner.suggestModules(INDEX_FIRST);
-        assertNotEquals(modulePlanner.getAvailableModules(), otherModulePlanner.getAvailableModules());
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.suggestModules(INDEX_FIRST);
+        assertNotEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
     }
 
     @Test

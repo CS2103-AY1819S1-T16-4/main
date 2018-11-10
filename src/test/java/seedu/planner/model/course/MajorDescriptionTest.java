@@ -73,10 +73,12 @@ public class MajorDescriptionTest {
         // different type -> returns false
         assertFalse(cs.equals(5));
 
-        ModuleDescription cs1010_fake = new ModuleDescription("CS1010", DegreeRequirement.IT_PROFESSIONALISM);
-        MajorDescription csFake = new MajorDescription(Major.COMPUTER_SCIENCE, List.of(cs1010_fake));
+        ModuleDescription fakeModuleDescription = new ModuleDescription("CS1010",
+                ProgrammeRequirement.IT_PROFESSIONALISM);
+        MajorDescription fakeMajorDescription = new MajorDescription(Major.COMPUTER_SCIENCE,
+                List.of(fakeModuleDescription));
 
         // different module description list -> false
-        assertFalse(cs.equals(csFake));
+        assertFalse(cs.equals(fakeMajorDescription));
     }
 }

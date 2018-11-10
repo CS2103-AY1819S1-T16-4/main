@@ -1,0 +1,47 @@
+{
+  "semesters" : [ {
+    "index" : 1,
+    "year" : 1,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  }, {
+    "index" : 2,
+    "year" : 1,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  }, {
+    "index" : 1,
+    "year" : 2,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  }, {
+    "index" : 2,
+    "year" : 2,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  }, {
+    "index" : 1,
+    "year" : 3,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  }, {
+    "index" : 2,
+    "year" : 3,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  }, {
+    "index" : 1,
+    "year" : 4,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  }, {
+    "index" : 2,
+    "year" : 4,
+    "hasBeenTaken" : false,
+    "modulesTaken" : [ ]
+  } ],
+  "userProfile" : {
+    "major" : "invalid",
+    "focusAreas" : [ ]
+  }
+}

@@ -23,8 +23,11 @@ import guitests.guihandles.ResultDisplayHandle;
 import guitests.guihandles.StatusBarFooterHandle;
 import seedu.planner.TestApp;
 import seedu.planner.commons.core.EventsCenter;
+import seedu.planner.logic.commands.ClearCommand;
+import seedu.planner.logic.commands.ListCommand;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModulePlanner;
+import seedu.planner.testutil.TypicalModules;
 import seedu.planner.ui.CommandBox;
 
 /**
@@ -67,7 +70,7 @@ public abstract class ModulePlannerSystemTest {
      * Returns the data to be loaded into the file in {@link #getDataFileLocation()}.
      */
     protected ModulePlanner getInitialData() {
-        return null; // TypicalPersons.getTypicalAddressBook();
+        return TypicalModules.getTypicalModulePlanner();
     }
 
     /**
@@ -111,24 +114,12 @@ public abstract class ModulePlannerSystemTest {
     }
 
     /**
-     * Displays all persons in the planner book.
+     * Displays all modules in the planner book.
      */
-    /*
-    protected void showAllPersons() {
+    protected void showAllModules() {
         executeCommand(ListCommand.COMMAND_WORD);
-        assertEquals(getModel().getAddressBook().getPersonList().size(), getModel().getFilteredPersonList().size());
+        assertEquals(getModel().getModulePlanner().listTakenModules().size(), getModel().listModules().size());
     }
-    */
-
-    /**
-     * Displays all persons with any parts of their names matching {@code keyword} (case-insensitive).
-     */
-    /*
-    protected void showPersonsWithName(String keyword) {
-        executeCommand(FindCommand.COMMAND_WORD + " " + keyword);
-        assertTrue(getModel().getFilteredPersonList().size() < getModel().getAddressBook().getPersonList().size());
-    }
-    */
 
     /**
      * Selects the person at {@code index} of the displayed list.
@@ -141,14 +132,12 @@ public abstract class ModulePlannerSystemTest {
     */
 
     /**
-     * Deletes all persons in the planner book.
+     * Deletes all modules in the planner book.
      */
-    /*
-    protected void deleteAllPersons() {
+    protected void deleteAllModules() {
         executeCommand(ClearCommand.COMMAND_WORD);
-        assertEquals(0, getModel().getAddressBook().getPersonList().size());
+        assertEquals(0, getModel().getModulePlanner().listTakenModules().size());
     }
-    */
 
     /**
      * Asserts that the {@code CommandBox} displays {@code expectedCommandInput}, the {@code ResultDisplay} displays
@@ -159,7 +148,8 @@ public abstract class ModulePlannerSystemTest {
             Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
-        // assertEquals(new ModulePlanner(expectedModel.getModulePlanner()), testApp.readStorageAddressBook());
+        assertEquals(new ModulePlanner(expectedModel.getModulePlanner()), testApp.readStorageModulePlanner());
+        // TODO
         // assertListMatching(getPersonListPanel(), expectedModel.getFilteredPersonList());
     }
 
@@ -171,19 +161,49 @@ public abstract class ModulePlannerSystemTest {
         StatusBarFooterHandle statusBarFooterHandle = getStatusBarFooter();
         statusBarFooterHandle.rememberSaveLocation();
         statusBarFooterHandle.rememberSyncStatus();
+        // TODO
+        // getPersonListPanel().rememberSelectedPersonCard();
     }
 
     /**
      * Asserts that the previously selected card is now deselected and the browser's url remains displaying the details
      * of the previously selected person.
      */
-    protected void assertSelectedCardDeselected() { }
+    protected void assertSelectedCardDeselected() {
+        // TODO
+        // assertFalse(getPersonListPanel().isAnyCardSelected());
+    }
 
+    /**
+     * Asserts that the browser's url is changed to display the details of the person in the person list panel at
+     * {@code expectedSelectedCardIndex}, and only the card at {@code expectedSelectedCardIndex} is selected.
+     * @see BrowserPanelHandle#isUrlChanged()
+     * @see PersonListPanelHandle#isSelectedPersonCardChanged()
+     */
+    // TODO
+    /*
+    protected void assertSelectedCardChanged(Index expectedSelectedCardIndex) {
+        getPersonListPanel().navigateToCard(getPersonListPanel().getSelectedCardIndex());
+        String selectedCardName = getPersonListPanel().getHandleToSelectedCard().getName();
+        URL expectedUrl;
+        try {
+            expectedUrl = new URL(BrowserPanel.SEARCH_PAGE_URL + selectedCardName.replaceAll(" ", "%20"));
+        } catch (MalformedURLException mue) {
+            throw new AssertionError("URL expected to be valid.", mue);
+        }
+        assertEquals(expectedUrl, getBrowserPanel().getLoadedUrl());
+
+        assertEquals(expectedSelectedCardIndex.getZeroBased(), getPersonListPanel().getSelectedCardIndex());
+    }
+    */
 
     /**
      * Asserts that the browser's url and the selected card in the person list panel remain unchanged.
      */
-    protected void assertSelectedCardUnchanged() { }
+    protected void assertSelectedCardUnchanged() {
+        // TODO
+        // assertFalse(getPersonListPanel().isSelectedPersonCardChanged());
+    }
 
     /**
      * Asserts that the command box's shows the default style.
@@ -226,6 +246,7 @@ public abstract class ModulePlannerSystemTest {
     private void assertApplicationStartingStateIsCorrect() {
         assertEquals("", getCommandBox().getInput());
         assertEquals("", getResultDisplay().getText());
+        // TODO
         // assertListMatching(getPersonListPanel(), getModel().getFilteredPersonList());
         // assertEquals(MainApp.class.getResource(FXML_FILE_FOLDER + DEFAULT_PAGE), getBrowserPanel().getLoadedUrl());
         assertEquals(Paths.get(".").resolve(testApp.getStorageSaveLocation()).toString(),

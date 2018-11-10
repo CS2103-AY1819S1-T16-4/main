@@ -1,69 +1,64 @@
 package systemtests;
 
+import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
+import org.junit.Test;
+
 import seedu.planner.logic.commands.ClearCommand;
+import seedu.planner.logic.commands.RedoCommand;
+import seedu.planner.logic.commands.UndoCommand;
 import seedu.planner.model.Model;
 import seedu.planner.model.ModelManager;
 
 public class ClearCommandSystemTest extends ModulePlannerSystemTest {
 
-    /*
     @Test
     public void clear() {
         final Model defaultModel = getModel();
-    */
-    /* Case: clear non-empty planner book, command with leading spaces and trailing alphanumeric characters and
-     * spaces -> cleared
-     */
-    /*
-    assertCommandSuccess("   " + ClearCommand.COMMAND_WORD + " ab12   ");
-    assertSelectedCardUnchanged();
-    */
 
-    /* Case: undo clearing planner book -> original planner book restored */
-    /*
-    String command = UndoCommand.COMMAND_WORD;
-    String expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
-    assertCommandSuccess(command, expectedResultMessage, defaultModel);
-    assertSelectedCardUnchanged();
-    */
+        /* Case: clear non-empty planner book, command with leading spaces and trailing alphanumeric characters and
+         * spaces -> cleared
+         */
+        assertCommandSuccess("   " + ClearCommand.COMMAND_WORD + " ab12   ");
+        assertSelectedCardUnchanged();
 
-    /* Case: redo clearing planner book -> cleared */
-    /*
-    command = RedoCommand.COMMAND_WORD;
-    expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
-    assertCommandSuccess(command, expectedResultMessage, new ModelManager());
-    assertSelectedCardUnchanged();
-    */
+        /* Case: undo clearing planner book -> original planner book restored */
+        String command = UndoCommand.COMMAND_WORD;
+        String expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(command, expectedResultMessage, defaultModel);
+        assertSelectedCardUnchanged();
 
-    /* Case: selects first card in person list and clears planner book -> cleared and no card selected */
-    /*
-    executeCommand(UndoCommand.COMMAND_WORD); // restores the original planner book
-    selectPerson(Index.fromOneBased(1));
-    assertCommandSuccess(ClearCommand.COMMAND_WORD);
-    assertSelectedCardDeselected();
-    */
+        /* Case: redo clearing planner book -> cleared */
+        command = RedoCommand.COMMAND_WORD;
+        expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(command, expectedResultMessage, new ModelManager());
+        assertSelectedCardUnchanged();
 
-    /* Case: filters the person list before clearing -> entire planner book cleared */
-    /*
-    executeCommand(UndoCommand.COMMAND_WORD); // restores the original planner book
-    showPersonsWithName(KEYWORD_MATCHING_MEIER);
-    assertCommandSuccess(ClearCommand.COMMAND_WORD);
-    assertSelectedCardUnchanged();
-    */
+        /* Case: selects first card in person list and clears planner book -> cleared and no card selected */
+        // TODO
+        /*
+        executeCommand(UndoCommand.COMMAND_WORD); // restores the original planner book
+        selectPerson(Index.fromOneBased(1));
+        assertCommandSuccess(ClearCommand.COMMAND_WORD);
+        assertSelectedCardDeselected();
+        */
 
-    /* Case: clear empty planner book -> cleared */
-    /*
-    assertCommandSuccess(ClearCommand.COMMAND_WORD);
-    assertSelectedCardUnchanged();
-    */
+        /* Case: filters the person list before clearing -> entire planner book cleared */
+        // TODO
+        /*
+        executeCommand(UndoCommand.COMMAND_WORD); // restores the original planner book
+        showPersonsWithName(KEYWORD_MATCHING_MEIER);
+        assertCommandSuccess(ClearCommand.COMMAND_WORD);
+        assertSelectedCardUnchanged();
+        */
 
-    /* Case: mixed case command word -> rejected */
-    /*
-    assertCommandFailure("ClEaR", MESSAGE_UNKNOWN_COMMAND);
-    */
-    /*
+        /* Case: clear empty planner book -> cleared */
+        assertCommandSuccess(ClearCommand.COMMAND_WORD);
+        assertSelectedCardUnchanged();
+
+        /* Case: mixed case command word -> rejected */
+        assertCommandFailure("ClEaR", MESSAGE_UNKNOWN_COMMAND);
     }
-    */
 
     /**
      * Executes {@code command} and verifies that the command box displays an empty string, the result display

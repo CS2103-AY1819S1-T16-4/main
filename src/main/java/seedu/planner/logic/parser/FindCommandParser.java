@@ -7,7 +7,6 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 import java.util.List;
 import java.util.Set;
 
-import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.FindCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.Module;
@@ -16,6 +15,8 @@ import seedu.planner.model.module.Module;
  * A parser that parses an argument for the {@code FindCommand}.
  */
 public class FindCommandParser implements Parser<FindCommand> {
+
+    public static final String MESSAGE_EXTRA_PREFIX_VALUES = "Extra values for prefix %1$s";
 
     @Override
     public FindCommand parse(String args) throws ParseException {
@@ -30,7 +31,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (argMultimap.checkPrefixValueCount(PREFIX_CODE) != 1) {
             String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    String.format(Messages.MESSAGE_EXTRA_PREFIX_VALUES, PREFIX_CODE));
+                    String.format(MESSAGE_EXTRA_PREFIX_VALUES, PREFIX_CODE));
             throw new ParseException(errorMessage);
         }
 

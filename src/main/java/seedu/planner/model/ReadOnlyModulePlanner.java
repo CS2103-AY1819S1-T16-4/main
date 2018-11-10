@@ -41,4 +41,6 @@ public interface ReadOnlyModulePlanner {
      * @return An {@code ObservableList} of the {@code Module}s
      */
     ObservableList<Module> getAvailableModules();
+
+    ObservableList<Module> listTakenModules();
 }
