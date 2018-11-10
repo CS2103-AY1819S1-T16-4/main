@@ -9,8 +9,8 @@
 
 == Overview
 
-This is a project portfolio about a team project that I have completed recently.
-The product born from this effort is called Module Planner.
+This is a project portfolio about a team project called Module Planner when taking CS2103T,
+Software Engineering.
 
 Module Planner is a desktop module planning application to help NUS Computer Science students
 figuring out what modules in order to graduate. The user interacts with it using a Command Line
@@ -26,11 +26,11 @@ new modules that the user can take based on their academic requirements.
 
 == Summary of contributions
 
-* *Major enhancement*: added *the functionality to sort suggested modules based on programme requirement of a user's major*
-** What it does: .
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _Suggest command is mainly implemented by Hilda_
+* *Major enhancement*:
+** What it does:
+** Justification:
+** Highlights:
+** Credits:
 
 * *Code contributed*: https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=rongjiecomputer
 
