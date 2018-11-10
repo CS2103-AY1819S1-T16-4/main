@@ -40,8 +40,6 @@ public class DeleteCommand extends Command {
 
     private static final Logger logger = LogsCenter.getLogger(DeleteCommand.class);
 
-    public static final String MESSAGE_NON_EXISTENT_MODULES = "Non-existent modules: %1$s";
-
     private final Set<Module> modulesToDelete;
 
     private String message;
