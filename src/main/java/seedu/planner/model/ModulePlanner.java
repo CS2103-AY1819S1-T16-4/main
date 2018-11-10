@@ -6,15 +6,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.model.course.DegreeRequirement;
@@ -49,7 +48,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private final ObservableList<Module> takenModules = FXCollections.observableArrayList();
 
 
-    private Map<DegreeRequirement, int[]> statusMap = new LinkedHashMap<>();
+    private ObservableMap<DegreeRequirement, int[]> statusMap = FXCollections.observableHashMap();
     private int availableIndex;
     private int takenIndex;
 
@@ -97,6 +96,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         semesters.get(index).addModules(modules);
         setAvailableModules(getModulesAvailable(availableIndex));
         updateTakenModules();
+        status();
     }
 
     //@@author GabrielYik
@@ -137,6 +137,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
         setAvailableModules(getModulesAvailable(availableIndex));
         updateTakenModules();
+        status();
     }
 
     /**
@@ -216,6 +217,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
     public void setUserProfile(UserProfile u) {
         userProfile = u;
+        status();
     }
 
     /**
@@ -442,9 +444,27 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-     * Count the number of general education modules
+     * Count the number of modules fulfilling degree requirement which is not
+     * a University Level Requirement or Breadth and Depth.
+     *
+     * @param degreeRequirement the degree requirement
+     * @return the number of modules fulfilling that degree requirement
      */
-    private void countGeneralEducation() {
+    private int countProgrammeRequirementNonBd(DegreeRequirement degreeRequirement) {
+        int count = 0;
+        for (Module m : getAllModulesTaken()) {
+            Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
+            if (moduleDescription.isPresent()
+                    && moduleDescription.get().getRequirement().equals(degreeRequirement)) {
+                count += m.getCreditCount();
+            }
+        }
+        return count;
+    }
+    /**
+     * Count the number of general education modules and insert it into the credit mapping.
+     */
+    private void mapGeneralEducation() {
         int count = 0;
         for (Module m : getAllModulesTaken()) {
             if (m.toString().startsWith("GER") || m.toString().startsWith("GEQ")
@@ -457,113 +477,82 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-     * Count the number of foundation modules.
+     * Insert the number of foundation modules to the credit mapping.
      */
-    private void countFoundation() {
-        int count = 0;
-        for (Module m : getAllModulesTaken()) {
-            Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
-            if (moduleDescription.isPresent()
-                    && moduleDescription.get().getRequirement().toString().equals("Foundation")) {
-                count += m.getCreditCount();
-            }
-        }
-        statusMap.put(DegreeRequirement.FOUNDATION, new int[] {count});
+    private void mapFoundation() {
+        int numOfFoundation = countProgrammeRequirementNonBd(DegreeRequirement.FOUNDATION);
+        statusMap.put(DegreeRequirement.FOUNDATION, new int[] {numOfFoundation});
     }
 
     /**
-     * Count the number of mathematics modules.
+     * Insert the number of mathematics modules to the credit mapping.
      */
-    private void countMathematics() {
-        int count = 0;
-        for (Module m : getAllModulesTaken()) {
-            Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
-            if (moduleDescription.isPresent()
-                    && moduleDescription.get().getRequirement().toString().equals("Mathematics")) {
-                count += m.getCreditCount();
-            }
-        }
-        statusMap.put(DegreeRequirement.MATHEMATICS, new int[]{count});
+    private void mapMathematics() {
+        int numOfMathematics = countProgrammeRequirementNonBd(DegreeRequirement.MATHEMATICS);
+        statusMap.put(DegreeRequirement.MATHEMATICS, new int[] {numOfMathematics});
     }
 
     /**
-     * Count the number of science modules.
+     * Insert the number of science modules to the credit mapping.
      */
-    private void countScience() {
-        int count = 0;
-        for (Module m : getAllModulesTaken()) {
-            Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
-            if (moduleDescription.isPresent()
-                    && moduleDescription.get().getRequirement().toString().equals("Science")) {
-                count += m.getCreditCount();
-            }
-        }
-        statusMap.put(DegreeRequirement.SCIENCE, new int[] {count});
+    private void mapScience() {
+        int numOfScience = countProgrammeRequirementNonBd(DegreeRequirement.SCIENCE);
+        statusMap.put(DegreeRequirement.SCIENCE, new int[] {numOfScience});
     }
 
     /**
-     * Count the number of IT professionalism modules.
+     * Insert the number of IT professionalism modules to the credit mapping..
      */
-    private void countItProfessionalism() {
-        int count = 0;
-        for (Module m : getAllModulesTaken()) {
-            Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
-            if (moduleDescription.isPresent()
-                    && moduleDescription.get().getRequirement().toString().equals("IT professionalism")) {
-                count += m.getCreditCount();
-            }
-        }
-        statusMap.put(DegreeRequirement.IT_PROFESSIONALISM, new int[] {count});
+    private void mapItProfessionalism() {
+        int numOfItProfessionalism = countProgrammeRequirementNonBd(
+                                        DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT);
+        statusMap.put(DegreeRequirement.IT_PROFESSIONALISM, new int[] {numOfItProfessionalism});
     }
 
     /**
-     * Count the number of industrial experience modules.
+     * Insert the number of industrial experience requirement modules to the credit mapping.
      */
-    private void countIndustrialExperienceRequirement() {
-        int count = 0;
-        for (Module m : getAllModulesTaken()) {
-            Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
-            if (moduleDescription.isPresent()
-                    && moduleDescription.get().getRequirement()
-                    .toString().equals("Industrial Experience Requirement")) {
-                count += m.getCreditCount();
-            }
-        }
-        statusMap.put(DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT, new int[] {count});
+    private void mapIndustrialExperienceRequirement() {
+        int numOfIndExpReq = countProgrammeRequirementNonBd(DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT);
+        statusMap.put(DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT, new int[] {numOfIndExpReq});
     }
 
     /**
-     * Count the number of breadth and depth modules.
+     * Count the number of Team Project Modules and insert to the credit mapping.
      */
-    private void countBreadthAndDepth() {
-        List<FocusArea> userFocusAreas = new ArrayList<>(userProfile.getFocusAreas());
-        int[] count = new int[2];
-
+    private void mapTeamProject() {
+        int numOfTeamProject = 0;
         for (Module m : getAllModulesTaken()) {
             Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
             if (moduleDescription.isPresent()
-                    && moduleDescription.get().getRequirement().toString().equals("Breadth and Depth")
+                    && moduleDescription.get().getRequirement().equals(DegreeRequirement.BREATH_AND_DEPTH)
                     && moduleDescription.get().getFocusAreas().isEmpty()) {
-                count[0] += m.getCreditCount();
+                numOfTeamProject += m.getCreditCount();
             }
         }
+        statusMap.put(DegreeRequirement.TEAM_PROJECT, new int[] {numOfTeamProject});
+    }
 
-        if (!userFocusAreas.isEmpty()) {
+    /**
+     * Count the number of the user's focus area requirement and insert to the credit mapping.
+     */
+    private void mapFocusAreasRequirement() {
+        List<FocusArea> focusAreas = new ArrayList<>(getUserProfile().getFocusAreas());
+        if (!focusAreas.isEmpty()) {
+            int[] numOfFocusAreasRequirement = new int[focusAreas.size()];
             for (Module m : getAllModulesTaken()) {
                 Optional<ModuleDescription> moduleDescription = getModuleDescription(m.getCode());
-                int i = 0;
-                while (i < userFocusAreas.size()) {
+                for (int i = 0; i < focusAreas.size(); i++) {
                     if (moduleDescription.isPresent()
+                            && moduleDescription.get().getRequirement().equals(DegreeRequirement.BREATH_AND_DEPTH)
                             && !moduleDescription.get().getFocusAreas().isEmpty()
-                            && moduleDescription.get().getFocusAreas().get(0) == userFocusAreas.get(i)) {
-                        count[1] += m.getCreditCount();
-                        i++;
+                            && moduleDescription.get().getFocusAreas().get(0).equals(focusAreas.get(i))) {
+                        numOfFocusAreasRequirement[i] += m.getCreditCount();
                     }
                 }
             }
+            statusMap.put(DegreeRequirement.FOCUS_AREA_REQUIREMENTS, numOfFocusAreasRequirement);
         }
-
-        statusMap.put(DegreeRequirement.BREATH_AND_DEPTH, count);
     }
 
     /**
@@ -571,14 +560,15 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      *
      * @return the mapping
      */
-    public Map<DegreeRequirement, int[]> status() {
-        countGeneralEducation();
-        countFoundation();
-        countMathematics();
-        countScience();
-        countItProfessionalism();
-        countIndustrialExperienceRequirement();
-        countBreadthAndDepth();
+    public ObservableMap<DegreeRequirement, int[]> status() {
+        mapGeneralEducation();
+        mapFoundation();
+        mapMathematics();
+        mapScience();
+        mapItProfessionalism();
+        mapIndustrialExperienceRequirement();
+        mapTeamProject();
+        mapFocusAreasRequirement();
 
         return statusMap;
     }

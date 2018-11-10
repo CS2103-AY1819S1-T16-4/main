@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<VBox fx:id="statusPanel" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="header" styleClass="moduleListPanel_title" text="Status" />
+    <Label fx:id="statusMessage" styleClass="moduleDescription_label_big" text="Status Message" wrapText="true" VBox.vgrow="ALWAYS" />
+</VBox>
+

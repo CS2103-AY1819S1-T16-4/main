@@ -7,13 +7,13 @@ import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 
@@ -145,9 +145,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateModulePlannerChanged();
     }
 
-    public int numberOfFocusAreas() { return (versionedModulePlanner.getUserProfile().getFocusAreas()).size(); }
-
-    public Map<DegreeRequirement, int[]> status() {
+    public ObservableMap<DegreeRequirement, int[]> status() {
         return versionedModulePlanner.status();
     }
 

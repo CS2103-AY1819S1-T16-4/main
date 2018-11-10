@@ -31,6 +31,7 @@ import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.commons.events.ui.GoToEvent;
 import seedu.planner.commons.events.ui.ListModuleEvent;
 import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
+import seedu.planner.commons.events.ui.StatusEvent;
 import seedu.planner.commons.events.ui.SuggestModuleEvent;
 import seedu.planner.logic.Logic;
 import seedu.planner.model.UserPrefs;
@@ -309,5 +310,11 @@ public class MainWindow extends UiPart<Stage> {
     private void handleListEvent(ListModuleEvent event) {
         ModuleListPanel panel = takenModuleListPanels.get(MAX_NUMBER_SEMESTERS);
         setPlaceholder(takenModulesPlaceholder, panel);
+    }
+
+    @Subscribe
+    private void handleStatusEvent(StatusEvent event) {
+        StatusPanel panel = new StatusPanel(event.getStatusMessage());
+        setPlaceholder(multiPurposePanelPlaceholder, panel);
     }
 }
