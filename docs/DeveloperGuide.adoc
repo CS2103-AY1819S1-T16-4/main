@@ -261,8 +261,6 @@ Information about modules and majors supports almost all the features in Module 
 Information of a module such as module code, module credit and prerequisite modules are stored in `ModuleInfo` class.
 This class is made to be immutable to avoid accidental changes to the class.
 
-images::
-
 A python script (link:{repoURL}/tools/moduleConverter.py[`moduleConverter.py`]) is used to download the list of NUS modules
 from NUSMods server, do some data transformation and write to `data/moduleInfo.json` for the use of our app.
 
@@ -319,7 +317,7 @@ a way to
 file reading is very different
 
 //// Comment out
-==== Future code health improvements
+//==== Future code health improvements
 
 * Use a new class `JsonAdaptedModuleInfo` for deserialization and use `JsonAdaptedModuleInfo#toModelType` to
 construct the actual type. This will allow us to remove `ModuleInfo#finalizeModuleInfo` that needs to be called
