@@ -192,7 +192,7 @@ image::GoToAfter.png[width="300"]
 
 === Listing modules : `list`
 
-If a valid year is supplied, shows a list of all modules that you have taken (added using `add` command) in that year. Otherwise, shows a list of all modules that you have taken in every year. +
+If a valid year is supplied, shows a list of all modules that you have added to that year. Otherwise, shows a list of all modules that you have added to every year. +
 Format: `list [y/YEAR]`
 
 [TIP]
@@ -203,7 +203,7 @@ Format: `list [y/YEAR]`
 
 [NOTE]
 ====
-* If no modules have been taken in the specified year or no modules have been taken in any year, will show an empty list.
+* If no modules have been added to the specified year or no modules have been added to any year, will show an empty list.
 ====
 
 Examples:

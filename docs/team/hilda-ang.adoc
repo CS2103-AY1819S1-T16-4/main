@@ -56,7 +56,7 @@ The next few sections will describe my contributions to the project.
 
 === Listing modules : `list`
 
-If a valid year is supplied, shows a list of all modules that you have taken (added using `add` command) in that year. Otherwise, shows a list of all modules that you have taken in every year. +
+If a valid year is supplied, shows a list of all modules that you have added to that year. Otherwise, shows a list of all modules that you have added to every year. +
 Format: `list [y/YEAR]`
 
 [TIP]
@@ -67,7 +67,7 @@ Format: `list [y/YEAR]`
 
 [NOTE]
 ====
-* If no modules have been taken in the specified year or no modules have been taken in any year, will show an empty list.
+* If no modules have been added to the specified year or no modules have been added to any year, will show an empty list.
 ====
 
 Examples:
@@ -77,6 +77,11 @@ Lists all modules taken in year 1, both semester 1 and 2 (if they exist).
 
 * `list` +
 Lists all modules taken in every year, from year 1 semester 1 to year 4 semester 2 (if they exist).
+
+=== Getting status update : `status`
+
+Shows how many core, unrestricted electives, and general education modules that you have taken and how many more you need to take. +
+Format: `status`
 
 === Suggesting modules : `suggest`
 
@@ -112,11 +117,11 @@ Examples:
 The list mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`s and each `Semester` stores a list `modulesTaken` containing modules that the user has taken or is planning to take.
 It implements the following operation:
 
-* `ModulePlanner#listTakenModules()` -- Retrieves the list `takenModules`.
+* `ModulePlanner#getTakenModules()` -- Retrieves the list `takenModules`.
 * `ModulePlanner#listTakenModulesAll()` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in every `Semester`.
 * `ModulePlanner#listTakenModulesForYear(int year)` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in the `Semester`s that belongs to the specified year.
 
-The operation is exposed in `Model` interface as `Model#listTakenModules()`, `Model#listTakenModulesAll()`, and `Model#listTakenModulesForYear(int year)`.
+The operation is exposed in `Model` interface as `Model#getTakenModules()`, `Model#listTakenModulesAll()`, and `Model#listTakenModulesForYear(int year)`.
 
 [NOTE]
 A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
@@ -186,7 +191,7 @@ private List<Module> generateAvailableModules(int index) {
     List<Module> allModules = getAllModulesFromStorage();
 
     for (Module m : allModules) {
-        if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenBeforeIndex, m)) {
+        if (ModuleUtil.isModuleAvailable(modulesTaken, modulesTakenBeforeIndex, m)) {
             modulesAvailable.add(m);
         }
     }
