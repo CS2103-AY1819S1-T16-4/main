@@ -592,6 +592,7 @@ image::SuggestSequenceDiagram.png[width="800"]
 ** Pros: May be more effective in terms of running time because it only regenerates the list when needed.
 ** Cons: Implementation will be more complicated as we have to check whether a command modifies the list.
 
+
 // tag::undoredo[]
 === Undo/Redo feature
 ==== Current Implementation
