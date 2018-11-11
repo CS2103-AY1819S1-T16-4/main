@@ -256,7 +256,8 @@ This section describes some noteworthy details on how certain features are imple
 // tag::setup[]
 
 === Setup feature
-====
+==== Current Implementation
+
 
 // end::setup[]
 
@@ -741,7 +742,7 @@ and "Departmental approval")
 ** Pros: Extraction can be done easily with regular expression. Prerequisite and preclusion checking is also simple to implement in Java code.
 ** Cons: The final data will be incorrect for rules like "(MA1101R AND MA1221) OR MA1521". How
 
-* Alternative 3: 
+* Alternative 3:
 
 `ModuleInfoRetriever` opens the processed `data/moduleInfo.json` file packaged in the JAR file and deserialize its
 content into an array of `ModuleInfo` objects. As JSON can only hold simple values such as strings and numbers,
