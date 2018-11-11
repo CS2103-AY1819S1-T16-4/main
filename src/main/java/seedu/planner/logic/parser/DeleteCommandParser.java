@@ -4,7 +4,9 @@ import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_CODE;
 
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.logic.commands.DeleteCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.Module;
@@ -15,6 +17,8 @@ import seedu.planner.model.module.Module;
  * A parser that parse an input argument and creates a DeleteCommand.
  */
 public class DeleteCommandParser implements Parser<DeleteCommand> {
+
+    private static final Logger logger = LogsCenter.getLogger(DeleteCommandParser.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
@@ -28,6 +32,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 args, PREFIX_CODE);
 
         if (!argMultimap.containsAllPrefixes(PREFIX_CODE) || !argMultimap.getPreamble().isEmpty()) {
+            logger.fine("In delete command parser: no module code supplied");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 

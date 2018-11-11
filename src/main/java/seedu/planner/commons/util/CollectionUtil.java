@@ -64,8 +64,8 @@ public class CollectionUtil {
      */
     public static <E> boolean areEqualIgnoreOrder(Collection<E> items1, Collection<E> items2) {
         requireAllNonNull(items1, items1);
-        return items1.stream().allMatch(x -> items2.stream().anyMatch(y -> x.equals(y)))
-                && items2.stream().allMatch(x -> items1.stream().anyMatch(y -> x.equals(y)));
+        return items1.stream().allMatch(x -> items2.stream().anyMatch(x::equals))
+                && items2.stream().allMatch(y -> items1.stream().anyMatch(y::equals));
     }
 
     /**
