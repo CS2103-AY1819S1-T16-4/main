@@ -714,7 +714,7 @@ In turn, <code>Semester</code> stores a list of the modules the user has taken, 
 <p>When a module is deleted, <code>ModulePlanner</code> will go through every module added after the semester which the
 module is deleted from and checks if those modules now have prerequisites that are not fulfilled. If there
 are now prerequisites not fulfilled for the modules checked, they too are deleted and the process repeats for them.
-For better addressing, this process will be defined as <code>Iterative Deletion</code>.</p>
+For better addressing, this process will be defined as <em>Iterative Deletion</em>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -730,7 +730,7 @@ An invalid module is defined as the opposite.</p>
 <h5 id="result"><a class="link" href="#result">Result</a></h5>
 <div class="paragraph">
 <p>Out of all these arguments, only the valid modules will be deleted from the module planner. The invalid modules
-are collected and made known to the user through the <code>ResultDisplay</code>. They are separated by their types:
+are collected and made known to the user through the Result Display. They are separated by their types:
 <strong>not offered</strong> by the education institute and <strong>non-existent</strong> in the module planner. Modules with invalid module
 code formats are filtered out by the <code>DeleteCommandParser</code> and hence do not appear as part of the message shown in
 the <code>ResultDisplay</code>.</p>
@@ -933,7 +933,7 @@ the command fails.</p>
 <div class="sect4">
 <h5 id="result-2"><a class="link" href="#result-2">Result</a></h5>
 <div class="paragraph">
-<p>The information about the module is retrieved and displayed in the <code>MultiPurposePanel</code>.</p>
+<p>The information about the module is retrieved and displayed in the Multipurpose Panel.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the find operation works:</p>
@@ -970,7 +970,7 @@ the command fails.</p>
 <div class="paragraph">
 <p>The goto mechanism is facilitated by the posting and handling of events. The <code>GoToCommand#execute(&#8230;&#8203;)</code> is the event poster
 and the <code>MainWindow#handleGoToEvent(&#8230;&#8203;)</code> is the event handler. <code>goto</code> allows the user to switch between time periods in the ui.
-A time period is defined as a year-semester pair [YEAR, SEMESTER].</p>
+A time period is defined as a year-semester pair [Year, Semester].</p>
 </div>
 </div>
 <div class="sect4">
@@ -994,8 +994,7 @@ between 1 and 2.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Below are some usage scenarios.
-As a gentle reminder, a year is valid if it is between 1 and 4, and a semester is valid if it is between 1 and 2.</p>
+<p>Below are some usage scenarios.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1989,7 +1988,7 @@ b. Require developers to download those libraries manually (this creates extra w
 <div class="ulist">
 <ul>
 <li>
-<p>NUS Computer Science and Computer Engineering students who :</p>
+<p>NUS Computer Science students who :</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -2312,7 +2311,59 @@ b. Require developers to download those libraries manually (this creates extra w
 <dd>
 <p>Windows, Linux, Unix, macOS</p>
 </dd>
+<dt class="hdlist1">Time Period</dt>
+<dd>
+<p>Year-Semester pair</p>
+<div class="ulist">
+<ul>
+<li>
+<p>year 1 semester 1</p>
+</li>
+<li>
+<p>year 2 semester 2</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Iterative Deletion</dt>
+<dd>
+<p>The process of removing modules, checking if their removal causes other modules to not fulfill
+some of their prerequisites, removing those modules that no longer have their prerequisites fulfilled,
+and repeating until no more modules are removed.</p>
+</dd>
+<dt class="hdlist1">Ui Components</dt>
+<dd>
+<p>The ui is divided into several sections.</p>
+</dd>
 </dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiLabelled.png" alt="UiLabelled" width="790">
+</div>
+<div class="title">Figure 12. The labelled ui</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Input Box: input commands here.</p>
+</li>
+<li>
+<p>Result Display: displays command results and other associated messages.</p>
+</li>
+<li>
+<p>Time Period: displays the year and semester you are currently viewing.</p>
+</li>
+<li>
+<p>Taken Modules Panel: lists modules that you put into the specified time period.</p>
+</li>
+<li>
+<p>Suggested Modules Panel: lists modules that suggested to you for that time period.</p>
+</li>
+<li>
+<p>Multipurpose Panel: displays results for the <code>Find</code> and <code>Status</code> commands.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2347,7 +2398,7 @@ These instructions only provide a starting point for testers to work on; testers
 </li>
 <li>
 <p>Double-click the jar file<br>
-Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.</p>
+Expected: Shows the GUI with no modules. The window size may not be optimum.</p>
 </li>
 </ol>
 </div>
@@ -2357,7 +2408,7 @@ Expected: Shows the GUI with a set of sample contacts. The window size may not b
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Resize the window to an optimum size. Move the window to a different location. Close the window.</p>
+<p>Resize the window to an optimum size. Move the window to a different location. Close the window..</p>
 </li>
 <li>
 <p>Re-launch the app by double-clicking the jar file.<br>
@@ -2367,9 +2418,6 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
 <div class="sect2">
@@ -2381,16 +2429,34 @@ Expected: The most recent window size and location is retained.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em></p>
+<p>Double-click the jar file. This will generate some supporting files like preferences.json and config.json.</p>
+</li>
+<li>
+<p>To simulate missing data files, remove any of the generated files. Close the window.</p>
+</li>
+<li>
+<p>Double click the jar file again.<br>
+Expected: The jar file will automatically generate the relevant files removed.
+These files contain default values and not custom values set by the user.</p>
+</li>
+<li>
+<p>To simulate corrupted data files, edit any of the generated files to break the format.
+The files are in json format and are easily editable. One example edit is to add "BobBuilder" like in the image below.</p>
+</li>
+<li>
+<p>Expected: The jar file will automatically regenerate the corrupted files.
+These files contain default values and not custom values set by the user.</p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+<div class="imageblock">
+<div class="content">
+<img src="images/CorruptedDataFile.png" alt="CorruptedDataFile" width="300">
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 18:44:26 UTC</div></div></div></body></html>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 07:15:39 UTC</div></div></div></body></html>
