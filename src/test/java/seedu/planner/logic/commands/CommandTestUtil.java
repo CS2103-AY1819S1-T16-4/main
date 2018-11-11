@@ -58,7 +58,7 @@ public class CommandTestUtil {
 
     public static final String VALID_MAJOR_CS = "Computer Science";
     public static final String VALID_FOCUS_AREA_SE = "Software Engineering";
-    public static final String VALID_FOCUS_AREA_PL = "Programming Languages";
+    public static final String VALID_FOCUS_AREA_AI = "Artificial Intelligence";
 
     public static final String INVALID_MAJOR_SS = "Sleep Science";
     public static final String INVALID_FOCUS_AREA_LD = "Lucid Dreaming";

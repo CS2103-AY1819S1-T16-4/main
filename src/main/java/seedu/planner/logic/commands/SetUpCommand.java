@@ -41,7 +41,7 @@ public class SetUpCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MAJOR + "Computer Science "
             + PREFIX_FOCUS_AREA + "Software Engineering "
-            + PREFIX_FOCUS_AREA + "Programming Languages";
+            + PREFIX_FOCUS_AREA + "Artificial Intelligence";
 
     private String major;
     private Set<String> focusAreas;
@@ -57,11 +57,13 @@ public class SetUpCommand extends Command {
 
         String errorMsg = "";
 
-        if (!Major.hasMajor(major)) {
+        Major mappedMajor = Major.mapMajor(major);
+        if (mappedMajor == Major.UNKNOWN) {
             errorMsg += String.format(MESSAGE_INVALID_MAJOR, major);
         }
 
-        if (!focusAreas.isEmpty() && !FocusArea.hasFocusAreas(focusAreas)) {
+        Set<FocusArea> mappedFocusAreas = FocusArea.filterFocusAreas(focusAreas);
+        if (!focusAreas.isEmpty() && mappedFocusAreas.isEmpty()) {
             errorMsg += String.format(MESSAGE_INVALID_FOCUS_AREAS);
         }
 
@@ -69,9 +71,9 @@ public class SetUpCommand extends Command {
             throw new CommandException(errorMsg);
         }
 
-        model.setUpUserProfile(major, focusAreas);
+        model.setUpUserProfile(mappedMajor, mappedFocusAreas);
         return new CommandResult(String.format(
-                MESSAGE_SET_UP_SUCCESS, major, CollectionUtil.convertCollectionToString(focusAreas)));
+                MESSAGE_SET_UP_SUCCESS, mappedMajor, CollectionUtil.convertCollectionToString(mappedFocusAreas)));
     }
 
     @Override

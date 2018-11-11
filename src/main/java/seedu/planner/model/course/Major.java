@@ -20,18 +20,20 @@ public enum Major {
     }
 
     /**
-     * Check if a string matches a {@code Major} enum value.
+     * Converts the major from a {@code String} to a {@code Major}.
      *
      * Note: Case-insensitive
+     *
+     * @param major The major as a {@code String}
+     * @return The major as a {@code Major}
      */
-    public static boolean hasMajor(String major) {
-        major = major.toLowerCase();
+    public static Major mapMajor(String major) {
         for (Major m : Major.values()) {
-            if (m.toString().toLowerCase().equals(major)) {
-                return true;
+            if (m.toString().equalsIgnoreCase(major)) {
+                return m;
             }
         }
-        return false;
+        return Major.UNKNOWN;
     }
 
     @Override

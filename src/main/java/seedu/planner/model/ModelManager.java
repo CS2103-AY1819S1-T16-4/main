@@ -20,6 +20,8 @@ import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
 import seedu.planner.model.course.DegreeRequirement;
+import seedu.planner.model.course.FocusArea;
+import seedu.planner.model.course.Major;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
@@ -64,7 +66,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void setUpUserProfile(String major, Set<String> focusAreas) {
+    public void setUpUserProfile(Major major, Set<FocusArea> focusAreas) {
         versionedModulePlanner.setUserProfile(new UserProfile(major, focusAreas));
         indicateModulePlannerChanged();
     }

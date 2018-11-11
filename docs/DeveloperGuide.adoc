@@ -203,7 +203,7 @@ link:{repoURL}/src/main/java/seedu/planner/logic/Logic.java[`Logic.java`]
 .  The command execution can affect the `Model` (e.g. adding a module) and/or raise events.
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete c/CS1010")` API call.
 
 .Interactions Inside the Logic Component for the `delete 1` Command
 image::DeletePersonSdForLogic.png[width="800"]
@@ -253,10 +253,17 @@ Classes used by multiple components are in the `seedu.planner.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+// tag::setup[]
+
+=== Setup feature
+====
+
+// end::setup[]
+
 === Add feature
 ==== Current Implementation
 
-The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester'-s. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
+The add mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`s. A `Semester` stores a list containing modules that the user has taken or is planning to take on that semester.
 The implementation is as follows:
 
 * `ModulePlanner#addModules(List<Module> modules, int index)` -- Add the list of `modules` into the semester specified by `index`.
@@ -719,12 +726,22 @@ This class is made to be immutable to avoid accidental changes to the class.
 A python script (link:{repoURL}/tools/moduleConverter.py[`moduleConverter.py`]) is used to download the list of NUS modules
 from NUSMods server, do some data transformation and write to `data/moduleInfo.json` for the use of our app.
 
+==== Design Consideration
+
+===== Aspect: Prerequisites and preclusions
+
 NUSMods provides the prerequisites and preclusion of a module in normal English sentence (e.g. "CS1010 or its equivalents"
-and "Departmental approval"), attempting to extract the correct prerequisite and preclusion relationship of the modules
-would be infeasible due to the potential long list of exception rules. Therefore, we will only extract the module codes
-in the sentences with regular expression, downside of this is that we won't include CS1010S, CS1010J and so on from
-"CS1010 or its equivalents". We will also assume that if any module in the prerequisite/preclusion list is matched,
-the condition is met immediately (even though this is incorrect for rules like "(MA1101R AND MA1221) OR MA1521").
+and "Departmental approval")
+
+* Alternative 1: parse the sentences with natural language processing to extract the correct prerequisite and preclusion relationship of the modules
+** Pros: Prerequisite and preclusion relationship of our data will be correct.
+** Cons: Difficult to automate with a script due to the potential long list of exception rules.
+
+* Alternative 2 (Current approach): Extract the module codes with regular expression and assume AND relationship for prerequisites.
+** Pros: Extraction can be done easily with regular expression. Prerequisite and preclusion checking is also simple to implement in Java code.
+** Cons: The final data will be incorrect for rules like "(MA1101R AND MA1221) OR MA1521". How
+
+* Alternative 3: 
 
 `ModuleInfoRetriever` opens the processed `data/moduleInfo.json` file packaged in the JAR file and deserialize its
 content into an array of `ModuleInfo` objects. As JSON can only hold simple values such as strings and numbers,
