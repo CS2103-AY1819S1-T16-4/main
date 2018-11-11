@@ -17,7 +17,7 @@ import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_DESC_O
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_DESC_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_ONE;
-import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.planner.testutil.TypicalIndexes.INDEX_ZERO;
 import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
@@ -59,7 +59,7 @@ public class ModulePlannerParserTest {
                 + VALID_MODULE_CODE_DESC_CS1231
                 + VALID_MODULE_CODE_DESC_CS2030
                 + VALID_MODULE_CODE_DESC_CS2040);
-        assertEquals(new AddCommand(modules, INDEX_FIRST), command);
+        assertEquals(new AddCommand(modules, INDEX_ZERO), command);
     }
 
     @Test
@@ -135,8 +135,7 @@ public class ModulePlannerParserTest {
     public void parseCommand_setUp() throws Exception {
         SetUpCommand command = (SetUpCommand) parser.parseCommand(SetUpCommand.COMMAND_WORD
             + VALID_MAJOR_DESC_CS + VALID_FOCUS_AREA_DESC_SE);
-        assertEquals(new SetUpCommand(VALID_MAJOR_CS, Set.of(VALID_FOCUS_AREA_SE)),
-            command);
+        assertEquals(new SetUpCommand(VALID_MAJOR_CS, Set.of(VALID_FOCUS_AREA_SE)), command);
     }
 
     @Test
@@ -149,8 +148,7 @@ public class ModulePlannerParserTest {
     public void parseCommand_suggest() throws Exception {
         SuggestCommand command = (SuggestCommand) parser.parseCommand(SuggestCommand.COMMAND_WORD
             + VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE);
-        assertEquals(new SuggestCommand(VALID_INDEX_ZERO),
-            command);
+        assertEquals(new SuggestCommand(VALID_INDEX_ZERO), command);
     }
 
     @Test

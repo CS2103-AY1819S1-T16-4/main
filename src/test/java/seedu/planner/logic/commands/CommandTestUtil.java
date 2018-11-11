@@ -138,10 +138,11 @@ public class CommandTestUtil {
         List<Module> modulesTaken = model.getTakenModules();
          if (modulesTaken.size() > index) {
             return modulesTaken.get(index);
-        }
+         }
          return null;
     }
-     /**
+
+    /**
      * Retrieves a {@code Module} from the given index of the list {@code availableModules} in the given model,
      * or returns {@code null} if the size of the list is less than the given index.
      *
@@ -153,7 +154,7 @@ public class CommandTestUtil {
         List<Module> modulesAvailable = model.getAvailableModules();
          if (modulesAvailable.size() > index) {
             return modulesAvailable.get(index);
-        }
+         }
          return null;
     }
 }

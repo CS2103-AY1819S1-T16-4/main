@@ -5,8 +5,8 @@ import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1231;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2030;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2040;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2103T;
-import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.planner.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.planner.testutil.TypicalIndexes.INDEX_ONE;
+import static seedu.planner.testutil.TypicalIndexes.INDEX_ZERO;
 
 import java.util.Set;
 
@@ -36,10 +36,10 @@ public class TypicalModules {
      */
     public static ModulePlanner getTypicalModulePlanner() {
         return new ModulePlannerBuilder()
-                .withModuleAt(CS1010, INDEX_FIRST)
-                .withModuleAt(CS1231, INDEX_FIRST)
-                .withModuleAt(CS2030, INDEX_SECOND)
-                .withModuleAt(CS2040, INDEX_SECOND)
+                .withModuleAt(CS1010, INDEX_ZERO)
+                .withModuleAt(CS1231, INDEX_ZERO)
+                .withModuleAt(CS2030, INDEX_ONE)
+                .withModuleAt(CS2040, INDEX_ONE)
                 .build();
     }
 
