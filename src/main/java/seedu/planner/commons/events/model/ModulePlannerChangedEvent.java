@@ -21,8 +21,9 @@ public class ModulePlannerChangedEvent extends BaseEvent {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         List<Semester> semesters = data.getSemesters();
+        sb.append("\n");
         for (Semester semester : semesters) {
-            sb.append("\n" + semester.toString() + " : " + semester.getModules().size());
+            sb.append(semester.toString() + " : " + semester.getModules().size() + "\n");
         }
 
         return sb.toString();
