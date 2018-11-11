@@ -298,9 +298,12 @@ filtered out from the list and the user will be informed that the prerequisites 
 At this point, the list to be added has been finalized. The `Model#addModules(List<Module> modules, int index)` is then called
 to add this list of module(s) (in this case only `GER1000`) to the planner.
 
+[NOTE]
+The messages for each filtering will be collected and displayed simultaneously to the user.
+
 ==== Design Considerations
 
-===== Different semester start
+===== Aspect: Different semester start
 The current implementation allows users to explore possible scenarios of study plan that they can make. Assuming a user is already
 in the middle of his study, let's say he is in second year already, he can still modify his first year's modules to see other
 possible study plans. Implementing a way to initialize ModulePlanner based on the user's past modules (which they can't modify after initializing)
@@ -311,6 +314,15 @@ would be a good idea for the following reasons:
 2. To prevent undefined behaviour - omitting a module already taken might make all future modules not yet taken to be inaccurately planned.
 Also, all currently suggested modules to the user might too be inaccurate.
 
+Below are the summary of pros and cons of the current implementation and the alternative design:
+
+* Current implementation: Able to plan for every semester
+** Pros: Allow users to explore various study plans
+** Cons: Doesn't enforce users to deal with their real progress
+
+* Alternative design: Only able to plan for future semester, with some initialization
+** Pros: Allow users to commit on their real progress
+** Cons: Harder implementation
 
 === Delete feature
 
@@ -538,13 +550,25 @@ Below shows the sequence diagram which describe how the status feature works:
 image::StatusSequenceDiagram.png[width="1000"]
 
 Initially, status feature will display progress for degree requirements which does not include unrestricted electives and focus area requirements.
-When the user sets up their focus area, additional field(s) of `Focus_Area_Requirement` will be added to the status, depending on the number of focus
-areas that the user have. If the user sets up for 2 focus areas, then there will be 2 new fields.
+When the user sets up their focus area, additional field(s) of `Focus_Area_Requirement` will be added to the status. The additional field(s) are named
+"Focus Area Requirement 1", "Focus Area Requirement 2" and so on, with the number of additional fields is equal to the number of focus area that the
+user has.
 
 ==== Design Considerations
+===== Aspect: Include Unrestricted Elective requirements
 Currently the status doesn't track of Unrestricted Elective requirement because of the complexity of how it is counted. Credits
 from modules with more than 4 credit count may or may not have its extra credits transferred to UE requirement. For that, a possible alternative
-would be to list down all modules with more than 4 credit count that transfer its extra credits to UE credits and takine them into consideration.
+would be to list down all modules with more than 4 credit count that transfer its extra credits to UE credits and taking them into consideration.
+
+Below are the summary of pros and cons of the current implementation and the alternative design
+
+* Current Implementation: Doesn't include Unrestricted Electives
+** Pros: Straightforward implementation by just counting for each module
+** Cons: Doesn't include all possible degree requirements, hence not real progress
+
+* Alternative Implementation: Includes Unrestricted Electives
+** Pros: Able to track real progress
+** Cons: Much more tedious to implement
 
 === Suggest feature
 ==== Current Implementation
