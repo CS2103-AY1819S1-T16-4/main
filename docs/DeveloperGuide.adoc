@@ -316,7 +316,7 @@ In turn, `Semester` stores a list of the modules the user has taken, is currentl
 When a module is deleted, `ModulePlanner` will go through every module added after the semester which the
 module is deleted from and checks if those modules now have prerequisites that are not fulfilled. If there
 are now prerequisites not fulfilled for the modules checked, they too are deleted and the process repeats for them.
-For better addressing, this process will be defined as `Iterative Deletion`.
+For better addressing, this process will be defined as _Iterative Deletion_.
 
 ===== Input
 The arguments given to the mechanism are modules, which can be a mix of valid and invalid modules.
@@ -326,7 +326,7 @@ An invalid module is defined as the opposite.
 
 ===== Result
 Out of all these arguments, only the valid modules will be deleted from the module planner. The invalid modules
-are collected and made known to the user through the `ResultDisplay`. They are separated by their types:
+are collected and made known to the user through the Result Display. They are separated by their types:
 **not offered** by the education institute and **non-existent** in the module planner. Modules with invalid module
 code formats are filtered out by the `DeleteCommandParser` and hence do not appear as part of the message shown in
 the `ResultDisplay`.
@@ -416,7 +416,7 @@ The argument given to the mechanism is a module, which has to be offered by the 
 the command fails.
 
 ===== Result
-The information about the module is retrieved and displayed in the `MultiPurposePanel`.
+The information about the module is retrieved and displayed in the Multipurpose Panel.
 
 The following sequence diagram shows how the find operation works:
 
@@ -436,7 +436,7 @@ The user executes `find c/CS0000`. The `MultiPurposePanel` does not display anyt
 ===== About
 The goto mechanism is facilitated by the posting and handling of events. The `GoToCommand#execute(...)` is the event poster
 and the `MainWindow#handleGoToEvent(...)` is the event handler. `goto` allows the user to switch between time periods in the ui.
-A time period is defined as a year-semester pair [YEAR, SEMESTER].
+A time period is defined as a year-semester pair [Year, Semester].
 
 ===== Input
 The argument given to the mechanism is a year-semester pair. The year has to be between 1 and 4, and the semester has to be
@@ -1084,7 +1084,27 @@ Use case ends.
 Windows, Linux, Unix, macOS
 
 Time Period::
-Year-Semester pair - year 1 semester 1
+Year-Semester pair
+* year 1 semester 1
+* year 2 semester 2
+
+Iterative Deletion::
+The process of removing modules, checking if their removal causes other modules to not fulfill
+some of their prerequisites, removing those modules that no longer have their prerequisites fulfilled,
+and repeating until no more modules are removed.
+
+Ui Components::
+The ui is divided into several sections.
+
+.The labelled ui
+image::UiLabelled.png[width="790"]
+
+* Input Box: input commands here.
+* Result Display: displays command results and other associated messages.
+* Time Period: displays the year and semester you are currently viewing.
+* Taken Modules Panel: lists modules that you put into the specified time period.
+* Suggested Modules Panel: lists modules that suggested to you for that time period.
+* Multipurpose Panel: displays results for the `Find` and `Status` commands.
 
 [appendix]
 == Instructions for Manual Testing
