@@ -4,6 +4,9 @@ import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.util.logging.Logger;
+
+import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.logic.commands.GoToCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
@@ -14,6 +17,8 @@ import seedu.planner.logic.parser.exceptions.ParseException;
  */
 public class GoToCommandParser implements Parser<GoToCommand> {
 
+    private static final Logger logger = LogsCenter.getLogger(GoToCommandParser.class);
+
     @Override
     public GoToCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
@@ -21,6 +26,7 @@ public class GoToCommandParser implements Parser<GoToCommand> {
 
         if (!argMultimap.containsAllPrefixes(PREFIX_YEAR, PREFIX_SEMESTER)
                 || !argMultimap.getPreamble().isEmpty()) {
+            logger.fine("In goto command parser: year or semester or both not supplied");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GoToCommand.MESSAGE_USAGE));
         }
 
@@ -29,11 +35,4 @@ public class GoToCommandParser implements Parser<GoToCommand> {
 
         return new GoToCommand(year, semester);
     }
-
-    /*
-    private static boolean areOtherPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixesExcluded) {
-        List<Prefix> otherPrefixes = CliSyntax.getOtherPrefixes(prefixesExcluded);
-        return Stream.of()
-    }
-    */
 }

@@ -51,11 +51,12 @@ public class ModelManager extends ComponentManager implements Model {
 
         takenModulesPerSemester = new ArrayList<>();
         for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
-            takenModulesPerSemester.add(new SortedList<>(versionedModulePlanner.getTakenModulesForIndex(i), (x, y) ->
-                    x.compareTo(y)));
+            ObservableList<Module> takenModules = versionedModulePlanner.getTakenModulesForIndex(i);
+            SortedList<Module> sortedTakenModules = new SortedList<>(takenModules, (x, y) -> x.compareTo(y));
+            takenModulesPerSemester.add(sortedTakenModules);
         }
 
-        takenModules = new SortedList<>(versionedModulePlanner.listTakenModules());
+        takenModules = new SortedList<>(versionedModulePlanner.listTakenModules(), (x, y) -> x.compareTo(y));
         availableModules = new SortedList<>(versionedModulePlanner.getAvailableModules());
     }
 
