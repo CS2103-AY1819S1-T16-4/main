@@ -40,7 +40,7 @@ public class ModelManagerTest {
     @Test
     public void listModules_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        modelManager.listTakenModules().remove(0);
+        modelManager.getTakenModules().remove(0);
     }
 
     @Test

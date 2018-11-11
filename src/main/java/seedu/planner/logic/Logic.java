@@ -26,7 +26,7 @@ public interface Logic {
     ObservableList<Module> getAvailableModules();
 
     /** Returns an unmodifiable view of the list of taken modules */
-    ObservableList<Module> listTakenModules();
+    ObservableList<Module> getTakenModules();
 
     /** Returns the list of input entered by the user, encapsulated in a {@code ListElementPointer} object */
     ListElementPointer getHistorySnapshot();

@@ -78,14 +78,14 @@ public interface Model {
      *
      * @param year A valid integer between 1 to 4 inclusive, signifying year to be listed.
      */
-    void listTakenModulesYear(int year);
+    void listTakenModulesForYear(int year);
 
     /**
      * Retrieves a list containing modules that have been taken (added to ModulePlanner) by the user.
      *
      * @return An unmodifiable view of modules taken by the user.
      */
-    ObservableList<Module> listTakenModules();
+    ObservableList<Module> getTakenModules();
 
     /**
      * Retrieves the actual module information of the {@code modules}
