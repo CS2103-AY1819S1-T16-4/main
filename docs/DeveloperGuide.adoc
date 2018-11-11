@@ -538,6 +538,7 @@ Below is how the list of available modules is generated.
 
 The method `ModulePlanner#generateAvailableModules(int index)` is called by `ModulePlanner#updateModulesAvailable()`, which sets the content of `availableModules` to be the list of modules returned by `generateAvailableModules(index)`, with `index` being the stored `availableIndex`.
 
+[source,java]
 ----
 private List<Module> generateAvailableModules(int index) {
     List<Module> modulesAvailable = new ArrayList<>();
@@ -564,6 +565,7 @@ The method `ModulePlanner#generateAvailableModules(int index)` retrieves all mod
 
 The availability checking is done by the following method.
 
+[source,java]
 ----
 public static boolean isModuleAvailableToTake(List<Module> modulesTaken, List<Module> modulesTakenBeforeIndex, Module module) {
     return hasNotTakenModule(modulesTaken, module)

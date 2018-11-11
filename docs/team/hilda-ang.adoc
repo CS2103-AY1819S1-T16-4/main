@@ -1,31 +1,24 @@
 = Hilda Anggraeni - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
 
 == PROJECT: ModulePlanner
 
 == Overview
 
-This project portfolio showcases the contributions I have made in a team project under CS2103T. We developed a product called ModulePlanner on top of an existing software, AddressBook - Level 4.
-
-ModulePlanner is a desktop application made to help NUS Computer Science undergraduate students plan their modules by giving module suggestions for every semester. It is mainly designed to be used through a Command Line Interface (CLI), although it also provides a Graphical User Interface (GUI).
-
-*Major Features*:
-** Suggest available modules based on major requirements and module prerequisites.
-** Plan modules for each semester by adding or deleting modules to or from the planner.
-** Check module description, prerequisites, and preclusions.
+This project portfolio summarizes the contributions I have made in developing a product called ModulePlanner as a team project under CS2103T Software Engineering. ModulePlanner is a desktop application made to help NUS Computer Science undergraduate students plan their modules. It is designed to be used through a Command Line Interface (CLI), although it also provides a Graphical User Interface (GUI). Main features include suggesting available modules based on major requirements and module prerequisites and planning modules for each semester by adding or deleting modules to or from the planner.
 
 The next few sections will describe my contributions to the project.
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to suggest modules to take*
+* *Major enhancement*: added *the ability to suggest modules available to take*
 ** What it does: allows the user to see the modules he/she is available to take in each semester, based on the modules he/she has taken.
 ** Justification: This feature helps the user plan modules by checking and listing available modules for him/her.
-** Highlights: This is the main feature of our application. It demanded a careful consideration and thorough analysis of several design alternatives and implementation choices. The actual implementation was challenging as it interacted with many other components and commands.
+** Highlights: This is the main feature of our application. It required an analysis of several design alternatives and implementation choices.
 
-* *Minor enhancement*: added *the ability to list modules taken*
-** What it does: allows the user to see the modules he/she has added for all years or for each year.
-** Justification: This feature helps the user to quickly checks the modules he/she has added.
-** Highlights: This feature interacts with other features as the list is updated with each successful execution of add or delete command.
+* *Minor enhancement*: added a list command that allows user to see all modules he/she has added to a specific year or to all years.
 
 * *Code contributed*: [https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=hilda-ang]
 
@@ -33,12 +26,10 @@ The next few sections will describe my contributions to the project.
 
 ** Project management:
 *** Managed release `v1.1` on GitHub
-*** Recorded and labeled each of the user stories as an issue
-*** Assigned team members to issues and issues to milestones
-*** Set a deadline for each milestone on Github
+*** Recorded each of the user stories as an issue and assigned team members to issues
+*** Assigned issues to milestones and set a deadline for each milestone on Github
 ** Enhancements to existing features:
-*** Refactored AddressBook to ModulePlanner
-*** Rewrote tests for shared classes
+*** Refactored AddressBook to ModulePlanner and rewrote tests for shared classes
 ** Documentation:
 *** Modify User Guide to be relevant to current project
 ** Community:
@@ -46,7 +37,6 @@ The next few sections will describe my contributions to the project.
 *** Reported bugs for other teams in the class
 ** Tools:
 *** Integrated a Github plugin (Coveralls) for code coverage checking to the team repo
-*** Configured team repo to be compatible with RepoSense
 
 == Contributions to the User Guide
 
@@ -77,11 +67,6 @@ Lists all modules taken in year 1, both semester 1 and 2 (if they exist).
 
 * `list` +
 Lists all modules taken in every year, from year 1 semester 1 to year 4 semester 2 (if they exist).
-
-=== Getting status update : `status`
-
-Shows how many core, unrestricted electives, and general education modules that you have taken and how many more you need to take. +
-Format: `status`
 
 === Suggesting modules : `suggest`
 
