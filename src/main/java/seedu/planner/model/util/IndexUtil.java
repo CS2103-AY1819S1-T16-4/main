@@ -1,7 +1,5 @@
 package seedu.planner.model.util;
 
-//@@author Hilda-Ang
-
 import seedu.planner.commons.util.Pair;
 
 /**
@@ -53,6 +51,9 @@ public class IndexUtil {
      * @return The resulting index between 0 to 7.
      */
     public static int convertYearAndSemesterToIndex(int year, int semester) {
+        if (!isValidYear(year) || !isValidSemester(semester)) {
+            return VALUE_NOT_AVAILABLE;
+        }
         return year * NUM_OF_SEMESTER_IN_YEAR - NUM_OF_SEMESTER_IN_YEAR + semester - 1;
     }
 
@@ -85,8 +86,8 @@ public class IndexUtil {
     public static int[] getIndicesFromYear(int year) {
         int[] indices = new int[2];
 
-        final int indexZero = 0;
-        final int indexOne = 1;
+        int indexZero = 0;
+        int indexOne = 1;
 
         if (year == 1) {
             indices[indexZero] = 0;
@@ -100,6 +101,9 @@ public class IndexUtil {
         } else if (year == 4) {
             indices[indexZero] = 6;
             indices[indexOne] = 7;
+        } else {
+            indices[indexZero] = VALUE_NOT_AVAILABLE;
+            indices[indexOne] = VALUE_NOT_AVAILABLE;
         }
 
         return indices;
