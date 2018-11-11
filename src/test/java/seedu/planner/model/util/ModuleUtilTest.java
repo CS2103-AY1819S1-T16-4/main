@@ -43,18 +43,25 @@ public class ModuleUtilTest {
     //@@author Hilda-Ang
 
     @Test
-    public void isModuleAvailableToTake_moduleAvailable_returnsTrue() {
+    public void isModuleAvailable_moduleAvailable_returnsTrue() {
         List<Module> modules = new ArrayList<>(getTypicalModules());
+
+        // module has no prerequisite
         assertTrue(isModuleAvailable(new ArrayList<>(), new ArrayList<>(), CS1010));
+
+        // module's prerequisites has been fulfilled
         assertTrue(isModuleAvailable(modules, modules, CS2103T));
     }
 
     @Test
-    public void isModuleAvailableToTake_moduleNotAvailable_returnsFalse() {
+    public void isModuleAvailable_moduleNotAvailable_returnsFalse() {
         List<Module> modules = new ArrayList<>(getTypicalModules());
+
+        // module's prerequisites have not been fulfilled
         assertFalse(isModuleAvailable(new ArrayList<>(), new ArrayList<>(), CS2040));
+
+        // module has been taken
         assertFalse(isModuleAvailable(modules, modules, CS1231));
-        assertFalse(isModuleAvailable(modules, new ArrayList<>(), CS2040));
     }
 
     // @@author rongjiecomputer
