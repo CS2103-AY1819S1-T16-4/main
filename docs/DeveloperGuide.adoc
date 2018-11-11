@@ -256,51 +256,59 @@ This section describes some noteworthy details on how certain features are imple
 === Add feature
 ==== Current Implementation
 
-The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester'-s. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
+The add mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of `Semester` objects. A `Semester` stores a list containing modules that the user has taken or is planning to take on that semester.
 The implementation is as follows:
 
 * `ModulePlanner#addModules(List<Module> modules, int index)` -- Add the list of `modules` into the semester specified by `index`.
 
 The operation above is exposed in the `Model` interface as `Model#addModules(List<Module> modules, int index)`
 
-[NOTE]
-A valid module is one that exists, has its module specified correctly and has not been taken or planned to take yet by the user.
+The following sequence diagram shows how the add operation works:
 
-Below are the possible scenarios of how it works, given a valid module `MA1521` and an invalid module `MA1234`.
+image::AddSequenceDiagram.png[width="1000"]
 
-===== All valid modules
+In executing the add operation, the AddCommand will apply several filters on the input list of modules.
 
-The user executes `add y/1 s/1 MA1521` to add the `Module` with module code `MA1521` into year 1 semester 1 `Module` lists.
-The `add` command calls `Model#addModules(...)`, which adds the module into the `Semester` with index 3.
+Consider the following case:
 
-[NOTE]
-This applies to when more than one valid module is supplied.
+ModulePlanner contains only `CS1010` in year 1 semester 1 and the user tries to add the following list of modules : `CS0000`,
+`CS1010`, `CS1010E`, `CS1231`, `MA1100`, `CS2030`, `GER1000` to year 1 semester 1. The filterings, sequentially,
+are as follows:
 
-===== All Invalid Modules
-The user executes `add y/1 s/2 MA1234` command. However, since that module does not exist or is already stored in a `Semester`,
-the command fails and `Model#addModules(...)` will not be called.
-The user will be informed of the invalid module.
+===== Filter out module(s) not offered by the education institute
+Module `CS0000` is not offered. It will be filtered out from the list and the user will be informed that it is not an offered module.
 
-[NOTE]
-This applies to where more than one invalid module is supplied.
+===== Filter out module(s) that already exist in the planner
+Module `CS1010` is already in the planner. It will be filtered out from the list and the user will be informed that it exists in the planner.
 
-===== Some Invalid Modules
-The user executes `add y/2 s/1 MA1521 MA1234`. However, only the module `MA1521` is valid.
-In this case, the command will not fail entirely and only the valid module `MA1521` will be added.
-The user will be informed of the invalid module.
+===== Filter out module(s) which some of its preclusion is in the planner
+Module `CS1010E` has `CS1010` as its preclusion. It will be filtered out from the list and the user will be informed that this module
+has some of its preclusion in the planner.
 
-===== No Modules
-The user executes `add`. As the command has no supplied arguments, the command will fail
-and the user will be informed to input arguments.
+===== Filter out equivalent modules
+Modules `CS1231` and `MA1100` are equivalent. These modules will be filtered out from the list, then grouped by equivalence and
+the user will be told that these modules are equivalence.
+
+===== Filter out module(s) which some of its prerequisites has not been fulfilled.
+Module `CS2030` has `CS1010` as its prerequisite. To be able to add it to the planner, `CS1010` must exist in previous semesters,
+which in this case is not possible since the semester to be added is the the earliest semester possible. Thus the module will be
+filtered out from the list and the user will be informed that the prerequisites for this module is not fulfilled yet.
+
+===== Add the filtered list of module(s) to the planner
+At this point, the list to be added has been finalized. The `Model#addModules(List<Module> modules, int index)` is then called
+to add this list of module(s) (in this case only `GER1000`) to the planner.
 
 ==== Design Considerations
 
 ===== Different semester start
-The current implementation only assumes the user is closing into their year 1 semester 1. Further enhancement could be made by having other starting semesters
+The current implementation allows users to explore possible scenarios of study plan that they can make. Assuming a user is already
+in the middle of his study, let's say he is in second year already, he can still modify his first year's modules to see other
+possible study plans. Implementing a way to initialize ModulePlanner based on the user's past modules (which they can't modify after initializing)
+would be a good idea for the following reasons:
 
 1. To mirror the real world - it is impossible for a student to void a module that has already been taken.
 
-2. To prevent undefined behaviour - deleting a module already taken might make all future modules not yet taken to be inaccurately planned.
+2. To prevent undefined behaviour - omitting a module already taken might make all future modules not yet taken to be inaccurately planned.
 Also, all currently suggested modules to the user might too be inaccurate.
 
 
@@ -512,6 +520,31 @@ image::ListSequenceDiagram_2.png[width="800"]
 * **Alternative 2:** Saves all commands that modify list of modules without applying it and updates the list based on the commands only when it is retrieved upon `list` command.
 ** Pros: May be more effective in terms of running time because it only modifies the list when needed.
 ** Cons: Implementation will be more complicated as we have to store all commands that modify the list.
+
+=== Status feature
+==== Current Implementation
+
+Status feature allows the user to keep track of their credit progress for different requirements. It is tracked in the `ModulePlanner` in form of a map and will
+be updated every time the user use the add or delete feature and when they set up their profile. This map will then later posted
+by `StatusCommand#executeimplementation` in an event. Finally `MainWindow#handleStatusEvent` will handle this event and convert the
+map to a string for display. The implementation is as follows:
+
+*`ModulePlanner#getStatus()`-Updates and retrieves the status of credit progress in the `ModulePlanner`
+
+The operation above is exposed in `Model` as `Model#getStatus()`.
+
+Below shows the sequence diagram which describe how the status feature works:
+
+image::StatusSequenceDiagram.png[width="1000"]
+
+Initially, status feature will display progress for degree requirements which does not include unrestricted electives and focus area requirements.
+When the user sets up their focus area, additional field(s) of `Focus_Area_Requirement` will be added to the status, depending on the number of focus
+areas that the user have. If the user sets up for 2 focus areas, then there will be 2 new fields.
+
+==== Design Considerations
+Currently the status doesn't track of Unrestricted Elective requirement because of the complexity of how it is counted. Credits
+from modules with more than 4 credit count may or may not have its extra credits transferred to UE requirement. For that, a possible alternative
+would be to list down all modules with more than 4 credit count that transfer its extra credits to UE credits and takine them into consideration.
 
 === Suggest feature
 ==== Current Implementation
