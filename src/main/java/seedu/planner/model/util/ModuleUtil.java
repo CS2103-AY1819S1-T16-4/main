@@ -31,6 +31,8 @@ public class ModuleUtil {
         return !modulesTaken.contains(moduleToCheck);
     }
 
+    //@@author RomaRomama
+
     /**
      * Checks if any of the prerequisites for the given {@code Module} have been taken.
      *
@@ -61,6 +63,8 @@ public class ModuleUtil {
 
         return true;
     }
+
+    //@@author Hilda-Ang
 
     /**
      * Checks if none of the preclusions for the given {@code Module} has been taken.
