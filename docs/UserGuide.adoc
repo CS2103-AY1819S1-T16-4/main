@@ -124,18 +124,37 @@ Examples:
 
 // end::setup[]
 
+// tag::add[]
+
 === Adding modules: `add`
 
 Adds the specified modules to the list of modules that you have taken or want to take for the specified year and semester. +
 Format: `add y/YEAR s/SEMESTER c/MODULE_CODE...`
 
-[TIP]
-You can add 1 or more modules.
-
 Examples:
 
 * `add y/1 s/1 c/MA1101R`
 * `add y/1 s/1 c/CS1231 c/CS1101S`
+
+An observable change can be seen in the `Taken Modules Panel` after successfully adding a module, like shown below:
+
+Before:
+
+image::AddBefore.png[width="300"]
+
+After:
+
+image::AddAfter.png[width="300"]
+
+[NOTE]
+From the input list of modules, a subset of it which will be added to the planner does not contain modules which falls in one of the following criterias: +
+1. not offered Modules +
+2. Modules not in the planner +
+3. Modules which one of its preclusion exist in the planner +
+4. Two or more modules equivalent (preclusion) to each other +
+5. Modules which prerequisites are not fulfilled in the previous semesters
+
+// end::add[]
 
 === Deleting modules : `delete`
 
@@ -167,7 +186,7 @@ Example:
 
 * `find c/CS1010`
 
-You should see the module information for CS1010 in the `Multipurpose Panel.
+You should see the module information for CS1010 in the `Multipurpose Panel`.
 
 image::find.png[width="790"]
 
@@ -214,10 +233,18 @@ Lists all modules added to year 1, both semester 1 and 2 (if they exist).
 * `list` +
 Lists all modules added to every semester, from year 1 semester 1 to year 4 semester 2 (if they exist).
 
+// tag::status[]
+
 === Getting status update : `status`
 
-Shows how many core, unrestricted electives, and general education modules that you have taken and how many more you need to take. +
+Shows how many core and general education modules that you have taken and how many that you need to take. +
 Format: `status`
+
+You could see the status displayed on `MultiPurpose Panel` as shown below:
+
+image::StatusIllustration.png[width="790"]
+
+// end::status[]
 
 === Suggesting modules : `suggest`
 
