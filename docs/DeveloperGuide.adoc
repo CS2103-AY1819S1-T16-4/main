@@ -303,6 +303,7 @@ The current implementation only assumes the user is closing into their year 1 se
 2. To prevent undefined behaviour - deleting a module already taken might make all future modules not yet taken to be inaccurately planned.
 Also, all currently suggested modules to the user might too be inaccurate.
 
+// tag::delete[]
 
 === Delete feature
 
@@ -320,17 +321,14 @@ For better addressing, this process will be defined as _Iterative Deletion_.
 
 ===== Input
 The arguments given to the mechanism are modules, which can be a mix of valid and invalid modules.
-A valid module is defined as one that has the correct module code format, is offered by the education institute
-and has been taken, is currently being taken or will be taken by the user (is stored in the module planner).
-An invalid module is defined as the opposite.
+A valid module is defined as one that has the correct module code format and has been taken, is currently
+being taken or will be taken by the user (is stored in the module planner). An invalid module is defined as the opposite.
 
 ===== Result
 Out of all these arguments, only the valid modules will be deleted from the module planner. The invalid modules
-are collected and made known to the user through the Result Display. They are separated by their types:
-**not offered** by the education institute and **non-existent** in the module planner. Modules with invalid module
-code formats are filtered out by the `DeleteCommandParser` and hence do not appear as part of the message shown in
-the `ResultDisplay`.
-
+are collected and made known to the user through the Result Display. The modules that are not found in the module planner
+are shown to the user in the Result Display. Modules with invalid module code formats are already filtered out by the
+`DeleteCommandParser` and hence do not appear as part of the message shown in the Result Display.
 
 `ModulePlanner` uses the following operation to implement the delete mechanism:
 
@@ -363,7 +361,7 @@ The module planner now has this state: +
 This applies to when more than one valid module is supplied.
 
 ===== An Invalid Module
-The user executes `delete CS0000` command. However, since that module is not offered by the education institute,
+The user executes `delete CS0000` command. However, since that module is not found in the module planner,
 the command fails and `Model#deleteModules(...)` will not be called. The user will be informed of the invalid module.
 
 [NOTE]
@@ -388,7 +386,7 @@ and the user will be informed to input arguments.
 ** Cons: Not user friendly. The user now has to expend additional effort to edit the modules inputted.
 
 * Alternative 2 (current choice): Accept the valid modules even if one is invalid.
-** Pros: User friendly. The user gets to add in the valid modules and is notified of which modules are invalid and why.
+** Pros: User friendly. The user gets to delete the valid modules and is notified of which modules are invalid and why.
 ** Cons: More complex. Requires filtering logic.
 
 ===== Aspect: Iterative Deletion
@@ -403,6 +401,9 @@ that do not have their prerequisite fulfilled are marked as invalid and are dele
    deleting them.
 ** Cons: More complex. Due to time constraints during the project, this approach was not taken.
 
+// end::delete[]
+
+// tag::find[]
 
 === Find feature
 ==== Current Implementation
@@ -430,6 +431,9 @@ The user executes `find c/CS1010`. The `MultiPurposePanel` displays the retrieve
 ==== Module is Not Offered
 The user executes `find c/CS0000`. The `MultiPurposePanel` does not display anything.
 
+// end::find[]
+
+// tag::goto[]
 
 === Goto feature
 ==== Current Implementation
@@ -464,6 +468,7 @@ This applies to when the year is valid but the semester is invalid.
 It is possible that some users take a 5th year and beyond in their education institute. However, as of now, Module Planner does not
 support years beyond the 4th.
 
+// end::goto[]
 
 === List feature
 ==== Current Implementation
@@ -1115,6 +1120,7 @@ Given below are instructions to test the app manually.
 These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
 
 === Launch and Shutdown
+
 
 . Initial launch
 

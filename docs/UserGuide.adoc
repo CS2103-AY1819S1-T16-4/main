@@ -22,15 +22,18 @@ Module Planner is for NUS Computer Science undergraduate students who *prefer to
 
 == Quick Start
 
-.  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `moduleplanner.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Module Planner.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
+. Ensure you have Java version `9` or later installed in your Computer.
+. Download the latest `moduleplanner.jar` link:{repoURL}/releases[here].
+. Copy the file to the folder you want to use as the home folder for your Module Planner.
+. Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-.The first page you will see when Module Planner starts up
+. The first page you will see when Module Planner starts up
 image::Ui.png[width="790"]
 +
-.  The page is divided into several sections.
+
+// tag::labelledUi[]
+
+. The page is divided into several sections.
 +
 .The labelled page
 image::UiLabelled.png[width="790"]
@@ -41,6 +44,9 @@ image::UiLabelled.png[width="790"]
 .. Taken Modules Panel: lists modules that you put into the specified time period.
 .. Suggested Modules Panel: lists modules that suggested to you for that time period.
 .. Multipurpose Panel: displays results for the `Find` and `Status` commands.
+
+// end::labelledUi[]
+
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
@@ -137,6 +143,8 @@ Examples:
 * `add y/1 s/1 c/MA1101R`
 * `add y/1 s/1 c/CS1231 c/CS1101S`
 
+// tag::delete[]
+
 === Deleting modules : `delete`
 
 Deletes the specified modules from list of current or future modules for the specified year and semester. +
@@ -148,14 +156,18 @@ Examples:
 * `delete c/CS1231 c/MA1521`
 
 Consider a module planner stocked with the modules `CS1010` and `CS1231` in year 1 semester 1, and the modules `CS2030`
-and `CS2040` in year 1 semester 2. If `delete c/CS1010` is executed, you will see that `CS1010` is removed,
-as well as the modules `CS2030` and `CS2040` in year 1 semester 2 since they have `CS1010` as a prerequisite.
+and `CS2040` in year 1 semester 2. If `delete c/CS1010` is executed, `CS1010` is removed, as well as the modules `CS2030`
+and `CS2040` in year 1 semester 2 since they have `CS1010` as a prerequisite.
 
-.Before
-image::DeleteBefore.png[width="300"]
+You can see the change in the Taken Modules Panel in the before and after images.
 
-.After
-image::DeleteAfter.png[width="300"]
+[cols="^,^"]
+|====
+|*Before* | *After*
+| image:DeleteBefore.png[width="300"] | image:DeleteAfter.png[width="300"]
+|====
+
+// end::delete[]
 
 // tag::find[]
 === Finding information on a module : `find`
@@ -173,6 +185,8 @@ image::find.png[width="790"]
 
 // end::find[]
 
+// tag::goto[]
+
 === Going to a different year and semester : `goto`
 
 Changes the view to the specified year and semester. +
@@ -182,13 +196,14 @@ Example:
 
 * `goto y/1 s/1`
 
-The change can be seen in `Taken Modules Panel` in the before and after images.
+The change can be seen in Taken Modules Panel in the before and after images.
 
-.Before
-image::GoToBefore.png[width="300"]
-
-.After
-image::GoToAfter.png[width="300"]
+[cols="^,^"]
+|====
+|*Before* | *After*
+|image:GoToBefore.png[width="300"] | image:GoToAfter.png[width="300"]
+|====
+// end::goto[]
 
 === Listing modules : `list`
 
