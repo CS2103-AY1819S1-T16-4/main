@@ -88,10 +88,166 @@ public class ModulePlannerTest {
     }
 
     @Test
+    public void getTakenModulesForIndex_sameIndex_returnsSameList() {
+        modulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
+        assertEquals(modulePlanner.getTakenModulesForIndex(INDEX_ZERO),
+                     modulePlanner.getTakenModulesForIndex(INDEX_ZERO));
+    }
+
+    @Test
+    public void getTakenModulesForIndex_differentIndex_returnsDifferentList() {
+        modulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
+        assertNotEquals(modulePlanner.getTakenModulesForIndex(INDEX_ZERO),
+                        modulePlanner.getTakenModulesForIndex(INDEX_ONE));
+    }
+
+    @Test
+    public void listTakenModulesAll_noModulesTaken_sameTakenModulesList() {
+        modulePlanner.listTakenModulesAll();
+
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.listTakenModulesAll();
+
+        assertEquals(modulePlanner.getTakenModules(), differentModulePlanner.getTakenModules());
+    }
+
+    @Test
+    public void listTakenModulesAll_sameModulesTakenInSameYear_sameTakenModulesList() {
+        modulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
+        modulePlanner.listTakenModulesAll();
+
+        // Add modules to same year same semester
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
+        differentModulePlanner.listTakenModulesAll();
+
+        // Add modules to same year different semesters
+        ModulePlanner differentModulePlanner1 = new ModulePlanner();
+        differentModulePlanner1.addModules(getTypicalModules(), INDEX_ONE);
+        differentModulePlanner1.listTakenModulesAll();
+
+        assertEquals(modulePlanner.getTakenModules(), differentModulePlanner.getTakenModules());
+        assertEquals(modulePlanner.getTakenModules(), differentModulePlanner1.getTakenModules());
+    }
+
+    @Test
+    public void listTakenModulesAll_sameModulesTakenInDifferentYears_sameTakenModulesList() {
+        modulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
+        modulePlanner.listTakenModulesAll();
+
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), INDEX_TWO);
+        differentModulePlanner.listTakenModulesAll();
+
+        assertEquals(modulePlanner.getTakenModules(), differentModulePlanner.getTakenModules());
+    }
+
+    @Test
+    public void listTakenModulesAll_differentModulesTaken_differentTakenModulesList() {
+        modulePlanner.listTakenModulesAll();
+
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), INDEX_TWO);
+        differentModulePlanner.listTakenModulesAll();
+
+        assertNotEquals(modulePlanner.getTakenModules(), differentModulePlanner.getTakenModules());
+    }
+
+    @Test
+    public void listTakenModulesForYear_noModulesTaken_sameTakenModulesList() {
+        modulePlanner.listTakenModulesForYear(INDEX_ONE);
+
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.listTakenModulesForYear(INDEX_ONE);
+
+        assertEquals(modulePlanner.getTakenModules(), differentModulePlanner.getTakenModules());
+    }
+
+    @Test
+    public void listTakenModulesForYear_sameModulesTakenInSameYearListSameYear_sameTakenModulesList() {
+        modulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
+        modulePlanner.listTakenModulesForYear(INDEX_ONE);
+
+        // Add modules to same year same semester
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
+        differentModulePlanner.listTakenModulesForYear(INDEX_ONE);
+
+        // Add modules to same year different semester
+        ModulePlanner differentModulePlanner1 = new ModulePlanner();
+        differentModulePlanner1.addModules(getTypicalModules(), INDEX_ONE);
+        differentModulePlanner1.listTakenModulesForYear(INDEX_ONE);
+
+        assertEquals(modulePlanner.getTakenModules(), differentModulePlanner.getTakenModules());
+        assertEquals(modulePlanner.getTakenModules(), differentModulePlanner1.getTakenModules());
+    }
+
+    @Test
+    public void listTakenModulesForYear_differentModulesTakenInSameYearListSameYear_differentTakenModulesList() {
+        modulePlanner.listTakenModulesForYear(INDEX_ONE);
+
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), INDEX_TWO);
+        differentModulePlanner.listTakenModulesForYear(INDEX_ONE);
+
+        assertNotEquals(modulePlanner.getTakenModules(), differentModulePlanner.getTakenModules());
+    }
+
+    @Test
+    public void listTakenModulesForYear_sameModulesTakenInSameYearListDifferentYears_differentTakenModulesList() {
+        modulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
+        modulePlanner.listTakenModulesForYear(INDEX_ONE);
+
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
+        differentModulePlanner.listTakenModulesForYear(INDEX_TWO);
+
+        assertNotEquals(modulePlanner.getTakenModules(), differentModulePlanner.getTakenModules());
+    }
+
+    @Test
+    public void getTakenModulesForIndex_modifyList_throwsUnsupportedOperationException() {
+        thrown.expect(UnsupportedOperationException.class);
+        modulePlanner.getTakenModulesForIndex(INDEX_ZERO).remove(INDEX_ZERO);
+    }
+
+    @Test
+    public void getTakenModules_noModulesTaken_returnsSameList() {
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        assertEquals(modulePlanner.getTakenModules(), differentModulePlanner.getTakenModules());
+    }
+
+    @Test
+    public void getTakenModules_sameModulesTaken_returnsSameList() {
+        modulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
+
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
+
+        assertEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
+    }
+
+    @Test
+    public void getTakenModules_differentModulesTaken_returnsDifferentList() {
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
+
+        assertNotEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
+    }
+
+    @Test
+    public void getAvailableModules_noModulesTaken_returnsSameList() {
+        ModulePlanner differentModulePlanner = new ModulePlanner();
+        assertEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
+    }
+
+    @Test
     public void suggestModules_noModulesTaken_sameAvailableModulesList() {
         modulePlanner.suggestModules(INDEX_ZERO);
+
         ModulePlanner differentModulePlanner = new ModulePlanner();
         differentModulePlanner.suggestModules(INDEX_ONE);
+
         assertEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
     }
 
@@ -99,9 +255,11 @@ public class ModulePlannerTest {
     public void suggestModules_sameModulesTakenSuggestSameIndex_sameAvailableModulesList() {
         modulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
         modulePlanner.suggestModules(INDEX_ZERO);
+
         ModulePlanner differentModulePlanner = new ModulePlanner();
         differentModulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
         differentModulePlanner.suggestModules(INDEX_ZERO);
+
         assertEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
     }
 
@@ -109,9 +267,11 @@ public class ModulePlannerTest {
     public void suggestModules_sameModulesTakenSuggestDifferentIndex_differentAvailableModulesList() {
         modulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
         modulePlanner.suggestModules(INDEX_ZERO);
+
         ModulePlanner differentModulePlanner = new ModulePlanner();
         differentModulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
         differentModulePlanner.suggestModules(INDEX_ONE);
+
         assertNotEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
     }
 
@@ -119,39 +279,25 @@ public class ModulePlannerTest {
     public void suggestModules_differentModulesTakenSuggestSameIndex_differentAvailableModulesList() {
         modulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
         modulePlanner.suggestModules(INDEX_ZERO);
+
         ModulePlanner differentModulePlanner = new ModulePlanner();
         differentModulePlanner.suggestModules(INDEX_ZERO);
+
         assertNotEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
     }
 
     @Test
-    public void getModulesTaken_sameIndex_returnsSameList() {
+    public void getAvailableModules_sameModulesTaken_returnsSameList() {
         modulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
-        assertEquals(modulePlanner.getTakenModulesForIndex(INDEX_ZERO),
-            modulePlanner.getTakenModulesForIndex(INDEX_ZERO));
-    }
 
-    @Test
-    public void getModulesTaken_differentIndex_returnsDifferentList() {
-        modulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
-        assertNotEquals(modulePlanner.getTakenModulesForIndex(INDEX_ZERO),
-            modulePlanner.getTakenModulesForIndex(INDEX_ONE));
-    }
-
-    @Test
-    public void getModulesTaken_modifyList_throwsUnsupportedOperationException() {
-        thrown.expect(UnsupportedOperationException.class);
-        modulePlanner.getTakenModulesForIndex(INDEX_ZERO).remove(INDEX_ZERO);
-    }
-
-    @Test
-    public void getModulesAvailable_sameModules_returnsSameList() {
         ModulePlanner differentModulePlanner = new ModulePlanner();
+        differentModulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
+
         assertEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
     }
 
     @Test
-    public void getModulesAvailable_differentModules_returnsDifferentList() {
+    public void getAvailableModules_differentModulesTaken_returnsDifferentList() {
         ModulePlanner differentModulePlanner = getTypicalModulePlanner();
         assertNotEquals(modulePlanner.getAvailableModules(), differentModulePlanner.getAvailableModules());
     }
