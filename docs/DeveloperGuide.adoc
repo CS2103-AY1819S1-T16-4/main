@@ -483,7 +483,7 @@ A valid index should be an integer between 0 to 7 inclusive, where index 0 repre
 
 Below is an example usage scenario and how the list mechanism works.
 
-Step 1. User launches the application. `ModulePlanner` is initialised with 8 `Semester` objects in `List<Module> semesters`.
+Step 1. User launches the application. `ModulePlanner` is initialised with 8 `Semester` objects in a list `semesters`.
 
 Step 2. User executes `add y/1 s/1 c/CS1231`. The `add` command inserts `Module` CS1231 to the list `modulesTaken` for `Semester` object with index 0.
 
@@ -518,7 +518,7 @@ image::ListSequenceDiagram_2.png[width="800"]
 
 The suggest mechanism displays a list of modules available in the specified index to the user, where index represents the year and semester that the user is asking suggestions for.
 It is supported by an internal list `availableModules` in `ModulePlanner`, which is regenerated after every successful execution of commands that modify `ModulePlanner` (`add`, `delete`, `clear`, etc.) and `suggest` command.
-The list `availableModules` can be retrieved through `Model#getAvailableList` using `suggest` command, which takes in one argument: a valid index that corresponds to a specific year and semester.
+The list `availableModules` can be retrieved through `Model#getAvailableList()` using `suggest` command, which (`suggest` command) takes in one argument: a valid index that corresponds to a specific year and semester.
 
 [NOTE]
 A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
@@ -536,7 +536,7 @@ Only `suggest` command will change the index (year and semester) to be displayed
 
 Below is how the list of available modules is generated.
 
-The method `ModulePlanner#generateAvailableModules(int index)` is called by `ModulePlanner#updateModulesAvailable`, which sets the content of `availableModules` to be the list of modules returned by `generateAvailableModules(index)`, with index being  the stored `availableIndex`.
+The method `ModulePlanner#generateAvailableModules(int index)` is called by `ModulePlanner#updateModulesAvailable()`, which sets the content of `availableModules` to be the list of modules returned by `generateAvailableModules(index)`, with `index` being the stored `availableIndex`.
 
 ----
 private List<Module> generateAvailableModules(int index) {
@@ -557,7 +557,11 @@ private List<Module> generateAvailableModules(int index) {
 }
 ----
 
-The method `generateAvailableModules` retrieves all modules from the storage and performs availability checking on each of them. The available modules are put into a list which is then sorted such that core modules are put on top, followed by general education modules and unrestricted electives.
+The method `ModulePlanner#generateAvailableModules(int index)` retrieves all modules from the storage and performs availability checking on each of them. The available modules are put into a list which is then sorted:
+
+** in a lexicographical order if user has specified a major other than *Computer Science* through `setup` command, or
+** such that core modules for *Computer Science* major are put on top, followed by general education modules and unrestricted electives.
+
 The availability checking is done by the following method.
 
 ----
