@@ -271,10 +271,10 @@ Internally, `ModuleInfo` is used to hold the data for a module such as name, des
 `MajorDescription` is used to hold data for a major such as name, prefixes of its modules and a list of modules.
 
 .Class diagram for `ModuleInfo`.
-image::ModuleInfoClassDiagram.png[width="650"]
+image::ModuleInfoClassDiagram.png[width="500"]
 
 .Class diagram for `MajorDescription`.
-image::MajorDescriptionClassDiagram.png[width="800"]
+image::MajorDescriptionClassDiagram.png[width="700"]
 
 NUSMods provides the prerequisites and preclusion of a module in normal English sentence (e.g. "CS1010 or its equivalents"
 and "Departmental approval")
@@ -310,13 +310,20 @@ the graph after deserialization.
 ===== Aspect: Retrieval of module and major information
 
 Since we have decided to take alternative 1 in <<Aspect: Storing of module and major information>>, we need
-a way to 
+a way to
+
 * **Alternative 1**: Implement a `ModuleInfoStorage` and `MajorDescriptionStorage`.
 ** Pros: Since we are deserializing from file content, it is reasonable to implement the retrieval logic under storage component.
 ** Cons: We only need the ability to read from file and not writing into file for the implementation. Even the implementation of 
 file reading is very different
 
+===== Aspect: Two different classes to store module related information (`ModuleInfo` and `ModuleDescription`)
+
+
+
+
 //// Comment out
+
 //==== Future code health improvements
 
 * Use a new class `JsonAdaptedModuleInfo` for deserialization and use `JsonAdaptedModuleInfo#toModelType` to
@@ -326,11 +333,8 @@ after `ModuleInfo` is deserialized from JSON resource file.
 * Merge `Module` and `ModuleInfo` into one class. They are separate classes as it was initially thought that `ModuleInfo`
 will hold all the immutable data about a module and `Module` will 
 * Remove the use of `Module#getType` (currently only used by UI and tests).
+
 ////
-
-
-
-* **Alternative 3**:
 
 `ModuleInfoRetriever` opens the processed `data/moduleInfo.json` file packaged in the JAR file and deserialize its
 content into an array of `ModuleInfo` objects. As JSON can only hold simple values such as strings and numbers,
