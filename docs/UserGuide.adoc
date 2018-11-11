@@ -147,7 +147,7 @@ After:
 image::AddAfter.png[width="300"]
 
 [NOTE]
-From the input list of modules, a subset of it which will be added to the planner does not contain modules which falls in one of the following criterias: +
+From the input list of modules, a subset of it which will be added to the planner are modules that does not fall under any of the following criterias: +
 1. not offered Modules +
 2. Modules not in the planner +
 3. Modules which one of its preclusion exist in the planner +
@@ -237,7 +237,7 @@ Lists all modules added to every semester, from year 1 semester 1 to year 4 seme
 
 === Getting status update : `status`
 
-Shows how many core and general education modules that you have taken and how many that you need to take. +
+Shows how many core and general education module credits that you have taken and how many credits that you need to take. +
 Format: `status`
 
 You could see the status displayed on `MultiPurpose Panel` as shown below:
