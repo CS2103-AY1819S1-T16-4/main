@@ -21,8 +21,6 @@ import seedu.planner.model.Model;
  */
 public class SuggestCommand extends Command {
 
-    private static Logger logger = Logger.getLogger("SuggestCommand.class");
-
     public static final String COMMAND_WORD = "suggest";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Show modules the user is available to take. "
@@ -35,6 +33,8 @@ public class SuggestCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Showed all available modules for specified year and semester.";
 
+    private static Logger logger = Logger.getLogger("SuggestCommand.class");
+
     private int index;
 
     /**
@@ -46,15 +46,15 @@ public class SuggestCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        logger.info( "starting execution of suggest command");
+        logger.info("starting execution of suggest command");
         requireNonNull(model);
 
         if (!isValidIndex(index)) {
-            logger.warning( "suggest command execution error due to invalid index");
+            logger.warning("suggest command execution error due to invalid index");
             throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
         }
 
-        logger.info( "suggesting modules for index " + index);
+        logger.info("suggesting modules for index " + index);
         model.suggestModules(index);
         EventsCenter.getInstance().post(new SuggestModulesEvent(model.getAvailableModules(), index));
         return new CommandResult(String.format(MESSAGE_SUCCESS, index));

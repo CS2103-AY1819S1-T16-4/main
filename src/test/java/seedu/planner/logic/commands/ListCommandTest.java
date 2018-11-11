@@ -15,8 +15,8 @@ import static seedu.planner.testutil.TypicalModules.getTypicalModulePlanner;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
 import org.junit.rules.ExpectedException;
+
 import seedu.planner.commons.core.Messages;
 import seedu.planner.commons.events.ui.ListModulesEvent;
 import seedu.planner.logic.CommandHistory;

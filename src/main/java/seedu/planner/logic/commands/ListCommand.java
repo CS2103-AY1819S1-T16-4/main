@@ -5,6 +5,8 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.planner.model.util.IndexUtil.VALUE_NOT_AVAILABLE;
 import static seedu.planner.model.util.IndexUtil.isValidYear;
 
+import java.util.logging.Logger;
+
 import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.core.Messages;
@@ -13,16 +15,12 @@ import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 
-import java.util.logging.Logger;
-
 //@@author Hilda-Ang
 
 /**
  * Lists all modules the user has taken for all years or for a specific year.
  */
 public class ListCommand extends Command {
-
-    private static Logger logger = LogsCenter.getLogger(SuggestCommand.class);
 
     public static final String COMMAND_WORD = "list";
 
@@ -36,6 +34,8 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS_ALL = "Listed all modules taken.";
     public static final String MESSAGE_SUCCESS_YEAR = "Listed all modules taken for year %1$s.";
 
+    private static Logger logger = LogsCenter.getLogger(SuggestCommand.class);
+
     private int year;
 
     /**
@@ -47,7 +47,7 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        logger.info( "starting execution of list command");
+        logger.info("starting execution of list command");
         requireNonNull(model);
 
         // Lists modules taken for all years if no parameter year is supplied.

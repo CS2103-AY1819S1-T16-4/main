@@ -240,12 +240,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
     @Override
     public ObservableList<Module> getTakenModulesForIndex(int index) {
-<<<<<<< HEAD
         return FXCollections.unmodifiableObservableList(semesters.get(index).getModules());
-=======
-        return FXCollections.unmodifiableObservableList(
-                semesters.get(index).getModules());
->>>>>>> b2bcef37d99dd068d3c2fb9f6011b997a2e671e6
     }
 
     //@@author Hilda-Ang
@@ -326,10 +321,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Updates internal list of available {@code Module}s based on stored index.
      */
     private void updateAvailableModules() {
-<<<<<<< HEAD
         logger.info("updating list of available modules");
-=======
->>>>>>> b2bcef37d99dd068d3c2fb9f6011b997a2e671e6
         setAvailableModules(generateAvailableModules(availableIndex));
     }
 
@@ -451,9 +443,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         return allModules;
     }
 
-<<<<<<< HEAD
     //@@author
-=======
     private Optional<ModuleDescription> getModuleDescription(String code) {
         return MajorDescription.getModuleCode(userProfile.getMajor(), code);
     }
@@ -587,7 +577,6 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
         return statusMap;
     }
->>>>>>> b2bcef37d99dd068d3c2fb9f6011b997a2e671e6
 
     @Override
     public boolean equals(Object other) {

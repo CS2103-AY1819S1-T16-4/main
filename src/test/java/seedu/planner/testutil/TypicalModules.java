@@ -5,8 +5,8 @@ import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1231;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2030;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2040;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS2103T;
-import static seedu.planner.testutil.TypicalIndexes.INDEX_ZERO;
 import static seedu.planner.testutil.TypicalIndexes.INDEX_ONE;
+import static seedu.planner.testutil.TypicalIndexes.INDEX_ZERO;
 
 import java.util.Set;
 
