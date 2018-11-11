@@ -17,7 +17,7 @@ import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_DESC_O
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_DESC_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_ONE;
-import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.planner.testutil.TypicalIndexes.INDEX_ZERO;
 import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.getTypicalModules;
 
@@ -59,7 +59,7 @@ public class ModulePlannerParserTest {
                 + VALID_MODULE_CODE_DESC_CS1231
                 + VALID_MODULE_CODE_DESC_CS2030
                 + VALID_MODULE_CODE_DESC_CS2040);
-        assertEquals(new AddCommand(modules, INDEX_FIRST), command);
+        assertEquals(new AddCommand(modules, INDEX_ZERO), command);
     }
 
     @Test

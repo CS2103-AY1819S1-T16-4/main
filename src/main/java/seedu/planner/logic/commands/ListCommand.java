@@ -49,7 +49,7 @@ public class ListCommand extends Command {
         }
 
         // Lists modules taken for a specific year if a valid year is supplied.
-        model.listTakenModulesYear(year);
+        model.listTakenModulesForYear(year);
         EventsCenter.getInstance().post(new ListModulesEvent(year));
         return new CommandResult(String.format(MESSAGE_SUCCESS_YEAR, year));
     }

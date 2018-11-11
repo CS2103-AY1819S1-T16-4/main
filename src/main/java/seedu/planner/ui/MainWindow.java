@@ -175,7 +175,7 @@ public class MainWindow extends UiPart<Stage> {
             takenModuleListPanels.add(semesterIndex, takenModuleListPanel);
         }
 
-        ObservableList<Module> modules = logic.listTakenModules();
+        ObservableList<Module> modules = logic.getTakenModules();
         ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules, ModulePanelType.TAKEN);
         takenModuleListPanels.add(MAX_NUMBER_SEMESTERS, takenModuleListPanel);
 
