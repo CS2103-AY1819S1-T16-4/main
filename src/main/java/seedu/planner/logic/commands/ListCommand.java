@@ -34,7 +34,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS_ALL = "Listed all modules taken.";
     public static final String MESSAGE_SUCCESS_YEAR = "Listed all modules taken for year %1$s.";
 
-    private static Logger logger = LogsCenter.getLogger(SuggestCommand.class);
+    private static Logger logger = LogsCenter.getLogger(ListCommand.class);
 
     private int year;
 
@@ -52,20 +52,20 @@ public class ListCommand extends Command {
 
         // Lists modules taken for all years if no parameter year is supplied.
         if (year == VALUE_NOT_AVAILABLE) {
-            logger.info("listing modules for all years");
             model.listTakenModulesAll();
+            logger.info("listed modules for all years");
             EventsCenter.getInstance().post(new ListModulesEvent(year));
             return new CommandResult(MESSAGE_SUCCESS_ALL);
         }
 
         if (!isValidYear(year)) {
-            logger.warning("list command execution error due to invalid year");
+            logger.warning("error in list command execution due to invalid year");
             throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
         }
 
         // Lists modules taken for a specific year if a valid year is supplied.
-        logger.info("listing modules for year " + year);
         model.listTakenModulesForYear(year);
+        logger.info("listed modules for year " + year);
         EventsCenter.getInstance().post(new ListModulesEvent(year));
         return new CommandResult(String.format(MESSAGE_SUCCESS_YEAR, year));
     }

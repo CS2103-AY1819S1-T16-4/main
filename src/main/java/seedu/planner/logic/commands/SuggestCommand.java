@@ -8,6 +8,7 @@ import static seedu.planner.model.util.IndexUtil.isValidIndex;
 import java.util.logging.Logger;
 
 import seedu.planner.commons.core.EventsCenter;
+import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.core.Messages;
 import seedu.planner.commons.events.ui.SuggestModulesEvent;
 import seedu.planner.logic.CommandHistory;
@@ -33,7 +34,7 @@ public class SuggestCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Showed all available modules for specified year and semester.";
 
-    private static Logger logger = Logger.getLogger("SuggestCommand.class");
+    private static Logger logger = LogsCenter.getLogger(SuggestCommand.class);
 
     private int index;
 
@@ -50,12 +51,12 @@ public class SuggestCommand extends Command {
         requireNonNull(model);
 
         if (!isValidIndex(index)) {
-            logger.warning("suggest command execution error due to invalid index");
+            logger.warning("error in suggest command execution due to invalid index");
             throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
         }
 
-        logger.info("suggesting modules for index " + index);
         model.suggestModules(index);
+        logger.info("suggested modules for index " + index);
         EventsCenter.getInstance().post(new SuggestModulesEvent(model.getAvailableModules(), index));
         return new CommandResult(String.format(MESSAGE_SUCCESS, index));
     }
