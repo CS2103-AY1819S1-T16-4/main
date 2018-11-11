@@ -236,8 +236,8 @@ image::StorageClassDiagram.png[width="800"]
 
 The `Storage` component,
 
-* can save `UserPref` objects in json format and read it back.
-* can save `ReadOnlyModulePlanner` object in json format and read it back.
+* can save `UserPref` objects in JSON format and read it back.
+* can save `ReadOnlyModulePlanner` object in JSON format and read it back.
 
 .Interactions inside the Storage component for whenever `ModulePlannerChangedEvent` is fired.
 image::StorageSequenceDiagram.png[width="800"]
@@ -276,6 +276,32 @@ Note that corequisite relationship that descibes which modules must be taken tog
 as it will complicate the implementation of `add` and `delete` commands.
 
 ==== Design Consideration
+
+===== Aspect: Storing of module and major information
+
+To avoid having to download the module and major information from the Internet in first start up, we package
+the data directly into final `.jar` file as a resource file.
+
+* **Alternative 1 (current choice)**: Store data in as a JSON resource file and deserialize data into Java types
+at runtime.
+** Pros: JSON format is easy to learn and can be manipulated easily with other (interpreted) programming languages.
+** Cons: JSON format can only hold simple primitive types such as `String`, number, array and hash table. Need to
+design a way to flatten the module relationship graph into something that can be represented in JSON and reconstruct
+the graph after deserialization.
+* **Alternative 2**: Generate Java code during build time. The data will be stored as a static constant Java object.
+** Pros: Better performance in runtime as the deserialization is no longer needed. Less moving parts when testing the data itself.
+** Cons: More complex build procedures.
+
+===== Aspect: Retrieval of module and major information
+
+
+
+=== Future code health improvements
+
+* Use a new class `JsonAdaptedModuleInfo` for deserialization and use `JsonAdaptedModuleInfo#toModelType` to
+construct the actual type.
+* Consolidate `ModuleType` and `DegreeRequirement`.
+* Merge `Module` and `ModuleInfo` into one class and remove the use of `Module#getType` (currently only used by UI).
 
 ===== Aspect: Prerequisites and preclusions
 
