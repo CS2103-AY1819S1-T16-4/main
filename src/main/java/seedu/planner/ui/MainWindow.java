@@ -63,6 +63,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private ModuleListPanel timelessSuggestedModuleListPanel;
 
+    private FindModulePanel timelessMultiPurposePanel;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -324,6 +326,7 @@ public class MainWindow extends UiPart<Stage> {
 
         clearTakenModulesPanel();
         clearSuggestedModulesPanel();
+        clearMultiPurposePanel();
     }
 
     private void clearTakenModulesPanel() {
@@ -332,6 +335,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private void clearSuggestedModulesPanel() {
         setPlaceholder(suggestedModulesPlaceholder, timelessSuggestedModuleListPanel);
+    }
+
+    private void clearMultiPurposePanel() {
+        multiPurposePanelPlaceholder.getChildren().clear();
     }
 
     @Subscribe
