@@ -4,6 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.planner.logic.commands.CommandTestUtil.INVALID_INDEX_EIGHT;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_INDEX_ZERO;
+import static seedu.planner.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.planner.logic.commands.CommandTestUtil.showModuleAvailableAtIndex;
+import static seedu.planner.testutil.TypicalIndexes.INDEX_ZERO;
+import static seedu.planner.testutil.TypicalModules.getTypicalModulePlanner;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -26,27 +30,23 @@ public class SuggestCommandTest {
     public final ExpectedException thrown = ExpectedException.none();
 
     private Model model = new ModelManager();
+    private Model expectedModel = new ModelManager();
 
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void execute_validArgs_success() {
+    public void execute_validIndex_success() {
         SuggestCommand suggestCommand = new SuggestCommand(VALID_INDEX_ZERO);
 
-        CommandResult result;
-        try {
-            result = suggestCommand.execute(model, commandHistory);
-        } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
-        }
-
-        assertEquals(SuggestCommand.MESSAGE_SUCCESS, result.feedbackToUser);
+        assertCommandSuccess(suggestCommand, model, commandHistory, SuggestCommand.MESSAGE_SUCCESS, expectedModel);
+        assertEquals(showModuleAvailableAtIndex(model, INDEX_ZERO),
+                     getTypicalModulePlanner().getTakenModules().get(INDEX_ZERO));
         assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof SuggestModulesEvent);
         assertEquals(eventsCollectorRule.eventsCollector.getSize(), 1);
     }
 
     @Test
-    public void execute_invalidArgs_throwsCommandException() throws CommandException {
+    public void execute_invalidIndex_throwsCommandException() throws CommandException {
         SuggestCommand suggestCommand = new SuggestCommand(INVALID_INDEX_EIGHT);
 
         thrown.expect(CommandException.class);
