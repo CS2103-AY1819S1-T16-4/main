@@ -15,7 +15,11 @@ public enum CreditRequired {
 
     private int required;
 
-    CreditRequired(int required) { this.required = required; }
+    CreditRequired(int required) {
+        this.required = required;
+    }
 
-    public int getRequired() { return required; }
+    public int getRequired() {
+        return required;
+    }
 }

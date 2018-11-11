@@ -26,7 +26,7 @@ public class SetUpCommand extends Command {
 
     public static final String MESSAGE_INVALID_MAJOR = "Invalid major (%s)\n";
 
-    public static final String MESSAGE_INVALID_FOCUS_AREAS = "One or more focus area is invalid\n";
+    public static final String MESSAGE_INVALID_FOCUS_AREAS = "All focus area(s) are invalid\n";
 
     public static final String MESSAGE_SET_UP_SUCCESS = "Set up complete.\n"
             + "Your User Profile\n"

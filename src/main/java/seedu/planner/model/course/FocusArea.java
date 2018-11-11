@@ -1,7 +1,6 @@
 package seedu.planner.model.course;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
@@ -32,7 +31,7 @@ public enum FocusArea {
 
     /**
      * Converts the focus area from a {@code String} to a {@code FocusArea}.
-     *
+     * <p>
      * Note: Case-insensitive
      *
      * @param focusArea The focus area as a {@code String}
@@ -48,8 +47,8 @@ public enum FocusArea {
     }
 
     /**
-     * Check if a set of strings all match the enum values of {@code FocusArea}.
-     *
+     * Converts a set of strings to a set of matching {@code FocusArea}, skip those that are invalid.
+     * <p>
      * Note: Case-insensitive
      */
     public static Set<FocusArea> filterFocusAreas(Set<String> focusArea) {
