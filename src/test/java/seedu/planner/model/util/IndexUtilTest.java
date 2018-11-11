@@ -19,6 +19,8 @@ public class IndexUtilTest {
     @Test
     public void isValidYear_validYear_returnsTrue() {
         assertTrue(isValidYear(1));
+        assertTrue(isValidYear(2));
+        assertTrue(isValidYear(3));
         assertTrue(isValidYear(4));
     }
 
@@ -43,6 +45,12 @@ public class IndexUtilTest {
     @Test
     public void isValidIndex_validIndex_returnsTrue() {
         assertTrue(isValidIndex(0));
+        assertTrue(isValidIndex(1));
+        assertTrue(isValidIndex(2));
+        assertTrue(isValidIndex(3));
+        assertTrue(isValidIndex(4));
+        assertTrue(isValidIndex(5));
+        assertTrue(isValidIndex(6));
         assertTrue(isValidIndex(7));;
     }
 
@@ -53,9 +61,26 @@ public class IndexUtilTest {
     }
 
     @Test
-    public void convertYearAndSemesterToIndex_success() {
+    public void convertYearAndSemesterToIndex_validValues_success() {
         assertEquals(convertYearAndSemesterToIndex(1, 1), 0);
+        assertEquals(convertYearAndSemesterToIndex(1, 2), 1);
+        assertEquals(convertYearAndSemesterToIndex(2, 1), 2);
+        assertEquals(convertYearAndSemesterToIndex(2, 2), 3);
+        assertEquals(convertYearAndSemesterToIndex(3, 1), 4);
+        assertEquals(convertYearAndSemesterToIndex(3, 2), 5);
+        assertEquals(convertYearAndSemesterToIndex(4, 1), 6);
         assertEquals(convertYearAndSemesterToIndex(4, 2), 7);
+    }
+
+    @Test
+    public void convertYearAndSemesterToIndex_invalidValues_failure() {
+        // invalid years
+        assertEquals(convertYearAndSemesterToIndex(0, 1), -1);
+        assertEquals(convertYearAndSemesterToIndex(5, 1), -1);
+
+        //invalid semesters
+        assertEquals(convertYearAndSemesterToIndex(1, 0), -1);
+        assertEquals(convertYearAndSemesterToIndex(1, 3), -1);
     }
 
     @Test
@@ -74,10 +99,22 @@ public class IndexUtilTest {
     }
 
     @Test
-    public void getIndicesFromYear_success() {
-        assertEquals(getIndicesFromYear(1)[0], new int[] {0, 1}[0]);
-        assertEquals(getIndicesFromYear(2)[0], new int[] {2, 3}[0]);
-        assertEquals(getIndicesFromYear(3)[1], new int[] {4, 5}[1]);
-        assertEquals(getIndicesFromYear(4)[1], new int[] {6, 7}[1]);
+    public void getIndicesFromYear_validYear_success() {
+        assertEquals(getIndicesFromYear(1)[0], 0);
+        assertEquals(getIndicesFromYear(1)[1], 1);
+        assertEquals(getIndicesFromYear(2)[0], 2);
+        assertEquals(getIndicesFromYear(2)[1], 3);
+        assertEquals(getIndicesFromYear(3)[0], 4);
+        assertEquals(getIndicesFromYear(3)[1], 5);
+        assertEquals(getIndicesFromYear(4)[0], 6);
+        assertEquals(getIndicesFromYear(4)[1], 7);
+    }
+
+    @Test
+    public void getIndicesFromYear_invalidYear_failure() {
+        assertEquals(getIndicesFromYear(0)[0], -1);
+        assertEquals(getIndicesFromYear(0)[1], -1);
+        assertEquals(getIndicesFromYear(5)[0], -1);
+        assertEquals(getIndicesFromYear(5)[1], -1);
     }
 }
