@@ -256,7 +256,7 @@ This section describes some noteworthy details on how certain features are imple
 === Add feature
 ==== Current Implementation
 
-The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester'-s. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
+The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester's. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
 The implementation is as follows:
 
 * `ModulePlanner#addModules(List<Module> modules, int index)` -- Add the list of `modules` into the semester specified by `index`.
@@ -469,12 +469,12 @@ support years beyond the 4th.
 === List feature
 ==== Current Implementation
 
-The list mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`-s and each `Semester` stores a list `modulesTaken` containing modules that the user has taken or is planning to take.
+The list mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`s and each `Semester` stores a list `modulesTaken` containing modules that the user has taken or is planning to take.
 It implements the following operation:
 
 * `ModulePlanner#listTakenModules()` -- Retrieves the list `takenModules`.
 * `ModulePlanner#listTakenModulesAll()` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in every `Semester`.
-* `ModulePlanner#listTakenModulesForYear(int year)` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in the `Semester`-s that belongs to the specified year.
+* `ModulePlanner#listTakenModulesForYear(int year)` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in the `Semester`s that belongs to the specified year.
 
 The operation is exposed in `Model` interface as `Model#listTakenModules()`, `Model#listTakenModulesAll()`, and `Model#listTakenModulesForYear(int year)`.
 

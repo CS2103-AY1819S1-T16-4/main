@@ -109,12 +109,12 @@ Examples:
 === List feature
 ==== Current Implementation
 
-The list mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`-s and each `Semester` stores a list `modulesTaken` containing modules that the user has taken or is planning to take.
+The list mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`s and each `Semester` stores a list `modulesTaken` containing modules that the user has taken or is planning to take.
 It implements the following operation:
 
 * `ModulePlanner#listTakenModules()` -- Retrieves the list `takenModules`.
 * `ModulePlanner#listTakenModulesAll()` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in every `Semester`.
-* `ModulePlanner#listTakenModulesForYear(int year)` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in the `Semester`-s that belongs to the specified year.
+* `ModulePlanner#listTakenModulesForYear(int year)` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in the `Semester`s that belongs to the specified year.
 
 The operation is exposed in `Model` interface as `Model#listTakenModules()`, `Model#listTakenModulesAll()`, and `Model#listTakenModulesForYear(int year)`.
 
