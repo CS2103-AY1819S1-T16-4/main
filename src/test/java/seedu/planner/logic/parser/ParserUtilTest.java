@@ -7,23 +7,19 @@ import static seedu.planner.commons.util.CollectionUtil.areEqualIgnoreOrder;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.Module;
 import seedu.planner.testutil.Assert;
 
 public class ParserUtilTest {
-    // Test data for ModulePlanner
-    private static final String INVALID_MODULE_CODE_1 = "CS1@00";
-    private static final String INVALID_MODULE_CODE_2 = "CS100#";
+    private static final String INVALID_MODULE_CODE = "CS100#";
     private static final String INVALID_MAJOR = "Computer_Science";
-    private static final String INVALID_FOCUS_AREA_1 = "Artificial_Intelligence";
-    private static final String INVALID_FOCUS_AREA_2 = "Software-Engineering";
+    private static final String INVALID_FOCUS_AREA = "Software-Engineering";
     private static final String INVALID_YEAR = "5";
     private static final String INVALID_SEMESTER = "0";
 
@@ -37,23 +33,17 @@ public class ParserUtilTest {
 
     private static final String WHITESPACE = " \t\r\n";
 
-    @Rule
-    public final ExpectedException thrown = ExpectedException.none();
-
     //@@author Hilda-Ang
-
-    // Test for Module Planner
-
     @Test
-    public void parseModuleCodes_null_throwsNullPointerException() throws Exception {
-        thrown.expect(NullPointerException.class);
-        ParserUtil.parseModuleCodes(null);
+    public void parseModuleCodes_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseModuleCodes(null));
     }
 
     @Test
-    public void parseModuleCodes_collectionWithInvalidModuleCodes_throwsParseException() throws Exception {
-        thrown.expect(ParseException.class);
-        ParserUtil.parseModuleCodes(Arrays.asList(VALID_MODULE_CODE_1, INVALID_MODULE_CODE_2));
+    public void parseModuleCodes_collectionWithInvalidModuleCodes_throwsParseException() {
+        List<String> moduleCodes = Arrays.asList(VALID_MODULE_CODE_1, INVALID_MODULE_CODE);
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseModuleCodes(moduleCodes));
+
     }
 
     @Test
@@ -73,7 +63,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseMajor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseMajor((String) null));
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseMajor(null));
     }
 
     @Test
@@ -87,15 +77,14 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseFocusAreas_null_throwsNullPointerException() throws Exception {
-        thrown.expect(NullPointerException.class);
-        ParserUtil.parseFocusAreas(null);
+    public void parseFocusAreas_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseFocusAreas(null));
     }
 
     @Test
-    public void parseFocusAreas_collectionWithInvalidFocusAreas_throwsParseException() throws Exception {
-        thrown.expect(ParseException.class);
-        ParserUtil.parseFocusAreas(Arrays.asList(VALID_FOCUS_AREA_1, INVALID_FOCUS_AREA_2));
+    public void parseFocusAreas_collectionWithInvalidFocusAreas_throwsParseException() {
+        List<String> focusAreas = Arrays.asList(VALID_FOCUS_AREA_1, INVALID_FOCUS_AREA);
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseFocusAreas(focusAreas));
     }
 
     @Test
@@ -115,7 +104,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseYear_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseYear((String) null));
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseYear(null));
     }
 
     @Test
@@ -139,7 +128,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseSemester_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseSemester((String) null));
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseSemester(null));
     }
 
     @Test

@@ -7,6 +7,7 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.util.List;
 import java.util.Set;
 
 import seedu.planner.logic.CommandHistory;
@@ -40,8 +41,6 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_CODE_DESC_CS1231 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS1231;
     public static final String VALID_MODULE_CODE_DESC_CS2030 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS2030;
     public static final String VALID_MODULE_CODE_DESC_CS2040 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS2040;
-
-    public static final String INVALID_MODULE_CODE_DESC_CS0000 = " " + PREFIX_CODE + INVALID_MODULE_CODE_CS0000;
 
     public static final int VALID_YEAR_ONE = 1;
     public static final int VALID_YEAR_TWO = 2;
@@ -126,4 +125,39 @@ public class CommandTestUtil {
         model.commitModulePlanner();
     }
 
+    /**
+     * Retrieves a {@code Module} from the given index of the list {@code takenModules} in the given model,
+     * or returns {@code null} if the size of the list is less than the given index.
+     *
+     * @param model The given model to be checked in.
+     * @param index The given index to retrieve {@code Module} from.
+     * @return The {@code Module} at given index, or {@code null} if size of list is less than index.
+     */
+    public static Module showModuleTakenAtIndex(Model model, int index) {
+        List<Module> modulesTaken = model.getTakenModules();
+
+        if (modulesTaken.size() > index) {
+            return modulesTaken.get(index);
+        }
+
+        return null;
+    }
+
+    /**
+     * Retrieves a {@code Module} from the given index of the list {@code availableModules} in the given model,
+     * or returns {@code null} if the size of the list is less than the given index.
+     *
+     * @param model The given model to be checked in.
+     * @param index The given index to retrieve {@code Module} from.
+     * @return The {@code Module} at given index, or {@code null} if size of list is less than index.
+     */
+    public static Module showModuleAvailableAtIndex(Model model, int index) {
+        List<Module> modulesAvailable = model.getAvailableModules();
+
+        if (modulesAvailable.size() > index) {
+            return modulesAvailable.get(index);
+        }
+
+        return null;
+    }
 }

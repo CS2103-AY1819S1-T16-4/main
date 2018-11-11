@@ -53,7 +53,8 @@ public class ModulePlannerParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Set<Module> modules = getTypicalModules();
-        AddCommand command = (AddCommand) parser.parseCommand(AddCommand.COMMAND_WORD + VALID_YEAR_DESC_ONE
+        AddCommand command = (AddCommand) parser.parseCommand(AddCommand.COMMAND_WORD
+                + VALID_YEAR_DESC_ONE
                 + VALID_SEMESTER_DESC_ONE
                 + VALID_MODULE_CODE_DESC_CS1010
                 + VALID_MODULE_CODE_DESC_CS1231
@@ -149,8 +150,7 @@ public class ModulePlannerParserTest {
     public void parseCommand_suggest() throws Exception {
         SuggestCommand command = (SuggestCommand) parser.parseCommand(SuggestCommand.COMMAND_WORD
             + VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE);
-        assertEquals(new SuggestCommand(VALID_INDEX_ZERO),
-            command);
+        assertEquals(new SuggestCommand(VALID_INDEX_ZERO), command);
     }
 
     @Test
