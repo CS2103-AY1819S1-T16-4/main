@@ -6,7 +6,10 @@ import static seedu.planner.model.util.IndexUtil.convertYearAndSemesterToIndex;
 import static seedu.planner.model.util.IndexUtil.isValidSemester;
 import static seedu.planner.model.util.IndexUtil.isValidYear;
 
+import java.util.logging.Logger;
+
 import seedu.planner.commons.core.EventsCenter;
+import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.core.Messages;
 import seedu.planner.commons.events.ui.GoToEvent;
 import seedu.planner.logic.CommandHistory;
@@ -32,6 +35,8 @@ public class GoToCommand extends Command {
 
     public static final String SHOWING_GOTO_MESSAGE = "Go to Y%1$sS%2$s";
 
+    private static final Logger logger = LogsCenter.getLogger(GoToCommand.class);
+
     private final int year;
     private final int semester;
 
@@ -49,6 +54,7 @@ public class GoToCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         if (!isValidYear(year) || !isValidSemester(semester)) {
+            logger.fine("In goto command: year " + year + " or semester " + semester + " invalid");
             throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
         }
 

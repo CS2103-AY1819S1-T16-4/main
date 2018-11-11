@@ -13,10 +13,13 @@ import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.collections.transformation.SortedList;
+
 import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
+import seedu.planner.model.course.DegreeRequirement;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
@@ -48,11 +51,12 @@ public class ModelManager extends ComponentManager implements Model {
 
         takenModulesPerSemester = new ArrayList<>();
         for (int i = 0; i < MAX_NUMBER_SEMESTERS; i++) {
-            takenModulesPerSemester.add(new SortedList<>(versionedModulePlanner.getTakenModulesForIndex(i), (x, y) ->
-                    x.compareTo(y)));
+            ObservableList<Module> takenModules = versionedModulePlanner.getTakenModulesForIndex(i);
+            SortedList<Module> sortedTakenModules = new SortedList<>(takenModules, (x, y) -> x.compareTo(y));
+            takenModulesPerSemester.add(sortedTakenModules);
         }
 
-        takenModules = new SortedList<>(versionedModulePlanner.getTakenModules());
+        takenModules = new SortedList<>(versionedModulePlanner.getTakenModules(), (x, y) -> x.compareTo(y));
         availableModules = new SortedList<>(versionedModulePlanner.getAvailableModules());
     }
 
@@ -132,6 +136,12 @@ public class ModelManager extends ComponentManager implements Model {
         versionedModulePlanner.addModules(finalizedModules, index);
         indicateModulePlannerChanged();
     }
+
+    public ObservableMap<DegreeRequirement, int[]> getStatus() {
+        return versionedModulePlanner.getStatus();
+    }
+
+    //@@author Hilda-Ang
 
     @Override
     public void suggestModules(int index) {

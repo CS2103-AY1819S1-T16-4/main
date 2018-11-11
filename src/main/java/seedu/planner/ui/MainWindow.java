@@ -33,6 +33,7 @@ import seedu.planner.commons.events.ui.FindModuleEvent;
 import seedu.planner.commons.events.ui.GoToEvent;
 import seedu.planner.commons.events.ui.ListModulesEvent;
 import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
+import seedu.planner.commons.events.ui.StatusEvent;
 import seedu.planner.commons.events.ui.SuggestModulesEvent;
 import seedu.planner.logic.Logic;
 import seedu.planner.model.UserPrefs;
@@ -143,8 +144,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        initTakenModulesPanel();
+        initTakenModulesPanels();
         initSuggestedModulesPanel();
+        initListedModulesPanel();
 
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -165,7 +167,7 @@ public class MainWindow extends UiPart<Stage> {
      * The taken modules placeholder is then initialised with the empty taken
      * modules panel.
      */
-    private void initTakenModulesPanel() {
+    private void initTakenModulesPanels() {
         takenModuleListPanels = new ArrayList<>(MAX_NUMBER_SEMESTERS + 1);
 
         for (int semesterIndex = 0; semesterIndex < MAX_NUMBER_SEMESTERS; semesterIndex++) {
@@ -185,6 +187,23 @@ public class MainWindow extends UiPart<Stage> {
 
         setPlaceholder(takenModulesPlaceholder, timelessTakenModuleListPanel);
     }
+
+    //@@author Hilda-Ang
+
+    /**
+     * Initialises the listed modules panel. The listed modules panel is a variation
+     * of the taken modules panel, whereby the former collates taken modules from semesters
+     * within a year or within all years.
+     */
+    private void initListedModulesPanel() {
+        ObservableList<Module> modules = logic.listTakenModules();
+        ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules, ModulePanelType.TAKEN);
+        takenModuleListPanels.add(MAX_NUMBER_SEMESTERS, takenModuleListPanel);
+
+        assert takenModuleListPanels.size() == 9;
+    }
+
+    //@@author GabrielYik
 
     /**
      * Initialises an empty suggested modules panel.
@@ -268,6 +287,7 @@ public class MainWindow extends UiPart<Stage> {
     @Subscribe
     private void handleShowHelpEvent(ShowHelpRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         handleHelp();
     }
 
@@ -275,6 +295,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @Subscribe
     private void handleAddModuleEvent(AddModuleEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         int indexToGoTo = event.getIndex();
         ModuleListPanel panel = takenModuleListPanels.get(indexToGoTo);
         setPlaceholder(takenModulesPlaceholder, panel);
@@ -282,18 +304,24 @@ public class MainWindow extends UiPart<Stage> {
 
     @Subscribe
     private void handleGoToEvent(GoToEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         ModuleListPanel panel = takenModuleListPanels.get(event.getIndex());
         setPlaceholder(takenModulesPlaceholder, panel);
     }
 
     @Subscribe
     private void handleFindModuleEvent(FindModuleEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         FindModulePanel panel = new FindModulePanel(event.getModule());
         setPlaceholder(multiPurposePanelPlaceholder, panel);
     }
 
     @Subscribe
     private void handleClearEvent(ClearEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         clearTakenModulesPanel();
         clearSuggestedModulesPanel();
     }
@@ -308,6 +336,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @Subscribe
     private void handleSuggestModulesEvent(SuggestModulesEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         ModuleListPanel panel = new ModuleListPanel(event.getModuleList(),
                 event.getIndex(), ModulePanelType.SUGGESTED);
         setPlaceholder(suggestedModulesPlaceholder, panel);
@@ -315,6 +345,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @Subscribe
     private void handleListModulesEvent(ListModulesEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+
         ModuleListPanel panel = takenModuleListPanels.get(MAX_NUMBER_SEMESTERS);
         if (event.getYear() == ALL_YEARS) {
             panel.setSubTitle("All years");
@@ -322,5 +354,11 @@ public class MainWindow extends UiPart<Stage> {
             panel.setSubTitle("Year " + event.getYear());
         }
         setPlaceholder(takenModulesPlaceholder, panel);
+    }
+
+    @Subscribe
+    private void handleStatusEvent(StatusEvent event) {
+        StatusPanel panel = new StatusPanel(event.getStatusMessage());
+        setPlaceholder(multiPurposePanelPlaceholder, panel);
     }
 }

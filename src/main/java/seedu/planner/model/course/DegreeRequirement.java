@@ -3,17 +3,20 @@ package seedu.planner.model.course;
 /**
  * Enum to describe the programme requirement of a module.
  */
-public enum ProgrammeRequirement {
+public enum DegreeRequirement {
+    UNIVERSITY_LEVEL_REQUIREMENTS("University Level Requirements"),
     FOUNDATION("Foundation"),
     MATHEMATICS("Mathematics"),
     SCIENCE("Science"),
     IT_PROFESSIONALISM("IT Professionalism"),
-    BREATH_AND_DEPTH("Breath and Depth"),
-    INDUSTRIAL_EXPERIENCE_REQUIREMENT("Industrial Experience Requirement");
+    INDUSTRIAL_EXPERIENCE_REQUIREMENT("Industrial Experience Requirement"),
+    TEAM_PROJECT("Team Project"),
+    FOCUS_AREA_REQUIREMENTS("Focus Area Requirements"),
+    BREATH_AND_DEPTH("Breadth and Depth");
 
     private String name;
 
-    ProgrammeRequirement(String name) {
+    DegreeRequirement(String name) {
         this.name = name;
     }
 

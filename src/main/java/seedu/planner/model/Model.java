@@ -3,6 +3,8 @@ package seedu.planner.model;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
+import seedu.planner.model.course.DegreeRequirement;
 import seedu.planner.model.module.Module;
 
 /**
@@ -56,6 +58,12 @@ public interface Model {
      */
     void addModules(Set<Module> modules, int index);
 
+<<<<<<< HEAD
+=======
+    ObservableMap<DegreeRequirement, int[]> getStatus();
+
+    //@@author Hilda-Ang
+>>>>>>> b2bcef37d99dd068d3c2fb9f6011b997a2e671e6
     /**
      * Displays modules that are available to the user in the specified index, in the list of suggested modules.
      *
