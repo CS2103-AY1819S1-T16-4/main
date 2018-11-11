@@ -5,7 +5,7 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_SEMESTER;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.planner.model.util.IndexUtil.isValidIndex;
 
-import javafx.collections.ObservableList;
+import java.util.logging.Logger;
 
 import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.core.Messages;
@@ -13,14 +13,15 @@ import seedu.planner.commons.events.ui.SuggestModulesEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
-import seedu.planner.model.module.Module;
 
 //@@author Hilda-Ang
 
 /**
- * Shows all modules that the user is available to take for a particular semester.
+ * Shows all modules that the user is available to take for a particular year and semester.
  */
 public class SuggestCommand extends Command {
+
+    private static Logger logger = Logger.getLogger("SuggestCommand.class");
 
     public static final String COMMAND_WORD = "suggest";
 
@@ -37,7 +38,7 @@ public class SuggestCommand extends Command {
     private int index;
 
     /**
-     * Creates a SuggestCommand to list modules available for specified semester.
+     * Creates a SuggestCommand to list modules available for specified year and semester.
      */
     public SuggestCommand(int index) {
         this.index = index;
@@ -45,16 +46,17 @@ public class SuggestCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+        logger.info( "starting execution of suggest command");
         requireNonNull(model);
 
         if (!isValidIndex(index)) {
+            logger.warning( "suggest command execution error due to invalid index");
             throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
         }
 
+        logger.info( "suggesting modules for index " + index);
         model.suggestModules(index);
-        ObservableList<Module> moduleList = model.getAvailableModules();
-        EventsCenter.getInstance().post(new SuggestModulesEvent(moduleList, index));
-
+        EventsCenter.getInstance().post(new SuggestModulesEvent(model.getAvailableModules(), index));
         return new CommandResult(String.format(MESSAGE_SUCCESS, index));
     }
 
