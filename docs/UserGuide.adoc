@@ -192,7 +192,7 @@ image::GoToAfter.png[width="300"]
 
 === Listing modules : `list`
 
-If a valid year is supplied, shows a list of all modules that you have added to that year. Otherwise, shows a list of all modules that you have taken in every semester. +
+If a valid year is supplied, shows a list of all modules that you have taken (added using `add` command) in that year. Otherwise, shows a list of all modules that you have taken in every year. +
 Format: `list [y/YEAR]`
 
 [TIP]
@@ -203,16 +203,16 @@ Format: `list [y/YEAR]`
 
 [NOTE]
 ====
-* If no modules have been added to a specified year or no modules have been added to ModulePlanner, will show an empty list.
+* If no modules have been taken in the specified year or no modules have been taken in any year, will show an empty list.
 ====
 
 Examples:
 
 * `list y/1` +
-Lists all modules added to year 1, both semester 1 and 2 (if they exist).
+Lists all modules taken in year 1, both semester 1 and 2 (if they exist).
 
 * `list` +
-Lists all modules added to every semester, from year 1 semester 1 to year 4 semester 2 (if they exist).
+Lists all modules taken in every year, from year 1 semester 1 to year 4 semester 2 (if they exist).
 
 === Getting status update : `status`
 
