@@ -68,17 +68,19 @@ public class ModuleDescription extends UiPart<Region> {
      * {@code preclusion} and {@code prerequisite} labels depending
      * on the number of items they will be representing.
      *
-     * @param count The number of items
+     * @param count The non-negative number of items
      * @return The correct grammar structure
      */
     private String getCorrectGrammar(int count) {
-        switch(count) {
-        case 0:
+        if (count == 0) {
             return ": none";
-        case 1:
+        } else if (count == 1) {
             return ": ";
-        default:
+        } else if (count > 1) {
             return "s: ";
+        } else {
+            assert false;
+            return "";
         }
     }
 }

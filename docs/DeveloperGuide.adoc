@@ -324,7 +324,7 @@ In turn, `Semester` stores a list of the modules the user has taken, is currentl
 When a module is deleted, `ModulePlanner` will go through every module added after the semester which the
 module is deleted from and checks if those modules now have prerequisites that are not fulfilled. If there
 are now prerequisites not fulfilled for the modules checked, they too are deleted and the process repeats for them.
-For better addressing, this process will be defined as `Iterative Deletion`.
+For better addressing, this process will be defined as _Iterative Deletion_.
 
 ===== Input
 The arguments given to the mechanism are modules, which can be a mix of valid and invalid modules.
@@ -334,7 +334,7 @@ An invalid module is defined as the opposite.
 
 ===== Result
 Out of all these arguments, only the valid modules will be deleted from the module planner. The invalid modules
-are collected and made known to the user through the `ResultDisplay`. They are separated by their types:
+are collected and made known to the user through the Result Display. They are separated by their types:
 **not offered** by the education institute and **non-existent** in the module planner. Modules with invalid module
 code formats are filtered out by the `DeleteCommandParser` and hence do not appear as part of the message shown in
 the `ResultDisplay`.
@@ -424,7 +424,7 @@ The argument given to the mechanism is a module, which has to be offered by the 
 the command fails.
 
 ===== Result
-The information about the module is retrieved and displayed in the `MultiPurposePanel`.
+The information about the module is retrieved and displayed in the Multipurpose Panel.
 
 The following sequence diagram shows how the find operation works:
 
@@ -444,7 +444,7 @@ The user executes `find c/CS0000`. The `MultiPurposePanel` does not display anyt
 ===== About
 The goto mechanism is facilitated by the posting and handling of events. The `GoToCommand#execute(...)` is the event poster
 and the `MainWindow#handleGoToEvent(...)` is the event handler. `goto` allows the user to switch between time periods in the ui.
-A time period is defined as a year-semester pair [YEAR, SEMESTER].
+A time period is defined as a year-semester pair [Year, Semester].
 
 ===== Input
 The argument given to the mechanism is a year-semester pair. The year has to be between 1 and 4, and the semester has to be
@@ -458,7 +458,6 @@ The following sequence diagram shows how the goto operation works:
 image::GoToSequenceDiagram.png[width="650"]
 
 Below are some usage scenarios.
-As a gentle reminder, a year is valid if it is between 1 and 4, and a semester is valid if it is between 1 and 2.
 
 ===== Valid Year and Semester
 The user executes `goto y/1 s/1`. Since both the year and semester are valid, the ui changes accordingly.
@@ -951,7 +950,7 @@ b. Require developers to download those libraries manually (this creates extra w
 
 *Target user profile*:
 
-* NUS Computer Science and Computer Engineering students who :
+* NUS Computer Science students who :
 +
 [none]
 ** need to manage their modules
@@ -1102,6 +1101,29 @@ Use case ends.
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, macOS
 
+Time Period::
+Year-Semester pair
+* year 1 semester 1
+* year 2 semester 2
+
+Iterative Deletion::
+The process of removing modules, checking if their removal causes other modules to not fulfill
+some of their prerequisites, removing those modules that no longer have their prerequisites fulfilled,
+and repeating until no more modules are removed.
+
+Ui Components::
+The ui is divided into several sections.
+
+.The labelled ui
+image::UiLabelled.png[width="790"]
+
+* Input Box: input commands here.
+* Result Display: displays command results and other associated messages.
+* Time Period: displays the year and semester you are currently viewing.
+* Taken Modules Panel: lists modules that you put into the specified time period.
+* Suggested Modules Panel: lists modules that suggested to you for that time period.
+* Multipurpose Panel: displays results for the `Find` and `Status` commands.
+
 [appendix]
 == Instructions for Manual Testing
 
@@ -1116,20 +1138,27 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Download the jar file and copy into an empty folder
 .. Double-click the jar file +
-   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   Expected: Shows the GUI with no modules. The window size may not be optimum.
 
 . Saving window preferences
 
-.. Resize the window to an optimum size. Move the window to a different location. Close the window.
+.. Resize the window to an optimum size. Move the window to a different location. Close the window..
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
-
-_{ more test cases ... }_
 
 === Saving data
 
 . Dealing with missing/corrupted data files
 
-.. _{explain how to simulate a missing/corrupted file and the expected behavior}_
+.. Double-click the jar file. This will generate some supporting files like preferences.json and config.json.
+.. To simulate missing data files, remove any of the generated files. Close the window.
+.. Double click the jar file again. +
+   Expected: The jar file will automatically generate the relevant files removed.
+   These files contain default values and not custom values set by the user.
 
-_{ more test cases ... }_
+.. To simulate corrupted data files, edit any of the generated files to break the format.
+   The files are in json format and are easily editable. One example edit is to add "BobBuilder" like in the image below.
+.. Expected: The jar file will automatically regenerate the corrupted files.
+   These files contain default values and not custom values set by the user.
+
+image::CorruptedDataFile.png[width="300"]
