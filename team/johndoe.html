@@ -267,9 +267,9 @@ and the <code>currentStatePointer</code> pointing to that single module planner 
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the module planner.
+<p>Step 2. The user executes <code>delete c/GER1000</code> command to delete the module <code>GER1000</code> in the module planner.
 The <code>delete</code> command calls <code>Model#commitModulePlanner()</code>, causing the modified state of the module planner
-after the <code>delete 5</code> command executes to be saved in the <code>modulePlannerStateList</code>, and the <code>currentStatePointer</code>
+after the <code>delete c/CS1010</code> command executes to be saved in the <code>modulePlannerStateList</code>, and the <code>currentStatePointer</code>
 is shifted to the newly inserted module planner state.</p>
 </div>
 <div class="imageblock">
@@ -278,8 +278,8 @@ is shifted to the newly inserted module planner state.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person.
-The <code>add</code> command also calls <code>Model#commitModulePlanner()</code>, causing another modified module planner state
+<p>Step 3. The user executes <code>add y/1 s/1 c/CS1010</code> to add the module <code>CS1010 to the first year first semester.
+The `add</code> command also calls <code>Model#commitModulePlanner()</code>, causing another modified module planner state
 to be saved into the <code>modulePlannerStateList</code>.</p>
 </div>
 <div class="imageblock">
@@ -301,7 +301,7 @@ so the module planner state will not be saved into the <code>modulePlannerStateL
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that adding the person was a mistake,
+<p>Step 4. The user now decides that adding the module was a mistake,
 and decides to undo that action by executing the <code>undo</code> command.
 The <code>undo</code> command will call <code>Model#undoModulePlanner()</code>, which will shift the <code>currentStatePointer</code> once to the left,
 pointing it to the previous module planner state, and restores the module planner to that state.</p>
@@ -369,7 +369,7 @@ or <code>Model#redoModulePlanner()</code>. Thus, the <code>modulePlannerStateLis
 <p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitModulePlanner()</code>.
 Since the <code>currentStatePointer</code> is not pointing at the end of the <code>modulePlannerStateList</code>,
 all module planner states after the <code>currentStatePointer</code> will be purged.
-We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command.
+We designed it this way because it no longer makes sense to redo the <code>add y/1 s/1 c/CS1010</code> command.
 This is the behavior that most modern desktop applications follow.</p>
 </div>
 <div class="imageblock">
@@ -410,7 +410,8 @@ This is the behavior that most modern desktop applications follow.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).</p>
+<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the module being deleted,
+as well as the year and semester it was in).</p>
 </li>
 <li>
 <p>Cons: We must ensure that the implementation of each individual command are correct.</p>
@@ -467,4 +468,4 @@ Violates Single Responsibility Principle and Separation of Concerns as <code>His
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:23:20 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:45:28 UTC</div></div></div></body></html>

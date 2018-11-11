@@ -721,19 +721,17 @@ For better addressing, this process will be defined as <em>Iterative Deletion</e
 <h5 id="input"><a class="link" href="#input">Input</a></h5>
 <div class="paragraph">
 <p>The arguments given to the mechanism are modules, which can be a mix of valid and invalid modules.
-A valid module is defined as one that has the correct module code format, is offered by the education institute
-and has been taken, is currently being taken or will be taken by the user (is stored in the module planner).
-An invalid module is defined as the opposite.</p>
+A valid module is defined as one that has the correct module code format and has been taken, is currently
+being taken or will be taken by the user (is stored in the module planner). An invalid module is defined as the opposite.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="result"><a class="link" href="#result">Result</a></h5>
 <div class="paragraph">
 <p>Out of all these arguments, only the valid modules will be deleted from the module planner. The invalid modules
-are collected and made known to the user through the Result Display. They are separated by their types:
-<strong>not offered</strong> by the education institute and <strong>non-existent</strong> in the module planner. Modules with invalid module
-code formats are filtered out by the <code>DeleteCommandParser</code> and hence do not appear as part of the message shown in
-the <code>ResultDisplay</code>.</p>
+are collected and made known to the user through the Result Display. The modules that are not found in the module planner
+are shown to the user in the Result Display. Modules with invalid module code formats are already filtered out by the
+<code>DeleteCommandParser</code> and hence do not appear as part of the message shown in the Result Display.</p>
 </div>
 <div class="paragraph">
 <p><code>ModulePlanner</code> uses the following operation to implement the delete mechanism:</p>
@@ -794,7 +792,7 @@ This applies to when more than one valid module is supplied.
 <div class="sect4">
 <h5 id="an-invalid-module"><a class="link" href="#an-invalid-module">An Invalid Module</a></h5>
 <div class="paragraph">
-<p>The user executes <code>delete CS0000</code> command. However, since that module is not offered by the education institute,
+<p>The user executes <code>delete CS0000</code> command. However, since that module is not found in the module planner,
 the command fails and <code>Model#deleteModules(&#8230;&#8203;)</code> will not be called. The user will be informed of the invalid module.</p>
 </div>
 <div class="admonitionblock note">
@@ -862,7 +860,7 @@ and the user will be informed to input arguments.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: User friendly. The user gets to add in the valid modules and is notified of which modules are invalid and why.</p>
+<p>Pros: User friendly. The user gets to delete the valid modules and is notified of which modules are invalid and why.</p>
 </li>
 <li>
 <p>Cons: More complex. Requires filtering logic.</p>
@@ -1333,9 +1331,9 @@ and the <code>currentStatePointer</code> pointing to that single module planner 
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the module planner.
+<p>Step 2. The user executes <code>delete c/GER1000</code> command to delete the module <code>GER1000</code> in the module planner.
 The <code>delete</code> command calls <code>Model#commitModulePlanner()</code>, causing the modified state of the module planner
-after the <code>delete 5</code> command executes to be saved in the <code>modulePlannerStateList</code>, and the <code>currentStatePointer</code>
+after the <code>delete c/CS1010</code> command executes to be saved in the <code>modulePlannerStateList</code>, and the <code>currentStatePointer</code>
 is shifted to the newly inserted module planner state.</p>
 </div>
 <div class="imageblock">
@@ -1344,8 +1342,8 @@ is shifted to the newly inserted module planner state.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person.
-The <code>add</code> command also calls <code>Model#commitModulePlanner()</code>, causing another modified module planner state
+<p>Step 3. The user executes <code>add y/1 s/1 c/CS1010</code> to add the module <code>CS1010 to the first year first semester.
+The `add</code> command also calls <code>Model#commitModulePlanner()</code>, causing another modified module planner state
 to be saved into the <code>modulePlannerStateList</code>.</p>
 </div>
 <div class="imageblock">
@@ -1367,7 +1365,7 @@ so the module planner state will not be saved into the <code>modulePlannerStateL
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that adding the person was a mistake,
+<p>Step 4. The user now decides that adding the module was a mistake,
 and decides to undo that action by executing the <code>undo</code> command.
 The <code>undo</code> command will call <code>Model#undoModulePlanner()</code>, which will shift the <code>currentStatePointer</code> once to the left,
 pointing it to the previous module planner state, and restores the module planner to that state.</p>
@@ -1435,7 +1433,7 @@ or <code>Model#redoModulePlanner()</code>. Thus, the <code>modulePlannerStateLis
 <p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitModulePlanner()</code>.
 Since the <code>currentStatePointer</code> is not pointing at the end of the <code>modulePlannerStateList</code>,
 all module planner states after the <code>currentStatePointer</code> will be purged.
-We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command.
+We designed it this way because it no longer makes sense to redo the <code>add y/1 s/1 c/CS1010</code> command.
 This is the behavior that most modern desktop applications follow.</p>
 </div>
 <div class="imageblock">
@@ -1476,7 +1474,8 @@ This is the behavior that most modern desktop applications follow.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).</p>
+<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the module being deleted,
+as well as the year and semester it was in).</p>
 </li>
 <li>
 <p>Cons: We must ensure that the implementation of each individual command are correct.</p>
@@ -2471,4 +2470,4 @@ These files contain default values and not custom values set by the user.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:23:20 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:45:28 UTC</div></div></div></body></html>
