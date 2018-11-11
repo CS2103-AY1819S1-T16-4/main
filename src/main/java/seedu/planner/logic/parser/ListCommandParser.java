@@ -4,11 +4,11 @@ import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.planner.model.util.IndexUtil.VALUE_NOT_AVAILABLE;
 
+import java.util.logging.Logger;
+
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.logic.commands.ListCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
-
-import java.util.logging.Logger;
 
 //@@author Hilda-Ang
 
