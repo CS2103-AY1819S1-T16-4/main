@@ -614,14 +614,14 @@ and the `currentStatePointer` pointing to that single module planner state.
 
 image::UndoRedoStartingStateListDiagram.png[width="800"]
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the module planner.
+Step 2. The user executes `delete c/GER1000` command to delete the module `GER1000` in the module planner.
 The `delete` command calls `Model#commitModulePlanner()`, causing the modified state of the module planner
-after the `delete 5` command executes to be saved in the `modulePlannerStateList`, and the `currentStatePointer`
+after the `delete c/CS1010` command executes to be saved in the `modulePlannerStateList`, and the `currentStatePointer`
 is shifted to the newly inserted module planner state.
 
 image::UndoRedoNewCommand1StateListDiagram.png[width="800"]
 
-Step 3. The user executes `add n/David ...` to add a new person.
+Step 3. The user executes `add y/1 s/1 c/CS1010` to add the module `CS1010 to the first year first semester.
 The `add` command also calls `Model#commitModulePlanner()`, causing another modified module planner state
 to be saved into the `modulePlannerStateList`.
 
@@ -631,7 +631,7 @@ image::UndoRedoNewCommand2StateListDiagram.png[width="800"]
 If a command fails its execution, it will not call `Model#commitModulePlanner()`,
 so the module planner state will not be saved into the `modulePlannerStateList`.
 
-Step 4. The user now decides that adding the person was a mistake,
+Step 4. The user now decides that adding the module was a mistake,
 and decides to undo that action by executing the `undo` command.
 The `undo` command will call `Model#undoModulePlanner()`, which will shift the `currentStatePointer` once to the left,
 pointing it to the previous module planner state, and restores the module planner to that state.
@@ -668,7 +668,7 @@ image::UndoRedoNewCommand3StateListDiagram.png[width="800"]
 Step 6. The user executes `clear`, which calls `Model#commitModulePlanner()`.
 Since the `currentStatePointer` is not pointing at the end of the `modulePlannerStateList`,
 all module planner states after the `currentStatePointer` will be purged.
-We designed it this way because it no longer makes sense to redo the `add n/David ...` command.
+We designed it this way because it no longer makes sense to redo the `add y/1 s/1 c/CS1010` command.
 This is the behavior that most modern desktop applications follow.
 
 image::UndoRedoNewCommand4StateListDiagram.png[width="800"]
@@ -685,7 +685,8 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Pros: Easy to implement.
 ** Cons: May have performance issues in terms of memory usage.
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
-** Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+** Pros: Will use less memory (e.g. for `delete`, just save the module being deleted,
+   as well as the year and semester it was in).
 ** Cons: We must ensure that the implementation of each individual command are correct.
 
 ===== Aspect: Data structure to support the undo/redo commands
