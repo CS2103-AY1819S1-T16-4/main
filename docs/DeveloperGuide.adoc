@@ -1083,6 +1083,9 @@ Use case ends.
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, macOS
 
+Time Period::
+Year-Semester pair - year 1 semester 1
+
 [appendix]
 == Instructions for Manual Testing
 
