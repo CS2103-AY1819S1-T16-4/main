@@ -91,10 +91,10 @@ public class ModuleUtil {
      * @param module       moduleToCheck The {@code Module} to be checked.
      * @return True if all the prerequisites are fulfilled and no preclusion has been fulfilled.
      */
-    public static boolean isModuleAvailableToTake(List<Module> modulesTaken, List<Module> modulesTakenUntilIndex,
+    public static boolean isModuleAvailableToTake(List<Module> modulesTaken, List<Module> modulesTakenBeforeIndex,
                                                   Module module) {
         return hasNotTakenModule(modulesTaken, module)
-                && hasFulfilledAllPrerequisites(modulesTakenUntilIndex, module)
+                && hasFulfilledAllPrerequisites(modulesTakenBeforeIndex, module)
                 && hasNotFulfilledAnyPreclusions(modulesTaken, module);
     }
 
@@ -175,23 +175,11 @@ public class ModuleUtil {
 
             if (equivalence.isEmpty()) {
                 equivalence.add(current);
-                iter1.remove();
             } else {
-                Iterator<ModuleInfo> iter2 = equivalence.iterator();
-                List<ModuleInfo> toAdd = new ArrayList<>();
-
-                while (iter2.hasNext() && toAdd.size() == 0) {
-                    ModuleInfo toCompare = iter2.next();
-                    List<ModuleInfo> preclusions1 = current.getPreclusions();
-                    List<ModuleInfo> preclusions2 = toCompare.getPreclusions();
-
-                    if (preclusions1.contains(toCompare) || preclusions2.contains(current)) {
-                        toAdd.add(current);
-                        iter1.remove();
-                    }
+                List<ModuleInfo> preclusions = equivalence.get(0).getPreclusions();
+                if (preclusions.contains(current)) {
+                    equivalence.add(current);
                 }
-
-                equivalence.addAll(toAdd);
             }
         }
 

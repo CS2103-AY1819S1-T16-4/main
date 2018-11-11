@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import seedu.planner.model.course.DegreeRequirement;
 import seedu.planner.model.course.ModuleDescription;
-import seedu.planner.model.course.ProgrammeRequirement;
 import seedu.planner.model.module.Module;
 
 public class ModuleUtilTest {
@@ -91,9 +91,9 @@ public class ModuleUtilTest {
     @Test
     public void rankModuleCodeFromPriorityList() {
         List<ModuleDescription> priorityList = new ArrayList<>();
-        priorityList.add(new ModuleDescription("CS1010", ProgrammeRequirement.FOUNDATION));
-        priorityList.add(new ModuleDescription("CS1231", ProgrammeRequirement.FOUNDATION));
-        priorityList.add(new ModuleDescription("CS2030", ProgrammeRequirement.FOUNDATION));
+        priorityList.add(new ModuleDescription("CS1010", DegreeRequirement.FOUNDATION));
+        priorityList.add(new ModuleDescription("CS1231", DegreeRequirement.FOUNDATION));
+        priorityList.add(new ModuleDescription("CS2030", DegreeRequirement.FOUNDATION));
 
         // Module code in list
         assertEquals(ModuleUtil.rankModuleCodeFromPriorityList("CS1010", priorityList), 0);
@@ -102,5 +102,17 @@ public class ModuleUtilTest {
         // Module code not in list
         assertEquals(ModuleUtil.rankModuleCodeFromPriorityList("CS2040", priorityList), 3);
         assertEquals(ModuleUtil.rankModuleCodeFromPriorityList("GEQ1000", priorityList), 3);
+    }
+
+    @Test
+    public void findModuleEquivalence() {
+        List<Module> moduleList = List.of(new Module("CS1010"), new Module("CS1101S"));
+
+        //Empty List
+        assertEquals(ModuleUtil.findModuleEquivalences(new ArrayList<>()), new ArrayList<>());
+
+        //Non-Empty List
+        assertEquals(ModuleUtil.findModuleEquivalences(moduleList),
+                List.of(List.of(new Module("CS1010"), new Module("CS1101S"))));
     }
 }

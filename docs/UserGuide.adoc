@@ -27,12 +27,26 @@ Module Planner is for NUS Computer Science undergraduate students who *prefer to
 .  Copy the file to the folder you want to use as the home folder for your Module Planner.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
+.The first page you will see when Module Planner starts up
 image::Ui.png[width="790"]
 +
+.  The page is divided into several sections.
++
+.The labelled page
+image::UiLabelled.png[width="790"]
++
+.. `Input Box`: input commands here.
+.. `Result Display`: displays command results and other associated messages.
+.. `Time Period`: displays the year and semester you are currently viewing.
+.. `Taken Modules Panel`: lists modules that you put into the specified time period.
+.. `Suggested Modules Panel`: lists modules that suggested to you for that time period.
+.. `Multipurpose Panel`: displays results for the `Find` and `Status` commands.
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
+* **`setup`**`m/Computer Science` : set your major to be Computer Science in Module Planner to get tailored module suggestion for Computer Science student.
+* **`suggest`**`y/1 s/1` : suggest modules you can take in first year, semester 1.
 * **`add`**`y/1 s/1 c/CS1231 c/MA1521` : adds modules CS1231 and MA1521 to the year 1 semester 1 modules list.
 * **`delete`**`c/CS1231` : deletes module CS1231 from the Module Planner.
 * *`exit`* : exits the app
@@ -47,8 +61,68 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 * Words in `UPPER_CASE` are the parameters that you can supply, e.g. in `suggest y/YEAR s/SEMESTER`, `YEAR` and `SEMESTER` are parameters which can be used as `suggest y/1 s/1`.
 * Items in square brackets are optional e.g `setup ... [f/FOCUS_AREA]` can be used as `setup ... f/software engineering` or as `setup ...`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `MODULE_CODE...` can be used as `{nbsp}` (i.e. 0 times), `CS1231`, `CS1231 MA1521` etc.
+* Items with `...` after them can be used multiple times including zero times e.g. `MODULE_CODE...` can be used as `{nbsp}` (i.e. 0 times), `CS1231`, `CS1231 MA1521` etc.
 ====
+
+====
+*Fields restrictions*
+[width="100%",cols="20%,<80%"]
+|=======================================================================
+
+|MAJOR | Supported majors are listed in <<Setting user profile : `setup`, `setup`>> and <<Suggesting modules : `suggest`, `suggest`>>.
+
+|FOCUS_AREA | Supported focus areas are listed in <<Setting user profile : `setup`, `setup`>> and <<Suggesting modules : `suggest`, `suggest`>>.
+
+|MODULE_CODE | Must be a valid NUS module code in Academic Year 18/19.
+
+|YEAR | Should only be integer from `1` to `4` inclusive.
+
+|SEMESTER | Should only be integer from `1` to `2` inclusive.
+
+|=======================================================================
+====
+
+=== Viewing help : `help`
+
+Open this user guide in a new window.
+
+Format: `help`
+
+// tag::setup[]
+
+=== Setting user profile : `setup`
+
+Initialises your profile with your major and optionally your focus areas so that Module Planner can
+give you module suggestion that is more relevant to you.
+Format: `setup m/MAJOR [f/FOCUS_AREA]...`
+
+****
+* The major and focus areas should be spelt out in full.
+* The major and focus areas are case insensitive. e.g. `Computer Science` is the same as `cOmpUter scienCe`.
+* This feature currently only supports majors and focus areas listed below. Support for other majors and focus areas will come beyond v1.6.
+** Major:
+*** Computer Science
+*** Computer Engineering
+** Focus area:
+*** Algorithms and Theory
+*** Artificial Intelligence
+*** Computer Graphics and Games
+*** Computer Security
+*** Database Systems
+*** Multimedia Information Retrieval
+*** Networking and Distributed Systems
+*** Parallel Computing
+*** Programming Langiages
+*** Software Engineering
+* Default user profile is set to `Computer Science` major with no focus area.
+****
+
+Examples:
+
+* `setup m/Computer Engineering`
+* `setup m/Computer Science f/Software Engineering`
+
+// end::setup[]
 
 === Adding modules: `add`
 
@@ -73,6 +147,17 @@ Examples:
 * `delete c/CS1010`
 * `delete c/CS1231 c/MA1521`
 
+Consider a module planner stocked with the modules `CS1010` and `CS1231` in year 1 semester 1, and the modules `CS2030`
+and `CS2040` in year 1 semester 2. If `delete c/CS1010` is executed, you will see that `CS1010` is removed,
+as well as the modules `CS2030` and `CS2040` in year 1 semester 2 since they have `CS1010` as a prerequisite.
+
+.Before
+image::DeleteBefore.png[width="300"]
+
+.After
+image::DeleteAfter.png[width="300"]
+
+// tag::find[]
 === Finding information on a module : `find`
 
 Retrieves the information of the specified module. +
@@ -82,6 +167,12 @@ Example:
 
 * `find c/CS1010`
 
+You should see the module information for CS1010 in the `Multipurpose Panel.
+
+image::find.png[width="790"]
+
+// end::find[]
+
 === Going to a different year and semester : `goto`
 
 Changes the view to the specified year and semester. +
@@ -90,6 +181,14 @@ Format: `goto y/YEAR s/SEMESTER`
 Example:
 
 * `goto y/1 s/1`
+
+The change can be seen in `Taken Modules Panel` in the before and after images.
+
+.Before
+image::GoToBefore.png[width="300"]
+
+.After
+image::GoToAfter.png[width="300"]
 
 === Listing modules : `list`
 
@@ -115,20 +214,6 @@ Lists all modules added to year 1, both semester 1 and 2 (if they exist).
 * `list` +
 Lists all modules added to every semester, from year 1 semester 1 to year 4 semester 2 (if they exist).
 
-=== Setting user profile : `setup`
-
-Initialises your profile with your major and optional focus areas to allow personalisation. +
-Format: `setup m/MAJOR [f/FOCUS_AREA]...`
-
-[NOTE]
-The major and focus areas should be spelt out in full. +
-Currently, this feature only supports the major of Computer Science and the focus areas of Algorithms and Theory,
-Artificial Intelligence and Software Engineering. Support for other majors and focus areas will come beyond v1.2.
-
-Examples:
-
-* `setup y/1 s/1 m/computer science f/software engineering`
-
 === Getting status update : `status`
 
 Shows how many core, unrestricted electives, and general education modules that you have taken and how many more you need to take. +
@@ -152,13 +237,72 @@ Format: `suggest y/YEAR s/SEMESTER`
 * The list of suggested modules will be automatically updated upon adding or deleting module(s).
 ====
 
+[NOTE]
+====
+* This feature currently only supports *Computer Science* major. If user profile is set to other major in <<Setting user profile : `setup`, `setup`>> command,
+this feature will only give you generic module suggestion sorted in lexicographical order.
+* The list of suggested modules will not be automatically updated after changing major through `setup`. You have to re-execute `suggest` to update the list.
+* Support for other majors will come beyond v1.6.
+====
+
 Examples:
 
 * `suggest y/1 s/1`
 
-=== Viewing help : `help`
+// tag::undoredo[]
+=== Undoing previous command : `undo`
 
-Format: `help`
+Restores Module Planner to the state before the previous _undoable_ command was executed. +
+Format: `undo`
+
+[NOTE]
+====
+Undoable commands: those commands that modify the Module Planner's content (`add`, `delete`, and `clear`).
+====
+
+Examples:
+
+* `delete c/CS1010` +
+`list` +
+`undo` (reverses the `delete c/CS1010` command) +
+
+* `goto y/1 s/1` +
+`list` +
+`undo` +
+The `undo` command fails as there are no undoable commands executed previously.
+
+* `delete c/CS1010` +
+`clear` +
+`undo` (reverses the `clear` command) +
+`undo` (reverses the `delete c/CS1010` command) +
+
+=== Redoing the previously undone command : `redo`
+
+Reverses the most recent `undo` command. +
+Format: `redo`
+
+Examples:
+
+* `delete c/CS1010` +
+`undo` (reverses the `delete c/CS1010` command) +
+`redo` (reapplies the `delete c/CS1010` command) +
+
+* `delete c/CS1010` +
+`redo` +
+The `redo` command fails as there are no `undo` commands executed previously.
+
+* `delete c/CS1010` +
+`clear` +
+`undo` (reverses the `clear` command) +
+`undo` (reverses the `delete c/CS1010` command) +
+`redo` (reapplies the `delete c/CS1010` command) +
+`redo` (reapplies the `clear` command) +
+// end::undoredo[]
+
+=== Clearing all modules : `clear`
+
+Clears all modules added into Module Planner and the module suggestion. +
+Format: `clear`
 
 === Exiting the program : `exit`
 
@@ -178,6 +322,8 @@ There is no need to save manually.
 
 * *Add* `add y/YEAR s/SEMESTER c/MODULE_CODE...` +
 e.g. `add y/1 s/1 c/CS1231 c/CS1101S`
+
+* *Clear* : `clear`
 
 * *Delete* : `delete c/MODULE_CODE...` +
 e.g. `delete c/CS1231 c/MA1521`
@@ -200,5 +346,11 @@ e.g. `setup y/1 s/1 m/computer science f/machine learning`
 e.g. `suggest y/1 s/1`
 
 * *Help* : `help`
+
+* *History* : `history`
+
+* *Undo* : `undo`
+
+* *Redo* : `redo`
 
 * *Exit* : `exit`

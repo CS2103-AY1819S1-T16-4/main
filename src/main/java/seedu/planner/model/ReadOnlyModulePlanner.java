@@ -28,19 +28,25 @@ public interface ReadOnlyModulePlanner {
     List<Semester> getSemesters();
 
     /**
-     * Returns an unmodifiable view of the {@code Module}s taken.
+     * Returns all {@code Module}s taken in the {@code Semester} wrapped in an
+     * {@code ObservableList}.
      *
-     * @param index The semester index the {@code Module}s are stored at
-     * @return An {@code ObservableList} of the {@code Module}s
+     * @param index An integer between 0 to 7 inclusive, signifying a year and semester.
+     * @return A list of modules taken in the semester.
      */
-    ObservableList<Module> getTakenModules(int index);
+    ObservableList<Module> getTakenModulesForIndex(int index);
 
     /**
-     * Returns an unmodifiable view of the {@code Module}s available.
+     * Retrieves all {@code Module}s available wrapped in an {@code ObservableList}.
      *
-     * @return An {@code ObservableList} of the {@code Module}s
+     * @return An {@code ObservableList} containing all the {@code Module}s available to be taken.
      */
     ObservableList<Module> getAvailableModules();
 
+    /**
+     * Retrieves {@code Module}s taken wrapped in an {@code ObservableList}.
+     *
+     * @return An {@code ObservableList} containing he {@code Module}s that user has taken.
+     */
     ObservableList<Module> listTakenModules();
 }

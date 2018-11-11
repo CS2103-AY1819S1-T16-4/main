@@ -8,7 +8,7 @@ import org.junit.Test;
 public class ModuleDescriptionTest {
     @Test
     public void equals() {
-        ModuleDescription cs1010 = new ModuleDescription("CS1010", ProgrammeRequirement.FOUNDATION);
+        ModuleDescription cs1010 = new ModuleDescription("CS1010", DegreeRequirement.FOUNDATION);
 
         // same object -> returns true
         assertTrue(cs1010.equals(cs1010));
@@ -20,11 +20,11 @@ public class ModuleDescriptionTest {
         assertFalse(cs1010.equals(5));
 
         // different module code -> returns false
-        ModuleDescription cs1231 = new ModuleDescription("CS1231", ProgrammeRequirement.FOUNDATION);
+        ModuleDescription cs1231 = new ModuleDescription("CS1231", DegreeRequirement.FOUNDATION);
         assertFalse(cs1010.equals(cs1231));
 
         // different programme requirement -> returns false
-        ModuleDescription cs1010Fake = new ModuleDescription("CS1010", ProgrammeRequirement.IT_PROFESSIONALISM);
+        ModuleDescription cs1010Fake = new ModuleDescription("CS1010", DegreeRequirement.IT_PROFESSIONALISM);
         assertFalse(cs1010.equals(cs1010Fake));
     }
 }

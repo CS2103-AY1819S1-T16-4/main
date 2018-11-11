@@ -25,23 +25,23 @@ public class MajorDescriptionTest {
      */
     private MajorDescription createDummyMajorDescription() {
         List<ModuleDescription> modules = new ArrayList<>();
-        modules.add(new ModuleDescription("CS1010", ProgrammeRequirement.FOUNDATION));
-        modules.add(new ModuleDescription("CS1231", ProgrammeRequirement.FOUNDATION));
-        modules.add(new ModuleDescription("CS2030", ProgrammeRequirement.FOUNDATION));
-        modules.add(new ModuleDescription("CS2040", ProgrammeRequirement.FOUNDATION));
-        modules.add(new ModuleDescription("CS2100", ProgrammeRequirement.FOUNDATION));
-        modules.add(new ModuleDescription("CS2103T", ProgrammeRequirement.BREATH_AND_DEPTH,
+        modules.add(new ModuleDescription("CS1010", DegreeRequirement.FOUNDATION));
+        modules.add(new ModuleDescription("CS1231", DegreeRequirement.FOUNDATION));
+        modules.add(new ModuleDescription("CS2030", DegreeRequirement.FOUNDATION));
+        modules.add(new ModuleDescription("CS2040", DegreeRequirement.FOUNDATION));
+        modules.add(new ModuleDescription("CS2100", DegreeRequirement.FOUNDATION));
+        modules.add(new ModuleDescription("CS2103T", DegreeRequirement.BREATH_AND_DEPTH,
                 List.of(FocusArea.SOFTWARE_ENGINEERING)));
-        modules.add(new ModuleDescription("CS2105", ProgrammeRequirement.FOUNDATION));
-        modules.add(new ModuleDescription("CS2106", ProgrammeRequirement.FOUNDATION));
-        modules.add(new ModuleDescription("CS3230", ProgrammeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
-        modules.add(new ModuleDescription("CP3880", ProgrammeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
-        modules.add(new ModuleDescription("CP3200", ProgrammeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
-        modules.add(new ModuleDescription("CP3202", ProgrammeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
-        modules.add(new ModuleDescription("IS4010", ProgrammeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
-        modules.add(new ModuleDescription("CP3200", ProgrammeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
-        modules.add(new ModuleDescription("CP3107", ProgrammeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
-        modules.add(new ModuleDescription("IS1103", ProgrammeRequirement.IT_PROFESSIONALISM));
+        modules.add(new ModuleDescription("CS2105", DegreeRequirement.FOUNDATION));
+        modules.add(new ModuleDescription("CS2106", DegreeRequirement.FOUNDATION));
+        modules.add(new ModuleDescription("CS3230", DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
+        modules.add(new ModuleDescription("CP3880", DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
+        modules.add(new ModuleDescription("CP3200", DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
+        modules.add(new ModuleDescription("CP3202", DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
+        modules.add(new ModuleDescription("IS4010", DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
+        modules.add(new ModuleDescription("CP3200", DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
+        modules.add(new ModuleDescription("CP3107", DegreeRequirement.INDUSTRIAL_EXPERIENCE_REQUIREMENT));
+        modules.add(new ModuleDescription("IS1103", DegreeRequirement.IT_PROFESSIONALISM));
 
         return new MajorDescription(Major.COMPUTER_SCIENCE, modules);
     }
@@ -61,7 +61,7 @@ public class MajorDescriptionTest {
 
     @Test
     public void equals() {
-        ModuleDescription cs1010 = new ModuleDescription("CS1010", ProgrammeRequirement.FOUNDATION);
+        ModuleDescription cs1010 = new ModuleDescription("CS1010", DegreeRequirement.FOUNDATION);
         MajorDescription cs = new MajorDescription(Major.COMPUTER_SCIENCE, List.of(cs1010));
 
         // same object -> returns true
@@ -74,7 +74,7 @@ public class MajorDescriptionTest {
         assertFalse(cs.equals(5));
 
         ModuleDescription fakeModuleDescription = new ModuleDescription("CS1010",
-                ProgrammeRequirement.IT_PROFESSIONALISM);
+                DegreeRequirement.IT_PROFESSIONALISM);
         MajorDescription fakeMajorDescription = new MajorDescription(Major.COMPUTER_SCIENCE,
                 List.of(fakeModuleDescription));
 
