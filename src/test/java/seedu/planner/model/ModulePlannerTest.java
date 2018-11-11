@@ -187,7 +187,7 @@ public class ModulePlannerTest {
         modulePlanner.listTakenModulesForYear(INDEX_ONE);
 
         ModulePlanner differentModulePlanner = new ModulePlanner();
-        differentModulePlanner.addModules(getTypicalModules(), INDEX_TWO);
+        differentModulePlanner.addModules(getTypicalModules(), INDEX_ZERO);
         differentModulePlanner.listTakenModulesForYear(INDEX_ONE);
 
         assertNotEquals(modulePlanner.getTakenModules(), differentModulePlanner.getTakenModules());
