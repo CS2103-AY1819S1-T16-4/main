@@ -38,7 +38,7 @@ public enum FocusArea {
         for (FocusArea fa : FocusArea.values()) {
             // Do not allow the setting of an {@code UNKNOWN} focus area
             if (fa.equals(UNKNOWN)) {
-                continue;
+                return false;
             }
             if (fa.toString().toLowerCase().equals(focusArea)) {
                 return true;
