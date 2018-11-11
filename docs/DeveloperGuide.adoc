@@ -450,7 +450,6 @@ The following sequence diagram shows how the goto operation works:
 image::GoToSequenceDiagram.png[width="650"]
 
 Below are some usage scenarios.
-As a gentle reminder, a year is valid if it is between 1 and 4, and a semester is valid if it is between 1 and 2.
 
 ===== Valid Year and Semester
 The user executes `goto y/1 s/1`. Since both the year and semester are valid, the ui changes accordingly.
@@ -933,7 +932,7 @@ b. Require developers to download those libraries manually (this creates extra w
 
 *Target user profile*:
 
-* NUS Computer Science and Computer Engineering students who :
+* NUS Computer Science students who :
 +
 [none]
 ** need to manage their modules
