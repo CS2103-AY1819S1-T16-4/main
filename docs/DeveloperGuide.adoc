@@ -258,13 +258,32 @@ This section describes some noteworthy details on how certain features are imple
 === Setup feature
 ==== Current Implementation
 
+The `setup` command allows users to save their major and optionally their focus areas in Module Planner.
+The information is stored in `UserProfile` and is later used by `suggest` and `status` commands.
+
+The following sequence shows the sequence when `setup` command is executed.
+
+.Sequence Diagram for `setup` command.
+image::SetupSequenceDiagram.png[width="650"]
+
+==== Design Considerations
+
+===== Aspect: Argument leniency
+* **Alternative 1**: Entirely reject all focus areas even if one is invalid. Focus areas must have the exact same letter casing as
+listed in User Guide.
+** Pros: Implementation would be simpler.
+** Cons: Not user friendly. It is too easy for users to input the wrong letter casing, causing many retries.
+* **Alternative 2 (current choice)**: Accept the valid focus areas even if one is invalid. Focus areas inputted is case-insensitive.
+** Pros: More user friendly. User is able to update the user profile and gets positive result.
+** Cons: Need to implement filtering of valid focus areas from inputted focus areas. As `f/Computer Science` and `f/cOmpUter SciEnce` are now
+both valid inputs and can be inputted at the same time, we also need to filter out duplicates.
 
 // end::setup[]
 
 === Add feature
 ==== Current Implementation
 
-The add mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`s. A `Semester` stores a list containing modules that the user has taken or is planning to take on that semester.
+The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester'-s. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
 The implementation is as follows:
 
 * `ModulePlanner#addModules(List<Module> modules, int index)` -- Add the list of `modules` into the semester specified by `index`.

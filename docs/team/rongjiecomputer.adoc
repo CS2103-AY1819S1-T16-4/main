@@ -69,4 +69,5 @@ include::../UserGuide.adoc[tag=find]
 |===
 
 include::../DeveloperGuide.adoc[tag=storage]
+include::../DeveloperGuide.adoc[tag=setup]
 include::../DeveloperGuide.adoc[tag=moduleinfo]
