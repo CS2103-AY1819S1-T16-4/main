@@ -592,7 +592,7 @@ e.g. the UI can be bound to this list so that the UI automatically updates when 
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester'-s. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
+<p>The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester&#8217;s. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
 The implementation is as follows:</p>
 </div>
 <div class="ulist">
@@ -1041,24 +1041,24 @@ support years beyond the 4th.
 <div class="sect3">
 <h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The list mechanism is facilitated by <code>ModulePlanner</code>. <code>ModulePlanner</code> stores a list of all <code>Semester</code>-s and each <code>Semester</code> stores a list <code>modulesTaken</code> containing modules that the user has taken or is planning to take.
+<p>The list mechanism is facilitated by <code>ModulePlanner</code>. <code>ModulePlanner</code> stores a list of all <code>Semester`s and each `Semester</code> stores a list <code>modulesTaken</code> containing modules that the user has taken or is planning to take.
 It implements the following operation:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>ModulePlanner#listTakenModules()</code>&#8201;&#8212;&#8201;Retrieves the list <code>takenModules</code>.</p>
+<p><code>ModulePlanner#getTakenModules()</code>&#8201;&#8212;&#8201;Retrieves the list <code>takenModules</code>.</p>
 </li>
 <li>
 <p><code>ModulePlanner#listTakenModulesAll()</code>&#8201;&#8212;&#8201;Updates <code>takenModules</code> to contain a list of modules retrieved from the list <code>modulesTaken</code> in every <code>Semester</code>.</p>
 </li>
 <li>
-<p><code>ModulePlanner#listTakenModulesForYear(int year)</code>&#8201;&#8212;&#8201;Updates <code>takenModules</code> to contain a list of modules retrieved from the list <code>modulesTaken</code> in the <code>Semester</code>-s that belongs to the specified year.</p>
+<p><code>ModulePlanner#listTakenModulesForYear(int year)</code>&#8201;&#8212;&#8201;Updates <code>takenModules</code> to contain a list of modules retrieved from the list <code>modulesTaken</code> in the `Semester`s that belongs to the specified year.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The operation is exposed in <code>Model</code> interface as <code>Model#listTakenModules()</code>, <code>Model#listTakenModulesAll()</code>, and <code>Model#listTakenModulesForYear(int year)</code>.</p>
+<p>The operation is exposed in <code>Model</code> interface as <code>Model#getTakenModules()</code>, <code>Model#listTakenModulesAll()</code>, and <code>Model#listTakenModulesForYear(int year)</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1076,7 +1076,7 @@ A valid index should be an integer between 0 to 7 inclusive, where index 0 repre
 <p>Below is an example usage scenario and how the list mechanism works.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. User launches the application. <code>ModulePlanner</code> is initialised with 8 <code>Semester</code> objects in <code>List&lt;Module&gt; semesters</code>.</p>
+<p>Step 1. User launches the application. <code>ModulePlanner</code> is initialised with 8 <code>Semester</code> objects in a list <code>semesters</code>.</p>
 </div>
 <div class="paragraph">
 <p>Step 2. User executes <code>add y/1 s/1 c/CS1231</code>. The <code>add</code> command inserts <code>Module</code> CS1231 to the list <code>modulesTaken</code> for <code>Semester</code> object with index 0.</p>
@@ -1153,7 +1153,7 @@ A list containing CS1231 and CS1010 will be displayed to the user.</p>
 <div class="paragraph">
 <p>The suggest mechanism displays a list of modules available in the specified index to the user, where index represents the year and semester that the user is asking suggestions for.
 It is supported by an internal list <code>availableModules</code> in <code>ModulePlanner</code>, which is regenerated after every successful execution of commands that modify <code>ModulePlanner</code> (<code>add</code>, <code>delete</code>, <code>clear</code>, etc.) and <code>suggest</code> command.
-The list <code>availableModules</code> can be retrieved through <code>Model#getAvailableList</code> using <code>suggest</code> command, which takes in one argument: a valid index that corresponds to a specific year and semester.</p>
+The list <code>availableModules</code> can be retrieved through <code>Model#getAvailableList()</code> using <code>suggest</code> command, which (<code>suggest</code> command) takes in one argument: a valid index that corresponds to a specific year and semester.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1187,7 +1187,7 @@ Only <code>suggest</code> command will change the index (year and semester) to b
 <p>Below is how the list of available modules is generated.</p>
 </div>
 <div class="paragraph">
-<p>The method <code>ModulePlanner#generateAvailableModules(int index)</code> is called by <code>ModulePlanner#updateModulesAvailable</code>, which sets the content of <code>availableModules</code> to be the list of modules returned by <code>generateAvailableModules(index)</code>, with index being  the stored <code>availableIndex</code>.</p>
+<p>The method <code>ModulePlanner#generateAvailableModules(int index)</code> is called by <code>ModulePlanner#updateModulesAvailable()</code>, which sets the content of <code>availableModules</code> to be the list of modules returned by <code>generateAvailableModules(index)</code>, with <code>index</code> being the stored <code>availableIndex</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1198,7 +1198,7 @@ Only <code>suggest</code> command will change the index (year and semester) to b
     List&lt;Module&gt; allModules = getAllModulesFromStorage();
 
     for (Module m : allModules) {
-        if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenBeforeIndex, m)) {
+        if (ModuleUtil.isModuleAvailable(modulesTaken, modulesTakenBeforeIndex, m)) {
             modulesAvailable.add(m);
         }
     }
@@ -1210,8 +1210,20 @@ Only <code>suggest</code> command will change the index (year and semester) to b
 </div>
 </div>
 <div class="paragraph">
-<p>The method <code>generateAvailableModules</code> retrieves all modules from the storage and performs availability checking on each of them. The available modules are put into a list which is then sorted such that core modules are put on top, followed by general education modules and unrestricted electives.
-The availability checking is done by the following method.</p>
+<p>The method <code>ModulePlanner#generateAvailableModules(int index)</code> retrieves all modules from the storage and performs availability checking on each of them. The available modules are put into a list which is then sorted:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>in a lexicographical order if user has specified a major other than <strong>Computer Science</strong> through <code>setup</code> command, or</p>
+</li>
+<li>
+<p>such that core modules for <strong>Computer Science</strong> major are put on top, followed by general education modules and unrestricted electives.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The availability checking is done by the following method.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2459,4 +2471,4 @@ These files contain default values and not custom values set by the user.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 11:28:20 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:23:20 UTC</div></div></div></body></html>
