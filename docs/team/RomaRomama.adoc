@@ -21,31 +21,34 @@ the interactions are presented in the Graphical User Interface (GUI).
 
 == Summary of contributions
 === Major Enhancements
-* Implemented the commands `add` and `status`
-** `add`
-*** What it does: Allows the user to add modules to the planner after passing several checkings
-*** Justification: Prevents the user to have an invalid study plan
-*** Highlight: It takes realistic considerations such as not allowing to add 2 equivalent modules on the same time
+* Implemented the `add` command
+** What it does: Allows the user to add modules to the planner after passing several checkings
+*** These checkings are based from realistic limitations implemented on taking modules in NUS
+** Justification: Prevents the user to have an invalid study plan
+** Highlight: It takes realistic considerations such as not allowing to take 2 equivalent modules on the same semester
 and not allowing to add modules which prerequisites has not been fulfilled.
-** `status`
-*** What it does: Allows the user to keep track of their progress in the planner
-*** Justification: Prevents the user to take unnecessary modules
-*** Hightlight: Takes into account the focus area of the user
 
 === Minor Enhancement
 * Added UI for displaying `status` command result
+* Implemented `status` command
+** What it does: Allows the user to keep track of their progress in the planner
+** Justification: Prevents the user to take unnecessary modules
+** Hightlight: Takes into account the focus area of the user
 
-=== Code Contributed
-* https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=RomaRomama
+=== Code Contribution
+* https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=RomaRomama[Code Contribution]
 
 === Other Contributions
 * Updated documentations
 ** Updated User Guide section 'add' and 'delete'
-** Update Developer Guide section Add feature, Status Feature, and appendix C
+** Updated Developer Guide section Add feature, Status Feature, and appendix C
+** Added images used for the sections above
 
 * Enhancement to feature implemented by other teammates
 ** Implement the ability to group preclusions and prerequisites into equivalent classes
 (https://github.com/CS2103-AY1819S1-T16-4/main/pull/174[#174])
+
+* Reported bugs in some teammates' codes
 
 == Contributions to the User Guide
 

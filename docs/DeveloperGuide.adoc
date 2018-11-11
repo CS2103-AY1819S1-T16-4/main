@@ -555,9 +555,27 @@ When the user sets up their focus area, additional field(s) of `Focus_Area_Requi
 "Focus Area Requirement 1", "Focus Area Requirement 2" and so on, with the number of additional fields is equal to the number of focus area that the
 user has.
 
+As an illustration, consider the following case:
+
+Initially, the ModulePlanner is empty and the user does not have any focus area. Using the status feature will display the following strings:
+
+University Level Requirement: 0/20 +
+Foundation: 0/36 +
+Mathematics: 0/12 +
+Science: 0/4 +
+IT Professionalism: 0/12 +
+Industrial Experience Requirement: 0/12 +
+Team Project: 0/8
+
+Now the user wants to set up Software Engineering and Artificial Intelligence as their focus area. +
+The status will now display additional strings as follows:
+
+Focus Area Requirement 1: 0/12 +
+Focus Area Requirement 2: 0/12
+
 ==== Design Considerations
 ===== Aspect: Includes Unrestricted Elective requirement
-Currently the status doesn't track of Unrestricted Elective requirement because of the complexity of how it is counted. Credits
+Currently the status doesn't keep track of Unrestricted Elective requirement because of the complexity of how it is counted. Credits
 from modules with more than 4 credit count may or may not have its extra credits transferred to UE requirement. For that, a possible alternative
 would be to list down all modules with more than 4 credit count that transfer its extra credits to UE credits and taking them into consideration.
 
@@ -567,7 +585,7 @@ Below are the summary of pros and cons of the current implementation and the alt
 ** Pros: Straightforward implementation by just counting for each module
 ** Cons: Doesn't include all possible degree requirements, hence not real progress
 
-* Alternative Implementation: Includes Unrestricted Electives
+* Alternative Design: Includes Unrestricted Electives
 ** Pros: Able to track real progress
 ** Cons: Much more tedious to implement
 
