@@ -261,14 +261,12 @@ Information about modules and majors supports almost all the features in Module 
 Information of a module such as module code, module credit and prerequisite modules are stored in `ModuleInfo` class.
 This class is made to be immutable to avoid accidental changes to the class.
 
-A python script (link:{repoURL}/tools/moduleConverter.py[`moduleConverter.py`]) is used to download the list of NUS modules
-from NUSMods server, do some data transformation and write to `data/moduleInfo.json` for the use of our app.
-
 ==== Current Implementation
 ===== Overview of components
 
-Internally, `ModuleInfo` is used to hold the data for a module such as name, description, module code, prerequisites and preclusions.
-`MajorDescription` is used to hold data for a major such as name, prefixes of its modules and a list of modules.
+Internally, `ModuleInfo` is an immutable class that holds all the information of a module that is universal to
+all students from any faculty. `MajorDescription` is an immutable class that holds information about the
+requirements of a major.
 
 .Class diagram for `ModuleInfo`.
 image::ModuleInfoClassDiagram.png[width="500"]
@@ -276,21 +274,47 @@ image::ModuleInfoClassDiagram.png[width="500"]
 .Class diagram for `MajorDescription`.
 image::MajorDescriptionClassDiagram.png[width="700"]
 
-NUSMods provides the prerequisites and preclusion of a module in normal English sentence (e.g. "CS1010 or its equivalents"
-and "Departmental approval")
+==== Deliberate simplifications
 
-* **Alternative 1**: parse the sentences with natural language processing to extract the correct prerequisite and preclusion relationship of the modules
-** Pros: Prerequisite and preclusion relationship of our data will be correct.
-** Cons: Difficult to automate with a script due to the potential long list of exception rules.
+The real information about NUS modules are very complicated. Here list down some simplifications we made in order
+to create this proof of concept of our application.
 
-* **Alternative 2 (Current approach)**: Extract the module codes with regular expression and assume AND relationship for prerequisites.
-** Pros: Extraction can be done easily with regular expression. Prerequisite and preclusion checking is also simple to implement in Java code.
-** Cons: The final data will be incorrect for rules like "(MA1101R AND MA1221) OR MA1521". How
+===== Prequisites and preclusion
 
-Note that corequisite relationship that descibes which modules must be taken together is not yet implemented
-as it will complicate the implementation of `add` and `delete` commands.
+IVLE provides the prerequisites and preclusion of a module in normal English sentence (e.g. "CS1010 or its equivalents"
+and "Departmental approval"). Extracting the real module prerequisite and preclusion relationship would
+be infeasible due to the potential long list of exceptions we need to handle. To simplify this, we use
+regular expression to extract the module codes.
+
+How are prerequisite and preclusion checking is implemented:
+
+* If user wants to take Module A, all prerequisites of Module A must already have been taken.
+* If Module B's preclusion has at least one module that user has already taken, user cannot take Module B.
+
+This gives a reasonable approximation of prerquisite and preclusion relationship for most modules.
+
+===== Corequisites
+
+Corequisite is used to descibe which modules must be taken together. We choose to ignore this entirely
+as it will complicate the implementation of `add` and `delete` commands significantly.
+
+==== Data sanitizing script
+
+The python script that downloads the list of NUS modules from NUSMods server and does the data transformation
+detailed above can be found at (link:{repoURL}/tools/moduleConverter.py[`moduleConverter.py`]).
 
 ==== Design Consideration
+
+===== Aspect: Representation of major and focus area
+
+* **Alternative 1 (current choice)**: Use enum to represent major and focus area.
+** Pros: Stronger type checking.
+** Cons: Need to explicitly list down all the possible values of enums (there are more than hundreds of focus areas
+in all NUS majors). Special JSON serialization and deserialization is needed for enum types.
+* **Alternative 2**: Use `String` to represent major and focus area.
+** Pros: No need to convert major and focus area inputted by user into another type.
+** Cons: If major/focus area is passed into a function as a parameter, the function cannot assume that
+the it is a valid major/focus area. This leads to a lot of redundant checking.
 
 ===== Aspect: Storing of module and major information
 
@@ -303,38 +327,11 @@ at runtime.
 ** Cons: JSON format can only hold simple primitive types such as `String`, number, array and hash table. Need to
 design a way to flatten the module relationship graph into something that can be represented in JSON and reconstruct
 the graph after deserialization.
-* **Alternative 2**: Generate Java code during build time. The data will be stored as a static constant Java object.
+* **Alternative 2**: Generate Java code during build time. The data will be directly stored as a static constant Java object.
 ** Pros: Better performance in runtime as the deserialization is no longer needed. Less moving parts when testing the data itself.
 ** Cons: More complex build procedures.
 
-===== Aspect: Retrieval of module and major information
-
-Since we have decided to take alternative 1 in <<Aspect: Storing of module and major information>>, we need
-a way to
-
-* **Alternative 1**: Implement a `ModuleInfoStorage` and `MajorDescriptionStorage`.
-** Pros: Since we are deserializing from file content, it is reasonable to implement the retrieval logic under storage component.
-** Cons: We only need the ability to read from file and not writing into file for the implementation. Even the implementation of 
-file reading is very different
-
 ===== Aspect: Two different classes to store module related information (`ModuleInfo` and `ModuleDescription`)
-
-
-
-
-//// Comment out
-
-//==== Future code health improvements
-
-* Use a new class `JsonAdaptedModuleInfo` for deserialization and use `JsonAdaptedModuleInfo#toModelType` to
-construct the actual type. This will allow us to remove `ModuleInfo#finalizeModuleInfo` that needs to be called
-after `ModuleInfo` is deserialized from JSON resource file.
-* Consolidate `ModuleType` and `DegreeRequirement` into the later enum as it is closer to the real world.
-* Merge `Module` and `ModuleInfo` into one class. They are separate classes as it was initially thought that `ModuleInfo`
-will hold all the immutable data about a module and `Module` will 
-* Remove the use of `Module#getType` (currently only used by UI and tests).
-
-////
 
 `ModuleInfoRetriever` opens the processed `data/moduleInfo.json` file packaged in the JAR file and deserialize its
 content into an array of `ModuleInfo` objects. As JSON can only hold simple values such as strings and numbers,
