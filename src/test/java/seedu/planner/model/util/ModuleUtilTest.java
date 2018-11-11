@@ -3,7 +3,7 @@ package seedu.planner.model.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.planner.model.util.ModuleUtil.isModuleAvailableToTake;
+import static seedu.planner.model.util.ModuleUtil.isModuleAvailable;
 import static seedu.planner.testutil.TypicalModules.CS1010;
 import static seedu.planner.testutil.TypicalModules.CS1231;
 import static seedu.planner.testutil.TypicalModules.CS2040;
@@ -45,16 +45,16 @@ public class ModuleUtilTest {
     @Test
     public void isModuleAvailableToTake_moduleAvailable_returnsTrue() {
         List<Module> modules = new ArrayList<>(getTypicalModules());
-        assertTrue(isModuleAvailableToTake(new ArrayList<>(), new ArrayList<>(), CS1010));
-        assertTrue(isModuleAvailableToTake(modules, modules, CS2103T));
+        assertTrue(isModuleAvailable(new ArrayList<>(), new ArrayList<>(), CS1010));
+        assertTrue(isModuleAvailable(modules, modules, CS2103T));
     }
 
     @Test
     public void isModuleAvailableToTake_moduleNotAvailable_returnsFalse() {
         List<Module> modules = new ArrayList<>(getTypicalModules());
-        assertFalse(isModuleAvailableToTake(new ArrayList<>(), new ArrayList<>(), CS2040));
-        assertFalse(isModuleAvailableToTake(modules, modules, CS1231));
-        assertFalse(isModuleAvailableToTake(modules, new ArrayList<>(), CS2040));
+        assertFalse(isModuleAvailable(new ArrayList<>(), new ArrayList<>(), CS2040));
+        assertFalse(isModuleAvailable(modules, modules, CS1231));
+        assertFalse(isModuleAvailable(modules, new ArrayList<>(), CS2040));
     }
 
     // @@author rongjiecomputer

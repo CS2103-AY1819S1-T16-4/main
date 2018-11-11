@@ -48,5 +48,5 @@ public interface ReadOnlyModulePlanner {
      *
      * @return An {@code ObservableList} containing he {@code Module}s that user has taken.
      */
-    ObservableList<Module> listTakenModules();
+    ObservableList<Module> getTakenModules();
 }
