@@ -27,10 +27,6 @@ public enum Major {
     public static boolean hasMajor(String major) {
         major = major.toLowerCase();
         for (Major m : Major.values()) {
-            // Do not allow the setting of an {@code UNKNOWN} major
-            if (m.equals(UNKNOWN)) {
-                return false;
-            }
             if (m.toString().toLowerCase().equals(major)) {
                 return true;
             }
