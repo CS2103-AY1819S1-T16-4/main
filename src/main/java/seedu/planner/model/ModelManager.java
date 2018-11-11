@@ -52,7 +52,7 @@ public class ModelManager extends ComponentManager implements Model {
                     x.compareTo(y)));
         }
 
-        takenModules = new SortedList<>(versionedModulePlanner.listTakenModules());
+        takenModules = new SortedList<>(versionedModulePlanner.getTakenModules());
         availableModules = new SortedList<>(versionedModulePlanner.getAvailableModules());
     }
 

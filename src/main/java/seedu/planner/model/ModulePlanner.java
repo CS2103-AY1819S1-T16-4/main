@@ -40,7 +40,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     public static final int MAX_NUMBER_SEMESTERS = 8;
     public static final int MAX_SEMESTERS_PER_YEAR = 2;
 
-    private static final int ALL_SEMESTERS = -1;
+    private static final int ALL_YEARS = -1;
 
     private static Logger logger = LogsCenter.getLogger(ModulePlanner.class);
 
@@ -58,6 +58,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * to store details of each {@code Semester}.
      */
     public ModulePlanner() {
+        logger.info("initialising a new ModulePlanner");
         semesters = new ArrayList<>(MAX_NUMBER_SEMESTERS);
         userProfile = new UserProfile();
 
@@ -68,7 +69,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         }
 
         availableIndex = 0;
-        takenIndex = ALL_SEMESTERS;
+        takenIndex = ALL_YEARS;
     }
 
     /**
@@ -237,12 +238,13 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
     @Override
     public ObservableList<Module> getTakenModulesForIndex(int index) {
-        return FXCollections.unmodifiableObservableList(
-                semesters.get(index).getModules());
+        return FXCollections.unmodifiableObservableList(semesters.get(index).getModules());
     }
 
+    //@@author Hilda-Ang
+
     /**
-     * Updates {@code modulesTaken} to contain all modules user has taken for every semester.
+     * Updates {@code modulesTaken} to contain all modules user has taken for all years.
      */
     public void listTakenModulesAll() {
         List<Module> modules = new ArrayList<>();
@@ -250,7 +252,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         for (Semester s : semesters) {
             modules.addAll(s.getModules());
         }
-        takenIndex = ALL_SEMESTERS;
+
+        takenIndex = ALL_YEARS;
         setTakenModules(modules);
     }
 
@@ -262,15 +265,17 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     public void listTakenModulesForYear(int year) {
         int[] indices = IndexUtil.getIndicesFromYear(year);
         List<Module> modules = new ArrayList<>();
+
         for (int i = 0; i < indices.length; i++) {
             modules.addAll(semesters.get(indices[i]).getModules());
         }
+
         takenIndex = year;
         setTakenModules(modules);
     }
 
     @Override
-    public ObservableList<Module> listTakenModules() {
+    public ObservableList<Module> getTakenModules() {
         return takenModules;
     }
 
@@ -278,7 +283,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Updates {@code takenModules} according to the latest displayed list upon add or delete command.
      */
     private void updateTakenModules() {
-        if (takenIndex == ALL_SEMESTERS) {
+        logger.info("updating list of taken modules");
+        if (takenIndex == ALL_YEARS) {
             listTakenModulesAll();
         } else {
             listTakenModulesForYear(takenIndex);
@@ -313,6 +319,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Updates internal list of available {@code Module}s based on stored index.
      */
     private void updateAvailableModules() {
+        logger.info("updating list of available modules");
         setAvailableModules(generateAvailableModules(availableIndex));
     }
 
@@ -337,7 +344,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         List<Module> allModules = getAllModulesFromStorage();
 
         for (Module m : allModules) {
-            if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenBeforeIndex, m)) {
+            if (ModuleUtil.isModuleAvailable(modulesTaken, modulesTakenBeforeIndex, m)) {
                 modulesAvailable.add(m);
             }
         }
@@ -401,7 +408,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         Collections.sort(modulesAvailable, moveImportantModuleToFront);
     }
 
-    // @@author
+    // @@author Hilda-Ang
 
     /**
      * Combines the list of {@code Module}s taken from every {@code Semester}.
@@ -437,6 +444,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * @return A list of all {@code Module}s in the storage.
      */
     private List<Module> getAllModulesFromStorage() {
+        logger.info("retrieving all modules data from storage");
         ModuleInfo[] allModuleInfo = ModuleInfo.getModuleInfoList();
         List<Module> allModules = new ArrayList<>();
 
@@ -446,6 +454,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         }
         return allModules;
     }
+
+    //@@author
 
     @Override
     public boolean equals(Object other) {
