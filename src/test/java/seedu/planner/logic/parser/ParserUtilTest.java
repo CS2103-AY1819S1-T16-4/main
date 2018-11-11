@@ -10,9 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.Module;
