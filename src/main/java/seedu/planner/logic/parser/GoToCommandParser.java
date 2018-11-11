@@ -26,7 +26,7 @@ public class GoToCommandParser implements Parser<GoToCommand> {
 
         if (!argMultimap.containsAllPrefixes(PREFIX_YEAR, PREFIX_SEMESTER)
                 || !argMultimap.getPreamble().isEmpty()) {
-            logger.fine("In goto command parser: either year or semester or both not supplied");
+            logger.fine("In goto command parser: year or semester or both not supplied");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GoToCommand.MESSAGE_USAGE));
         }
 
