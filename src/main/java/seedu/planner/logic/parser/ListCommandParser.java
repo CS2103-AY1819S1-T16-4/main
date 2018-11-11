@@ -30,12 +30,11 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         String year = argMultimap.getValue(PREFIX_YEAR).orElse(null);
 
+        // if no year parameter is supplied
         if (year == null) {
             return new ListCommand(VALUE_NOT_AVAILABLE);
         }
 
-        int intYear = ParserUtil.parseYear(year);
-
-        return new ListCommand(intYear);
+        return new ListCommand(ParserUtil.parseYear(year));
     }
 }
