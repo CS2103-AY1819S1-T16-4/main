@@ -136,10 +136,10 @@ public class CommandTestUtil {
      */
     public static Module showModuleTakenAtIndex(Model model, int index) {
         List<Module> modulesTaken = model.getTakenModules();
-         if (modulesTaken.size() > index) {
+        if (modulesTaken.size() > index) {
             return modulesTaken.get(index);
-         }
-         return null;
+        }
+        return null;
     }
 
     /**
@@ -152,9 +152,9 @@ public class CommandTestUtil {
      */
     public static Module showModuleAvailableAtIndex(Model model, int index) {
         List<Module> modulesAvailable = model.getAvailableModules();
-         if (modulesAvailable.size() > index) {
+        if (modulesAvailable.size() > index) {
             return modulesAvailable.get(index);
-         }
-         return null;
+        }
+        return null;
     }
 }
