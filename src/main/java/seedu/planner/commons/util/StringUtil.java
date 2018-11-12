@@ -76,10 +76,27 @@ public class StringUtil {
     //@@author GabrielYik
 
     /**
+     * Checks if the String, when parsed into an integer, will underflow or overflow.
+     *
+     * @param s The String
+     * @return True if the String underflows or overflows, false otherwise
+     */
+    public static boolean willUnderOrOverflow(String s) {
+        requireNonNull(s);
+
+        try {
+            Integer.parseInt(s);
+            return false;
+        } catch(NumberFormatException nfe) {
+            return true;
+        }
+    }
+
+    /**
      * Checks if the String contains only alphabets.
      *
      * @param s The String
-     * @return True if the String contains only alphabets
+     * @return True if the String contains only alphabets, false otherwise
      */
     public static boolean containsOnlyLettersAndWhiteSpace(String s) {
         requireNonNull(s);
@@ -103,7 +120,7 @@ public class StringUtil {
      * @param s1 The first string
      * @param s2 The second string
      * @return True if both strings are equal while ignoring their case,
-     *  else false
+     *  false otherwise
      */
     public static boolean areEqualIgnoreCase(String s1, String s2) {
         requireAllNonNull(s1, s2);

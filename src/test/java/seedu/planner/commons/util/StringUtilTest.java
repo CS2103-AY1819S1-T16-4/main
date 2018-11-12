@@ -9,6 +9,7 @@ import static seedu.planner.commons.util.StringUtil.areEqualIgnoreCase;
 import static seedu.planner.commons.util.StringUtil.capitalizeSentence;
 import static seedu.planner.commons.util.StringUtil.containsOnlyLettersAndWhiteSpace;
 import static seedu.planner.commons.util.StringUtil.containsOnlyNumbers;
+import static seedu.planner.commons.util.StringUtil.willUnderOrOverflow;
 
 import java.io.FileNotFoundException;
 import java.util.Optional;
@@ -158,6 +159,24 @@ public class StringUtilTest {
     public void getDetails_nullGiven_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         StringUtil.getDetails(null);
+    }
+
+    //------------- Tests for willUnderOrOverflow -----------------------------
+
+    @Test
+    public void willUnderOrOverflow_returnsTrue() {
+        // Underflows
+        assertTrue(willUnderOrOverflow(Long.toString(Integer.MIN_VALUE - 1)));
+        // Overflows
+        assertTrue(willUnderOrOverflow(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void willUnderOrOverflow_numberUnderOrOverFlow_returnsFalse() {
+        assertTrue(willUnderOrOverflow(Long.toString(Integer.MAX_VALUE)));
+        assertTrue(willUnderOrOverflow(Long.toString(Integer.MIN_VALUE)));
+        assertTrue(willUnderOrOverflow(String.valueOf(5)));
+        assertTrue(willUnderOrOverflow(String.valueOf(-5)));
     }
 
     //------------- Tests for containsOnlyLettersAndWhiteSpace ----------------
