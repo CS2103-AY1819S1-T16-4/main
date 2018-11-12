@@ -32,7 +32,6 @@ new modules that the user can take based on their academic requirements.
 convert it into JSON format and package it into the JAR file for use of the application.
 ** Justification: All main commands in Module Planner (`add`, `delete`, `suggest` and `status`) rely on
 information about NUS modules and majors to function.
-Planner.
 ** Highlight:
 *** This requires a clear understanding of the types of information about modules and majors
 and how they relate with each other so that they can be represented as well-designed classes.
