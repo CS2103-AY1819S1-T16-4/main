@@ -1357,3 +1357,31 @@ These instructions only provide a starting point for testers to work on; testers
    These files contain default values and not custom values set by the user.
 
 image::CorruptedDataFile.png[width="300"]
+
+=== Suggesting modules
+
+. Suggesting modules for a specific year and semester
+.. Test case: `suggest y/1 s/1` +
+   Expected: The panel for *Modules Suggested* is updated to show *Year 1 | Semester 1* and list of suggested modules for year 1 semester 1. A success message is shown in the status message.
+.. Test case: `suggest` +
+   Expected: The panel for *Modules Suggested* remained the same as before executing the command. Error message is shown in the status message.
+.. Other incorrect suggest commands to try: `suggest y/a s/b` (where a is not an integer between 1 to 4 inclusive or b is neither 1 or 2) +
+   Expected: Similar to previous.
+
+=== Listing modules
+
+. Listing modules for all years
+.. Prerequisites: Add some modules to ModulePlanner using `add` command.
+.. Test case: `list` +
+   Expected: The panel for *Modules Taken* is updated to show *All years* and list of all modules that have been added. A success message is shown in the status message.
+.. Test case: `list 1` +
+   Expected: The panel for *Modules Taken* remained the same as before executing the command. Error message is shown in the status message.
+
+. Listing modules for a year
+.. Prerequisites: Add some modules to year 1 using `add` command.
+.. Test case: `list y/1` +
+   Expected: The panel for *Modules Taken* is updated to show *Year 1* and all modules that have been added to year 1. A success message is shown in the status message.
+.. Test case: `list y/0` +
+   Expected: The panel for *Modules Taken* remained the same as before executing the command. Error message is shown in the status message.
+.. Other incorrect list commands to try: `list y/a` (where a is not an integer between 1 to 4) +
+   Expected: Similar to previous.
