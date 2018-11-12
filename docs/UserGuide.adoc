@@ -101,7 +101,7 @@ Format: `help`
 === Setting user profile : `setup`
 
 Initialises your profile with your major and optionally your focus areas so that Module Planner can
-give you module suggestion that is more relevant to you.
+give you module suggestion that is more relevant to you. +
 Format: `setup m/MAJOR [f/FOCUS_AREA]...`
 
 ****

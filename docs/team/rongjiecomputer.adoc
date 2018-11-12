@@ -25,32 +25,38 @@ new modules that the user can take based on their academic requirements.
 * Storage code owner
 
 == Summary of contributions
-
-* *Major enhancement*:
-** What it does:
+=== Major enhancement
+* Compile module and major information into JSON file and package it into the
+JAR file for use of the application.
+** What it does: Information about NUS modules and majors is the foundation of all commands in Module
+Planner.
 ** Justification:
-** Highlights:
-** Credits:
+** Highlight:
 
-* *Minor enhancement*:
-** Implement the ability to sort module suggestion based on user's major requirement.
+=== Minor enhancements
+* Implement the ability to sort module suggestion based on user's major requirement.
 (https://github.com/CS2103-AY1819S1-T16-4/main/pull/190[#190])
+* Implement the ability to read and write module planner data in JSON file format.
+* Co-author `setup` command with Gabriel Yik to initialize user's major and focus areas.
 
-* *Code contributed*: https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=rongjiecomputer
+== Code contributed
+* https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=rongjiecomputer
 
-* *Other contributions*:
-** Community:
-*** Review teammates' PRs (with non-trivial review comments): https://github.com/CS2103-AY1819S1-T16-4/main/pull/199[#199]
-*** Contributed to forum discussions (examples:
+=== Other contributions
+==== Community
+* Reviewed teammates' pull requests (examples:
+https://github.com/CS2103-AY1819S1-T16-4/main/pull/199[#199])
+* Contributed to forum discussions (examples:
 https://github.com/nus-cs2103-AY1819S1/forum/issues/46#issuecomment-424655417[#46],
 https://github.com/nus-cs2103-AY1819S1/forum/issues/115#issuecomment-432646664[#115],
 https://github.com/nus-cs2103-AY1819S1/forum/issues/122#issuecomment-433412750[#122])
-*** Reported bugs and suggestions for other teams in the class (examples:
+* Reported bugs and suggestions for other teams in the class (examples:
 https://github.com/CS2103-AY1819S1-W16-1/main/issues/151[#151],
 https://github.com/CS2103-AY1819S1-W16-1/main/issues/157[#157])
-** Tools:
-*** Integrated CI services (Travis and Appveyor) to the project (https://github.com/CS2103-AY1819S1-T16-4/main/pull/2[#2])
-*** Integrated Netlify service into PR workflow so that reviewer can review documentation changes easily.
+
+==== Tools:
+* Integrated CI services (Travis and Appveyor) to the project (https://github.com/CS2103-AY1819S1-T16-4/main/pull/2[#2])
+* Integrated Netlify service into PR workflow so that reviewer can review documentation changes easily.
 
 == Contributions to the User Guide
 
