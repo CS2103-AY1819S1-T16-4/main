@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.core.LogsCenter;
-import seedu.planner.commons.events.ui.FindModuleEvent;
+import seedu.planner.commons.events.ui.FindEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -52,7 +52,7 @@ public class FindCommand extends Command {
 
         Set<Module> finalizedModules = model.finalizeModules(Set.of(moduleToFind));
         Module finalizedModule = getAnyOne(finalizedModules).get();
-        EventsCenter.getInstance().post(new FindModuleEvent(finalizedModule));
+        EventsCenter.getInstance().post(new FindEvent(finalizedModule));
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleToFind));
     }
