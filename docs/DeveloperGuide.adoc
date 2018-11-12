@@ -300,8 +300,8 @@ as it will complicate the implementation of `add` and `delete` commands signific
 
 ===== Old modules that have been phased out
 
-NUS sometime creates new modules to replace outdated modules every academic year. Information about
-outdated modules are not given by IVLE, but other modules might still list their module codes in prerequisites
+NUS sometimes creates new modules to replace outdated modules every academic year. Information about
+outdated modules are not given by IVLE, but other modules might still list these module codes in their prerequisites
 and preclusion. We assume that all module codes referenced in our processed data must have a `ModuleInfo`
 object. To do that, all references of module codes that do not have its own module information entry
 are removed.
