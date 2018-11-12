@@ -43,6 +43,19 @@ h6 > a.link {
     color: #e46c0a;
 }
 
+/* Overrides coderay syntx highlight */
+.CodeRay .directive {
+    font-weight: bold;
+    color: #bf0000;
+}
+.CodeRay .predefined-type {
+    color: #256cb3;
+}
+.CodeRay .reserved, .CodeRay .keyword {
+    color: #ffa500;
+    font-weight: bold;
+}
+
 .subheader,
 .admonitionblock td.content > .title,
 .audioblock > .title,
