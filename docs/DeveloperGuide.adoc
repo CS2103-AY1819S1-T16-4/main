@@ -286,7 +286,7 @@ and "Departmental approval"). Extracting the real module prerequisite and preclu
 be infeasible due to the potential long list of exceptions we need to handle. To simplify this, we use
 regular expression to extract the module codes.
 
-How are prerequisite and preclusion checking is implemented:
+Here is how prerequisite and preclusion checking is implemented:
 
 * If user wants to take Module A, all prerequisites of Module A must already have been taken.
 * If Module B's preclusion has at least one module that user has already taken, user cannot take Module B.
@@ -1364,4 +1364,43 @@ image::CorruptedDataFile.png[width="300"]
 
 .. Test case: Valid major with exact letter casing, no focus area
 *** Command: `setup m/Computer Science`
-*** Expected: Sucessfully set up user profile with Computer Science major and no focus area.
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and no focus area.
+
+.. Test case: Valid major with different letter casing, no focus area
+*** Command: `setup m/cOMputEr sCiEnce`
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and no focus area.
+
+.. Test case: Invalid major, no focus area
+*** Command: `setup m/Information Security`
+*** Expected: Fail to set up user profile with error message `Invalid major (Information Security)`.
+
+.. Test case: Valid major, one valid focus area with exact letter casing
+*** Command: `setup m/Computer Science f/Software Engineering`
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and "Software Engineering" as focus area.
+
+.. Test case: Valid major, one valid focus area in different letter casing
+*** Command: `setup m/Computer Science f/softWARE EnginEErInG`
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and "Software Engineering" as focus area.
+
+.. Test case: Valid major, multiple different valid focus areas with exact letter casing
+*** Command: `setup m/Computer Science f/Software Engineering f/Artificial Intelligence`
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and "Software Engineering"
+and "Artificial Intelligence" as focus areas.
+
+.. Test case: Valid major, multiple strings with different letter casing of the same valid focus area
+*** Command: `setup m/Computer Science f/Software Engineering f/soFTware EnginEErinG`
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and "Software Engineering" as focus area.
+"Software Engineering" only appears once.
+
+.. Test case: Valid major, one valid focus area with exact letter casing and one invalid focus area
+*** Command: `setup m/Computer Science f/Software Engineering f/Computer Graphics`
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and "Software Engineering" as focus area.
+
+.. Test case: Valid major, one invalid focus area
+*** Command: `setup m/Computer Science f/Computer Graphics`
+*** Expected: Fail to set up user profile with error message `All focus area(s) are invalid`.
+
+.. Test case: Invalid major, one invalid focus area
+*** Command: `setup m/Information Security f/Computer Graphics`
+*** Expected: Fail to set up user profile with error message `Invalid major (Information Security)`
+`All focus area(s) are invalid`.
