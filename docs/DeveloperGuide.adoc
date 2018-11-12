@@ -269,7 +269,7 @@ all students from any faculty. `MajorDescription` is an immutable class that hol
 requirements of a major.
 
 .Class diagram for `ModuleInfo`.
-image::ModuleInfoClassDiagram.png[width="500"]
+image::ModuleInfoClassDiagram.png[width="450"]
 
 .Class diagram for `MajorDescription`.
 image::MajorDescriptionClassDiagram.png[width="700"]
@@ -362,30 +362,31 @@ in `UserProfile`. The JSON form of the data will be more complex.
 The `setup` command allows users to save their major and optionally their focus areas in Module Planner.
 The information is stored in `UserProfile` and is later used by `suggest` and `status` commands.
 
-The following sequence shows the sequence when `setup` command is executed.
+The following sequence diagram shows the sequence when `setup` command is executed.
 
-.Sequence Diagram for `setup` command.
+.Sequence diagram for `setup` command.
 image::SetupSequenceDiagram.png[width="800"]
 
 ==== Design Considerations
 
 ===== Aspect: Argument leniency
-* **Alternative 1**: Entirely reject all focus areas even if one is invalid. Focus areas must have the exact same letter casing as
+* **Alternative 1**: Entirely reject all focus areas even if only one of them is invalid. Focus areas must have the exact same letter casing as
 listed in User Guide.
 ** Pros: Implementation would be simpler.
-** Cons: Not user friendly. It is too easy for users to input the wrong letter casing, causing many retries.
-* **Alternative 2 (current choice)**: Accept the valid focus areas even if one is invalid. Focus areas inputted is case-insensitive.
+** Cons: Not user friendly. It is too easy for user to input focus areas in the wrong letter casing, causing many retries.
+* **Alternative 2 (current choice)**: Accept the valid focus areas even if one of them is invalid. Focus areas inputted is case-insensitive.
 ** Pros: More user friendly. User is able to update the user profile and gets positive result.
 ** Cons: Need to implement filtering of valid focus areas from inputted focus areas. As `f/Computer Science` and `f/cOmpUter SciEnce` are now
 both valid inputs and can be inputted at the same time, we also need to filter out duplicates.
 
-==== Aspect: Error handling
-* **Alternative 1**: Check format criterias one by one and immediately throw an error in first failure.
-** Pros: Implementation would be simpler. Less possible of combinations to test.
+===== Aspect: Error handling
+* **Alternative 1**: Execute syntax format checkings one by one and immediately throw command exception in first failure.
+** Pros: Implementation would be simpler. Less possible of negative test cases to test.
 ** Cons: Not user friendly. User only sees one syntax error at one time. If there are many syntax errors in user's first try, it will take
-many retries for user to figure all the syntax errors.
-* **Alternative 2**: Check all format criterias. If there are more than one erros, concatenate their error message before throwing exception.
-** Pros: More user friendly. User will be able to see all syntax erros in first try and fix them.
+several retries for user to figure all the syntax errors.
+* **Alternative 2 (current choice)**: Always execute all syntax format checkings. If there are more than one error, concatenate their error
+message before throwing command exception.
+** Pros: More user friendly. User will be able to see all syntax errors in first try and attempt to fix them.
 ** Cons: Need to create many negative test cases to test each error individually and all together. More
 complicated to test the expected error messages.
 
