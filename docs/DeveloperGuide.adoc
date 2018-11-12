@@ -93,10 +93,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 
 ==== Getting started with coding
 
-When you are ready to start coding,
-
-1. Get some sense of the overall design by reading <<Design-Architecture>>.
-2. Take a look at <<GetStartedProgramming>>.
+When you are ready to start coding, you can get some sense of the overall design by reading <<Design-Architecture>>.
 
 == Design
 
@@ -142,10 +139,10 @@ image::LogicClassDiagram.png[width="800"]
 [discrete]
 ==== Events-Driven nature of the design
 
-The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `delete c/CS1010`.
 
-.Component interactions for `delete 1` command (part 1)
-image::SDforDeletePerson.png[width="800"]
+.Component interactions for `delete c/CS1010` command (part 1)
+image::DeleteModuleSequenceDiagram.png[width="800"]
 
 [NOTE]
 Note how the `Model` simply raises a `ModulePlannerChangedEvent` when the Module Planner data are changed,
@@ -155,8 +152,8 @@ The diagram below shows how the `EventsCenter` reacts to that event, which event
 in the updates being saved to the hard disk and the status bar of the UI being updated to reflect
 the 'Last Updated' time.
 
-.Component interactions for `delete 1` command (part 2)
-image::SDforDeletePersonEventHandling.png[width="800"]
+.Component interactions for `delete c/CS1010` command (part 2)
+image::DeleteModuleEventHandlingSequenceDiagram.png[width="800"]
 
 [NOTE]
 Note how the event is propagated through the `EventsCenter` to the `Storage` and `UI` without `Model`
@@ -276,26 +273,26 @@ image::MajorDescriptionClassDiagram.png[width="700"]
 
 ==== Deliberate simplifications
 
-The real information about NUS modules are very complicated. Here list down some simplifications we made in order
+The real information about National University of Singapore (NUS) modules are very complicated. Here list down some simplifications we made in order
 to create this proof of concept of our application.
 
-===== Prequisites and preclusion
+===== Prerequisites and preclusion
 
-IVLE provides the prerequisites and preclusion of a module in normal English sentence (e.g. "CS1010 or its equivalents"
+IVLE provides the prerequisites and preclusions of a module in normal English sentence (e.g. "CS1010 or its equivalents"
 and "Departmental approval"). Extracting the real module prerequisite and preclusion relationship would
 be infeasible due to the potential long list of exceptions we need to handle. To simplify this, we use
 regular expression to extract the module codes.
 
-How are prerequisite and preclusion checking is implemented:
+How are prerequisites and preclusions checking is implemented:
 
 * If user wants to take Module A, all prerequisites of Module A must already have been taken.
-* If Module B's preclusion has at least one module that user has already taken, user cannot take Module B.
+* If Module B's preclusions has at least one module that user has already taken, user cannot take Module B.
 
-This gives a reasonable approximation of prerquisite and preclusion relationship for most modules.
+This gives a reasonable approximation of prerequisite and preclusion relationship for most modules.
 
 ===== Corequisites
 
-Corequisite is used to descibe which modules must be taken together. We choose to ignore this entirely
+Corequisite is used to describe which modules must be taken together. We choose to ignore this entirely
 as it will complicate the implementation of `add` and `delete` commands significantly.
 
 ==== Data sanitizing script
@@ -470,7 +467,12 @@ In turn, `Semester` stores a list of the modules the user has taken, is currentl
 When a module is deleted, `ModulePlanner` will go through every module added after the semester which the
 module is deleted from and checks if those modules now have prerequisites that are not fulfilled. If there
 are now prerequisites not fulfilled for the modules checked, they too are deleted and the process repeats for them.
-For better addressing, this process will be defined as _Iterative Deletion_.
+This process is the same for when multiple modules are deleted. For better addressing, this process will be defined
+as _Iterative Deletion_.
+
+The following activity diagram shows how Iterative Deletion works:
+
+image::IterativeDeletionActivityDiagram.png[width="500"]
 
 ===== Input
 The arguments given to the mechanism are modules, which can be a mix of valid and invalid modules.
@@ -489,44 +491,84 @@ are shown to the user in the Result Display. Modules with invalid module code fo
 
 The above operation is exposed in the `Model` interface as `Model#deleteModules(List<Module> modules)`
 
-The following sequence diagram shows how the delete operation works:
+The following sequence diagram shows how the `delete` operation works:
 
 image::DeleteSequenceDiagram.png[width="650"]
 
 Below are some usage scenarios.
-For convenience, let's define some valid modules: `CS1010`, `CS2030` and `CS2040`
-and an invalid module `CS0000`. `CS1010` is a prerequisite for `CS2030` and `CS2040`.
+For convenience, let's define some valid modules: CS1010, CS2030 and CS2040
+and an invalid module CS0000. CS1010 is one of the prerequisites for CS2030 and CS2040.
 Let's also initialise a module planner with those valid modules: +
-YEAR 1 SEMESTER 1: [`CS1010`] +
-YEAR 1 SEMESTER 2: [`CS2030`, `CS2040`] +
-...
+
+[cols="^,^", width=50%]
+.Module Planner Initial State
+|===
+| Y1S1 | Y1S2
+
+|CS1010
+|CS2030
+
+|
+|CS2040
+|===
 
 ===== A Valid Module
-The user executes `delete CS1010` command to delete the valid module `CS1010`.
+The user executes `delete c/CS1010` command to delete the valid module CS1010.
 The `delete` command calls `Model#deleteModules(...)`, which removes the module from the semester where it is found.
-Iterative Deletion is then applied. Since `CS2030` and `CS2040` have `CS1010` as a prerequisite, if `CS1010` is
-deleted, `CS2030` and `CS2040` will too be deleted.
+Iterative Deletion is then applied. Since CS2030 and CS2040 have CS1010 as a prerequisite, if CS1010 is
+deleted, CS2030 and CS2040 will be deleted too.
 
 The module planner now has this state: +
-[`EMPTY`]
+[cols="^,^", width=50%]
+.Module Planner Current State
+|===
+| Y1S1 | Y1S2
+
+|empty
+|empty
+
+|===
 
 [NOTE]
 This applies to when more than one valid module is supplied.
 
 ===== An Invalid Module
-The user executes `delete CS0000` command. However, since that module is not found in the module planner,
+The user executes `delete c/CS0000` command. However, since that module is not found in the module planner,
 the command fails and `Model#deleteModules(...)` will not be called. The user will be informed of the invalid module.
+
+The module planner now has this state: +
+[cols="^,^", width=50%]
+.Module Planner Current State
+|===
+| Y1S1 | Y1S2
+
+|CS1010
+|CS2030
+
+|
+|CS2040
+|===
 
 [NOTE]
 This applies to where more than one invalid module is supplied.
 
 ===== Mix of Valid and Invalid Modules
-The user executes `delete CS1010 CS0000`. However, only the module `CS1010` is valid.
-In this case, `Model#deleteModules(...)` is still called, but only the valid module `CS1010` will be deleted and
-Iterative Deletion applied. The user will be informed of the invalid module.
+The user executes `delete c/CS2030 c/CS0000`. However, only the module CS2030 is valid.
+In this case, `Model#deleteModules(...)` is still called, but only the valid module CS2030 will be deleted.
+The user will be informed of the invalid module.
 
 [NOTE]
 This applies to where more than one valid and invalid modules are supplied.
+
+The module planner now has this state: +
+[cols="^,^", width=50%]
+.Module Planner Current State
+|===
+| Y1S1 | Y1S2
+
+|`CS1010`
+|`CS2040`
+|===
 
 ===== No Modules
 The user executes `delete`. As the command has no supplied arguments, the command will fail
@@ -544,10 +586,10 @@ and the user will be informed to input arguments.
 
 ===== Aspect: Iterative Deletion
 * Alternative 1 (current choice): Iterate through the modules in each semester for all years. For each semester, the modules
-that do not have their prerequisite fulfilled are marked as invalid and are deleted.
+that do not have their prerequisite(s) fulfilled are marked as invalid and are deleted.
 ** Pros: Simple logic and requires minimal code.
-** Cons: Although the number of modules in the module planner is weakly limited by the education institute (students are only
-   required to take about 40 modules to earn a degree), the algorithm is still relatively slow.
+** Cons: Although the number of modules in the module planner is weakly limited by NUS (students are only
+   required to take about 40 modules to earn a degree), the algorithm is slow.
 
 * Alternative 2: Construct a direct acyclic graph for all the modules in the module planner
 ** Pros: Fast and efficient. There is no need to iterative through several semesters to mark modules as invalid and then
@@ -566,23 +608,23 @@ and the `MainWindow#handleFindEvent(...)` is the event handler. `find` allows th
 a specified module.
 
 ===== Input
-The argument given to the mechanism is a module, which has to be offered by the education institute. If a module is not offered,
+The argument given to the mechanism is a module, which has to be offered by NUS. If a module is not offered,
 the command fails.
 
 ===== Result
 The information about the module is retrieved and displayed in the Multipurpose Panel.
 
-The following sequence diagram shows how the find operation works:
+The following sequence diagram shows how the `find` operation works:
 
 image::FindSequenceDiagram.png[width="650"]
 
 Below are some usage scenarios.
 
 ==== Module is Offered
-The user executes `find c/CS1010`. The `MultiPurposePanel` displays the retrieved module information.
+The user executes `find c/CS1010`. The Multipurpose Panel displays the retrieved module information.
 
 ==== Module is Not Offered
-The user executes `find c/CS0000`. The `MultiPurposePanel` does not display anything.
+The user executes `find c/CS0000`. The Multipurpose Panel does not display anything.
 
 // end::find[]
 
@@ -593,7 +635,7 @@ The user executes `find c/CS0000`. The `MultiPurposePanel` does not display anyt
 ===== About
 The goto mechanism is facilitated by the posting and handling of events. The `GoToCommand#execute(...)` is the event poster
 and the `MainWindow#handleGoToEvent(...)` is the event handler. `goto` allows the user to switch between time periods in the ui.
-A time period is defined as a year-semester pair [Year, Semester].
+A time period is defined as a year-semester pair. e.g. Year 1 semester 1
 
 ===== Input
 The argument given to the mechanism is a year-semester pair. The year has to be between 1 and 4, and the semester has to be
@@ -602,7 +644,7 @@ between 1 and 2.
 ===== Result
 The ui switches time periods to the specified. The modules taken in the time period is displayed too.
 
-The following sequence diagram shows how the goto operation works:
+The following sequence diagram shows how the `goto` operation works:
 
 image::GoToSequenceDiagram.png[width="650"]
 
@@ -1340,6 +1382,58 @@ These instructions only provide a starting point for testers to work on; testers
 .. Resize the window to an optimum size. Move the window to a different location. Close the window..
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
+
+=== Deleting modules
+
+. Simple deletion
+
+.. Prerequisite: There needs to be at least one module in the module planner that is *not* a prerequisite
+   for other modules. These modules are usually level 1000 modules like CS1010 and GER1000. If no such
+   modules are in the module planner, add one or more (e.g. `add y/1 s/1 c/CS1010` and `add y/1 s/1 c/GER1000`).
+.. Test case: `delete c/CS1010`. +
+   Expected: The module is removed and the ui updates to show that.
+
+. Iterative Deletion
+
+.. Prerequisite: There needs to be at least one module in the module planner that is a prerequisite
+   for other modules. These modules are usually level 2000 modules and above like CS2030 and CS2040.
+   If no such modules are in the module planner, add one or more (e.g. `add y/1 s/2 c/CS2030` and
+   `add y/1 s/2 c/CS2040`).
+.. Test case: `delete c/CS1010`. +
+   Expected: The module is removed and the ui updates to show that. The modules that depend on CS1010 like
+   CS2030 and CS2040 will be removed too.
+
+[TIP]
+To observe iterative deletion better, use the `list` command to list out all the modules before performing this test case.
+
+[NOTE]
+====
+
+*Potential Confusion* +
+An input like `add y/1 s/2 c/CS2030` does not work. +
+
+*Solution* +
+Check if the prerequisites of CS2030 have been fulfilled. In this case, the prerequisites of
+CS2030 are CS1010 and CS1231. Add the latter two modules before adding CS2030 into at least a
+semester after.
+
+====
+
+=== Finding a module
+
+. Finding a valid module
+
+.. Prerequisite: None.
+.. Test case: `find c/CS1010` +
+   Expected: The Multipurpose Panel displays the information of `CS1010`.
+
+=== Switching between time periods
+
+. Switching to a different time period
+
+.. Prerequisite: None, but the time period that you `goto` has to be different from your current.
+.. Test case: `goto y/<a> s/<b>`, where a and b refer to any valid values. +
+   Expected: The time period in the Taken Modules Panel will change from where you were to `Year a | Semester b`.
 
 === Saving data
 

@@ -16,7 +16,8 @@ public class StatusEvent extends BaseEvent {
         this.statusMap = statusMap;
     }
 
-    public ObservableMap<DegreeRequirement, int[]> getStatusMessage() { return statusMap; }
+    public ObservableMap<DegreeRequirement, int[]> getStatusMessage() {
+        return statusMap; }
 
     @Override
     public String toString() {
