@@ -7,9 +7,9 @@
 
 == Overview
 
-This project portfolio showcases the contributions I have made in a team project under the module CS2103T: Software Engineering. I worked in a team of four Computer Science students to develop a product named ModulePlanner that is built on top of an existing software (AddressBook - Level 4).
+This project portfolio showcases the contributions I have made in a team project under the module *CS2103T: Software Engineering*. I worked in a team of four Computer Science students to develop a product named *ModulePlanner*, which is built on top of an existing software (AddressBook - Level 4).
 
-ModulePlanner is a desktop application made to help NUS Computer Science and Computer Engineering undergraduate students plan their modules. It is designed to be used mainly through a Command Line Interface (CLI), although it also provides a Graphical User Interface (GUI).
+*ModulePlanner* is a desktop application made to help Computer Science and Computer Engineering students in National University of Singapore plan their modules for their entire candidature periods. It is designed to be used mainly through a Command Line Interface (CLI), although it also provides a Graphical User Interface (GUI).
 
 The main features include:
 
