@@ -125,6 +125,13 @@ public class CollectionUtilTest {
     }
 
     @Test
+    public void areEqualIgnoreOrder_differentCollections_failure() {
+        List<Integer> list1 = List.of(1, 2);
+        List<Integer> list2 = List.of(2, 3);
+        assertFalse(areEqualIgnoreOrder(list1, list2));
+    }
+
+    @Test
     public void areEqualIgnoreOrder_emptyCollections_success() {
         assertTrue(areEqualIgnoreOrder(List.of(), Set.of()));
     }
@@ -137,8 +144,13 @@ public class CollectionUtilTest {
     }
 
     @Test
-    public void convertCollectionToString_validArg_returnsString() {
+    public void convertCollectionToString_nonEmptyCollection_returnsString() {
         assertEquals(convertCollectionToString(List.of(1, 2, 3, 4)), "1 2 3 4");
+    }
+
+    @Test
+    public void convertCollectionToString_emptyCollection_returnsEmptyString() {
+        assertEquals(convertCollectionToString(List.of()), "");
     }
 
     @Test

@@ -8,6 +8,8 @@ import static org.junit.Assert.assertTrue;
 import static seedu.planner.commons.util.StringUtil.areEqualIgnoreCase;
 import static seedu.planner.commons.util.StringUtil.capitalizeSentence;
 import static seedu.planner.commons.util.StringUtil.containsOnlyLettersAndWhiteSpace;
+import static seedu.planner.commons.util.StringUtil.containsOnlyNumbers;
+import static seedu.planner.commons.util.StringUtil.isParsableInteger;
 
 import java.io.FileNotFoundException;
 import java.util.Optional;
@@ -159,6 +161,22 @@ public class StringUtilTest {
         StringUtil.getDetails(null);
     }
 
+    //------------- Tests for isParsableInteger -----------------------------
+
+    @Test
+    public void isParsableInteger_notParsableNumber_returnsTrue() {
+        assertFalse(isParsableInteger("111111111111111111111"));
+        assertFalse(isParsableInteger("-111111111111111111111"));
+    }
+
+    @Test
+    public void isParsableInteger_parsableNumber_returnsFalse() {
+        assertTrue(isParsableInteger(Long.toString(Integer.MAX_VALUE + 1)));
+        assertTrue(isParsableInteger(Long.toString(Integer.MIN_VALUE - 1)));
+        assertTrue(isParsableInteger(String.valueOf(5)));
+        assertTrue(isParsableInteger(String.valueOf(-5)));
+    }
+
     //------------- Tests for containsOnlyLettersAndWhiteSpace ----------------
 
     @Test
@@ -181,7 +199,6 @@ public class StringUtilTest {
         assertFalse(containsOnlyLettersAndWhiteSpace(" "));
         // Two spaces no letters
         assertFalse(containsOnlyLettersAndWhiteSpace("  "));
-
         // Empty String
         assertFalse(containsOnlyLettersAndWhiteSpace(""));
     }
@@ -192,27 +209,61 @@ public class StringUtilTest {
         containsOnlyLettersAndWhiteSpace(null);
     }
 
+    //-------------- Tests for containsOnlyNumbers ------------------
+
+    @Test
+    public void containsOnlyNumbers_allNumbers_returnsTrue() {
+        assertTrue(containsOnlyNumbers("123"));
+    }
+
+    @Test
+    public void containsOnlyNumbers_someOrNoNumbers_returnsFalse() {
+        assertFalse(containsOnlyNumbers("12A"));
+        assertFalse(containsOnlyNumbers("12 "));
+        assertFalse(containsOnlyNumbers("12["));
+        assertFalse(containsOnlyNumbers("ABC"));
+        assertFalse(containsOnlyNumbers(" "));
+    }
+
+    @Test
+    public void containsOnlyNumbers_emptyString_returnsFalse() {
+        assertFalse(containsOnlyNumbers(""));
+    }
+
     //-------------- Tests for areEqualIgnoreCase -------------------
 
     @Test
-    public void areEqualIgnoreCase_validArgs_returnsTrue() {
+    public void areEqualIgnoreCase_nonEmptyStrings_returnsTrue() {
         // Both same case
         assertTrue(areEqualIgnoreCase("Pathfinder", "Pathfinder"));
-
         // Both difference case
         assertTrue(areEqualIgnoreCase("Pathfinder", "PaThFiNdEr"));
     }
 
     @Test
-    public void areEqualIgnoreCase_nullGivenBoth_throwsNullPointerException() {
-        thrown.expect(NullPointerException.class);
-        areEqualIgnoreCase(null, null);
+    public void areEqualIgnoreCase_differentStrings_returnsFalse() {
+        assertFalse(areEqualIgnoreCase("Pathfinder", "Routefinder"));
+        assertFalse(areEqualIgnoreCase("Pathfinder", ""));
+    }
+
+    @Test
+    public void areEqualIgnoreCase_emptyStrings_returnsTrue() {
+        // Both empty strings
+        assertTrue(areEqualIgnoreCase("", ""));
+        // One empty one with only whitespace
+        assertTrue(areEqualIgnoreCase(" ", ""));
     }
 
     @Test
     public void areEqualIgnoreCase_nullGivenOne_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         areEqualIgnoreCase("pluto", null);
+    }
+
+    @Test
+    public void areEqualIgnoreCase_nullGivenBoth_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        areEqualIgnoreCase(null, null);
     }
 
     //-------------- Tests for capitalizeSentence -------------------

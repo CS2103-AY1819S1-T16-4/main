@@ -1,6 +1,8 @@
 package seedu.planner.logic.parser;
 
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC_CS0000;
+import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CS0000;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1010;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS2030;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
@@ -29,12 +31,17 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
     private Set<Module> moduleSet1 = Set.of(VALID_MODULE_CS1010);
     private Set<Module> moduleSet2 = Set.of(VALID_MODULE_CS1010, VALID_MODULE_CS2030);
+    private Set<Module> moduleSet3 = Set.of(INVALID_MODULE_CS0000);
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
         assertParseSuccess(parser, VALID_MODULE_CODE_DESC_CS1010, new DeleteCommand(moduleSet1));
+
         assertParseSuccess(parser, VALID_MODULE_CODE_DESC_CS1010 + VALID_MODULE_CODE_DESC_CS2030,
                 new DeleteCommand(moduleSet2));
+
+        // Invalid module but it's the Delete command that checks for module validity
+        assertParseSuccess(parser, INVALID_MODULE_CODE_DESC_CS0000, new DeleteCommand(moduleSet3));
     }
 
     @Test
