@@ -6,7 +6,7 @@ import seedu.planner.commons.events.BaseEvent;
 import seedu.planner.model.module.Module;
 
 /**
- * An event to display information of a module in response to suggest command.
+ * An event to display list of modules available in response to suggest command.
  */
 public class SuggestModulesEvent extends BaseEvent {
     private final ObservableList<Module> moduleList;
