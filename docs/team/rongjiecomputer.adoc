@@ -27,24 +27,24 @@ new modules that the user can take based on their academic requirements.
 
 == Summary of contributions
 === Major enhancement
-* Implement mechanism to retrieve NUs major and module information
-** What it does: Collect and preprocess major and module information from https://nusmods.com[NUSMods],
+* Implement mechanism to retrieve NUS academic major and module information
+** What it does: Collect and preprocess academic major and module information from https://nusmods.com[NUSMods],
 convert it into JSON format and package it into the JAR file for use of the application.
 ** Justification: All main commands in Module Planner (`add`, `delete`, `suggest` and `status`) rely on
-information about NUS majors and modules to function.
+information about NUS academic majors and modules to function.
 ** Highlight:
-*** This requires a clear understanding of the types of information about modules and majors
-and how they relate with each other so that they can be represented as well-designed classes.
+*** This requires a clear understanding of the types of information about academic majors and module 
+as well as how they relate with each other so that they can be represented as well-designed classes.
 *** Scripting experience is needed to preprocess the data from external sources so that it can be easily
 manipulated in application code.
 *** Need to strike a balance between the potential implementation complexity of other commands and the accuracy
 of the processed data to meet NUS students' expectation.
 
 === Minor enhancements
-* Implement the ability to sort module suggestion based on user's major requirement.
+* Implement the ability to sort module suggestion based on user's academic major requirement.
 (https://github.com/CS2103-AY1819S1-T16-4/main/pull/190[#190])
 * Implement the ability to read and write module planner data in JSON file format.
-* Co-author `setup` command with Gabriel Yik to initialize user's major and focus areas.
+* Co-author `setup` command with Gabriel Yik to initialize user's academic major and focus areas.
 
 === Code contributed
 * https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=rongjiecomputer
