@@ -42,51 +42,83 @@ new modules that the user can take based on their academic requirements.</p>
 <div class="sect1">
 <h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="major-enhancement"><a class="link" href="#major-enhancement">Major enhancement</a></h3>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>:</p>
+<p>Implement mechanism to retrieve NUS academic major and module information</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does:</p>
+<p>What it does: Pre-process academic major and module information from <a href="https://nusmods.com">NUSMods</a>,
+convert it into JSON format and package it into the JAR file for use of the application.</p>
 </li>
 <li>
-<p>Justification:</p>
+<p>Justification: All main commands in Module Planner (<code>add</code>, <code>delete</code>, <code>suggest</code> and <code>status</code>) rely on
+information about NUS academic majors and modules to function.</p>
 </li>
 <li>
-<p>Highlights:</p>
+<p>Highlight:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This requires a clear understanding of the types of information about academic major and module
+as well as how they relate with each other so that they can be represented as well-designed classes.</p>
 </li>
 <li>
-<p>Credits:</p>
+<p>Scripting experience is needed to pre-process the data from external sources so that it can be easily
+manipulated in application code.</p>
+</li>
+<li>
+<p>Need to strike a balance between the potential implementation complexity of other commands and the accuracy
+of the processed data to meet NUS students' expectation.</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p><strong>Minor enhancement</strong>:</p>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="minor-enhancements"><a class="link" href="#minor-enhancements">Minor enhancements</a></h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Implement the ability to sort module suggestion based on user&#8217;s major requirement.
+<p>Implement the ability to sort module suggestion based on user&#8217;s academic major requirement.
 (<a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/190">#190</a>)</p>
 </li>
+<li>
+<p>Implement the ability to read and write module planner data in JSON file format.</p>
+</li>
+<li>
+<p>Co-author <code>setup</code> command with Gabriel Yik to initialize user&#8217;s academic major and focus areas.</p>
+</li>
 </ul>
 </div>
-</li>
-<li>
-<p><strong>Code contributed</strong>: <a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=rongjiecomputer" class="bare">https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=rongjiecomputer</a></p>
-</li>
-<li>
-<p><strong>Other contributions</strong>:</p>
+</div>
+<div class="sect2">
+<h3 id="code-contributed"><a class="link" href="#code-contributed">Code contributed</a></h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Community:</p>
+<p><a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=rongjiecomputer" class="bare">https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=rongjiecomputer</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="sect3">
+<h4 id="community"><a class="link" href="#community">Community</a></h4>
 <div class="ulist">
 <ul>
 <li>
-<p>Review teammates' PRs (with non-trivial review comments): <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/199">#199</a></p>
+<p>Reviewed teammates' pull requests (examples:
+<a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/199">#199</a>)</p>
 </li>
 <li>
 <p>Contributed to forum discussions (examples:
@@ -101,9 +133,9 @@ new modules that the user can take based on their academic requirements.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Tools:</p>
+</div>
+<div class="sect3">
+<h4 id="tools"><a class="link" href="#tools">Tools:</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -114,11 +146,7 @@ new modules that the user can take based on their academic requirements.</p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
 </div>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -139,7 +167,7 @@ new modules that the user can take based on their academic requirements.</p>
 <h3 id="setting-user-profile-code-setup-code"><a class="link" href="#setting-user-profile-code-setup-code">Setting user profile : <code>setup</code></a></h3>
 <div class="paragraph">
 <p>Initialises your profile with your major and optionally your focus areas so that Module Planner can
-give you module suggestions that are more relevant to you.
+give you module suggestions that are more relevant to you.<br>
 Format: <code>setup m/MAJOR [f/FOCUS_AREA]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
@@ -153,7 +181,7 @@ Format: <code>setup m/MAJOR [f/FOCUS_AREA]&#8230;&#8203;</code></p>
 <p>The major and focus areas are case insensitive. e.g. <code>Computer Science</code> is the same as <code>cOmpUter scienCe</code>.</p>
 </li>
 <li>
-<p>This feature currently only supports majors and focus areas listed below. Support for other majors and focus areas will come beyond v1.6.</p>
+<p>This feature currently only supports majors and focus areas listed below. Support for other majors and focus areas will come beyond v2.0.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -258,7 +286,7 @@ Format: <code>find c/MODULE_CODE</code></p>
 <div class="title">Figure 1. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/planner/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-T16-4/main/blob/master/src/main/java/seedu/planner/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Storage</code> component,</p>
@@ -281,9 +309,9 @@ Format: <code>find c/MODULE_CODE</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="module-and-major-information"><a class="link" href="#module-and-major-information">Module and Major Information</a></h3>
+<h3 id="module-and-academic-major-information"><a class="link" href="#module-and-academic-major-information">Module and Academic Major Information</a></h3>
 <div class="paragraph">
-<p>Information about modules and majors supports almost all the features in Module Planner.</p>
+<p>Information about modules and academic majors supports almost all the features in Module Planner.</p>
 </div>
 <div class="paragraph">
 <p>Information of a module such as module code, module credit and prerequisite modules are stored in <code>ModuleInfo</code> class.
@@ -296,11 +324,11 @@ This class is made to be immutable to avoid accidental changes to the class.</p>
 <div class="paragraph">
 <p>Internally, <code>ModuleInfo</code> is an immutable class that holds all the information of a module that is universal to
 all students from any faculty. <code>MajorDescription</code> is an immutable class that holds information about the
-requirements of a major.</p>
+requirements of an academic major.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/ModuleInfoClassDiagram.png" alt="ModuleInfoClassDiagram" width="500">
+<img src="../images/ModuleInfoClassDiagram.png" alt="ModuleInfoClassDiagram" width="450">
 </div>
 <div class="title">Figure 3. Class diagram for <code>ModuleInfo</code>.</div>
 </div>
@@ -313,9 +341,9 @@ requirements of a major.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deliberate-simplifications"><a class="link" href="#deliberate-simplifications">Deliberate simplifications</a></h4>
+<h4 id="simplifications"><a class="link" href="#simplifications">Simplifications</a></h4>
 <div class="paragraph">
-<p>The real information about National University of Singapore (NUS) modules are very complicated. Here list down some simplifications we made in order
+<p>The real information about NUS modules are very complicated. Here we list down some simplifications we made in order
 to create this proof of concept of our application.</p>
 </div>
 <div class="sect4">
@@ -327,7 +355,7 @@ be infeasible due to the potential long list of exceptions we need to handle. To
 regular expression to extract the module codes.</p>
 </div>
 <div class="paragraph">
-<p>How are prerequisites and preclusions checking is implemented:</p>
+<p>Here is how prerequisite and preclusion checking is implemented:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -340,7 +368,7 @@ regular expression to extract the module codes.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>This gives a reasonable approximation of prerequisite and preclusion relationship for most modules.</p>
+<p>This gives us a reasonable approximation of prerequisite and preclusion relationship for most modules.</p>
 </div>
 </div>
 <div class="sect4">
@@ -350,22 +378,32 @@ regular expression to extract the module codes.</p>
 as it will complicate the implementation of <code>add</code> and <code>delete</code> commands significantly.</p>
 </div>
 </div>
+<div class="sect4">
+<h5 id="old-modules-that-have-been-phased-out"><a class="link" href="#old-modules-that-have-been-phased-out">Old modules that have been phased out</a></h5>
+<div class="paragraph">
+<p>NUS sometimes creates new modules to replace outdated modules every academic year. Information about
+outdated modules are not given by IVLE, but other modules might still list these module codes in their prerequisites
+and preclusion. We assume that all module codes referenced in our processed data must have a <code>ModuleInfo</code>
+object. To do that, all references of module codes that do not have its own module information entry
+are removed.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="data-sanitizing-script"><a class="link" href="#data-sanitizing-script">Data sanitizing script</a></h4>
 <div class="paragraph">
-<p>The python script that downloads the list of NUS modules from NUSMods server and does the data transformation
-detailed above can be found at (<a href="{repoURL}/tools/moduleConverter.py"><code>moduleConverter.py</code></a>).</p>
+<p>The python script that downloads the list of NUS modules from <a href="https://nusmods.com">NUSMods</a> server and does the data
+transformation detailed above can be found at (<a href="https://github.com/CS2103-AY1819S1-T16-4/main/blob/master/tools/moduleConverter.py"><code>moduleConverter.py</code></a>).</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-consideration"><a class="link" href="#design-consideration">Design Consideration</a></h4>
 <div class="sect4">
-<h5 id="aspect-representation-of-major-and-focus-area"><a class="link" href="#aspect-representation-of-major-and-focus-area">Aspect: Representation of major and focus area</a></h5>
+<h5 id="aspect-representation-of-academic-major-and-focus-area"><a class="link" href="#aspect-representation-of-academic-major-and-focus-area">Aspect: Representation of academic major and focus area</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice)</strong>: Use enum to represent major and focus area.</p>
+<p><strong>Alternative 1 (current choice)</strong>: Use enum to represent academic major and focus area.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -373,21 +411,21 @@ detailed above can be found at (<a href="{repoURL}/tools/moduleConverter.py"><co
 </li>
 <li>
 <p>Cons: Need to explicitly list down all the possible values of enums (there are more than hundreds of focus areas
-in all NUS majors). Special JSON serialization and deserialization is needed for enum types.</p>
+in all NUS academic majors). Special JSON serialization and deserialization is needed for enum types.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2</strong>: Use <code>String</code> to represent major and focus area.</p>
+<p><strong>Alternative 2</strong>: Use <code>String</code> to represent academic major and focus area.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: No need to convert major and focus area inputted by user into another type.</p>
+<p>Pros: No need to convert academic major and focus area inputted by user into another type.</p>
 </li>
 <li>
-<p>Cons: If major/focus area is passed into a function as a parameter, the function cannot assume that
-the it is a valid major/focus area. This leads to a lot of redundant checking.</p>
+<p>Cons: If academic major/focus area is passed into a function as a parameter, the function cannot assume that
+the it is a valid academic major/focus area. This leads to a lot of redundant checking.</p>
 </li>
 </ul>
 </div>
@@ -396,9 +434,9 @@ the it is a valid major/focus area. This leads to a lot of redundant checking.</
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-storing-of-module-and-major-information"><a class="link" href="#aspect-storing-of-module-and-major-information">Aspect: Storing of module and major information</a></h5>
+<h5 id="aspect-storing-of-module-and-academic-major-information"><a class="link" href="#aspect-storing-of-module-and-academic-major-information">Aspect: Storing of module and academic major information</a></h5>
 <div class="paragraph">
-<p>To avoid having to download the module and major information from the Internet in first start up, we package
+<p>To avoid having to download the module and academic major information from the Internet in first start up, we package
 the data directly into final <code>.jar</code> file as a resource file.</p>
 </div>
 <div class="ulist">
@@ -413,7 +451,7 @@ at runtime.</p>
 </li>
 <li>
 <p>Cons: JSON format can only hold simple primitive types such as <code>String</code>, number, array and hash table. Need to
-design a way to flatten the module relationship graph into something that can be represented in JSON and reconstruct
+design a way to flatten the module dependency graph into something that can be represented in JSON and reconstruct
 the graph after deserialization.</p>
 </li>
 </ul>
@@ -427,7 +465,7 @@ the graph after deserialization.</p>
 <p>Pros: Better performance in runtime as the deserialization is no longer needed. Less moving parts when testing the data itself.</p>
 </li>
 <li>
-<p>Cons: More complex build procedures.</p>
+<p>Cons: More complex build procedures. Teammates will need to install extra tools to build the project.</p>
 </li>
 </ul>
 </div>
@@ -436,13 +474,40 @@ the graph after deserialization.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-two-different-classes-to-store-module-related-information-code-moduleinfo-code-and-code-moduledescription-code"><a class="link" href="#aspect-two-different-classes-to-store-module-related-information-code-moduleinfo-code-and-code-moduledescription-code">Aspect: Two different classes to store module related information (<code>ModuleInfo</code> and <code>ModuleDescription</code>)</a></h5>
-<div class="paragraph">
-<p><code>ModuleInfoRetriever</code> opens the processed <code>data/moduleInfo.json</code> file packaged in the JAR file and deserialize its
-content into an array of <code>ModuleInfo</code> objects. As JSON can only hold simple values such as strings and numbers,
-prerequisites and preclusion are stored as an array of <code>String</code>, so we need to call <code>ModuleInfo.finalizeModuleInfo</code> to
-convert the strings into <code>ModuleInfo`s as well before we can start querying prerequisite and preclusion from
-`ModuleInfo#getPrerequisites</code> and <code>ModuleInfo#getPreclusions</code>.</p>
+<h5 id="aspect-class-representation-of-module-related-information"><a class="link" href="#aspect-class-representation-of-module-related-information">Aspect: Class representation of module related information</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Use <code>ModuleInfo</code> class to represent module information that is transparent to user&#8217;s academic major
+and <code>ModuleDescription</code> class to represent module information that is specific to the requirements of an academic major.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Clear separation of concern. Commands that does not depend on <code>UserProfile</code> only needs to
+interact with <code>ModuleInfo</code> and not affected by changes to <code>ModuleDescription</code>.</p>
+</li>
+<li>
+<p>Cons: Commands that need module information specific to an academic major (e.g. <code>suggest</code> and <code>status</code>) still need
+to depend on <code>ModuleInfo</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Use one class to hold all types of module information.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Less classes to reason about.</p>
+</li>
+<li>
+<p>Cons: Commands that use <code>ModuleInfo</code> but do not uses <code>UserProfile</code> directly will still be affected by changes
+in <code>UserProfile</code>. The JSON form of the data will be more complex.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -452,17 +517,17 @@ convert the strings into <code>ModuleInfo`s as well before we can start querying
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The <code>setup</code> command allows users to save their major and optionally their focus areas in Module Planner.
+<p>The <code>setup</code> command allows users to save their academic major and optionally their focus areas in Module Planner.
 The information is stored in <code>UserProfile</code> and is later used by <code>suggest</code> and <code>status</code> commands.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence shows the sequence when <code>setup</code> command is executed.</p>
+<p>The following sequence diagram shows the sequence when <code>setup</code> command is executed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/SetupSequenceDiagram.png" alt="SetupSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 5. Sequence Diagram for <code>setup</code> command.</div>
+<div class="title">Figure 5. Sequence diagram for <code>setup</code> command.</div>
 </div>
 </div>
 <div class="sect3">
@@ -472,7 +537,7 @@ The information is stored in <code>UserProfile</code> and is later used by <code
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1</strong>: Entirely reject all focus areas even if one is invalid. Focus areas must have the exact same letter casing as
+<p><strong>Alternative 1</strong>: Entirely reject all focus areas even if only one of them is invalid. Focus areas must have the exact same letter casing as
 listed in User Guide.</p>
 <div class="ulist">
 <ul>
@@ -480,17 +545,17 @@ listed in User Guide.</p>
 <p>Pros: Implementation would be simpler.</p>
 </li>
 <li>
-<p>Cons: Not user friendly. It is too easy for users to input the wrong letter casing, causing many retries.</p>
+<p>Cons: Not user friendly. It is too easy for user to input focus areas in the wrong letter casing, causing many retries.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2 (current choice)</strong>: Accept the valid focus areas even if one is invalid. Focus areas inputted is case-insensitive.</p>
+<p><strong>Alternative 2 (current choice)</strong>: Accept the valid focus areas even if one of them is invalid. Focus areas inputted is case-insensitive.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: More user friendly. User is able to update the user profile and gets positive result.</p>
+<p>Pros: More user friendly. User is able to update the user profile and gets positive result even if there are some minor syntax errors.</p>
 </li>
 <li>
 <p>Cons: Need to implement filtering of valid focus areas from inputted focus areas. As <code>f/Computer Science</code> and <code>f/cOmpUter SciEnce</code> are now
@@ -502,31 +567,31 @@ both valid inputs and can be inputted at the same time, we also need to filter o
 </ul>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="aspect-error-handling"><a class="link" href="#aspect-error-handling">Aspect: Error handling</a></h4>
+<div class="sect4">
+<h5 id="aspect-error-handling"><a class="link" href="#aspect-error-handling">Aspect: Error handling</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1</strong>: Check format criterias one by one and immediately throw an error in first failure.</p>
+<p><strong>Alternative 1</strong>: Execute syntax format checkings one by one and immediately throw command exception in first failure.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Implementation would be simpler. Less possible of combinations to test.</p>
+<p>Pros: Implementation would be simpler. Less possible of negative test cases to test.</p>
 </li>
 <li>
 <p>Cons: Not user friendly. User only sees one syntax error at one time. If there are many syntax errors in user&#8217;s first try, it will take
-many retries for user to figure all the syntax errors.</p>
+several retries for user to figure all the syntax errors.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2</strong>: Check all format criterias. If there are more than one erros, concatenate their error message before throwing exception.</p>
+<p><strong>Alternative 2 (current choice)</strong>: Always execute all syntax format checkings. If there are more than one error, concatenate their error
+message before throwing command exception.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: More user friendly. User will be able to see all syntax erros in first try and fix them.</p>
+<p>Pros: More user friendly. User will be able to see all syntax errors in first try and attempt to fix them.</p>
 </li>
 <li>
 <p>Cons: Need to create many negative test cases to test each error individually and all together. More
@@ -540,4 +605,5 @@ complicated to test the expected error messages.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:21:38 UTC</div></div></div></body></html>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:42:14 UTC</div></div></div></body></html>
