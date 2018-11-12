@@ -9,7 +9,7 @@ import static seedu.planner.commons.util.StringUtil.areEqualIgnoreCase;
 import static seedu.planner.commons.util.StringUtil.capitalizeSentence;
 import static seedu.planner.commons.util.StringUtil.containsOnlyLettersAndWhiteSpace;
 import static seedu.planner.commons.util.StringUtil.containsOnlyNumbers;
-import static seedu.planner.commons.util.StringUtil.willUnderOrOverflow;
+import static seedu.planner.commons.util.StringUtil.isParsable;
 
 import java.io.FileNotFoundException;
 import java.util.Optional;
@@ -161,22 +161,20 @@ public class StringUtilTest {
         StringUtil.getDetails(null);
     }
 
-    //------------- Tests for willUnderOrOverflow -----------------------------
+    //------------- Tests for isParsable -----------------------------
 
     @Test
-    public void willUnderOrOverflow_returnsTrue() {
-        // Underflows
-        assertTrue(willUnderOrOverflow(Long.toString(Integer.MIN_VALUE - 1)));
-        // Overflows
-        assertTrue(willUnderOrOverflow(Long.toString(Integer.MAX_VALUE + 1)));
+    public void isParsable_notParsableNumber_returnsTrue() {
+        assertFalse(isParsable("11111111111111111111"));
+        assertFalse(isParsable("-11111111111111111111"));
     }
 
     @Test
-    public void willUnderOrOverflow_numberUnderOrOverFlow_returnsFalse() {
-        assertTrue(willUnderOrOverflow(Long.toString(Integer.MAX_VALUE)));
-        assertTrue(willUnderOrOverflow(Long.toString(Integer.MIN_VALUE)));
-        assertTrue(willUnderOrOverflow(String.valueOf(5)));
-        assertTrue(willUnderOrOverflow(String.valueOf(-5)));
+    public void isParsable_parsableNumber_returnsFalse() {
+        assertTrue(isParsable(Long.toString(Integer.MAX_VALUE + 1)));
+        assertTrue(isParsable(Long.toString(Integer.MIN_VALUE - 1)));
+        assertTrue(isParsable(String.valueOf(5)));
+        assertTrue(isParsable(String.valueOf(-5)));
     }
 
     //------------- Tests for containsOnlyLettersAndWhiteSpace ----------------

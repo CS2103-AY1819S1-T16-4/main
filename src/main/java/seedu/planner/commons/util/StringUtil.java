@@ -76,19 +76,19 @@ public class StringUtil {
     //@@author GabrielYik
 
     /**
-     * Checks if the String, when parsed into an integer, will underflow or overflow.
+     * Checks if the String, which is a number, can be parsed by {@code Integer#parseInt}.
      *
      * @param s The String
-     * @return True if the String underflows or overflows, false otherwise
+     * @return True if the String can be parsed, false otherwise
      */
-    public static boolean willUnderOrOverflow(String s) {
+    public static boolean isParsable(String s) {
         requireNonNull(s);
 
         try {
             Integer.parseInt(s);
-            return false;
-        } catch (NumberFormatException nfe) {
             return true;
+        } catch (NumberFormatException nfe) {
+            return false;
         }
     }
 

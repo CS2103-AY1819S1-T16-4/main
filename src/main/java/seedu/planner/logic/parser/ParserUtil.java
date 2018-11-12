@@ -2,7 +2,7 @@ package seedu.planner.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.StringUtil.containsOnlyNumbers;
-import static seedu.planner.commons.util.StringUtil.willUnderOrOverflow;
+import static seedu.planner.commons.util.StringUtil.isParsable;
 import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_FOCUS_AREA_CONSTRAINTS;
 import static seedu.planner.logic.commands.SetUpCommand.MESSAGE_MAJOR_CONSTRAINTS;
 import static seedu.planner.model.module.ModuleInfo.MESSAGE_MODULE_CODE_CONSTRAINTS;
@@ -132,7 +132,7 @@ public class ParserUtil {
         requireNonNull(year);
 
         String trimmedYear = year.trim();
-        if (!containsOnlyNumbers(trimmedYear) || willUnderOrOverflow(trimmedYear)) {
+        if (!containsOnlyNumbers(trimmedYear) || !isParsable(trimmedYear)) {
             throw new ParseException(MESSAGE_INVALID_YEAR);
         }
 
@@ -153,7 +153,7 @@ public class ParserUtil {
         requireNonNull(semester);
 
         String trimmedSemester = semester.trim();
-        if (!containsOnlyNumbers(trimmedSemester) || willUnderOrOverflow(trimmedSemester)) {
+        if (!containsOnlyNumbers(trimmedSemester) || !isParsable(trimmedSemester)) {
             throw new ParseException(MESSAGE_INVALID_SEMESTER);
         }
 
