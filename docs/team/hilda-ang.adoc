@@ -38,7 +38,6 @@ The main features include:
 * *Other contributions*:
 
 ** Project management:
-*** Managed release `v1.1` on GitHub
 *** Recorded each of the user stories as an issue (examples: https://github.com/CS2103-AY1819S1-T16-4/main/issues/11[1], https://github.com/CS2103-AY1819S1-T16-4/main/issues/12[2], https://github.com/CS2103-AY1819S1-T16-4/main/issues/13[3])
 *** Assigned team members to issues and issues to milestones (examples: https://github.com/CS2103-AY1819S1-T16-4/main/issues/39[1], https://github.com/CS2103-AY1819S1-T16-4/main/issues/73[2], https://github.com/CS2103-AY1819S1-T16-4/main/issues/74[3])
 *** Set a deadline for each milestone on Github
