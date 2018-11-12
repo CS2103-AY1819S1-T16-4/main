@@ -142,7 +142,7 @@ Examples:
 * `add y/1 s/1 c/MA1101R`
 * `add y/1 s/1 c/CS1231 c/CS1101S`
 
-An observable change can be seen in the `Taken Modules Panel` after successfully adding a module, like shown below:
+An observable change can be seen in the Taken Modules Panel after successfully adding a module, like shown below:
 
 Before:
 
@@ -198,7 +198,7 @@ Example:
 
 * `find c/CS1010`
 
-You should see the module information for CS1010 in the `Multipurpose Panel`.
+You should see the module information for CS1010 in the Multipurpose Panel.
 
 image::find.png[width="790"]
 
@@ -255,7 +255,7 @@ Lists all modules taken in every year, from year 1 semester 1 to year 4 semester
 Shows how many core and general education module credits that you have taken and how many credits that you need to take. +
 Format: `status`
 
-You could see the status displayed on `MultiPurpose Panel` as shown below:
+You could see the status displayed on MultiPurpose Panel as shown below:
 
 image::StatusIllustration.png[width="790"]
 
