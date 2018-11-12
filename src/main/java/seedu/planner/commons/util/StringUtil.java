@@ -87,7 +87,7 @@ public class StringUtil {
         try {
             Integer.parseInt(s);
             return false;
-        } catch(NumberFormatException nfe) {
+        } catch (NumberFormatException nfe) {
             return true;
         }
     }
