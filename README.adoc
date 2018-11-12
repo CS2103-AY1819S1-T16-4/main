@@ -32,6 +32,7 @@ endif::[]
 '''
 
 .Current way of planning modules
+
 ****
 1. Go to an external site to check what modules one has to take.
 2. See which modules' pre-requisites have been fulfilled and are open for one to take.
@@ -47,6 +48,7 @@ endif::[]
 So *tedious*.
 
 .New way of planning modules
+
 ****
 1. Input academic requirements.
 2. Application lists possible modules to take based on academic comitments and module pre-requisites.
