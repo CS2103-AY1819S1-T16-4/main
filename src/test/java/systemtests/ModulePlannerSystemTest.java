@@ -139,8 +139,6 @@ public abstract class ModulePlannerSystemTest {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
         assertEquals(new ModulePlanner(expectedModel.getModulePlanner()), testApp.readStorageModulePlanner());
-        // TODO
-        // assertListMatching(getPersonListPanel(), expectedModel.getFilteredPersonList());
     }
 
     /**
@@ -193,8 +191,6 @@ public abstract class ModulePlannerSystemTest {
     private void assertApplicationStartingStateIsCorrect() {
         assertEquals("", getCommandBox().getInput());
         assertEquals("", getResultDisplay().getText());
-        // TODO
-        //assertListMatching(getPersonListPanel(), getModel().getFilteredPersonList());
         assertEquals(Paths.get(".").resolve(testApp.getStorageSaveLocation()).toString(),
                 getStatusBarFooter().getSaveLocation());
         assertEquals(SYNC_STATUS_INITIAL, getStatusBarFooter().getSyncStatus());

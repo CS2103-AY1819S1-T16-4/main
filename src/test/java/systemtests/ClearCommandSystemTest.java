@@ -31,24 +31,6 @@ public class ClearCommandSystemTest extends ModulePlannerSystemTest {
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, expectedResultMessage, new ModelManager());
 
-        /* Case: selects first card in person list and clears planner book -> cleared and no card selected */
-        // TODO
-        /*
-        executeCommand(UndoCommand.COMMAND_WORD); // restores the original planner book
-        selectPerson(Index.fromOneBased(1));
-        assertCommandSuccess(ClearCommand.COMMAND_WORD);
-        assertSelectedCardDeselected();
-        */
-
-        /* Case: filters the person list before clearing -> entire planner book cleared */
-        // TODO
-        /*
-        executeCommand(UndoCommand.COMMAND_WORD); // restores the original planner book
-        showPersonsWithName(KEYWORD_MATCHING_MEIER);
-        assertCommandSuccess(ClearCommand.COMMAND_WORD);
-        assertSelectedCardUnchanged();
-        */
-
         /* Case: clear empty planner book -> cleared */
         assertCommandSuccess(ClearCommand.COMMAND_WORD);
 
