@@ -55,6 +55,10 @@ h6 > a.link {
     color: #ffa500 !important;
     font-weight: bold;
 }
+.CodeRay .type {
+    font-weight: bold;
+    color: #008b8b !important;
+}
 
 .subheader,
 .admonitionblock td.content > .title,
