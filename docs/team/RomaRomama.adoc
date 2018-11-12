@@ -48,6 +48,10 @@ and not allowing to add modules which prerequisites has not been fulfilled.
 ** Implement the ability to group preclusions and prerequisites into equivalent classes
 (https://github.com/CS2103-AY1819S1-T16-4/main/pull/174[#174])
 
+* Refactor shared classes
+** Refactor events classes
+(https://github.com/CS2103-AY1819S1-T16-4/main/pull/216[#216])
+
 * Reported bugs in some teammates' codes
 
 == Contributions to the User Guide

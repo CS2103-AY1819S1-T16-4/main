@@ -203,7 +203,7 @@ link:{repoURL}/src/main/java/seedu/planner/logic/Logic.java[`Logic.java`]
 .  The command execution can affect the `Model` (e.g. adding a module) and/or raise events.
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete c/CS1010")` API call.
 
 .Interactions Inside the Logic Component for the `delete 1` Command
 image::DeletePersonSdForLogic.png[width="800"]
@@ -236,8 +236,8 @@ image::StorageClassDiagram.png[width="800"]
 
 The `Storage` component,
 
-* can save `UserPref` objects in json format and read it back.
-* can save `ReadOnlyModulePlanner` object in json format and read it back.
+* can save `UserPref` objects in JSON format and read it back.
+* can save `ReadOnlyModulePlanner` object in JSON format and read it back.
 
 .Interactions inside the Storage component for whenever `ModulePlannerChangedEvent` is fired.
 image::StorageSequenceDiagram.png[width="800"]
@@ -252,6 +252,131 @@ Classes used by multiple components are in the `seedu.planner.commons` package.
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+
+// tag::moduleinfo[]
+=== Module and Major Information
+
+Information about modules and majors supports almost all the features in Module Planner.
+
+Information of a module such as module code, module credit and prerequisite modules are stored in `ModuleInfo` class.
+This class is made to be immutable to avoid accidental changes to the class.
+
+==== Current Implementation
+===== Overview of components
+
+Internally, `ModuleInfo` is an immutable class that holds all the information of a module that is universal to
+all students from any faculty. `MajorDescription` is an immutable class that holds information about the
+requirements of a major.
+
+.Class diagram for `ModuleInfo`.
+image::ModuleInfoClassDiagram.png[width="500"]
+
+.Class diagram for `MajorDescription`.
+image::MajorDescriptionClassDiagram.png[width="700"]
+
+==== Deliberate simplifications
+
+The real information about NUS modules are very complicated. Here list down some simplifications we made in order
+to create this proof of concept of our application.
+
+===== Prequisites and preclusion
+
+IVLE provides the prerequisites and preclusion of a module in normal English sentence (e.g. "CS1010 or its equivalents"
+and "Departmental approval"). Extracting the real module prerequisite and preclusion relationship would
+be infeasible due to the potential long list of exceptions we need to handle. To simplify this, we use
+regular expression to extract the module codes.
+
+How are prerequisite and preclusion checking is implemented:
+
+* If user wants to take Module A, all prerequisites of Module A must already have been taken.
+* If Module B's preclusion has at least one module that user has already taken, user cannot take Module B.
+
+This gives a reasonable approximation of prerquisite and preclusion relationship for most modules.
+
+===== Corequisites
+
+Corequisite is used to descibe which modules must be taken together. We choose to ignore this entirely
+as it will complicate the implementation of `add` and `delete` commands significantly.
+
+==== Data sanitizing script
+
+The python script that downloads the list of NUS modules from NUSMods server and does the data transformation
+detailed above can be found at (link:{repoURL}/tools/moduleConverter.py[`moduleConverter.py`]).
+
+==== Design Consideration
+
+===== Aspect: Representation of major and focus area
+
+* **Alternative 1 (current choice)**: Use enum to represent major and focus area.
+** Pros: Stronger type checking.
+** Cons: Need to explicitly list down all the possible values of enums (there are more than hundreds of focus areas
+in all NUS majors). Special JSON serialization and deserialization is needed for enum types.
+* **Alternative 2**: Use `String` to represent major and focus area.
+** Pros: No need to convert major and focus area inputted by user into another type.
+** Cons: If major/focus area is passed into a function as a parameter, the function cannot assume that
+the it is a valid major/focus area. This leads to a lot of redundant checking.
+
+===== Aspect: Storing of module and major information
+
+To avoid having to download the module and major information from the Internet in first start up, we package
+the data directly into final `.jar` file as a resource file.
+
+* **Alternative 1 (current choice)**: Store data in as a JSON resource file and deserialize data into Java types
+at runtime.
+** Pros: JSON format is easy to learn and can be manipulated easily with other (interpreted) programming languages.
+** Cons: JSON format can only hold simple primitive types such as `String`, number, array and hash table. Need to
+design a way to flatten the module relationship graph into something that can be represented in JSON and reconstruct
+the graph after deserialization.
+* **Alternative 2**: Generate Java code during build time. The data will be directly stored as a static constant Java object.
+** Pros: Better performance in runtime as the deserialization is no longer needed. Less moving parts when testing the data itself.
+** Cons: More complex build procedures.
+
+===== Aspect: Two different classes to store module related information (`ModuleInfo` and `ModuleDescription`)
+
+`ModuleInfoRetriever` opens the processed `data/moduleInfo.json` file packaged in the JAR file and deserialize its
+content into an array of `ModuleInfo` objects. As JSON can only hold simple values such as strings and numbers,
+prerequisites and preclusion are stored as an array of `String`, so we need to call `ModuleInfo.finalizeModuleInfo` to
+convert the strings into `ModuleInfo`s as well before we can start querying prerequisite and preclusion from
+`ModuleInfo#getPrerequisites` and `ModuleInfo#getPreclusions`.
+
+// end::moduleinfo[]
+
+// tag::setup[]
+
+=== Setup feature
+==== Current Implementation
+
+The `setup` command allows users to save their major and optionally their focus areas in Module Planner.
+The information is stored in `UserProfile` and is later used by `suggest` and `status` commands.
+
+The following sequence shows the sequence when `setup` command is executed.
+
+.Sequence Diagram for `setup` command.
+image::SetupSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Aspect: Argument leniency
+* **Alternative 1**: Entirely reject all focus areas even if one is invalid. Focus areas must have the exact same letter casing as
+listed in User Guide.
+** Pros: Implementation would be simpler.
+** Cons: Not user friendly. It is too easy for users to input the wrong letter casing, causing many retries.
+* **Alternative 2 (current choice)**: Accept the valid focus areas even if one is invalid. Focus areas inputted is case-insensitive.
+** Pros: More user friendly. User is able to update the user profile and gets positive result.
+** Cons: Need to implement filtering of valid focus areas from inputted focus areas. As `f/Computer Science` and `f/cOmpUter SciEnce` are now
+both valid inputs and can be inputted at the same time, we also need to filter out duplicates.
+
+==== Aspect: Error handling
+* **Alternative 1**: Check format criterias one by one and immediately throw an error in first failure.
+** Pros: Implementation would be simpler. Less possible of combinations to test.
+** Cons: Not user friendly. User only sees one syntax error at one time. If there are many syntax errors in user's first try, it will take
+many retries for user to figure all the syntax errors.
+* **Alternative 2**: Check all format criterias. If there are more than one erros, concatenate their error message before throwing exception.
+** Pros: More user friendly. User will be able to see all syntax erros in first try and fix them.
+** Cons: Need to create many negative test cases to test each error individually and all together. More
+complicated to test the expected error messages.
+
+// end::setup[]
 
 // tag::add[]
 === Add feature
@@ -629,6 +754,7 @@ Below is how the list of available modules is generated.
 
 The method `ModulePlanner#generateAvailableModules(int index)` is called by `ModulePlanner#updateModulesAvailable()`, which sets the content of `availableModules` to be the list of modules returned by `generateAvailableModules(index)`, with `index` being the stored `availableIndex`.
 
+[source,java]
 ----
 private List<Module> generateAvailableModules(int index) {
     List<Module> modulesAvailable = new ArrayList<>();
@@ -655,6 +781,7 @@ The method `ModulePlanner#generateAvailableModules(int index)` retrieves all mod
 
 The availability checking is done by the following method.
 
+[source,java]
 ----
 public static boolean isModuleAvailableToTake(List<Module> modulesTaken, List<Module> modulesTakenBeforeIndex, Module module) {
     return hasNotTakenModule(modulesTaken, module)
@@ -806,33 +933,6 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 * `WARNING` : Can continue, but with caution
 * `INFO` : Information showing the noteworthy actions by the App
 * `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
-
-// tag::moduleinfo[]
-=== Retrieval and Use of Module Information
-
-Information of a NUS module such as module code, module credit and prerequisite modules are stored in `ModuleInfo` class.
-This class is made to be immutable to avoid accidental changes to the class.
-
-A python script (link:{repoURL}/tools/moduleConverter.py[`moduleConverter.py`]) is used to download the list of NUS modules
-from NUSMods server, do some data transformation and write to `data/moduleInfo.json` for the use of our app.
-
-NUSMods provides the prerequisites and preclusion of a module in normal English sentence (e.g. "CS1010 or its equivalents"
-and "Departmental approval"), attempting to extract the correct prerequisite and preclusion relationship of the modules
-would be infeasible due to the potential long list of exception rules. Therefore, we will only extract the module codes
-in the sentences with regular expression, downside of this is that we won't include CS1010S, CS1010J and so on from
-"CS1010 or its equivalents". We will also assume that if any module in the prerequisite/preclusion list is matched,
-the condition is met immediately (even though this is incorrect for rules like "(MA1101R AND MA1221) OR MA1521").
-
-`ModuleInfoRetriever` opens the processed `data/moduleInfo.json` file packaged in the JAR file and deserialize its
-content into an array of `ModuleInfo` objects. As JSON can only hold simple values such as strings and numbers,
-prerequisites and preclusion are stored as an array of `String`, so we need to call `ModuleInfo.finalizeModuleInfo` to
-convert the strings into `ModuleInfo`s as well before we can start querying prerequisite and preclusion from
-`ModuleInfo#getPrerequisites` and `ModuleInfo#getPreclusions`.
-
-For command implementer, you can access the complete list of `ModuleInfo` from `ModuleInfo#getModuleInfoList()`.
-You can convert a module code string to a `ModuleInfo` object by passing the string to
-`ModuleInfo#getFromModuleCode(String code)`.
-// end::moduleinfo[]
 
 [[Implementation-Configuration]]
 === Configuration

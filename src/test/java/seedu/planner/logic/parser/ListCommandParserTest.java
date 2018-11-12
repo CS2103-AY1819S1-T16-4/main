@@ -22,21 +22,18 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_noFieldPresent_success() {
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE,
-            new ListCommand(VALUE_NOT_AVAILABLE));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE, new ListCommand(VALUE_NOT_AVAILABLE));
     }
 
     @Test
     public void parse_allFieldsPresent_success() {
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_YEAR_DESC_ONE,
-            new ListCommand(VALID_YEAR_ONE));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_YEAR_DESC_ONE, new ListCommand(VALID_YEAR_ONE));
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid year
-        assertParseFailure(parser, INVALID_YEAR_DESC_FIVE,
-            ParserUtil.MESSAGE_INVALID_YEAR);
+        assertParseFailure(parser, INVALID_YEAR_DESC_FIVE, ParserUtil.MESSAGE_INVALID_YEAR);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + VALID_YEAR_DESC_ONE,

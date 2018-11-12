@@ -194,7 +194,7 @@ public class MainWindow extends UiPart<Stage> {
      * within a year or within all years.
      */
     private void initListedModulesPanel() {
-        ObservableList<Module> modules = logic.listTakenModules();
+        ObservableList<Module> modules = logic.getTakenModules();
         ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules, ModulePanelType.TAKEN);
         takenModuleListPanels.add(MAX_NUMBER_SEMESTERS, takenModuleListPanel);
 

@@ -1,5 +1,6 @@
 package seedu.planner.model.course;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
@@ -11,13 +12,13 @@ import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 public enum FocusArea {
     ALGORITHMS_AND_THEORY("Algorithms and Theory"),
     ARTIFICIAL_INTELLIGENCE("Artificial Intelligence"),
-    COMPUTER_GRAPHICS_AND_GAMES("Computer Graphics and Games"),
-    COMPUTER_SECURITY("Computer Security"),
-    DATABASE_SYSTEMS("Database Systems"),
-    MULTIMEDIA_INFORMATION_RETRIEVAL("Multimedia Information Retrieval"),
-    NETWORKING_AND_DISTRIBUTED_SYSTEMS("Networking and Distributed Systems"),
-    PARALLEL_COMPUTING("Parallel Computing"),
-    PROGRAMMING_LANGUAGES("Programming Languages"),
+    // COMPUTER_GRAPHICS_AND_GAMES("Computer Graphics and Games"),
+    // COMPUTER_SECURITY("Computer Security"),
+    // DATABASE_SYSTEMS("Database Systems"),
+    // MULTIMEDIA_INFORMATION_RETRIEVAL("Multimedia Information Retrieval"),
+    // NETWORKING_AND_DISTRIBUTED_SYSTEMS("Networking and Distributed Systems"),
+    // PARALLEL_COMPUTING("Parallel Computing"),
+    // PROGRAMMING_LANGUAGES("Programming Languages"),
     SOFTWARE_ENGINEERING("Software Engineering"),
     @JsonEnumDefaultValue
     UNKNOWN("Unknown");
@@ -29,32 +30,36 @@ public enum FocusArea {
     }
 
     /**
-     * Check if a string matches a {@code FocusArea} enum value.
-     *
+     * Converts the focus area from a {@code String} to a {@code FocusArea}.
+     * <p>
      * Note: Case-insensitive
+     *
+     * @param focusArea The focus area as a {@code String}
+     * @return The focus area as a {@code FocusArea}
      */
-    private static boolean hasFocusArea(String focusArea) {
-        focusArea = focusArea.toLowerCase();
+    private static FocusArea mapFocusArea(String focusArea) {
         for (FocusArea fa : FocusArea.values()) {
-            if (fa.toString().toLowerCase().equals(focusArea)) {
-                return true;
+            if (fa.toString().equalsIgnoreCase(focusArea)) {
+                return fa;
             }
         }
-        return false;
+        return FocusArea.UNKNOWN;
     }
 
     /**
-     * Check if a set of strings all match the enum values of {@code FocusArea}.
-     *
+     * Converts a set of strings to a set of matching {@code FocusArea}, skip those that are invalid.
+     * <p>
      * Note: Case-insensitive
      */
-    public static boolean hasFocusAreas(Set<String> focusArea) {
+    public static Set<FocusArea> filterFocusAreas(Set<String> focusArea) {
+        Set<FocusArea> result = new HashSet<>();
         for (String fa : focusArea) {
-            if (!hasFocusArea(fa)) {
-                return false;
+            FocusArea mappedFocusArea = mapFocusArea(fa);
+            if (mappedFocusArea != UNKNOWN) {
+                result.add(mappedFocusArea);
             }
         }
-        return true;
+        return result;
     }
 
     @Override

@@ -17,6 +17,7 @@ public class StatusEvent extends BaseEvent {
     }
 
     public ObservableMap<DegreeRequirement, int[]> getStatusMessage() { return statusMap; }
+
     @Override
     public String toString() {
         return getClass().getSimpleName();

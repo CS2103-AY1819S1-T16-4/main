@@ -75,9 +75,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 [width="100%",cols="20%,<80%"]
 |=======================================================================
 
-|MAJOR | Supported majors are listed in <<Setting user profile : `setup`, `setup`>> and <<Suggesting modules : `suggest`, `suggest`>>.
+|MAJOR | Supported majors are listed in <<Setting user profile : `setup`, `setup`>>
 
-|FOCUS_AREA | Supported focus areas are listed in <<Setting user profile : `setup`, `setup`>> and <<Suggesting modules : `suggest`, `suggest`>>.
+|FOCUS_AREA | Supported focus areas are listed in <<Setting user profile : `setup`, `setup`>>
 
 |MODULE_CODE | Must be a valid NUS module code in Academic Year 18/19.
 
@@ -112,13 +112,6 @@ Format: `setup m/MAJOR [f/FOCUS_AREA]...`
 ** Focus area:
 *** Algorithms and Theory
 *** Artificial Intelligence
-*** Computer Graphics and Games
-*** Computer Security
-*** Database Systems
-*** Multimedia Information Retrieval
-*** Networking and Distributed Systems
-*** Parallel Computing
-*** Programming Langiages
 *** Software Engineering
 * Default user profile is set to `Computer Science` major with no focus area.
 ****

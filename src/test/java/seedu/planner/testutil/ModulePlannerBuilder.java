@@ -1,6 +1,6 @@
 package seedu.planner.testutil;
 
-import static seedu.planner.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.planner.testutil.TypicalIndexes.INDEX_ZERO;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +31,7 @@ public class ModulePlannerBuilder {
     public ModulePlannerBuilder withModule(Module module) {
         Set<Module> modules = new HashSet<>();
         modules.add(module);
-        modulePlanner.addModules(modules, INDEX_FIRST);
+        modulePlanner.addModules(modules, INDEX_ZERO);
         return this;
     }
 

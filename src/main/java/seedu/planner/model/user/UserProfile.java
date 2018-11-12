@@ -29,63 +29,15 @@ public class UserProfile {
         this.focusAreas = new ArrayList<>(copy.focusAreas);
     }
 
-    public UserProfile(String major, Set<String> focusAreas) {
-        this.major = mapMajor(major);
-        this.focusAreas = mapFocusAreas(focusAreas);
-    }
-
     public UserProfile(Major major, List<FocusArea> focusAreas) {
         this.major = major;
         this.focusAreas = focusAreas;
     }
 
-    /**
-     * Converts the major from a {@code String} to a {@code Major}.
-     *
-     * @param major The major as a {@code String}
-     * @return The major as a {@code Major}
-     */
-    public static Major mapMajor(String major) {
-        for (Major m : Major.values()) {
-            if (m.toString().equals(major)) {
-                return m;
-            }
-        }
-        return Major.UNKNOWN;
-    }
-
-    /**
-     * Converts the focus area from a {@code String} to a {@code FocusArea}.
-     *
-     * @param focusArea The focus area as a {@code String}
-     * @return The focus area as a {@code FocusArea}
-     */
-    private static FocusArea mapFocusArea(String focusArea) {
-        for (FocusArea fa : FocusArea.values()) {
-            if (fa.toString().equals(focusArea)) {
-                return fa;
-            }
-        }
-        return FocusArea.UNKNOWN;
-    }
-
-    /**
-     * Converts the focus areas from {@code String}s to {@code FocusArea}s.
-     * Each focus area is converted from a {@code String} to a {@code FocusArea}
-     * using the method {@link #mapFocusArea(String) mapFocusArea}
-     *
-     * @param focusAreas The focus areas as {@code String}s
-     * @return The focus areas as {@code FocusArea}s and sorted
-     */
-    public static List<FocusArea> mapFocusAreas(Set<String> focusAreas) {
-        List<FocusArea> focusAreaList = new ArrayList<FocusArea>();
-
-        for (String fa : focusAreas) {
-            focusAreaList.add(mapFocusArea(fa));
-        }
-        Collections.sort(focusAreaList);
-
-        return focusAreaList;
+    public UserProfile(Major major, Set<FocusArea> focusAreas) {
+        this.major = major;
+        this.focusAreas = new ArrayList<>(focusAreas);
+        Collections.sort(this.focusAreas);
     }
 
     /**

@@ -5,6 +5,8 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.planner.model.course.DegreeRequirement;
+import seedu.planner.model.course.FocusArea;
+import seedu.planner.model.course.Major;
 import seedu.planner.model.module.Module;
 
 /**
@@ -18,7 +20,7 @@ public interface Model {
      * @param major The major
      * @param focusAreas The focus areas
      */
-    void setUpUserProfile(String major, Set<String> focusAreas);
+    void setUpUserProfile(Major major, Set<FocusArea> focusAreas);
 
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyModulePlanner newData);
@@ -78,14 +80,14 @@ public interface Model {
      *
      * @param year A valid integer between 1 to 4 inclusive, signifying year to be listed.
      */
-    void listTakenModulesYear(int year);
+    void listTakenModulesForYear(int year);
 
     /**
      * Retrieves a list containing modules that have been taken (added to ModulePlanner) by the user.
      *
      * @return An unmodifiable view of modules taken by the user.
      */
-    ObservableList<Module> listTakenModules();
+    ObservableList<Module> getTakenModules();
 
     /**
      * Retrieves the actual module information of the {@code modules}
