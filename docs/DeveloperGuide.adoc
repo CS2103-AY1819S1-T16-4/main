@@ -254,9 +254,9 @@ Classes used by multiple components are in the `seedu.planner.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 // tag::moduleinfo[]
-=== Module and Major Information
+=== Module and Academic Major Information
 
-Information about modules and majors supports almost all the features in Module Planner.
+Information about modules and academic majors supports almost all the features in Module Planner.
 
 Information of a module such as module code, module credit and prerequisite modules are stored in `ModuleInfo` class.
 This class is made to be immutable to avoid accidental changes to the class.
@@ -266,7 +266,7 @@ This class is made to be immutable to avoid accidental changes to the class.
 
 Internally, `ModuleInfo` is an immutable class that holds all the information of a module that is universal to
 all students from any faculty. `MajorDescription` is an immutable class that holds information about the
-requirements of a major.
+requirements of an academic major.
 
 .Class diagram for `ModuleInfo`.
 image::ModuleInfoClassDiagram.png[width="450"]
@@ -313,20 +313,20 @@ transformation detailed above can be found at (link:{repoURL}/tools/moduleConver
 
 ==== Design Consideration
 
-===== Aspect: Representation of major and focus area
+===== Aspect: Representation of academic major and focus area
 
-* **Alternative 1 (current choice)**: Use enum to represent major and focus area.
+* **Alternative 1 (current choice)**: Use enum to represent academic major and focus area.
 ** Pros: Stronger type checking.
 ** Cons: Need to explicitly list down all the possible values of enums (there are more than hundreds of focus areas
-in all NUS majors). Special JSON serialization and deserialization is needed for enum types.
-* **Alternative 2**: Use `String` to represent major and focus area.
-** Pros: No need to convert major and focus area inputted by user into another type.
-** Cons: If major/focus area is passed into a function as a parameter, the function cannot assume that
-the it is a valid major/focus area. This leads to a lot of redundant checking.
+in all NUS academic majors). Special JSON serialization and deserialization is needed for enum types.
+* **Alternative 2**: Use `String` to represent academic major and focus area.
+** Pros: No need to convert academic major and focus area inputted by user into another type.
+** Cons: If academic major/focus area is passed into a function as a parameter, the function cannot assume that
+the it is a valid academic major/focus area. This leads to a lot of redundant checking.
 
-===== Aspect: Storing of module and major information
+===== Aspect: Storing of module and academic major information
 
-To avoid having to download the module and major information from the Internet in first start up, we package
+To avoid having to download the module and academic major information from the Internet in first start up, we package
 the data directly into final `.jar` file as a resource file.
 
 * **Alternative 1 (current choice)**: Store data in as a JSON resource file and deserialize data into Java types
@@ -341,11 +341,11 @@ the graph after deserialization.
 
 ===== Aspect: Class representation of module related information
 
-* **Alternative 1 (current choice)**: Use `ModuleInfo` class to represent module information that is transparent to user's major
-and `ModuleDescription` class to represent module information that is specific to the requirements of a major.
+* **Alternative 1 (current choice)**: Use `ModuleInfo` class to represent module information that is transparent to user's academic major
+and `ModuleDescription` class to represent module information that is specific to the requirements of an academic major.
 ** Pros: Clear separation of concern. Commands that does not depend on `UserProfile` only needs to
 interact with `ModuleInfo` and not affected by changes to `ModuleDescription`.
-** Cons: Commands that need module information specific to a major (e.g. `suggest` and `status`) still need
+** Cons: Commands that need module information specific to an academic major (e.g. `suggest` and `status`) still need
 to depend on `ModuleInfo`.
 * **Alternative 2**: Use one class to hold all types of module information.
 ** Pros: Less classes to reason about.
@@ -359,7 +359,7 @@ in `UserProfile`. The JSON form of the data will be more complex.
 === Setup feature
 ==== Current Implementation
 
-The `setup` command allows users to save their major and optionally their focus areas in Module Planner.
+The `setup` command allows users to save their academic major and optionally their focus areas in Module Planner.
 The information is stored in `UserProfile` and is later used by `suggest` and `status` commands.
 
 The following sequence diagram shows the sequence when `setup` command is executed.
