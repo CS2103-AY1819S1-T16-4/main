@@ -239,7 +239,7 @@ The `Storage` component,
 * can save `UserPref` objects in JSON format and read it back.
 * can save `ReadOnlyModulePlanner` object in JSON format and read it back.
 
-.Interactions inside the Storage component whenever `ModulePlannerChangedEvent` is fired.
+.Interactions inside the Storage component for whenever `ModulePlannerChangedEvent` is fired.
 image::StorageSequenceDiagram.png[width="800"]
 
 // end::storage[]
@@ -279,7 +279,7 @@ image::MajorDescriptionClassDiagram.png[width="700"]
 The real information about NUS modules are very complicated. Here we list down some simplifications we made in order
 to create this proof of concept of our application.
 
-===== Prerequisites and preclusion
+===== Prequisites and preclusion
 
 IVLE provides the prerequisites and preclusion of a module in normal English sentence (e.g. "CS1010 or its equivalents"
 and "Departmental approval"). Extracting the real module prerequisite and preclusion relationship would
@@ -295,7 +295,7 @@ This gives us a reasonable approximation of prerquisite and preclusion relations
 
 ===== Corequisites
 
-Corequisite is used to describe which modules must be taken together. We choose to ignore this entirely
+Corequisite is used to descibe which modules must be taken together. We choose to ignore this entirely
 as it will complicate the implementation of `add` and `delete` commands significantly.
 
 ===== Old modules that have been phased out
@@ -317,12 +317,12 @@ transformation detailed above can be found at (link:{repoURL}/tools/moduleConver
 
 * **Alternative 1 (current choice)**: Use enum to represent academic major and focus area.
 ** Pros: Stronger type checking.
-** Cons: Need to explicitly list down all the possible `enum` values (there are more than one hundred focus areas
-across all NUS academic majors). Special JSON serialization and deserialization is needed for enum types.
+** Cons: Need to explicitly list down all the possible values of enums (there are more than hundreds of focus areas
+in all NUS academic majors). Special JSON serialization and deserialization is needed for enum types.
 * **Alternative 2**: Use `String` to represent academic major and focus area.
 ** Pros: No need to convert academic major and focus area inputted by user into another type.
 ** Cons: If academic major/focus area is passed into a function as a parameter, the function cannot assume that
-the parameter is a valid academic major/focus area. This leads to a lot of redundant checking.
+the it is a valid academic major/focus area. This leads to a lot of redundant checking.
 
 ===== Aspect: Storing of module and academic major information
 
@@ -380,11 +380,11 @@ listed in User Guide.
 both valid inputs and can be inputted at the same time, we also need to filter out duplicates.
 
 ===== Aspect: Error handling
-* **Alternative 1**: Execute syntax format checking one by one and immediately throw command exception in first failure.
+* **Alternative 1**: Execute syntax format checkings one by one and immediately throw command exception in first failure.
 ** Pros: Implementation would be simpler. Less possible of negative test cases to test.
 ** Cons: Not user friendly. User only sees one syntax error at one time. If there are many syntax errors in user's first try, it will take
 several retries for user to figure all the syntax errors.
-* **Alternative 2 (current choice)**: Always execute all syntax format checking. If there are more than one error, concatenate their error
+* **Alternative 2 (current choice)**: Always execute all syntax format checkings. If there are more than one error, concatenate their error
 message before throwing command exception.
 ** Pros: More user friendly. User will be able to see all syntax errors in first try and attempt to fix them.
 ** Cons: Need to create many negative test cases to test each error individually and all together. More
@@ -1357,3 +1357,11 @@ These instructions only provide a starting point for testers to work on; testers
    These files contain default values and not custom values set by the user.
 
 image::CorruptedDataFile.png[width="300"]
+
+=== Set up user profile
+
+. Set up user profile
+
+.. Test case: Valid major with exact letter casing, no focus area
+*** Command: `setup m/Computer Science`
+*** Expected: Sucessfully set up user profile with Computer Science major and no focus area.
