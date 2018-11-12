@@ -146,6 +146,6 @@ public class ParserUtilTest {
     public void parseSemester_validValueWithWhitespace_returnsTrimmedSemester() throws Exception {
         String semesterWithWhitespace = WHITESPACE + VALID_SEMESTER + WHITESPACE;
         int expectedSemester = Integer.parseInt(VALID_SEMESTER);
-        assertEquals(expectedSemester, ParserUtil.parseYear(semesterWithWhitespace));
+        assertEquals(expectedSemester, ParserUtil.parseSemester(semesterWithWhitespace));
     }
 }

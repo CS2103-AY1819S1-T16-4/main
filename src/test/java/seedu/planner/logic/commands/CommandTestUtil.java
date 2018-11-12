@@ -42,6 +42,7 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_CODE_DESC_CS2030 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS2030;
     public static final String VALID_MODULE_CODE_DESC_CS2040 = " " + PREFIX_CODE + VALID_MODULE_CODE_CS2040;
 
+    public static final String INVALID_MODULE_CODE_DESC_CS0000 = " " + PREFIX_CODE + INVALID_MODULE_CODE_CS0000;
 
     public static final int VALID_YEAR_ONE = 1;
     public static final int VALID_YEAR_TWO = 2;

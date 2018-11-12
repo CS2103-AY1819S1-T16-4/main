@@ -76,10 +76,27 @@ public class StringUtil {
     //@@author GabrielYik
 
     /**
+     * Checks if the String, which is a number, can be parsed by {@code Integer#parseInt}.
+     *
+     * @param s The String
+     * @return True if the String can be parsed, false otherwise
+     */
+    public static boolean isParsableInteger(String s) {
+        requireNonNull(s);
+
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    /**
      * Checks if the String contains only alphabets.
      *
      * @param s The String
-     * @return True if the String contains only alphabets
+     * @return True if the String contains only alphabets, false otherwise
      */
     public static boolean containsOnlyLettersAndWhiteSpace(String s) {
         requireNonNull(s);
@@ -94,7 +111,7 @@ public class StringUtil {
      */
     public static boolean containsOnlyNumbers(String s) {
         requireNonNull(s);
-        return s.trim().matches(ALL_NUMBERS_REGEX);
+        return s.matches(ALL_NUMBERS_REGEX);
     }
 
     /**
@@ -103,7 +120,7 @@ public class StringUtil {
      * @param s1 The first string
      * @param s2 The second string
      * @return True if both strings are equal while ignoring their case,
-     *  else false
+     *  false otherwise
      */
     public static boolean areEqualIgnoreCase(String s1, String s2) {
         requireAllNonNull(s1, s2);
@@ -111,25 +128,8 @@ public class StringUtil {
     }
 
     /**
-     * Capitalizes the first letter of the {@code word}.
-     * If the word is made up of a single letter,
-     * the letter itself is capitalized.
-     *
-     * @param word The word
-     * @return The word with each first letter capitalized
-     */
-    private static String capitalizeWord(String word) {
-        requireNonNull(word);
-
-        if (word.length() == 1) {
-            return word.toUpperCase();
-        } else {
-            return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
-        }
-    }
-
-    /**
-     * Capitalizes the first letter of each word in the {@code sentence}.
+     * Capitalizes the first letter of each word in the {@code sentence}
+     * and ensures that the other letters are not.
      *
      * @param sentence The sentence
      * @return The sentence with each word having its first
@@ -148,5 +148,24 @@ public class StringUtil {
         }
 
         return sb.toString().trim();
+    }
+
+    /**
+     * Capitalizes the first letter of the {@code word}.
+     * If the word is made up of a single letter,
+     * the letter itself is capitalized.
+     *
+     * @param word The word
+     * @return The word with each first letter capitalized
+     */
+    private static String capitalizeWord(String word) {
+        requireNonNull(word);
+
+        if (word.length() == 1) {
+            return word.toUpperCase();
+        } else {
+            String capitalizedWord = word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
+            return capitalizedWord.trim();
+        }
     }
 }
