@@ -627,7 +627,9 @@ support years beyond the 4th.
 === List feature
 ==== Current Implementation
 
-The list mechanism displays either a list of modules that the user has added to a specified year or a list of all modules that the user has added to every year. It is facilitated by `ModulePlanner`. The `ModulePlanner` stores a list of all `Semester` s and each `Semester` stores a list `modulesTaken` containing modules that the user has added to that `Semester`.
+The list mechanism displays either a list of modules that the user has added to a specified year or a list of all modules that the user has added to every year.
+
+This mechanism is facilitated by `ModulePlanner`. The `ModulePlanner` stores a list of all `Semester` s and each `Semester` stores a list `modulesTaken` containing modules that the user has added to that `Semester`.
 It implements the following operation:
 
 * `ModulePlanner#getTakenModules()` -- Retrieves the list `takenModules`.
@@ -739,7 +741,8 @@ Below are the summary of pros and cons of the current implementation and the alt
 ==== Current Implementation
 
 The suggest mechanism displays a list of modules available in the specified index to the user, where index represents the year and semester that the user is asking suggestions for.
-It is supported by an internal list `availableModules` in `ModulePlanner`, which is regenerated after every successful execution of commands that modify `ModulePlanner` (`add`, `delete`, `clear`, etc.) and `suggest` command.
+
+This mechanism is supported by an internal list `availableModules` in `ModulePlanner`, which is regenerated after every successful execution of commands that modify `ModulePlanner` (`add`, `delete`, `clear`, etc.) and `suggest` command.
 The list `availableModules` can be retrieved through `Model#getAvailableList()` using `suggest` command, which (`suggest` command) takes in two arguments: a valid year and a valid semester.
 
 [NOTE]

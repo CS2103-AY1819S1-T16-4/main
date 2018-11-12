@@ -7,7 +7,7 @@
 
 == Overview
 
-This project portfolio showcases the contributions I have made in a team project under CS2103T Software Engineering. I worked in a team of four COmputer Science students to develop a product named ModulePlanner that is built on top of an existing software (AddressBook - Level 4).
+This project portfolio showcases the contributions I have made in a team project under the module CS2103T: Software Engineering. I worked in a team of four Computer Science students to develop a product named ModulePlanner that is built on top of an existing software (AddressBook - Level 4).
 
 ModulePlanner is a desktop application made to help NUS Computer Science and Computer Engineering undergraduate students plan their modules. It is designed to be used mainly through a Command Line Interface (CLI), although it also provides a Graphical User Interface (GUI).
 
@@ -16,9 +16,11 @@ The main features include:
 ** Suggesting available modules based on major requirements and modules' prerequisites.
 ** Adding and deleting modules to or from the planner.
 
-The next few sections describe my contributions to the project.
-
 == Summary of contributions
+
+|===
+|_Given below are enhancements I implemented for the product and other contributions I made to the team. They showcase my abilities in software engineering and in working with a team._
+|===
 
 * *Major enhancement*: added the ability to *suggest available modules to the user*
 ** What it does: allows the user to see the modules he/she is available to take in each semester, based on the modules he/she has added to the planner.
@@ -26,7 +28,7 @@ The next few sections describe my contributions to the project.
 ** Highlights: This is the main feature of our application. It required a careful consideration of several design alternatives and implementation choices. The implementation was challenging as it interacted with various components and other commands.
 ** Pull requests: https://github.com/CS2103-AY1819S1-T16-4/main/pull/78[#78], https://github.com/CS2103-AY1819S1-T16-4/main/pull/81[#81], https://github.com/CS2103-AY1819S1-T16-4/main/pull/125[#125], https://github.com/CS2103-AY1819S1-T16-4/main/pull/146[#146], https://github.com/CS2103-AY1819S1-T16-4/main/pull/160[#160], https://github.com/CS2103-AY1819S1-T16-4/main/pull/191[#191]
 
-* *Minor enhancement*: added the ability *list modules that the user has taken*
+* *Minor enhancement*: added the ability to *list modules that the user has taken*
 ** What it does: allows user to see the modules he/she has added to all years or to a specific year.
 ** Justifications: This feature helps the user to quickly check what module(s) he/she has added to the planner.
 ** Pull requests: https://github.com/CS2103-AY1819S1-T16-4/main/pull/33[#33], https://github.com/CS2103-AY1819S1-T16-4/main/pull/68[#68], https://github.com/CS2103-AY1819S1-T16-4/main/pull/114[#114], https://github.com/CS2103-AY1819S1-T16-4/main/pull/143[#143], https://github.com/CS2103-AY1819S1-T16-4/main/pull/189[#189], https://github.com/CS2103-AY1819S1-T16-4/main/pull/195[#195]
