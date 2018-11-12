@@ -9,7 +9,7 @@ import static seedu.planner.commons.util.StringUtil.areEqualIgnoreCase;
 import static seedu.planner.commons.util.StringUtil.capitalizeSentence;
 import static seedu.planner.commons.util.StringUtil.containsOnlyLettersAndWhiteSpace;
 import static seedu.planner.commons.util.StringUtil.containsOnlyNumbers;
-import static seedu.planner.commons.util.StringUtil.isParsable;
+import static seedu.planner.commons.util.StringUtil.isParsableInteger;
 
 import java.io.FileNotFoundException;
 import java.util.Optional;
@@ -161,20 +161,20 @@ public class StringUtilTest {
         StringUtil.getDetails(null);
     }
 
-    //------------- Tests for isParsable -----------------------------
+    //------------- Tests for isParsableInteger -----------------------------
 
     @Test
-    public void isParsable_notParsableNumber_returnsTrue() {
-        assertFalse(isParsable("111111111111111111111"));
-        assertFalse(isParsable("-111111111111111111111"));
+    public void isParsableInteger_notParsableNumber_returnsTrue() {
+        assertFalse(isParsableInteger("111111111111111111111"));
+        assertFalse(isParsableInteger("-111111111111111111111"));
     }
 
     @Test
-    public void isParsable_parsableNumber_returnsFalse() {
-        assertTrue(isParsable(Long.toString(Integer.MAX_VALUE + 1)));
-        assertTrue(isParsable(Long.toString(Integer.MIN_VALUE - 1)));
-        assertTrue(isParsable(String.valueOf(5)));
-        assertTrue(isParsable(String.valueOf(-5)));
+    public void isParsableInteger_parsableNumber_returnsFalse() {
+        assertTrue(isParsableInteger(Long.toString(Integer.MAX_VALUE + 1)));
+        assertTrue(isParsableInteger(Long.toString(Integer.MIN_VALUE - 1)));
+        assertTrue(isParsableInteger(String.valueOf(5)));
+        assertTrue(isParsableInteger(String.valueOf(-5)));
     }
 
     //------------- Tests for containsOnlyLettersAndWhiteSpace ----------------

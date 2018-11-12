@@ -81,7 +81,7 @@ public class StringUtil {
      * @param s The String
      * @return True if the String can be parsed, false otherwise
      */
-    public static boolean isParsable(String s) {
+    public static boolean isParsableInteger(String s) {
         requireNonNull(s);
 
         try {
