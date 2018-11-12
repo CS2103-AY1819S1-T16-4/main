@@ -30,7 +30,7 @@ Module Planner is for NUS Computer Science undergraduate students who *prefer to
 . The first page you will see when Module Planner starts up.
 +
 .On start up
-image::Ui.png[width="790"]
+image::onstartup.png[width="790"]
 +
 
 // tag::labelledUi[]
