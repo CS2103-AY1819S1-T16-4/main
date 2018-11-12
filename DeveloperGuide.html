@@ -276,17 +276,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <div class="sect3">
 <h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">1.4.4. Getting started with coding</a></h4>
 <div class="paragraph">
-<p>When you are ready to start coding,</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Get some sense of the overall design by reading <a href="#Design-Architecture">Section 2.1, &#8220;Architecture&#8221;</a>.</p>
-</li>
-<li>
-<p>Take a look at <a href="#GetStartedProgramming">[GetStartedProgramming]</a>.</p>
-</li>
-</ol>
+<p>When you are ready to start coding, you can get some sense of the overall design by reading <a href="#Design-Architecture">Section 2.1, &#8220;Architecture&#8221;</a>.</p>
 </div>
 </div>
 </div>
@@ -627,19 +617,19 @@ requirements of a major.</p>
 <div class="sect3">
 <h4 id="deliberate-simplifications"><a class="link" href="#deliberate-simplifications">3.1.2. Deliberate simplifications</a></h4>
 <div class="paragraph">
-<p>The real information about NUS modules are very complicated. Here list down some simplifications we made in order
+<p>The real information about National University of Singapore (NUS) modules are very complicated. Here list down some simplifications we made in order
 to create this proof of concept of our application.</p>
 </div>
 <div class="sect4">
-<h5 id="prequisites-and-preclusion"><a class="link" href="#prequisites-and-preclusion">Prequisites and preclusion</a></h5>
+<h5 id="prerequisites-and-preclusion"><a class="link" href="#prerequisites-and-preclusion">Prerequisites and preclusion</a></h5>
 <div class="paragraph">
-<p>IVLE provides the prerequisites and preclusion of a module in normal English sentence (e.g. "CS1010 or its equivalents"
+<p>IVLE provides the prerequisites and preclusions of a module in normal English sentence (e.g. "CS1010 or its equivalents"
 and "Departmental approval"). Extracting the real module prerequisite and preclusion relationship would
 be infeasible due to the potential long list of exceptions we need to handle. To simplify this, we use
 regular expression to extract the module codes.</p>
 </div>
 <div class="paragraph">
-<p>How are prerequisite and preclusion checking is implemented:</p>
+<p>How are prerequisites and preclusions checking is implemented:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -647,18 +637,18 @@ regular expression to extract the module codes.</p>
 <p>If user wants to take Module A, all prerequisites of Module A must already have been taken.</p>
 </li>
 <li>
-<p>If Module B&#8217;s preclusion has at least one module that user has already taken, user cannot take Module B.</p>
+<p>If Module B&#8217;s preclusions has at least one module that user has already taken, user cannot take Module B.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>This gives a reasonable approximation of prerquisite and preclusion relationship for most modules.</p>
+<p>This gives a reasonable approximation of prerequisite and preclusion relationship for most modules.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="corequisites"><a class="link" href="#corequisites">Corequisites</a></h5>
 <div class="paragraph">
-<p>Corequisite is used to descibe which modules must be taken together. We choose to ignore this entirely
+<p>Corequisite is used to describe which modules must be taken together. We choose to ignore this entirely
 as it will complicate the implementation of <code>add</code> and <code>delete</code> commands significantly.</p>
 </div>
 </div>
@@ -1024,7 +1014,16 @@ In turn, <code>Semester</code> stores a list of the modules the user has taken, 
 <p>When a module is deleted, <code>ModulePlanner</code> will go through every module added after the semester which the
 module is deleted from and checks if those modules now have prerequisites that are not fulfilled. If there
 are now prerequisites not fulfilled for the modules checked, they too are deleted and the process repeats for them.
-For better addressing, this process will be defined as <em>Iterative Deletion</em>.</p>
+This process is the same for when multiple modules are deleted. For better addressing, this process will be defined
+as <em>Iterative Deletion</em>.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram shows how Iterative Deletion works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/IterativeDeletionActivityDiagram.png" alt="IterativeDeletionActivityDiagram" width="500">
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -1057,7 +1056,7 @@ are shown to the user in the Result Display. Modules with invalid module code fo
 <p>The above operation is exposed in the <code>Model</code> interface as <code>Model#deleteModules(List&lt;Module&gt; modules)</code></p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the delete operation works:</p>
+<p>The following sequence diagram shows how the <code>delete</code> operation works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1066,12 +1065,12 @@ are shown to the user in the Result Display. Modules with invalid module code fo
 </div>
 <div class="paragraph">
 <p>Below are some usage scenarios.
-For convenience, let&#8217;s define some valid modules: <code>CS1010</code>, <code>CS2030</code> and <code>CS2040</code>
-and an invalid module <code>CS0000</code>. <code>CS1010</code> is a prerequisite for <code>CS2030</code> and <code>CS2040</code>.
+For convenience, let&#8217;s define some valid modules: CS1010, CS2030 and CS2040
+and an invalid module CS0000. CS1010 is one of the prerequisites for CS2030 and CS2040.
 Let&#8217;s also initialise a module planner with those valid modules:<br></p>
 </div>
 <table class="tableblock frame-all grid-all" style="width: 50%;">
-<caption class="title">Table 1. Sample Module Planner</caption>
+<caption class="title">Table 1. Module Planner Initial State</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1097,16 +1096,16 @@ Let&#8217;s also initialise a module planner with those valid modules:<br></p>
 <div class="sect4">
 <h5 id="a-valid-module"><a class="link" href="#a-valid-module">A Valid Module</a></h5>
 <div class="paragraph">
-<p>The user executes <code>delete c/CS1010</code> command to delete the valid module <code>CS1010</code>.
+<p>The user executes <code>delete c/CS1010</code> command to delete the valid module CS1010.
 The <code>delete</code> command calls <code>Model#deleteModules(&#8230;&#8203;)</code>, which removes the module from the semester where it is found.
-Iterative Deletion is then applied. Since <code>CS2030</code> and <code>CS2040</code> have <code>CS1010</code> as a prerequisite, if <code>CS1010</code> is
-deleted, <code>CS2030</code> and <code>CS2040</code> will too be deleted.</p>
+Iterative Deletion is then applied. Since CS2030 and CS2040 have CS1010 as a prerequisite, if CS1010 is
+deleted, CS2030 and CS2040 will be deleted too.</p>
 </div>
 <div class="paragraph">
 <p>The module planner now has this state:<br></p>
 </div>
 <table class="tableblock frame-all grid-all" style="width: 50%;">
-<caption class="title">Table 2. Sample Module Planner</caption>
+<caption class="title">Table 2. Module Planner Current State</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1147,7 +1146,7 @@ the command fails and <code>Model#deleteModules(&#8230;&#8203;)</code> will not 
 <p>The module planner now has this state:<br></p>
 </div>
 <table class="tableblock frame-all grid-all" style="width: 50%;">
-<caption class="title">Table 3. Sample Module Planner</caption>
+<caption class="title">Table 3. Module Planner Current State</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1185,8 +1184,8 @@ This applies to where more than one invalid module is supplied.
 <div class="sect4">
 <h5 id="mix-of-valid-and-invalid-modules"><a class="link" href="#mix-of-valid-and-invalid-modules">Mix of Valid and Invalid Modules</a></h5>
 <div class="paragraph">
-<p>The user executes <code>delete c/CS2030 c/CS0000</code>. However, only the module <code>CS2030</code> is valid.
-In this case, <code>Model#deleteModules(&#8230;&#8203;)</code> is still called, but only the valid module <code>CS2030</code> will be deleted.
+<p>The user executes <code>delete c/CS2030 c/CS0000</code>. However, only the module CS2030 is valid.
+In this case, <code>Model#deleteModules(&#8230;&#8203;)</code> is still called, but only the valid module CS2030 will be deleted.
 The user will be informed of the invalid module.</p>
 </div>
 <div class="admonitionblock note">
@@ -1205,7 +1204,7 @@ This applies to where more than one valid and invalid modules are supplied.
 <p>The module planner now has this state:<br></p>
 </div>
 <table class="tableblock frame-all grid-all" style="width: 50%;">
-<caption class="title">Table 4. Sample Module Planner</caption>
+<caption class="title">Table 4. Module Planner Current State</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1273,15 +1272,15 @@ and the user will be informed to input arguments.</p>
 <ul>
 <li>
 <p>Alternative 1 (current choice): Iterate through the modules in each semester for all years. For each semester, the modules
-that do not have their prerequisite fulfilled are marked as invalid and are deleted.</p>
+that do not have their prerequisite(s) fulfilled are marked as invalid and are deleted.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: Simple logic and requires minimal code.</p>
 </li>
 <li>
-<p>Cons: Although the number of modules in the module planner is weakly limited by the education institute (students are only
-required to take about 40 modules to earn a degree), the algorithm is still relatively slow.</p>
+<p>Cons: Although the number of modules in the module planner is weakly limited by NUS (students are only
+required to take about 40 modules to earn a degree), the algorithm is slow.</p>
 </li>
 </ul>
 </div>
@@ -1320,7 +1319,7 @@ a specified module.</p>
 <div class="sect4">
 <h5 id="input-2"><a class="link" href="#input-2">Input</a></h5>
 <div class="paragraph">
-<p>The argument given to the mechanism is a module, which has to be offered by the education institute. If a module is not offered,
+<p>The argument given to the mechanism is a module, which has to be offered by NUS. If a module is not offered,
 the command fails.</p>
 </div>
 </div>
@@ -1330,7 +1329,7 @@ the command fails.</p>
 <p>The information about the module is retrieved and displayed in the Multipurpose Panel.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the find operation works:</p>
+<p>The following sequence diagram shows how the <code>find</code> operation works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1345,13 +1344,13 @@ the command fails.</p>
 <div class="sect3">
 <h4 id="module-is-offered"><a class="link" href="#module-is-offered">3.5.2. Module is Offered</a></h4>
 <div class="paragraph">
-<p>The user executes <code>find c/CS1010</code>. The <code>MultiPurposePanel</code> displays the retrieved module information.</p>
+<p>The user executes <code>find c/CS1010</code>. The Multipurpose Panel displays the retrieved module information.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="module-is-not-offered"><a class="link" href="#module-is-not-offered">3.5.3. Module is Not Offered</a></h4>
 <div class="paragraph">
-<p>The user executes <code>find c/CS0000</code>. The <code>MultiPurposePanel</code> does not display anything.</p>
+<p>The user executes <code>find c/CS0000</code>. The Multipurpose Panel does not display anything.</p>
 </div>
 </div>
 </div>
@@ -1364,7 +1363,7 @@ the command fails.</p>
 <div class="paragraph">
 <p>The goto mechanism is facilitated by the posting and handling of events. The <code>GoToCommand#execute(&#8230;&#8203;)</code> is the event poster
 and the <code>MainWindow#handleGoToEvent(&#8230;&#8203;)</code> is the event handler. <code>goto</code> allows the user to switch between time periods in the ui.
-A time period is defined as a year-semester pair [Year, Semester].</p>
+A time period is defined as a year-semester pair. e.g. Year 1 semester 1</p>
 </div>
 </div>
 <div class="sect4">
@@ -1380,7 +1379,7 @@ between 1 and 2.</p>
 <p>The ui switches time periods to the specified. The modules taken in the time period is displayed too.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the goto operation works:</p>
+<p>The following sequence diagram shows how the <code>goto</code> operation works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2908,7 +2907,7 @@ Expected: The most recent window size and location is retained.</p>
 <ol class="loweralpha" type="a">
 <li>
 <p>Prerequisite: There needs to be at least one module in the module planner that is <strong>not</strong> a prerequisite
-for other modules. These modules are usually level 1000 modules like <code>CS1010</code> and <code>GER1000</code>. If no such
+for other modules. These modules are usually level 1000 modules like CS1010 and GER1000. If no such
 modules are in the module planner, add one or more (e.g. <code>add y/1 s/1 c/CS1010</code> and <code>add y/1 s/1 c/GER1000</code>).</p>
 </li>
 <li>
@@ -2924,14 +2923,14 @@ Expected: The module is removed and the ui updates to show that.</p>
 <ol class="loweralpha" type="a">
 <li>
 <p>Prerequisite: There needs to be at least one module in the module planner that is a prerequisite
-for other modules. These modules are usually level 2000 modules and above like <code>CS2030</code> and <code>CS2040</code>.
+for other modules. These modules are usually level 2000 modules and above like CS2030 and CS2040.
 If no such modules are in the module planner, add one or more (e.g. <code>add y/1 s/2 c/CS2030</code> and
 <code>add y/1 s/2 c/CS2040</code>).</p>
 </li>
 <li>
 <p>Test case: <code>delete c/CS1010</code>.<br>
-Expected: The module is removed and the ui updates to show that. The modules that depend on <code>CS1010</code> like
-<code>CS2030</code> and <code>CS2040</code> will be removed to.</p>
+Expected: The module is removed and the ui updates to show that. The modules that depend on CS1010 like
+CS2030 and CS2040 will be removed too.</p>
 </li>
 </ol>
 </div>
@@ -2963,8 +2962,8 @@ An input like <code>add y/1 s/2 c/CS2030</code> does not work.<br></p>
 </div>
 <div class="paragraph">
 <p><strong>Solution</strong><br>
-Check if the prerequisites of <code>CS2030</code> have been fulfilled. In this case, the prerequisites of
-<code>CS2030</code> are <code>CS1010</code> and <code>CS1231</code>. Add the latter two modules before adding <code>CS2030</code> into at least a
+Check if the prerequisites of CS2030 have been fulfilled. In this case, the prerequisites of
+CS2030 are CS1010 and CS1231. Add the latter two modules before adding CS2030 into at least a
 semester after.</p>
 </div>
 </td>
@@ -3006,7 +3005,7 @@ Expected: The Multipurpose Panel displays the information of <code>CS1010</code>
 </li>
 <li>
 <p>Test case: <code>goto y/&lt;a&gt; s/&lt;b&gt;</code>, where a and b refer to any valid values.<br>
-Expected: The time period in the ui will change from where you were to <code>Year a | Semester b</code>.</p>
+Expected: The time period in the Taken Modules Panel will change from where you were to <code>Year a | Semester b</code>.</p>
 </li>
 </ol>
 </div>
@@ -3053,4 +3052,4 @@ These files contain default values and not custom values set by the user.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:51:16 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:21:38 UTC</div></div></div></body></html>
