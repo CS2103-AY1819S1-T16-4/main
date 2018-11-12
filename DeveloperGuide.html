@@ -1189,22 +1189,22 @@ Only <code>suggest</code> command will change the index (year and semester) to b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>private List&lt;Module&gt; generateAvailableModules(int index) {
-    List&lt;Module&gt; modulesAvailable = new ArrayList&lt;&gt;();
-    List&lt;Module&gt; modulesTaken = getAllModulesTaken();
-    List&lt;Module&gt; modulesTakenBeforeIndex = getAllModulesTakenBeforeIndex(index);
-    List&lt;Module&gt; allModules = getAllModulesFromStorage();
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="predefined-type">List</span>&lt;Module&gt; generateAvailableModules(<span class="type">int</span> index) {
+    <span class="predefined-type">List</span>&lt;Module&gt; modulesAvailable = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();
+    <span class="predefined-type">List</span>&lt;Module&gt; modulesTaken = getAllModulesTaken();
+    <span class="predefined-type">List</span>&lt;Module&gt; modulesTakenBeforeIndex = getAllModulesTakenBeforeIndex(index);
+    <span class="predefined-type">List</span>&lt;Module&gt; allModules = getAllModulesFromStorage();
 
-    for (Module m : allModules) {
-        if (ModuleUtil.isModuleAvailable(modulesTaken, modulesTakenBeforeIndex, m)) {
+    <span class="keyword">for</span> (Module m : allModules) {
+        <span class="keyword">if</span> (ModuleUtil.isModuleAvailable(modulesTaken, modulesTakenBeforeIndex, m)) {
             modulesAvailable.add(m);
         }
     }
 
     sortAvailableModules(modulesAvailable, userProfile);
 
-    return modulesAvailable;
-}</pre>
+    <span class="keyword">return</span> modulesAvailable;
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1225,11 +1225,11 @@ Only <code>suggest</code> command will change the index (year and semester) to b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>public static boolean isModuleAvailableToTake(List&lt;Module&gt; modulesTaken, List&lt;Module&gt; modulesTakenBeforeIndex, Module module) {
-    return hasNotTakenModule(modulesTaken, module)
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">boolean</span> isModuleAvailableToTake(<span class="predefined-type">List</span>&lt;Module&gt; modulesTaken, <span class="predefined-type">List</span>&lt;Module&gt; modulesTakenBeforeIndex, Module module) {
+    <span class="keyword">return</span> hasNotTakenModule(modulesTaken, module)
             &amp;&amp; hasFulfilledAllPrerequisites(modulesTakenBeforeIndex, module)
             &amp;&amp; hasNotFulfilledAnyPreclusions(modulesTaken, module);
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2470,4 +2470,4 @@ These files contain default values and not custom values set by the user.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:45:28 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 02:15:18 UTC</div></div></div></body></html>
