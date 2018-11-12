@@ -107,7 +107,7 @@ Format: `setup m/MAJOR [f/FOCUS_AREA]...`
 ****
 * The major and focus areas should be spelt out in full.
 * The major and focus areas are case insensitive. e.g. `Computer Science` is the same as `cOmpUter scienCe`.
-* This feature currently only supports majors and focus areas listed below. Support for other majors and focus areas will come beyond v1.6.
+* This feature currently only supports majors and focus areas listed below. Support for other majors and focus areas will come beyond v2.0.
 ** Major:
 *** Computer Science
 *** Computer Engineering
@@ -279,7 +279,7 @@ Format: `suggest y/YEAR s/SEMESTER`
 * This feature currently only supports *Computer Science* major. If user profile is set to other major in <<Setting user profile : `setup`, `setup`>> command,
 this feature will only give you generic module suggestion sorted in lexicographical order.
 * The list of suggested modules will not be automatically updated after changing major through `setup`. You have to re-execute `suggest` to update the list.
-* Support for other majors will come beyond v1.6.
+* Support for other majors will come beyond v2.0.
 ====
 
 Examples:
