@@ -84,7 +84,9 @@
 <li><a href="#finding-a-module">F.5. Finding a module</a></li>
 <li><a href="#switching-between-time-periods">F.6. Switching between time periods</a></li>
 <li><a href="#saving-data">F.7. Saving data</a></li>
-<li><a href="#set-up-user-profile">F.8. Set up user profile</a></li>
+<li><a href="#suggesting-modules">F.8. Suggesting modules</a></li>
+<li><a href="#listing-modules">F.9. Listing modules</a></li>
+<li><a href="#set-up-user-profile">F.10. Set up user profile</a></li>
 </ul>
 </li>
 </ul>
@@ -1475,7 +1477,10 @@ support years beyond the 4th.
 <div class="sect3">
 <h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The list mechanism is facilitated by <code>ModulePlanner</code>. <code>ModulePlanner</code> stores a list of all <code>Semester`s and each `Semester</code> stores a list <code>modulesTaken</code> containing modules that the user has taken or is planning to take.
+<p>The list mechanism displays either a list of modules that the user has added to a specified year or a list of all modules that the user has added to every year.</p>
+</div>
+<div class="paragraph">
+<p>This mechanism is facilitated by <code>ModulePlanner</code>. The <code>ModulePlanner</code> stores a list of all <code>Semester</code>-s and each <code>Semester</code> stores a list <code>modulesTaken</code> containing modules that the user has added to that <code>Semester</code>.
 It implements the following operation:</p>
 </div>
 <div class="ulist">
@@ -1487,12 +1492,15 @@ It implements the following operation:</p>
 <p><code>ModulePlanner#listTakenModulesAll()</code>&#8201;&#8212;&#8201;Updates <code>takenModules</code> to contain a list of modules retrieved from the list <code>modulesTaken</code> in every <code>Semester</code>.</p>
 </li>
 <li>
-<p><code>ModulePlanner#listTakenModulesForYear(int year)</code>&#8201;&#8212;&#8201;Updates <code>takenModules</code> to contain a list of modules retrieved from the list <code>modulesTaken</code> in the `Semester`s that belongs to the specified year.</p>
+<p><code>ModulePlanner#listTakenModulesForYear(int year)</code>&#8201;&#8212;&#8201;Updates <code>takenModules</code> to contain a list of modules retrieved from the list <code>modulesTaken</code> in the <code>Semester</code>-s that belong to the specified year.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The operation is exposed in <code>Model</code> interface as <code>Model#getTakenModules()</code>, <code>Model#listTakenModulesAll()</code>, and <code>Model#listTakenModulesForYear(int year)</code>.</p>
+<p>The operations are exposed in <code>Model</code> interface as <code>Model#getTakenModules()</code>, <code>Model#listTakenModulesAll()</code>, and <code>Model#listTakenModulesForYear(int year)</code>.</p>
+</div>
+<div class="paragraph">
+<p>If a valid year is specified by the user, the <code>list</code> command will call <code>Model#listTakenModulesForYear(year)</code>, where <code>year</code> is the argument supplied by user. If no year is specified, the <code>list</code> command will call <code>Model#listTakenModulesAll()</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1501,13 +1509,13 @@ It implements the following operation:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
+A valid year should be an integer between 1 to 4 inclusive.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Below is an example usage scenario and how the list mechanism works.</p>
+<p><strong>Below is an example usage scenario and how the list mechanism works.</strong></p>
 </div>
 <div class="paragraph">
 <p>Step 1. User launches the application. <code>ModulePlanner</code> is initialised with 8 <code>Semester</code> objects in a list <code>semesters</code>.</p>
@@ -1546,11 +1554,11 @@ A list containing CS1231 and CS1010 will be displayed to the user.</p>
 <div class="sect3">
 <h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.7.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-list-of-modules-is-retrieved-for-list-command"><a class="link" href="#aspect-how-list-of-modules-is-retrieved-for-list-command">Aspect: How list of modules is retrieved for list command</a></h5>
+<h5 id="aspect-how-list-of-modules-taken-is-retrieved-for-list-command"><a class="link" href="#aspect-how-list-of-modules-taken-is-retrieved-for-list-command">Aspect: How list of modules taken is retrieved for list command</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Updates list of modules whenever it is modified by a command (e.g. <code>add</code>) and immediately retrieves the list upon <code>list</code> command.</p>
+<p><strong>Alternative 1 (current choice):</strong> Updates list of modules taken whenever it is modified by a command (e.g. <code>add</code>) and immediately retrieves the list upon <code>list</code> command.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1563,14 +1571,14 @@ A list containing CS1231 and CS1010 will be displayed to the user.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Saves all commands that modify list of modules without applying it and updates the list based on the commands only when it is retrieved upon <code>list</code> command.</p>
+<p><strong>Alternative 2:</strong> Saves all commands that modify list of modules taken without applying it and updates the list based on the commands only when it is retrieved upon <code>list</code> command.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: May be more effective in terms of running time because it only modifies the list when needed.</p>
 </li>
 <li>
-<p>Cons: Implementation will be more complicated as we have to store all commands that modify the list.</p>
+<p>Cons: Implementation will be more complicated as it required storing all commands that modify the list.</p>
 </li>
 </ul>
 </div>
@@ -1687,9 +1695,11 @@ would be to list down all modules with more than 4 credit count that transfer it
 <div class="sect3">
 <h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">3.9.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The suggest mechanism displays a list of modules available in the specified index to the user, where index represents the year and semester that the user is asking suggestions for.
-It is supported by an internal list <code>availableModules</code> in <code>ModulePlanner</code>, which is regenerated after every successful execution of commands that modify <code>ModulePlanner</code> (<code>add</code>, <code>delete</code>, <code>clear</code>, etc.) and <code>suggest</code> command.
-The list <code>availableModules</code> can be retrieved through <code>Model#getAvailableList()</code> using <code>suggest</code> command, which (<code>suggest</code> command) takes in one argument: a valid index that corresponds to a specific year and semester.</p>
+<p>The suggest mechanism displays a list of modules available in the specified index to the user, where index represents the year and semester that the user is asking suggestions for.</p>
+</div>
+<div class="paragraph">
+<p>This mechanism is supported by an internal list <code>availableModules</code> in <code>ModulePlanner</code>, which is regenerated after every successful execution of commands that modify <code>ModulePlanner</code> (<code>add</code>, <code>delete</code>, <code>clear</code>, etc.) and <code>suggest</code> command.
+The list <code>availableModules</code> can be retrieved through <code>Model#getAvailableList()</code> using <code>suggest</code> command, which (<code>suggest</code> command) takes in two arguments: a valid year and a valid semester.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1698,32 +1708,42 @@ The list <code>availableModules</code> can be retrieved through <code>Model#getA
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
+<div class="ulist">
+<ul>
+<li>
+<p>A valid year should be an integer between 1 to 4 inclusive.</p>
+</li>
+<li>
+<p>A valid semester should be wither 1 or 2.</p>
+</li>
+</ul>
+</div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Below is an example usage scenario and how the suggest mechanism works.</p>
+<p><strong>Below is an example usage scenario and how the suggest mechanism works.</strong></p>
 </div>
 <div class="paragraph">
 <p><strong>Step 1.</strong> User launches the application and <code>ModulePlanner</code> is initialized.</p>
 </div>
 <div class="paragraph">
-<p><strong>Step 2.</strong> User executes <code>suggest y/1 s/1</code>. The <code>suggest</code> command updates <code>availableModules</code> to a newly generated list of available modules for index 0 an stores index 0 as <code>availableIndex</code> in <code>ModulePlanner</code>. It then retrieves <code>availableModules</code> and displays it to user.</p>
+<p><strong>Step 2.</strong> User executes <code>suggest y/1 s/1</code>. The <code>suggest</code> command parser converts year 1 and semester 1 to index 0.
+The <code>suggest</code> command updates <code>availableModules</code> to a newly generated list of available modules for index 0 and stores index 0 as <code>availableIndex</code> in <code>ModulePlanner</code>. It then retrieves <code>availableModules</code> and displays it to user.</p>
 </div>
 <div class="paragraph">
 <p><strong>Step 3.</strong> User executes <code>add y/1 s/2 c/CS1010</code>. The <code>add</code> command performs adding a module and updates <code>availableModules</code> to a newly generated list of available modules for the stored index 0. The suggested modules list shows an updated list of available modules in year 1 semester 1 to the user.
 Only <code>suggest</code> command will change the index (year and semester) to be displayed by the suggested modules list, other commands will only show an updated list for the last index displayed by <code>suggest</code>.</p>
 </div>
 <div class="paragraph">
-<p><strong>Step 4.</strong> User executes <code>suggest y/1 s/2</code>. The <code>suggest</code> command updates <code>availableModules</code> to a newly generated list of available modules for index 1 an stores index 1 as <code>availableIndex</code> in <code>ModulePlanner</code>. It then retrieves <code>availableModules</code> and displays list of available modules in year 1 semester 2 to user.</p>
+<p><strong>Step 4.</strong> User executes <code>suggest y/1 s/2</code>. The <code>suggest</code> command parser converts year 1 and semester 2 to index 1. The <code>suggest</code> command updates <code>availableModules</code> to a newly generated list of available modules for index 1 and stores index 1 as <code>availableIndex</code> in <code>ModulePlanner</code>. It then retrieves <code>availableModules</code> and displays list of available modules in year 1 semester 2 to user.</p>
 </div>
 <div class="paragraph">
-<p>Below is how the list of available modules is generated.</p>
+<p><strong>Below is an explanation on how the list of available modules is generated.</strong></p>
 </div>
 <div class="paragraph">
-<p>The method <code>ModulePlanner#generateAvailableModules(int index)</code> is called by <code>ModulePlanner#updateModulesAvailable()</code>, which sets the content of <code>availableModules</code> to be the list of modules returned by <code>generateAvailableModules(index)</code>, with <code>index</code> being the stored <code>availableIndex</code>.</p>
+<p>The method <code>ModulePlanner#generateAvailableModules(int index)</code> is called by <code>ModulePlanner#updateModulesAvailable()</code>, which sets the content of <code>availableModules</code> to the list of modules returned by <code>generateAvailableModules(index)</code>, with <code>index</code> being the stored <code>availableIndex</code>. The implementation of <code>ModulePlanner#generateAvailableModules(int index)</code> is given below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1759,11 +1779,12 @@ Only <code>suggest</code> command will change the index (year and semester) to b
 </ul>
 </div>
 <div class="paragraph">
-<p>The availability checking is done by the following method.</p>
+<p>The availability checking is done by the following method:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">boolean</span> isModuleAvailableToTake(<span class="predefined-type">List</span>&lt;Module&gt; modulesTaken, <span class="predefined-type">List</span>&lt;Module&gt; modulesTakenBeforeIndex, Module module) {
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">boolean</span> isModuleAvailable(<span class="predefined-type">List</span>&lt;Module&gt; modulesTaken,
+                                        <span class="predefined-type">List</span>&lt;Module&gt; modulesTakenBeforeIndex, Module module) {
     <span class="keyword">return</span> hasNotTakenModule(modulesTaken, module)
             &amp;&amp; hasFulfilledAllPrerequisites(modulesTakenBeforeIndex, module)
             &amp;&amp; hasNotFulfilledAnyPreclusions(modulesTaken, module);
@@ -1771,8 +1792,10 @@ Only <code>suggest</code> command will change the index (year and semester) to b
 </div>
 </div>
 <div class="paragraph">
-<p>A sample scenario:
-Module CS2030 has a prerequisite CS1010 and a preclusion CS1020. User has taken CS1010 in year 1 semester 2 and has not taken CS1020 or CS2030.</p>
+<p>A sample scenario:</p>
+</div>
+<div class="paragraph">
+<p>Module CS2030 has a prerequisite CS1010 and a preclusion CS1020. User has taken CS1010 in year 1 semester 2 and has not taken CS1020 or CS2030.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1800,7 +1823,7 @@ Module CS2030 has a prerequisite CS1010 and a preclusion CS1020. User has taken 
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Regenerates list of available modules after every successful execution of commands that modify <code>ModulePlanner</code> and <code>suggest</code> command.</p>
+<p><strong>Alternative 1 (current choice):</strong> Regenerates list of available modules after every successful execution of commands that <strong>may</strong> modify the list of available modules.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1813,14 +1836,14 @@ Module CS2030 has a prerequisite CS1010 and a preclusion CS1020. User has taken 
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Regenerates list of available module only after successful execution of commands that modify the content of the list of available modules.</p>
+<p><strong>Alternative 2:</strong> Regenerates list of available modules only if a command modifies the content of the list of available modules.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: May be more effective in terms of running time because it only regenerates the list when needed.</p>
 </li>
 <li>
-<p>Cons: Implementation will be more complicated as we have to check whether a command modifies the list.</p>
+<p>Cons: Implementation will be more complicated as it requires additional checking on whether a command modifies the list.</p>
 </li>
 </ul>
 </div>
@@ -2503,12 +2526,11 @@ b. Require developers to download those libraries manually (this creates extra w
 <div class="paragraph">
 <p><strong>Target user profile</strong>:</p>
 </div>
+<div class="paragraph">
+<p>NUS Computer Science and Computer Engineering students who :</p>
+</div>
 <div class="ulist">
 <ul>
-<li>
-<p>NUS Computer Science students who :</p>
-<div class="ulist none">
-<ul class="none">
 <li>
 <p>need to manage their modules</p>
 </li>
@@ -2520,9 +2542,6 @@ b. Require developers to download those libraries manually (this creates extra w
 </li>
 <li>
 <p>prefer desktop apps over other types</p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -3139,7 +3158,80 @@ These files contain default values and not custom values set by the user.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-up-user-profile"><a class="link" href="#set-up-user-profile">F.8. Set up user profile</a></h3>
+<h3 id="suggesting-modules"><a class="link" href="#suggesting-modules">F.8. Suggesting modules</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Suggesting modules for a specific year and semester</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>suggest y/1 s/1</code><br>
+Expected: The panel for <strong>Modules Suggested</strong> is updated to show <strong>Year 1 | Semester 1</strong> and list of suggested modules for year 1 semester 1. A success message is shown in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>suggest</code><br>
+Expected: The panel for <strong>Modules Suggested</strong> remained the same as before executing the command. Error message is shown in the status message.</p>
+</li>
+<li>
+<p>Other incorrect suggest commands to try: <code>suggest y/a s/b</code> (where a is not an integer between 1 to 4 inclusive or b is neither 1 or 2)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-modules"><a class="link" href="#listing-modules">F.9. Listing modules</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Listing modules for all years</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Add some modules to ModulePlanner using <code>add</code> command.</p>
+</li>
+<li>
+<p>Test case: <code>list</code><br>
+Expected: The panel for <strong>Modules Taken</strong> is updated to show <strong>All years</strong> and list of all modules that have been added. A success message is shown in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>list 1</code><br>
+Expected: The panel for <strong>Modules Taken</strong> remained the same as before executing the command. Error message is shown in the status message.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Listing modules for a year</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Add some modules to year 1 using <code>add</code> command.</p>
+</li>
+<li>
+<p>Test case: <code>list y/1</code><br>
+Expected: The panel for <strong>Modules Taken</strong> is updated to show <strong>Year 1</strong> and all modules that have been added to year 1. A success message is shown in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>list y/0</code><br>
+Expected: The panel for <strong>Modules Taken</strong> remained the same as before executing the command. Error message is shown in the status message.</p>
+</li>
+<li>
+<p>Other incorrect list commands to try: <code>list y/a</code> (where a is not an integer between 1 to 4)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="set-up-user-profile"><a class="link" href="#set-up-user-profile">F.10. Set up user profile</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3286,4 +3378,4 @@ and <code>All focus area(s) are invalid</code>.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:44:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:52:15 UTC</div></div></div></body></html>

@@ -10,36 +10,75 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This project portfolio summarizes the contributions I have made in developing a product called ModulePlanner as a team project under CS2103T Software Engineering. ModulePlanner is a desktop application made to help NUS Computer Science undergraduate students plan their modules. It is designed to be used through a Command Line Interface (CLI), although it also provides a Graphical User Interface (GUI). Main features include suggesting available modules based on major requirements and module prerequisites and planning modules for each semester by adding or deleting modules to or from the planner.</p>
+<p>This project portfolio showcases the contributions I have made in a team project under the module <strong>CS2103T: Software Engineering</strong>. I worked in a team of four Computer Science students to develop a product named <strong>ModulePlanner</strong>, which is built on top of an existing software (AddressBook - Level 4).</p>
 </div>
 <div class="paragraph">
-<p>The next few sections will describe my contributions to the project.</p>
+<p><strong>ModulePlanner</strong> is a desktop application made to help Computer Science and Computer Engineering students in National University of Singapore plan their modules for their entire candidature periods. It is designed to be used mainly through a Command Line Interface (CLI), although it also provides a Graphical User Interface (GUI).</p>
+</div>
+<div class="paragraph">
+<p>The main features include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Suggesting available modules based on major requirements and modules' prerequisites.</p>
+</li>
+<li>
+<p>Adding and deleting modules to or from the planner.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
 <div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are enhancements I implemented for the product and other contributions I made to the team. They showcase my abilities in software engineering and in working with a team.</em></p></td>
+</tr>
+</tbody>
+</table>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to suggest modules available to take</strong></p>
+<p><strong>Major enhancement</strong>: added the ability to <strong>suggest available modules to the user</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to see the modules he/she is available to take in each semester, based on the modules he/she has taken.</p>
+<p>What it does: allows the user to see the modules he/she is available to take in each semester, based on the modules he/she has added to the planner.</p>
 </li>
 <li>
-<p>Justification: This feature helps the user plan modules by checking and listing available modules for him/her.</p>
+<p>Justification: This feature helps the user plan modules by generating and listing available modules.</p>
 </li>
 <li>
-<p>Highlights: This is the main feature of our application. It required an analysis of several design alternatives and implementation choices.</p>
+<p>Highlights: This is the main feature of our application. It required a careful consideration of several design alternatives and implementation choices. The implementation was challenging as it interacted with various components and other commands.</p>
+</li>
+<li>
+<p>Pull requests: <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/78">#78</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/81">#81</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/125">#125</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/146">#146</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/160">#160</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/191">#191</a></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a list command that allows user to see all modules he/she has added to a specific year or to all years.</p>
+<p><strong>Minor enhancement</strong>: added the ability to <strong>list modules that the user has taken</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows user to see the modules he/she has added to all years or to a specific year.</p>
+</li>
+<li>
+<p>Justifications: This feature helps the user to quickly check what module(s) he/she has added to the planner.</p>
+</li>
+<li>
+<p>Pull requests: <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/33">#33</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/68">#68</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/114">#114</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/143">#143</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/189">#189</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/195">#195</a></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=hilda-ang" class="bare">https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=hilda-ang</a>]</p>
@@ -53,13 +92,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed release <code>v1.1</code> on GitHub</p>
+<p>Recorded each of the user stories as an issue (examples: <a href="https://github.com/CS2103-AY1819S1-T16-4/main/issues/11">1</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/issues/12">2</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/issues/13">3</a>)</p>
 </li>
 <li>
-<p>Recorded each of the user stories as an issue and assigned team members to issues</p>
+<p>Assigned team members to issues and issues to milestones (examples: <a href="https://github.com/CS2103-AY1819S1-T16-4/main/issues/39">1</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/issues/73">2</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/issues/74">3</a>)</p>
 </li>
 <li>
-<p>Assigned issues to milestones and set a deadline for each milestone on Github</p>
+<p>Set a deadline for each milestone on Github</p>
 </li>
 </ul>
 </div>
@@ -69,7 +108,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Refactored AddressBook to ModulePlanner and rewrote tests for shared classes</p>
+<p>Refactored AddressBook to ModulePlanner (Pull requests <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/113">#113</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/129">#129</a>)</p>
+</li>
+<li>
+<p>Rewrote tests for shared classes (Pull requests <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/147">#147</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/201">#201</a>)</p>
+</li>
+<li>
+<p>Removed year and semester parameters from setup command (Pull request <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/161">#161</a>)</p>
 </li>
 </ul>
 </div>
@@ -79,7 +124,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Modify User Guide to be relevant to current project</p>
+<p>Modified User Guide to be relevant to current project (Pull requests <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/6">#6</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/67">#67</a>)</p>
+</li>
+<li>
+<p>Added description about the implementation of <code>suggest</code> and <code>list</code> commands in Developer Guide (Pull requests <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/82">#82</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/210">#210</a>)</p>
 </li>
 </ul>
 </div>
@@ -89,10 +137,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed with non-trivial review comments</p>
+<p>PRs reviewed with non-trivial review comments (Pull requests <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/65">#65</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/136">#136</a>, <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/202">#202</a>)</p>
 </li>
 <li>
-<p>Reported bugs for other teams in the class</p>
+<p>Reported bugs for other team in the class (examples: <a href="https://github.com/CS2103-AY1819S1-W14-1/main/issues/193">1</a>, <a href="https://github.com/CS2103-AY1819S1-W14-1/main/issues/200">2</a>, <a href="https://github.com/CS2103-AY1819S1-W14-1/main/issues/223">3</a>)</p>
 </li>
 </ul>
 </div>
@@ -102,7 +150,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Integrated a Github plugin (Coveralls) for code coverage checking to the team repo</p>
+<p>Integrated a Github plugin (Coveralls) for code coverage checking to the team repo (Pull request <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/144">#144</a>)</p>
+</li>
+<li>
+<p>Configured repo to be compatible with RepoSense by adding a config file (Pull request <a href="https://github.com/CS2103-AY1819S1-T16-4/main/pull/124">#124</a>)</p>
 </li>
 </ul>
 </div>
@@ -128,10 +179,28 @@
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="listing-modules-code-list-code"><a class="link" href="#listing-modules-code-list-code">Listing modules : <code>list</code></a></h3>
+<h3 id="suggesting-modules-code-suggest-code"><a class="link" href="#suggesting-modules-code-suggest-code">Suggesting modules : <code>suggest</code></a></h3>
 <div class="paragraph">
-<p>If a valid year is supplied, shows a list of all modules that you have added to that year. Otherwise, shows a list of all modules that you have added to every year.<br>
-Format: <code>list [y/YEAR]</code></p>
+<p>If a valid year and semester are supplied, suggests a list of modules that you are available to take in the specified year and semester, based on modules that you have added. A module is available for you if:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You have fulfilled (added to ModulePlanner) all the prerequisites of the module in the semester(s) prior to the one you specified.</p>
+</li>
+<li>
+<p>You have not fulfilled (added to ModulePlanner) any preclusions to the module in any semester (including semester(s) after the one you specified).</p>
+</li>
+<li>
+<p>You have not fulfilled (added to ModulePlanner) the module in any semester (including semester(s) after the one you specified).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The list of modules is sorted, with core modules being on top, followed by general education modules and unrestricted electives modules.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>suggest y/YEAR s/SEMESTER</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -143,8 +212,68 @@ Format: <code>list [y/YEAR]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>This command is NOT undoable.</p>
+<p>The list of suggested modules will be automatically updated upon adding or deleting module(s).</p>
 </li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>This feature currently only supports <strong>Computer Science</strong> major. If user profile is set to other major through <a href="#Setting user profile : <code>setup</code>"><code>setup</code></a> command,
+this feature will only give you generic module suggestion sorted in a lexicographical order.</p>
+</li>
+<li>
+<p>The list of suggested modules will not be automatically updated after changing major through <code>setup</code>. You have to re-execute <code>suggest</code> to update the list.</p>
+</li>
+<li>
+<p>Support for other majors will come in v2.0.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>suggest y/1 s/1</code></p>
+</li>
+<li>
+<p><code>suggest y/4 s/2</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-modules-code-list-code"><a class="link" href="#listing-modules-code-list-code">Listing modules : <code>list</code></a></h3>
+<div class="paragraph">
+<p>If a valid year is supplied, shows a list of all modules that you have added to that year. If no year is supplied, shows a list of all modules that you have added to every year.<br>
+Format: <code>list [y/YEAR]</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
 <li>
 <p>The list of modules will be automatically updated upon adding or deleting module(s).</p>
 </li>
@@ -164,7 +293,10 @@ Format: <code>list [y/YEAR]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>If no modules have been added to the specified year or no modules have been added to any year, will show an empty list.</p>
+<p>If a valid year is supplied but no modules have been added to the specified year, will show an empty list.</p>
+</li>
+<li>
+<p>If no year is supplied and no modules have been added to any year, will show an empty list.</p>
 </li>
 </ul>
 </div>
@@ -188,62 +320,6 @@ Lists all modules taken in every year, from year 1 semester 1 to year 4 semester
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="suggesting-modules-code-suggest-code"><a class="link" href="#suggesting-modules-code-suggest-code">Suggesting modules : <code>suggest</code></a></h3>
-<div class="paragraph">
-<p>If a valid year and semester are supplied, suggests a list of modules that you are available to take in the specified year and semester, based on modules that you have added. A module is available for you if:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>You have fulfilled (added to ModulePlanner) all the prerequisites of the module in the semester(s) prior to the one you specified.</p>
-</li>
-<li>
-<p>You have not fulfilled (added to ModulePlanner) any preclusions to the module in any semester (including semester after the one you specified).</p>
-</li>
-<li>
-<p>You have not fulfilled (added to ModulePlanner) the module in any semester (including semester after the one you specified).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The list of modules is sorted, with core modules being on top, followed by general education modules and unrestricted electives modules.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>suggest y/YEAR s/SEMESTER</code></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>This command is NOT undoable.</p>
-</li>
-<li>
-<p>The list of suggested modules will be automatically updated upon adding or deleting module(s).</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>suggest y/1 s/1</code></p>
-</li>
-</ul>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -260,11 +336,177 @@ Lists all modules taken in every year, from year 1 semester 1 to year 4 semester
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="list-feature"><a class="link" href="#list-feature">List feature</a></h3>
+<h3 id="suggest-feature"><a class="link" href="#suggest-feature">Suggest feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The list mechanism is facilitated by <code>ModulePlanner</code>. <code>ModulePlanner</code> stores a list of all <code>Semester`s and each `Semester</code> stores a list <code>modulesTaken</code> containing modules that the user has taken or is planning to take.
+<p>The suggest mechanism displays a list of modules available in the specified index to the user, where index represents the year and semester that the user is asking suggestions for.</p>
+</div>
+<div class="paragraph">
+<p>This mechanism is supported by an internal list <code>availableModules</code> in <code>ModulePlanner</code>, which is regenerated after every successful execution of commands that modify <code>ModulePlanner</code> (<code>add</code>, <code>delete</code>, <code>clear</code>, etc.) and <code>suggest</code> command.
+The list <code>availableModules</code> can be retrieved through <code>Model#getAvailableList()</code> using <code>suggest</code> command, which (<code>suggest</code> command) takes in two arguments: a valid year and a valid semester.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>A valid year should be an integer between 1 to 4 inclusive.</p>
+</li>
+<li>
+<p>A valid semester should be wither 1 or 2.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Below is an example usage scenario and how the suggest mechanism works.</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Step 1.</strong> User launches the application and <code>ModulePlanner</code> is initialized.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 2.</strong> User executes <code>suggest y/1 s/1</code>. The <code>suggest</code> command parser converts year 1 and semester 1 to index 0.
+The <code>suggest</code> command updates <code>availableModules</code> to a newly generated list of available modules for index 0 and stores index 0 as <code>availableIndex</code> in <code>ModulePlanner</code>. It then retrieves <code>availableModules</code> and displays it to user.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 3.</strong> User executes <code>add y/1 s/2 c/CS1010</code>. The <code>add</code> command performs adding a module and updates <code>availableModules</code> to a newly generated list of available modules for the stored index 0. The suggested modules list shows an updated list of available modules in year 1 semester 1 to the user.
+Only <code>suggest</code> command will change the index (year and semester) to be displayed by the suggested modules list, other commands will only show an updated list for the last index displayed by <code>suggest</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 4.</strong> User executes <code>suggest y/1 s/2</code>. The <code>suggest</code> command parser converts year 1 and semester 2 to index 1. The <code>suggest</code> command updates <code>availableModules</code> to a newly generated list of available modules for index 1 and stores index 1 as <code>availableIndex</code> in <code>ModulePlanner</code>. It then retrieves <code>availableModules</code> and displays list of available modules in year 1 semester 2 to user.</p>
+</div>
+<div class="paragraph">
+<p><strong>Below is an explanation on how the list of available modules is generated.</strong></p>
+</div>
+<div class="paragraph">
+<p>The method <code>ModulePlanner#generateAvailableModules(int index)</code> is called by <code>ModulePlanner#updateModulesAvailable()</code>, which sets the content of <code>availableModules</code> to the list of modules returned by <code>generateAvailableModules(index)</code>, with <code>index</code> being the stored <code>availableIndex</code>. The implementation of <code>ModulePlanner#generateAvailableModules(int index)</code> is given below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="predefined-type">List</span>&lt;Module&gt; generateAvailableModules(<span class="type">int</span> index) {
+    <span class="predefined-type">List</span>&lt;Module&gt; modulesAvailable = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();
+    <span class="predefined-type">List</span>&lt;Module&gt; modulesTaken = getAllModulesTaken();
+    <span class="predefined-type">List</span>&lt;Module&gt; modulesTakenBeforeIndex = getAllModulesTakenBeforeIndex(index);
+    <span class="predefined-type">List</span>&lt;Module&gt; allModules = getAllModulesFromStorage();
+
+    <span class="keyword">for</span> (Module m : allModules) {
+        <span class="keyword">if</span> (ModuleUtil.isModuleAvailable(modulesTaken, modulesTakenBeforeIndex, m)) {
+            modulesAvailable.add(m);
+        }
+    }
+
+    sortAvailableModules(modulesAvailable, userProfile);
+
+    <span class="keyword">return</span> modulesAvailable;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The method <code>ModulePlanner#generateAvailableModules(int index)</code> retrieves all modules from the storage and performs availability checking on each of them. The available modules are put into a list which is then sorted:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>in a lexicographical order if user has specified a major other than <strong>Computer Science</strong> through <code>setup</code> command, or</p>
+</li>
+<li>
+<p>such that core modules for <strong>Computer Science</strong> major are put on top, followed by general education modules and unrestricted electives.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The availability checking is done by the following method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">boolean</span> isModuleAvailable(<span class="predefined-type">List</span>&lt;Module&gt; modulesTaken,
+                                        <span class="predefined-type">List</span>&lt;Module&gt; modulesTakenBeforeIndex, Module module) {
+    <span class="keyword">return</span> hasNotTakenModule(modulesTaken, module)
+            &amp;&amp; hasFulfilledAllPrerequisites(modulesTakenBeforeIndex, module)
+            &amp;&amp; hasNotFulfilledAnyPreclusions(modulesTaken, module);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A sample scenario:</p>
+</div>
+<div class="paragraph">
+<p>Module CS2030 has a prerequisite CS1010 and a preclusion CS1020. User has taken CS1010 in year 1 semester 2 and has not taken CS1020 or CS2030.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Executing <code>suggest y/2 s/1</code> will display CS2030 as one of the available modules, as user has fulfilled all prerequisites of CS2030 before year 2 semester 1 and has not taken any preclusion or the module itself.</p>
+</li>
+<li>
+<p>Executing <code>suggest y/1 s/1</code> will <strong>not</strong> display CS2030 in the list of available modules, as user has not fulfilled all the prerequisites before year 1 semester 1 (user has only fulfilled CS1010 in the semester after).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the suggest operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SuggestSequenceDiagram.png" alt="SuggestSequenceDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-list-of-available-modules-is-regenerated"><a class="link" href="#aspect-how-list-of-available-modules-is-regenerated">Aspect: How list of available modules is regenerated</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Regenerates list of available modules after every successful execution of commands that <strong>may</strong> modify the list of available modules.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: May have performance issue in terms of running time because list is regenerated even if there is no change to the content.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Regenerates list of available modules only if a command modifies the content of the list of available modules.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: May be more effective in terms of running time because it only regenerates the list when needed.</p>
+</li>
+<li>
+<p>Cons: Implementation will be more complicated as it requires additional checking on whether a command modifies the list.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-feature"><a class="link" href="#list-feature">List feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The list mechanism displays either a list of modules that the user has added to a specified year or a list of all modules that the user has added to every year.</p>
+</div>
+<div class="paragraph">
+<p>This mechanism is facilitated by <code>ModulePlanner</code>. The <code>ModulePlanner</code> stores a list of all <code>Semester</code>-s and each <code>Semester</code> stores a list <code>modulesTaken</code> containing modules that the user has added to that <code>Semester</code>.
 It implements the following operation:</p>
 </div>
 <div class="ulist">
@@ -276,12 +518,15 @@ It implements the following operation:</p>
 <p><code>ModulePlanner#listTakenModulesAll()</code>&#8201;&#8212;&#8201;Updates <code>takenModules</code> to contain a list of modules retrieved from the list <code>modulesTaken</code> in every <code>Semester</code>.</p>
 </li>
 <li>
-<p><code>ModulePlanner#listTakenModulesForYear(int year)</code>&#8201;&#8212;&#8201;Updates <code>takenModules</code> to contain a list of modules retrieved from the list <code>modulesTaken</code> in the `Semester`s that belongs to the specified year.</p>
+<p><code>ModulePlanner#listTakenModulesForYear(int year)</code>&#8201;&#8212;&#8201;Updates <code>takenModules</code> to contain a list of modules retrieved from the list <code>modulesTaken</code> in the <code>Semester</code>-s that belong to the specified year.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The operation is exposed in <code>Model</code> interface as <code>Model#getTakenModules()</code>, <code>Model#listTakenModulesAll()</code>, and <code>Model#listTakenModulesForYear(int year)</code>.</p>
+<p>The operations are exposed in <code>Model</code> interface as <code>Model#getTakenModules()</code>, <code>Model#listTakenModulesAll()</code>, and <code>Model#listTakenModulesForYear(int year)</code>.</p>
+</div>
+<div class="paragraph">
+<p>If a valid year is specified by the user, the <code>list</code> command will call <code>Model#listTakenModulesForYear(year)</code>, where <code>year</code> is the argument supplied by user. If no year is specified, the <code>list</code> command will call <code>Model#listTakenModulesAll()</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -290,13 +535,13 @@ It implements the following operation:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
+A valid year should be an integer between 1 to 4 inclusive.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Below is an example usage scenario and how the list mechanism works.</p>
+<p><strong>Below is an example usage scenario and how the list mechanism works.</strong></p>
 </div>
 <div class="paragraph">
 <p>Step 1. User launches the application. <code>ModulePlanner</code> is initialised with 8 <code>Semester</code> objects in a list <code>semesters</code>.</p>
@@ -333,13 +578,13 @@ A list containing CS1231 and CS1010 will be displayed to the user.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-list-of-modules-is-retrieved-for-list-command"><a class="link" href="#aspect-how-list-of-modules-is-retrieved-for-list-command">Aspect: How list of modules is retrieved for list command</a></h5>
+<h5 id="aspect-how-list-of-modules-taken-is-retrieved-for-list-command"><a class="link" href="#aspect-how-list-of-modules-taken-is-retrieved-for-list-command">Aspect: How list of modules taken is retrieved for list command</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Updates list of modules whenever it is modified by a command (e.g. <code>add</code>) and immediately retrieves the list upon <code>list</code> command.</p>
+<p><strong>Alternative 1 (current choice):</strong> Updates list of modules taken whenever it is modified by a command (e.g. <code>add</code>) and immediately retrieves the list upon <code>list</code> command.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -352,162 +597,14 @@ A list containing CS1231 and CS1010 will be displayed to the user.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Saves all commands that modify list of modules without applying it and updates the list based on the commands only when it is retrieved upon <code>list</code> command.</p>
+<p><strong>Alternative 2:</strong> Saves all commands that modify list of modules taken without applying it and updates the list based on the commands only when it is retrieved upon <code>list</code> command.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: May be more effective in terms of running time because it only modifies the list when needed.</p>
 </li>
 <li>
-<p>Cons: Implementation will be more complicated as we have to store all commands that modify the list.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="suggest-feature"><a class="link" href="#suggest-feature">Suggest feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
-<div class="paragraph">
-<p>The suggest mechanism displays a list of modules available in the specified index to the user, where index represents the year and semester that the user is asking suggestions for.
-It is supported by an internal list <code>availableModules</code> in <code>ModulePlanner</code>, which is regenerated after every successful execution of commands that modify <code>ModulePlanner</code> (<code>add</code>, <code>delete</code>, <code>clear</code>, etc.) and <code>suggest</code> command.
-The list <code>availableModules</code> can be retrieved through <code>Model#getAvailableList()</code> using <code>suggest</code> command, which (<code>suggest</code> command) takes in one argument: a valid index that corresponds to a specific year and semester.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Below is an example usage scenario and how the suggest mechanism works.</p>
-</div>
-<div class="paragraph">
-<p><strong>Step 1.</strong> User launches the application and <code>ModulePlanner</code> is initialized.</p>
-</div>
-<div class="paragraph">
-<p><strong>Step 2.</strong> User executes <code>suggest y/1 s/1</code>. The <code>suggest</code> command updates <code>availableModules</code> to a newly generated list of available modules for index 0 an stores index 0 as <code>availableIndex</code> in <code>ModulePlanner</code>. It then retrieves <code>availableModules</code> and displays it to user.</p>
-</div>
-<div class="paragraph">
-<p><strong>Step 3.</strong> User executes <code>add y/1 s/2 c/CS1010</code>. The <code>add</code> command performs adding a module and updates <code>availableModules</code> to a newly generated list of available modules for the stored index 0. The suggested modules list shows an updated list of available modules in year 1 semester 1 to the user.
-Only <code>suggest</code> command will change the index (year and semester) to be displayed by the suggested modules list, other commands will only show an updated list for the last index displayed by <code>suggest</code>.</p>
-</div>
-<div class="paragraph">
-<p><strong>Step 4.</strong> User executes <code>suggest y/1 s/2</code>. The <code>suggest</code> command updates <code>availableModules</code> to a newly generated list of available modules for index 1 an stores index 1 as <code>availableIndex</code> in <code>ModulePlanner</code>. It then retrieves <code>availableModules</code> and displays list of available modules in year 1 semester 2 to user.</p>
-</div>
-<div class="paragraph">
-<p>Below is how the list of available modules is generated.</p>
-</div>
-<div class="paragraph">
-<p>The method <code>ModulePlanner#generateAvailableModules(int index)</code> is called by <code>ModulePlanner#updateModulesAvailable()</code>, which sets the content of <code>availableModules</code> to be the list of modules returned by <code>generateAvailableModules(index)</code>, with <code>index</code> being the stored <code>availableIndex</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>private List&lt;Module&gt; generateAvailableModules(int index) {
-    List&lt;Module&gt; modulesAvailable = new ArrayList&lt;&gt;();
-    List&lt;Module&gt; modulesTaken = getAllModulesTaken();
-    List&lt;Module&gt; modulesTakenBeforeIndex = getAllModulesTakenBeforeIndex(index);
-    List&lt;Module&gt; allModules = getAllModulesFromStorage();
-
-    for (Module m : allModules) {
-        if (ModuleUtil.isModuleAvailable(modulesTaken, modulesTakenBeforeIndex, m)) {
-            modulesAvailable.add(m);
-        }
-    }
-
-    sortAvailableModules(modulesAvailable, userProfile);
-
-    return modulesAvailable;
-}</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The method <code>ModulePlanner#generateAvailableModules(int index)</code> retrieves all modules from the storage and performs availability checking on each of them. The available modules are put into a list which is then sorted:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>in a lexicographical order if user has specified a major other than <strong>Computer Science</strong> through <code>setup</code> command, or</p>
-</li>
-<li>
-<p>such that core modules for <strong>Computer Science</strong> major are put on top, followed by general education modules and unrestricted electives.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The availability checking is done by the following method.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>public static boolean isModuleAvailableToTake(List&lt;Module&gt; modulesTaken, List&lt;Module&gt; modulesTakenBeforeIndex, Module module) {
-    return hasNotTakenModule(modulesTaken, module)
-            &amp;&amp; hasFulfilledAllPrerequisites(modulesTakenBeforeIndex, module)
-            &amp;&amp; hasNotFulfilledAnyPreclusions(modulesTaken, module);
-}</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>A sample scenario:
-Module CS2030 has a prerequisite CS1010 and a preclusion CS1020. User has taken CS1010 in year 1 semester 2 and has not taken CS1020 or CS2030.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Executing <code>suggest y/2 s/1</code> will display CS2030 as one of the available modules, as user has fulfilled all prerequisites of CS2030 before year 2 semester 1 and has not taken any preclusion or the module itself.</p>
-</li>
-<li>
-<p>Executing <code>suggest y/1 s/1</code> will <strong>not</strong> display CS2030 in the list of available modules, as user has not fulfilled all the prerequisites before year 1 semester 1 (user has only fulfilled CS1010 in the semester after).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the suggest operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/SuggestSequenceDiagram.png" alt="SuggestSequenceDiagram" width="800">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-list-of-available-modules-is-regenerated"><a class="link" href="#aspect-how-list-of-available-modules-is-regenerated">Aspect: How list of available modules is regenerated</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Regenerates list of available modules after every successful execution of commands that modify <code>ModulePlanner</code> and <code>suggest</code> command.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement.</p>
-</li>
-<li>
-<p>Cons: May have performance issue in terms of running time because list is regenerated even if there is no change to the content.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Regenerates list of available module only after successful execution of commands that modify the content of the list of available modules.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: May be more effective in terms of running time because it only regenerates the list when needed.</p>
-</li>
-<li>
-<p>Cons: Implementation will be more complicated as we have to check whether a command modifies the list.</p>
+<p>Cons: Implementation will be more complicated as it required storing all commands that modify the list.</p>
 </li>
 </ul>
 </div>
@@ -518,4 +615,4 @@ Module CS2030 has a prerequisite CS1010 and a preclusion CS1020. User has taken 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:44:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:52:15 UTC</div></div></div></body></html>
