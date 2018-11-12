@@ -1367,6 +1367,41 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
+=== Adding modules
+
+In an empty module planner, do the following command: `add y/1 s/1 c/CS1010`
+
+The module planner will now have the module `CS1010`.
+
+Next do the following command: `add y/1 s/1 c/CS0000 c/CS1010 c/CS1010E c/CS1231 c/MA1100 c/CS2030 c/GER1000`
+
+The module planner will now have the module `GER1000` and the following message will be displayed:
+
+Added Module(s): GER1000 +
+Not offered module(s): CS0000 +
+Following module(s) already exist in the planner: CS1010 +
+Following module(s) have some of their preclusions not fulfilled in the planner: CS1010E +
+Following module(s) are equivalent: (CS1231 MA1100) +
+Following module(s) have their prerequisites not fulfilled in the planner: CS2030
+
+=== Getting status
+
+Type `status` in an empty planner, and the following should be displayed:
+
+University Level Requirement: 0/20 +
+Foundation: 0/36 +
+Mathematics: 0/12 +
+Science: 0/4 +
+IT Professionalism: 0/12 +
+Industrial Experience Requirement: 0/12 +
+Team Project: 0/8
+
+Now do the following command: `add y/1 s/1 c/CS1010 c/MA1521`
+
+The following fields will be now updated:
+Foundation: 4/36 +
+Mathematics: 4/12
+
 === Deleting modules
 
 . Simple deletion
