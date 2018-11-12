@@ -629,12 +629,12 @@ support years beyond the 4th.
 
 The list mechanism displays either a list of modules that the user has added to a specified year or a list of all modules that the user has added to every year.
 
-This mechanism is facilitated by `ModulePlanner`. The `ModulePlanner` stores a list of all `Semester` s and each `Semester` stores a list `modulesTaken` containing modules that the user has added to that `Semester`.
+This mechanism is facilitated by `ModulePlanner`. The `ModulePlanner` stores a list of all `Semester`-s and each `Semester` stores a list `modulesTaken` containing modules that the user has added to that `Semester`.
 It implements the following operation:
 
 * `ModulePlanner#getTakenModules()` -- Retrieves the list `takenModules`.
 * `ModulePlanner#listTakenModulesAll()` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in every `Semester`.
-* `ModulePlanner#listTakenModulesForYear(int year)` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in the `Semester` s that belongs to the specified year.
+* `ModulePlanner#listTakenModulesForYear(int year)` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in the `Semester`-s that belong to the specified year.
 
 The operations are exposed in `Model` interface as `Model#getTakenModules()`, `Model#listTakenModulesAll()`, and `Model#listTakenModulesForYear(int year)`.
 
