@@ -142,10 +142,10 @@ image::LogicClassDiagram.png[width="800"]
 [discrete]
 ==== Events-Driven nature of the design
 
-The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `delete c/CS1010`.
 
-.Component interactions for `delete 1` command (part 1)
-image::SDforDeletePerson.png[width="800"]
+.Component interactions for `delete c/CS1010` command (part 1)
+image::DeleteModuleSequenceDiagram.png[width="800"]
 
 [NOTE]
 Note how the `Model` simply raises a `ModulePlannerChangedEvent` when the Module Planner data are changed,
@@ -155,8 +155,8 @@ The diagram below shows how the `EventsCenter` reacts to that event, which event
 in the updates being saved to the hard disk and the status bar of the UI being updated to reflect
 the 'Last Updated' time.
 
-.Component interactions for `delete 1` command (part 2)
-image::SDforDeletePersonEventHandling.png[width="800"]
+.Component interactions for `delete c/CS1010` command (part 2)
+image::DeleteModuleEventHandlingSequenceDiagram.png[width="800"]
 
 [NOTE]
 Note how the event is propagated through the `EventsCenter` to the `Storage` and `UI` without `Model`
@@ -497,36 +497,76 @@ Below are some usage scenarios.
 For convenience, let's define some valid modules: `CS1010`, `CS2030` and `CS2040`
 and an invalid module `CS0000`. `CS1010` is a prerequisite for `CS2030` and `CS2040`.
 Let's also initialise a module planner with those valid modules: +
-YEAR 1 SEMESTER 1: [`CS1010`] +
-YEAR 1 SEMESTER 2: [`CS2030`, `CS2040`] +
-...
+
+[cols="^,^", width=50%]
+.Sample Module Planner
+|===
+| Y1S1 | Y1S2
+
+|CS1010
+|CS2030
+
+|
+|CS2040
+|===
 
 ===== A Valid Module
-The user executes `delete CS1010` command to delete the valid module `CS1010`.
+The user executes `delete c/CS1010` command to delete the valid module `CS1010`.
 The `delete` command calls `Model#deleteModules(...)`, which removes the module from the semester where it is found.
 Iterative Deletion is then applied. Since `CS2030` and `CS2040` have `CS1010` as a prerequisite, if `CS1010` is
 deleted, `CS2030` and `CS2040` will too be deleted.
 
 The module planner now has this state: +
-[`EMPTY`]
+[cols="^,^", width=50%]
+.Sample Module Planner
+|===
+| Y1S1 | Y1S2
+
+|empty
+|empty
+
+|===
 
 [NOTE]
 This applies to when more than one valid module is supplied.
 
 ===== An Invalid Module
-The user executes `delete CS0000` command. However, since that module is not found in the module planner,
+The user executes `delete c/CS0000` command. However, since that module is not found in the module planner,
 the command fails and `Model#deleteModules(...)` will not be called. The user will be informed of the invalid module.
+
+The module planner now has this state: +
+[cols="^,^", width=50%]
+.Sample Module Planner
+|===
+| Y1S1 | Y1S2
+
+|CS1010
+|CS2030
+
+|
+|CS2040
+|===
 
 [NOTE]
 This applies to where more than one invalid module is supplied.
 
 ===== Mix of Valid and Invalid Modules
-The user executes `delete CS1010 CS0000`. However, only the module `CS1010` is valid.
-In this case, `Model#deleteModules(...)` is still called, but only the valid module `CS1010` will be deleted and
-Iterative Deletion applied. The user will be informed of the invalid module.
+The user executes `delete c/CS2030 c/CS0000`. However, only the module `CS2030` is valid.
+In this case, `Model#deleteModules(...)` is still called, but only the valid module `CS2030` will be deleted.
+The user will be informed of the invalid module.
 
 [NOTE]
 This applies to where more than one valid and invalid modules are supplied.
+
+The module planner now has this state: +
+[cols="^,^", width=50%]
+.Sample Module Planner
+|===
+| Y1S1 | Y1S2
+
+|`CS1010`
+|`CS2040`
+|===
 
 ===== No Modules
 The user executes `delete`. As the command has no supplied arguments, the command will fail
@@ -1326,6 +1366,58 @@ These instructions only provide a starting point for testers to work on; testers
 .. Resize the window to an optimum size. Move the window to a different location. Close the window..
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
+
+=== Deleting modules
+
+. Simple deletion
+
+.. Prerequisite: There needs to be at least one module in the module planner that is *not* a prerequisite
+   for other modules. These modules are usually level 1000 modules like `CS1010` and `GER1000`. If no such
+   modules are in the module planner, add one or more (e.g. `add y/1 s/1 c/CS1010` and `add y/1 s/1 c/GER1000`).
+.. Test case: `delete c/CS1010`. +
+   Expected: The module is removed and the ui updates to show that.
+
+. Iterative Deletion
+
+.. Prerequisite: There needs to be at least one module in the module planner that is a prerequisite
+   for other modules. These modules are usually level 2000 modules and above like `CS2030` and `CS2040`.
+   If no such modules are in the module planner, add one or more (e.g. `add y/1 s/2 c/CS2030` and
+   `add y/1 s/2 c/CS2040`).
+.. Test case: `delete c/CS1010`. +
+   Expected: The module is removed and the ui updates to show that. The modules that depend on `CS1010` like
+   `CS2030` and `CS2040` will be removed to.
+
+[TIP]
+To observe iterative deletion better, use the `list` command to list out all the modules before performing this test case.
+
+[NOTE]
+====
+
+*Potential Confusion* +
+An input like `add y/1 s/2 c/CS2030` does not work. +
+
+*Solution* +
+Check if the prerequisites of `CS2030` have been fulfilled. In this case, the prerequisites of
+`CS2030` are `CS1010` and `CS1231`. Add the latter two modules before adding `CS2030` into at least a
+semester after.
+
+====
+
+=== Finding a module
+
+. Finding a valid module
+
+.. Prerequisite: None.
+.. Test case: `find c/CS1010` +
+   Expected: The Multipurpose Panel displays the information of `CS1010`.
+
+=== Switching between time periods
+
+. Switching to a different time period
+
+.. Prerequisite: None, but the time period that you `goto` has to be different from your current.
+.. Test case: `goto y/<a> s/<b>`, where a and b refer to any valid values. +
+   Expected: The time period in the ui will change from where you were to `Year a | Semester b`.
 
 === Saving data
 

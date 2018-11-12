@@ -1,6 +1,8 @@
 package seedu.planner.logic.parser;
 
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC_CS0000;
+import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CS0000;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1010;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC_CS1231;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_MODULE_CS1010;
@@ -22,9 +24,10 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_success() {
-        FindCommand command = new FindCommand(VALID_MODULE_CS1010);
+        assertParseSuccess(parser, VALID_MODULE_CODE_DESC_CS1010, new FindCommand(VALID_MODULE_CS1010));
 
-        assertParseSuccess(parser, VALID_MODULE_CODE_DESC_CS1010, command);
+        // Invalid module but it's the Find command that checks for module validity
+        assertParseSuccess(parser, INVALID_MODULE_CODE_DESC_CS0000, new FindCommand(INVALID_MODULE_CS0000));
     }
 
     @Test
