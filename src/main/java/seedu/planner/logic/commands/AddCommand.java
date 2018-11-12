@@ -16,7 +16,7 @@ import java.util.Set;
 
 import seedu.planner.commons.core.EventsCenter;
 import seedu.planner.commons.core.Messages;
-import seedu.planner.commons.events.ui.AddModuleEvent;
+import seedu.planner.commons.events.ui.AddEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -270,7 +270,7 @@ public class AddCommand extends Command {
 
         String successMessage = formatMessage(MESSAGE_SUCCESS, modulesToAdd);
         message = successMessage + "\n" + message;
-        EventsCenter.getInstance().post(new AddModuleEvent(semesterIndex));
+        EventsCenter.getInstance().post(new AddEvent(semesterIndex));
         return new CommandResult(message.trim());
     }
 

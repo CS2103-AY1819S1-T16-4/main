@@ -259,6 +259,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The add mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of `Semester` objects. A `Semester` stores a list containing modules that the user has taken or is planning to take on that semester.
 
+Add mechanism is also facilitated by the posting and handling of events. The `AddCommand#execute(...)` is the event poster and
+the `MainWindow#handleAddEvent(...)` is the event handler.
+
 The implementation is as follows:
 
 * `ModulePlanner#addModules(List<Module> modules, int index)` -- Add the list of `modules` into the semester specified by `index`.
@@ -548,8 +551,10 @@ image::ListSequenceDiagram_2.png[width="800"]
 
 Status feature allows the user to keep track of their credit progress for different requirements. It is tracked in the `ModulePlanner` in form of a map and will
 be updated every time the user use the add or delete feature and when they set up their profile. This map will then later posted
-by `StatusCommand#executeimplementation` in an event. Finally `MainWindow#handleStatusEvent` will handle this event and convert the
-map to a string for display. The implementation is as follows:
+by `StatusCommand#execute(...)` in an event. Finally `MainWindow#handleStatusEvent(...)` will handle this event and convert the
+map to a string for display.
+
+The implementation is as follows:
 
 *`ModulePlanner#getStatus()`-Updates and retrieves the status of credit progress in the `ModulePlanner`
 

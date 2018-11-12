@@ -6,11 +6,11 @@ import seedu.planner.commons.events.BaseEvent;
  * An event that moves the current ui view to the period
  * where the module(s) is/are added.
  */
-public class AddModuleEvent extends BaseEvent {
+public class AddEvent extends BaseEvent {
 
     public final int index;
 
-    public AddModuleEvent(int index) {
+    public AddEvent(int index) {
         this.index = index;
     }
 

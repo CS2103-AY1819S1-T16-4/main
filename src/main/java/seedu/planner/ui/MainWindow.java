@@ -26,15 +26,8 @@ import javafx.stage.Stage;
 import seedu.planner.commons.core.Config;
 import seedu.planner.commons.core.GuiSettings;
 import seedu.planner.commons.core.LogsCenter;
-import seedu.planner.commons.events.ui.AddModuleEvent;
-import seedu.planner.commons.events.ui.ClearEvent;
-import seedu.planner.commons.events.ui.ExitAppRequestEvent;
-import seedu.planner.commons.events.ui.FindModuleEvent;
-import seedu.planner.commons.events.ui.GoToEvent;
-import seedu.planner.commons.events.ui.ListModulesEvent;
-import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
-import seedu.planner.commons.events.ui.StatusEvent;
-import seedu.planner.commons.events.ui.SuggestModulesEvent;
+import seedu.planner.commons.events.ui.*;
+import seedu.planner.commons.events.ui.AddEvent;
 import seedu.planner.logic.Logic;
 import seedu.planner.model.UserPrefs;
 import seedu.planner.model.module.Module;
@@ -292,7 +285,7 @@ public class MainWindow extends UiPart<Stage> {
     //@@author GabrielYik
 
     @Subscribe
-    private void handleAddModuleEvent(AddModuleEvent event) {
+    private void handleAddEvent(AddEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
 
         int indexToGoTo = event.getIndex();
@@ -309,7 +302,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @Subscribe
-    private void handleFindModuleEvent(FindModuleEvent event) {
+    private void handleFindEvent(FindEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
 
         FindModulePanel panel = new FindModulePanel(event.getModule());
@@ -338,7 +331,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @Subscribe
-    private void handleSuggestModulesEvent(SuggestModulesEvent event) {
+    private void handleSuggestEvent(SuggestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
 
         ModuleListPanel panel = new ModuleListPanel(event.getModuleList(),
