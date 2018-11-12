@@ -32,7 +32,7 @@ endif::[]
 '''
 
 .Current way of planning modules
-----
+****
 1. Go to an external site to check what modules one has to take.
 2. See which modules' pre-requisites have been fulfilled and are open for one to take.
 3. Choose some of those modules.
@@ -42,19 +42,19 @@ endif::[]
 7. Some modules planned now have their pre-requisites unfulfilled.
 8. Sighs in frustration
 9. Repeat (8)
-----
+****
 
 So *tedious*.
 
 .New way of planning modules
-----
+****
 1. Input academic requirements.
 2. Application lists possible modules to take based on academic comitments and module pre-requisites.
 3. Choose some of those modules.
 4. Repeat (1) - (3) for any number of semesters.
 5. Wishes to remove some modules
 6. Application removes modules which pre-requisites are not fulfilled and suggests new modules to take.
-----
+****
 
 Much better!
 
