@@ -1,11 +1,6 @@
 = Hilda Anggraeni - Project Portfolio
-:site-section: AboutUs
-:imagesDir: ../images
-:stylesDir: ../stylesheets
 
 == PROJECT: ModulePlanner
-
----
 
 == Overview
 
@@ -13,7 +8,7 @@ This project portfolio showcases the contributions I have made in a team project
 
 ModulePlanner is a desktop application made to help NUS Computer Science undergraduate students plan their modules by giving module suggestions for every semester. It is mainly designed to be used through a Command Line Interface (CLI), although it also provides a Graphical User Interface (GUI).
 
-* *Major Features*:
+*Major Features*:
 ** Suggest available modules based on major requirements and module prerequisites.
 ** Plan modules for each semester by adding or deleting modules to or from the planner.
 ** Check module description, prerequisites, and preclusions.
@@ -27,12 +22,10 @@ The next few sections will describe my contributions to the project.
 ** Justification: This feature helps the user plan modules by checking and listing available modules for him/her.
 ** Highlights: This is the main feature of our application. It demanded a careful consideration and thorough analysis of several design alternatives and implementation choices. The actual implementation was challenging as it interacted with many other components and commands.
 
-* *Major enhancement*: added *the ability to list modules taken*
+* *Minor enhancement*: added *the ability to list modules taken*
 ** What it does: allows the user to see the modules he/she has added for all years or for each year.
 ** Justification: This feature helps the user to quickly checks the modules he/she has added.
 ** Highlights: This feature interacts with other features as the list is updated with each successful execution of add or delete command.
-
-* *Minor enhancement*: removed redundant year and semester arguments from setup command.
 
 * *Code contributed*: [https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=hilda-ang]
 
@@ -40,20 +33,20 @@ The next few sections will describe my contributions to the project.
 
 ** Project management:
 *** Managed release `v1.1` on GitHub
-*** Recorded and labeled each of the user stories as an issue (https://github.com/CS2103-AY1819S1-T16-4/main/issues/8[#8], https://github.com/CS2103-AY1819S1-T16-4/main/issues/9[#9], https://github.com/CS2103-AY1819S1-T16-4/main/issues/10[#10], https://github.com/CS2103-AY1819S1-T16-4/main/issues/11[#11], https://github.com/CS2103-AY1819S1-T16-4/main/issues/12[#12], https://github.com/CS2103-AY1819S1-T16-4/main/issues/13[#13], https://github.com/CS2103-AY1819S1-T16-4/main/issues/14[#14])
-*** Assigned team members to issues and issues to milestones (https://github.com/CS2103-AY1819S1-T16-4/main/issues/45[#45], https://github.com/CS2103-AY1819S1-T16-4/main/issues/46[#46], https://github.com/CS2103-AY1819S1-T16-4/main/issues/47[#47], https://github.com/CS2103-AY1819S1-T16-4/main/issues/48[#48], https://github.com/CS2103-AY1819S1-T16-4/main/issues/49[#49], https://github.com/CS2103-AY1819S1-T16-4/main/issues/50[#50], https://github.com/CS2103-AY1819S1-T16-4/main/issues/70[#70], https://github.com/CS2103-AY1819S1-T16-4/main/issues/71[#71], https://github.com/CS2103-AY1819S1-T16-4/main/issues/72[#72], https://github.com/CS2103-AY1819S1-T16-4/main/issues/73[#73], https://github.com/CS2103-AY1819S1-T16-4/main/issues/74[#74], https://github.com/CS2103-AY1819S1-T16-4/main/issues/75[#75])
+*** Recorded and labeled each of the user stories as an issue
+*** Assigned team members to issues and issues to milestones
 *** Set a deadline for each milestone on Github
-** Testing:
-*** Wrote tests for shared classes (https://github.com/CS2103-AY1819S1-T16-4/main/pull/147[#147])
+** Enhancements to existing features:
+*** Refactored AddressBook to ModulePlanner
+*** Rewrote tests for shared classes
 ** Documentation:
-*** Modify User Guide to be relevant to current project (https://github.com/CS2103-AY1819S1-T16-4/main/pull/6[#6], https://github.com/CS2103-AY1819S1-T16-4/main/pull/67[#67])
+*** Modify User Guide to be relevant to current project
 ** Community:
-*** Refactored AddressBook to ModulePlanner (https://github.com/CS2103-AY1819S1-T16-4/main/pull/113[#113], https://github.com/CS2103-AY1819S1-T16-4/main/pull/129[#129])
-*** PRs reviewed with non-trivial review comments (https://github.com/CS2103-AY1819S1-T16-4/main/pull/65[#65], https://github.com/CS2103-AY1819S1-T16-4/main/pull/136[#136])
-*** Reported bugs for other teams in the class (https://github.com/CS2103-AY1819S1-W14-1/main/issues/193[#193], https://github.com/CS2103-AY1819S1-W14-1/main/issues/195[#195], https://github.com/CS2103-AY1819S1-W14-1/main/issues/200[#200], https://github.com/CS2103-AY1819S1-W14-1/main/issues/223[#223])
+*** PRs reviewed with non-trivial review comments
+*** Reported bugs for other teams in the class
 ** Tools:
-*** Integrated a Github plugin (Coveralls) for code coverage checking to the team repo (https://github.com/CS2103-AY1819S1-T16-4/main/pull/144[#144])
-*** Configured team repo to be compatible with RepoSense (https://github.com/CS2103-AY1819S1-T16-4/main/pull/124[#124])
+*** Integrated a Github plugin (Coveralls) for code coverage checking to the team repo
+*** Configured team repo to be compatible with RepoSense
 
 == Contributions to the User Guide
 
@@ -63,7 +56,7 @@ The next few sections will describe my contributions to the project.
 
 === Listing modules : `list`
 
-If a valid year is supplied, shows a list of all modules that you have added to that year. Otherwise, shows a list of all modules that you have taken in every semester. +
+If a valid year is supplied, shows a list of all modules that you have added to that year. Otherwise, shows a list of all modules that you have added to every year. +
 Format: `list [y/YEAR]`
 
 [TIP]
@@ -74,16 +67,21 @@ Format: `list [y/YEAR]`
 
 [NOTE]
 ====
-* If no modules have been added to a specified year or no modules have been added to ModulePlanner, will show an empty list.
+* If no modules have been added to the specified year or no modules have been added to any year, will show an empty list.
 ====
 
 Examples:
 
 * `list y/1` +
-Lists all modules added to year 1, both semester 1 and 2 (if they exist).
+Lists all modules taken in year 1, both semester 1 and 2 (if they exist).
 
 * `list` +
-Lists all modules added to every semester, from year 1 semester 1 to year 4 semester 2 (if they exist).
+Lists all modules taken in every year, from year 1 semester 1 to year 4 semester 2 (if they exist).
+
+=== Getting status update : `status`
+
+Shows how many core, unrestricted electives, and general education modules that you have taken and how many more you need to take. +
+Format: `status`
 
 === Suggesting modules : `suggest`
 
@@ -116,21 +114,21 @@ Examples:
 === List feature
 ==== Current Implementation
 
-The list mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`-s and each `Semester` stores a list `modulesTaken` containing modules that the user has taken or is planning to take.
+The list mechanism is facilitated by `ModulePlanner`. `ModulePlanner` stores a list of all `Semester`s and each `Semester` stores a list `modulesTaken` containing modules that the user has taken or is planning to take.
 It implements the following operation:
 
-* `ModulePlanner#listTakenModules()` -- Retrieves the list `takenModules`.
+* `ModulePlanner#getTakenModules()` -- Retrieves the list `takenModules`.
 * `ModulePlanner#listTakenModulesAll()` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in every `Semester`.
-* `ModulePlanner#listTakenModulesForYear(int year)` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in the `Semester`-s that belongs to the specified year.
+* `ModulePlanner#listTakenModulesForYear(int year)` -- Updates `takenModules` to contain a list of modules retrieved from the list `modulesTaken` in the `Semester`s that belongs to the specified year.
 
-The operation is exposed in `Model` interface as `Model#listTakenModules()`, `Model#listTakenModulesAll()`, and `Model#listTakenModulesForYear(int year)`.
+The operation is exposed in `Model` interface as `Model#getTakenModules()`, `Model#listTakenModulesAll()`, and `Model#listTakenModulesForYear(int year)`.
 
 [NOTE]
 A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
 
 Below is an example usage scenario and how the list mechanism works.
 
-Step 1. User launches the application. `ModulePlanner` is initialised with 8 `Semester` objects in `List<Module> semesters`.
+Step 1. User launches the application. `ModulePlanner` is initialised with 8 `Semester` objects in a list `semesters`.
 
 Step 2. User executes `add y/1 s/1 c/CS1231`. The `add` command inserts `Module` CS1231 to the list `modulesTaken` for `Semester` object with index 0.
 
@@ -165,7 +163,7 @@ image::ListSequenceDiagram_2.png[width="800"]
 
 The suggest mechanism displays a list of modules available in the specified index to the user, where index represents the year and semester that the user is asking suggestions for.
 It is supported by an internal list `availableModules` in `ModulePlanner`, which is regenerated after every successful execution of commands that modify `ModulePlanner` (`add`, `delete`, `clear`, etc.) and `suggest` command.
-The list `availableModules` can be retrieved through `Model#getAvailableList` using `suggest` command, which takes in one argument: a valid index that corresponds to a specific year and semester.
+The list `availableModules` can be retrieved through `Model#getAvailableList()` using `suggest` command, which (`suggest` command) takes in one argument: a valid index that corresponds to a specific year and semester.
 
 [NOTE]
 A valid index should be an integer between 0 to 7 inclusive, where index 0 represents year 1 semester 1, index 1 represents year 1 semester 2, index 2 represents year 2 semester 1, and so on.
@@ -183,7 +181,7 @@ Only `suggest` command will change the index (year and semester) to be displayed
 
 Below is how the list of available modules is generated.
 
-The method `ModulePlanner#generateAvailableModules(int index)` is called by `ModulePlanner#updateModulesAvailable`, which sets the content of `availableModules` to be the list of modules returned by `generateAvailableModules(index)`, with index being  the stored `availableIndex`.
+The method `ModulePlanner#generateAvailableModules(int index)` is called by `ModulePlanner#updateModulesAvailable()`, which sets the content of `availableModules` to be the list of modules returned by `generateAvailableModules(index)`, with `index` being the stored `availableIndex`.
 
 ----
 private List<Module> generateAvailableModules(int index) {
@@ -193,7 +191,7 @@ private List<Module> generateAvailableModules(int index) {
     List<Module> allModules = getAllModulesFromStorage();
 
     for (Module m : allModules) {
-        if (ModuleUtil.isModuleAvailableToTake(modulesTaken, modulesTakenBeforeIndex, m)) {
+        if (ModuleUtil.isModuleAvailable(modulesTaken, modulesTakenBeforeIndex, m)) {
             modulesAvailable.add(m);
         }
     }
@@ -204,7 +202,11 @@ private List<Module> generateAvailableModules(int index) {
 }
 ----
 
-The method `generateAvailableModules` retrieves all modules from the storage and performs availability checking on each of them. The available modules are put into a list which is then sorted such that core modules are put on top, followed by general education modules and unrestricted electives.
+The method `ModulePlanner#generateAvailableModules(int index)` retrieves all modules from the storage and performs availability checking on each of them. The available modules are put into a list which is then sorted:
+
+** in a lexicographical order if user has specified a major other than *Computer Science* through `setup` command, or
+** such that core modules for *Computer Science* major are put on top, followed by general education modules and unrestricted electives.
+
 The availability checking is done by the following method.
 
 ----

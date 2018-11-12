@@ -1,13 +1,20 @@
 = Gabriel Yik - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
 
 == Project: ModulePlanner
+
+---
 
 == Overview
 This is a project portfolio about a team project that I have completed recently.
 The product born from this effort is called ModulePlanner.
 
+=== About Project
 ModulePlanner is an desktop application that helps Computer Science students in the
 National University of Singapore to plan their modules throughout their academic journey.
+It is built on top of an existing application.
 
 It has a graphical user interface but the user interacts with it mainly through the
 command line interface (keyboard only).
@@ -22,159 +29,107 @@ Over the next few sections, I will describe my role and contributions to the pro
 * UI in-charge
 
 == Summary of Contributions
-=== Major Enhancements
-* Implemented the commands `delete`, `find` and `goto`
-** The `delete` command allows the deletion of modules
-** The `find` command allows the retrieving of module information.
-** The `goto` command allows the switching of year and semester.
-   which allows the user to add or delete modules from the different
-   years and semesters.
+=== Major Enhancement
+* *Enhance Delete Command*
+** The `delete` command allows the deletion of modules from ModulePlanner.
+** When modules are deleted, modules that have the former as one of their prerequisites are
+   deleted too. This continues until no more modules are deleted.
+** This enhanced command is better than a simple delete which only deletes modules specified
+   without any awareness of other modules that depend on them.
+** The automatic removal of invalid modules in ModulePlanner assures the user that whatever
+   they see in ModulePlanner is up-to-date.
+** The user too does not have to manually look through modules that have their prerequisites
+   violated, hence saving them time and effort.
 
-=== Minor Enhancement
-* Co-authored the command `setup`
-** The `setup` command is run once on the first time ModulePlanner starts up.
-   `setup` asks the user to input parameters like their year and semester of study,
-   their major and focus areas. This gives ModulePlanner the necessary information
-   to tailor the modules suggested to the user.
+=== Minor Enhancements
+* *Setup Command*
+** Co-authored the `setup` command.
+** `setup` asks the user to input to their major and optionally their focus areas.
+   This gives ModulePlanner the necessary information to tailor the modules suggested to the user.
 
-* Updated the UI and controllers
+* *Find and Goto Commands*
+** The `find` command allows retrieval of module information.
+** The `goto` command allows switching between the different year-semester user interface (ui) views.
+
+* *UI and Associated Behaviours*
 ** Added a column to display suggested modules and another to display
    results of the `find` and `status` commands.
 ** Updated the application icon to fit ModulePlanner.
 
 === Other Contributions
-* Updated the documentation
-** Updated the README, which serves as a welcome page/ entry point into ModulePlanner.
-** Updated the User Guide with information on how to use the new commands.
-** Ordered the commands list in the User Guide alphabetically (except the `help` and
-   `exit` commands which are placed at the end) to make it easier for the user to find
-   the command they are looking for.
-** Updated the Developer Guide with descriptions on how the commands are implemented
-   and why they are done so.
-** Updated the diagram PowerPoints (except for the ones on `Storage`) in the
-   Developer Guide to reflect the structure and behaviour of ModulePlanner
-  in the user and developer guide.
+* *README*
+** Updated to reflect what ModulePlanner is and how it can solve the user's problems
+   in planning their modules.
 
-* Reviewed the pull requests of my team mates
-** Points checked include: coding style, index errors, possible regressions to other
+* *User Guide*
+** Updated with information on how to use the `delete`, `find` and `goto` commands.
+** Ordered some of the commands in the User Guide alphabetically to make it easier
+   for the user to find the command they are looking for. The other commands are
+   ordered based on when they are meant to be used (placed by my teammate Rong Jie).
+
+* *Developer Guide*
+** Updated with descriptions on how the `delete` command is implemented, why it was
+   so, and any alternative implementations considered.
+** Updated the PowerPoints of the diagrams (except for the ones that fall under
+   my teammates' features) in the Developer Guide to reflect the structure and behaviour
+   of ModulePlanner.
+
+* *Pull Requests Reviews*
+** Reviewed the pull requests of my teammates.
+** Areas checked include: coding style, index errors, possible regressions to other
    components and the pros and cons of adding new classes and structure.
+** Examples with non-trivial comments:
+   https://github.com/CS2103-AY1819S1-T16-4/main/pull/114[[1]]
+   https://github.com/CS2103-AY1819S1-T16-4/main/pull/174[[2]]
+   https://github.com/CS2103-AY1819S1-T16-4/main/pull/189[[3]]
+   https://github.com/CS2103-AY1819S1-T16-4/main/pull/190[[4]]
+   https://github.com/CS2103-AY1819S1-T16-4/main/pull/199[[5]]
 
-* Managed releases `v1.2` and `v1.3` on GitHub
+* *Github Issue Tracker*
+** Added new issues that arose from offline team discussions and bug discoveries.
+** Assigned teammates to the corresponding bug reports from other teams.
+
+* *Github Projects Board*
+** Managed frequently during the earlier parts of the project when lots of ideas and
+   changes were happening.
+** Added in important notes like the team coding standard, the team workflow and to-dos.
+
+* *Github Releases*
+** Managed the releases of `v1.2` and `v1.3`
+
+* *Report Bugs and Offered Suggestions for Others*
+** Found and reported bugs for another team working on the same project.
+** Suggestions were also offered to improve their application.
 
 == Contributions to Code
 |===
-|_Given below are some sections which I contributed to the codebase. +
+|_The link below brings you to my code contribution dashboard. +
   They showcase my ability to write code that is readable and maintainable._
 |===
-[source,java]
-----
-@Override
-public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
-    if (!isValidYear(year) || !isValidSemester(semester)) {
-        throw new CommandException(Messages.MESSAGE_INVALID_PARAMETERS);
-    }
 
-    int tabIndex = convertYearAndSemesterToIndex(year, semester);
-    EventsCenter.getInstance().post(new TabSwitchEvent(tabIndex));
-    return new CommandResult(String.format(SHOWING_GOTO_MESSAGE, year, semester));
-}
-----
-
+include::https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=gabrielyik[Code Contributions]
 
 == Contributions to the User Guide
 |===
-|_Given below are sections I contributed to the User Guide. +
+|_Given below are some sections I contributed to the User Guide. +
   They showcase my ability to write documentation targeting end-users._
 |===
-=== Deleting modules : `delete`
 
-Deletes the specified modules from list of current or future modules for the specified year and semester. +
-Format: `delete c/MODULE_CODE...`
+include::../UserGuide.adoc[tag=labelledUi]
 
-Examples:
+include::../UserGuide.adoc[tag=delete]
 
-* `delete c/CS1010`
-* `delete c/CS1231 c/MA1521`
-
-=== Finding information on a module : `find`
-
-Retrieves the information of the specified module. +
-Format: `find c/MODULE_CODE`
-
-Example:
-
-* `find c/CS1010`
-
-=== Going to a different year and semester : `goto`
-
-Changes the view to the specified year and semester. +
-Format: `goto y/YEAR s/SEMESTER`
-
-Example:
-
-* `goto y/1 s/1`
-
+include::../UserGuide.adoc[tag=goto]
 
 == Contributions to the Developer Guide
 |===
-|_Given below are sections I contributed to the Developer Guide. +
-  They showcase my ability to write technical documentation and +
-  the technical depth of my contributions to the project._
+|_Given below are some sections I contributed to the Developer Guide. +
+  They showcase my ability to write technical documentation and the
+  technical depth of my contributions to the project._
 |===
 
-=== Delete Feature
-==== Current Implementation
+include::../DeveloperGuide.adoc[tag=delete]
 
-The current delete mechanism targets valid modules and is facilitated by `ModulePlanner`.
-`ModulePlanner` stores a list of all the semesters the user has taken and will take.
-In turn, `Semester` stores a list of the modules the user has taken or will take.
+include::../DeveloperGuide.adoc[tag=find]
 
-`ModulePlanner` uses the following operation to implement the delete mechanism:
-
-* `ModulePlanner#deleteModules(List<Module> modules)` -- Deletes the modules from whatever semester it is in.
-
-The above operation is exposed in the `Model` interface as `Model#deleteModules(List<Module> modules)`
-
-[NOTE]
-A valid module is one that exists, has its module code specified correctly and must have not been taken by the user.
-
-The following sequence diagram shows how the delete operation works:
-
-image::DeleteSequenceDiagram.png[width="650"]
-
-Below are some usage scenarios.
-For convenience, let's define two modules: a valid module `MA1521` and an invalid module `MA1234`.
-
-===== All Valid Modules
-The user executes `delete MA1521` command to delete the `Module` with the module code `MA1521`.
-The `delete` command calls `Model#deleteModules(...)`, which removes the module from the semester where it is found.
-
-[NOTE]
-This applies to when more than one valid module is supplied.
-
-===== All Invalid Modules
-The user executes `delete MA1234` command. However, since that module does not exist,
-the command fails and `Model#deleteModules(...)` will not be called.
-The user will be informed of the invalid module.
-
-[NOTE]
-This applies to where more than one invalid module is supplied.
-
-===== Some Invalid Modules
-The user executes `delete MA1521 MA1234`. However, only the module `MA1521` is valid.
-In this case, the command will not fail entirely and only the valid module `MA1521` will be deleted.
-The user will be informed of the invalid module.
-
-===== No Modules
-The user executes `delete`. As the command has no supplied arguments, the command will fail
-and the user will be informed to input arguments.
-
-==== Design Considerations
-
-===== Type of Modules Allowed
-Only modules which the user has not taken are allowed to be deleted. There are several reasons:
-
-1. To mirror the real world - it is impossible for a student to void a module that has already been taken.
-
-2. To prevent undefined behaviour - deleting a module already taken might make all future modules not yet taken to be inaccurately planned.
-Also, all currently suggested modules to the user might too be inaccurate.
+include::../DeveloperGuide.adoc[tag=goto]
