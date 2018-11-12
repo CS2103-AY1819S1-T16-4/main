@@ -27,7 +27,9 @@ Module Planner is for NUS Computer Science undergraduate students who *prefer to
 . Copy the file to the folder you want to use as the home folder for your Module Planner.
 . Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-. The first page you will see when Module Planner starts up
+. The first page you will see when Module Planner starts up.
++
+.On start up
 image::Ui.png[width="790"]
 +
 
