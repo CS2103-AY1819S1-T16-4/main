@@ -274,9 +274,9 @@ image::ModuleInfoClassDiagram.png[width="500"]
 .Class diagram for `MajorDescription`.
 image::MajorDescriptionClassDiagram.png[width="700"]
 
-==== Deliberate simplifications
+==== Simplifications
 
-The real information about NUS modules are very complicated. Here list down some simplifications we made in order
+The real information about NUS modules are very complicated. Here we list down some simplifications we made in order
 to create this proof of concept of our application.
 
 ===== Prequisites and preclusion
@@ -291,12 +291,20 @@ How are prerequisite and preclusion checking is implemented:
 * If user wants to take Module A, all prerequisites of Module A must already have been taken.
 * If Module B's preclusion has at least one module that user has already taken, user cannot take Module B.
 
-This gives a reasonable approximation of prerquisite and preclusion relationship for most modules.
+This gives us a reasonable approximation of prerquisite and preclusion relationship for most modules.
 
 ===== Corequisites
 
 Corequisite is used to descibe which modules must be taken together. We choose to ignore this entirely
 as it will complicate the implementation of `add` and `delete` commands significantly.
+
+===== Old modules that have been phased out
+
+NUS sometime creates new modules to replace outdated modules every academic year. Information about
+outdated modules are not given by IVLE, but other modules might still list their module codes in prerequisites
+and preclusion. We assume that all module codes referenced in our processed data must have a `ModuleInfo`
+object. To do that, all references of module codes that do not have its own module information entry
+are removed.
 
 ==== Data sanitizing script
 
@@ -325,19 +333,24 @@ the data directly into final `.jar` file as a resource file.
 at runtime.
 ** Pros: JSON format is easy to learn and can be manipulated easily with other (interpreted) programming languages.
 ** Cons: JSON format can only hold simple primitive types such as `String`, number, array and hash table. Need to
-design a way to flatten the module relationship graph into something that can be represented in JSON and reconstruct
+design a way to flatten the module dependency graph into something that can be represented in JSON and reconstruct
 the graph after deserialization.
 * **Alternative 2**: Generate Java code during build time. The data will be directly stored as a static constant Java object.
 ** Pros: Better performance in runtime as the deserialization is no longer needed. Less moving parts when testing the data itself.
-** Cons: More complex build procedures.
+** Cons: More complex build procedures. Teammates will need to install extra tools to build the project.
 
-===== Aspect: Two different classes to store module related information (`ModuleInfo` and `ModuleDescription`)
+===== Aspect: Class representation of module related information
 
-`ModuleInfoRetriever` opens the processed `data/moduleInfo.json` file packaged in the JAR file and deserialize its
-content into an array of `ModuleInfo` objects. As JSON can only hold simple values such as strings and numbers,
-prerequisites and preclusion are stored as an array of `String`, so we need to call `ModuleInfo.finalizeModuleInfo` to
-convert the strings into `ModuleInfo`s as well before we can start querying prerequisite and preclusion from
-`ModuleInfo#getPrerequisites` and `ModuleInfo#getPreclusions`.
+* **Alternative 1 (current choice)**: Use `ModuleInfo` class to represent module information that is transparent to user's major
+and `ModuleDescription` class to represent module information that is specific to the requirements of a major.
+** Pros: Clear separation of concern. Commands that does not depend on `UserProfile` only needs to
+interact with `ModuleInfo` and not affected by changes to `ModuleDescription`.
+** Cons: Commands that need module information specific to a major (e.g. `suggest` and `status`) still need
+to depend on `ModuleInfo`.
+* **Alternative 2**: Use one class to hold all types of module information.
+** Pros: Less classes to reason about.
+** Cons: Commands that use `ModuleInfo` but do not uses `UserProfile` directly will still be affected by changes
+in `UserProfile`. The JSON form of the data will be more complex.
 
 // end::moduleinfo[]
 

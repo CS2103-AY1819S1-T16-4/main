@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Class to describe properties of a Module when taken by a Major.
- * See also {@link ModuleDescription}.
+ * See also {@link MajorDescription}.
  */
 public class ModuleDescription {
     private String code;
