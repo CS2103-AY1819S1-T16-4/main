@@ -27,19 +27,18 @@ new modules that the user can take based on their academic requirements.
 
 == Summary of contributions
 === Major enhancement
-* Implement mechanism to retrieve module and major information
-** What it does: Collect and preprocess module and major information from https://nusmods.com[NUSMods],
+* Implement mechanism to retrieve NUs major and module information
+** What it does: Collect and preprocess major and module information from https://nusmods.com[NUSMods],
 convert it into JSON format and package it into the JAR file for use of the application.
 ** Justification: All main commands in Module Planner (`add`, `delete`, `suggest` and `status`) rely on
-information about NUS modules and majors to function.
+information about NUS majors and modules to function.
 ** Highlight:
 *** This requires a clear understanding of the types of information about modules and majors
 and how they relate with each other so that they can be represented as well-designed classes.
 *** Scripting experience is needed to preprocess the data from external sources so that it can be easily
 manipulated in application code.
-*** Need to strike a balance between the potential implementation complexity of other commands and how
-accurate the processed data should be when compared with the real world data so that it is closer
-to NUS students' expectation.
+*** Need to strike a balance between the potential implementation complexity of other commands and the accuracy
+of the processed data to meet NUS students' expectation.
 
 === Minor enhancements
 * Implement the ability to sort module suggestion based on user's major requirement.
