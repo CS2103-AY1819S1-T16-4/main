@@ -252,6 +252,7 @@ Classes used by multiple components are in the `seedu.planner.commons` package.
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+
 // tag::add[]
 === Add feature
 ==== Current Implementation
@@ -275,31 +276,32 @@ ModulePlanner contains only `CS1010` in year 1 semester 1 and the user tries to 
 `CS1010`, `CS1010E`, `CS1231`, `MA1100`, `CS2030`, `GER1000` to year 1 semester 1. The filterings, sequentially,
 are as follows:
 
-===== Filter out module(s) not offered by the education institute
+===== (1) Filter out module(s) not offered by the education institute
 Module `CS0000` is not offered. It will be filtered out from the list and the user will be informed that it is not an offered module.
 
-===== Filter out module(s) that already exist in the planner
+===== (2) Filter out module(s) that already exist in the planner
 Module `CS1010` is already in the planner. It will be filtered out from the list and the user will be informed that it exists in the planner.
 
-===== Filter out module(s) which some of its preclusion is in the planner
+===== (3) Filter out module(s) which some of its preclusion is in the planner
 Module `CS1010E` has `CS1010` as its preclusion. It will be filtered out from the list and the user will be informed that this module
 has some of its preclusion in the planner.
 
-===== Filter out equivalent modules
+===== (4) Filter out equivalent modules
 Modules `CS1231` and `MA1100` are equivalent. These modules will be filtered out from the list, then grouped by equivalence and
 the user will be told that these modules are equivalence.
 
-===== Filter out module(s) which some of its prerequisites has not been fulfilled.
+===== (5) Filter out module(s) which some of its prerequisites has not been fulfilled.
 Module `CS2030` has `CS1010` as its prerequisite. To be able to add it to the planner, `CS1010` must exist in previous semesters,
 which in this case is not possible since the semester to be added is the the earliest semester possible. Thus the module will be
 filtered out from the list and the user will be informed that the prerequisites for this module is not fulfilled yet.
 
-===== Add the filtered list of module(s) to the planner
+===== (6) Add the filtered list of module(s) to the planner
 At this point, the list to be added has been finalized. The `Model#addModules(List<Module> modules, int index)` is then called
 to add this list of module(s) (in this case only `GER1000`) to the planner.
 
 [NOTE]
-The messages for each filtering will be collected and displayed simultaneously to the user.
+(1) The messages for each filtering will be collected and displayed simultaneously to the user. +
+(2) If the final filtered list is empty, the command box will not be emptied so the user do not need to type all over again.
 
 ==== Design Considerations
 
@@ -323,6 +325,7 @@ Below are the summary of pros and cons of the current implementation and the alt
 * Alternative design: Only able to plan for future semester, with some initialization
 ** Pros: Allow users to commit on their real progress
 ** Cons: Harder implementation
+
 // end::add[]
 === Delete feature
 
@@ -573,7 +576,7 @@ Focus Area Requirement 1: 0/12 +
 Focus Area Requirement 2: 0/12
 
 ==== Design Considerations
-===== Aspect: Includes Unrestricted Elective requirement
+===== Aspect: Inclusion of Unrestricted Elective requirement
 Currently the status doesn't keep track of Unrestricted Elective requirement because of the complexity of how it is counted. Credits
 from modules with more than 4 credit count may or may not have its extra credits transferred to UE requirement. For that, a possible alternative
 would be to list down all modules with more than 4 credit count that transfer its extra credits to UE credits and taking them into consideration.
