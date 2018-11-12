@@ -1402,5 +1402,5 @@ and "Artificial Intelligence" as focus areas.
 
 .. Test case: Invalid major, one invalid focus area
 *** Command: `setup m/Information Security f/Computer Graphics`
-*** Expected: Fail to set up user profile with error message `Invalid major (Information Security)`
-`All focus area(s) are invalid`.
+*** Expected: Fail to set up user profile with error messages `Invalid major (Information Security)`
+and `All focus area(s) are invalid`.
