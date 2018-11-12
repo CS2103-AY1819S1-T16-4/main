@@ -4,7 +4,6 @@ ifdef::env-github,env-browser[:relfileprefix: docs/]
 https://travis-ci.org/CS2103-AY1819S1-T16-4/main[image:https://travis-ci.org/CS2103-AY1819S1-T16-4/main.svg?branch=master[Build Status]]
 https://ci.appveyor.com/project/rongjiecomputer/main[image:https://ci.appveyor.com/api/projects/status/bh9l24v9mrpvixel?svg=true[Build status]]
 https://coveralls.io/github/CS2103-AY1819S1-T16-4/main?branch=master[image:https://coveralls.io/repos/github/CS2103-AY1819S1-T16-4/main/badge.svg?branch=master[Coverage Status]]
-https://gitter.im/se-edu/Lobby[image:https://badges.gitter.im/se-edu/Lobby.svg[Gitter chat]]
 
 ifdef::env-github[]
 image::docs/images/Ui.png[width="600"]
@@ -23,7 +22,7 @@ endif::[]
 * It allows a user to keep track of past modules, and list possible future modules based
   on the user’s academic requirements (for graduation, a minor etc).
 
-* The target users for this product are Computer Science undergraduate students
+* The target users for this product are Computer Science and Computer Engineering undergraduate students
   in the National University of Singapore (NUS).
 
 * What this product does is to simplify the module planning process that every NUS student has to go through.
