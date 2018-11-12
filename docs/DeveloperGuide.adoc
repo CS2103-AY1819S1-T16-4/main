@@ -1327,6 +1327,58 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
+=== Deleting modules
+
+. Simple deletion
+
+.. Prerequisite: There needs to be at least one module in the module planner that is *not* a prerequisite
+   for other modules. These modules are usually level 1000 modules like `CS1010` and `GER1000`. If no such
+   modules are in the module planner, add one or more (e.g. `add y/1 s/1 c/CS1010` and `add y/1 s/1 c/GER1000`).
+.. Test case: `delete c/CS1010`. +
+   Expected: The module is removed and the ui updates to show that.
+
+. Iterative deletion
+
+.. Prerequisite: There needs to be at least one module in the module planner that is a prerequisite
+   for other modules. These modules are usually level 2000 modules and above like `CS2030` and `CS2040`.
+   If no such modules are in the module planner, add one or more (e.g. `add y/1 s/2 c/CS2030` and
+   `add y/1 s/2 c/CS2040`).
+.. Test case: `delete c/CS1010`. +
+   Expected: The module is removed and the ui updates to show that. The modules that depend on `CS1010` like
+   `CS2030` and `CS2040` will be removed to.
+
+[TIP]
+To observe iterative deletion better, use the `list` command to list out all the modules before performing this test case.
+
+[NOTE]
+====
+
+*Potential Confusion* +
+An input like `add y/1 s/2 c/CS2030` does not work. +
+
+*Solution* +
+Check if the prerequisites of `CS2030` have been fulfilled. In this case, the prerequisites of
+`CS2030` are `CS1010` and `CS1231`. Add the latter two modules before adding `CS2030` into at least a
+semester after.
+
+====
+
+=== Finding a module
+
+. Finding a valid module
+
+.. Prerequisite: None.
+.. Test case: `find c/CS1010` +
+   Expected: The Multipurpose Panel displays the information of `CS1010`.
+
+=== Switching between time periods
+
+. Switching to a different time period
+
+.. Prerequisite: None, but the time period that you `goto` has to be different from your current.
+.. Test case: `goto y/<a> s/<b>`, where a and b refer to any valid values. +
+   Expected: The time period in the ui will change from where you were to `Year a | Semester b`.
+
 === Saving data
 
 . Dealing with missing/corrupted data files
