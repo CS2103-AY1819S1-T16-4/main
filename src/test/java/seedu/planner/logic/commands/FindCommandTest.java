@@ -11,7 +11,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.planner.commons.events.ui.FindModuleEvent;
+import seedu.planner.commons.events.ui.FindEvent;
 import seedu.planner.logic.CommandHistory;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -58,7 +58,7 @@ public class FindCommandTest {
         }
 
         assertEquals(expectedMessage, result.feedbackToUser);
-        assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof FindModuleEvent);
+        assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof FindEvent);
         assertEquals(eventsCollectorRule.eventsCollector.getSize(), 1);
     }
 

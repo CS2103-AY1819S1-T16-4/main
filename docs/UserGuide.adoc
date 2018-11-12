@@ -75,9 +75,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 [width="100%",cols="20%,<80%"]
 |=======================================================================
 
-|MAJOR | Supported majors are listed in <<Setting user profile : `setup`, `setup`>> and <<Suggesting modules : `suggest`, `suggest`>>.
+|MAJOR | Supported majors are listed in <<Setting user profile : `setup`, `setup`>>
 
-|FOCUS_AREA | Supported focus areas are listed in <<Setting user profile : `setup`, `setup`>> and <<Suggesting modules : `suggest`, `suggest`>>.
+|FOCUS_AREA | Supported focus areas are listed in <<Setting user profile : `setup`, `setup`>>
 
 |MODULE_CODE | Must be a valid NUS module code in Academic Year 18/19.
 
@@ -112,13 +112,6 @@ Format: `setup m/MAJOR [f/FOCUS_AREA]...`
 ** Focus area:
 *** Algorithms and Theory
 *** Artificial Intelligence
-*** Computer Graphics and Games
-*** Computer Security
-*** Database Systems
-*** Multimedia Information Retrieval
-*** Networking and Distributed Systems
-*** Parallel Computing
-*** Programming Langiages
 *** Software Engineering
 * Default user profile is set to `Computer Science` major with no focus area.
 ****
@@ -130,18 +123,37 @@ Examples:
 
 // end::setup[]
 
+// tag::add[]
+
 === Adding modules: `add`
 
 Adds the specified modules to the list of modules that you have taken or want to take for the specified year and semester. +
 Format: `add y/YEAR s/SEMESTER c/MODULE_CODE...`
 
-[TIP]
-You can add 1 or more modules.
-
 Examples:
 
 * `add y/1 s/1 c/MA1101R`
 * `add y/1 s/1 c/CS1231 c/CS1101S`
+
+An observable change can be seen in the Taken Modules Panel after successfully adding a module, like shown below:
+
+Before:
+
+image::AddBefore.png[width="300"]
+
+After:
+
+image::AddAfter.png[width="300"]
+
+[NOTE]
+From the input list of modules, a subset of it which will be added to the planner are modules that does not fall under any of the following criterias: +
+1. not offered Modules +
+2. Modules not in the planner +
+3. Modules which one of its preclusion exist in the planner +
+4. Two or more modules equivalent (preclusion) to each other +
+5. Modules which prerequisites are not fulfilled in the previous semesters
+
+// end::add[]
 
 // tag::delete[]
 
@@ -231,10 +243,17 @@ Lists all modules taken in year 1, both semester 1 and 2 (if they exist).
 Lists all modules taken in every year, from year 1 semester 1 to year 4 semester 2 (if they exist).
 // end::list[]
 
+// tag::status[]
+
 === Getting status update : `status`
 
-Shows how many core, unrestricted electives, and general education modules that you have taken and how many more you need to take. +
+Shows how many core and general education module credits that you have taken and how many credits that you need to take. +
 Format: `status`
+
+You could see the status displayed on MultiPurpose Panel as shown below:
+
+image::StatusIllustration.png[width="790"]
+// end::status[]
 
 // tag::suggest[]
 === Suggesting modules : `suggest`

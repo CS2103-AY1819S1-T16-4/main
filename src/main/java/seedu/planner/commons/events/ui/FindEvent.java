@@ -7,11 +7,11 @@ import seedu.planner.model.module.Module;
  * An event to display information of a module in response to
  * the {@code Find} command.
  */
-public class FindModuleEvent extends BaseEvent {
+public class FindEvent extends BaseEvent {
 
     private final Module module;
 
-    public FindModuleEvent(Module module) {
+    public FindEvent(Module module) {
         this.module = module;
     }
 

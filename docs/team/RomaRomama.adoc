@@ -1,0 +1,75 @@
+= Rezky Arizaputra  - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: ModulePlanner
+
+== Overview
+
+This is a project portfolio about a team project called ModulePlanner which I took part in.
+
+ModulePlanner is a desktop application currently designed for Computer Science students of National University of Singapore
+to help them plan for their modules.
+
+The main interface used to interact with the app is through the Command Line Interface (CLI), but the result of
+the interactions are presented in the Graphical User Interface (GUI).
+
+== Role
+
+* Developer
+
+== Summary of contributions
+=== Major Enhancements
+* Implemented the `add` command
+** What it does: Allows the user to add modules to the planner after passing several checkings
+*** These checkings are based from realistic limitations implemented on taking modules in NUS
+** Justification: Prevents the user to have an invalid study plan
+** Highlight: It takes realistic considerations such as not allowing to take 2 equivalent modules on the same semester
+and not allowing to add modules which prerequisites has not been fulfilled.
+
+=== Minor Enhancement
+* Added UI for displaying `status` command result
+* Implemented `status` command
+** What it does: Allows the user to keep track of their progress in the planner
+** Justification: Prevents the user to take unnecessary modules
+** Hightlight: Takes into account the focus area of the user
+
+=== Code Contribution
+* https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=RomaRomama[Code Contribution]
+
+=== Other Contributions
+* Updated documentations
+** Updated User Guide section 'add' and 'delete'
+** Updated Developer Guide section Add feature, Status Feature, and appendix C
+** Added images used for the sections above
+
+* Enhancement to feature implemented by other teammates
+** Implement the ability to group preclusions and prerequisites into equivalent classes
+(https://github.com/CS2103-AY1819S1-T16-4/main/pull/174[#174])
+
+* Refactor shared classes
+** Refactor events classes
+(https://github.com/CS2103-AY1819S1-T16-4/main/pull/216[#216])
+
+* Reported bugs in some teammates' codes
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=add]
+include::../UserGuide.adoc[tag=status]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=add]
+
+include::../DeveloperGuide.adoc[tag=status]

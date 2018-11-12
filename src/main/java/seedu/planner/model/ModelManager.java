@@ -20,6 +20,8 @@ import seedu.planner.commons.core.ComponentManager;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.commons.events.model.ModulePlannerChangedEvent;
 import seedu.planner.model.course.DegreeRequirement;
+import seedu.planner.model.course.FocusArea;
+import seedu.planner.model.course.Major;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleInfo;
 import seedu.planner.model.module.ModuleType;
@@ -56,7 +58,7 @@ public class ModelManager extends ComponentManager implements Model {
             takenModulesPerSemester.add(sortedTakenModules);
         }
 
-        takenModules = new SortedList<>(versionedModulePlanner.listTakenModules(), (x, y) -> x.compareTo(y));
+        takenModules = new SortedList<>(versionedModulePlanner.getTakenModules(), (x, y) -> x.compareTo(y));
         availableModules = new SortedList<>(versionedModulePlanner.getAvailableModules());
     }
 
@@ -65,7 +67,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void setUpUserProfile(String major, Set<String> focusAreas) {
+    public void setUpUserProfile(Major major, Set<FocusArea> focusAreas) {
         versionedModulePlanner.setUserProfile(new UserProfile(major, focusAreas));
         indicateModulePlannerChanged();
     }
@@ -156,12 +158,12 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void listTakenModulesYear(int year) {
+    public void listTakenModulesForYear(int year) {
         versionedModulePlanner.listTakenModulesForYear(year);
     }
 
     @Override
-    public ObservableList<Module> listTakenModules() {
+    public ObservableList<Module> getTakenModules() {
         return FXCollections.unmodifiableObservableList(takenModules);
     }
 

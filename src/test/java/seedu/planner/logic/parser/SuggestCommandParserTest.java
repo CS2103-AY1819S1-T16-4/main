@@ -36,9 +36,6 @@ public class SuggestCommandParserTest {
 
         // missing semester prefix
         assertParseFailure(parser, VALID_YEAR_DESC_ONE + VALID_SEMESTER_ONE, expectedMessage);
-
-        // all prefixes missing
-        assertParseFailure(parser, VALID_YEAR_ONE + " " + VALID_SEMESTER_ONE, expectedMessage);
     }
 
     @Test
@@ -50,10 +47,6 @@ public class SuggestCommandParserTest {
         // invalid semester
         assertParseFailure(parser, VALID_YEAR_DESC_ONE + INVALID_SEMESTER_DESC_THREE,
             ParserUtil.MESSAGE_INVALID_SEMESTER);
-
-        // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_YEAR_DESC_FIVE + INVALID_SEMESTER_DESC_THREE,
-            ParserUtil.MESSAGE_INVALID_YEAR);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + VALID_YEAR_DESC_ONE + VALID_SEMESTER_DESC_ONE,

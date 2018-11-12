@@ -11,8 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.planner.model.module.Module;
 
-//@@author Hilda-Ang
-
 /**
  * Represents a Semester in the module planner.
  * Holds the list of modules taken and the list of modules available for
@@ -22,16 +20,6 @@ import seedu.planner.model.module.Module;
  * the first or second semester in that year.
  */
 public class Semester {
-
-    /**
-     * Constant for the first index.
-     */
-    public static final int FIRST = 1;
-
-    /**
-     * Constant for the second index.
-     */
-    public static final int SECOND = 2;
 
     // Basic information
     private final int index;

@@ -1,6 +1,6 @@
 package seedu.planner.ui;
 
-import static seedu.planner.commons.events.ui.ListModulesEvent.ALL_YEARS;
+import static seedu.planner.commons.events.ui.ListEvent.ALL_YEARS;
 import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
 import static seedu.planner.ui.ModuleListPanel.TIMELESS;
 
@@ -26,15 +26,15 @@ import javafx.stage.Stage;
 import seedu.planner.commons.core.Config;
 import seedu.planner.commons.core.GuiSettings;
 import seedu.planner.commons.core.LogsCenter;
-import seedu.planner.commons.events.ui.AddModuleEvent;
+import seedu.planner.commons.events.ui.AddEvent;
 import seedu.planner.commons.events.ui.ClearEvent;
 import seedu.planner.commons.events.ui.ExitAppRequestEvent;
-import seedu.planner.commons.events.ui.FindModuleEvent;
+import seedu.planner.commons.events.ui.FindEvent;
 import seedu.planner.commons.events.ui.GoToEvent;
-import seedu.planner.commons.events.ui.ListModulesEvent;
+import seedu.planner.commons.events.ui.ListEvent;
 import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
 import seedu.planner.commons.events.ui.StatusEvent;
-import seedu.planner.commons.events.ui.SuggestModulesEvent;
+import seedu.planner.commons.events.ui.SuggestEvent;
 import seedu.planner.logic.Logic;
 import seedu.planner.model.UserPrefs;
 import seedu.planner.model.module.Module;
@@ -194,7 +194,7 @@ public class MainWindow extends UiPart<Stage> {
      * within a year or within all years.
      */
     private void initListedModulesPanel() {
-        ObservableList<Module> modules = logic.listTakenModules();
+        ObservableList<Module> modules = logic.getTakenModules();
         ModuleListPanel takenModuleListPanel = new ModuleListPanel(modules, ModulePanelType.TAKEN);
         takenModuleListPanels.add(MAX_NUMBER_SEMESTERS, takenModuleListPanel);
 
@@ -292,7 +292,7 @@ public class MainWindow extends UiPart<Stage> {
     //@@author GabrielYik
 
     @Subscribe
-    private void handleAddModuleEvent(AddModuleEvent event) {
+    private void handleAddEvent(AddEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
 
         int indexToGoTo = event.getIndex();
@@ -309,7 +309,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @Subscribe
-    private void handleFindModuleEvent(FindModuleEvent event) {
+    private void handleFindEvent(FindEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
 
         FindModulePanel panel = new FindModulePanel(event.getModule());
@@ -338,7 +338,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @Subscribe
-    private void handleSuggestModulesEvent(SuggestModulesEvent event) {
+    private void handleSuggestEvent(SuggestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
 
         ModuleListPanel panel = new ModuleListPanel(event.getModuleList(),
@@ -347,7 +347,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @Subscribe
-    private void handleListModulesEvent(ListModulesEvent event) {
+    private void handleListEvent(ListEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
 
         ModuleListPanel panel = takenModuleListPanels.get(MAX_NUMBER_SEMESTERS);

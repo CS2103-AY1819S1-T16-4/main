@@ -118,7 +118,7 @@ public abstract class ModulePlannerSystemTest {
      */
     protected void showAllModules() {
         executeCommand(ListCommand.COMMAND_WORD);
-        assertEquals(getModel().getModulePlanner().listTakenModules().size(), getModel().listTakenModules().size());
+        assertEquals(getModel().getModulePlanner().getTakenModules().size(), getModel().getTakenModules().size());
     }
 
     /**
@@ -126,7 +126,7 @@ public abstract class ModulePlannerSystemTest {
      */
     protected void deleteAllModules() {
         executeCommand(ClearCommand.COMMAND_WORD);
-        assertEquals(0, getModel().getModulePlanner().listTakenModules().size());
+        assertEquals(0, getModel().getModulePlanner().getTakenModules().size());
     }
 
     /**

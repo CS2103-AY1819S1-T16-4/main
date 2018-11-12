@@ -38,19 +38,19 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void listModules_modifyList_throwsUnsupportedOperationException() {
+    public void getTakenModules_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        modelManager.listTakenModules().remove(0);
+        modelManager.getTakenModules().remove(0);
     }
 
     @Test
-    public void getTakenModuleList_modifyList_throwsUnsupportedOperationException() {
+    public void getTakenModulesForIndex_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
         modelManager.getTakenModulesForIndex(0).remove(0);
     }
 
     @Test
-    public void getAvailableModuleList_modifyList_throwsUnsupportedOperationException() {
+    public void getAvailableModules_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
         modelManager.getAvailableModules().remove(0);
     }

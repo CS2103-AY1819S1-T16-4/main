@@ -32,13 +32,13 @@ new modules that the user can take based on their academic requirements.
 ** Highlights:
 ** Credits:
 
+* *Minor enhancement*:
+** Implement the ability to sort module suggestion based on user's major requirement.
+(https://github.com/CS2103-AY1819S1-T16-4/main/pull/190[#190])
+
 * *Code contributed*: https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=rongjiecomputer
 
 * *Other contributions*:
-
-** Enhancements to feature implemented by other teammates:
-*** Implement the ability to sort module suggestion based on user's major requirement.
-(https://github.com/CS2103-AY1819S1-T16-4/main/pull/190[#190])
 ** Community:
 *** Review teammates' PRs (with non-trivial review comments): https://github.com/CS2103-AY1819S1-T16-4/main/pull/199[#199]
 *** Contributed to forum discussions (examples:
@@ -54,9 +54,8 @@ https://github.com/CS2103-AY1819S1-W16-1/main/issues/157[#157])
 
 == Contributions to the User Guide
 
-
 |===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|_Given below are some of the sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
 include::../UserGuide.adoc[tag=setup]
@@ -65,8 +64,9 @@ include::../UserGuide.adoc[tag=find]
 == Contributions to the Developer Guide
 
 |===
-|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|_Given below are some of the sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
 include::../DeveloperGuide.adoc[tag=storage]
 include::../DeveloperGuide.adoc[tag=moduleinfo]
+include::../DeveloperGuide.adoc[tag=setup]
