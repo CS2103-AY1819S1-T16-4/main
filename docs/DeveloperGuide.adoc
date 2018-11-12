@@ -375,7 +375,7 @@ listed in User Guide.
 ** Pros: Implementation would be simpler.
 ** Cons: Not user friendly. It is too easy for user to input focus areas in the wrong letter casing, causing many retries.
 * **Alternative 2 (current choice)**: Accept the valid focus areas even if one of them is invalid. Focus areas inputted is case-insensitive.
-** Pros: More user friendly. User is able to update the user profile and gets positive result.
+** Pros: More user friendly. User is able to update the user profile and gets positive result even if there are some minor syntax errors.
 ** Cons: Need to implement filtering of valid focus areas from inputted focus areas. As `f/Computer Science` and `f/cOmpUter SciEnce` are now
 both valid inputs and can be inputted at the same time, we also need to filter out duplicates.
 
