@@ -1,6 +1,6 @@
 package seedu.planner.ui;
 
-import static seedu.planner.commons.events.ui.ListModulesEvent.ALL_YEARS;
+import static seedu.planner.commons.events.ui.ListEvent.ALL_YEARS;
 import static seedu.planner.model.ModulePlanner.MAX_NUMBER_SEMESTERS;
 import static seedu.planner.ui.ModuleListPanel.TIMELESS;
 
@@ -26,8 +26,15 @@ import javafx.stage.Stage;
 import seedu.planner.commons.core.Config;
 import seedu.planner.commons.core.GuiSettings;
 import seedu.planner.commons.core.LogsCenter;
-import seedu.planner.commons.events.ui.*;
 import seedu.planner.commons.events.ui.AddEvent;
+import seedu.planner.commons.events.ui.ClearEvent;
+import seedu.planner.commons.events.ui.ExitAppRequestEvent;
+import seedu.planner.commons.events.ui.FindEvent;
+import seedu.planner.commons.events.ui.GoToEvent;
+import seedu.planner.commons.events.ui.ListEvent;
+import seedu.planner.commons.events.ui.ShowHelpRequestEvent;
+import seedu.planner.commons.events.ui.StatusEvent;
+import seedu.planner.commons.events.ui.SuggestEvent;
 import seedu.planner.logic.Logic;
 import seedu.planner.model.UserPrefs;
 import seedu.planner.model.module.Module;
@@ -340,7 +347,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @Subscribe
-    private void handleListModulesEvent(ListModulesEvent event) {
+    private void handleListEvent(ListEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
 
         ModuleListPanel panel = takenModuleListPanels.get(MAX_NUMBER_SEMESTERS);

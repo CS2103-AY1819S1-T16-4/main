@@ -5,12 +5,12 @@ import seedu.planner.commons.events.BaseEvent;
 /**
  * An event to display list of modules taken in response to {@code List} command.
  */
-public class ListModulesEvent extends BaseEvent {
+public class ListEvent extends BaseEvent {
     public static final int ALL_YEARS = -1;
 
     private final int year;
 
-    public ListModulesEvent(int year) {
+    public ListEvent(int year) {
         this.year = year;
     }
 
