@@ -4,7 +4,6 @@ ifdef::env-github,env-browser[:relfileprefix: docs/]
 https://travis-ci.org/CS2103-AY1819S1-T16-4/main[image:https://travis-ci.org/CS2103-AY1819S1-T16-4/main.svg?branch=master[Build Status]]
 https://ci.appveyor.com/project/rongjiecomputer/main[image:https://ci.appveyor.com/api/projects/status/bh9l24v9mrpvixel?svg=true[Build status]]
 https://coveralls.io/github/CS2103-AY1819S1-T16-4/main?branch=master[image:https://coveralls.io/repos/github/CS2103-AY1819S1-T16-4/main/badge.svg?branch=master[Coverage Status]]
-https://www.codacy.com/app/damith/addressbook-level4?utm_source=github.com&utm_medium=referral&utm_content=se-edu/addressbook-level4&utm_campaign=Badge_Grade[image:https://api.codacy.com/project/badge/Grade/fc0b7775cf7f4fdeaf08776f3d8e364a[Codacy Badge]]
 https://gitter.im/se-edu/Lobby[image:https://badges.gitter.im/se-edu/Lobby.svg[Gitter chat]]
 
 ifdef::env-github[]
@@ -38,10 +37,10 @@ endif::[]
 3. Choose some of those modules.
 4. Start planning for the next semester.
 5. Repeat (1) - (4) for any number of semesters.
-6. Wishes to remove some modules
+6. Wishes to remove some modules.
 7. Some modules planned now have their pre-requisites unfulfilled.
-8. Sighs in frustration
-9. Repeat (8)
+8. Sighs in frustration.
+9. Repeat (8).
 ----
 
 So *tedious*.
@@ -49,10 +48,10 @@ So *tedious*.
 .New way of planning modules
 ----
 1. Input academic requirements.
-2. Application lists possible modules to take based on academic comitments and module pre-requisites.
+2. Application lists possible modules to take based on academic commitments and module prerequisites.
 3. Choose some of those modules.
 4. Repeat (1) - (3) for any number of semesters.
-5. Wishes to remove some modules
+5. Wishes to remove some modules.
 6. Application removes modules which pre-requisites are not fulfilled and suggests new modules to take.
 ----
 
@@ -60,10 +59,10 @@ Much better!
 
 == Site Map
 
-* <<UserGuide#, User Guide>>
-* <<DeveloperGuide#, Developer Guide>>
 * <<AboutUs#, About Us>>
 * <<ContactUs#, Contact Us>>
+* <<DeveloperGuide#, Developer Guide>>
+* <<UserGuide#, User Guide>>
 
 == Acknowledgements
 

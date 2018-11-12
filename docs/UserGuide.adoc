@@ -18,7 +18,7 @@ By: `Team T16-4`      Since: `Sept 2018`      Licence: `MIT`
 
 == Introduction
 
-Module Planner is for NUS Computer Science undergraduate students who *prefer to use a desktop app* to keep track of past modules and list possible future modules based on the academic requirements. More importantly, Module Planner is optimized for those who prefer to work with a *Command Line Interface (CLI)* while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Module Planner can get your module planning tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Module Planner is for NUS Computer Science and Computer Engineering undergraduate students who *prefer to use a desktop app* to keep track of past modules and list possible future modules based on the academic requirements. More importantly, Module Planner is optimized for those who prefer to work with a *Command Line Interface (CLI)* while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Module Planner can get your module planning tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == Quick Start
 
@@ -205,20 +205,21 @@ The change can be seen in Taken Modules Panel in the before and after images.
 |====
 // end::goto[]
 
+// tag::list[]
 === Listing modules : `list`
 
-If a valid year is supplied, shows a list of all modules that you have added to that year. Otherwise, shows a list of all modules that you have added to every year. +
+If a valid year is supplied, shows a list of all modules that you have added to that year. If no year is supplied, shows a list of all modules that you have added to every year. +
 Format: `list [y/YEAR]`
 
 [TIP]
 ====
-* This command is NOT undoable.
 * The list of modules will be automatically updated upon adding or deleting module(s).
 ====
 
 [NOTE]
 ====
-* If no modules have been added to the specified year or no modules have been added to any year, will show an empty list.
+* If a valid year is supplied but no modules have been added to the specified year, will show an empty list.
+* If no year is supplied and no modules have been added to any year, will show an empty list.
 ====
 
 Examples:
@@ -228,19 +229,21 @@ Lists all modules taken in year 1, both semester 1 and 2 (if they exist).
 
 * `list` +
 Lists all modules taken in every year, from year 1 semester 1 to year 4 semester 2 (if they exist).
+// end::list[]
 
 === Getting status update : `status`
 
 Shows how many core, unrestricted electives, and general education modules that you have taken and how many more you need to take. +
 Format: `status`
 
+// tag::suggest[]
 === Suggesting modules : `suggest`
 
 If a valid year and semester are supplied, suggests a list of modules that you are available to take in the specified year and semester, based on modules that you have added. A module is available for you if:
 
 * You have fulfilled (added to ModulePlanner) all the prerequisites of the module in the semester(s) prior to the one you specified.
-* You have not fulfilled (added to ModulePlanner) any preclusions to the module in any semester (including semester after the one you specified).
-* You have not fulfilled (added to ModulePlanner) the module in any semester (including semester after the one you specified).
+* You have not fulfilled (added to ModulePlanner) any preclusions to the module in any semester (including semester(s) after the one you specified).
+* You have not fulfilled (added to ModulePlanner) the module in any semester (including semester(s) after the one you specified).
 
 The list of modules is sorted, with core modules being on top, followed by general education modules and unrestricted electives modules.
 
@@ -248,21 +251,22 @@ Format: `suggest y/YEAR s/SEMESTER`
 
 [TIP]
 ====
-* This command is NOT undoable.
 * The list of suggested modules will be automatically updated upon adding or deleting module(s).
 ====
 
 [NOTE]
 ====
-* This feature currently only supports *Computer Science* major. If user profile is set to other major in <<Setting user profile : `setup`, `setup`>> command,
-this feature will only give you generic module suggestion sorted in lexicographical order.
+* This feature currently only supports *Computer Science* major. If user profile is set to other major through <<Setting user profile : `setup`, `setup`>> command,
+this feature will only give you generic module suggestion sorted in a lexicographical order.
 * The list of suggested modules will not be automatically updated after changing major through `setup`. You have to re-execute `suggest` to update the list.
-* Support for other majors will come beyond v1.6.
+* Support for other majors will come in v2.0.
 ====
 
 Examples:
 
 * `suggest y/1 s/1`
+* `suggest y/4 s/2`
+// end::suggest[]
 
 // tag::undoredo[]
 === Undoing previous command : `undo`
@@ -352,8 +356,8 @@ e.g. `goto y/1 s/1`
 * *List* : `list [y/YEAR]` +
 e.g. `list y/1`
 
-* *Setup* : `setup y/YEAR s/SEMESTER m/MAJOR [f/FOCUS_AREA]` +
-e.g. `setup y/1 s/1 m/computer science f/machine learning`
+* *Setup* : `setup m/MAJOR [f/FOCUS_AREA]` +
+e.g. `setup m/computer science f/machine learning`
 
 * *Status* : `status`
 
