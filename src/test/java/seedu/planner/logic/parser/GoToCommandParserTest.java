@@ -1,7 +1,6 @@
 package seedu.planner.logic.parser;
 
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.planner.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC_CS0000;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_DESC_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_SEMESTER_ONE;
 import static seedu.planner.logic.commands.CommandTestUtil.VALID_YEAR_DESC_ONE;
