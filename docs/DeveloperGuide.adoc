@@ -251,9 +251,9 @@ Classes used by multiple components are in the `seedu.planner.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 // tag::moduleinfo[]
-=== Module and Major Information
+=== Module and Academic Major Information
 
-Information about modules and majors supports almost all the features in Module Planner.
+Information about modules and academic majors supports almost all the features in Module Planner.
 
 Information of a module such as module code, module credit and prerequisite modules are stored in `ModuleInfo` class.
 This class is made to be immutable to avoid accidental changes to the class.
@@ -263,17 +263,17 @@ This class is made to be immutable to avoid accidental changes to the class.
 
 Internally, `ModuleInfo` is an immutable class that holds all the information of a module that is universal to
 all students from any faculty. `MajorDescription` is an immutable class that holds information about the
-requirements of a major.
+requirements of an academic major.
 
 .Class diagram for `ModuleInfo`.
-image::ModuleInfoClassDiagram.png[width="500"]
+image::ModuleInfoClassDiagram.png[width="450"]
 
 .Class diagram for `MajorDescription`.
 image::MajorDescriptionClassDiagram.png[width="700"]
 
-==== Deliberate simplifications
+==== Simplifications
 
-The real information about National University of Singapore (NUS) modules are very complicated. Here list down some simplifications we made in order
+The real information about NUS modules are very complicated. Here we list down some simplifications we made in order
 to create this proof of concept of our application.
 
 ===== Prerequisites and preclusion
@@ -283,58 +283,71 @@ and "Departmental approval"). Extracting the real module prerequisite and preclu
 be infeasible due to the potential long list of exceptions we need to handle. To simplify this, we use
 regular expression to extract the module codes.
 
-How are prerequisites and preclusions checking is implemented:
+Here is how prerequisite and preclusion checking is implemented:
 
 * If user wants to take Module A, all prerequisites of Module A must already have been taken.
 * If Module B's preclusions has at least one module that user has already taken, user cannot take Module B.
 
-This gives a reasonable approximation of prerequisite and preclusion relationship for most modules.
+This gives us a reasonable approximation of prerequisite and preclusion relationship for most modules.
 
 ===== Corequisites
 
 Corequisite is used to describe which modules must be taken together. We choose to ignore this entirely
 as it will complicate the implementation of `add` and `delete` commands significantly.
 
+===== Old modules that have been phased out
+
+NUS sometimes creates new modules to replace outdated modules every academic year. Information about
+outdated modules are not given by IVLE, but other modules might still list these module codes in their prerequisites
+and preclusion. We assume that all module codes referenced in our processed data must have a `ModuleInfo`
+object. To do that, all references of module codes that do not have its own module information entry
+are removed.
+
 ==== Data sanitizing script
 
-The python script that downloads the list of NUS modules from NUSMods server and does the data transformation
-detailed above can be found at (link:{repoURL}/tools/moduleConverter.py[`moduleConverter.py`]).
+The python script that downloads the list of NUS modules from https://nusmods.com[NUSMods] server and does the data
+transformation detailed above can be found at (link:{repoURL}/tools/moduleConverter.py[`moduleConverter.py`]).
 
 ==== Design Consideration
 
-===== Aspect: Representation of major and focus area
+===== Aspect: Representation of academic major and focus area
 
-* **Alternative 1 (current choice)**: Use enum to represent major and focus area.
+* **Alternative 1 (current choice)**: Use enum to represent academic major and focus area.
 ** Pros: Stronger type checking.
 ** Cons: Need to explicitly list down all the possible values of enums (there are more than hundreds of focus areas
-in all NUS majors). Special JSON serialization and deserialization is needed for enum types.
-* **Alternative 2**: Use `String` to represent major and focus area.
-** Pros: No need to convert major and focus area inputted by user into another type.
-** Cons: If major/focus area is passed into a function as a parameter, the function cannot assume that
-the it is a valid major/focus area. This leads to a lot of redundant checking.
+in all NUS academic majors). Special JSON serialization and deserialization is needed for enum types.
+* **Alternative 2**: Use `String` to represent academic major and focus area.
+** Pros: No need to convert academic major and focus area inputted by user into another type.
+** Cons: If academic major/focus area is passed into a function as a parameter, the function cannot assume that
+the it is a valid academic major/focus area. This leads to a lot of redundant checking.
 
-===== Aspect: Storing of module and major information
+===== Aspect: Storing of module and academic major information
 
-To avoid having to download the module and major information from the Internet in first start up, we package
+To avoid having to download the module and academic major information from the Internet in first start up, we package
 the data directly into final `.jar` file as a resource file.
 
 * **Alternative 1 (current choice)**: Store data in as a JSON resource file and deserialize data into Java types
 at runtime.
 ** Pros: JSON format is easy to learn and can be manipulated easily with other (interpreted) programming languages.
 ** Cons: JSON format can only hold simple primitive types such as `String`, number, array and hash table. Need to
-design a way to flatten the module relationship graph into something that can be represented in JSON and reconstruct
+design a way to flatten the module dependency graph into something that can be represented in JSON and reconstruct
 the graph after deserialization.
 * **Alternative 2**: Generate Java code during build time. The data will be directly stored as a static constant Java object.
 ** Pros: Better performance in runtime as the deserialization is no longer needed. Less moving parts when testing the data itself.
-** Cons: More complex build procedures.
+** Cons: More complex build procedures. Teammates will need to install extra tools to build the project.
 
-===== Aspect: Two different classes to store module related information (`ModuleInfo` and `ModuleDescription`)
+===== Aspect: Class representation of module related information
 
-`ModuleInfoRetriever` opens the processed `data/moduleInfo.json` file packaged in the JAR file and deserialize its
-content into an array of `ModuleInfo` objects. As JSON can only hold simple values such as strings and numbers,
-prerequisites and preclusion are stored as an array of `String`, so we need to call `ModuleInfo.finalizeModuleInfo` to
-convert the strings into `ModuleInfo`s as well before we can start querying prerequisite and preclusion from
-`ModuleInfo#getPrerequisites` and `ModuleInfo#getPreclusions`.
+* **Alternative 1 (current choice)**: Use `ModuleInfo` class to represent module information that is transparent to user's academic major
+and `ModuleDescription` class to represent module information that is specific to the requirements of an academic major.
+** Pros: Clear separation of concern. Commands that does not depend on `UserProfile` only needs to
+interact with `ModuleInfo` and not affected by changes to `ModuleDescription`.
+** Cons: Commands that need module information specific to an academic major (e.g. `suggest` and `status`) still need
+to depend on `ModuleInfo`.
+* **Alternative 2**: Use one class to hold all types of module information.
+** Pros: Less classes to reason about.
+** Cons: Commands that use `ModuleInfo` but do not uses `UserProfile` directly will still be affected by changes
+in `UserProfile`. The JSON form of the data will be more complex.
 
 // end::moduleinfo[]
 
@@ -343,33 +356,34 @@ convert the strings into `ModuleInfo`s as well before we can start querying prer
 === Setup feature
 ==== Current Implementation
 
-The `setup` command allows users to save their major and optionally their focus areas in Module Planner.
+The `setup` command allows users to save their academic major and optionally their focus areas in Module Planner.
 The information is stored in `UserProfile` and is later used by `suggest` and `status` commands.
 
-The following sequence shows the sequence when `setup` command is executed.
+The following sequence diagram shows the sequence when `setup` command is executed.
 
-.Sequence Diagram for `setup` command.
+.Sequence diagram for `setup` command.
 image::SetupSequenceDiagram.png[width="800"]
 
 ==== Design Considerations
 
 ===== Aspect: Argument leniency
-* **Alternative 1**: Entirely reject all focus areas even if one is invalid. Focus areas must have the exact same letter casing as
+* **Alternative 1**: Entirely reject all focus areas even if only one of them is invalid. Focus areas must have the exact same letter casing as
 listed in User Guide.
 ** Pros: Implementation would be simpler.
-** Cons: Not user friendly. It is too easy for users to input the wrong letter casing, causing many retries.
-* **Alternative 2 (current choice)**: Accept the valid focus areas even if one is invalid. Focus areas inputted is case-insensitive.
-** Pros: More user friendly. User is able to update the user profile and gets positive result.
+** Cons: Not user friendly. It is too easy for user to input focus areas in the wrong letter casing, causing many retries.
+* **Alternative 2 (current choice)**: Accept the valid focus areas even if one of them is invalid. Focus areas inputted is case-insensitive.
+** Pros: More user friendly. User is able to update the user profile and gets positive result even if there are some minor syntax errors.
 ** Cons: Need to implement filtering of valid focus areas from inputted focus areas. As `f/Computer Science` and `f/cOmpUter SciEnce` are now
 both valid inputs and can be inputted at the same time, we also need to filter out duplicates.
 
-==== Aspect: Error handling
-* **Alternative 1**: Check format criterias one by one and immediately throw an error in first failure.
-** Pros: Implementation would be simpler. Less possible of combinations to test.
+===== Aspect: Error handling
+* **Alternative 1**: Execute syntax format checkings one by one and immediately throw command exception in first failure.
+** Pros: Implementation would be simpler. Less possible of negative test cases to test.
 ** Cons: Not user friendly. User only sees one syntax error at one time. If there are many syntax errors in user's first try, it will take
-many retries for user to figure all the syntax errors.
-* **Alternative 2**: Check all format criterias. If there are more than one erros, concatenate their error message before throwing exception.
-** Pros: More user friendly. User will be able to see all syntax erros in first try and fix them.
+several retries for user to figure all the syntax errors.
+* **Alternative 2 (current choice)**: Always execute all syntax format checkings. If there are more than one error, concatenate their error
+message before throwing command exception.
+** Pros: More user friendly. User will be able to see all syntax errors in first try and attempt to fix them.
 ** Cons: Need to create many negative test cases to test each error individually and all together. More
 complicated to test the expected error messages.
 
@@ -1383,6 +1397,41 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
+=== Adding modules
+
+In an empty module planner, do the following command: `add y/1 s/1 c/CS1010`
+
+The module planner will now have the module `CS1010`.
+
+Next do the following command: `add y/1 s/1 c/CS0000 c/CS1010 c/CS1010E c/CS1231 c/MA1100 c/CS2030 c/GER1000`
+
+The module planner will now have the module `GER1000` and the following message will be displayed:
+
+Added Module(s): GER1000 +
+Not offered module(s): CS0000 +
+Following module(s) already exist in the planner: CS1010 +
+Following module(s) have some of their preclusions not fulfilled in the planner: CS1010E +
+Following module(s) are equivalent: (CS1231 MA1100) +
+Following module(s) have their prerequisites not fulfilled in the planner: CS2030
+
+=== Getting status
+
+Type `status` in an empty planner, and the following should be displayed:
+
+University Level Requirement: 0/20 +
+Foundation: 0/36 +
+Mathematics: 0/12 +
+Science: 0/4 +
+IT Professionalism: 0/12 +
+Industrial Experience Requirement: 0/12 +
+Team Project: 0/8
+
+Now do the following command: `add y/1 s/1 c/CS1010 c/MA1521`
+
+The following fields will be now updated:
+Foundation: 4/36 +
+Mathematics: 4/12
+
 === Deleting modules
 
 . Simple deletion
@@ -1479,3 +1528,51 @@ image::CorruptedDataFile.png[width="300"]
    Expected: The panel for *Modules Taken* remained the same as before executing the command. Error message is shown in the status message.
 .. Other incorrect list commands to try: `list y/a` (where a is not an integer between 1 to 4) +
    Expected: Similar to previous.
+
+=== Set up user profile
+
+. Set up user profile
+
+.. Test case: Valid major with exact letter casing, no focus area
+*** Command: `setup m/Computer Science`
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and no focus area.
+
+.. Test case: Valid major with different letter casing, no focus area
+*** Command: `setup m/cOMputEr sCiEnce`
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and no focus area.
+
+.. Test case: Invalid major, no focus area
+*** Command: `setup m/Information Security`
+*** Expected: Fail to set up user profile with error message `Invalid major (Information Security)`.
+
+.. Test case: Valid major, one valid focus area with exact letter casing
+*** Command: `setup m/Computer Science f/Software Engineering`
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and "Software Engineering" as focus area.
+
+.. Test case: Valid major, one valid focus area in different letter casing
+*** Command: `setup m/Computer Science f/softWARE EnginEErInG`
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and "Software Engineering" as focus area.
+
+.. Test case: Valid major, multiple different valid focus areas with exact letter casing
+*** Command: `setup m/Computer Science f/Software Engineering f/Artificial Intelligence`
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and "Software Engineering"
+and "Artificial Intelligence" as focus areas.
+
+.. Test case: Valid major, multiple strings with different letter casing of the same valid focus area
+*** Command: `setup m/Computer Science f/Software Engineering f/soFTware EnginEErinG`
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and "Software Engineering" as focus area.
+"Software Engineering" only appears once.
+
+.. Test case: Valid major, one valid focus area with exact letter casing and one invalid focus area
+*** Command: `setup m/Computer Science f/Software Engineering f/Computer Graphics`
+*** Expected: Sucessfully set up user profile with "Computer Science" as major and "Software Engineering" as focus area.
+
+.. Test case: Valid major, one invalid focus area
+*** Command: `setup m/Computer Science f/Computer Graphics`
+*** Expected: Fail to set up user profile with error message `All focus area(s) are invalid`.
+
+.. Test case: Invalid major, one invalid focus area
+*** Command: `setup m/Information Security f/Computer Graphics`
+*** Expected: Fail to set up user profile with error messages `Invalid major (Information Security)`
+and `All focus area(s) are invalid`.
+
