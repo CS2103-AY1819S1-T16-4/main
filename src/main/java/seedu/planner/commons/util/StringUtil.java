@@ -94,7 +94,7 @@ public class StringUtil {
      */
     public static boolean containsOnlyNumbers(String s) {
         requireNonNull(s);
-        return s.trim().matches(ALL_NUMBERS_REGEX);
+        return s.matches(ALL_NUMBERS_REGEX);
     }
 
     /**
@@ -111,25 +111,8 @@ public class StringUtil {
     }
 
     /**
-     * Capitalizes the first letter of the {@code word}.
-     * If the word is made up of a single letter,
-     * the letter itself is capitalized.
-     *
-     * @param word The word
-     * @return The word with each first letter capitalized
-     */
-    private static String capitalizeWord(String word) {
-        requireNonNull(word);
-
-        if (word.length() == 1) {
-            return word.toUpperCase();
-        } else {
-            return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
-        }
-    }
-
-    /**
-     * Capitalizes the first letter of each word in the {@code sentence}.
+     * Capitalizes the first letter of each word in the {@code sentence}
+     * and ensures that the other letters are not.
      *
      * @param sentence The sentence
      * @return The sentence with each word having its first
@@ -148,5 +131,24 @@ public class StringUtil {
         }
 
         return sb.toString().trim();
+    }
+
+    /**
+     * Capitalizes the first letter of the {@code word}.
+     * If the word is made up of a single letter,
+     * the letter itself is capitalized.
+     *
+     * @param word The word
+     * @return The word with each first letter capitalized
+     */
+    private static String capitalizeWord(String word) {
+        requireNonNull(word);
+
+        if (word.length() == 1) {
+            return word.toUpperCase();
+        } else {
+            String capitalizedWord = word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
+            return capitalizedWord.trim();
+        }
     }
 }
