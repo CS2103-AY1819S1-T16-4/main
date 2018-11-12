@@ -2,6 +2,7 @@
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
+:repoURL: https://github.com/CS2103-AY1819S1-T16-4/main/blob/master
 
 == PROJECT: ModulePlanner
 
@@ -26,12 +27,20 @@ new modules that the user can take based on their academic requirements.
 
 == Summary of contributions
 === Major enhancement
-* Compile module and major information into JSON file and package it into the
-JAR file for use of the application.
-** What it does: Information about NUS modules and majors is the foundation of all commands in Module
+* Implement mechanism to retrieve module and major information
+** What it does: Collect and preprocess module and major information from https://nusmods.com[NUSMods],
+convert it into JSON format and package it into the JAR file for use of the application.
+** Justification: All main commands in Module Planner (`add`, `delete`, `suggest` and `status`) rely on
+information about NUS modules and majors to function.
 Planner.
-** Justification:
 ** Highlight:
+*** This requires a clear understanding of the types of information about modules and majors
+and how they relate with each other so that they can be represented as well-designed classes.
+*** Scripting experience is needed to preprocess the data from external sources so that it can be easily
+manipulated in application code.
+*** Need to strike a balance between the potential implementation complexity of other commands and how
+accurate the processed data should be when compared with the real world data so that it is closer
+to NUS students' expectation.
 
 === Minor enhancements
 * Implement the ability to sort module suggestion based on user's major requirement.
@@ -39,7 +48,7 @@ Planner.
 * Implement the ability to read and write module planner data in JSON file format.
 * Co-author `setup` command with Gabriel Yik to initialize user's major and focus areas.
 
-== Code contributed
+=== Code contributed
 * https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=rongjiecomputer
 
 === Other contributions

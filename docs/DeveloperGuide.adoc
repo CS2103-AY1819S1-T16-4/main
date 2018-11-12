@@ -308,8 +308,8 @@ are removed.
 
 ==== Data sanitizing script
 
-The python script that downloads the list of NUS modules from NUSMods server and does the data transformation
-detailed above can be found at (link:{repoURL}/tools/moduleConverter.py[`moduleConverter.py`]).
+The python script that downloads the list of NUS modules from https://nusmods.com[NUSMods] server and does the data
+transformation detailed above can be found at (link:{repoURL}/tools/moduleConverter.py[`moduleConverter.py`]).
 
 ==== Design Consideration
 
