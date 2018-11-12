@@ -472,6 +472,10 @@ module is deleted from and checks if those modules now have prerequisites that a
 are now prerequisites not fulfilled for the modules checked, they too are deleted and the process repeats for them.
 For better addressing, this process will be defined as _Iterative Deletion_.
 
+The following activity diagram shows how Iterative Deletion works:
+
+image::IterativeDeletionActivityDiagram.png[width="500"]
+
 ===== Input
 The arguments given to the mechanism are modules, which can be a mix of valid and invalid modules.
 A valid module is defined as one that has the correct module code format and has been taken, is currently
