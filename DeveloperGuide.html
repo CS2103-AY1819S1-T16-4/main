@@ -29,16 +29,17 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#add-feature">3.1. Add feature</a></li>
-<li><a href="#delete-feature">3.2. Delete feature</a></li>
-<li><a href="#find-feature">3.3. Find feature</a></li>
-<li><a href="#goto-feature">3.4. Goto feature</a></li>
-<li><a href="#list-feature">3.5. List feature</a></li>
-<li><a href="#suggest-feature">3.6. Suggest feature</a></li>
-<li><a href="#undo-redo-feature">3.7. Undo/Redo feature</a></li>
-<li><a href="#logging">3.8. Logging</a></li>
-<li><a href="#retrieval-and-use-of-module-information">3.9. Retrieval and Use of Module Information</a></li>
-<li><a href="#Implementation-Configuration">3.10. Configuration</a></li>
+<li><a href="#module-and-major-information">3.1. Module and Major Information</a></li>
+<li><a href="#setup-feature">3.2. Setup feature</a></li>
+<li><a href="#add-feature">3.3. Add feature</a></li>
+<li><a href="#delete-feature">3.4. Delete feature</a></li>
+<li><a href="#find-feature">3.5. Find feature</a></li>
+<li><a href="#goto-feature">3.6. Goto feature</a></li>
+<li><a href="#list-feature">3.7. List feature</a></li>
+<li><a href="#suggest-feature">3.8. Suggest feature</a></li>
+<li><a href="#undo-redo-feature">3.9. Undo/Redo feature</a></li>
+<li><a href="#logging">3.10. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.11. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -501,7 +502,7 @@ All these, including the <code>MainWindow</code>, inherit from the abstract <cod
 </ol>
 </div>
 <div class="paragraph">
-<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
+<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete c/CS1010")</code> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -559,10 +560,10 @@ e.g. the UI can be bound to this list so that the UI automatically updates when 
 <div class="ulist">
 <ul>
 <li>
-<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+<p>can save <code>UserPref</code> objects in JSON format and read it back.</p>
 </li>
 <li>
-<p>can save <code>ReadOnlyModulePlanner</code> object in json format and read it back.</p>
+<p>can save <code>ReadOnlyModulePlanner</code> object in JSON format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -588,9 +589,268 @@ e.g. the UI can be bound to this list so that the UI automatically updates when 
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="add-feature"><a class="link" href="#add-feature">3.1. Add feature</a></h3>
+<h3 id="module-and-major-information"><a class="link" href="#module-and-major-information">3.1. Module and Major Information</a></h3>
+<div class="paragraph">
+<p>Information about modules and majors supports almost all the features in Module Planner.</p>
+</div>
+<div class="paragraph">
+<p>Information of a module such as module code, module credit and prerequisite modules are stored in <code>ModuleInfo</code> class.
+This class is made to be immutable to avoid accidental changes to the class.</p>
+</div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<div class="sect4">
+<h5 id="overview-of-components"><a class="link" href="#overview-of-components">Overview of components</a></h5>
+<div class="paragraph">
+<p>Internally, <code>ModuleInfo</code> is an immutable class that holds all the information of a module that is universal to
+all students from any faculty. <code>MajorDescription</code> is an immutable class that holds information about the
+requirements of a major.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ModuleInfoClassDiagram.png" alt="ModuleInfoClassDiagram" width="500">
+</div>
+<div class="title">Figure 11. Class diagram for <code>ModuleInfo</code>.</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MajorDescriptionClassDiagram.png" alt="MajorDescriptionClassDiagram" width="700">
+</div>
+<div class="title">Figure 12. Class diagram for <code>MajorDescription</code>.</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deliberate-simplifications"><a class="link" href="#deliberate-simplifications">3.1.2. Deliberate simplifications</a></h4>
+<div class="paragraph">
+<p>The real information about NUS modules are very complicated. Here list down some simplifications we made in order
+to create this proof of concept of our application.</p>
+</div>
+<div class="sect4">
+<h5 id="prequisites-and-preclusion"><a class="link" href="#prequisites-and-preclusion">Prequisites and preclusion</a></h5>
+<div class="paragraph">
+<p>IVLE provides the prerequisites and preclusion of a module in normal English sentence (e.g. "CS1010 or its equivalents"
+and "Departmental approval"). Extracting the real module prerequisite and preclusion relationship would
+be infeasible due to the potential long list of exceptions we need to handle. To simplify this, we use
+regular expression to extract the module codes.</p>
+</div>
+<div class="paragraph">
+<p>How are prerequisite and preclusion checking is implemented:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If user wants to take Module A, all prerequisites of Module A must already have been taken.</p>
+</li>
+<li>
+<p>If Module B&#8217;s preclusion has at least one module that user has already taken, user cannot take Module B.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This gives a reasonable approximation of prerquisite and preclusion relationship for most modules.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="corequisites"><a class="link" href="#corequisites">Corequisites</a></h5>
+<div class="paragraph">
+<p>Corequisite is used to descibe which modules must be taken together. We choose to ignore this entirely
+as it will complicate the implementation of <code>add</code> and <code>delete</code> commands significantly.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="data-sanitizing-script"><a class="link" href="#data-sanitizing-script">3.1.3. Data sanitizing script</a></h4>
+<div class="paragraph">
+<p>The python script that downloads the list of NUS modules from NUSMods server and does the data transformation
+detailed above can be found at (<a href="https://github.com/CS2103-AY1819S1-T16-4/main/blob/master/tools/moduleConverter.py"><code>moduleConverter.py</code></a>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.1.4. Design Consideration</a></h4>
+<div class="sect4">
+<h5 id="aspect-representation-of-major-and-focus-area"><a class="link" href="#aspect-representation-of-major-and-focus-area">Aspect: Representation of major and focus area</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Use enum to represent major and focus area.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Stronger type checking.</p>
+</li>
+<li>
+<p>Cons: Need to explicitly list down all the possible values of enums (there are more than hundreds of focus areas
+in all NUS majors). Special JSON serialization and deserialization is needed for enum types.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Use <code>String</code> to represent major and focus area.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: No need to convert major and focus area inputted by user into another type.</p>
+</li>
+<li>
+<p>Cons: If major/focus area is passed into a function as a parameter, the function cannot assume that
+the it is a valid major/focus area. This leads to a lot of redundant checking.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-storing-of-module-and-major-information"><a class="link" href="#aspect-storing-of-module-and-major-information">Aspect: Storing of module and major information</a></h5>
+<div class="paragraph">
+<p>To avoid having to download the module and major information from the Internet in first start up, we package
+the data directly into final <code>.jar</code> file as a resource file.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Store data in as a JSON resource file and deserialize data into Java types
+at runtime.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: JSON format is easy to learn and can be manipulated easily with other (interpreted) programming languages.</p>
+</li>
+<li>
+<p>Cons: JSON format can only hold simple primitive types such as <code>String</code>, number, array and hash table. Need to
+design a way to flatten the module relationship graph into something that can be represented in JSON and reconstruct
+the graph after deserialization.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Generate Java code during build time. The data will be directly stored as a static constant Java object.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Better performance in runtime as the deserialization is no longer needed. Less moving parts when testing the data itself.</p>
+</li>
+<li>
+<p>Cons: More complex build procedures.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-two-different-classes-to-store-module-related-information-code-moduleinfo-code-and-code-moduledescription-code"><a class="link" href="#aspect-two-different-classes-to-store-module-related-information-code-moduleinfo-code-and-code-moduledescription-code">Aspect: Two different classes to store module related information (<code>ModuleInfo</code> and <code>ModuleDescription</code>)</a></h5>
+<div class="paragraph">
+<p><code>ModuleInfoRetriever</code> opens the processed <code>data/moduleInfo.json</code> file packaged in the JAR file and deserialize its
+content into an array of <code>ModuleInfo</code> objects. As JSON can only hold simple values such as strings and numbers,
+prerequisites and preclusion are stored as an array of <code>String</code>, so we need to call <code>ModuleInfo.finalizeModuleInfo</code> to
+convert the strings into <code>ModuleInfo`s as well before we can start querying prerequisite and preclusion from
+`ModuleInfo#getPrerequisites</code> and <code>ModuleInfo#getPreclusions</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setup-feature"><a class="link" href="#setup-feature">3.2. Setup feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>setup</code> command allows users to save their major and optionally their focus areas in Module Planner.
+The information is stored in <code>UserProfile</code> and is later used by <code>suggest</code> and <code>status</code> commands.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence shows the sequence when <code>setup</code> command is executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SetupSequenceDiagram.png" alt="SetupSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 13. Sequence Diagram for <code>setup</code> command.</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.2.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-argument-leniency"><a class="link" href="#aspect-argument-leniency">Aspect: Argument leniency</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1</strong>: Entirely reject all focus areas even if one is invalid. Focus areas must have the exact same letter casing as
+listed in User Guide.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation would be simpler.</p>
+</li>
+<li>
+<p>Cons: Not user friendly. It is too easy for users to input the wrong letter casing, causing many retries.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2 (current choice)</strong>: Accept the valid focus areas even if one is invalid. Focus areas inputted is case-insensitive.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More user friendly. User is able to update the user profile and gets positive result.</p>
+</li>
+<li>
+<p>Cons: Need to implement filtering of valid focus areas from inputted focus areas. As <code>f/Computer Science</code> and <code>f/cOmpUter SciEnce</code> are now
+both valid inputs and can be inputted at the same time, we also need to filter out duplicates.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aspect-error-handling"><a class="link" href="#aspect-error-handling">3.2.3. Aspect: Error handling</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1</strong>: Check format criterias one by one and immediately throw an error in first failure.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation would be simpler. Less possible of combinations to test.</p>
+</li>
+<li>
+<p>Cons: Not user friendly. User only sees one syntax error at one time. If there are many syntax errors in user&#8217;s first try, it will take
+many retries for user to figure all the syntax errors.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Check all format criterias. If there are more than one erros, concatenate their error message before throwing exception.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More user friendly. User will be able to see all syntax erros in first try and fix them.</p>
+</li>
+<li>
+<p>Cons: Need to create many negative test cases to test each error individually and all together. More
+complicated to test the expected error messages.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-feature"><a class="link" href="#add-feature">3.3. Add feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The add mechanism is facilitated by 'ModulePlanner'. 'ModulePlanner' stores a list of all 'Semester&#8217;s. A 'Semester' stores a list containing modules that the user has taken or is planning to take on that semester.
 The implementation is as follows:</p>
@@ -676,7 +936,7 @@ and the user will be informed to input arguments.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="different-semester-start"><a class="link" href="#different-semester-start">Different semester start</a></h5>
 <div class="paragraph">
@@ -697,9 +957,9 @@ Also, all currently suggested modules to the user might too be inaccurate.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-feature"><a class="link" href="#delete-feature">3.2. Delete feature</a></h3>
+<h3 id="delete-feature"><a class="link" href="#delete-feature">3.4. Delete feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
 <div class="sect4">
 <h5 id="about"><a class="link" href="#about">About</a></h5>
 <div class="paragraph">
@@ -837,9 +1097,9 @@ and the user will be informed to input arguments.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-argument-leniency"><a class="link" href="#aspect-argument-leniency">Aspect: Argument leniency</a></h5>
+<h5 id="aspect-argument-leniency-2"><a class="link" href="#aspect-argument-leniency-2">Aspect: Argument leniency</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -910,9 +1170,9 @@ deleting them.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="find-feature"><a class="link" href="#find-feature">3.3. Find feature</a></h3>
+<h3 id="find-feature"><a class="link" href="#find-feature">3.5. Find feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
 <div class="sect4">
 <h5 id="about-2"><a class="link" href="#about-2">About</a></h5>
 <div class="paragraph">
@@ -947,22 +1207,22 @@ the command fails.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="module-is-offered"><a class="link" href="#module-is-offered">3.3.2. Module is Offered</a></h4>
+<h4 id="module-is-offered"><a class="link" href="#module-is-offered">3.5.2. Module is Offered</a></h4>
 <div class="paragraph">
 <p>The user executes <code>find c/CS1010</code>. The <code>MultiPurposePanel</code> displays the retrieved module information.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="module-is-not-offered"><a class="link" href="#module-is-not-offered">3.3.3. Module is Not Offered</a></h4>
+<h4 id="module-is-not-offered"><a class="link" href="#module-is-not-offered">3.5.3. Module is Not Offered</a></h4>
 <div class="paragraph">
 <p>The user executes <code>find c/CS0000</code>. The <code>MultiPurposePanel</code> does not display anything.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="goto-feature"><a class="link" href="#goto-feature">3.4. Goto feature</a></h3>
+<h3 id="goto-feature"><a class="link" href="#goto-feature">3.6. Goto feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current Implementation</a></h4>
 <div class="sect4">
 <h5 id="about-3"><a class="link" href="#about-3">About</a></h5>
 <div class="paragraph">
@@ -1035,9 +1295,9 @@ support years beyond the 4th.
 </div>
 </div>
 <div class="sect2">
-<h3 id="list-feature"><a class="link" href="#list-feature">3.5. List feature</a></h3>
+<h3 id="list-feature"><a class="link" href="#list-feature">3.7. List feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The list mechanism is facilitated by <code>ModulePlanner</code>. <code>ModulePlanner</code> stores a list of all <code>Semester`s and each `Semester</code> stores a list <code>modulesTaken</code> containing modules that the user has taken or is planning to take.
 It implements the following operation:</p>
@@ -1108,7 +1368,7 @@ A list containing CS1231 and CS1010 will be displayed to the user.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.7.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-list-of-modules-is-retrieved-for-list-command"><a class="link" href="#aspect-how-list-of-modules-is-retrieved-for-list-command">Aspect: How list of modules is retrieved for list command</a></h5>
 <div class="ulist">
@@ -1145,9 +1405,9 @@ A list containing CS1231 and CS1010 will be displayed to the user.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="suggest-feature"><a class="link" href="#suggest-feature">3.6. Suggest feature</a></h3>
+<h3 id="suggest-feature"><a class="link" href="#suggest-feature">3.8. Suggest feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current Implementation</a></h4>
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.8.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The suggest mechanism displays a list of modules available in the specified index to the user, where index represents the year and semester that the user is asking suggestions for.
 It is supported by an internal list <code>availableModules</code> in <code>ModulePlanner</code>, which is regenerated after every successful execution of commands that modify <code>ModulePlanner</code> (<code>add</code>, <code>delete</code>, <code>clear</code>, etc.) and <code>suggest</code> command.
@@ -1256,7 +1516,7 @@ Module CS2030 has a prerequisite CS1010 and a preclusion CS1020. User has taken 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.8.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-list-of-available-modules-is-regenerated"><a class="link" href="#aspect-how-list-of-available-modules-is-regenerated">Aspect: How list of available modules is regenerated</a></h5>
 <div class="ulist">
@@ -1293,9 +1553,9 @@ Module CS2030 has a prerequisite CS1010 and a preclusion CS1020. User has taken 
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.7. Undo/Redo feature</a></h3>
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.9. Undo/Redo feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.1. Current Implementation</a></h4>
+<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">3.9.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedModulePlanner</code>.
 It extends <code>ModulePlanner</code> with an undo/redo history, stored internally as an <code>modulePlannerStateList</code> and <code>currentStatePointer</code>.
@@ -1451,7 +1711,7 @@ This is the behavior that most modern desktop applications follow.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.9.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -1523,14 +1783,14 @@ Violates Single Responsibility Principle and Separation of Concerns as <code>His
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.8. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.10. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.10, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.11, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1561,38 +1821,7 @@ Violates Single Responsibility Principle and Separation of Concerns as <code>His
 </div>
 </div>
 <div class="sect2">
-<h3 id="retrieval-and-use-of-module-information"><a class="link" href="#retrieval-and-use-of-module-information">3.9. Retrieval and Use of Module Information</a></h3>
-<div class="paragraph">
-<p>Information of a NUS module such as module code, module credit and prerequisite modules are stored in <code>ModuleInfo</code> class.
-This class is made to be immutable to avoid accidental changes to the class.</p>
-</div>
-<div class="paragraph">
-<p>A python script (<a href="https://github.com/CS2103-AY1819S1-T16-4/main/blob/master/tools/moduleConverter.py"><code>moduleConverter.py</code></a>) is used to download the list of NUS modules
-from NUSMods server, do some data transformation and write to <code>data/moduleInfo.json</code> for the use of our app.</p>
-</div>
-<div class="paragraph">
-<p>NUSMods provides the prerequisites and preclusion of a module in normal English sentence (e.g. "CS1010 or its equivalents"
-and "Departmental approval"), attempting to extract the correct prerequisite and preclusion relationship of the modules
-would be infeasible due to the potential long list of exception rules. Therefore, we will only extract the module codes
-in the sentences with regular expression, downside of this is that we won&#8217;t include CS1010S, CS1010J and so on from
-"CS1010 or its equivalents". We will also assume that if any module in the prerequisite/preclusion list is matched,
-the condition is met immediately (even though this is incorrect for rules like "(MA1101R AND MA1221) OR MA1521").</p>
-</div>
-<div class="paragraph">
-<p><code>ModuleInfoRetriever</code> opens the processed <code>data/moduleInfo.json</code> file packaged in the JAR file and deserialize its
-content into an array of <code>ModuleInfo</code> objects. As JSON can only hold simple values such as strings and numbers,
-prerequisites and preclusion are stored as an array of <code>String</code>, so we need to call <code>ModuleInfo.finalizeModuleInfo</code> to
-convert the strings into <code>ModuleInfo`s as well before we can start querying prerequisite and preclusion from
-`ModuleInfo#getPrerequisites</code> and <code>ModuleInfo#getPreclusions</code>.</p>
-</div>
-<div class="paragraph">
-<p>For command implementer, you can access the complete list of <code>ModuleInfo</code> from <code>ModuleInfo#getModuleInfoList()</code>.
-You can convert a module code string to a <code>ModuleInfo</code> object by passing the string to
-<code>ModuleInfo#getFromModuleCode(String code)</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.10. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.11. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1658,7 +1887,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 11. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 14. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2352,7 +2581,7 @@ and repeating until no more modules are removed.</p>
 <div class="content">
 <img src="images/UiLabelled.png" alt="UiLabelled" width="790">
 </div>
-<div class="title">Figure 12. The labelled ui</div>
+<div class="title">Figure 15. The labelled ui</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2470,4 +2699,4 @@ These files contain default values and not custom values set by the user.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 02:43:03 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 02:47:36 UTC</div></div></div></body></html>
