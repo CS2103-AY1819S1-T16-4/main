@@ -1,6 +1,5 @@
 ﻿= Module Planner - Developer Guide
 :site-section: DeveloperGuide
-:source-highlighter: pygments
 :toc:
 :toc-title:
 :toc-placement: preamble
