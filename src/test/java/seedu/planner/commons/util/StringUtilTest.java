@@ -165,8 +165,8 @@ public class StringUtilTest {
 
     @Test
     public void isParsable_notParsableNumber_returnsTrue() {
-        assertFalse(isParsable("11111111111111111111"));
-        assertFalse(isParsable("-11111111111111111111"));
+        assertFalse(isParsable("111111111111111111111"));
+        assertFalse(isParsable("-111111111111111111111"));
     }
 
     @Test
