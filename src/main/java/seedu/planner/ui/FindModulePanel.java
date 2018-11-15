@@ -4,8 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import seedu.planner.model.module.Module;
 
-//@@author GabrielYik
-
 /**
  * A ui for the find module panel that is displayed
  * on the right of the application.

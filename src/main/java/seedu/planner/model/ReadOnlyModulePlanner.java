@@ -7,8 +7,6 @@ import seedu.planner.model.module.Module;
 import seedu.planner.model.semester.Semester;
 import seedu.planner.model.user.UserProfile;
 
-//@@author GabrielYik
-
 /**
  * Represents an unmodifiable view of a {@code ModulePlanner}.
  */

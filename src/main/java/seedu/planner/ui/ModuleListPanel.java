@@ -11,8 +11,6 @@ import javafx.scene.layout.Region;
 import seedu.planner.commons.util.Pair;
 import seedu.planner.model.module.Module;
 
-//@@author GabrielYik
-
 /**
  * Panel containing a list of modules.
  */

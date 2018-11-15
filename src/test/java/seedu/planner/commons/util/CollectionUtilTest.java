@@ -94,8 +94,6 @@ public class CollectionUtilTest {
         assertTrue(CollectionUtil.isAnyNonNull(new Object(), null));
     }
 
-    //@@author GabrielYik
-
     @Test
     public void getAnyOne_nonEmptyCollection_returnAnyOneElement() {
         Set<Integer> set = Set.of(1, 2);
@@ -183,8 +181,6 @@ public class CollectionUtilTest {
         thrown.expect(NullPointerException.class);
         formatMessage(null, null);
     }
-
-    //@@author
 
     /**
      * Asserts that {@code CollectionUtil#requireAllNonNull(Object...)} throw {@code NullPointerException}

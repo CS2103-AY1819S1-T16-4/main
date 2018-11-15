@@ -28,8 +28,6 @@ import seedu.planner.model.user.UserProfile;
 import seedu.planner.model.util.IndexUtil;
 import seedu.planner.model.util.ModuleUtil;
 
-//@@author Hilda-Ang
-
 /**
  * Wraps all data at the module planner level.
  */
@@ -91,8 +89,6 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         updateTakenModules();
         getStatus();
     }
-
-    //@@author GabrielYik
 
     /**
      * Delete one or more module(s) from list of modules taken for the specified semester.

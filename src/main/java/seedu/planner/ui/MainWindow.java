@@ -289,8 +289,6 @@ public class MainWindow extends UiPart<Stage> {
         handleHelp();
     }
 
-    //@@author GabrielYik
-
     @Subscribe
     private void handleAddEvent(AddEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));

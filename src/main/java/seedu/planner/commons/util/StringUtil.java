@@ -73,8 +73,6 @@ public class StringUtil {
         }
     }
 
-    //@@author GabrielYik
-
     /**
      * Checks if the String, which is a number, can be parsed by {@code Integer#parseInt}.
      *

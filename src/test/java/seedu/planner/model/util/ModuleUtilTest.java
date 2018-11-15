@@ -21,8 +21,6 @@ import seedu.planner.model.module.Module;
 
 public class ModuleUtilTest {
 
-    //@@author GabrielYik
-
     @Test
     public void hasValidCodeFormat_validFormat_returnsTrue() {
         assertTrue(ModuleUtil.hasValidCodeFormat("CS1010"));
